@@ -1,0 +1,70 @@
+=====Account=====사용자
+acc_index             num       	(sequence)
+acc_id                 varchar2(100)       (primary key)
+acc_password	varchar2(100)	
+acc_birthDate	date		개인정보 (not null)
+acc_phone	num		개인정보 (not null) (11자리 제한)
+acc_email		varchar2(100)	개인정보 (not null)
+acc_name		varchar2(50)	개인정보 (not null)
+acc_address	varchar2(300)	개인정보 (not null)
+acc_nickname	varchar2(100)	공유정보
+acc_profile	varchar2(500)	공유정보
+acc_level		num	0
+acc_count   	num	0
+acc_status           varchar2(100)      (ADMIN or ACTIVEU or INACTIVEU) : (관리자 또는 활성유저 또는 비활성유저)
+acc_enrollDate      date	          (default: sysdate)
+
+
+=====Item=====매물(게시글)
+item_index           num 	 (primary key, sequence)
+item_sellerCode	
+item_title		varchar2(100)
+item_content	varchar2(500)
+item_image	varchar2(500)
+item_category       varchar2(100)	(의류잡화 or 전자기기 or 식품 or 가구 or 기타)
+item_seller      num (foreign key : acc_index) item_acc_index
+item_status           varchar2(100) (ONSALE or ONDEAL or DROP) : (판매중 또는 철회)
+item_enrollDate     date	 (default: sysdate) 
+item_offDate     	date	매물철회일 : 거래가 종료되면 입력
+item_chat_check    varchar2(30) ('Y' or 'N')
+
+
+=====Reply===== 매물에 댓글
+rep_index            num  (primary key, sequence)
+rep_content         varchar2(300)     
+rep_acc_index	num      (foreign key)
+rep_item_index     num       (foreign key)
+rep_enrollDate     date  (default: sysdate)
+
+
+=====Chat===== 거래 대상 간 쪽지
+chat_index          num    (primary key, sequence)
+chat_content        varchar2(300)           
+chat_acc_index      num        (foreign key) : 판매자           살릴지 죽일지,,
+chat_item_index     num        (foreign key)
+chat_rep_index	num	(foreign key) : 구매자
+chat_enrollDate     date    (default: sysdate)
+
+
+=====Deal===== 거래내역
+deal_index	num      	 (primary key, sequence)
+deal_item_index     num       (foreign key)
+deal_item_seller     num (foreign key_acc_index)
+deal_item_buyer	num (foreign key_acc_index)
+deal_enrollDate     date  (default: sysdate)
+deal_review	varchar2(300)           
+deal_grade	num	0
+
+=====Interest=====찜
+int_item_index       num      (foreign key)
+int_item_status      varchar2(100)     (foreign key)
+int_acc_index        num           (foreign key)
+
+
+=====Search=====검색어(최근 검색어용)
+sear_index            num    (primary key, sequence)
+sear_word	varchar2(300)
+sear_acc_index       num       (foreign key)
+sear_date             date  (default: sysdate)
+
+
