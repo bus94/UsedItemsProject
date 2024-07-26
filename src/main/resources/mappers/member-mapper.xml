@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="memberMapper">
+
+	<resultMap type="com.ss.useditems.dto.MemberDTO"
+		id="memberMap">
+		<result property="acc_id" column="acc_id" />
+		<result property="acc_password" column="acc_password" />
+		<result property="acc_birthDate" column="acc_birthDate" />
+		<result property="acc_phone" column="acc_phone" />
+		<result property="acc_email" column="acc_email" />
+		<result property="acc_name" column="acc_name" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_profile" column="acc_profile" />
+		<result property="acc_level" column="acc_level" />
+		<result property="acc_count" column="acc_count" />
+		<result property="acc_status" column="acc_status" />
+		<result property="acc_enrollDate" column="acc_enrollDate" />
+		
+	</resultMap>
+
+	<select id="selectById" parameterType="String"
+		resultMap="memberMap">
+	</select>
+
+</mapper>
