@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content">
-	<h1>매물검색</h1>
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
