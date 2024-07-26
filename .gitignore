@@ -1,0 +1,5 @@
+# Ignore Maven properties
+**/pom.properties
+
+# Ignore MANIFEST files
+**/MANIFEST.MF

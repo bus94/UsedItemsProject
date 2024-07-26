@@ -1,0 +1,329 @@
+-- ACCOUNT 테이블 삭제
+DROP TABLE ACCOUNT;
+
+﻿-- ACCOUNT 테이블 생성 (계정)
+CREATE TABLE ACCOUNT (
+	acc_index	NUMBER		NOT NULL,
+	acc_id	VARCHAR2(100)		NOT NULL,
+	acc_password	VARCHAR2(100)		NOT NULL,
+	acc_birthDate	DATE		NOT NULL,
+	acc_phone	NUMBER		NOT NULL,
+	acc_email	VARCHAR2(100)		NULL,
+	acc_name	VARCHAR2(100)		NOT NULL,
+	acc_address	VARCHAR2(300)		NOT NULL,
+	acc_nickname	VARCHAR2(100)		NOT NULL,
+	acc_profile	VARCHAR2(500)		NULL,
+	acc_level	VARCHAR2(100)	DEFAULT 1	NOT NULL,
+	acc_count	NUMBER	DEFAULT 0	NOT NULL,
+	acc_status	VARCHAR2(100)		NOT NULL,
+	acc_enrollDate	DATE		NOT NULL
+);
+
+﻿-- ACCOUNT 컬럼 코멘트
+COMMENT ON COLUMN ACCOUNT.acc_status IS '{admin, active, inactive}';
+COMMENT ON COLUMN ACCOUNT.acc_enrollDate IS 'sysdate';
+
+-- ITEM 테이블 삭제
+DROP TABLE ITEM;
+
+-- ITEM 테이블 생성 (매물)
+CREATE TABLE ITEM (
+	item_index	NUMBER		NOT NULL,
+	item_seller	NUMBER		NOT NULL,
+	item_title	VARCHAR2(300)		NOT NULL,
+	item_content	VARCHAR2(500)		NOT NULL,
+	item_image	VARCHAR2(500)		NULL,
+	item_category	VARCHAR2(100)		NOT NULL,
+	item_status	VARCHAR2(100)		NOT NULL,
+	item_enrollDate	DATE	DEFAULT sysdate	NOT NULL,
+	item_click	NUMBER	DEFAULT 0	NOT NULL,
+	item_interest	NUMBER	DEFAULT 0	NOT NULL,
+	item_offDate	DATE		NULL,
+	item_room_status	VARCHAR2(100)		NOT NULL,
+	item_buyer	number		NULL
+);
+
+-- ITEM 컬럼 코멘트 추가
+COMMENT ON COLUMN ITEM.item_seller IS 'acc_index';
+COMMENT ON COLUMN ITEM.item_category IS '{의류잡화, 전자기기, 식품, 가구, 기타}';
+COMMENT ON COLUMN ITEM.item_status IS '{onsale, ondeal, drop} //채팅방y == ondeal';
+COMMENT ON COLUMN ITEM.item_room_status IS '{y, n} //채팅방을 드롭할 경우 채팅방은 삭제';
+COMMENT ON COLUMN ITEM.item_buyer IS 'acc_index';
+
+-- REPLY 테이블 삭제
+DROP TABLE REPLY;
+
+-- REPLY 테이블 생성 (댓글)
+CREATE TABLE REPLY (
+	rep_index	NUMBER		NOT NULL,
+	rep_item	NUMBER		NOT NULL,
+	rep_candidate	NUMBER		NOT NULL,
+	rep_content	VARCHAR2(300)		NOT NULL,
+	rep_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- REPLY 컬럼 코멘트 추가
+COMMENT ON COLUMN REPLY.rep_item IS 'item_index';
+COMMENT ON COLUMN REPLY.rep_candidate IS 'acc_index';
+
+-- CHATROOM 테이블 삭제
+DROP TABLE CHATROOM;
+
+-- CHATROOM 테이블 생성 (채팅방)
+CREATE TABLE CHATROOM (
+	room_index	NUMBER		NOT NULL,
+	room_item	NUMBER		NOT NULL,
+	room_reply	NUMBER		NOT NULL,
+	room_openDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- CHATROOM 컬럼 코멘트 추가
+COMMENT ON COLUMN CHATROOM.room_item IS 'item_index';
+COMMENT ON COLUMN CHATROOM.room_reply IS 'rep_index';
+
+-- CHAT 테이블 삭제
+DROP TABLE CHAT;
+
+-- CHAT 테이블 생성 (채팅 메세지)
+CREATE TABLE CHAT (
+	chat_index	NUMBER		NOT NULL,
+	chat_room	NUMBER		NOT NULL,
+	chat_writer	NUMBER		NOT NULL,
+	chat_content	VARCHAR2(300)		NOT NULL,
+	chat_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- CHAT 컬럼 코멘트 추가
+COMMENT ON COLUMN CHAT.chat_room IS 'room_index';
+COMMENT ON COLUMN CHAT.chat_writer IS 'acc_index';
+
+-- REVIEW 테이블 삭제
+DROP TABLE REVIEW;
+
+-- REVIEW 테이블 생성 (후기)
+CREATE TABLE REVIEW (
+	review_index	NUMBER		NOT NULL,
+	review_item	NUMBER		NOT NULL,
+	review_writer	NUMBER		NOT NULL,
+	review_score	NUMBER		NOT NULL,
+	review_content	VARCHAR2(300)		NULL,
+	review_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- REVIEW 컬럼 코멘트 추가
+COMMENT ON COLUMN REVIEW.review_item IS 'item_index';
+COMMENT ON COLUMN REVIEW.review_writer IS 'acc_index';
+COMMENT ON COLUMN REVIEW.review_score IS '0~5 라디오 선택?';
+
+-- INTEREST 테이블 삭제
+DROP TABLE INTEREST;
+
+-- INTEREST 테이블 생성 (찜 목록)
+CREATE TABLE INTEREST (
+	int_index	NUMBER		NOT NULL,
+	int_item	NUMBER		NOT NULL,
+	int_subject	NUMBER		NOT NULL
+);
+
+-- INTEREST 컬럼 코멘트 추가
+COMMENT ON COLUMN INTEREST.int_item IS 'item_index';
+COMMENT ON COLUMN INTEREST.int_subject IS 'acc_index';
+
+-- BLACKLIST 테이블 삭제
+DROP TABLE BLACKLIST;
+
+-- BLACKLIST 테이블 생성 (신고계정)
+CREATE TABLE BLACKLIST (
+	black_index	NUMBER		NOT NULL,
+	black_subject	NUMBER		NOT NULL,
+	black_object	NUMBER		NOT NULL,
+	black_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- BLACKLIST 컬럼 코멘트 추가
+COMMENT ON COLUMN BLACKLIST.black_subject IS 'acc_index';
+COMMENT ON COLUMN BLACKLIST.black_object IS 'acc_index';
+
+-- SEARCH 테이블 삭제
+DROP TABLE SEARCH;
+
+-- SEARCH 테이블 생성 (검색어) 
+CREATE TABLE SEARCH (
+	sear_index	NUMBER		NOT NULL,
+	sear_subject	NUMBER		NOT NULL,
+	sear_word	VARCHAR2(100)		NOT NULL,
+	sear_date	DATE	DEFAULT sysdate	NOT NULL
+);
+
+-- SEARCH 컬럼 코멘트 추가
+COMMENT ON COLUMN SEARCH.sear_subject IS 'acc_index';
+
+-- ACCOUNT 기본키 설정
+ALTER TABLE ACCOUNT ADD CONSTRAINT PK_ACCOUNT PRIMARY KEY (
+	acc_index
+);
+
+-- ITEM 기본키 설정
+ALTER TABLE ITEM ADD CONSTRAINT PK_ITEM PRIMARY KEY (
+	item_index,
+	item_seller
+);
+
+-- REPLY 기본키 설정
+ALTER TABLE REPLY ADD CONSTRAINT PK_REPLY PRIMARY KEY (
+	rep_index,
+	rep_item,
+	rep_candidate
+);
+
+-- CHATROOM 기본키 설정
+ALTER TABLE CHATROOM ADD CONSTRAINT PK_CHATROOM PRIMARY KEY (
+	room_index,
+	room_item,
+	room_reply
+);
+
+-- CHAT 기본키 설정
+ALTER TABLE CHAT ADD CONSTRAINT PK_CHAT PRIMARY KEY (
+	chat_index,
+	chat_room,
+	chat_writer
+);
+
+-- REVIEW 기본키 설정
+ALTER TABLE REVIEW ADD CONSTRAINT PK_REVIEW PRIMARY KEY (
+	review_index,
+	review_item,
+	review_writer
+);
+
+-- INTEREST 기본키 설정
+ALTER TABLE INTEREST ADD CONSTRAINT PK_INTEREST PRIMARY KEY (
+	int_index,
+	int_item,
+	int_subject
+);
+
+-- BLACKLIST 기본키 설정
+ALTER TABLE BLACKLIST ADD CONSTRAINT PK_BLACKLIST PRIMARY KEY (
+	black_index,
+	black_subject
+);
+
+-- SEARCH 기본키 설정
+ALTER TABLE SEARCH ADD CONSTRAINT PK_SEARCH PRIMARY KEY (
+	sear_index,
+	sear_subject
+);
+
+-- ITEM 외래키 설정 : ACCOUNT
+ALTER TABLE ITEM ADD CONSTRAINT FK_ACCOUNT_TO_ITEM_1 FOREIGN KEY (
+	item_seller
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- REPLY 외래키 설정 : ITEM
+ALTER TABLE REPLY ADD CONSTRAINT FK_ITEM_TO_REPLY_1 FOREIGN KEY (
+	rep_item
+)
+REFERENCES ITEM (
+	item_index
+);
+
+-- REPLY 외래키 설정 : ACCOUNT
+ALTER TABLE REPLY ADD CONSTRAINT FK_ACCOUNT_TO_REPLY_1 FOREIGN KEY (
+	rep_candidate
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- CHATROOM 외래키 설정 : ITEM
+ALTER TABLE CHATROOM ADD CONSTRAINT FK_ITEM_TO_CHATROOM_1 FOREIGN KEY (
+	room_item
+)
+REFERENCES ITEM (
+	item_index
+);
+
+-- CHATROOM 외래키 설정 : REPLY
+ALTER TABLE CHATROOM ADD CONSTRAINT FK_REPLY_TO_CHATROOM_1 FOREIGN KEY (
+	room_reply
+)
+REFERENCES REPLY (
+	rep_index
+);
+
+-- CHAT 외래키 설정 : CHATROOM
+ALTER TABLE CHAT ADD CONSTRAINT FK_CHATROOM_TO_CHAT_1 FOREIGN KEY (
+	chat_room
+)
+REFERENCES CHATROOM (
+	room_index
+);
+
+-- CHAT 외래키 설정 : ACCOUNT
+ALTER TABLE CHAT ADD CONSTRAINT FK_ACCOUNT_TO_CHAT_1 FOREIGN KEY (
+	chat_writer
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- REVIEW 외래키 설정 : ITEM
+ALTER TABLE REVIEW ADD CONSTRAINT FK_ITEM_TO_REVIEW_1 FOREIGN KEY (
+	review_item
+)
+REFERENCES ITEM (
+	item_index
+);
+
+-- REVIEW 외래키 설정 : ACCOUNT
+ALTER TABLE REVIEW ADD CONSTRAINT FK_ACCOUNT_TO_REVIEW_1 FOREIGN KEY (
+	review_writer
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- INTEREST 외래키 설정 : ITEM
+ALTER TABLE INTEREST ADD CONSTRAINT FK_ITEM_TO_INTEREST_1 FOREIGN KEY (
+	int_item
+)
+REFERENCES ITEM (
+	item_index
+);
+
+-- INTEREST 외래키 설정 : ACCOUNT
+ALTER TABLE INTEREST ADD CONSTRAINT FK_ACCOUNT_TO_INTEREST_1 FOREIGN KEY (
+	int_subject
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- BLACKLIST 외래키 설정 : ACCOUNT
+ALTER TABLE BLACKLIST ADD CONSTRAINT FK_ACCOUNT_TO_BLACKLIST_1 FOREIGN KEY (
+	black_subject
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- BLACKLIST 외래키 설정 : ACCOUNT
+ALTER TABLE BLACKLIST ADD CONSTRAINT FK_ACCOUNT_TO_BLACKLIST_2 FOREIGN KEY (
+	black_object
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
+
+-- SEARCH 외래키 설정 : ACCOUNT
+ALTER TABLE SEARCH ADD CONSTRAINT FK_ACCOUNT_TO_SEARCH_1 FOREIGN KEY (
+	sear_subject
+)
+REFERENCES ACCOUNT (
+	acc_index
+);
