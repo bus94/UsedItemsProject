@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content">
+<section class="container">
 	<h1>메인 컨테이너</h1>
 	<a href="${path}/account/login.do">로그인</a>
 	<a href="${path}/account/signup.do">회원가입</a>
