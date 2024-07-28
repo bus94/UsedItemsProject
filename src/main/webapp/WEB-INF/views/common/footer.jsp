@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <footer>
-	<p>
+	<p class="footer_p">
 		&lt;Copyright 2022. <strong>Multi</strong>.All rights reserved.&gt;
 	</p>
 </footer>
