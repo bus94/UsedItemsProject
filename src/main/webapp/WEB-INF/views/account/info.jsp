@@ -8,11 +8,15 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container">
-	<h1>메인 컨테이너</h1>
-	<a href="${path}/account/login.do">로그인</a>
-	<a href="${path}/account/signup.do">회원가입</a>
-	<a href="${path}/item/itemList.do">매물검색</a>
-	<a href="${path}account/info.do">계정 정보 조회 페이지</a>
+	<h1>계정 정보 조회 페이지</h1>
+
+	<a href="${path}account/alter.do">내 정보 수정</a>
+
+	<a href="${path}complain/complainList.do">사기조회</a>
+
+
+
 </section>
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
