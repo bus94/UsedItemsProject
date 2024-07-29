@@ -21,27 +21,27 @@
 						type="password" class="form-control login_inputStyle"
 						name="password" id="password" placeholder="비밀번호"
 						required="required" /> <input type="text"
+						class="form-control login_inputStyle" name="name" id="name"
+						placeholder="이름" required="required" /><input type="text"
 						class="form-control login_inputStyle" name="birthDate"
 						id="birthDate" placeholder="생년월일(8자리) ex.20010203"
 						required="required" /> <input type="text"
+						class="form-control login_inputStyle" name="address" id="address"
+						placeholder="주소" required="required" /><input type="text"
 						class="form-control login_inputStyle" name="phone" id="phone"
 						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678"
-						required="required" /> <input type="email"
-						class="form-control login_inputStyle" name="email" id="email"
-						placeholder="이메일 주소" required="required" /> <input type="text"
-						class="form-control login_inputStyle" name="name" id="name"
-						placeholder="이름" required="required" /> <input type="text"
-						class="form-control login_inputStyle" name="address" id="address"
-						placeholder="주소" required="required" /> <input type="text"
+						required="required" /> <input type="text"
 						class="form-control login_inputStyle" name="nickname"
-						id="nickname" placeholder="닉네임" required="required" />
-					<div style="text-align: center;">
-						<form action="uploadOK" method="post" enctype="multipart/form-data">
-							프로필 사진 첨부: <input type="file" name="file">
-							<input type="submit" value="전송">
+						id="nickname" placeholder="닉네임" required="required" /><input
+						type="email" class="form-control login_inputStyle" name="email"
+						id="email" placeholder="이메일 주소" required="required" />
+					<div class="mt-2" style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+						<form action="uploadOK" method="post"
+							enctype="multipart/form-data">
+							프로필 사진 첨부: <input style="width: 250px;" type="file" name="file">
 						</form>
 					</div>
-					<div class="loginButton">
+					<div class="loginButton mt-2">
 						<button type="button"
 							class="btn btn-success login_inputStyle mb-1 mt-1"
 							value="회원가입 완료">회원가입 완료</button>
