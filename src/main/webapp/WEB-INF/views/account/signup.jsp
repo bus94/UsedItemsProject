@@ -43,10 +43,10 @@
 					</div>
 					<div class="loginButton mt-2">
 						<button type="button"
-							class="btn btn-success login_inputStyle mb-1 mt-1"
+							class="btn login_btnStyle mb-1 mt-1"
 							value="회원가입 완료">회원가입 완료</button>
-						<button type="button" class="btn btn-success login_inputStyle"
-							value="로그인 하러 가기">로그인 하러 가기</button>
+						<button type="button" class="btn login_btnStyle"
+							value="로그인 하러 가기" onclick="location.href='${path}/account/login.do';">로그인 하러 가기</button>
 					</div>
 				</div>
 			</div>
