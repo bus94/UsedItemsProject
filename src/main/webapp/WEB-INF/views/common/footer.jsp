@@ -3,7 +3,7 @@
 
 <footer>
 	<p class="footer_p" align="center">
-		&lt;Copyright 2022. <strong>Safe Market</strong>All rights reserved.&gt;
+		&lt;Copyright 2022. <strong>Safe Market</strong>. All rights reserved.&gt;
 	</p>
 </footer>
 
