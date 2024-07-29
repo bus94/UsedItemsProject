@@ -16,10 +16,33 @@
 				</div>
 				<div class="login_input">
 					<input type="text" class="form-control login_inputStyle mt-1"
-						name="accountId" id="accountId" placeholder="아이디"
-						required="requeired" /> <input type="password"
-						class="form-control login_inputStyle" name="accountPassword"
-						id="accountPassword" placeholder="비밀번호" required="required" />
+						name="id" id="id" placeholder="아이디"
+						required="requeired" /> 
+					<input type="password"
+						class="form-control login_inputStyle" name="password"
+						id="password" placeholder="비밀번호" required="required" />
+					<input type="text"
+						class="form-control login_inputStyle" name="birthDate"
+						id="birthDate" placeholder="생년월일(8자리) ex.20010203" required="required" />
+					<input type="text"
+						class="form-control login_inputStyle" name="phone"
+						id="phone" placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required="required" />
+					<input type="email"
+						class="form-control login_inputStyle" name="email"
+						id="email" placeholder="이메일 주소" required="required" />
+					<input type="text"
+						class="form-control login_inputStyle" name="name"
+						id="name" placeholder="이름" required="required" />
+					<input type="text"
+						class="form-control login_inputStyle" name="address"
+						id="address" placeholder="주소" required="required" />
+					<input type="text"
+						class="form-control login_inputStyle" name="nickname"
+						id="nickname" placeholder="닉네임" required="required" />
+					<div style="text-align: center;">
+						<button class="profile mt-1" id="profile">프로필
+							사진첨부</button>
+					</div>
 				</div>
 				<div class="loginButton">
 					<input type="button" class="btn btn-success login_inputStyle mb-1 mt-1"

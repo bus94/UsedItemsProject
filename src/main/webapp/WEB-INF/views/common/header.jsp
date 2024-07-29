@@ -19,7 +19,8 @@
 	crossorigin="anonymous">
 
 <!-- css, js 포함 -->
-<link rel="stylesheet" href="${path}/resources/css/main.css">
+<%-- <link rel="stylesheet" href="${path}/resources/css/main.css"> --%>
+<link rel="stylesheet" href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet" href="${path}/resources/css/login/login.css">
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
