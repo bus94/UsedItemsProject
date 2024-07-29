@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <footer>
-	<p class="footer_p">
-		&lt;Copyright 2022. <strong>Multi</strong>.All rights reserved.&gt;
+	<p class="footer_p" align="center">
+		&lt;Copyright 2022. <strong>Safe Market</strong>. All rights reserved.&gt;
 	</p>
 </footer>
 

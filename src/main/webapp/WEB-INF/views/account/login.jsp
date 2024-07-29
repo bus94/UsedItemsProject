@@ -16,10 +16,10 @@
 				</div>
 				<div class="login_input">
 					<input type="text" class="form-control login_inputStyle mt-1"
-						name="accountId" id="accountId" placeholder="아이디"
+						name="acc_id" id="acc_id" placeholder="아이디"
 						required="requeired" /> <input type="password"
-						class="form-control login_inputStyle" name="accountPassword"
-						id="accountPassword" placeholder="비밀번호" required="required" />
+						class="form-control login_inputStyle" name="acc_password"
+						id="acc_password" placeholder="비밀번호" required="required" />
 				</div>
 				<div class="loginButton">
 					<input type="button" class="btn btn-success login_inputStyle mb-1 mt-1"

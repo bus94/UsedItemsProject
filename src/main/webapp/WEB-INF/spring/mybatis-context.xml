@@ -9,21 +9,25 @@
 
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
-		p:driverClassName="${driver}" p:url="${url}"
-		p:username="${username}" p:password="${password}"
+		p:driverClassName="${db.driver}" p:url="${db.url}"
+		p:username="${db.username}" p:password="${db.password}"
 		destroy-method="close" />
 
 	<bean id="mybatisConfig"
 		class="org.apache.ibatis.session.Configuration" />
+
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource" 
 		p:configuration-ref="mybatisConfig"
 		p:mapperLocations="classpath:mappers/**/*.xml"
-		p:dataSource-ref="dataSource" p:typeAliasesPackage="**.dto" />
+		p:configuration="classpath:config/config.xml"
+		p:typeAliasesPackage="**.dto" />
 
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate"
 		c:sqlSessionFactory-ref="sqlSessionFactory" />
 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="**.mapper" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="**.mapper" />
 </beans>
