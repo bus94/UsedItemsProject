@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
 @Controller
 public class MemberController {
 	@Autowired
-	private MemberService service;
+	private MemberService memberservice;
 
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
@@ -33,12 +34,22 @@ public class MemberController {
 	}
 
 	@RequestMapping("/account/loginOK.do")
-	public String loginOK(Model model) {
+	public String loginOK(Model model, String acc_id,  String acc_password) {
 		System.out.println("loginOK 로그인 확인");
+		
+		MemberDTO loginMember = new MemberDTO();
+		loginMember.setAcc_id(acc_id);
+		loginMember.setAcc_password(acc_password);
+		
+		if(memberservice.selectByMember(loginMember) > 0) {
+			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
+		} else {
+			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
+		}
+		
+		model.addAttribute("location", "/");
 
-		// 로그인 확인 메서드 실행
-
-		return "account/login";
+		return "common/msg";
 	}
 
 	// 업로드 메서드

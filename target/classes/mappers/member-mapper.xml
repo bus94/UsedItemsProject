@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="memberMapper">
+<mapper namespace="com.ss.useditems.mapper.MemberMapper">
 
 	<resultMap type="com.ss.useditems.dto.MemberDTO"
 		id="memberMap">
@@ -20,7 +20,8 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
-	<select id="selectById" parameterType="String"
+	<select id="selectByMember"
+	 parameterType="memberDTO"
 		resultMap="memberMap">
 	</select>
 
