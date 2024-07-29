@@ -23,13 +23,11 @@ public class MemberController {
 
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
-		System.out.println("login 페이지");
 		return "account/login";
 	}
 
 	@RequestMapping("/account/signup.do")
 	public String signup(Model model) {
-		System.out.println("signup 페이지");
 		return "account/signup";
 	}
 
@@ -101,16 +99,12 @@ public class MemberController {
 	public String info(Model model) {
 		System.out.println("==account.info==");
 
-
-
 		return "account/info";
 	}
 	
 	@RequestMapping("/account/alter.do")
 	public String alter(Model model) {
 		System.out.println("==account.alter==");
-
-
 
 		return "account/alter";
 	}
