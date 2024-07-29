@@ -22,6 +22,7 @@
 <%-- <link rel="stylesheet" href="${path}/resources/css/main.css"> --%>
 <link rel="stylesheet" href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet" href="${path}/resources/css/login/login.css">
+<link rel="stylesheet" href="${path}/resources/css/item/itemList.css">
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>

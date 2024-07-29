@@ -23,7 +23,7 @@ header {
 }
 
 .login-container {
-	width: 80%;
+	width: 1000px;
 	margin: auto;
 	height: 60px;
 	background-color: white;
@@ -60,7 +60,6 @@ header {
 }
 
 .login {
-	width: 300px;
 	display: flex;
 }
 
