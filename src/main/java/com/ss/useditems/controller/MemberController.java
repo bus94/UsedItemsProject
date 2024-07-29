@@ -97,15 +97,23 @@ public class MemberController {
 	
 	////////////////////////////////////정일/////////////////////
 	
-	@RequestMapping("/account/myinfo.do")
-	public String myinfo(Model model) {
-		System.out.println("==account.myinfo==");
+	@RequestMapping("/account/info.do")
+	public String info(Model model) {
+		System.out.println("==account.info==");
 
 
 
-		return "account/myinfo";
+		return "account/info";
 	}
 	
-	
+	@RequestMapping("/account/alter.do")
+	public String alter(Model model) {
+		System.out.println("==account.alter==");
+
+
+
+		return "account/alter";
+	}
+
 
 }
