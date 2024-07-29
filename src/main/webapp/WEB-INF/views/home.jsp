@@ -12,7 +12,7 @@
 	<a href="${path}/account/login.do">로그인</a>
 	<a href="${path}/account/signup.do">회원가입</a>
 	<a href="${path}/item/itemList.do">매물검색</a>
-	<a href="${path}account/info.do">계정 정보 조회 페이지</a>
+	<a href="${path}/account/info.do">계정 정보 조회 페이지</a>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
