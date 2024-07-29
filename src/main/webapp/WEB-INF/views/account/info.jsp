@@ -12,7 +12,7 @@
 
 	<a href="${path}/account/alter.do">내 정보 수정</a>
 
-	<a href="${path}/complain/complainList.do">사기조회</a>
+	<a href="${path}/blacklist/complainList.do">사기조회</a>
 
 
 
