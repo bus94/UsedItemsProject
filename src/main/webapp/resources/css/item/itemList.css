@@ -42,6 +42,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+   margin-bottom:20px;
 }
 
 .item {
@@ -99,6 +100,7 @@
 
 .item_like p {
     margin-bottom: 6px;
+    color: rgb(187, 187, 187);
 }
 
 .item_addr {
