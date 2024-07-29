@@ -1,15 +1,30 @@
 @charset "UTF-8";
-*{
-	margin: 0;
-	padding: 0;
-	font-family: 'g마켓 산스 TTF';}
 
-header{
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0; 
+	font-family: 'g마켓 산스 TTF';
+}
+
+header {
 	border-bottom: 1px solid gray;
 }
-.login-container{
-	width:80%;
-	margin:auto;
+
+.container {
+	margin: 70px;
+	padding: 12px;
+}
+
+.login-container {
+	width: 80%;
+	margin: auto;
 	height: 60px;
 	background-color: white;
 	display: flex;
@@ -17,48 +32,62 @@ header{
 	align-items: center;
 }
 
- .logo a{
- width: 200px;
+.logo a {
+	width: 200px;
 	height: 100px;
 }
- .logo img{
-width: auto;
- height: auto;
+
+.logo img {
+	width: auto;
+	height: auto;
 }
 
 .input-group {
-	display: flex;
-	margin-right:50px;
-}
-.form-control{
-	width: 400px;
+	width: 500px;
 	height: 40px;
-	
+	display: flex;
+	margin-right: 50px;
 }
+
+.form-control{
+	width: 230px;
+	height: 40px;
+	margin-right: 10px;
+}
+
 .input-group img{
 	width: 35px;
-	margin-left:5px;
-	margin-top:3px;
-	position: absolute;
-}
-.login {
-	display: flex;
-	margin-right: 15px;
+	margin-top: 3px;
 }
 
-.login img{
+
+
+
+.login {
+	width:300px;
+	display: flex;
+}
+.login_img{
 	width: 30px;
+	height: 30px;
+	}
+
+.login img {
+	width:30px;
 	margin-right: 3px;
 }
-.login a{
+.login_text {
 	color: black;
 	text-decoration: none;
-	margin-top:7px;
+	margin-top: 7px;
+	
 }
 
-.login_btn{
+
+.login_btn {
 	display: flex;
 }
+
 .login_btn:hover {
 	cursor: pointer;
 }
