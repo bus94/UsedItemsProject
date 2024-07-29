@@ -76,5 +76,25 @@ public class MemberController {
 		}
 		return "account/login";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////정일/////////////////////
+	
+	@RequestMapping("/account/myinfo.do")
+	public String myinfo(Model model) {
+		System.out.println("==account.myinfo==");
+
+
+
+		return "account/myinfo";
+	}
+	
+	
 
 }
