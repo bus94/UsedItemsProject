@@ -20,6 +20,7 @@
 
 <!-- css, js 포함 -->
 <link rel="stylesheet" href="${path}/resources/css/main.css">
+<link rel="stylesheet" href="${path}/resources/css/login/login.css">
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
@@ -28,7 +29,7 @@
 	<header>
 		<div class="login-container">
 			<div class="logo">
-				<a href="#"><img alt="로고" src="${path}/resources/img/logo.png"></a>
+				<a href="${path}/"><img alt="로고" src="${path}/resources/img/logo.png"></a>
 			</div>
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="매물을 검색해보세요!"
@@ -42,7 +43,7 @@
 				</div>
 				<div class="login_btn">
 					<a class="login_img"><img alt="회원가입" src="${path}/resources/img/login2.png"></a>
-					<a class="login_text" href="#">회원가입</a>
+					<a class="login_text" href="${path}/account/signup.do">회원가입</a>
 				</div>
 			</div>
 		</div>

@@ -7,8 +7,29 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content">
-	<h1>회원가입</h1>
+<section id="content" class="container login_container mt-5">
+	<c:if test="${loginMember == null}">
+		<form id="loginForm" action="${path}/login" method="post">
+			<div class="login_containerIn">
+				<div class="loginTitle">
+					<img class="loginLogo" alt="로고" src="${path}/resources/img/logo.png">
+				</div>
+				<div class="login_input">
+					<input type="text" class="form-control login_inputStyle mt-1"
+						name="accountId" id="accountId" placeholder="아이디"
+						required="requeired" /> <input type="password"
+						class="form-control login_inputStyle" name="accountPassword"
+						id="accountPassword" placeholder="비밀번호" required="required" />
+				</div>
+				<div class="loginButton">
+					<input type="button" class="btn btn-success login_inputStyle mb-1 mt-1"
+						value="회원가입 완료" onclick="location.href='${path}/account/login.do';" />
+					<input type="button" class="btn btn-success login_inputStyle"
+						value="로그인 하러 가기" onclick="location.href='${path}/account/login.do';" />
+				</div>
+			</div>
+		</form>
+	</c:if>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
