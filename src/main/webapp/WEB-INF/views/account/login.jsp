@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content">
+<section id="content" class="container">
 	<h1>로그인</h1>
 </section>
 
