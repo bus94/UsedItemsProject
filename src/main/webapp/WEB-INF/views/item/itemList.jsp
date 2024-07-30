@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="item_title">
-		<h3>&lt;검색 결과 &gt;</h3>
+		<h3>검색 결과 &gt;</h3>
 	</div>
 	<div class="item_container">
 		<div class="item">
