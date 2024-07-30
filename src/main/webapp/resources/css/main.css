@@ -14,10 +14,10 @@
 	padding: 0;
 }
 
-body{
+body {
 	font-family: "GmarketSansMedium", "Noto Sans KR", sans-serif;
-	
 }
+
 header {
 	border-bottom: 1px solid gray;
 	position: fixed;
