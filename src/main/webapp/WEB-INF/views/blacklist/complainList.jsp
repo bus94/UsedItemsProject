@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container">
+<section id="content" class="container" style="padding-top: 100px;">
 	<h1>사기조회 페이지</h1>
 	<a href="${path}/blacklist/complain.do">신고하러 가기</a>
 

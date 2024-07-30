@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container">
+<section id="content" class="container" style="padding-top: 100px;">
 	<h1>내 정보 수정 페이지</h1>
 
 

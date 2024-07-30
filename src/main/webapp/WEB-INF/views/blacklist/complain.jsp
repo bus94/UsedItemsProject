@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container">
+<section id="content" class="container" style="padding-top: 100px;">
 	<h1>신고하기 페이지 v2</h1>
 
 

@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container">
+<section id="content" class="container" style="padding-top: 100px;">
 	<div class="container acc_summary d-flex">
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
