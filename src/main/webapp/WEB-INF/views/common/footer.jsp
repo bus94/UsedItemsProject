@@ -3,9 +3,28 @@
 
 <footer>
 	<p class="footer_p" align="center">
-		&lt;Copyright 2022. <strong>Safe Market</strong>. All rights reserved.&gt;
+		&lt;Copyright 2022. <strong>Safe Market</strong>. All rights
+		reserved.&gt;
 	</p>
 </footer>
+
+<button id="top_btn">
+	▲ <br> TOP
+</button>
+
+<script>
+	$(document).ready(function() {
+
+		// Top 버튼 클릭시 페이지 상단으로 이동
+		$('#top_btn').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 800);
+			return false;
+		});
+
+	});
+</script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

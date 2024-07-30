@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container">
+<section id="content" class="container" style="padding-top: 100px;">
 	<h1>매물 등록 페이지</h1>
 	<a href="${path}/item/itemList.do">매물목록</a>
 
