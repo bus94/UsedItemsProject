@@ -19,10 +19,14 @@
 	crossorigin="anonymous">
 
 <!-- css, js 포함 -->
-<link rel="stylesheet" href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet" href="${path}/resources/css/login/login.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet" href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet" href="${path}/resources/css/acc_info.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/login/login.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/acc_info.css?v=${systemProperties['timestamp']}">
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
@@ -31,22 +35,39 @@
 	<header>
 		<div class="login-container">
 			<div class="logo">
-				<a href="${path}/"><img alt="로고" src="${path}/resources/img/logo.png"></a>
+				<a href="${path}/"><img alt="로고"
+					src="${path}/resources/img/logo.png"></a>
 			</div>
 			<div class="input-group">
 				<input type="text" class="form-control" placeholder="매물을 검색해보세요!"
 					aria-label="Recipient's username" aria-describedby="basic-addon2" />
 				<img alt="검색" src="${path}/resources/img/search.png">
 			</div>
-			<div class="login">
-				<div class="login_btn" style="margin-right: 20px;">
-					<a class="login_img"><img alt="로그인" src="${path}/resources/img/login.png"></a>
-					<a class="login_text" href="${path}/account/login.do">로그인</a>
+
+			<c:if test="${loginMember == null}">
+				<div class="login">
+					<div class="login_btn" style="margin-right: 20px;">
+						<a class="login_img" href="${path}/account/login.do"><img
+							alt="로그인" src="${path}/resources/img/login.png"></a> <a
+							class="login_text" href="${path}/account/login.do">로그인</a>
+					</div>
+					<div class="login_btn">
+						<a class="login_img" href="${path}/account/signup.do"><img
+							alt="회원가입" src="${path}/resources/img/login2.png"></a> <a
+							class="login_text" href="${path}/account/signup.do">회원가입</a>
+					</div>
 				</div>
-				<div class="login_btn">
-					<a class="login_img"><img alt="회원가입" src="${path}/resources/img/login2.png"></a>
-					<a class="login_text" href="${path}/account/signup.do">회원가입</a>
+			</c:if>
+
+			<c:if test="${loginMember != null}">
+				<div class="login_profile">
+					<div class="login_profileIn">
+						<a class="login_img" href="${path}/account/info.do"><img
+							alt="${path}/resources/img/login.png"
+							src="${path}/resources/img/login.png"></a> <a class="login_profile_text"
+							href="${path}/account/info.do">${loginMember.acc_nickname}</a>
+					</div>
 				</div>
-			</div>
+			</c:if>
 		</div>
 	</header>

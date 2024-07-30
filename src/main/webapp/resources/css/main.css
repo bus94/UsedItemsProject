@@ -87,10 +87,6 @@ header {
 	display: flex;
 }
 
-.login_btn:hover {
-	cursor: pointer;
-}
-
 #top_btn { 
     position: fixed;
     bottom: 40px;
@@ -107,4 +103,27 @@ header {
     font-size: 10px;
     font-weight: 500;
     color: #333333;
+}
+
+.login_profile {
+	display: flex;
+}
+
+login_profileIn {
+	display: flex;
+}
+
+.login_profile img {
+	width: 30px;
+	margin-right: 3px;
+}
+
+.login_profile_text {
+	color: black;
+	text-decoration: none;
+	margin-top: 7px;
+	position: relative;
+	top: 2px;
+	left: -6px;
+	
 }
