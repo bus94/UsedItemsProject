@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-/**/
-
 .inform {
     width: 450px;
     heignt: 330px;
@@ -15,12 +13,10 @@
     margin-top: 20px
 }
 
-
 #acc_public img {
     width: 120px;
     height: 120px;
 }
-
 
 #acc_profit h4 {
     margin: 15px;
@@ -34,9 +30,6 @@
     height: 20px;
 }
 
-
-
-
 .subtitle h4 {
     margin: 5px 10px;
 }
@@ -45,15 +38,9 @@
     height: 20px;
 }
 
-button {
-    
+acc_info_page button {
     margin-left: 15px;
-
 }
-
-
-
-
 
 .item_container2 {
     width: 1000px;
@@ -103,12 +90,10 @@ button {
 .item_view h4 {
     font-weight: bold;
     font-size: 14px;
-
 }
 
 .item_view h5 {
     font-size: 15px;
-
 }
 
 .item_like {
