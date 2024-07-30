@@ -14,7 +14,7 @@ public class MemberDTO {
 	private String acc_id;
 	private String acc_password;
 	private Date acc_birthDate;
-	private int phone;
+	private String acc_phone;
 	private String acc_email;
 	private String acc_name;
 	private String acc_address;

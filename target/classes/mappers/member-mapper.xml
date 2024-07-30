@@ -26,9 +26,9 @@
 		FROM
 		account
 		WHERE
-		acc_id = '%${acc_id}%'
+		acc_id = #{acc_id}
 		AND
-		acc_password = '%${acc_password}%'
+		acc_password = #{acc_password}
 	</select>
 
 </mapper>

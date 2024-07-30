@@ -27,7 +27,7 @@ CREATE TABLE ACCOUNT (
 	acc_id	VARCHAR2(100)		NOT NULL UNIQUE,
 	acc_password	VARCHAR2(100)		NOT NULL,
 	acc_birthDate	DATE		NOT NULL,
-	acc_phone	NUMBER		NOT NULL UNIQUE,
+	acc_phone	VARCHAR2(100)		NOT NULL UNIQUE,
 	acc_email	VARCHAR2(100)		NULL,
 	acc_name	VARCHAR2(100)		NOT NULL,
 	acc_address	VARCHAR2(300)		NOT NULL,
@@ -39,11 +39,11 @@ CREATE TABLE ACCOUNT (
     acc_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
 );
 
-INSERT INTO ACCOUNT VALUES(0, 'id_test1', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), 01051056051, '', '테스터1','주소1','별명1', '', 0, 1, 'admin', TO_DATE('20240726', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), 01051056052, null, '테스터2','주소2','별명2', null, 2, 1, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), 01051056053, null, '테스터','주소3','별명3','이상한경로', default, default, 'inactive', TO_DATE('20240726', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), 01051056054, 'test4@email.com', '테스터','주소1','별명4', '사진경로.png', default, default, 'active', sysdate);
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), 01051056055, 'test5@email.com', '테스터5','주소5','별명5', '사진경로.jpg', default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(0, 'id_test1', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056051', '', '테스터1','주소1','별명1', '', 0, 1, 'admin', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', null, '테스터2','주소2','별명2', null, 2, 1, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', null, '테스터','주소3','별명3','이상한경로', default, default, 'inactive', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', 'test4@email.com', '테스터','주소1','별명4', '사진경로.png', default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056055', 'test5@email.com', '테스터5','주소5','별명5', '사진경로.jpg', default, default, 'active', sysdate);
 COMMIT;
 
 select * from account;

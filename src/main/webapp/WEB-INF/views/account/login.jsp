@@ -9,7 +9,7 @@
 
 <section id="content" class="container login_container mt-5">
 	<c:if test="${loginMember == null}">
-		<form id="loginForm" action="${path}/login" method="post">
+		<form id="loginForm" action="${path}/account/loginOK.do" method="post">
 			<div class="login_containerIn">
 				<div class="loginTitle">
 					<img class="loginLogo" alt="로고" src="${path}/resources/img/logo.png">
@@ -23,7 +23,7 @@
 				</div>
 				<div class="loginButton">
 					<input type="submit" class="btn login_btnStyle mb-1 mt-1"
-						value="로그인" onclick="location.href='${path}/account/loginOK.do';" />
+						value="로그인" />
 					<input type="button" class="btn login_btnStyle"
 						value="회원가입" onclick="location.href='${path}/account/signup.do';" />
 				</div>

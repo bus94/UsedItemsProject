@@ -12,6 +12,7 @@ public class MemberService {
 	private MemberMapper mapper;
 	
 	public MemberDTO selectByMember(MemberDTO loginMember) {
+		System.out.println("MemberService의 selectByMember()");
 		return mapper.selectByMember(loginMember);
 	}
 }
