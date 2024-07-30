@@ -22,8 +22,8 @@
 						id="acc_password" placeholder="비밀번호" required="required" />
 				</div>
 				<div class="loginButton">
-					<input type="button" class="btn login_btnStyle mb-1 mt-1"
-						value="로그인" onclick="location.href='${path}/';" />
+					<input type="submit" class="btn login_btnStyle mb-1 mt-1"
+						value="로그인" onclick="location.href='${path}/account/loginOK.do';" />
 					<input type="button" class="btn login_btnStyle"
 						value="회원가입" onclick="location.href='${path}/account/signup.do';" />
 				</div>

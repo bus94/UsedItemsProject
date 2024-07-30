@@ -32,18 +32,23 @@ public class MemberController {
 	}
 
 	@RequestMapping("/account/loginOK.do")
-	public String loginOK(Model model, String acc_id,  String acc_password) {
+	public String loginOK(Model model, @RequestParam("acc_id") String acc_id, @RequestParam("acc_password") String acc_password) {
 		System.out.println("loginOK 로그인 확인");
+		
+		System.out.println("입력한 acc_id: " + acc_id);
+		System.out.println("입력한 acc_password: " + acc_password);
 		
 		MemberDTO loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 		
+		System.out.println("불러오기 전 loginMember: " + loginMember);
 		if(memberservice.selectByMember(loginMember) != null) {
 			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
 		} else {
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
 		}
+		System.out.println("불러오기 후 loginMember: " + loginMember);
 		
 		model.addAttribute("location", "/");
 
