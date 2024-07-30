@@ -39,7 +39,7 @@ public class MemberController {
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 		
-		if(memberservice.selectByMember(loginMember) > 0) {
+		if(memberservice.selectByMember(loginMember) != null) {
 			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
 		} else {
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");

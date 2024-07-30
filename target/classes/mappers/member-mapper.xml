@@ -3,8 +3,7 @@
 
 <mapper namespace="com.ss.useditems.mapper.MemberMapper">
 
-	<resultMap type="com.ss.useditems.dto.MemberDTO"
-		id="memberMap">
+	<resultMap type="memberDTO" id="memberMap">
 		<result property="acc_id" column="acc_id" />
 		<result property="acc_password" column="acc_password" />
 		<result property="acc_birthDate" column="acc_birthDate" />
@@ -20,9 +19,16 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
-	<select id="selectByMember"
-	 parameterType="memberDTO"
+	<select id="selectByMember" parameterType="memberDTO"
 		resultMap="memberMap">
+		SELECT
+		*
+		FROM
+		account
+		WHERE
+		acc_id = ${acc_id}
+		AND
+		acc_password = ${acc_password}
 	</select>
 
 </mapper>

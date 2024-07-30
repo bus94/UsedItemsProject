@@ -7,6 +7,6 @@ import com.ss.useditems.dto.MemberDTO;
 @Mapper
 public interface MemberMapper {
 
-	int selectByMember(MemberDTO loginMember);
+	MemberDTO selectByMember(MemberDTO loginMember);
 	
 }

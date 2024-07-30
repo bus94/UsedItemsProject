@@ -11,7 +11,7 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	
-	public int selectByMember(MemberDTO loginMember) {
+	public MemberDTO selectByMember(MemberDTO loginMember) {
 		return mapper.selectByMember(loginMember);
 	}
 }
