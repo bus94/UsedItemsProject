@@ -151,7 +151,8 @@
 			<h4>판매 내역 Selling</h4>
 			<div class="vr align-self-center"></div>
 			<button type="button" id="btn_enroll_item"
-				class="btn btn-success btn-sm align-self-center">매물 등록</button>
+				class="btn btn-success btn-sm align-self-center"
+				onclick="location.href='${path}/item/itemEnroll.do'">매물 등록</button>
 		</div>
 		<div class="item_container2 d-flex">
 			<div class="item">

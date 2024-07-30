@@ -11,4 +11,16 @@ public class ItemController {
 		System.out.println("itemList 페이지");
 		return "item/itemList";
 	}
+	
+	
+	@RequestMapping("/item/itemEnroll.do")
+	public String itemEnroll(Model model) {
+		System.out.println("itemEnroll 페이지");
+		return "item/itemEnroll";
+	}
+	
+	
+	
+	
 }
+
