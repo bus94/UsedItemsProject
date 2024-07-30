@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
+
+// 모델에 저장이 될 때 밑에  loginMember 자동으로 세션에 저장
+@SessionAttributes("loginMember")
 @Controller
 public class MemberController {
 	@Autowired
@@ -44,7 +48,8 @@ public class MemberController {
 		
 		System.out.println("불러오기 전 loginMember: " + loginMember);
 		
-		if(memberservice.selectByMember(loginMember) != null) {
+		loginMember = memberservice.selectByMember(loginMember);
+		if(loginMember != null) {
 			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
 			model.addAttribute("location", "/");
 		} else {
