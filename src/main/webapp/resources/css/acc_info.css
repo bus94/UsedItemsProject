@@ -53,7 +53,7 @@ acc_info_page button {
 }
 
 /*---------------itemList.css-----------------*/
-.item {
+.item1 {
     width: 190px;
     height: 300px;
     display: flex;
@@ -65,7 +65,7 @@ acc_info_page button {
     margin-right: 15px;
 }
 
-.item img {
+.item1 img {
     width: 160px;
     height: 160px;
     object-fit: cover;

@@ -71,7 +71,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<div class="item_container2 d-flex">
-			<div class="item">
+			<div class="item1">
 				<img src="${path}/resources/img/item1.jpg" alt="1">
 				<div class="item_view">
 					<h3>제품명입니다</h3>
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="item">
+			<div class="item1">
 				<img src="${path}/resources/img/item2.jpg" alt="1">
 				<div class="item_view">
 					<h3>제품명입니다</h3>
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="item">
+			<div class="item1">
 				<img src="${path}/resources/img/item3.jpg" alt="1">
 				<div class="item_view">
 					<h3>제품명입니다</h3>
@@ -138,7 +138,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<div class="item_container2 d-flex">
-			<div class="item"></div>
+			<div class="item1"></div>
 		</div>
 	</div>
 
