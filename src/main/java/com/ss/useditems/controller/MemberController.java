@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
-
 // 모델에 저장이 될 때 밑에  loginMember 자동으로 세션에 저장
 @SessionAttributes("loginMember")
 @Controller
