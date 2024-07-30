@@ -1,24 +1,47 @@
 @charset "UTF-8";
 
-.inform {
-    width: 450px;
-    heignt: 330px;
+.acc_info_page {
+    margin: auto;
+    width: 100%;
+}
+
+.acc_info_page .inform {
+    width: 600px;
+    height: 350px;
     border: 2px solid rgb(219, 219, 219);
     border-radius: 10px;
-    margin: 5px;
+    margin-bottom: 10px;
+    
     padding: 20px;
 }
 
-.info_box p:first-child {
+
+.acc_info_page .info_box p:first-child {
     margin-top: 20px
 }
 
-#acc_public img {
+
+.acc_info_page .btn_box  {
+	width: 150px;
+}
+
+.acc_info_page #acc_profile { /*info 프로필 사진*/
     width: 120px;
     height: 120px;
 }
 
-#acc_profit h4 {
+.acc_info_page #acc_mock { /*mock*/
+	margin: 0;
+    width: 120px;
+    height: 100px;
+}
+
+.acc_info_page .btn_acc {
+	margin: 0;
+	padding: auto;
+}
+
+#acc_profit h3 {
     margin: 15px;
 }
 
@@ -26,34 +49,44 @@
     margin: 12px;
 }
 
-#period {
+
+.acc_info_page #period {
     height: 20px;
 }
 
-.subtitle h4 {
+
+
+.acc_info_page .subtitle h4 {
     margin: 5px 10px;
 }
 
-.vr {
+
+.acc_info_page .vr {
     height: 20px;
 }
 
-acc_info_page button {
+.acc_info_page #btn_item_enroll {
     margin-left: 15px;
 }
 
-.item_container2 {
+
+.acc_info_page .items_domain {
+	width: 1000px;
+}
+
+
+.acc_info_page .item_container_acc { /* itemList.css 따옴*/
     width: 1000px;
     display: flex;
     flex-wrap: wrap;
-
+	gap: 10px;
     /* justify-content: space-between; */
 
     margin-bottom: 20px;
 }
 
-/*---------------itemList.css-----------------*/
-.item1 {
+
+.acc_info_page .item { /* itemList.css 따옴*/
     width: 190px;
     height: 300px;
     display: flex;
@@ -62,68 +95,72 @@ acc_info_page button {
     background-color: white;
     border: 1px solid rgb(219, 219, 219);
     margin-bottom: 14px;
-    margin-right: 15px;
 }
 
-.item1 img {
+/*---------------itemList.css-----------------*/
+
+
+.acc_info_page .item img {
     width: 160px;
     height: 160px;
     object-fit: cover;
     margin-top: 12px;
 }
 
-.item_view {
+.acc_info_page .item_view {
     width: 160px;
     padding-top: 12px;
 }
 
-.item_view h3 {
+.acc_info_page .item_view h3 {
     font-size: 17px;
 
 }
 
-.item_price {
+.acc_info_page .item_price {
     display: flex;
     justify-content: space-between;
 }
 
-.item_view h4 {
+.acc_info_page .item_view h4 {
     font-weight: bold;
     font-size: 14px;
+
 }
 
-.item_view h5 {
+.acc_info_page .item_view h5 {
     font-size: 15px;
+
 }
 
-.item_like {
+.acc_info_page .item_like {
     display: flex;
     font-size: 13px;
 }
 
-.item_like p:first-child {
+.acc_info_page .item_like p:first-child {
     margin-right: 15px;
 }
 
-.item_like p {
+.acc_info_page .item_like p {
     margin-bottom: 6px;
     color: rgb(187, 187, 187);
 }
 
-.item_addr {
+.acc_info_page .item_addr {
     border-top: 1px solid rgb(206, 206, 206);
     display: flex;
     gap: 3px;
 }
 
-.item_addr p {
+.acc_info_page .item_addr p {
     margin: 0;
     font-size: 13px;
     font-weight: lighter;
     margin-top: 8px;
 }
 
-.item_addr img {
+.acc_info_page .item_addr img {
     width: 16px;
     height: 16px;
     margin-top: 6px;
