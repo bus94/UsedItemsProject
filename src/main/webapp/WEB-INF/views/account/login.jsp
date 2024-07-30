@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container login_container mt-5">
+<section id="content" class="container login_container" style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<form id="loginForm" action="${path}/account/loginOK.do" method="post">
 			<div class="login_containerIn">

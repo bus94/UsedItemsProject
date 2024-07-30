@@ -20,6 +20,10 @@ body{
 }
 header {
 	border-bottom: 1px solid gray;
+	position: fixed;
+	width: 100%;
+	background-color: white;
+	z-index: 1;
 }
 
 .login-container {

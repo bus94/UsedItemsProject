@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="item_content">
+<section id="item_content" style="padding-top: 100px;">
 	<div class="category">
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="item_title">
-		<h3>검색 결과 ></h3>
+		<h3>&lt;검색 결과 &gt;</h3>
 	</div>
 	<div class="item_container">
 		<div class="item">

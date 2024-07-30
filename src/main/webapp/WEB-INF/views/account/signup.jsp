@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container login_container mt-5">
+<section id="content" class="container login_container" style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<form id="loginForm" action="${path}/login" method="post">
 			<div class="login_containerIn">
@@ -44,7 +44,7 @@
 					<div class="loginButton mt-2">
 						<button type="button"
 							class="btn login_btnStyle mb-1 mt-1"
-							value="회원가입 완료">회원가입 완료</button>
+							value="회원가입 완료">회원가입</button>
 						<button type="button" class="btn login_btnStyle"
 							value="로그인 하러 가기" onclick="location.href='${path}/account/login.do';">로그인 하러 가기</button>
 					</div>
