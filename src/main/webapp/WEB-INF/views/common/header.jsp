@@ -67,7 +67,7 @@
 						<a class="login_img" href="${path}/account/my_info.do"><img
 							alt="${path}/resources/img/login.png"
 							src="${path}/resources/img/login.png"></a> <a class="login_profile_text"
-							href="${path}/account/info.do">${loginMember.acc_nickname}</a>
+							href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
 					</div>
 				</div>
 			</c:if>
