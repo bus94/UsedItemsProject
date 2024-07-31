@@ -49,7 +49,7 @@
 					<p>
 						<button type="button" id="btn_acc_blacklist"
 							class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do'">신고내역
+							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역
 							조회</button>
 				</div>
 			</div>
