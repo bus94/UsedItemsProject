@@ -34,7 +34,8 @@ function closeClick() {
 }
 
 
-// 아이템리스트 캐러셀
+
+$(document).ready(function(){
 $('.itemView_carousel').slick({
     dots: false,
     arrows: true,
@@ -69,4 +70,4 @@ $('.itemView_carousel').slick({
 
     ]
 });
-
+});

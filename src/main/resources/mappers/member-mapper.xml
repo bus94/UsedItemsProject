@@ -19,30 +19,20 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
-
-
-
-
 	<select id="selectByMember" parameterType="memberDTO"
 		resultMap="memberMap">
-		SELECT
-		*
-		FROM
-		account
-		WHERE
-		acc_id = #{acc_id}
-		AND
-		acc_password =
-		#{acc_password}
+		SELECT * FROM account WHERE acc_id = #{acc_id} AND acc_password = #{acc_password}
+	</select>
+
+	<select id="selectById" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM account WHERE acc_id = #{id}
 	</select>
 
 
-	<select id="selectByAcc_id" parameterType="String" resultMap="memberMap">
+
+	<!-- <select id="selectByAcc_id" parameterType="String"
+		resultMap="memberMap">
 		select * from ACCOUNT where acc_id = #{acc_id}
-	</select>       <!--정일 -->
-
-
-
-
+	</select>  -->      <!--정일 -->
 
 </mapper>

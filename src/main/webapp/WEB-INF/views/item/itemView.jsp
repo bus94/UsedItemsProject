@@ -151,18 +151,6 @@
 			<img src="${path}/resources/img/item5.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
 		</div>
 	</div>
-	<div class="carousel-wrapper">
-		<div>
-			<h3 style="font-size: 22px;">비슷한 상품 둘러보기 &gt;</h3>
-		</div>
-		<div class="itemView_carousel">
-<img src="${path}/resources/img/item1.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
-			<img src="${path}/resources/img/item3.jpg" alt=""> <img src="${path}/resources/img/item4.jpg" alt="">
-			<img src="${path}/resources/img/item5.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
-		</div>
-	</div>
-
-
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
