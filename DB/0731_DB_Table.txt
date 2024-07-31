@@ -67,10 +67,10 @@ CREATE TABLE ITEM (
 );
 
 
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '제목_테스트', '내용_테스트', null,'식품','drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '사진경로.ext','식품','onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '급매물', '빨리', '사진경로.ext','의류잡화','drop',default,10,1,sysdate,0);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '급매물2', '빨리22', null,'기타','ondeal',default,6,2,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '제목_테스트', '내용_테스트', null,'식품', null,'drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '사진경로.ext','식품', null, 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '급매물', '빨리', '사진경로.ext','의류잡화', null, 'drop',default,10,1,sysdate,0);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '급매물2', '빨리22', null,'기타', null, 'ondeal',default,6,2,null,null);
 COMMIT;
 
 select * from item;
