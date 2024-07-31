@@ -34,7 +34,6 @@
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
-<<<<<<< HEAD
 <link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
 	
@@ -42,8 +41,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
-=======
->>>>>>> e5bd4dd247e28abc8519951230377342ee24f7ea
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
