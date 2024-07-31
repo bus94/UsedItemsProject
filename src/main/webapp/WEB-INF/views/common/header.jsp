@@ -11,7 +11,14 @@
 <head>
 <meta charset="UTF-8">
 <title>세잎마켓</title>
-
+<script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
+<!-- 슬릭 css-->
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />	
+<!-- 슬릭js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -27,22 +34,16 @@
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script src="${path}/resources/js/item/itemView.js"></script>
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
-	
-<script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
+<script src="${path}/resources/js/item/itemView.js"></script>
+
 
 </head>
 <body>
