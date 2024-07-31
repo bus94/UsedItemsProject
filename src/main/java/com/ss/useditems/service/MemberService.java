@@ -17,7 +17,7 @@ public class MemberService {
 	}
 	
 	
-	public MemberDTO selectByAcc_id(String acc_id) {//정일
+	public MemberDTO selectByAcc_id(String acc_id) {     //정일
 		System.out.println("MemberService의 selectByAcc_id()");
 		
 		MemberDTO account_info = new MemberDTO();
