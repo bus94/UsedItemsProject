@@ -12,6 +12,12 @@ public class ItemController {
 		return "item/itemList";
 	}
 	
+	@RequestMapping("/item/itemView.do")
+	public String itemView(Model model) {
+		System.out.println("itemView 페이지");
+		return "item/itemView";
+	}
+	
 	
 	@RequestMapping("/item/itemEnroll.do")
 	public String itemEnroll(Model model) {
