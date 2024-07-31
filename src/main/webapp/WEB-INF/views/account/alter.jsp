@@ -30,17 +30,17 @@
                     <p class="subtitle fs-5">비&nbsp;밀&nbsp;번&nbsp;호</p>
                     <button type="button" id="alt_pw" class="btn btn-success btn-sm">변경하기</button>
 
-                    <form id="password_reset"  method="post">
-                    	<div class="container d-flex flex-column align-items-center">
-                    		<input type="password" class="form-control input_pw w-75" name="currPW" id="currPW"
-                            placeholder="현재 비밀번호" required="required">
-                        	<input type="password" class="form-control input_pw w-75" name="neoPW" id="neoPW"
-                            placeholder="새 비밀번호" required="required">
-                        	<input type="password" class="form-control input_pw w-75 mb-3" name="neoPWcheck" id="neoPWcheck"
-                            placeholder="새 비밀번호 확인" required="required">
+                    <form id="input_pw_box" method="post">
+                    	<div class="container d-flex flex-column">
+                    		<input type="password" class="form-control input_pw mb-2" name="currPW" id="currPW"
+                            placeholder="현재 비밀번호" onkeyup="currPWcheck(this)">
+                        	<input type="password" class="form-control input_pw mb-2" name="neoPW" id="neoPW"
+                            placeholder="새 비밀번호" onkeyup="neoPWcheck(this)">
+                        	<input type="password" class="form-control input_pw mb-2" name="neoPWconf" id="neoPWconf"
+                            placeholder="새 비밀번호 확인" onkeyup="neoPW2check(this)">
                     	</div>
                         <div class="btn_container container">
-                        	<button type="button" id="setPW" class="btn btn-success btn-sm ">수정</button>
+                        	<button type="button" id="setPW" class="btn btn-success btn-sm" disabled>수정</button>
                         	<button type="reset" id="setPWcancel" class="btn btn-success btn-sm ">취소</button>
                         </div>
                     </form>

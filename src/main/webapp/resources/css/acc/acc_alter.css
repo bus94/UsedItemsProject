@@ -36,10 +36,18 @@
 	width: 100px;
 }
 
-.acc_alt_page #password_reset {
+.acc_alt_page #input_pw_box {
 	display: none;
 }
 
+.acc_alt_page .input_pw {
+	margin-left: 96px;
+	width: 350px;
+}
+
+.acc_alt_page #setPW {
+	disabled;
+}
 
 .acc_alt_page #redundant_box {
 	border: 1px solid rgb(219, 219, 219);

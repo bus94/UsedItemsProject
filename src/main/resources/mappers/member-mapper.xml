@@ -30,9 +30,9 @@
 
 
 
-	<!-- <select id="selectByAcc_id" parameterType="String"
+	 <!-- <select id="selectByAcc_id" parameterType="String"
 		resultMap="memberMap">
 		select * from ACCOUNT where acc_id = #{acc_id}
-	</select>  -->      <!--정일 -->
+	</select> -->      <!--정일 -->
 
 </mapper>
