@@ -17,19 +17,26 @@
 						src="${path}/resources/img/logo.png">
 				</div>
 				<div class="login_input">
-					<input type="text" class="form-control login_inputStyle mt-1"
-						name="id" id="id" placeholder="아이디" autocapitalize="off"
-						required="requeired" onblur="validateInputId()" /> <input
-						type="password" class="form-control login_inputStyle"
+					<div class="login_inputId">
+						<input type="text" class="form-control login_inputStyle mt-1"
+							name="id" id="id" placeholder="아이디" autocapitalize="off"
+							required="requeired" onblur="validateInputId()" />
+						<button class="btn">중복확인</button>
+					</div>
+					<input type="password" class="form-control login_inputStyle"
 						name="password" id="password" placeholder="비밀번호"
-						onblur="validateInputPw()" required="required" style="margin-bottom:5px;" />
-					<p id="validateInputId" style="color: red; margin: 0; display: none;  font-size:15px;">&nbsp;아이디를
+						onblur="validateInputPw()" required="required"
+						style="margin-bottom: 5px;" />
+					<p id="validateInputId"
+						style="color: red; margin: 0; display: none; font-size: 15px;">&nbsp;아이디를
 						입력해주세요.</p>
-					<p id="validateInputPassword" style="color: red; margin: 0; display: none; font-size:15px;">&nbsp;비밀번호를
+					<p id="validateInputPassword"
+						style="color: red; margin: 0; display: none; font-size: 15px;">&nbsp;비밀번호를
 						입력해주세요.</p>
 					<input type="text" class="form-control login_inputStyle"
-						name="name" id="name" placeholder="이름" required="required" style="margin-top:5px;"/><input
-						type="text" class="form-control login_inputStyle" name="birthDate"
+						name="name" id="name" placeholder="이름" required="required"
+						style="margin-top: 5px;" /><input type="text"
+						class="form-control login_inputStyle" name="birthDate"
 						id="birthDate" placeholder="생년월일(8자리) ex.20010203"
 						required="required" /> <input type="text"
 						class="form-control login_inputStyle" name="address" id="address"
@@ -45,20 +52,23 @@
 					<script>
 						function validateInputId() {
 							var inputId = document.getElementById('id').value;
-							var inputIdMessage = document.getElementById('validateInputId');
-							
-							if(inputId.trim() === "") {
+							var inputIdMessage = document
+									.getElementById('validateInputId');
+
+							if (inputId.trim() === "") {
 								inputIdMessage.style.display = 'block';
 							} else {
 								inputIdMessage.style.display = 'none';
 							}
 						}
-						
+
 						function validateInputPw() {
-							var inputPassword = document.getElementById('password').value;
-							var inputPasswordMessage = document.getElementById('validateInputPassword');
-							
-							if(inputPassword.trim() === "") {
+							var inputPassword = document
+									.getElementById('password').value;
+							var inputPasswordMessage = document
+									.getElementById('validateInputPassword');
+
+							if (inputPassword.trim() === "") {
 								inputPasswordMessage.style.display = 'block'
 							} else {
 								inputPasswordMessage.style.display = 'none';
