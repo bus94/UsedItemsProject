@@ -11,11 +11,11 @@
 
 <section id="content" class="container acc_alt_page" style="padding-top: 100px;">
 
-	<c:if test="${loginMember != null}"> 
-		
-	</c:if>
+	<c:if test="${loginMember != null}">	</c:if>
 	
         <div class="container whole_container">
+
+
 
             <div id="acc_detail" class="container d-flex flex-column">
                 
@@ -28,16 +28,21 @@
 				<hr>
                 <div id="pw_box" class="container">
                     <p class="subtitle fs-5">비&nbsp;밀&nbsp;번&nbsp;호</p>
-                    <button type="button" id="alt_pw" class="btn btn-success btn-sm">수정</button>
-   
-                    <form id="password_reset" method="post">
-                        <input type="password" class="form-control w-50" name="currPW" id="currPW"
-                            placeholder="현재 비밀번호" required="required" disabled>
-                        <input type="password" class="form-control w-50" name="neoPW" id="neoPW"
-                            placeholder="새 비밀번호" required="required" disabled>
-                        <input type="password" class="form-control w-50 d-inline" name="neoPWc" id="neoPWc"
-                            placeholder="새 비밀번호 확인" required="required" disabled>
-                        <button type="button" id="setPw" class="btn btn-success btn-sm">비밀번호 변경</button>
+                    <button type="button" id="alt_pw" class="btn btn-success btn-sm">변경하기</button>
+
+                    <form id="password_reset"  method="post">
+                    	<div class="container d-flex flex-column align-items-center">
+                    		<input type="password" class="form-control input_pw w-75" name="currPW" id="currPW"
+                            placeholder="현재 비밀번호" required="required">
+                        	<input type="password" class="form-control input_pw w-75" name="neoPW" id="neoPW"
+                            placeholder="새 비밀번호" required="required">
+                        	<input type="password" class="form-control input_pw w-75 mb-3" name="neoPWcheck" id="neoPWcheck"
+                            placeholder="새 비밀번호 확인" required="required">
+                    	</div>
+                        <div class="btn_container container">
+                        	<button type="button" id="setPW" class="btn btn-success btn-sm ">수정</button>
+                        	<button type="reset" id="setPWcancel" class="btn btn-success btn-sm ">취소</button>
+                        </div>
                     </form>
                 </div>
                 
@@ -94,7 +99,7 @@
 
 
     </section>
-
+<script src="${path}/resources/js/acc/acc_alter.js"></script>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

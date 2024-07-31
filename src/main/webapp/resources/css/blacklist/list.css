@@ -1,1 +1,12 @@
 @charset "UTF-8";
+
+.blacklist_page {
+    margin: auto;
+    width: 100%;
+}
+
+.blacklist_page .whole-container {
+	width: 1000px;
+	background-color: lightyellow;
+	
+}

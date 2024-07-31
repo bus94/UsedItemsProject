@@ -1,0 +1,191 @@
+DROP TABLE BLACKLIST;
+DROP TABLE SEARCH;
+DROP TABLE INTEREST;
+DROP TABLE REVIEW;
+DROP TABLE CHAT;
+DROP TABLE CHATROOM;
+DROP TABLE REPLY;
+DROP TABLE ITEM;
+DROP TABLE ACCOUNT;
+
+
+DROP SEQUENCE BLACKLIST_SEQ;
+DROP SEQUENCE SEARCH_SEQ;
+DROP SEQUENCE INTEREST_SEQ;
+DROP SEQUENCE REVIEW_SEQ;
+DROP SEQUENCE CHAT_SEQ;
+DROP SEQUENCE CHATROOM_SEQ;
+DROP SEQUENCE REPLY_SEQ;
+DROP SEQUENCE ITEM_SEQ;
+DROP SEQUENCE ACCOUNT_SEQ;
+
+
+------------------------------------------------------
+CREATE SEQUENCE ACCOUNT_SEQ;
+CREATE TABLE ACCOUNT (
+	acc_index	NUMBER		PRIMARY KEY,
+	acc_id	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_password	VARCHAR2(100)		NOT NULL,
+	acc_birthDate	DATE		NOT NULL,
+	acc_phone	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_email	VARCHAR2(100)		NULL,
+	acc_name	VARCHAR2(100)		NOT NULL,
+	acc_address	VARCHAR2(300)		NOT NULL,
+	acc_nickname	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_profile	VARCHAR2(500)		NULL,
+	acc_level	VARCHAR2(100)	DEFAULT 1	NOT NULL,
+	acc_count	NUMBER	DEFAULT 0	NOT NULL,
+	acc_status	VARCHAR2(100)		NOT NULL CHECK (acc_status IN('admin', 'active', 'inactive')),
+    acc_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+INSERT INTO ACCOUNT VALUES(0, 'id_test1', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056051', '', '테스터1','주소1','별명1', '', 0, 1, 'admin', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', null, '테스터2','주소2','별명2', null, 2, 1, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', null, '테스터','주소3','별명3','이상한경로', default, default, 'inactive', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', 'test4@email.com', '테스터','주소1','별명4', '사진경로.png', default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056055', 'test5@email.com', '테스터5','주소5','별명5', '사진경로.jpg', default, default, 'active', sysdate);
+COMMIT;
+
+select * from account;
+
+------------------------------------------------------
+CREATE SEQUENCE ITEM_SEQ;
+CREATE TABLE ITEM (
+	item_index	NUMBER		PRIMARY KEY,
+	item_seller	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	item_title	VARCHAR2(300)		NOT NULL,
+	item_content	VARCHAR2(500)		NOT NULL,
+	item_image	VARCHAR2(500)		NULL,
+	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('의류잡화', '전자기기', '가구', '식품', '기타')),
+	item_place	VARCHAR2(100)	NULL,
+	item_status	VARCHAR2(100)	NOT NULL CHECK (item_status IN('onsale', 'ondeal', 'drop')),
+	item_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL,
+	item_click	NUMBER	DEFAULT 0	NOT NULL,
+	item_interest	NUMBER	DEFAULT 0	NOT NULL,
+	item_offDate	DATE		NULL,
+	item_buyer	NUMBER		REFERENCES ACCOUNT(acc_index)
+);
+
+
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '제목_테스트', '내용_테스트', null,'식품','drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '사진경로.ext','식품','onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '급매물', '빨리', '사진경로.ext','의류잡화','drop',default,10,1,sysdate,0);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '급매물2', '빨리22', null,'기타','ondeal',default,6,2,null,null);
+COMMIT;
+
+select * from item;
+
+
+------------------------------------------------------
+CREATE SEQUENCE REPLY_SEQ;
+CREATE TABLE REPLY (
+	repl_index	NUMBER		PRIMARY KEY,
+	repl_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	repl_candidate	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	repl_content	VARCHAR2(300)		NOT NULL,
+	repl_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 3, 0, '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 0, '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 1, '제가 살래요',TO_DATE('20240726', 'YYYY-MM-DD'));
+COMMIT;
+
+select * from reply;
+
+
+
+------------------------------------------------------
+CREATE SEQUENCE CHATROOM_SEQ;
+CREATE TABLE CHATROOM (
+	room_index	NUMBER		PRIMARY KEY,
+	room_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	room_reply	NUMBER		REFERENCES REPLY(repl_index) NOT NULL,
+	room_openDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, 3, 1, TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, 4, 3, TO_DATE('20240726', 'YYYY-MM-DD'));
+COMMIT;
+
+select * from chatroom;
+
+
+
+------------------------------------------------------
+CREATE SEQUENCE CHAT_SEQ;
+CREATE TABLE CHAT (
+	chat_index	NUMBER		PRIMARY KEY,
+	chat_room	NUMBER		REFERENCES CHATROOM(room_index) NOT NULL,
+	chat_writer	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	chat_content	VARCHAR2(300)		NOT NULL,
+	chat_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+INSERT INTO CHAT VALUES (0, 1, 1,'챗_테스트', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, 1, 0,'챗_테스트1', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, 2, 2,'챗_테스트2', TO_DATE('20240726', 'YYYY-MM-DD'));
+COMMIT;
+
+select * from chat;
+
+
+------------------------------------------------------
+CREATE SEQUENCE REVIEW_SEQ;
+CREATE TABLE REVIEW (
+	review_index	NUMBER		PRIMARY KEY,
+	review_item	    NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	review_writer	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	review_score	NUMBER		NOT NULL ,--제약조건 0~5?
+	review_content	VARCHAR2(300)		NOT NULL,
+	review_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+INSERT INTO REVIEW VALUES (0, 3, 0, 5,'리뷰_테스트', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REVIEW VALUES (REVIEW_SEQ.NEXTVAL, 3, 1, 1,'감사', TO_DATE('20240726', 'YYYY-MM-DD'));
+COMMIT;
+
+select * from review;
+
+
+------------------------------------------------------
+CREATE SEQUENCE INTEREST_SEQ;
+CREATE TABLE INTEREST (
+	int_index	NUMBER		PRIMARY KEY,
+	int_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	int_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL
+);
+
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 3, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 1);
+COMMIT;
+
+select * from interest;
+
+
+------------------------------------------------------
+CREATE SEQUENCE SEARCH_SEQ;
+CREATE TABLE SEARCH (
+	sear_index	NUMBER		PRIMARY KEY,
+	sear_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	sear_word	VARCHAR2(100)		NOT NULL,
+	sear_date	DATE	DEFAULT sysdate	NOT NULL
+);
+
+
+COMMIT;
+
+
+------------------------------------------------------
+CREATE SEQUENCE BLACKLIST_SEQ;
+CREATE TABLE BLACKLIST (
+	black_index	    NUMBER		PRIMARY KEY,
+	black_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	black_object	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+    black_content   VARCHAR2(300)   NOT NULL,
+	black_enrollDate	DATE	DEFAULT sysdate	NOT NULL
+);
+
+
+COMMIT;
