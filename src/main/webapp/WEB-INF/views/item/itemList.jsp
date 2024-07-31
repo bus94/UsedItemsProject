@@ -16,18 +16,18 @@
 		</div>
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
-				for="flexCheckDefault"> 필터링 </label>
+				id="flexCheckDefault2"> <label class="form-check-label"
+				for="flexCheckDefault2"> 필터링 </label>
 		</div>
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
-				for="flexCheckDefault"> 어쩌구 </label>
+				id="flexCheckDefault3"> <label class="form-check-label"
+				for="flexCheckDefault3"> 어쩌구 </label>
 		</div>
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
-				for="flexCheckDefault"> 저쩌구 </label>
+				id="flexCheckDefault4"> <label class="form-check-label"
+				for="flexCheckDefault4"> 저쩌구 </label>
 		</div>
 	</div>
 	<div class="item_title">
