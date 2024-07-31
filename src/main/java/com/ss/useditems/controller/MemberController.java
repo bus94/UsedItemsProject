@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,6 +63,24 @@ public class MemberController {
 		System.out.println("불러오기 후 loginMember: " + loginMember);
 
 		return "common/msg";
+	}
+	
+	// 회원가입 아이디 중복검사 (중복 있으면 사용 불가: 0, 없으면 사용 가능: 1 반환)
+	@RequestMapping("/account/duplicateCheckId.do")
+	@ResponseBody
+	public String duplicateCheckId(Model model, String id) {
+		System.out.println("MemberController의 duplicateCheckId()");
+		System.out.println("입력한 id: " + id);
+		String result="";
+		if(memberservice.selectById(id) > 0) {
+			// 사용불가
+			result = "0"; 
+		} else {
+			// 사용가능
+			result = "1"; 
+		}
+		System.out.println("result: " + result);
+		return result;
 	}
 
 	// 업로드 메서드
@@ -126,7 +146,7 @@ public class MemberController {
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		account_info = memberservice.selectByAcc_id(acc_id);
+		//account_info = memberservice.selectByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
 		System.out.println("response: "+ account_info);

@@ -51,7 +51,7 @@
 	position: relative;
 }
 
-.login_inputId button {
+.checkBtn {
 	position: absolute;
 	top: 0;
  	bottom: 0;
@@ -62,7 +62,7 @@
   	color: white;
 }
 
-.login_inputId button:hover {
+.checkBtn:hover {
 	background-color: #40a523;
 	color: white;
 }
