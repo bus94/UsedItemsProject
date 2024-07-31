@@ -11,18 +11,46 @@
 
 .acc_alt_page #acc_detail {
     width: 600px;
-    height: 800px;
     border: 2px solid rgb(219, 219, 219);
     border-radius: 10px;
     padding: 20px;
 }
 
-.acc_alt_page #profile{ /* alter 프로필 사진*/
-    width: 120px;
-    height: 120px;
+
+.acc_alt_page #acc_id {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 
+.acc_alt_page #profile{ /* alter 프로필 사진*/
+    width: 150px;
+    height: 150px;
+}
 
+
+.acc_alt_page .subtitle{
+	display: inline-block;
+	width: 100px;
+	
+}
+
+
+.acc_alt_page #redundant_box {
+	border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.acc_alt_page .info_box {
+	width: 350px;
+}
+
+
+.acc_alt_page .btn_container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
 
 
