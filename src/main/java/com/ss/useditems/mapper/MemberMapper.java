@@ -9,5 +9,7 @@ public interface MemberMapper {
 
 	MemberDTO selectByMember(MemberDTO loginMember);
 	
-	MemberDTO selectByAcc_id(String acc_id);
+	//MemberDTO selectByAcc_id(String acc_id);
+
+	int selectById(String id);
 }
