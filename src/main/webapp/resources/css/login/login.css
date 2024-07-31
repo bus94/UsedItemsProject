@@ -47,3 +47,17 @@
 	color: white;
 }
 
+.login_inputId {
+	position: relative;
+}
+
+.login_inputId button {
+	position: absolute;
+	top: 0;
+ 	bottom: 0;
+  	right: 5px;
+  	margin: auto 0;
+  	height: 36px;
+  	background-color: #3aca0b; 
+  	color: white;
+}
