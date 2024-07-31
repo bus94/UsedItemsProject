@@ -1,56 +1,58 @@
 @charset "UTF-8";
 
 .acc_alt_page {
-    margin: auto;
-    width: 100%;
+	margin: auto;
+	width: 100%;
 }
 
 .acc_alt_page .whole_container {
-
+	
 }
 
 .acc_alt_page #acc_detail {
-    width: 600px;
-    border: 2px solid rgb(219, 219, 219);
-    border-radius: 10px;
-    padding: 20px;
+	width: 600px;
+	border: 2px solid rgb(219, 219, 219);
+	border-radius: 10px;
+	padding: 20px;
 }
-
 
 .acc_alt_page #acc_id {
 	font-size: 20px;
 	font-weight: bold;
 }
 
-
-.acc_alt_page #profile{ /* alter 프로필 사진*/
-    width: 150px;
-    height: 150px;
+.acc_alt_page #profile { /* alter 프로필 사진*/
+	width: 150px;
+	height: 150px;
 }
 
+.acc_alt_page button {
+	margin: 0;
+	padding: auto;
+}
 
-.acc_alt_page .subtitle{
+.acc_alt_page .subtitle {
 	display: inline-block;
 	width: 100px;
-	
+}
+
+.acc_alt_page #password_reset {
+	display: none;
 }
 
 
 .acc_alt_page #redundant_box {
 	border: 1px solid rgb(219, 219, 219);
-    border-radius: 10px;
-    padding: 10px;
+	border-radius: 10px;
+	padding: 10px;
 }
 
 .acc_alt_page .info_box {
 	width: 350px;
 }
 
-
 .acc_alt_page .btn_container {
 	display: flex;
 	justify-content: center;
 	gap: 10px;
 }
-
-

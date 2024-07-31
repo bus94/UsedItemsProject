@@ -94,6 +94,9 @@
 			<div class="vr align-self-center"></div>
 			<h4>찜 Interest</h4>
 			<div class="vr align-self-center"></div>
+			<button type="button" id="btn_int_detail"
+				class="btn btn-success btn-sm align-self-center"
+				onclick="location.href='${path}/'">자세히</button>
 		</div>
 		<div class="item_container_acc d-flex">
 			<div class="item">
