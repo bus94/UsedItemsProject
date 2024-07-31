@@ -108,12 +108,35 @@ public class MemberController {
 	
 	////////////////////////////////////정일/////////////////////
 	
-	@RequestMapping("/account/info.do")
-	public String info(Model model) {
-		System.out.println("==account.info==");
+	@RequestMapping("/account/my_info.do")
+	public String my_info(Model model) {
+		System.out.println("==account.my_info==");
+
 
 		return "account/info";
 	}
+	
+	
+	
+	@RequestMapping("/account/acc_info.do")
+	public String acc_info(Model model, @RequestParam String acc_id) {
+		System.out.println("==account.acc_info==");
+
+		System.out.println("request.acc_id: " + acc_id);
+
+		MemberDTO account_info = new MemberDTO();
+		account_info = memberservice.selectByAcc_id(acc_id);
+		model.addAttribute("account_info", account_info);
+		System.out.println("response: "+ account_info);
+		
+		return "account/info";
+	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/account/alter.do")
 	public String alter(Model model) {
@@ -121,6 +144,6 @@ public class MemberController {
 
 		return "account/alter";
 	}
-
+	////////////////////////////////////정일/////////////////////
 
 }
