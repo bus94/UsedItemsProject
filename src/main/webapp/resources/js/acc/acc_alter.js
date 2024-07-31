@@ -27,7 +27,34 @@ $('#setPWcancel').click(function(){
 
 
 
+$('#setPW').click(function(){
+	// 비밀번호 '수정' 누르면
+	
+	var currPW = $.trim($('#currPW').val());
+	var neoPW = $.trim($('#neoPW').val());
+	var neoPWcheck = $.trim($('#neoPWcheck').val());
+	
+	if(!currPW){
+		alert("'현재 비밀번호' 입력");
+		return;
+	}
+	
+	
+	
+	if(!neoPW){
+		alert("'새 비밀번호' 입력");
+		return;
+	}
+	
+	
+	if(!neoPWcheck){
+		alert("'새 비밀번호 확인' 입력");
+		return;
+	}
 
+
+
+});
 
 
 
