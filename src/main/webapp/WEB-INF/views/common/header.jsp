@@ -35,6 +35,13 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
+	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
+	
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">

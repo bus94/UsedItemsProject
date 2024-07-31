@@ -25,7 +25,11 @@ public class ItemController {
 		return "item/itemEnroll";
 	}
 	
-	
+	@RequestMapping("/item/interest.do")
+	public String interest(Model model) {
+		System.out.println("interest 페이지");
+		return "item/interest";
+	}
 	
 	
 }

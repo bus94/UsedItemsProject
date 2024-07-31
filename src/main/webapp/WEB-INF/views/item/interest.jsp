@@ -8,15 +8,20 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container" style="padding-top: 100px;">
-	<h1>메인 컨테이너</h1>
-	<a href="${path}/account/login.do">로그인</a>
-	<a href="${path}/account/signup.do">회원가입</a>
-	<a href="${path}/item/itemList.do">매물검색</a>
-	<a href="${path}/item/itemView.do">매물상세</a>
-	<a href="${path}/item/itemEnroll.do">매물등록</a>
-	<a href="${path}/account/acc_info.do?acc_id=id_test4">계정 정보 조회 페이지</a>
-	<a href="${path}/blacklist/complainList.do">사기 조회 페이지</a>
-	<a href="${path}/item/interest.do">찜한 상품</a>
-</section>
 
+	<h1>찜한상품</h1>
+	<div class="interest_item_container">
+		<div class="interest_item">
+			<img src="${path}/resources/img/item1.jpg" alt="1">
+			<div class="interest_item">
+				<h3>관심제품명</h3>
+				<div class="interest_item_price">
+					<h4>9,999원</h4>
+					<h5>몇분 전</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
