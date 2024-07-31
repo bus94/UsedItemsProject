@@ -121,12 +121,14 @@ public class MemberController {
 	@RequestMapping("/account/acc_info.do")
 	public String acc_info(Model model, @RequestParam String acc_id) {
 		System.out.println("==account.acc_info==");
+		//다른사람의 계정을 눌렀을 때 실행!!!
 
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
 		account_info = memberservice.selectByAcc_id(acc_id);
-		model.addAttribute("account_info", account_info);
+		model.addAttribute("other_info", account_info);
+
 		System.out.println("response: "+ account_info);
 		
 		return "account/info";

@@ -8,28 +8,40 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container acc_info_page" style="padding-top: 100px;">
+	<c:choose>
+		<c:when test="${other_info == null}"> 
+			<c:set var="account_info" value="${loginMember}" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="account_info" value="${other_info}" />
+		</c:otherwise>
+	</c:choose>
+
+	
 	<div class="container acc_summary">
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>아이디</p>
-					<p>별명</p>
-					<p>주소</p>
+					<p>${account_info.acc_id}</p>
+					<p>${account_info.acc_nickname}</p>
+					<p>${account_info.acc_address}</p>
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<img id="acc_profile" class="s120"
 						src="${path}/resources/img/login.png" alt="프로필사진">
+					<c:if test="${other_info == null}">
 					<button type="button" id="btn_acc_mod"
 						class="btn_acc btn btn-success btn-sm"
 						onclick="location.href='${path}/account/alter.do'">내 정보
 						수정</button>
+					</c:if>
 				</div>
 			</div>
 			<hr>
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>등급</p>
-					<p>거래 횟수</p>
+					<p>등급 ${account_info.acc_level}</p>
+					<p>거래 횟수 ${account_info.acc_count}</p>
 					<p>피신고 횟수</p>
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
@@ -37,12 +49,12 @@
 					<p>
 						<button type="button" id="btn_acc_blacklist"
 							class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do'">신고내역
+							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역
 							조회</button>
 				</div>
 			</div>
 		</div>
-
+	<c:if test="${other_info == null}">
 		<div id="acc_profit" class="container inform">
 			<h3 class="text-center">수입 지출 내역</h3>
 			<div class="d-flex align-items-end flex-column">
@@ -73,7 +85,10 @@
 				<p>65,000원</p>
 			</div>
 		</div>
+	</c:if>
 	</div>
+	
+	<c:if test="${other_info == null}">
 	<div id="acc_interest" class="container items_domain">
 		<div class="container subtitle d-flex">
 			<div class="vr align-self-center"></div>
@@ -173,7 +188,7 @@
 			</div>
 		</div>
 	</div>
-
+	</c:if>
 
 
 
@@ -196,9 +211,11 @@
 			<div class="vr align-self-center"></div>
 			<h4>판매 내역 Selling</h4>
 			<div class="vr align-self-center"></div>
+			<c:if test="${other_info == null}">
 			<button type="button" id="btn_item_enroll"
 				class="btn btn-success btn-sm align-self-center"
 				onclick="location.href='${path}/item/itemEnroll.do'">매물 등록</button>
+			</c:if>
 		</div>
 		<div class="item_container_acc d-flex">
 			<div class="item">
@@ -322,6 +339,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 </section>
 
 

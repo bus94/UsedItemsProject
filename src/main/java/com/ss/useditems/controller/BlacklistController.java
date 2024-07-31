@@ -15,11 +15,15 @@ public class BlacklistController {
 	
 	
 	@GetMapping("/complainList")
-	public String complainList(Model model) {
+	public String complainList(Model model, String black_object) {
 		System.out.println("==blacklist.complainList==");
+		System.out.println("suspect: "+ black_object);
 
-		//사기조회페이지
-
+		
+		
+		
+		
+		
 		return "blacklist/complainList";
 	}
 	

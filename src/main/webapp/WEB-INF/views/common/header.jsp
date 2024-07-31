@@ -26,9 +26,25 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
+	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
+	
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="${path}/resources/js/item/itemView.js"></script>
+<link rel="stylesheet"
+	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
+<link rel="stylesheet"
+	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
+	
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
@@ -66,8 +82,8 @@
 					<div class="login_profileIn">
 						<a class="login_img" href="${path}/account/my_info.do"><img
 							alt="${path}/resources/img/login.png"
-							src="${path}/resources/img/login.png"></a> <a class="login_profile_text"
-							href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
+							src="${path}/resources/img/login.png"></a> <a
+							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
 					</div>
 				</div>
 			</c:if>
