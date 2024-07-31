@@ -38,13 +38,13 @@
                 <div id="nickname_box" class="container">
                 	<h4 class="d-inline">별명</h4>
                 	<input type="text" class="form-control w-50 d-inline" 
-                	name="nickname" id="nickname" value="별명">
+                	name="nickname" id="nickname" value="${loginMember.acc_nickname}">
                     <button type="button" id="setNickname" class="btn btn-success btn-sm">수정</button>
                 </div>
                 <div id="phone_box" class="container">
                 	<h4 class="d-inline">전화번호</h4>
                 	<input type="text" class="form-control w-50 d-inline" 
-                	name="phone" id="phone" value="전화번호">
+                	name="phone" id="phone" value="${loginMember.acc_phone}">
                     <button type="button" id="setPhone" class="btn btn-success btn-sm">수정</button>
                 </div>
                         
