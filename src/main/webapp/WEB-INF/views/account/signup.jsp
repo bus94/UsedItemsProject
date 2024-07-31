@@ -23,9 +23,9 @@
 						type="password" class="form-control login_inputStyle"
 						name="password" id="password" placeholder="비밀번호"
 						onblur="validateInputPw()" required="required" style="margin-bottom:5px;" />
-					<p id="validateInputId" style="color: red; margin: 0; display: none;  font-size:15px;">아이디를
+					<p id="validateInputId" style="color: red; margin: 0; display: none;  font-size:15px;">&nbsp;아이디를
 						입력해주세요.</p>
-					<p id="validateInputPassword" style="color: red; margin: 0; display: none; font-size:15px;">비밀번호를
+					<p id="validateInputPassword" style="color: red; margin: 0; display: none; font-size:15px;">&nbsp;비밀번호를
 						입력해주세요.</p>
 					<input type="text" class="form-control login_inputStyle"
 						name="name" id="name" placeholder="이름" required="required" style="margin-top:5px;"/><input
