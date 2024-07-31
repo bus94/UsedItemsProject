@@ -35,17 +35,13 @@
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
-<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="${path}/resources/js/item/itemView.js"></script>
-=======
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
 	
-	
->>>>>>> bc1621072f2157063e3aee4f42a392741b54263c
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
