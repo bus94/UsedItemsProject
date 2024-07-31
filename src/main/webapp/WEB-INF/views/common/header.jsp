@@ -29,6 +29,12 @@
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
+<link rel="stylesheet"
+	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
+	
+	
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 
 </head>
