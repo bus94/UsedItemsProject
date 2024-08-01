@@ -16,6 +16,9 @@
 	<div
 		class="whole-container container d-flex flex-column align-items-center">
 		<p id="main_title" class="fs-3">신고 조회</p>
+		
+		<a href="${path}/blacklist/logout1.do" class="align-self-end">로그아웃1</a>
+		<a href="${path}/blacklist/logout2.do" class="align-self-end">로그아웃2</a>
 
 		<c:set var="searchType" value="${param.searchType}" />
 		<form action="${path}/blacklist/complainList.do" method="get">

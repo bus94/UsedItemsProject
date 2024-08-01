@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,38 +30,37 @@ public class BlacklistController {
 //		System.out.println("param: " + param); 7/22수업내용
 
 		Map<String, String> queryMap = new HashMap<String, String>();
-		
+
 		try {
 			String searchValue = param.get("searchValue");
 			if (searchValue != null && searchValue.length() > 0) {
 				String searchType = param.get("searchType");
 				queryMap.put(searchType, searchValue);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
-		
 		try {
 			String black_object = param.get("black_object");
 			if (black_object != null && black_object != "") {
 				queryMap.put("black_object", black_object);
 			}
-		} catch (Exception e) {}
-		
-		
+		} catch (Exception e) {
+		}
+
 		int currentPage = 1;
 		try {
 			currentPage = Integer.parseInt(param.get("currentPage"));
-		} catch (Exception e) {}
-		
-		
+		} catch (Exception e) {
+		}
+
 		System.out.println("queryMap: " + queryMap);
 		System.out.println("currentpage: " + currentPage);
 
-		
-		List<BlacklistDTO> blacklist =  service.getBlacklist(currentPage, queryMap);
-		//페이징작업은 service에서!!!!
+		List<BlacklistDTO> blacklist = service.getBlacklist(currentPage, queryMap);
+		// 페이징작업은 service에서!!!!
 		model.addAttribute("blacklist", blacklist);
-		
+
 		return "blacklist/complainList";
 	}
 
@@ -79,6 +80,41 @@ public class BlacklistController {
 		// 신고 처리 후 사기조회페이지로 이동
 
 		return "blacklist/complainList";
+	}
+
+	@GetMapping("/logout1.do")
+	public String logout1(HttpSession session) {
+		System.out.println("==blacklist.logout1==");
+
+		try {
+			
+			if(session.getAttribute("loginMember") != null) {
+				System.out.println(session.getAttribute("loginMember").toString());
+				session.invalidate();			
+			} else {
+				System.out.println("로그인 안함");
+			}
+
+		} catch (Exception e) {	}
+
+		return "redirect:/";
+	}
+
+	@GetMapping("/logout2.do")
+	public String logout2(HttpSession session) {
+		System.out.println("==blacklist.logout2==");
+
+		try {
+			if(session.getAttribute("loginMember") != null) {
+				System.out.println(session.getAttribute("loginMember").toString());
+				session.removeAttribute("loginMember");
+			} else {
+				System.out.println("로그인 안함");
+			}
+			
+		} catch (Exception e) {	}
+
+		return "redirect:/";
 	}
 
 }
