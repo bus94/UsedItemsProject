@@ -33,14 +33,14 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
 	
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
+	<link rel="stylesheet"
+	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
@@ -61,11 +61,15 @@
 				<a href="${path}/"><img alt="로고"
 					src="${path}/resources/img/logo.png"></a>
 			</div>
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="매물을 검색해보세요!"
-					aria-label="Recipient's username" aria-describedby="basic-addon2" />
-				<img alt="검색" src="${path}/resources/img/search.png">
-			</div>
+			<form action="${path}/item/itemList" method="get">
+				<div>
+					<input type="text" id="searchValue" name="searchValue"
+						class="input_text" value="${param.searchValue}" />
+					<button type="submit" class="sch_smit">
+						<img alt="검색" src="${path}/resources/img/search.png">
+					</button>
+				</div>
+			</form>
 
 			<c:if test="${loginMember == null}">
 				<div class="login">
