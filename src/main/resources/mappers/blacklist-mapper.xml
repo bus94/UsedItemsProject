@@ -3,7 +3,10 @@
 
 <mapper namespace="com.ss.useditems.mapper.BlacklistMapper">
 
-
+	<select id="getBlacklist" parameterType="map" resultType="com.ss.useditems.dto.BlacklistDTO">
+		select * from BLACKLIST
+		
+	</select>
 
 
 
