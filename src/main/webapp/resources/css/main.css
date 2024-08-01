@@ -146,6 +146,7 @@ header {
 .sidebar {
 	position: fixed;
 	right: 40px;
+	top: 500px;
 	z-index: 1;
 	background-color: transparent;
 	outline: none;
