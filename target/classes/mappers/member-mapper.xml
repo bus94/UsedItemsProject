@@ -29,7 +29,7 @@
 	</select>
 
 	<insert id="signup" parameterType="memberDTO">
-		INSERT INTO ACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, TO_DATE(#{acc_birthDate}, 'YYYY-MM-DD'), #{acc_phone}, null, #{acc_name}, #{acc_address}, default, default, 0, 0, 'active', sysdate)
+		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate)
 	</insert>
 
 	 <!-- <select id="selectByAcc_id" parameterType="String"
