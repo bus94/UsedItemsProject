@@ -26,6 +26,9 @@ import com.ss.useditems.service.MemberService;
 @Controller
 public class MemberController {
 	@Autowired
+	private static MemberDTO loginMember;
+	
+	@Autowired
 	private MemberService memberservice;
 
 	@RequestMapping("/account/login.do")
@@ -37,7 +40,7 @@ public class MemberController {
 	public String signup(Model model) {
 		return "account/signup";
 	}
-
+	
 	@RequestMapping("/account/loginOK.do")
 	public String loginOK(Model model, String acc_id, String acc_password) {
 		System.out.println("loginOK 로그인 확인");
@@ -45,7 +48,7 @@ public class MemberController {
 		System.out.println("입력한 acc_id: " + acc_id);
 		System.out.println("입력한 acc_password: " + acc_password);
 		
-		MemberDTO loginMember = new MemberDTO();
+		loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 		
@@ -64,6 +67,16 @@ public class MemberController {
 		
 		System.out.println("불러오기 후 loginMember: " + loginMember);
 
+		return "common/msg";
+	}
+	
+	@RequestMapping("/account/logoutOK.do")
+	@ResponseBody
+	public String logoutOK(Model model) {
+		if(loginMember != null) {
+			loginMember = null;
+		}
+		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
 		return "common/msg";
 	}
 	
