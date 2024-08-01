@@ -9,13 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ss.useditems.dto.ItemDTO;
-//import com.ss.useditems.service.ItemService;
+import com.ss.useditems.service.ItemService;
 
 @Controller
 public class ItemController {
 	
-//	@Autowired
-//	private ItemService service;
+	@Autowired
+	private ItemService service;
 	
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model) {
@@ -41,7 +41,7 @@ public class ItemController {
 		System.out.println("interest 페이지");
 		return "item/interest";
 	}
-//	
+	
 //	@RequestMapping("/itemList.do")
 //	public String searchItems(Model model, String sear_word) {
 //		
