@@ -13,8 +13,7 @@
 
 
 
-	<div
-		class="whole-container container d-flex flex-column align-items-center">
+	<div class="whole-container container d-flex flex-column align-items-center">
 		<p id="main_title" class="fs-3">신고 조회</p>
 		
 		<a href="${path}/blacklist/logout1.do" class="align-self-end">로그아웃1</a>
@@ -67,9 +66,9 @@
 					<c:forEach var="each" items="${blacklist}">
 						<tr>
 							<th scope="row">${each.black_index}</th>
-							<td>${each.black_object}</td>
+							<td>${each.object_nickname}</td>
 							<td>${each.black_content}</td>
-							<td>${each.black_subject}</td>
+							<td>${each.subject_nickname}</td>
 							<td><fmt:formatDate type="date"	value="${each.black_enrollDate}" /></td>
 						</tr>
 					</c:forEach>
