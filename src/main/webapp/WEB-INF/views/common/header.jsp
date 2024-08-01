@@ -117,7 +117,7 @@
 				};
 				console.log("적용된 loginMember: " + loginMember);
 
-				if (confirm("정말 정말 로그아웃 하시겠습니까?")) {
+				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
 					$.ajax({
 						type : "POST",
 						url : "/logoutOK.do",
