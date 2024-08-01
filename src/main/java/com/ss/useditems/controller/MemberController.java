@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,7 +97,9 @@ public class MemberController {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		
-		Date birthDate_ = formatter.parse(birthDate);
+		java.util.Date utilDate = formatter.parse(birthDate);
+	    
+	    Date birthDate_ = new Date(utilDate.getTime());
 		
 		MemberDTO signupMember = new MemberDTO();
 		signupMember.setAcc_id(id);
