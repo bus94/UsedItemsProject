@@ -32,10 +32,10 @@ public class BlacklistController {
 		Map<String, String> queryMap = new HashMap<String, String>();
 
 		try {
-			String searchValue = param.get("searchValue");
-			if (searchValue != null && searchValue.length() > 0) {
+			String searchBlack = param.get("searchBlack");
+			if (searchBlack != null && searchBlack.length() > 0) {
 				String searchType = param.get("searchType");
-				queryMap.put(searchType, searchValue);
+				queryMap.put(searchType, searchBlack);
 			}
 		} catch (Exception e) {
 		}

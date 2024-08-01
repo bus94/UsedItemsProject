@@ -11,7 +11,8 @@
 		<result property="black-enrolldate" column="black-enrolldate" />
 	</resultMap>
 
-	<resultMap type="BlacklistDTO" id="blacklistDetailMap" extends="blacklistMap">
+	<resultMap type="BlacklistDTO" id="blacklistDetailMap"
+		extends="blacklistMap">
 		<result property="subject_nickname" column="subject_nickname" />
 		<result property="subject_id" column="subject_id" />
 		<result property="object_nickname" column="object_nickname" />
@@ -26,8 +27,10 @@
 		branch.black_index,
 		branch.black_subject,
 		branch.subject_nickname,
+		branch.subject_id,
 		branch.black_object,
 		obj.acc_nickname object_nickname,
+		obj.acc_id object_id,
 		branch.black_content,
 		branch.black_enrolldate
 		from
@@ -35,17 +38,35 @@
 		stem.black_index,
 		stem.black_subject,
 		acc.acc_nickname subject_nickname,
+		acc.acc_id subject_id,
 		stem.black_object,
 		stem.black_content,
 		stem.black_enrolldate
 		from BLACKLIST stem
 		join ACCOUNT acc on (stem.black_subject = acc.acc_index)) branch
-		join (select
+		join
+		(select
 		stem.black_index,
-		acc.acc_nickname
+		acc.acc_nickname,
+		acc.acc_id
 		from BLACKLIST stem
 		join ACCOUNT acc on (stem.black_object = acc.acc_index)) obj
 		on (branch.black_index = obj.black_index)
+		where branch.black_index >= 1
+		<if test="black_object != null">
+			and obj.acc_id='${black_object}'
+		</if>
+		<if test="acc_nickname != null">
+			and obj.acc_nickname like '%${acc_nickname}%'
+			or subject_nickname like '%${acc_nickname}%'
+		</if>
+		<if test="acc_id != null">
+			and obj.acc_id like '%${acc_id}%'
+			or subject_id like'%${acc_id}%'
+		</if>
+		<if test="content != null">
+			and black_content like '%${content}%'
+		</if>
 		order by black_index desc
 	</select>
 
