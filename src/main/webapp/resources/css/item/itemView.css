@@ -233,17 +233,11 @@
 	margin-right: 7px;
 }
 
-.slick-next:before, .slick-prev:before {
-	font-size: 30px;
-	color: rgb(61, 187, 61);
-}
-
 .slick-next, .slick-prev {
 	position: absolute;
 	/* 절대 위치 설정 */
 	top: 50%;
 	/* 수직 중앙 정렬 */
-	color: green;
 }
 
 .slick-prev {
@@ -255,3 +249,9 @@
 	right: -40px;
 	/* 오른쪽 위치 조정 */
 }
+
+.slick-next:before, .slick-prev:before {
+	font-size: 30px;
+	color: green;
+}
+
