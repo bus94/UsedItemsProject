@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <footer>
 	<p class="footer_p" align="center">
@@ -11,6 +15,21 @@
 <button id="top_btn">
 	▲ <br> TOP
 </button>
+
+<div class="sidebar">
+	<div class="remoteControl">
+		<ul class="list-group">
+			<li class="list-group-item"><a href="${path}/">메인으로</a></li>
+			<li class="list-group-item"><a href="${path}/account/alter.do">마이페이지</a></li>
+			<li class="list-group-item"><a href="${path}/item/itemList.do">조회하기</a></li>
+			<li class="list-group-item"><a href="${path}/item/itemEnroll.do">등록하기</a></li>
+			<li class="list-group-item"><a href="${path}/item/interest.do">찜 목록</a></li>
+			<li class="list-group-item"><a href="${path}/chat/chat.do">채팅하기</a></li>
+			<li class="list-group-item"><a href="${path}/blacklist/complain.do">신고하기</a></li>
+			<li class="list-group-item"><a href="${path}/">2조 모두 건강하길 바랍니다 화이팅!!</a></li>
+		</ul>
+	</div>
+</div>
 
 <script>
 	$(document).ready(function() {

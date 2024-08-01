@@ -96,22 +96,22 @@ header {
 	display: flex;
 }
 
-#top_btn { 
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 1;
-    background-color: white;
-    border: 2px solid #dbdbdb;
-    outline: none;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 10px;
-    font-weight: 500;
-    color: #333333;
+#top_btn {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 1;
+	background-color: white;
+	border: 2px solid #dbdbdb;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	font-size: 10px;
+	font-weight: 500;
+	color: #333333;
 }
 
 .login_profile {
@@ -134,5 +134,22 @@ login_profileIn {
 	position: relative;
 	top: 2px;
 	left: -6px;
-	
+}
+
+.sidebar {
+	position: fixed;
+	right: 40px;
+	z-index: 1;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	width: 200px;
+	height: 500px;
+	color: #333333;
+	transform: translateY(-50%);
+}
+
+.list-group-item a {
+	text-decoration-line: none;
 }

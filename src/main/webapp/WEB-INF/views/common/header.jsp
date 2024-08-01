@@ -16,9 +16,10 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />	
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
 <!-- 슬릭js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -36,7 +37,7 @@
 	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
-	
+
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet" type="text/css"
@@ -46,9 +47,9 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
+	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
+	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 <script src="${path}/resources/js/item/itemView.js"></script>
 
 
@@ -90,7 +91,36 @@
 							src="${path}/resources/img/login.png"></a> <a
 							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
 					</div>
+					<div>
+						<button type="button" class="btn" id=logout>로그아웃</button>
+					</div>
 				</div>
 			</c:if>
 		</div>
 	</header>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#logout').click(function(){
+			console.log("loginMember: " + "${loginMember}");
+			var loginMember = {"loginMember" : "${loginMember}"};
+			console.log("적용된 loginMember: " + loginMember);
+			
+			if(confirm("정말 정말 로그아웃 하시겠습니까?")) {
+				$.ajax({
+					type : "POST",
+					url : "/logoutOK.do",
+					data : loginMember,
+					success : function(data) {
+						console.log("성공");
+						 window.location.href = "/home";
+					},
+					error : function(e) {
+						console.log("실패");
+					}
+				});
+			}
+		})
+	});
+			
+	</script>
