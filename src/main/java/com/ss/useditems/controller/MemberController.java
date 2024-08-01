@@ -2,6 +2,8 @@ package com.ss.useditems.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -85,15 +87,28 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/account/signupOK.do")
-	public String signupOK(Model model, String id, String password, String name, Date birthDate, String address, String phone) {
+	public String signupOK(Model model, String id, String password, String name, String birthDate, String address, String phone) throws ParseException {
 		System.out.println("signupOK() 회원가입 실행");
+		System.out.println("id: " + id);
+		System.out.println("password: " + password);
+		System.out.println("name: " + name);
+		System.out.println("birthDate: " + birthDate);
+		System.out.println("address: " + address);
+		System.out.println("phone: " + phone);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		
+		Date birthDate_ = formatter.parse(birthDate);
 		
 		MemberDTO signupMember = new MemberDTO();
 		signupMember.setAcc_id(id);
 		signupMember.setAcc_password(password);
-		signupMember.setAcc_birthDate(birthDate);
+		signupMember.setAcc_name(name);
+		signupMember.setAcc_birthDate(birthDate_);
 		signupMember.setAcc_address(address);
 		signupMember.setAcc_phone(phone);
+		
+		System.out.println("signupMember: " + signupMember);
 		
 		if(memberservice.signup(signupMember) > 0) {
 			model.addAttribute("msg", "회원가입이 완료되었습니다. 로그인 해주세요.");
