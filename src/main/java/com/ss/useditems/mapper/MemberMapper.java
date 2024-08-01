@@ -12,4 +12,6 @@ public interface MemberMapper {
 	//MemberDTO selectByAcc_id(String acc_id);
 
 	int selectById(String id);
+
+	int signup(MemberDTO signupMember);
 }

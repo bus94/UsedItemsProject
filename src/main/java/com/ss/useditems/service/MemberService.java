@@ -20,6 +20,11 @@ public class MemberService {
 		System.out.println("MemberService의 selectById()");
 		return mapper.selectById(id);
 	}
+
+	public int signup(MemberDTO signupMember) {
+		System.out.println("MemberService의 signup()");
+		return mapper.signup(signupMember);
+	}
 	
 	
 //	public MemberDTO selectByAcc_id(String acc_id) {     //정일

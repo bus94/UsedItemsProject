@@ -2,6 +2,7 @@ package com.ss.useditems.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,29 @@ public class MemberController {
 		}
 		System.out.println("result: " + result);
 		return result;
+	}
+	
+	@RequestMapping("/account/signupOK.do")
+	public String signupOK(Model model, String id, String password, String name, Date birthDate, String address, String phone) {
+		System.out.println("signupOK() 회원가입 실행");
+		
+		MemberDTO signupMember = new MemberDTO();
+		signupMember.setAcc_id(id);
+		signupMember.setAcc_password(password);
+		signupMember.setAcc_birthDate(birthDate);
+		signupMember.setAcc_address(address);
+		signupMember.setAcc_phone(phone);
+		
+		if(memberservice.signup(signupMember) > 0) {
+			model.addAttribute("msg", "회원가입이 완료되었습니다. 로그인 해주세요.");
+			model.addAttribute("location", "/account/login.do");
+		} else {
+			model.addAttribute("msg", "회원가입에 실패하였습니다. 다시 입력해주세요.");
+			model.addAttribute("location", "/account/sign.do");
+		}
+		System.out.println("signupOK() 회원가입 실행 완료");
+		
+		return "common/msg";
 	}
 
 	// 업로드 메서드

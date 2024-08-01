@@ -11,7 +11,7 @@
 	style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<div class="login_containerIn">
-			<form id="loginForm" action="${path}/account/login.do" method="post">
+			<form id="loginForm" action="${path}/account/signupOK.do" method="post">
 				<div class="loginTitle">
 					<img class="loginLogo" alt="로고"
 						src="${path}/resources/img/logo.png">
@@ -121,7 +121,6 @@
 						error : function(e) {
 						}
 					});
-					
 				});
 				
 				$("#loginForm").submit(function(event) {

@@ -28,7 +28,9 @@
 		SELECT COUNT(*) FROM account WHERE acc_id = #{id}
 	</select>
 
-
+	<insert id="signup" parameterType="memberDTO">
+		INSERT INTO ACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, TO_DATE(#{acc_birthDate}, 'YYYY-MM-DD'), #{acc_phone}, null, #{acc_name}, #{acc_address}, default, default, 0, 0, 'active', sysdate)
+	</insert>
 
 	 <!-- <select id="selectByAcc_id" parameterType="String"
 		resultMap="memberMap">
