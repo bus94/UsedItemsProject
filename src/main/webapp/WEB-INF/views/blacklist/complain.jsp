@@ -27,10 +27,10 @@
 				<p class="subtitle fs-5">누구를</p>
 				<input type="text" class="info_box form-control" name="black_object"
 					id="object_id" placeholder="id를 입력"
-					<c:if test="${black_object != null}"> 
+				<c:if test="${black_object != null}"> 
 					value="${black_object}" disabled>
 				</c:if>
-					<c:if test="${black_object == null}"> 
+				<c:if test="${black_object == null}"> 
 					>
 				</c:if>
 			</div>
