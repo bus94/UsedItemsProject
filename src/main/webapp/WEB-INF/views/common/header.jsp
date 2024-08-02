@@ -71,6 +71,7 @@
 </head>
 <body>
 
+<div id="wrapper">
 	<header>
 		<div class="login-container">
 			<div class="logo">

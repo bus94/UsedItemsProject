@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+
 <footer>
 	<p class="footer_p" align="center">
 		&lt;Copyright 2024. <strong>Safe Market</strong>. All rights
@@ -30,6 +31,7 @@
 	</div>
 </div>
 
+</div>
 <script>
 	$(document).ready(function() {
 		// Top 버튼 클릭시 페이지 상단으로 이동
