@@ -65,8 +65,10 @@ public class BlacklistController {
 	}
 
 	@GetMapping("/complain.do")
-	public String complain(Model model) {
+	public String complain(Model model, @RequestParam String black_object) {
 		System.out.println("==blacklist.complain==");
+		
+		model.addAttribute("black_object", black_object);
 
 		// 신고페이지
 

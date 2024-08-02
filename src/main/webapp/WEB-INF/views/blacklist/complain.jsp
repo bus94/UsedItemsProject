@@ -9,7 +9,7 @@
 
 <section id="content" class="container complain_page" style="padding-top: 100px;">
 	<h1>신고하기 페이지 v2</h1>
-
+	<p>${black_object} 신고하기 </p>
 
 </section>
 
