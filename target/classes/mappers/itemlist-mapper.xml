@@ -17,9 +17,12 @@
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
 	</resultMap>
+	
+	<select id="searchItems" parameterType="String" resultMap="itemMap">
+        SELECT * 
+        FROM item
+        WHERE item_title LIKE '%${searchValue}%'
+    </select>
 
-	<select id="searchItems" resultMap="itemMap">
-		select * from item
-	</select>
 
 </mapper>
