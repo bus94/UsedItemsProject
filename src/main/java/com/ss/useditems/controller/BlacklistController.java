@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.useditems.dto.BlacklistDTO;
 import com.ss.useditems.service.BlacklistService;
+import com.ss.useditems.util.PageInfo;
 
 @RequestMapping("/blacklist")
 @Controller
@@ -29,6 +30,7 @@ public class BlacklistController {
 		System.out.println("==blacklist.complainList==");
 //		System.out.println("param: " + param); 7/22수업내용
 
+//----------------------------쿼리 맵 만드는 작업----------------------------		
 		Map<String, String> queryMap = new HashMap<String, String>();
 
 		try {
@@ -47,7 +49,8 @@ public class BlacklistController {
 			}
 		} catch (Exception e) {
 		}
-
+//---------------------------------------------------------------------
+//----------------------------현재 페이지와 쿼리맵 넘김----------------------------		
 		int currentPage = 1;
 		try {
 			currentPage = Integer.parseInt(param.get("currentPage"));
@@ -56,11 +59,16 @@ public class BlacklistController {
 
 		System.out.println("queryMap: " + queryMap);
 		System.out.println("currentpage: " + currentPage);
-
-		List<BlacklistDTO> blacklist = service.getBlacklist(currentPage, queryMap);
-		// 페이징작업은 service에서!!!!
-		model.addAttribute("blacklist", blacklist);
-
+		
+		//pagination 처리는 서비스에서!
+		PageInfo pageInfo = new PageInfo();
+		pageInfo = service.getBlacklist(currentPage, queryMap);
+		
+		
+//---------------------------------------------------------------------
+		model.addAttribute("blacklist", pageInfo.getDtoContainer());
+		model.addAttribute("pageInfo", pageInfo);
+		
 		return "blacklist/complainList";
 	}
 

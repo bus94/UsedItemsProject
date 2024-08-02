@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.BlacklistDTO;
 import com.ss.useditems.mapper.BlacklistMapper;
+import com.ss.useditems.util.PageInfo;
 
 @Service
 public class BlacklistService {
@@ -16,14 +17,21 @@ public class BlacklistService {
 	@Autowired
 	private BlacklistMapper mapper;
 
-	public List<BlacklistDTO> getBlacklist(int currentPage, Map<String, String> queryMap) {
-		// currentPage정보로 pagination해서 paged_list돌려주기
+	public PageInfo getBlacklist(int currentPage, Map<String, String> queryMap) {
 		
+		//일단 쿼리맵 검색으로 전체리스트 받아옴
+		ArrayList<BlacklistDTO> unpaged_list = mapper.getBlacklist(queryMap);
 		
-		List<BlacklistDTO> paged_list = mapper.getBlacklist(queryMap);
+		//생성자: pageInfo(currentPage, pagePerViewer, dtoTotal, dtoPerPage)
+		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 5);
 		
+		//페이지인포로 서브리스트 만들어서
+		List<BlacklistDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 		
-		return paged_list;
+		//페이지인포 dto컨테이너에 가공된 리스트 넣어줌
+		pageinfo.setDtoContainer(paged_list);
+		
+		return pageinfo;
 	}
 	
 	
