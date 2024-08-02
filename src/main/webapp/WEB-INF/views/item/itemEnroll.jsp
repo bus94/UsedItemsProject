@@ -42,6 +42,11 @@
 					</select>
 				</div>
 				<div id="input_box" class="container">
+					<p class="subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
+					<input type="text" class="form-control item_input d-inline"
+						name="item_price" id="item_price" placeholder="가격">
+				</div>
+				<div id="input_box" class="container">
 					<p class="subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_place" id="item_place" placeholder="장소">
