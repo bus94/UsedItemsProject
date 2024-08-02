@@ -35,6 +35,8 @@
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/item/itemEnroll.css?v=${systemProperties['timestamp']}">
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
@@ -121,7 +123,7 @@
 			$('#logout').click(function() {
 
 				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-					location.href = "logoutOK.do";
+					location.href = "${path}/logoutOK.do";
 				}
 			})
 		});
