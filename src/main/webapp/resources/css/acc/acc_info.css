@@ -22,7 +22,7 @@
 
 
 .acc_info_page .btn_box  {
-	width: 150px;
+	width: 250px;
 }
 
 .acc_info_page #acc_profile { /*info 프로필 사진*/
@@ -32,7 +32,7 @@
 
 .acc_info_page #acc_mock { /*mock*/
 	margin: 0;
-    width: 120px;
+    width: 250px;
     height: 100px;
 }
 

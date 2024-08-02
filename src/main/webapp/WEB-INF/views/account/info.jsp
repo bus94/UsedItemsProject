@@ -48,12 +48,14 @@
 					<p>피신고 횟수</p>
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
-					<p id="acc_mock" class="s120">&nbsp;
-					<p>
-						<button type="button" id="btn_acc_blacklist"
-							class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역
-							조회</button>
+					<p id="acc_mock" class="">&nbsp;</p>
+					<div class="container d-flex">
+						<div class="detail_report">
+							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+						</div>
+						<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
+							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역 조회</button>
+					</div>
 				</div>
 			</div>
 		</div>
