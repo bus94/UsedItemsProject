@@ -101,20 +101,21 @@ public class BlacklistController {
 	}
 
 	@GetMapping("/logout2.do")
-	public String logout2(HttpSession session) {
+	public String logout2(HttpSession session, Model model) {
 		System.out.println("==blacklist.logout2==");
 
-		try {
-			if(session.getAttribute("loginMember") != null) {
-				System.out.println(session.getAttribute("loginMember").toString());
-				session.removeAttribute("loginMember");
-			} else {
-				System.out.println("로그인 안함");
-			}
-			
-		} catch (Exception e) {	}
-
-		return "redirect:/";
+		session.removeAttribute("loginMember");
+//		try {
+//			if(session.getAttribute("loginMember") != null) {
+//				System.out.println(session.getAttribute("loginMember").toString());
+//			} else {
+//				System.out.println("로그인 안함");
+//			}
+//			
+//		} catch (Exception e) {	}
+//model.addAttribute("msg", "로그아웃 in msg");
+//model.addAttribute("location", "/");
+		return "redirect:/blacklist/complainList.do";
 	}
 
 }

@@ -96,9 +96,10 @@
 			<c:if test="${loginMember != null}">
 				<div class="login_profile">
 					<div class="login_profileIn">
-						<a class="login_img" href="${path}/account/my_info.do">
-						<img	alt="${path}/resources/img/login.png"	src="${path}/resources/img/login.png"></a>
-						 <a class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
+						<a class="login_img" href="${path}/account/my_info.do"> <img
+							alt="${path}/resources/img/login.png"
+							src="${path}/resources/img/login.png"></a> <a
+							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
 					</div>
 					<div>
 						<button type="button" class="btn" id=logout>로그아웃</button>
@@ -113,7 +114,11 @@
 			$('#logout').click(function() {
 
 				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
+<<<<<<< HEAD
 					location.href="logoutOK.do";
+=======
+					location.href = "logoutOK.do";
+>>>>>>> qwer
 				}
 			})
 		});
