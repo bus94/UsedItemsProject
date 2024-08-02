@@ -66,7 +66,7 @@ header {
 	height: 40px;
 }
 
-.login-container .sch_smit{
+.login-container .sch_smit {
 	width: 30px;
 	background-color: white;
 	border: none;
@@ -76,7 +76,6 @@ header {
 	width: 35px;
 	margin-top: 3px;
 }
-
 
 .login {
 	display: flex;
@@ -127,10 +126,12 @@ header {
 .login_profileIn {
 	display: flex;
 }
+
 .login_profileIn a:first-child {
 	margin-right: 10px;
-	margin-top:1px;
+	margin-top: 1px;
 }
+
 .login_profile img {
 	width: 30px;
 }
@@ -161,5 +162,19 @@ header {
 
 .list-group-item a {
 	text-decoration-line: none;
+	color: black;
+}
+
+body {
+	margin:0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+footer {
+	position: relative;
+	text-align: center;
+	padding: 100px 0 50px 0;
 	color: black;
 }
