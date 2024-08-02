@@ -16,17 +16,17 @@
 			<hr>
 			<form id="itemEnrollForm" method="GET">
 				<div id="input_box" class="container">
-					<p class="subtitle fs-5">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</p>
+					<p class="itemEnroll_subtitle fs-5">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_title" id="item_title" placeholder="제목">
 				</div>
 				<div id="input_box" class="container">
-					<p class="subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
+					<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_title" id="item_title" placeholder="내용">
 				</div>
 				<div id="input_box" class="container box3">
-					<p class="subtitle fs-5">카 테 고 리</p>
+					<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 					<select id="item_category" class="form-select item_input">
 						<option selected>==========분류===========</option>
 						<option value="상의">상의</option>
@@ -42,17 +42,17 @@
 					</select>
 				</div>
 				<div id="input_box" class="container">
-					<p class="subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
+					<p class="itemEnroll_subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_price" id="item_price" placeholder="가격">
 				</div>
 				<div id="input_box" class="container">
-					<p class="subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
+					<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_place" id="item_place" placeholder="장소">
 				</div>
 				<div id="input_box" class="container">
-					<p class="subtitle fs-5">첨 부 파 일</p>
+					<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
 					<input style="width: 270px" type="file" name="file">
 				</div>
 				<div class="container_btn">
