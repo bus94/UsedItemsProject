@@ -26,7 +26,6 @@
 			<li class="list-group-item"><a href="${path}/item/interest.do">찜 목록</a></li>
 			<li class="list-group-item"><a href="${path}/chat/chat.do">채팅하기</a></li>
 			<li class="list-group-item"><a href="${path}/blacklist/complain.do">신고하기</a></li>
-			<li class="list-group-item"><a href="${path}/">2조 모두 건강하길 바랍니다 화이팅!!</a></li>
 		</ul>
 	</div>
 </div>

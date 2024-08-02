@@ -108,28 +108,12 @@
 		</div>
 	</header>
 
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function() {
 			$('#logout').click(function() {
-				console.log("loginMember: " + "${loginMember}");
-				var loginMember = {
-					"loginMember" : "${loginMember}"
-				};
-				console.log("적용된 loginMember: " + loginMember);
 
 				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-					$.ajax({
-						type : "POST",
-						url : "/logoutOK.do",
-						data : loginMember,
-						success : function(data) {
-							console.log("성공");
-							window.location.href = "/home";
-						},
-						error : function(e) {
-							console.log("실패");
-						}
-					});
+					location.href="logoutOK.do";
 				}
 			})
 		});

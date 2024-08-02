@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
-// 모델에 저장이 될 때 밑에  loginMember 자동으로 세션에 저장
+// 모델에 저장이 될 때 밑에 loginMember 자동으로 세션에 저장
 @SessionAttributes("loginMember")
 @Controller
 public class MemberController {
-	@Autowired
-	private static MemberDTO loginMember;
-	
+	private MemberDTO loginMember;
+
 	@Autowired
 	private MemberService memberservice;
 
@@ -40,22 +41,22 @@ public class MemberController {
 	public String signup(Model model) {
 		return "account/signup";
 	}
-	
+
 	@RequestMapping("/account/loginOK.do")
 	public String loginOK(Model model, String acc_id, String acc_password) {
 		System.out.println("loginOK 로그인 확인");
-		
+
 		System.out.println("입력한 acc_id: " + acc_id);
 		System.out.println("입력한 acc_password: " + acc_password);
-		
+
 		loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
-		
+
 		System.out.println("불러오기 전 loginMember: " + loginMember);
-		
+
 		loginMember = memberservice.selectByMember(loginMember);
-		if(loginMember != null) {
+		if (loginMember != null) {
 			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
 			model.addAttribute("location", "/");
 		} else {
@@ -64,42 +65,47 @@ public class MemberController {
 			model.addAttribute("location", "/account/login.do");
 		}
 		model.addAttribute("loginMember", loginMember);
-		
+
 		System.out.println("불러오기 후 loginMember: " + loginMember);
 
 		return "common/msg";
 	}
-	
-	@RequestMapping("/account/logoutOK.do")
-	@ResponseBody
-	public String logoutOK(Model model) {
-		if(loginMember != null) {
+
+	@RequestMapping("/logoutOK.do")
+	public String logoutOK(Model model, HttpSession session) {
+		try {
+			session.removeAttribute("loginMember");
+			model.addAttribute("loginMember", null);
 			loginMember = null;
+			System.out.println("loginMember: " + loginMember);
+		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
+		model.addAttribute("location", "/");
 		return "common/msg";
 	}
-	
+
 	// 회원가입 아이디 중복검사 (중복 있으면 사용 불가: 0, 없으면 사용 가능: 1 반환)
 	@RequestMapping("/account/duplicateCheckId.do")
 	@ResponseBody
 	public String duplicateCheckId(Model model, String id) {
 		System.out.println("MemberController의 duplicateCheckId()");
 		System.out.println("입력한 id: " + id);
-		String result="";
-		if(memberservice.selectById(id) > 0) {
+		String result = "";
+		if (memberservice.selectById(id) > 0) {
 			// 사용불가
-			result = "0"; 
+			result = "0";
 		} else {
 			// 사용가능
-			result = "1"; 
+			result = "1";
 		}
 		System.out.println("result: " + result);
 		return result;
 	}
-	
+
 	@RequestMapping("/account/signupOK.do")
-	public String signupOK(Model model, String id, String password, String name, String birthDate, String address, String phone) throws ParseException {
+	public String signupOK(Model model, String id, String password, String name, String birthDate, String address,
+			String phone) throws ParseException {
 		System.out.println("signupOK() 회원가입 실행");
 		System.out.println("id: " + id);
 		System.out.println("password: " + password);
@@ -107,13 +113,13 @@ public class MemberController {
 		System.out.println("birthDate: " + birthDate);
 		System.out.println("address: " + address);
 		System.out.println("phone: " + phone);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		
+
 		java.util.Date utilDate = formatter.parse(birthDate);
-	    
-	    Date birthDate_ = new Date(utilDate.getTime());
-		
+
+		Date birthDate_ = new Date(utilDate.getTime());
+
 		MemberDTO signupMember = new MemberDTO();
 		signupMember.setAcc_id(id);
 		signupMember.setAcc_password(password);
@@ -121,10 +127,10 @@ public class MemberController {
 		signupMember.setAcc_birthDate(birthDate_);
 		signupMember.setAcc_address(address);
 		signupMember.setAcc_phone(phone);
-		
+
 		System.out.println("signupMember: " + signupMember);
-		
-		if(memberservice.signup(signupMember) > 0) {
+
+		if (memberservice.signup(signupMember) > 0) {
 			model.addAttribute("msg", "회원가입이 완료되었습니다. 로그인 해주세요.");
 			model.addAttribute("location", "/account/login.do");
 		} else {
@@ -132,7 +138,7 @@ public class MemberController {
 			model.addAttribute("location", "/account/sign.do");
 		}
 		System.out.println("signupOK() 회원가입 실행 완료");
-		
+
 		return "common/msg";
 	}
 
@@ -171,54 +177,38 @@ public class MemberController {
 		}
 		return "account/login";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	////////////////////////////////////정일/////////////////////
-	
+
+	//////////////////////////////////// 정일/////////////////////
+
 	@RequestMapping("/account/my_info.do")
 	public String my_info(Model model) {
 		System.out.println("==account.my_info==");
 
-
 		return "account/info";
 	}
-	
-	
-	
+
 	@RequestMapping("/account/acc_info.do")
 	public String acc_info(Model model, @RequestParam String acc_id) {
 		System.out.println("==account.acc_info==");
-		//다른사람의 계정을 눌렀을 때 실행!!!
+		// 다른사람의 계정을 눌렀을 때 실행!!!
 
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		//account_info = memberservice.selectByAcc_id(acc_id);
+		// account_info = memberservice.selectByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
-		System.out.println("response: "+ account_info);
-		
+		System.out.println("response: " + account_info);
+
 		return "account/info";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping("/account/alter.do")
 	public String alter(Model model) {
 		System.out.println("==account.alter==");
 
 		return "account/alter";
 	}
-	////////////////////////////////////정일/////////////////////
+	//////////////////////////////////// 정일/////////////////////
 
 }
