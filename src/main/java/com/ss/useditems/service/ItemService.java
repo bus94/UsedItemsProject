@@ -14,9 +14,9 @@ public class ItemService {
 	@Autowired
 	private ItemMapper mapper;
 	
-	  public List<ItemDTO> searchItems() { 
-		  System.out.println(mapper.searchItems());
-		  return mapper.searchItems(); 
+	  public List<ItemDTO> searchItems(String searchValue) { 
+		  System.out.println(mapper.searchItems(searchValue));
+		  return mapper.searchItems(searchValue); 
 		  }
 	 
 

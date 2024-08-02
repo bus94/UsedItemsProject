@@ -77,10 +77,10 @@
 				<a href="${path}/"><img alt="로고"
 					src="${path}/resources/img/logo.png"></a>
 			</div>
-			<form action="${path}/item/itemList" method="get">
+			<form action="${path}/item/itemList.do" method="get">
 				<div>
 					<input type="text" id="searchValue" name="searchValue"
-						class="input_text" value="${param.searchValue}" />
+						class="input_text" value="${searchValue}"/>
 					<button type="submit" class="sch_smit">
 						<img alt="검색" src="${path}/resources/img/search.png">
 					</button>
