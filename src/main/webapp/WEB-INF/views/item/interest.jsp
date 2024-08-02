@@ -9,7 +9,12 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="interest_content">
-
+	
+	<c:if test="${loginMember == null}">
+		<script>
+			location.href = "${path}/account/login.do";
+		</script>	
+	</c:if>
 	<h1>찜한상품</h1>
 	<div class="interest_item_container " style="padding-top:100px">
 		<div class="interest_item">
