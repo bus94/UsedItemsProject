@@ -33,279 +33,31 @@
 	<div class="item_title">
 		<h3>검색 결과 &gt;</h3>
 	</div>
-	<div class="item_container">
-		<div class="item">
-			<img src="${path}/resources/img/item1.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item2.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
+	<div class="item_wrapper">
+		<c:forEach var="item" items="${itemList}">
+			<div class="item_container">
+				<div class="item">
+					<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
+					<div class="item_view">
+						<h3>${item.item_title}</h3>
+						<div class="item_price">
+							<h4>999원</h4>
+							<h5>${item.item_enrollDate}</h5>
+						</div>
+						<div class="item_like">
+							<p>관심 ${item.item_interest}</p>
+							<p>채팅 22</p>
+						</div>
+						<div class="item_addr">
+							<img src="${path}/resources/img/gps.png" alt="위치">
+							<p>주소주소주소주소</p>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item3.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item4.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item5.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item1.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item2.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item3.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item4.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item5.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item1.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item2.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item3.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item4.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="${path}/resources/img/item5.jpg" alt="1">
-			<div class="item_view">
-				<h3>제품명입니다</h3>
-				<div class="item_price">
-					<h4>9999원</h4>
-					<h5>몇분 전</h5>
-				</div>
-				<div class="item_like">
-					<p>관심 22</p>
-					<p>채팅 10</p>
-				</div>
-				<div class="item_addr">
-					<img src="${path}/resources/img/gps.png" alt="위치">
-					<p>인천광역시 계양구</p>
-				</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
-	
+
 
 </section>
 

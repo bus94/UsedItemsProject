@@ -20,6 +20,12 @@ public class ItemController {
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model) {
 		System.out.println("itemList 페이지");
+		
+		List<ItemDTO> itemList = service.searchItems();
+		
+		model.addAttribute("itemList",itemList);
+		System.out.println(itemList);
+		
 		return "item/itemList";
 	}
 	
@@ -42,16 +48,6 @@ public class ItemController {
 		return "item/interest";
 	}
 	
-//	@RequestMapping("/itemList.do")
-//	public String searchItems(Model model, String sear_word) {
-//		
-//		List<ItemDTO> itemList = service.searchItems(sear_word);
-//				
-//		model.addAttribute("itemList",itemList);
-//        model.addAttribute("sear_word",sear_word);
-//		
-//		return "item/itemList";
-//	}
 	
 	
 	

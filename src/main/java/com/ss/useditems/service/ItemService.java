@@ -10,11 +10,22 @@ import com.ss.useditems.dto.ItemDTO;
 @Service
 public class ItemService {
 
+<<<<<<< HEAD
 	/*
 	 * @Autowired private ItemMapper mapper;
 	 * 
 	 * public List<ItemDTO> searchItems(String sear_word) { return
 	 * mapper.selectItemList(sear_word); }
 	 */
+=======
+	@Autowired
+	private ItemMapper mapper;
+	
+	  public List<ItemDTO> searchItems() { 
+		  System.out.println(mapper.searchItems());
+		  return mapper.searchItems(); 
+		  }
+	 
+>>>>>>> moong
 
 }
