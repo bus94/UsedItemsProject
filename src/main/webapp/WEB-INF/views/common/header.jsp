@@ -59,6 +59,13 @@
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 <script src="${path}/resources/js/item/itemView.js"></script>
 
+<!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
+<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
+<!-- 캐시된 페이지가 만료되어 삭제되는 시간 정의. 특별한 경우가 아니면 -1로 설정. -->
+<meta http-equiv="Expires" content="-1">
+<!-- 페이지 로드시마다 페이지를 캐싱하지 않습니다. (HTTP 1.0, 1.1) -->
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
 
