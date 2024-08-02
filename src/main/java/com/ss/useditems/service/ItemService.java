@@ -6,18 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.mapper.ItemMapper;
 
 @Service
 public class ItemService {
 
-<<<<<<< HEAD
-	/*
-	 * @Autowired private ItemMapper mapper;
-	 * 
-	 * public List<ItemDTO> searchItems(String sear_word) { return
-	 * mapper.selectItemList(sear_word); }
-	 */
-=======
 	@Autowired
 	private ItemMapper mapper;
 	
@@ -26,6 +19,5 @@ public class ItemService {
 		  return mapper.searchItems(); 
 		  }
 	 
->>>>>>> moong
 
 }
