@@ -65,19 +65,22 @@ public class BlacklistController {
 	}
 
 	@GetMapping("/complain.do")
-	public String complain(Model model, @RequestParam String black_object) {
+	public String complain(Model model, @RequestParam Map<String, String> param) {
 		System.out.println("==blacklist.complain==");
 		
 		try {
+			//url에 get타입 parameter로 "black_object"가 넘오오면 모델에 넣어주겠다.
+			//String black_object을 직접 받도록 해두면, 
+			//url에서 안 넘어올 시 받을게 없어서 에러가 남
 			
-			if(black_object != null) {
-				model.addAttribute("black_object", black_object);
-			}
-			
-			
-		}catch(Exception e) {}
+			String black_object = param.get("black_object");
+			model.addAttribute("black_object", black_object);
 
-		// 신고페이지
+		} catch (Exception e) {
+			
+		}
+		
+		
 
 		return "blacklist/complain";
 	}
