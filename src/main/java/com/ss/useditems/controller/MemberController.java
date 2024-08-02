@@ -174,8 +174,17 @@ public class MemberController {
 	//////////////////////////////////// 정일/////////////////////
 
 	@RequestMapping("/account/my_info.do")
-	public String my_info(Model model) {
+	public String my_info(Model model, HttpSession session) {
 		System.out.println("==account.my_info==");
+
+		try {
+			if(session.getAttribute("loginMember") == null) {
+				System.out.println("로그인 안함");
+				model.addAttribute("msg", "로그인부터 하렴.");
+				model.addAttribute("location", "/account/login.do");
+				return "common/msg";
+			}
+		} catch(Exception e) {	}
 
 		return "account/info";
 	}
@@ -197,7 +206,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("/account/alter.do")
-	public String alter(Model model) {
+	public String alter() {
 		System.out.println("==account.alter==");
 
 		return "account/alter";
