@@ -18,12 +18,13 @@ public class ItemController {
 	private ItemService service;
 	
 	@RequestMapping("/item/itemList.do")
-	public String itemList(Model model) {
+	public String itemList(Model model, String searchValue) {
 		System.out.println("itemList 페이지");
-		
-		List<ItemDTO> itemList = service.searchItems();
+		System.out.println("searchValue: " + searchValue);
+		List<ItemDTO> itemList = service.searchItems(searchValue);
 		
 		model.addAttribute("itemList",itemList);
+		model.addAttribute("searchValue", searchValue);
 		System.out.println(itemList);
 		
 		return "item/itemList";
