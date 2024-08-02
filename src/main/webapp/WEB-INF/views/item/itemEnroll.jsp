@@ -54,8 +54,6 @@
 				<div id="input_box" class="container">
 					<p class="subtitle fs-5">첨 부 파 일</p>
 					<input style="width: 270px" type="file" name="file">
-					<%-- <button type="button" class="btn btn-outline-secondary"
-						onclick="submitUploadForm('${path}/uploadOK.do')">업로드</button> --%>
 				</div>
 				<div class="container_btn">
 					<button type="submit" id="itemEnroll_form"
