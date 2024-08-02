@@ -14,11 +14,9 @@
 	<div class="whole-container container d-flex flex-column align-items-center">
 		<p id="main_title" class="fs-3">신고 조회</p>
 		
-		
-		
-		<a href="${path}/blacklist/logout1.do" class="align-self-end">로그아웃1</a>
-		<a href="${path}/blacklist/logout2.do" class="align-self-end">로그아웃2</a>
 
+		<a href="${path}/blacklist/logout1.do">로그아웃1</a>
+		<a id="logout2black" href="${path}/blacklist/logout2.do">로그아웃2</a>
 
 
 		<c:set var="searchType" value="${param.searchType}" />
@@ -40,7 +38,7 @@
 				<div class="input-group">
 					<input type="text" class="form-control" id="searchBlack"
 						name="searchBlack" value="${param.searchBlack}">
-					<button id="search_btn" class="btn btn-outline-secondary" type="submit">
+					<button id="search_btn" class="btn btn-outline-secondary d-flex align-items-center justify-content-center" type="submit">
 						<img id="search_img" alt="검색" src="${path}/resources/img/search.png">
 					</button>
 				</div>
@@ -83,6 +81,6 @@
 	</div>
 
 </section>
-
+<script src="${path}/resources/js/blacklist/complainList.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

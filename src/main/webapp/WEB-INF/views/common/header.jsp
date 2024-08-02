@@ -96,9 +96,10 @@
 			<c:if test="${loginMember != null}">
 				<div class="login_profile">
 					<div class="login_profileIn">
-						<a class="login_img" href="${path}/account/my_info.do">
-						<img	alt="${path}/resources/img/login.png"	src="${path}/resources/img/login.png"></a>
-						 <a class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
+						<a class="login_img" href="${path}/account/my_info.do"> <img
+							alt="${path}/resources/img/login.png"
+							src="${path}/resources/img/login.png"></a> <a
+							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
 					</div>
 					<div>
 						<button type="button" class="btn" id=logout>로그아웃</button>
@@ -108,28 +109,12 @@
 		</div>
 	</header>
 
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function() {
 			$('#logout').click(function() {
-				console.log("loginMember: " + "${loginMember}");
-				var loginMember = {
-					"loginMember" : "${loginMember}"
-				};
-				console.log("적용된 loginMember: " + loginMember);
 
 				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-					$.ajax({
-						type : "POST",
-						url : "/logoutOK.do",
-						data : loginMember,
-						success : function(data) {
-							console.log("성공");
-							window.location.href = "/home";
-						},
-						error : function(e) {
-							console.log("실패");
-						}
-					});
+					location.href = "logoutOK.do";
 				}
 			})
 		});
