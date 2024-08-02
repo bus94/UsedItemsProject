@@ -11,12 +11,13 @@ import com.ss.useditems.mapper.ItemMapper;
 @Service
 public class ItemService {
 
-	//@Autowired
-//	private ItemMapper mapper;
-
-	/*
-	 * public List<ItemDTO> searchItems(String sear_word) { return
-	 * mapper.selectItemList(sear_word); }
-	 */
+	@Autowired
+	private ItemMapper mapper;
+	
+	  public List<ItemDTO> searchItems() { 
+		  System.out.println(mapper.searchItems());
+		  return mapper.searchItems(); 
+		  }
+	 
 
 }

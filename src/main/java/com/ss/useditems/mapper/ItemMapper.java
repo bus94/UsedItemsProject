@@ -8,8 +8,8 @@ import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.SearchDTO;
 
 @Mapper
-public class ItemMapper {
+public interface ItemMapper {
 
-//List<ItemDTO> selectItemList(SearchDTO sear_word);
+	List<ItemDTO> searchItems();
 
 }
