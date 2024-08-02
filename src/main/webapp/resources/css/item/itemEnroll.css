@@ -1,1 +1,40 @@
 @charset "UTF-8";
+
+#container_inner {
+	width: 600px;
+	border: 2px solid rgb(219, 219, 219);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.itemEnroll_title {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.itemEnroll_title h2 {
+	align-items: center;
+	margin: 0;
+}
+
+.container_btn {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.subtitle {
+	display: inline-block;
+	width: 100px;
+}
+
+.item_input {
+	width: 350px;
+	height: 38px;
+}
+
+.box3 {
+	display: flex;
+	gap: 6px;
+}
