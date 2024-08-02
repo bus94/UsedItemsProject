@@ -73,6 +73,26 @@
 		</table>
 
 		<!-- 페이징 -->
+		<div align="center" class="pagination container d-flex justify-content-center">
+			<a href="complainList.do?currentPage=1&searchType=${searchType}&searchBlack=${param.searchBlack}">|&lt;</a>
+		&nbsp;
+			<a href="complainList.do?currentPage=${pageInfo.prevPage}&searchType=${searchType}&searchBlack=${param.searchBlack}">&lt;</a>
+		&nbsp;
+			<c:forEach var="currentPage" begin="${pageInfo.fromPage}" end="${pageInfo.tillPage}" step="1">
+				<a href="complainList.do?currentPage=${currentPage}&searchType=${searchType}&searchBlack=${param.searchBlack}"
+				${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
+				&nbsp;
+			</c:forEach>
+		
+			<a href="complainList.do?currentPage=${pageInfo.nextPage}&searchType=${searchType}&searchBlack=${param.searchBlack}">&gt;</a>
+		&nbsp;
+			<a href="complainList.do?currentPage=${pageInfo.lastPage}&searchType=${searchType}&searchBlack=${param.searchBlack}">&gt;|</a>
+		</div>
+	</div>
+
+
+
+
 
 	</div>
 

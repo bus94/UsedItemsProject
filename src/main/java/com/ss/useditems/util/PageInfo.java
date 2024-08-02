@@ -1,12 +1,19 @@
 package com.ss.useditems.util;
 
+import java.util.List;
+
+import com.ss.useditems.dto.BlacklistDTO;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class PageInfo {
-
+	
+	//DTO 컨테이너
+	private List<BlacklistDTO> dtoContainer;
+	
 	//현재 페이지
 	private int currentPage;
 	
@@ -41,8 +48,8 @@ public class PageInfo {
 	
 	//한 화면에 보여질 마지막페이지
 	public int getTillPage() {
-		int endPage = ((currentPage-1) / pagePerViewer) * pagePerViewer + 10;
-		return getLastPage() < endPage ? getLastPage() : endPage;
+		int tillPage = ((currentPage-1) / pagePerViewer) * pagePerViewer + pagePerViewer;
+		return getLastPage() < tillPage ? getLastPage() : tillPage;
 	}
 	
 	public int getPrevPage() {
@@ -63,8 +70,8 @@ public class PageInfo {
 	
 	//한 페이지에서 마지막 dto인덱스
 	public int getTillIndex() {
-		int toIndex = currentPage*dtoPerPage;//마지막 번호로 미포함(-1 + 1)
-		return toIndex > dtoTotal ? dtoTotal : toIndex;
+		int tillIndex = currentPage*dtoPerPage;//마지막 번호로 미포함(-1 + 1)
+		return tillIndex > dtoTotal ? dtoTotal : tillIndex;
 	}
 	
 }

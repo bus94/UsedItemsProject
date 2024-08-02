@@ -16,8 +16,8 @@
 
 			<div id="title_box"
 				class="container d-flex flex-column align-items-center">
-				<label id="complain_header" for="redwhistle"></label> <img
-					id="redwhistle" src="${path}/resources/img/redwhistle.jpg"
+				<label id="complain_header" for="redwhistle"></label> 
+				<img id="redwhistle" src="${path}/resources/img/redwhistle.jpg"
 					alt="Red Whishtle">
 			</div>
 		<hr>
