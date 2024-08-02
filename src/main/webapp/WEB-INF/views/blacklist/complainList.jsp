@@ -20,17 +20,8 @@
 
 			<input type="hidden" name="currentPage" value="1">
 
-			<div class="container d-flex align-items-center">
-				<input type="radio" name="searchType" id="acc_nickname"
-					value="acc_nickname" ${searchType=='acc_nickname' ? 'checked':''} />
-				<label for="acc_nickname">별명</label> 
-				<input type="radio"	name="searchType" id="acc_id" 
-				value="acc_id" ${searchType=='acc_id' ? 'checked':''} /> 
-				<label for="acc_id">아이디</label>
-				<input type="radio" name="searchType" id="content" 
-				value="content"	${searchType=='content' ? 'checked':''}>
-				<label for="내용">내용</label>
-
+			<div class="search_box container d-flex flex-column align-items-center ">
+				
 				<div class="input-group">
 					<input type="text" class="form-control" id="searchBlack"
 						name="searchBlack" value="${param.searchBlack}">
@@ -38,13 +29,25 @@
 						<img id="search_img" alt="검색" src="${path}/resources/img/search.png">
 					</button>
 				</div>
+				
+				<div class="container d-flex justify-content-center mt-2 mb-2">
+				<input type="radio" name="searchType" id="acc_nickname"
+					value="acc_nickname" ${searchType=='acc_nickname' ? 'checked':''} />
+				<label class="radio_type" for="acc_nickname">별명</label> 
+				<input type="radio"	name="searchType" id="acc_id" 
+					value="acc_id" ${searchType=='acc_id' ? 'checked':''} /> 
+				<label class="radio_type" for="acc_id">아이디</label>
+				<input type="radio" name="searchType" id="content" 
+					value="content"	${searchType=='content' ? 'checked':''}>
+				<label class="radio_type" for="내용">내용</label>
+				</div>
+				
 			</div>
 		</form>
 
-		<a href="${path}/blacklist/complain.do" class="align-self-end">신고하러 가기</a>
-		<table id="blacklist_container" class="table table-striped table-hover">
+		<table id="blacklist_container" class="table table-warning table-striped table-hover">
 			<thead>
-				<tr>
+				<tr class="table-danger text-center">
 					<th scope="col">#</th>
 					<th scope="col">누구를</th>
 					<th scope="col">내용</th>
@@ -60,10 +63,10 @@
 				</c:if>
 				<c:if test="${not empty blacklist}">
 					<c:forEach var="each" items="${blacklist}">
-						<tr>
+						<tr class="text-center">
 							<th scope="row">${each.black_index}</th>
 							<td>${each.object_nickname}</td>
-							<td>${each.black_content}</td>
+							<td class="text-start">${each.black_content}</td>
 							<td>${each.subject_nickname}</td>
 							<td><fmt:formatDate type="date"	value="${each.black_enrollDate}" /></td>
 						</tr>
@@ -81,12 +84,15 @@
 			<c:forEach var="currentPage" begin="${pageInfo.fromPage}" end="${pageInfo.tillPage}" step="1">
 				<a href="complainList.do?currentPage=${currentPage}&searchType=${searchType}&searchBlack=${param.searchBlack}"
 				${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
-				&nbsp;
+		&nbsp;
 			</c:forEach>
 		
 			<a href="complainList.do?currentPage=${pageInfo.nextPage}&searchType=${searchType}&searchBlack=${param.searchBlack}">&gt;</a>
 		&nbsp;
 			<a href="complainList.do?currentPage=${pageInfo.lastPage}&searchType=${searchType}&searchBlack=${param.searchBlack}">&gt;|</a>
+		&nbsp;
+			<a href="${path}/blacklist/complain.do" class="align-self-end">신고하러 가기</a>
+			
 		</div>
 	</div>
 

@@ -7,9 +7,17 @@
 
 .blacklist_page .whole-container {
 	width: 1000px;
-	background-color: lightcoral;
+}
+
+.blacklist_page .search_box {
+	width: 400px;
 	
 }
+
+ .blacklist_page .radio_type {
+ 	width: 80px;
+ 	margin-left: 10px;
+ }
 
 
 .blacklist_page #searchBlack {
@@ -28,6 +36,15 @@
  	height: 35px;
  	margin: 0;
  }
+ 
+ 
+ .blacklist_page #blacklist_container {
+ 	border: 2px solid rgb(219, 219, 219);
+ 	border-radius: 10px;
+ }
+ 
+ 
+ 
  
  
  .blacklist_page .pagination a{
