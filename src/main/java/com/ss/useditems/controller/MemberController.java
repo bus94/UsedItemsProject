@@ -17,17 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
-// 모델에 저장이 될 때 밑에 loginMember 자동으로 세션에 저장
-@SessionAttributes("loginMember")
 @Controller
 public class MemberController {
-	private MemberDTO loginMember;
 
 	@Autowired
 	private MemberService memberservice;
@@ -43,13 +39,13 @@ public class MemberController {
 	}
 
 	@RequestMapping("/account/loginOK.do")
-	public String loginOK(Model model, String acc_id, String acc_password) {
+	public String loginOK(Model model, String acc_id, String acc_password, HttpSession session) {
 		System.out.println("loginOK 로그인 확인");
 
 		System.out.println("입력한 acc_id: " + acc_id);
 		System.out.println("입력한 acc_password: " + acc_password);
 
-		loginMember = new MemberDTO();
+		MemberDTO loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 
@@ -64,7 +60,7 @@ public class MemberController {
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
 			model.addAttribute("location", "/account/login.do");
 		}
-		model.addAttribute("loginMember", loginMember);
+		session.setAttribute("loginMember", loginMember);
 
 		System.out.println("불러오기 후 loginMember: " + loginMember);
 
@@ -75,9 +71,6 @@ public class MemberController {
 	public String logoutOK(Model model, HttpSession session) {
 		try {
 			session.removeAttribute("loginMember");
-			model.addAttribute("loginMember", null);
-			loginMember = null;
-			System.out.println("loginMember: " + loginMember);
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
