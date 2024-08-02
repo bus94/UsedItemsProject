@@ -14,20 +14,16 @@
 
 	<c:if test="${loginMember != null}">
 
-		<div class="container whole_container">
+		<div id="acc_detail" class="container d-flex flex-column">
 
+			<div id="profile_box" class="container d-flex flex-column align-items-center">
+				<label id="acc_id" for="profile">${loginMember.acc_id}</label>
+				<img id="profile" src="${path}/resources/img/login.png" alt="프로필사진">
+				<button type="button" id="alt_profile"
+					class="btn btn-success btn-sm">프로필 사진 변경</button>
+			</div>
 
-			<div id="acc_detail" class="container d-flex flex-column">
-
-				<div id="profile_box"
-					class="container d-flex flex-column align-items-center">
-					<label id="acc_id" for="profile">${loginMember.acc_id}</label> <img
-						id="profile" src="${path}/resources/img/login.png" alt="프로필사진">
-					<button type="button" id="alt_profile"
-						class="btn btn-success btn-sm">프로필 사진 변경</button>
-				</div>
-
-				<hr>
+			<hr>
 				<div id="pw_box" class="container">
 					<p class="subtitle fs-5">비&nbsp;밀&nbsp;번&nbsp;호</p>
 					<button type="button" id="alt_pw" class="btn btn-success btn-sm">변경하기</button>
@@ -52,7 +48,7 @@
 					</form>
 				</div>
 
-				<hr>
+			<hr>
 				<div id="nickname_box" class="container">
 					<p class="subtitle fs-5">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</p>
 					<input type="text" class="info_box form-control d-inline"
@@ -67,7 +63,7 @@
 					<button type="button" id="setPhone" class="btn btn-success btn-sm">수정</button>
 				</div>
 
-				<hr>
+			<hr>
 				<div id="redundant_box" class="container">
 					<form>
 						<div>
@@ -98,8 +94,8 @@
 						</div>
 					</form>
 				</div>
-			</div>
 		</div>
+		
 	</c:if>
 	
 	<!-- 로그인 안했으면 -->

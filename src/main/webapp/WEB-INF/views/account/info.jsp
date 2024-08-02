@@ -12,10 +12,10 @@
 	<c:if test="${loginMember != null}"> </c:if>
 
 	<c:choose>
-		<c:when test="${other_info == null}"> 
+		<c:when test="${other_info == null}"> <!-- 마이페이지를 누른 경우 -->
 			<c:set var="account_info" value="${loginMember}" />
 		</c:when>
-		<c:otherwise>
+		<c:otherwise> <!-- 다른사람 정보를 누른 경우 -->
 			<c:set var="account_info" value="${other_info}" />
 		</c:otherwise>
 	</c:choose>
@@ -45,9 +45,13 @@
 				<div class="container info_box">
 					<p class="firstP">등급 ${account_info.acc_level}</p>
 					<p>거래 횟수 ${account_info.acc_count}</p>
-					<div class="detail_report d-flex">
+					<div class="black_report d-flex">
 						<p class="me-3">피신고 횟수 15</p>
-						<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+						
+						<c:if test="${account_info.acc_id != loginMember.acc_id}">
+						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
+							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+						</c:if>
 					</div>	
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">

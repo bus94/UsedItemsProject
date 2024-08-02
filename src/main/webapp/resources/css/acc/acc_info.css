@@ -39,7 +39,19 @@
 }
 
 
-.acc_info_page .detail_report img {
+.acc_info_page .black_report {
+	height: 17px;
+}
+
+
+.acc_info_page .black_report a {
+	color: rgb(161, 161, 161);
+	text-decoration: none;
+	font-weight: lighter;
+	font-size: 15px;	
+}
+
+.acc_info_page .black_report img {
 	width: 25px;
 	height: 25px;
 	opacity: 50%;
