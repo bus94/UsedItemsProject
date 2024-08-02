@@ -17,7 +17,6 @@
 		<div class="container whole_container">
 
 
-
 			<div id="acc_detail" class="container d-flex flex-column">
 
 				<div id="profile_box"
@@ -102,13 +101,17 @@
 			</div>
 		</div>
 	</c:if>
+	
+	<!-- 로그인 안했으면 -->
 	<c:if test="${loginMember == null}">
-		alert("로그인 먼저 해주세요.");
-		location.href="/useditems/account/login.do";
+		<script>
+			alert("로그인 먼저 해주세요.");
+			location.href = "${path}/account/login.do";
+		</script>	
 	</c:if>
-
+	
 </section>
-<script src="${path}/resources/js/acc/acc_alter.js"></script>
 
+<script src="${path}/resources/js/acc/acc_alter.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

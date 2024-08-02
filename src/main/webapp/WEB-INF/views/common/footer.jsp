@@ -20,7 +20,7 @@
 	<div class="remoteControl">
 		<ul class="list-group">
 			<li class="list-group-item"><a href="${path}/">메인으로</a></li>
-			<li class="list-group-item"><a href="${path}/account/alter.do">마이페이지</a></li>
+			<li class="list-group-item"><a href="${path}/account/my_info.do">마이페이지</a></li>
 			<li class="list-group-item"><a href="${path}/item/itemList.do">조회하기</a></li>
 			<li class="list-group-item"><a href="${path}/item/itemEnroll.do">등록하기</a></li>
 			<li class="list-group-item"><a href="${path}/item/interest.do">찜 목록</a></li>

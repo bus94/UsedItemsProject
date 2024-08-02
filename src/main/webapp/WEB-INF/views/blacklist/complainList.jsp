@@ -15,10 +15,6 @@
 		<p id="main_title" class="fs-3">신고 조회</p>
 		
 
-		<a href="${path}/blacklist/logout1.do">로그아웃1</a>
-		<a id="logout2black" href="${path}/blacklist/logout2.do">로그아웃2</a>
-
-
 		<c:set var="searchType" value="${param.searchType}" />
 		<form action="${path}/blacklist/complainList.do" method="get">
 
@@ -81,6 +77,7 @@
 	</div>
 
 </section>
+
 <script src="${path}/resources/js/blacklist/complainList.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

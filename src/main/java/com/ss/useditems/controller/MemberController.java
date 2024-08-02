@@ -188,7 +188,7 @@ public class MemberController {
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		// account_info = memberservice.selectByAcc_id(acc_id);
+		account_info = memberservice.selectByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
 		System.out.println("response: " + account_info);
