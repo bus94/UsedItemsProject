@@ -25,7 +25,7 @@
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>${account_info.acc_id}</p>
+					<p class="firstP">${account_info.acc_id}</p>
 					<p>${account_info.acc_nickname}</p>
 					<p>${account_info.acc_address}</p>
 				</div>
@@ -43,19 +43,17 @@
 			<hr>
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>등급 ${account_info.acc_level}</p>
+					<p class="firstP">등급 ${account_info.acc_level}</p>
 					<p>거래 횟수 ${account_info.acc_count}</p>
-					<p>피신고 횟수</p>
+					<div class="detail_report d-flex">
+						<p class="me-3">피신고 횟수 15</p>
+						<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+					</div>	
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
-					<p id="acc_mock" class="">&nbsp;</p>
-					<div class="container d-flex">
-						<div class="detail_report">
-							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
-						</div>
-						<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
+					<p id="acc_mock" class="">&nbsp;</p>			
+					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
 							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역 조회</button>
-					</div>
 				</div>
 			</div>
 		</div>

@@ -68,7 +68,14 @@ public class BlacklistController {
 	public String complain(Model model, @RequestParam String black_object) {
 		System.out.println("==blacklist.complain==");
 		
-		model.addAttribute("black_object", black_object);
+		try {
+			
+			if(black_object != null) {
+				model.addAttribute("black_object", black_object);
+			}
+			
+			
+		}catch(Exception e) {}
 
 		// 신고페이지
 
@@ -76,7 +83,7 @@ public class BlacklistController {
 	}
 
 	@PostMapping("/complainPro.do")
-	public String complainPro(Model model) {
+	public String complainPro() {
 		System.out.println("==blacklist.complainPro==");
 
 		// 신고 처리 후 사기조회페이지로 이동

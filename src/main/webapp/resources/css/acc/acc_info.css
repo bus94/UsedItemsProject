@@ -16,13 +16,15 @@
 }
 
 
-.acc_info_page .info_box p:first-child {
-    margin-top: 20px
+.acc_info_page .firstP {
+    margin-top: 15px;
 }
 
 
 .acc_info_page .btn_box  {
-	width: 250px;
+	margin: 0;
+	padding: 0;
+	width: 120px;
 }
 
 .acc_info_page #acc_profile { /*info 프로필 사진*/
@@ -32,9 +34,17 @@
 
 .acc_info_page #acc_mock { /*mock*/
 	margin: 0;
-    width: 250px;
-    height: 100px;
+    width: 120px;
+    height: 90px;
 }
+
+
+.acc_info_page .detail_report img {
+	width: 25px;
+	height: 25px;
+	opacity: 50%;
+}
+
 
 .acc_info_page .btn_acc {
 	margin: 0;
