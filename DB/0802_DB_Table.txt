@@ -57,6 +57,7 @@ CREATE TABLE ITEM (
 	item_content	VARCHAR2(500)		NOT NULL,
 	item_image	VARCHAR2(500)		NULL,
 	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('의류잡화', '전자기기', '가구', '식품', '기타')),
+	item_price  NUMBER        NOT NULL,
 	item_place	VARCHAR2(100)	NULL,
 	item_status	VARCHAR2(100)	NOT NULL CHECK (item_status IN('onsale', 'ondeal', 'drop')),
 	item_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL,
@@ -66,22 +67,22 @@ CREATE TABLE ITEM (
 	item_buyer	NUMBER		REFERENCES ACCOUNT(acc_index)
 );
 
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', 'item2.jpg','전자기기', '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', 'item3.jpg','의류잡화', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', 'item4.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', 'item5.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여6', '내용_테스트5', 'item2.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여7', '내용_테스트6', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', 'item2.jpg','전자기기', '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', 'item3.jpg','의류잡화', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', 'item4.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', 'item5.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '과자팔아여6', '내용_테스트5', 'item2.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '팀장님팔아여7', '내용_테스트6', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', 'item1.jpg','식품', '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', 'item2.jpg','전자기기', 100, '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', 'item3.jpg','의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', 'item4.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', 'item5.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여6', '내용_테스트5', 'item2.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여7', '내용_테스트6', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', 'item2.jpg','전자기기', 100, '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', 'item3.jpg','의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', 'item4.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', 'item5.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '과자팔아여6', '내용_테스트5', 'item2.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '팀장님팔아여7', '내용_테스트6', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', 'item1.jpg','식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 
 COMMIT;
 

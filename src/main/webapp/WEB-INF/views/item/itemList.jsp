@@ -7,7 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="item_content" style="padding-top: 100px;">
+<section id="item_content_list" style="padding-top: 100px;">
 	<div class="category">
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
@@ -47,7 +47,7 @@
 						<div class="item_view">
 							<h3>${item.item_title}</h3>
 							<div class="item_price">
-								<h4>999원</h4>
+								<h4>가격 ${item.item_price}</h4>
 								<%-- <h5>${item.item_enrollDate}</h5> --%>
 							</div>
 							<div class="item_like">

@@ -17,6 +17,7 @@ public class ItemDTO {
 	private String item_content;
     private String item_image;
 	private String item_category;
+	private int item_price;
 	private String item_place;
 	private String item_status;
 	private Date item_enrollDate;

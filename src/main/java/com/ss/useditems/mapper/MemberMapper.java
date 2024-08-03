@@ -14,4 +14,6 @@ public interface MemberMapper {
 	int selectById(String id);
 
 	int signup(MemberDTO signupMember);
+
+	int selectIdIndex(String acc_id);
 }

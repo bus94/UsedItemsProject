@@ -49,8 +49,6 @@ public class MemberController {
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 
-		System.out.println("불러오기 전 loginMember: " + loginMember);
-
 		loginMember = memberservice.selectByMember(loginMember);
 		if (loginMember != null) {
 			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
@@ -60,9 +58,12 @@ public class MemberController {
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
 			model.addAttribute("location", "/account/login.do");
 		}
+		
+		int loginMemberNo = memberservice.selectIdIndex(loginMember.getAcc_id());
+		System.out.println("loginMemberNo: " + loginMemberNo);
+		
 		session.setAttribute("loginMember", loginMember);
-
-		System.out.println("불러오기 후 loginMember: " + loginMember);
+		session.setAttribute("loginMemberNo", loginMemberNo);
 
 		return "common/msg";
 	}

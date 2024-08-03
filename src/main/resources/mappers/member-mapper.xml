@@ -31,6 +31,10 @@
 	<insert id="signup" parameterType="memberDTO">
 		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate)
 	</insert>
+	
+	<select id="selectIdIndex" parameterType="String" resultType="int">
+		SELECT acc_index FROM account WHERE acc_id = #{acc_id}
+	</select>
 
 	<select id="selectByAcc_id" parameterType="String"
 		resultMap="memberMap">

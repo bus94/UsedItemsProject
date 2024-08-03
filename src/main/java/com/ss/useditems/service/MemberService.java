@@ -39,5 +39,9 @@ public class MemberService {
 		
 		return account_info;
 	}
+
+	public int selectIdIndex(String acc_id) {
+		return mapper.selectIdIndex(acc_id);
+	}
 	
 }
