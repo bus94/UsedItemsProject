@@ -8,7 +8,7 @@
 		<result property="acc_password" column="acc_password" />
 		<result property="acc_birthDate" column="acc_birthDate" />
 		<result property="acc_phone" column="acc_phone" />
-		<result property="acc_email" column="acc_email" />
+		<!-- <result property="acc_email" column="acc_email" /> 0804 DB에서 삭제-->
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_nickname" column="acc_nickname" />
@@ -29,7 +29,8 @@
 	</select>
 
 	<insert id="signup" parameterType="memberDTO">
-		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate)
+		<!--0804 DB에서 email 삭제 INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate) -->
+		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate)
 	</insert>
 	
 	<select id="selectIdIndex" parameterType="String" resultType="int">

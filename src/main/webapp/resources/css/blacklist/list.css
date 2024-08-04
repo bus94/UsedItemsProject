@@ -44,10 +44,26 @@
  }
  
  
+ .blacklist_page .list_index {
+ 	width: 100px;
+ }
+ 
+ .blacklist_page .list_id {
+ 	width: 150px;
+ }
+ 
+ .blacklist_page .list_content {
+ 	width: 450px;
+ }
+ 
+ .blacklist_page .list_date {
+ 	width: 150px;
+ }
  
  
  
  .blacklist_page .pagination a{
  	display: block;
+ 	text-decoration: none;
  	
  }

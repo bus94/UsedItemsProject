@@ -48,11 +48,11 @@
 		<table id="blacklist_container" class="table table-warning table-striped table-hover">
 			<thead>
 				<tr class="table-danger text-center">
-					<th scope="col">#</th>
-					<th scope="col">누구를</th>
-					<th scope="col">내용</th>
-					<th scope="col">누가</th>
-					<th scope="col">언제</th>
+					<th class="list_index" scope="col">#</th>
+					<th class="list_id" scope="col">누구를</th>
+					<th class="list_content" scope="col">내용</th>
+					<th class="list_id" scope="col">누가</th>
+					<th class="list_date" scope="col">언제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,11 +64,11 @@
 				<c:if test="${not empty blacklist}">
 					<c:forEach var="each" items="${blacklist}">
 						<tr class="text-center">
-							<th scope="row">${each.black_index}</th>
-							<td>${each.object_nickname}</td>
-							<td class="text-start">${each.black_content}</td>
-							<td>${each.subject_nickname}</td>
-							<td><fmt:formatDate type="date"	value="${each.black_enrollDate}" /></td>
+							<th class="list_index" scope="row">${each.black_index}</th>
+							<td class="list_id">${each.object_nickname}</td>
+							<td class="list_content text-start">${each.black_content}</td>
+							<td class="list_id">${each.subject_nickname}</td>
+							<td class="list_date"><fmt:formatDate type="date"	value="${each.black_enrollDate}" /></td>
 						</tr>
 					</c:forEach>
 				</c:if>
