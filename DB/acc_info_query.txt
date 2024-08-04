@@ -1,0 +1,22 @@
+-----------------------------------------selectByAcc_id
+
+--피신고횟수 조회 서브쿼리
+select
+black_object,
+count(black_index) acc_blackCount
+from BLACKLIST
+group by black_object;
+
+
+--피신고횟수 포함 계정 정보
+select
+*
+from ACCOUNT acc
+left join (select
+black_object,
+count(black_index) acc_blackCount
+from BLACKLIST
+group by black_object) black on (acc.acc_index = black.black_object)
+where acc_id = 'id_test2';
+
+-----------------------------------------------

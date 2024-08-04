@@ -32,10 +32,12 @@ public class MemberService {
 		
 		MemberDTO account_info = new MemberDTO();
 		account_info = mapper.selectByAcc_id(acc_id);
-		account_info.setAcc_birthDate(null);
-		account_info.setAcc_enrollDate(null);
+		
+		//개인 비공개정보는 메모리에서 삭제
 		account_info.setAcc_password(null);
+		account_info.setAcc_birthDate(null);
 		account_info.setAcc_status(null);
+		account_info.setAcc_enrollDate(null);
 		
 		return account_info;
 	}
