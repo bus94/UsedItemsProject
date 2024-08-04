@@ -177,13 +177,22 @@ public class MemberController {
 	@RequestMapping("/account/my_info.do")
 	public String my_info(Model model, HttpSession session) {
 		System.out.println("==account.my_info==");
+		// 마이페이지 눌렀을 때 실행!!!
+
 
 		try {
 			if(session.getAttribute("loginMember") == null) {
-				System.out.println("로그인 안함");
 				model.addAttribute("msg", "로그인부터 하렴.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
+			} else { //0804추가
+				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
+				System.out.println("마이인포 전: " + my_info);
+				String my_id = my_info.getAcc_id();
+				my_info = memberservice.selectByAcc_id(my_id);
+				System.out.println("마이인포 후: " + my_info);
+				
+				model.addAttribute("loginMember", my_info);
 			}
 		} catch(Exception e) {	}
 
@@ -206,12 +215,52 @@ public class MemberController {
 		return "account/info";
 	}
 
+	
+	
 	@RequestMapping("/account/alter.do")
-	public String alter() {
+	public String alter(Model model, HttpSession session) { //정보수정 페이지
 		System.out.println("==account.alter==");
+
+		try {
+			if(session.getAttribute("loginMember") == null) {
+				model.addAttribute("msg", "로그인부터 하렴.");
+				model.addAttribute("location", "/account/login.do");
+				return "common/msg";
+			} 
+			
+		} catch(Exception e) {	}
 
 		return "account/alter";
 	}
+	
+	@RequestMapping("/withdraw.do")
+	public String withdraw(Model model, HttpSession session) {
+		
+		try {
+			
+			//비밀번호 틀리면
+			 model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			 model.addAttribute("location", "/account/alter.do");
+			
+			
+			//비밀번호 맞으면 status - 'inactive'
+			//session.removeAttribute("loginMember");
+			
+			//model.addAttribute("msg", "회원 탈퇴가 완료되었습니다");
+			//model.addAttribute("location", "/");
+			
+			
+		} catch (Exception e) {
+			
+		}
+		
+		return "common/msg";
+	}
+	
+	
+	
+	
+	
 	//////////////////////////////////// 정일/////////////////////
 
 }

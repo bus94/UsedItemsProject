@@ -53,9 +53,9 @@
 		join ACCOUNT acc on (stem.black_object = acc.acc_index)) obj
 		on (branch.black_index = obj.black_index)
 		where branch.black_index >= 1
-		<if test="black_object != null">
+<!-- 		<if test="black_object != null">
 			and obj.acc_id='${black_object}'
-		</if>
+		</if> -->
 		<if test="acc_nickname != null">
 			and obj.acc_nickname like '%${acc_nickname}%'
 			or subject_nickname like '%${acc_nickname}%'
