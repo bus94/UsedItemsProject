@@ -57,7 +57,7 @@
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<p id="acc_mock" class="">&nbsp;</p>			
 					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역 조회</button>
+							onclick="location.href='${path}/blacklist/complainList.do?currentPage=1&searchBlack=${account_info.acc_id}&searchType=acc_id'">신고내역 조회</button>
 				</div>
 			</div>
 		</div>

@@ -42,13 +42,13 @@ public class BlacklistController {
 		} catch (Exception e) {
 		}
 
-		try {
-			String black_object = param.get("black_object");
-			if (black_object != null && black_object != "") {
-				queryMap.put("black_object", black_object);
-			}
-		} catch (Exception e) {
-		}
+//		try {
+//			String black_object = param.get("black_object");
+//			if (black_object != null && black_object != "") {
+//				queryMap.put("black_object", black_object);
+//			}
+//		} catch (Exception e) {
+//		}
 //---------------------------------------------------------------------
 //----------------------------현재 페이지와 쿼리맵 넘김----------------------------		
 		int currentPage = 1;
