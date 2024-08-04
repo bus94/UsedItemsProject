@@ -17,7 +17,15 @@ public class ItemService {
 	  public List<ItemDTO> searchItems(String searchValue) { 
 		  System.out.println(mapper.searchItems(searchValue));
 		  return mapper.searchItems(searchValue); 
-		  }
+	  }
 	 
-
+	  public List<ItemDTO> interestItem(int accIndex){
+		  System.out.println(mapper.interest(accIndex));
+		  return mapper.interest(accIndex);
+	  }
+	  
+	    public void deleteInterestItem(int accIndex, int itemId) {
+	        itemMapper.deleteInterestItem(accIndex, itemId);
+	    }
+	  
 }
