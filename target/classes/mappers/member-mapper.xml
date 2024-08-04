@@ -18,6 +18,24 @@
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
+	
+<!-- 	<resultMap type="itemDTO" id="itemMap">
+	</resultMap> 정일 -->
+	
+	
+	
+	
+	<resultMap type="memberDTO" id="memberInfoMap" extends="memberMap">
+		<result property="acc_blackCount" column="acc_blackCount" />
+		
+		<!-- <collection property="acc_interest" javaType="arrayList"
+			resultMap="itemMap"/> -->
+	</resultMap>	<!--정일 -->
+	
+	
+	
+	
+	
 
 	<select id="selectByMember" parameterType="memberDTO"
 		resultMap="memberMap">
@@ -38,8 +56,10 @@
 	</select>
 
 	<select id="selectByAcc_id" parameterType="String"
-		resultMap="memberMap">
+		resultMap="memberInfoMap">
 		select * from ACCOUNT where acc_id = #{acc_id}
 	</select>      <!--정일 -->
+	
+	
 
 </mapper>

@@ -46,7 +46,7 @@
 					<p class="firstP">등급 ${account_info.acc_level}</p>
 					<p>거래 횟수 ${account_info.acc_count}</p>
 					<div class="black_report d-flex">
-						<p class="me-3">피신고 횟수 15</p>
+						<p class="me-3">피신고 횟수 ${account_info.acc_blackCount}</p>
 						
 						<c:if test="${account_info.acc_id != loginMember.acc_id}">
 						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
