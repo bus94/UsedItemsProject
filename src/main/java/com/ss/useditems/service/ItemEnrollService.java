@@ -13,6 +13,7 @@ public class ItemEnrollService {
 	private ItemEnrollMapper mapper;
 
 	public int itemEnroll(ItemDTO enrollItem) {
+		System.out.println("ItemEnrollService의 itemEnroll() 실행");
 		return mapper.itemEnroll(enrollItem);
 	}
 	

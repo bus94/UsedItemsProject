@@ -27,11 +27,11 @@ public class MemberService {
 	}
 	
 	
-	public MemberDTO selectByAcc_id(String acc_id) {     //정일
-		System.out.println("MemberService의 selectByAcc_id()");
+	public MemberDTO selectInfoByAcc_id(String acc_id) {     //정일_계정정보
+		System.out.println("MemberService의 selectInfoByAcc_id()");
 		
 		MemberDTO account_info = new MemberDTO();
-		account_info = mapper.selectByAcc_id(acc_id);
+		account_info = mapper.selectInfoByAcc_id(acc_id);
 		
 		//개인 비공개정보는 메모리에서 삭제
 		account_info.setAcc_password(null);

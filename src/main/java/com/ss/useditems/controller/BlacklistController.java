@@ -1,10 +1,7 @@
 package com.ss.useditems.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +21,20 @@ public class BlacklistController {
 
 	@Autowired
 	private BlacklistService service;
+	
+	
+	@RequestMapping("/mainProto1.do")
+	public String mainProto1(Model model) {
+	
+		
+		
+		
+		return "common/mainProto1";
 
-	@GetMapping("/complainList.do")
+	}
+	
+
+	@GetMapping("/complainList.do")		//신고목록 조회
 	public String complainList(Model model, @RequestParam Map<String, String> param) {
 		System.out.println("==blacklist.complainList==");
 //		System.out.println("param: " + param); 7/22수업내용
@@ -72,7 +81,7 @@ public class BlacklistController {
 		return "blacklist/complainList";
 	}
 
-	@GetMapping("/complain.do")
+	@GetMapping("/complain.do")		//신고 등록페이지
 	public String complain(Model model, @RequestParam Map<String, String> param) {
 		System.out.println("==blacklist.complain==");
 		
@@ -88,7 +97,7 @@ public class BlacklistController {
 		return "blacklist/complain";
 	}
 
-	@PostMapping("/complainPro.do")
+	@PostMapping("/complainPro.do")		//신고 등록 처리
 	public String complainPro(Model model, @RequestParam Map<String, String> param) {
 		System.out.println("==blacklist.complainPro==");
 
@@ -104,20 +113,17 @@ public class BlacklistController {
 		
 		try {
 		
-		int result = service.enroll(complain);
-		System.out.println("result: "+result);
-		
-		
+//		int result = service.enroll(complain);
+//		System.out.println("result: "+result);
+		service.enroll(complain);
 		model.addAttribute("msg", "신고글이 게시되었습니다");
-		model.addAttribute("location", "blacklist/complainList.do");
-		
+		model.addAttribute("location", "/blacklist/complainList.do");
 		
 		} catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("msg", "오류로 인하여 신고가 정상적으로 처리되지 않았습니다.");
-			model.addAttribute("location", "blacklist/complainList.do");
+			model.addAttribute("location", "/blacklist/complainList.do");
 		}
-		
 		return "common/msg";
 	}
 

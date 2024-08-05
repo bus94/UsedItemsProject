@@ -3,3 +3,4 @@
 
 # Ignore MANIFEST files
 **/MANIFEST.MF
+/.metadata/

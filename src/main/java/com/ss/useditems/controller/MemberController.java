@@ -1,23 +1,17 @@
 package com.ss.useditems.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
@@ -132,41 +126,6 @@ public class MemberController {
 		return "common/msg";
 	}
 
-	// 업로드 메서드
-	@GetMapping("/upload")
-	public void form() {
-	}
-
-	@PostMapping("/uploadOK")
-	public String upload(@RequestParam("file") MultipartFile file) {
-		// 업로드한 파일명 가져오기
-		String fileRealName = file.getOriginalFilename();
-		// 파일 사이즈 (용량 클 수 있으므로 int가 아닌 long)
-		long size = file.getSize();
-		System.out.println("파일명: " + fileRealName);
-		System.out.println("파일 크기: " + size);
-
-		// 서버에 저장할 파일명으로 확장자명 지정
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\test\\upload";
-
-		// 이미 존재한 파일일 경우를 대비
-		UUID uuid = UUID.randomUUID();
-		String[] uuids = uuid.toString().split("-");
-		String uniqueName = uuids[0];
-
-		// UUID 적용
-		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
-		try {
-			// 실제 파일 저장 메서드
-			file.transferTo(saveFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "account/login";
-	}
 
 	//////////////////////////////////// 정일/////////////////////
 
@@ -185,7 +144,7 @@ public class MemberController {
 				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
 //				System.out.println("마이인포 전: " + my_info);
 				String my_id = my_info.getAcc_id();
-				my_info = memberservice.selectByAcc_id(my_id);
+				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
 				
 				model.addAttribute("loginMember", my_info);
@@ -203,7 +162,7 @@ public class MemberController {
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		account_info = memberservice.selectByAcc_id(acc_id);
+		account_info = memberservice.selectInfoByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
 		System.out.println("response: " + account_info);
