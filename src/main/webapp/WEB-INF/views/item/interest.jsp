@@ -10,7 +10,7 @@
 
 <section id="interest_content">
 
-	
+
 	<h1>찜한상품</h1>
 	<div class="interest_item_container" style="padding-top: 100px">
 		<c:forEach var="item" items="${interestItemList}">
@@ -38,14 +38,27 @@
 					</div>
 				</div>
 				<div class="app">
-					<img src="${path}/resources/img/message.png" alt="삭제"> 
-					<img src="${path}/resources/img/delete.png" alt="삭제" onclick="deleteInterestItem(${item.item_index})">
+					<img src="${path}/resources/img/message.png" alt="삭제"> <img
+						src="${path}/resources/img/delete.png" alt="삭제"
+						onclick="deleteInterestItem(${item.item_index})">
 				</div>
 			</div>
 		</c:forEach>
-		
-	</div>
-	
+		<!-- 페이징 -->
+		<div align="center"
+			class="pagination container d-flex justify-content-center">
+			<a href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
+			&nbsp; <a
+				href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
+			&nbsp;
+			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
+				end="${pageInfo.tillPage}" step="1">
+				<a
+					href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}"
+					${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
+		&nbsp;
+		</c:forEach>
+		</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
