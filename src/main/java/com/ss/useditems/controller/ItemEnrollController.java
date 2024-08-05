@@ -36,18 +36,25 @@ public class ItemEnrollController {
 		enrollItem.setItem_place(item_place);
 		enrollItem.setItem_image(item_image);
 		
+		System.out.println("enrollItem: " + enrollItem);
+		
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
 		if(loginMember != null) {
 			int loginMemberIndex = loginMember.getAcc_index();
 			System.out.println("itemEnroll()에서 loginMemberIndex: " + loginMemberIndex);
 			enrollItem.setItem_seller(loginMemberIndex);
+			System.out.println("enrollItem.getItem_seller: " + enrollItem.getItem_seller());
 		}
 		
 		if(itemEnrollService.itemEnroll(enrollItem) > 0) {
+			System.out.println("itemEnroll 실행성공");
+			System.out.println("성공한 enrollItem: " + enrollItem);
 			model.addAttribute("msg", "상품 등록이 완료되었습니다.");
 			model.addAttribute("location", "/item/itemEnroll.do");
 		} else {
+			System.out.println("itemEnroll 실행실패");
+			System.out.println("실패한 enrollItem: " + enrollItem);
 			model.addAttribute("msg", "상품을 다시 입력해주세요.");
 			model.addAttribute("location", "/item/itemEnroll.do");
 		}
