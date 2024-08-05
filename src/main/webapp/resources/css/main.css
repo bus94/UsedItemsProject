@@ -178,3 +178,12 @@ footer {
 	padding: 100px 0 50px 0;
 	color: black;
 }
+
+
+@media screen and (max-width: 992px) {
+/* 사이드바 반응형 안보이기 */
+    .sidebar {
+        display: none;
+    }
+
+}

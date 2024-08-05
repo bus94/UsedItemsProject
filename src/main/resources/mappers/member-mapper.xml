@@ -17,7 +17,7 @@
 		<result property="acc_count" column="acc_count" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
-	</resultMap>
+	</resultMap>	
 
 
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
