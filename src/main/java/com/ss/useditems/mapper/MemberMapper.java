@@ -9,11 +9,13 @@ public interface MemberMapper {
 
 	MemberDTO selectByMember(MemberDTO loginMember);
 	
-	MemberDTO selectByAcc_id(String acc_id);
+	MemberDTO selectByAcc_id(String acc_id); //정일_계정정보
 
 	int selectById(String id);
 
 	int signup(MemberDTO signupMember);
 
 	int selectIdIndex(String acc_id);
+
+	int withdraw(String acc_id); //정일_회원탈퇴
 }

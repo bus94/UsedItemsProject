@@ -78,5 +78,9 @@
 	</select>      <!--정일 -->
 
 
+	<update id="withdraw" parameterType="String" >
+		update ACCOUNT set acc_status='inactive' where acc_id=#{acc_id}
+	</update>	<!--정일 -->
+
 
 </mapper>
