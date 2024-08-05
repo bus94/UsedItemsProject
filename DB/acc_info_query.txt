@@ -1,4 +1,4 @@
------------------------------------------selectByAcc_id
+-----------------------------------------selectByAcc_id(0804)
 
 --피신고횟수 조회 서브쿼리
 select
@@ -19,4 +19,14 @@ from BLACKLIST
 group by black_object) black on (acc.acc_index = black.black_object)
 where acc_id = 'id_test2';
 
+-----------------------------------------------
+
+-----------------------------------------withdraw(0805)
+
+update ACCOUNT set acc_status = 'inactive' where acc_id = 'id_test2';
+
+update ACCOUNT set acc_status = 'active' where acc_id = 'id_test2';
+commit;
+
+select * from ACCOUNT;
 -----------------------------------------------

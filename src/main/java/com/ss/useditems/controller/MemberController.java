@@ -187,10 +187,10 @@ public class MemberController {
 				return "common/msg";
 			} else { //0804추가
 				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
-				System.out.println("마이인포 전: " + my_info);
+//				System.out.println("마이인포 전: " + my_info);
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectByAcc_id(my_id);
-				System.out.println("마이인포 후: " + my_info);
+//				System.out.println("마이인포 후: " + my_info);
 				
 				model.addAttribute("loginMember", my_info);
 			}
@@ -234,24 +234,31 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/withdraw.do")
-	public String withdraw(Model model, HttpSession session) {
-		
+	public String withdraw(Model model, HttpSession session, @RequestParam String wd_currPW) {
+		System.out.println("==account.withdraw==");
 		try {
+			MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
+			String acc_id = my_info.getAcc_id().trim();
+			String acc_password = my_info.getAcc_password().trim();
+//			System.out.println("acc_id: "+ acc_id + ", acc_pw: " + acc_password);
+//			System.out.println("Param.wd_currPW: "+ wd_currPW);
 			
-			//비밀번호 틀리면
-			 model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-			 model.addAttribute("location", "/account/alter.do");
-			
-			
-			//비밀번호 맞으면 status - 'inactive'
-			//session.removeAttribute("loginMember");
-			
-			//model.addAttribute("msg", "회원 탈퇴가 완료되었습니다");
-			//model.addAttribute("location", "/");
-			
-			
+			if(wd_currPW.trim().equals(acc_password)) { // 탈퇴 처리
+				//int result = memberservice.withdraw(acc_id);
+				//이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게??
+//				System.out.println("result: " +result);
+				memberservice.withdraw(acc_id);
+				session.removeAttribute("loginMember");
+				model.addAttribute("msg", "정상적으로 탈퇴 처리되었습니다.");
+				model.addAttribute("location", "/");
+			} else { //세션의 비밀번호와 입력 비밀번호가 다르면
+				model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+				model.addAttribute("location", "/account/alter.do");
+			}
+
 		} catch (Exception e) {
-			
+			model.addAttribute("msg", "오류로 인하여 탈퇴가 정상적으로 처리되지 않았습니다.");
+			model.addAttribute("location", "/account/alter.do");
 		}
 		
 		return "common/msg";

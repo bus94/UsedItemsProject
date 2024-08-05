@@ -45,5 +45,10 @@ public class MemberService {
 	public int selectIdIndex(String acc_id) {
 		return mapper.selectIdIndex(acc_id);
 	}
+
+	public int withdraw(String acc_id) {	//정일_회원탈퇴
+		System.out.println("service.withdraw: " + acc_id);
+		return mapper.withdraw(acc_id);
+	}
 	
 }

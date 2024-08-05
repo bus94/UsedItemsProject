@@ -109,25 +109,28 @@ $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 
 $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 
-	$('#wd_hide1').css('display','block');
-	$('#wd_hide2').hide();
+	if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
+		$('#wd_hide1').css('display','block');
+		$('#wd_hide2').hide();
+	}
+
+	
 	
 });
 
 
 $('#setStatus').click(function() { // '탈퇴' 버튼 누르면
 
-	var wd_currPW = $.trim($('#wd_currPW').val());
+	//var wd_currPW = $.trim($('#wd_currPW').val());
 	
-	if(!wd_currPW){
-		alert("'현재 비밀번호'를 입력하여 주세요.");
-		return;
-	}
-
-	if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
-		location.href = "/useditems/withdraw.do";
-	}
+	//if(!wd_currPW){
+	//	alert("'현재 비밀번호'를 입력하여 주세요.");
+	//	return;
+	//}
 	
+	//if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
+	//	location.href = "/useditems/withdraw.do";
+	//}
 });
 
 
