@@ -1,6 +1,7 @@
 package com.ss.useditems.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +15,7 @@ public interface ItemMapper {
 
 	List<ItemDTO> interest(@Param("accIndex") int accIndex);
 
-	void deleteInterestItem(@Param("accIndex") int accIndex, @Param("itemId") int itemId);
+	int deleteInterestItem(Map<String,Integer> params);
 
 
 

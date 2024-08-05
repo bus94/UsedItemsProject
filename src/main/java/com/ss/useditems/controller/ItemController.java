@@ -2,6 +2,7 @@ package com.ss.useditems.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -65,15 +66,20 @@ public class ItemController {
 		return "item/interest";
 	}
 
-	@RequestMapping(value = "/item/deleteInterest", method = RequestMethod.POST)
+	@RequestMapping("/item/deleteInterest.do")
 	public String deleteInterest(@RequestParam("itemId") int itemId, HttpSession session, Model model) {
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-		
-		int accIndex = loginMember.getAcc_index();
-		service.deleteInterestItem(accIndex, itemId);
-		List<ItemDTO> interestItemList = service.interestItem(accIndex);
-		model.addAttribute("interestItemList", interestItemList);
+		int accIndex=loginMember.getAcc_index();
+		boolean isDeleted = service.deleteInterestItem(accIndex, itemId);
+		System.out.println(isDeleted);
+        if (isDeleted) {
+            List<ItemDTO> interestItemList = service.interestItem(accIndex);
+            model.addAttribute("interestItemList", interestItemList);
+        } else {
+            // 삭제 실패 시 처리 로직 추가
+            model.addAttribute("error", "삭제 실패");
+        }
 
-		return "redirect:/item/interest";
+		return "redirect:/item/interest.do";
 	}
 }

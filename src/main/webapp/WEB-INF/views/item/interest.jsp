@@ -54,7 +54,7 @@ function deleteInterestItem(itemId) {
     if (confirm('정말 이 아이템을 삭제하시겠습니까?')) {
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '${path}/item/deleteInterest';
+        form.action = '${path}/item/deleteInterest.do';
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = 'itemId';

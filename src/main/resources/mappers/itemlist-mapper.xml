@@ -32,7 +32,7 @@
 		WHERE inter.int_subject = #{accIndex}
 	</select>
 	
-	<delete id="deleteInterestItem" parameterType="map">
+	<delete id="deleteInterestItem" parameterType="Map">
         DELETE FROM INTEREST 
         WHERE int_subject = #{accIndex} AND int_item = #{itemId}
     </delete>
