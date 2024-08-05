@@ -75,7 +75,7 @@
 							<div class="item_view">
 								<h3>${item.item_title}</h3>
 								<div class="item_price">
-									<h4>${item.item_price}원</h4>
+									<h4>${item.item_price}원</h4><br>
 									<%-- <h5>${item.item_enrollDate}</h5> --%>
 								</div>
 								<div class="item_like">

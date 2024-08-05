@@ -60,9 +60,12 @@ public class ItemController {
 		return "item/itemList";
 	}
 
-	@RequestMapping("/item/itemView.do")
-	public String itemView(Model model) {
+	@RequestMapping("/item/itemView")
+	public String itemView(Model model, int item_index) {
 		System.out.println("itemView 페이지");
+		
+		
+		
 		return "item/itemView";
 	}
 
