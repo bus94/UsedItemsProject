@@ -1,10 +1,10 @@
 package com.ss.useditems.service;
 
 import java.util.HashMap;
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 import java.util.ArrayList;
->>>>>>> 52bf10d17a31d737f3ffce4135e3792ec2b7baf1
+//>>>>>>> 52bf10d17a31d737f3ffce4135e3792ec2b7baf1
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.mapper.ItemMapper;
+import com.ss.useditems.util.PageInfo;
 
 @Service
 public class ItemService {
