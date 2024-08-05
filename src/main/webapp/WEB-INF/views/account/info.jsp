@@ -8,11 +8,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container acc_info_page" style="padding-top: 100px;">
+
+	<c:if test="${loginMember != null}"> </c:if>
+
 	<c:choose>
-		<c:when test="${other_info == null}"> 
+		<c:when test="${other_info == null}"> <!-- 마이페이지를 누른 경우 -->
 			<c:set var="account_info" value="${loginMember}" />
 		</c:when>
-		<c:otherwise>
+		<c:otherwise> <!-- 다른사람 정보를 누른 경우 -->
 			<c:set var="account_info" value="${other_info}" />
 		</c:otherwise>
 	</c:choose>
@@ -22,7 +25,7 @@
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>${account_info.acc_id}</p>
+					<p class="firstP">${account_info.acc_id}</p>
 					<p>${account_info.acc_nickname}</p>
 					<p>${account_info.acc_address}</p>
 				</div>
@@ -40,17 +43,21 @@
 			<hr>
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p>등급 ${account_info.acc_level}</p>
+					<p class="firstP">등급 ${account_info.acc_level}</p>
 					<p>거래 횟수 ${account_info.acc_count}</p>
-					<p>피신고 횟수</p>
+					<div class="black_report d-flex">
+						<p class="me-3">피신고 횟수 ${account_info.acc_blackCount}</p>
+						
+						<c:if test="${account_info.acc_id != loginMember.acc_id}">
+						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
+							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
+						</c:if>
+					</div>	
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
-					<p id="acc_mock" class="s120">&nbsp;
-					<p>
-						<button type="button" id="btn_acc_blacklist"
-							class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역
-							조회</button>
+					<p id="acc_mock" class="">&nbsp;</p>			
+					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
+							onclick="location.href='${path}/blacklist/complainList.do?currentPage=1&searchBlack=${account_info.acc_id}&searchType=acc_id'">신고내역 조회</button>
 				</div>
 			</div>
 		</div>
@@ -347,5 +354,6 @@
 	
 </section>
 
+<script></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

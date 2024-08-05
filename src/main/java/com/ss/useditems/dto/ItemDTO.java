@@ -13,15 +13,17 @@ public class ItemDTO {
 	
 	private int item_index;
 	private int item_seller;
-	private String item_title	;
-	private String item_content	;
-    private String item_image	;
-	private String item_category	;
-	private String item_status	;
-	private Date item_enrollDate	;
+	private String item_title;
+	private String item_content;
+    private String item_image;
+	private String item_category;
+	private int item_price;
+	private String item_place;
+	private String item_status;
+	private Date item_enrollDate;
 	private int item_click;
 	private int item_interest;
 	private Date item_offDate;
-	private int item_buyer	;
+	private int item_buyer;
 
 }

@@ -1,1 +1,31 @@
 @charset "UTF-8";
+
+.complain_page {
+	margin: auto;
+	width: 100%;
+}
+
+.complain_page #complain_detail {
+	width: 600px;
+	border: 2px solid rgb(219, 219, 219);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.complain_page #redwhistle {
+	width: 200px;
+}
+
+.complain_page .btn_container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.complain_page #content_box {
+	
+}
+
+
+
+

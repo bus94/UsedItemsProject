@@ -11,7 +11,7 @@
 	style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<div class="login_containerIn">
-			<form id="loginForm" action="${path}/account/login.do" method="post">
+			<form id="loginForm" action="${path}/account/signupOK.do" method="post">
 				<div class="loginTitle">
 					<img class="loginLogo" alt="로고"
 						src="${path}/resources/img/logo.png">
@@ -20,7 +20,7 @@
 					<div class="login_inputId">
 						<input type="text" class="form-control login_inputStyle mt-1"
 							name="id" id="id" placeholder="아이디" autocapitalize="off" required
-							onblur="validateInputId()"> <input type="button"
+							onblur="validateInputId()" onkeyup="currIdCheck(this)"> <input type="button"
 							class="btn checkBtn" id="checkId" value="중복확인" disabled>
 					</div>
 					<input type="password" class="form-control login_inputStyle"
@@ -43,14 +43,6 @@
 						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
 				</div>
 
-				<%-- <div class="mt-2"
-				style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-				<form id="uploadFile" method="post"
-					enctype="multipart/form-data">
-					&nbsp;프로필 사진 첨부:&nbsp;<input style="width: 250px;" type="file" name="file">
-					<button type="button" class="btn btn-outline-secondary" onclick="submitUploadForm('${path}/uploadOK.do')">업로드</button>
-				</form>
-			</div> --%>
 				<div class="loginButton mt-2">
 					<button type="submit" class="btn login_btnStyle mb-1 mt-1"
 						value="회원가입 완료">회원가입</button>
@@ -81,6 +73,16 @@
 					inputPasswordMessage.style.display = 'block'
 				} else {
 					inputPasswordMessage.style.display = 'none';
+				}
+			}
+			
+			function currIdCheck(pId) {
+				var currId = pId.value.trim();
+				
+				if(currId != "") {
+					$('#checkId').attr('disabled', false);
+				} else {
+					$('#checkId').attr('disabled', true);
 				}
 			}
 			
@@ -119,7 +121,6 @@
 						error : function(e) {
 						}
 					});
-					
 				});
 				
 				$("#loginForm").submit(function(event) {
@@ -138,6 +139,15 @@
 				});
 			});
 		</script>
+		
+		<%-- <div class="mt-2"
+				style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
+				<form id="uploadFile" method="post"
+					enctype="multipart/form-data">
+					&nbsp;프로필 사진 첨부:&nbsp;<input style="width: 250px;" type="file" name="file">
+					<button type="button" class="btn btn-outline-secondary" onclick="submitUploadForm('${path}/uploadOK.do')">업로드</button>
+				</form>
+			</div> --%>
 		<!-- <script>
 	function submitUploadForm(url) {
 		${"#uploadFile"}.attr("action", url);
@@ -146,6 +156,5 @@
 </script> -->
 	</c:if>
 </section>
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

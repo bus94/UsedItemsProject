@@ -3,25 +3,65 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container" style="padding-top: 100px;">
+<section id="interest_content">
 
+	
 	<h1>찜한상품</h1>
-	<div class="interest_item_container">
-		<div class="interest_item">
-			<img src="${path}/resources/img/item1.jpg" alt="1">
+	<div class="interest_item_container" style="padding-top: 100px">
+		<c:forEach var="item" items="${interestItemList}">
 			<div class="interest_item">
-				<h3>관심제품명</h3>
-				<div class="interest_item_price">
-					<h4>9,999원</h4>
-					<h5>몇분 전</h5>
+				<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
+				<div class="interest_item_info">
+					<h3>${item.item_title}</h3>
+					<div class="interest_item_price">
+						<p>${item.item_price}원</p>
+						<p>${item.item_enrollDate}</p>
+					</div>
+					<div class="interest_item_addr">
+						<img src="${path}/resources/img/gps.png" alt="위치">
+						<p>${item.item_place}</p>
+					</div>
+				</div>
+				<div class="partition">
+					<div class="vr"></div>
+				</div>
+				<div class="interest_item_detail">
+					<div class="interest_item_detail_info">
+						<p>거래형태 ex)택배, 직거래, 스팟(세잎존)직거래</p>
+						<p>분류</p>
+						<p>흥정여부</p>
+					</div>
+				</div>
+				<div class="app">
+					<img src="${path}/resources/img/message.png" alt="삭제"> 
+					<img src="${path}/resources/img/delete.png" alt="삭제" onclick="deleteInterestItem(${item.item_index})">
 				</div>
 			</div>
-		</div>
+		</c:forEach>
+		
 	</div>
-</section>
 	
+</section>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+function deleteInterestItem(itemId) {
+    if (confirm('정말 이 아이템을 삭제하시겠습니까?')) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '${path}/item/deleteInterest.do';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'itemId';
+        input.value = itemId;
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>

@@ -4,5 +4,13 @@
 	<typeAliases>
 		<typeAlias type="com.ss.useditems.dto.MemberDTO"
 			alias="memberDTO" />
+
+		<typeAlias type="com.ss.useditems.dto.BlacklistDTO"
+			alias="BlacklistDTO" />		<!-- 정일 -->
+
+		<typeAlias type="com.ss.useditems.dto.ItemDTO"
+			alias="itemDTO" />
+
+
 	</typeAliases>
 </configuration>

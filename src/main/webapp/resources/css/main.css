@@ -55,19 +55,24 @@ header {
 	height: auto;
 }
 
-.input-group {
-	width: 500px;
+.login-container form {
+	width: 450px;
 	height: 40px;
 	display: flex;
 }
 
-.form-control {
-	width: 230px;
+.input_text {
+	width: 400px;
 	height: 40px;
-	margin-right: 10px;
 }
 
-.input-group img {
+.login-container .sch_smit {
+	width: 30px;
+	background-color: white;
+	border: none;
+}
+
+.login-container .sch_smit  img {
 	width: 35px;
 	margin-top: 3px;
 }
@@ -96,43 +101,89 @@ header {
 	display: flex;
 }
 
-#top_btn { 
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 1;
-    background-color: white;
-    border: 2px solid #dbdbdb;
-    outline: none;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 10px;
-    font-weight: 500;
-    color: #333333;
+#top_btn {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 1;
+	background-color: white;
+	border: 2px solid #dbdbdb;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	font-size: 10px;
+	font-weight: 500;
+	color: #333333;
 }
 
 .login_profile {
 	display: flex;
 }
 
-login_profileIn {
+.login_profileIn {
 	display: flex;
+}
+
+.login_profileIn a:first-child {
+	margin-right: 10px;
+	margin-top: 1px;
 }
 
 .login_profile img {
 	width: 30px;
-	margin-right: 3px;
 }
 
 .login_profile_text {
 	color: black;
 	text-decoration: none;
-	margin-top: 7px;
+	margin-top: 5px;
 	position: relative;
 	top: 2px;
 	left: -6px;
-	
+}
+
+.sidebar {
+	position: fixed;
+	right: 40px;
+	top: 500px;
+	z-index: 1;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	width: 200px;
+	height: 500px;
+	color: #333333;
+	transform: translateY(-50%);
+}
+
+.list-group-item a {
+	text-decoration-line: none;
+	color: black;
+}
+
+body {
+	margin:0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+footer {
+	position: relative;
+	text-align: center;
+	padding: 100px 0 50px 0;
+	color: black;
+}
+
+
+@media screen and (max-width: 992px) {
+/* 사이드바 반응형 안보이기 */
+    .sidebar {
+        display: none;
+    }
+
 }

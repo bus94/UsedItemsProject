@@ -16,9 +16,10 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />	
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
 <!-- 슬릭js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -33,39 +34,59 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
-<link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
-	
+<link rel="stylesheet"
+	href="${path}/resources/css/item/itemEnroll.css?v=${systemProperties['timestamp']}">
+
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet"
+	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_info.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/acc/acc_alter.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">	
+	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
-	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">	
+	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 <script src="${path}/resources/js/item/itemView.js"></script>
 
-
+<!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
+<meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
+<!-- 캐시된 페이지가 만료되어 삭제되는 시간 정의. 특별한 경우가 아니면 -1로 설정. -->
+<meta http-equiv="Expires" content="-1">
+<!-- 페이지 로드시마다 페이지를 캐싱하지 않습니다. (HTTP 1.0, 1.1) -->
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
 </head>
 <body>
 
+<div id="wrapper">
 	<header>
 		<div class="login-container">
 			<div class="logo">
 				<a href="${path}/"><img alt="로고"
 					src="${path}/resources/img/logo.png"></a>
 			</div>
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="매물을 검색해보세요!"
-					aria-label="Recipient's username" aria-describedby="basic-addon2" />
-				<img alt="검색" src="${path}/resources/img/search.png">
-			</div>
+			<form action="${path}/item/itemList.do" method="get">
+				<div>
+					<input type="text" id="searchValue" name="searchValue"
+						class="input_text" value="${searchValue}"/>
+					<button type="submit" class="sch_smit">
+						<img alt="검색" src="${path}/resources/img/search.png">
+					</button>
+				</div>
+			</form>
 
 			<c:if test="${loginMember == null}">
 				<div class="login">
@@ -85,12 +106,26 @@
 			<c:if test="${loginMember != null}">
 				<div class="login_profile">
 					<div class="login_profileIn">
-						<a class="login_img" href="${path}/account/my_info.do"><img
+						<a class="login_img" href="${path}/account/my_info.do"> <img
 							alt="${path}/resources/img/login.png"
 							src="${path}/resources/img/login.png"></a> <a
 							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
+					</div>
+					<div>
+						<button type="button" class="btn" id=logout>로그아웃</button>
 					</div>
 				</div>
 			</c:if>
 		</div>
 	</header>
+
+	<script>
+		$(document).ready(function() {
+			$('#logout').click(function() {
+
+				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
+					location.href = "${path}/logoutOK.do";
+				}
+			})
+		});
+	</script>
