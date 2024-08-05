@@ -1,23 +1,17 @@
 package com.ss.useditems.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
@@ -59,11 +53,7 @@ public class MemberController {
 			model.addAttribute("location", "/account/login.do");
 		}
 		
-		int loginMemberNo = memberservice.selectIdIndex(loginMember.getAcc_id());
-		System.out.println("loginMemberNo: " + loginMemberNo);
-		
 		session.setAttribute("loginMember", loginMember);
-		session.setAttribute("loginMemberNo", loginMemberNo);
 
 		return "common/msg";
 	}
@@ -136,54 +126,28 @@ public class MemberController {
 		return "common/msg";
 	}
 
-	// 업로드 메서드
-	@GetMapping("/upload")
-	public void form() {
-	}
-
-	@PostMapping("/uploadOK")
-	public String upload(@RequestParam("file") MultipartFile file) {
-		// 업로드한 파일명 가져오기
-		String fileRealName = file.getOriginalFilename();
-		// 파일 사이즈 (용량 클 수 있으므로 int가 아닌 long)
-		long size = file.getSize();
-		System.out.println("파일명: " + fileRealName);
-		System.out.println("파일 크기: " + size);
-
-		// 서버에 저장할 파일명으로 확장자명 지정
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\test\\upload";
-
-		// 이미 존재한 파일일 경우를 대비
-		UUID uuid = UUID.randomUUID();
-		String[] uuids = uuid.toString().split("-");
-		String uniqueName = uuids[0];
-
-		// UUID 적용
-		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
-		try {
-			// 실제 파일 저장 메서드
-			file.transferTo(saveFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "account/login";
-	}
 
 	//////////////////////////////////// 정일/////////////////////
 
 	@RequestMapping("/account/my_info.do")
 	public String my_info(Model model, HttpSession session) {
 		System.out.println("==account.my_info==");
+		// 마이페이지 눌렀을 때 실행!!!
+
 
 		try {
 			if(session.getAttribute("loginMember") == null) {
-				System.out.println("로그인 안함");
 				model.addAttribute("msg", "로그인부터 하렴.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
+			} else { //0804추가
+				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
+//				System.out.println("마이인포 전: " + my_info);
+				String my_id = my_info.getAcc_id();
+				my_info = memberservice.selectInfoByAcc_id(my_id);
+//				System.out.println("마이인포 후: " + my_info);
+				
+				model.addAttribute("loginMember", my_info);
 			}
 		} catch(Exception e) {	}
 
@@ -198,7 +162,7 @@ public class MemberController {
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		account_info = memberservice.selectByAcc_id(acc_id);
+		account_info = memberservice.selectInfoByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
 		System.out.println("response: " + account_info);
@@ -206,12 +170,59 @@ public class MemberController {
 		return "account/info";
 	}
 
+	
+	
 	@RequestMapping("/account/alter.do")
-	public String alter() {
+	public String alter(Model model, HttpSession session) { //정보수정 페이지
 		System.out.println("==account.alter==");
+
+		try {
+			if(session.getAttribute("loginMember") == null) {
+				model.addAttribute("msg", "로그인부터 하렴.");
+				model.addAttribute("location", "/account/login.do");
+				return "common/msg";
+			} 
+			
+		} catch(Exception e) {	}
 
 		return "account/alter";
 	}
+	
+	@RequestMapping("/withdraw.do")
+	public String withdraw(Model model, HttpSession session, @RequestParam String wd_currPW) {
+		System.out.println("==account.withdraw==");
+		try {
+			MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
+			String acc_id = my_info.getAcc_id().trim();
+			String acc_password = my_info.getAcc_password().trim();
+//			System.out.println("acc_id: "+ acc_id + ", acc_pw: " + acc_password);
+//			System.out.println("Param.wd_currPW: "+ wd_currPW);
+			
+			if(wd_currPW.trim().equals(acc_password)) { // 탈퇴 처리
+				//int result = memberservice.withdraw(acc_id);
+				//이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게??
+//				System.out.println("result: " +result);
+				memberservice.withdraw(acc_id);
+				session.removeAttribute("loginMember");
+				model.addAttribute("msg", "정상적으로 탈퇴 처리되었습니다.");
+				model.addAttribute("location", "/");
+			} else { //세션의 비밀번호와 입력 비밀번호가 다르면
+				model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+				model.addAttribute("location", "/account/alter.do");
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 탈퇴가 정상적으로 처리되지 않았습니다.");
+			model.addAttribute("location", "/account/alter.do");
+		}
+		
+		return "common/msg";
+	}
+	
+	
+	
+	
+	
 	//////////////////////////////////// 정일/////////////////////
 
 }

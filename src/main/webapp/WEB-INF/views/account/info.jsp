@@ -50,14 +50,14 @@
 						
 						<c:if test="${account_info.acc_id != loginMember.acc_id}">
 						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
-							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
 						</c:if>
 					</div>	
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<p id="acc_mock" class="">&nbsp;</p>			
 					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
-							onclick="location.href='${path}/blacklist/complainList.do?black_object=${account_info.acc_id}'">신고내역 조회</button>
+							onclick="location.href='${path}/blacklist/complainList.do?currentPage=1&searchBlack=${account_info.acc_id}&searchType=acc_id'">신고내역 조회</button>
 				</div>
 			</div>
 		</div>

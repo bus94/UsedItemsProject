@@ -8,7 +8,7 @@
 		<result property="acc_password" column="acc_password" />
 		<result property="acc_birthDate" column="acc_birthDate" />
 		<result property="acc_phone" column="acc_phone" />
-		<!-- <result property="acc_email" column="acc_email" /> 0804 DB에서 삭제-->
+		<!-- <result property="acc_email" column="acc_email" /> 0804 DB에서 삭제 -->
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_nickname" column="acc_nickname" />
@@ -17,49 +17,69 @@
 		<result property="acc_count" column="acc_count" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
-	</resultMap>
-	
-<!-- 	<resultMap type="itemDTO" id="itemMap">
-	</resultMap> 정일 -->
-	
-	
-	
-	
-	<resultMap type="memberDTO" id="memberInfoMap" extends="memberMap">
+	</resultMap>	
+
+
+	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
+
+
+	<resultMap type="memberDTO" id="memberInfoMap"
+		extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
-		
-		<!-- <collection property="acc_interest" javaType="arrayList"
-			resultMap="itemMap"/> -->
+
+		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
-	
-	
-	
-	
-	
 
 	<select id="selectByMember" parameterType="memberDTO"
 		resultMap="memberMap">
-		SELECT * FROM account WHERE acc_id = #{acc_id} AND acc_password = #{acc_password}
-	</select>
-
-	<select id="selectById" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM account WHERE acc_id = #{id}
+		SELECT * FROM account WHERE acc_id = #{acc_id} AND
+		acc_password = #{acc_password}
 	</select>
 
 	<insert id="signup" parameterType="memberDTO">
-		<!--0804 DB에서 email 삭제 INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate) -->
-		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate, acc_phone, acc_name, acc_address, acc_nickname, acc_profile, acc_level, acc_count, acc_status, acc_enrollDate)  VALUES (ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate)
+		<!--0804 DB에서 email 삭제 INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, 
+			acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, 
+			acc_profile, acc_level, acc_count, acc_status, acc_enrollDate) VALUES (ACCOUNT_SEQ.NEXTVAL, 
+			#{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, 
+			#{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate) -->
+		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate,
+		acc_phone, acc_name, acc_address, acc_nickname, acc_profile,
+		acc_level, acc_count, acc_status, acc_enrollDate) VALUES
+		(ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate},
+		#{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default,
+		0, 'active', sysdate)
 	</insert>
-	
-	<select id="selectIdIndex" parameterType="String" resultType="int">
+
+	<select id="selectIdIndex" parameterType="String"
+		resultType="int">
 		SELECT acc_index FROM account WHERE acc_id = #{acc_id}
 	</select>
 
-	<select id="selectByAcc_id" parameterType="String"
-		resultMap="memberInfoMap">
+
+
+	<select id="selectAccountByAcc_id" parameterType="String"
+		resultType="memberDTO">
 		select * from ACCOUNT where acc_id = #{acc_id}
+	</select>	<!--정일 -->
+
+
+	<select id="selectInfoByAcc_id" parameterType="String"
+		resultMap="memberInfoMap">
+		select
+		*
+		from ACCOUNT acc
+		left join (select
+		black_object,
+		count(black_index) acc_blackCount
+		from BLACKLIST group by black_object) black 
+		on (acc.acc_index = black.black_object)
+		where acc_id = #{acc_id}
 	</select>      <!--정일 -->
-	
-	
+
+
+	<update id="withdraw" parameterType="String" >
+		update ACCOUNT set acc_status='inactive' where acc_id=#{acc_id}
+	</update>	<!--정일 -->
+
 
 </mapper>

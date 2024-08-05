@@ -37,7 +37,7 @@ var neoPWconf_isNull = null;
 
 
 
-function filledAll(){ //비밀번호 필드 전체 체크
+function filledAll(){ //비밀번호 필드 전체(현재+새+확인) 체크
 
 	if(currPW_isNull == false && neoPW_isNull == false && neoPWconf_isNull == false){
 		$('#setPW').attr('disabled', false);
@@ -97,7 +97,7 @@ function neoPW2check(param3){ //새 비밀번호 확인 입력 시
 $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 	
 	if(neoPW_input != neoPWconf_input){
-		alert("'새 비밀번호'와 '새 비밀번호 확인'이 서로 다릅니다.");
+		alert("'새 비밀번호'가 서로 일치하지 않습니다.");
 		return;
 	}else{
 		alert("바꿔줄게");
@@ -106,6 +106,32 @@ $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 });
 
 
+
+$('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
+
+	if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
+		$('#wd_hide1').css('display','block');
+		$('#wd_hide2').hide();
+	}
+
+	
+	
+});
+
+
+$('#setStatus').click(function() { // '탈퇴' 버튼 누르면
+
+	//var wd_currPW = $.trim($('#wd_currPW').val());
+	
+	//if(!wd_currPW){
+	//	alert("'현재 비밀번호'를 입력하여 주세요.");
+	//	return;
+	//}
+	
+	//if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
+	//	location.href = "/useditems/withdraw.do";
+	//}
+});
 
 
 
