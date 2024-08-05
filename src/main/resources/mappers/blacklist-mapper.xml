@@ -70,6 +70,12 @@
 		order by black_index desc
 	</select>
 
+	
+	<insert id="enroll" parameterType="BlacklistDTO">
+		INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, 'id_test2는 나쁜놈아!!!!', TO_DATE('20240726', 'YYYY-MM-DD'));
+	</insert>
+
+
 
 
 
