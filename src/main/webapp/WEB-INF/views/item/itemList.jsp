@@ -10,16 +10,15 @@
 <section id="item_content_list" style="padding-top: 100px;">
 	<div class="category">
 		<input type="radio" name="searchType" id="item_category"
-			value="item_category" ${searchType=='item_category' ? 'checked':''} />
+			value="item_category"/>
 		<label class="radio_type" for="item_category">의류잡화</label>
-		<input type="radio" name="searchType" id="item_category" value="item_category"
-			${searchType=='item_category' ? 'checked':''} />
+		<input type="radio" name="searchType" id="item_category" value="item_category"/>
 		<label class="radio_type" for="acc_id">전자기기</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<input type="radio" name="searchType" id="content" value="content" />
 		<label class="radio_type" for="내용">가구</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<input type="radio" name="searchType" id="content" value="content" />
 		<label class="radio_type" for="내용">식품</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<input type="radio" name="searchType" id="content" value="content" />
 		<label class="radio_type" for="내용">기타</label>
 		<button>상세검색</button>
 	</div>
