@@ -30,19 +30,10 @@
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
 
-
-
-
-
-
 	<select id="selectByMember" parameterType="memberDTO"
 		resultMap="memberMap">
 		SELECT * FROM account WHERE acc_id = #{acc_id} AND
 		acc_password = #{acc_password}
-	</select>
-
-	<select id="selectById" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM account WHERE acc_id = #{id}
 	</select>
 
 	<insert id="signup" parameterType="memberDTO">
