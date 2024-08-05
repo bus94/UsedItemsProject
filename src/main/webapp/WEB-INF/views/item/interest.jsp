@@ -9,20 +9,22 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="interest_content">
+
+	
 	<h1>찜한상품</h1>
 	<div class="interest_item_container" style="padding-top: 100px">
 		<c:forEach var="item" items="${interestItemList}">
 			<div class="interest_item">
-				<img src="${path}/resources/img/${item.itemImage}" alt="1">
+				<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
 				<div class="interest_item_info">
-					<h3>${item.itemName}</h3>
+					<h3>${item.item_title}</h3>
 					<div class="interest_item_price">
-						<p>${item.itemPrice}원</p>
-						<p>${item.itemEnrollDate}</p>
+						<p>${item.item_price}원</p>
+						<p>${item.item_enrollDate}</p>
 					</div>
 					<div class="interest_item_addr">
 						<img src="${path}/resources/img/gps.png" alt="위치">
-						<p>${item.itemLocation}</p>
+						<p>${item.item_place}</p>
 					</div>
 				</div>
 				<div class="partition">
@@ -36,12 +38,30 @@
 					</div>
 				</div>
 				<div class="app">
-					<img src="${path}/resources/img/message.png" alt="삭제"> <img
-						src="${path}/resources/img/delete.png" alt="삭제">
+					<img src="${path}/resources/img/message.png" alt="삭제"> 
+					<img src="${path}/resources/img/delete.png" alt="삭제" onclick="deleteInterestItem(${item.item_index})">
 				</div>
 			</div>
 		</c:forEach>
+		
 	</div>
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+function deleteInterestItem(itemId) {
+    if (confirm('정말 이 아이템을 삭제하시겠습니까?')) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '${path}/item/deleteInterest';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'itemId';
+        input.value = itemId;
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>

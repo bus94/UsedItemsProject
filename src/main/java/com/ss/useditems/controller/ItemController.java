@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
+import com.ss.useditems.service.MemberService;
 
 @Controller
 public class ItemController {
 
 	@Autowired
 	private ItemService service;
-
+	private MemberService mService;
+	
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue) {
 		System.out.println("itemList 페이지");
@@ -52,26 +54,26 @@ public class ItemController {
 		System.out.println("interest 페이지");
 
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-
 		if (loginMember != null) {
-			int accIndex = loginMember.getAcc_Index();
-			List<ItemDTO> interestItemList = service.getInterestItem(accIndex);
+			int accIndex = loginMember.getAcc_index();
+			List<ItemDTO> interestItemList = service.interestItem(accIndex);
+			
 			model.addAttribute("interestItemList", interestItemList);
-		} else {
-			return "redirect:/account/login";
+		}else {
+			return "account/login";
 		}
 		return "item/interest";
 	}
-	
-    @RequestMapping(value = "/item/deleteInterest", method = RequestMethod.POST)
-    public String deleteInterest(@RequestParam("itemId") int itemId, HttpSession session, Model model) {
-        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-        if (loginMember != null) {
-            int accIndex = loginMember.getAccIndex();
-            service.deleteInterestItem(accIndex, itemId);
-            List<ItemDTO> interestItemList = itemService.getInterestItems(accIndex);
-            model.addAttribute("interestItemList", interestItemList);
-        }
-        return "redirect:/item/interest";
-    }
+
+	@RequestMapping(value = "/item/deleteInterest", method = RequestMethod.POST)
+	public String deleteInterest(@RequestParam("itemId") int itemId, HttpSession session, Model model) {
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		
+		int accIndex = loginMember.getAcc_index();
+		service.deleteInterestItem(accIndex, itemId);
+		List<ItemDTO> interestItemList = service.interestItem(accIndex);
+		model.addAttribute("interestItemList", interestItemList);
+
+		return "redirect:/item/interest";
+	}
 }

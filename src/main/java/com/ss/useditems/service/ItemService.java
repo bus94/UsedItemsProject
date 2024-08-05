@@ -25,7 +25,7 @@ public class ItemService {
 	  }
 	  
 	    public void deleteInterestItem(int accIndex, int itemId) {
-	        itemMapper.deleteInterestItem(accIndex, itemId);
+	        mapper.deleteInterestItem(accIndex, itemId);
 	    }
 	  
 }
