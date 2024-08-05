@@ -44,14 +44,14 @@
 		<div class="detail_right">
 			<div class="detail_top">
 				<div class="detail_info">
-					<h4>두바이 초콜릿 판매합니다</h4>
-					<h3>125,000원</h3>
-					<p>서울 강남구 테헤란로 엔데버타워</p>
+					<h4>${item.item_title}</h4>
+					<h3><fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" /></h3>
+					<p>${item.item_place}</p>
 				</div>
 				<div class="detail_like">
 					<div class="like_txt">
-						<p>관심 22</p>
-						<p>조회 1000</p>
+						<p>관심 ${item.item_interest}</p>
+						<p>조회 ${item.item_click}</p>
 						<p>20분전</p>
 					</div>
 					<div class="detail_report">
