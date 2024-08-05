@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+
+/* footer {
+	position: relative;
+	text-align: center;
+	padding: 100px 0 50px 0;
+	color: black;
+} */
+
+.navbar-brand{
+    color: brown;
+    font-size: 2rem;
+}
+
+.nav_icon {
+    color: black;
+    position: fixed;
+    right: 5%;
+
+    font-size: 2rem;
+}
+
+#nav_user {
+    top: 65px;
+}
+
+#nav_wish {
+    top: 110px;
+}
+
+#nav_link {
+    top: 155px;
+}
+
+#nav_toTop {
+    bottom: 2%;
+}
+#nav_toHome {
+    bottom: 4%;
+}

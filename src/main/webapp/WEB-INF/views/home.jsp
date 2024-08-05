@@ -17,6 +17,7 @@
 	<a href="${path}/account/acc_info.do?acc_id=id_test2">계정 정보 조회 페이지(id_test2)</a><br>
 	<a href="${path}/account/acc_info.do?acc_id=id_test4">계정 정보 조회 페이지(id_test4)</a><br>
 	<a href="${path}/blacklist/complainList.do">사기 조회 페이지</a><br>
+	<a href="${path}/blacklist/mainProto1.do">메인프로토1</a><br>
 	<a href="${path}/item/interest.do">찜한 상품</a><br>
 	<a href="${path}/chat/chat.do">채팅하기</a><br>
 </section>

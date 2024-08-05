@@ -22,6 +22,18 @@ public class BlacklistController {
 
 	@Autowired
 	private BlacklistService service;
+	
+	
+	@RequestMapping("/mainProto1.do")
+	public String mainProto1(Model model) {
+	
+		
+		
+		
+		return "common/mainProto1";
+
+	}
+	
 
 	@GetMapping("/complainList.do")		//신고목록 조회
 	public String complainList(Model model, @RequestParam Map<String, String> param) {
