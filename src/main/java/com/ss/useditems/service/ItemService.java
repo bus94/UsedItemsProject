@@ -35,12 +35,17 @@ public class ItemService {
 		return mapper.interest(accIndex);
 	}
 
+<<<<<<< HEAD
 	public boolean deleteInterestItem(int accIndex, int itemId) {
 		Map<String, Integer> params = new HashMap<String, Integer>();
 		System.out.println("service acc"+accIndex+"  Item"+itemId);
 		params.put("accIndex", accIndex);
 		params.put("itemId", itemId);
 		return mapper.deleteInterestItem(params) > 0;
+=======
+	public void deleteInterestItem(int accIndex, int itemId) {
+		mapper.deleteInterestItem(accIndex, itemId);
+>>>>>>> moong
 	}
 
 }
