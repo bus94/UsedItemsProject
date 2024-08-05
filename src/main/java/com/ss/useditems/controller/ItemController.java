@@ -2,6 +2,7 @@ package com.ss.useditems.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,12 +22,7 @@ public class ItemController {
 
 	@Autowired
 	private ItemService service;
-<<<<<<< HEAD
-	private MemberService mService;
-
-=======
 	
->>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
@@ -37,11 +33,7 @@ public class ItemController {
 		
 		int currentPage_ = Integer.parseInt(currentPage);
 		System.out.println("currentPage: " + currentPage);
-<<<<<<< HEAD
 
-		if (currentPage == null) {
-=======
-		
 		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
 		model.addAttribute("searchValue", searchValue);	
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
@@ -57,26 +49,13 @@ public class ItemController {
 		System.out.println("categoryList: " + categoryList);
 		
 		if(currentPage == null) {
->>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
 			currentPage = "1";
 		}
 
 		int currentPage_ = Integer.parseInt(currentPage);
-<<<<<<< HEAD
 
-		// int currentPage = 1;
-		try {
-			// currentPage = Integer.parseInt(currentPage);
-
-		} catch (Exception e) {
-		}
-		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
-
-=======
-		
 		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
 		
->>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);
 
@@ -123,7 +102,7 @@ public class ItemController {
 			if (currentPage == null) {
 				currentPage = "1";
 			}
-			int accIndex=loginMember.getAcc_index();
+			int accIndex = loginMember.getAcc_index();
 			int currentPage_ = Integer.parseInt(currentPage);
 
 			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
