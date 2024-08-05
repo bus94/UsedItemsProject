@@ -55,7 +55,15 @@
 		SELECT acc_index FROM account WHERE acc_id = #{acc_id}
 	</select>
 
-	<select id="selectByAcc_id" parameterType="String"
+
+
+	<select id="selectAccountByAcc_id" parameterType="String"
+		resultType="memberDTO">
+		select * from ACCOUNT where acc_id = #{acc_id}
+	</select>	<!--정일 -->
+
+
+	<select id="selectInfoByAcc_id" parameterType="String"
 		resultMap="memberInfoMap">
 		select
 		*

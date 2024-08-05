@@ -185,7 +185,7 @@ public class MemberController {
 				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
 //				System.out.println("마이인포 전: " + my_info);
 				String my_id = my_info.getAcc_id();
-				my_info = memberservice.selectByAcc_id(my_id);
+				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
 				
 				model.addAttribute("loginMember", my_info);
@@ -203,7 +203,7 @@ public class MemberController {
 		System.out.println("request.acc_id: " + acc_id);
 
 		MemberDTO account_info = new MemberDTO();
-		account_info = memberservice.selectByAcc_id(acc_id);
+		account_info = memberservice.selectInfoByAcc_id(acc_id);
 		model.addAttribute("other_info", account_info);
 
 		System.out.println("response: " + account_info);
