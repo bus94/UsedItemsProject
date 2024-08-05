@@ -65,6 +65,26 @@
 		</div>
 	</c:if>
 
+	<!-- 페이징 -->
+	<div align="center"
+		class="pagination container d-flex justify-content-center">
+		<a href="itemList.do?currentPage=1&searchValue=${searchValue}">|&lt;</a>
+		&nbsp; 
+		<a href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}">&lt;</a>
+		&nbsp;
+		<c:forEach var="currentPage" begin="${pageInfo.fromPage}" end="${pageInfo.tillPage}" step="1">
+			<a href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}"
+			${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
+		&nbsp;
+		</c:forEach>
+
+		<a href="itemList.do?currentPage=${pageInfo.nextPage}&searchValue=${searchValue}">&gt;</a>
+		&nbsp;
+		<a href="itemList.do?currentPage=${pageInfo.lastPage}&searchValue=${searchValue}">&gt;|</a>
+		&nbsp;
+		<a href="${path}/item/itemEnroll.do" class="align-self-end"
+			target="_blank">매물 등록</a>
+	</div>
 
 </section>
 

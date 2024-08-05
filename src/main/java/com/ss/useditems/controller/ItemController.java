@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
+<<<<<<< HEAD
 import com.ss.useditems.service.MemberService;
+=======
+import com.ss.useditems.util.PageInfo;
+>>>>>>> moong
 
 @Controller
 public class ItemController {
@@ -25,14 +29,26 @@ public class ItemController {
 	private MemberService mService;
 	
 	@RequestMapping("/item/itemList.do")
-	public String itemList(Model model, String searchValue) {
+	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
-		System.out.println("searchValue: " + searchValue);
-		List<ItemDTO> itemList = service.searchItems(searchValue);
-
-		model.addAttribute("itemList", itemList);
-		model.addAttribute("searchValue", searchValue);
-		System.out.println(itemList);
+		System.out.println("currentPage: " + currentPage);
+		
+		if(currentPage == null) {
+			currentPage = "1";
+		}
+		
+		int currentPage_ = Integer.parseInt(currentPage);
+		
+		//int currentPage = 1;
+		try {
+			// currentPage = Integer.parseInt(currentPage);
+			
+		} catch (Exception e) {
+		}
+		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
+		
+		model.addAttribute("itemList", pageInfo.getDtoContainer2());
+		model.addAttribute("pageInfo", pageInfo);		
 
 		return "item/itemList";
 	}
