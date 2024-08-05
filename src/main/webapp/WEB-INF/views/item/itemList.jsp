@@ -9,27 +9,21 @@
 
 <section id="item_content_list" style="padding-top: 100px;">
 	<div class="category">
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
-				for="flexCheckDefault"> 상세검색 </label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault2"> <label class="form-check-label"
-				for="flexCheckDefault2"> 필터링 </label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault3"> <label class="form-check-label"
-				for="flexCheckDefault3"> 어쩌구 </label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault4"> <label class="form-check-label"
-				for="flexCheckDefault4"> 저쩌구 </label>
-		</div>
+		<input type="radio" name="searchType" id="item_category"
+			value="item_category" ${searchType=='item_category' ? 'checked':''} />
+		<label class="radio_type" for="item_category">의류잡화</label>
+		<input type="radio" name="searchType" id="item_category" value="item_category"
+			${searchType=='item_category' ? 'checked':''} />
+		<label class="radio_type" for="acc_id">전자기기</label>
+		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<label class="radio_type" for="내용">가구</label>
+		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<label class="radio_type" for="내용">식품</label>
+		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
+		<label class="radio_type" for="내용">기타</label>
+		<button>상세검색</button>
 	</div>
+
 	<div class="item_title">
 		<h3>검색 결과 &gt;</h3>
 	</div>
@@ -43,22 +37,24 @@
 			<c:forEach var="item" items="${itemList}">
 				<div class="item_container">
 					<div class="item">
-						<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
-						<div class="item_view">
-							<h3>${item.item_title}</h3>
-							<div class="item_price">
-								<h4>가격 ${item.item_price}</h4>
-								<%-- <h5>${item.item_enrollDate}</h5> --%>
+						<a href="${path}/item/itemView?id=${item.item_index}" style="text-decoration: none; color: black"> <img src="${path}/resources/img/${item.item_image}"
+							alt="매물사진">
+							<div class="item_view">
+								<h3>${item.item_title}</h3>
+								<div class="item_price">
+									<h4>${item.item_price}원</h4>
+									<%-- <h5>${item.item_enrollDate}</h5> --%>
+								</div>
+								<div class="item_like">
+									<p>관심 ${item.item_interest}</p>
+									<p>채팅 22</p>
+								</div>
+								<div class="item_addr">
+									<img src="${path}/resources/img/gps.png" alt="위치">
+									<p>${item.item_place}</p>
+								</div>
 							</div>
-							<div class="item_like">
-								<p>관심 ${item.item_interest}</p>
-								<p>채팅 22</p>
-							</div>
-							<div class="item_addr">
-								<img src="${path}/resources/img/gps.png" alt="위치">
-								<p>주소주소주소주소</p>
-							</div>
-						</div>
+						</a>
 					</div>
 				</div>
 			</c:forEach>

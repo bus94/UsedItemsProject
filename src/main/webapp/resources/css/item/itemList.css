@@ -20,6 +20,17 @@
     gap: 30px;
     margin-bottom: 50px;
 }
+.category button{
+	width: 80px;
+	height: 30px;
+	color:white;
+	background-color:#63bd37;
+	border: none;
+	border-radius: 3px;
+}
+.category button:hover{
+	background-color: #4d932b;
+}
 
 .form-check label {
     font-size: 15px;
