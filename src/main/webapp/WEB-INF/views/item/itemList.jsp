@@ -76,7 +76,7 @@
 								<h3>${item.item_title}</h3>
 								<div class="item_price">
 									<h4>${item.item_price}원</h4><br>
-									<%-- <h5>${item.item_enrollDate}</h5> --%>
+									<h5><fmt:formatDate value="${item.item_enrollDate}" pattern="yy/MM/dd"/></h5>
 								</div>
 								<div class="item_like">
 									<p>관심 ${item.item_interest}</p>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ss.useditems.service.ItemViewService;
 
 public class ItemViewController {
+	
 	@Autowired
 	private ItemViewService service;
 
