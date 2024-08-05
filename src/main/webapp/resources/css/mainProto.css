@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-
-/* footer {
-	position: relative;
-	text-align: center;
-	padding: 100px 0 50px 0;
-	color: black;
-} */
-
 .navbar-brand{
     color: brown;
     font-size: 2rem;
@@ -22,7 +14,7 @@
 }
 
 #nav_user {
-    top: 65px;
+    top: 70px;
 }
 
 #nav_wish {
@@ -30,12 +22,76 @@
 }
 
 #nav_link {
-    top: 155px;
+    top: 150px;
 }
 
 #nav_toTop {
     bottom: 2%;
 }
-#nav_toHome {
-    bottom: 4%;
+
+
+#categories {
+    margin: auto;
+    text-align: center;
+}
+
+.majors {
+    list-style-type: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.major {
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px 10px;
+}
+
+.major_icon {
+    font-size: 15px;
+    margin: 10px;
+}
+
+.major_title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#veggies:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+    color: burlywood;
+}
+
+#veggies:hover .major_icon {
+    transform: rotate(15deg);
+    color: burlywood;
+}
+
+#meat:hover {
+    cursor: pointer;
+    background-color: darkred;
+    color: lightsalmon;
+}
+
+#meat:hover .major_icon {
+    transform: rotate(-15deg);
+    color: lightsalmon;
+}
+
+#seafood:hover {
+    cursor: pointer;
+    background-color: darkblue;
+    color: lightseagreen;
+}
+
+#seafood:hover .major_icon {
+    transform: rotate(15deg);
+    color: lightseagreen;
 }
