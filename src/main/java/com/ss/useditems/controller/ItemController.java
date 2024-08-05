@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
-<<<<<<< HEAD
 import com.ss.useditems.service.MemberService;
-=======
 import com.ss.useditems.util.PageInfo;
->>>>>>> moong
 
 @Controller
 public class ItemController {
