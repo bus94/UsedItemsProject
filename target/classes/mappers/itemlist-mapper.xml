@@ -28,7 +28,7 @@
 	<select id="interest" parameterType="Integer" resultMap="itemMap">
 		SELECT i.*
 		FROM item i
-		JOIN interest inter ON i.item_index = inter.int_index
+		JOIN interest inter ON i.item_index = inter.int_item
 		WHERE inter.int_subject = #{accIndex}
 	</select>
 	
