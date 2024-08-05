@@ -59,11 +59,7 @@ public class MemberController {
 			model.addAttribute("location", "/account/login.do");
 		}
 		
-		int loginMemberNo = memberservice.selectIdIndex(loginMember.getAcc_id());
-		System.out.println("loginMemberNo: " + loginMemberNo);
-		
 		session.setAttribute("loginMember", loginMember);
-		session.setAttribute("loginMemberNo", loginMemberNo);
 
 		return "common/msg";
 	}

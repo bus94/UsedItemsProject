@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemEnrollService;
 
 @Controller
@@ -35,10 +36,12 @@ public class ItemEnrollController {
 		enrollItem.setItem_place(item_place);
 		enrollItem.setItem_image(item_image);
 		
-		if(session.getAttribute("loginMemberNo") != null) {
-			int loginMemberNo = (Integer) session.getAttribute("loginMemberNo");
-			System.out.println("itemEnroll()에서 loginMemberNo: " + loginMemberNo);
-			enrollItem.setItem_seller(loginMemberNo);
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+		
+		if(loginMember != null) {
+			int loginMemberIndex = loginMember.getAcc_index();
+			System.out.println("itemEnroll()에서 loginMemberIndex: " + loginMemberIndex);
+			enrollItem.setItem_seller(loginMemberIndex);
 		}
 		
 		if(itemEnrollService.itemEnroll(enrollItem) > 0) {
