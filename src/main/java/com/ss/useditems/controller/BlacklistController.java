@@ -77,29 +77,48 @@ public class BlacklistController {
 		System.out.println("==blacklist.complain==");
 		
 		try {
-			//url에 get타입 parameter로 "black_object"가 넘오오면 모델에 넣어주겠다.
-			//String black_object을 직접 받도록 해두면, 
+			//url에 get타입 parameter로 "object_id"가 넘어오면 맵에 넣어주겠다.
+			//String object_id을 직접 받도록 해두면, 
 			//url에서 안 넘어올 시 받을게 없어서 에러가 남
 			
-			String black_object = param.get("black_object");
-			model.addAttribute("black_object", black_object);
+			String object_id = param.get("object_id");
+			model.addAttribute("object_id", object_id);
 
-		} catch (Exception e) {
-			
-		}
-		
-		
-
+		} catch (Exception e) {	}
 		return "blacklist/complain";
 	}
 
 	@PostMapping("/complainPro.do")
-	public String complainPro() {
+	public String complainPro(Model model, @RequestParam Map<String, String> param) {
 		System.out.println("==blacklist.complainPro==");
 
-		// 신고 처리 후 사기조회페이지로 이동
-
-		return "blacklist/complainList";
+		String subject_id = param.get("subject_id");
+		String object_id = param.get("object_id");
+		String black_content = param.get("black_content");
+//		System.out.println(subject_id+"가 "+object_id+"를 신고함 "+black_content);
+		
+		BlacklistDTO complain = new BlacklistDTO();
+		complain.setSubject_id(subject_id);
+		complain.setObject_id(object_id);
+		complain.setBlack_content(black_content);
+		
+		try {
+		
+		int result = service.enroll(complain);
+		System.out.println("result: "+result);
+		
+		
+		model.addAttribute("msg", "신고글이 게시되었습니다");
+		model.addAttribute("location", "blacklist/complainList.do");
+		
+		
+		} catch (Exception e){
+			e.printStackTrace();
+			model.addAttribute("msg", "오류로 인하여 신고가 정상적으로 처리되지 않았습니다.");
+			model.addAttribute("location", "blacklist/complainList.do");
+		}
+		
+		return "common/msg";
 	}
 
 

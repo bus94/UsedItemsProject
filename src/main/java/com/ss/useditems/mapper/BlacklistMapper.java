@@ -12,6 +12,8 @@ public interface BlacklistMapper {
 
 	ArrayList<BlacklistDTO> getBlacklist(Map<String, String> queryMap);
 
+	int enroll(BlacklistDTO complain);
+
 	
 	
 	

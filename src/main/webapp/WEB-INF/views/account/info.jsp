@@ -50,7 +50,7 @@
 						
 						<c:if test="${account_info.acc_id != loginMember.acc_id}">
 						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
-							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?black_object=${account_info.acc_id}">신고하기</a>
+							<img src="${path}/resources/img/report.png" alt="신고"><a href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
 						</c:if>
 					</div>	
 				</div>
