@@ -33,6 +33,7 @@ public class ItemService {
       return pageinfo;
    }
 
+<<<<<<< HEAD
    public PageInfo interestItem(int currentPage,int accIndex) {
       System.out.println(mapper.interest(accIndex));
       
@@ -52,4 +53,18 @@ public class ItemService {
       return mapper.deleteInterestItem(params) > 0;
    }
 
+=======
+	public List<ItemDTO> interestItem(int accIndex) {
+		System.out.println(mapper.interest(accIndex));
+		return mapper.interest(accIndex);
+	}
+	
+	public boolean deleteInterestItem(int accIndex, int itemId) {
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		System.out.println("service acc"+accIndex+"  Item"+itemId);
+		params.put("accIndex", accIndex);
+		params.put("itemId", itemId);
+		return mapper.deleteInterestItem(params) > 0;
+	}
+>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
 }

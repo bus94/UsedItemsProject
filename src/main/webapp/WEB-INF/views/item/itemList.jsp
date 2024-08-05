@@ -8,21 +8,54 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="item_content_list" style="padding-top: 100px;">
-	<div class="category">
-		<input type="radio" name="searchType" id="item_category"
-			value="item_category" ${searchType=='item_category' ? 'checked':''} />
-		<label class="radio_type" for="item_category">의류잡화</label>
-		<input type="radio" name="searchType" id="item_category" value="item_category"
-			${searchType=='item_category' ? 'checked':''} />
-		<label class="radio_type" for="acc_id">전자기기</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
-		<label class="radio_type" for="내용">가구</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
-		<label class="radio_type" for="내용">식품</label>
-		<input type="radio" name="searchType" id="content" value="content" ${searchType=='content' ? 'checked':''}>
-		<label class="radio_type" for="내용">기타</label>
-		<button>상세검색</button>
-	</div>
+
+	<form action="${path}/item/categoryList.do" method="get">
+		<div class="category">
+			<div>
+				<input type="radio" name="searchType" id="content" value="content" />
+				<label class="radio_type" for="내용">가까운 순</label>
+				
+				<input type="radio" name="searchType" id="content" value="content" />
+				<label class="radio_type" for="내용">인기많은 순</label>
+				
+				<input type="radio" name="searchType" id="content" value="content" />
+				<label class="radio_type" for="내용">거래가 많은 판매자순</label>
+			</div>
+			
+			<div>
+				<input type="checkbox" name="categoryList" id="categoryList" value="상의"/>
+				<label class="radio_type" for="item_category">상의</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="하의"/>
+				<label class="radio_type" for="item_category">하의</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="신발" />
+				<label class="radio_type" for="item_category">신발</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="기타의류" />
+				<label class="radio_type" for="item_category">기타의류</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="지갑" />
+				<label class="radio_type" for="item_category">지갑</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="피규어" />
+				<label class="radio_type" for="item_category">피규어</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="전자기기" />
+				<label class="radio_type" for="item_category">전자기기</label>
+		
+				<input type="checkbox" name="categoryList" id="categoryList" value="가구" />
+				<label class="radio_type" for="item_category">가구</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="식품" />
+				<label class="radio_type" for="item_category">식품</label>
+				
+				<input type="checkbox" name="categoryList" id="categoryList" value="기타" />
+				<label class="radio_type" for="item_category">기타</label>
+				<button type="submit" class="sear_category">상세검색</button>
+			</div>			
+		</div>
+	</form>
 
 	<div class="item_title">
 		<h3>검색 결과 &gt;</h3>
@@ -42,7 +75,7 @@
 							<div class="item_view">
 								<h3>${item.item_title}</h3>
 								<div class="item_price">
-									<h4>${item.item_price}원</h4>
+									<h4>${item.item_price}원</h4><br>
 									<%-- <h5>${item.item_enrollDate}</h5> --%>
 								</div>
 								<div class="item_like">

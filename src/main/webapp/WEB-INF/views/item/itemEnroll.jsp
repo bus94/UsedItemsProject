@@ -14,18 +14,18 @@
 				<h2>물품 등록하기</h2>
 			</div>
 			<hr>
-			<form id="itemEnrollForm" method="GET" action="${path}/item/itemEnrollOK.do">
+			<form id="itemEnrollForm" method="POST" action="${path}/item/itemEnrollOK.do" enctype="multipart/form-data">
 				<div id="input_box" class="container">
 					<p class="itemEnroll_subtitle fs-5">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_title" id="item_title" placeholder="제목">
 				</div>
-				<div id="input_box" class="container">
+				<div id="input_box1" class="container">
 					<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_content" id="item_content" placeholder="내용">
 				</div>
-				<div id="input_box" class="container box3">
+				<div id="input_box2" class="container box3">
 					<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 					<select id="item_category" name="item_category" class="form-select item_input">
 						<option selected>==========분류===========</option>
@@ -41,23 +41,23 @@
 						<option value="기타">기타</option>
 					</select>
 				</div>
-				<div id="input_box" class="container">
+				<div id="input_box3" class="container">
 					<p class="itemEnroll_subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_price" id="item_price" placeholder="가격">
 				</div>
-				<div id="input_box" class="container">
+				<div id="input_box4" class="container">
 					<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 					<input type="text" class="form-control item_input d-inline"
 						name="item_place" id="item_place" placeholder="장소">
 				</div>
-				<div id="input_box" class="container">
+				<div id="input_box5" class="container">
 					<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
 					<input style="width: 270px" type="file" name="item_image" id="item_image">
 				</div>
 				<div class="container_btn">
 					<button type="submit" id="itemEnroll_form"
-						class="btn btn-success btn-sm" onclick="submitUploadForm('${path}/uploadOK.do')">등록</button>
+						class="btn btn-success btn-sm">등록</button>
 					<button type="reset" class="btn btn-success btn-sm">취소</button>
 				</div>
 			</form>
@@ -73,12 +73,12 @@
 
 </section>
 
-<script>
+<!-- <script>
 	function submitUploadForm(url) {
 		console.log("submitUploadForm() 실행")
 		$("#itemEnroll_form").attr("action", url);
         $("#itemEnroll_form").submit();
 	}
-</script>
+</script> -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
