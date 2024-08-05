@@ -102,7 +102,7 @@
 					<button type="button" id="btn_withdraw" class="btn btn-success btn-sm">탈퇴하기</button>
 				</div>
 					
-				<form id="wd_hide1" method="post" action="/useditems/withdraw.do">
+				<form id="wd_hide1" method="post" action="${path}/withdraw.do">
 					<div id="withdraw_box" class="container">
 						<p class="subtitle fs-5 ">회&nbsp;원&nbsp;탈&nbsp;퇴</p>
 						<input type="password" class="info_box form-control d-inline mb-2"
