@@ -1,5 +1,6 @@
 package com.ss.useditems.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,28 +25,28 @@ public class ItemController {
 	@Autowired
 	private ItemService service;
 	private MemberService mService;
-	
+
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
-		
-		if(currentPage == null) {
+
+		if (currentPage == null) {
 			currentPage = "1";
 		}
-		
+
 		int currentPage_ = Integer.parseInt(currentPage);
-		
-		//int currentPage = 1;
+
+		// int currentPage = 1;
 		try {
 			// currentPage = Integer.parseInt(currentPage);
-			
+
 		} catch (Exception e) {
 		}
 		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
-		
+
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
-		model.addAttribute("pageInfo", pageInfo);		
+		model.addAttribute("pageInfo", pageInfo);
 
 		return "item/itemList";
 	}
@@ -62,17 +63,40 @@ public class ItemController {
 		return "item/itemEnroll";
 	}
 
-	@RequestMapping("/item/interest.do")
-	public String interest(HttpSession session, Model model) {
-		System.out.println("interest 페이지");
+//   @RequestMapping("/item/interest.do")
+//   public String interest(HttpSession session, Model model) {
+//      System.out.println("interest 페이지");
+//
+//      MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+//      if (loginMember != null) {
+//         int accIndex = loginMember.getAcc_index();
+//         List<ItemDTO> interestItemList = service.interestItem(accIndex);
+//         
+//         model.addAttribute("interestItemList", interestItemList);
+//      }else {
+//         return "account/login";
+//      }
+//      return "item/interest";
+//   }
 
+	@RequestMapping("/item/interest.do")
+	public String interest(Model model, HttpSession session, String currentPage) {
+		System.out.println("insert 페이지");
+		System.out.println("currentPage: " + currentPage);
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		if (loginMember != null) {
-			int accIndex = loginMember.getAcc_index();
-			List<ItemDTO> interestItemList = service.interestItem(accIndex);
-			
-			model.addAttribute("interestItemList", interestItemList);
-		}else {
+			if (currentPage == null) {
+				currentPage = "1";
+			}
+			int accIndex=loginMember.getAcc_index();
+			int currentPage_ = Integer.parseInt(currentPage);
+
+			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
+
+			model.addAttribute("itemList", pageInfo.getDtoContainer2());
+			model.addAttribute("pageInfo", pageInfo);
+
+		} else {
 			return "account/login";
 		}
 		return "item/interest";
@@ -81,16 +105,19 @@ public class ItemController {
 	@RequestMapping("/item/deleteInterest.do")
 	public String deleteInterest(@RequestParam("itemId") int itemId, HttpSession session, Model model) {
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-		int accIndex=loginMember.getAcc_index();
-		boolean isDeleted = service.deleteInterestItem(accIndex, itemId);
+		int accIndex = loginMember.getAcc_index();
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("accIndex", accIndex);
+		params.put("itemId", itemId);
+		boolean isDeleted = service.deleteInterestItem(params);
 		System.out.println(isDeleted);
-        if (isDeleted) {
-            List<ItemDTO> interestItemList = service.interestItem(accIndex);
-            model.addAttribute("interestItemList", interestItemList);
-        } else {
-            // 삭제 실패 시 처리 로직 추가
-            model.addAttribute("error", "삭제 실패");
-        }
+		if (isDeleted) {
+			List<ItemDTO> interestItemList = service.interestItem(saccIndex);
+			model.addAttribute("interestItemList", interestItemList);
+		} else {
+			// 삭제 실패 시 처리 로직 추가
+			model.addAttribute("error", "삭제 실패");
+		}
 
 		return "redirect:/item/interest.do";
 	}

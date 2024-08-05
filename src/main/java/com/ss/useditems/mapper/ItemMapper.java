@@ -14,7 +14,7 @@ public interface ItemMapper {
 
 	ArrayList<ItemDTO> searchItems(String searchValue);
 
-	List<ItemDTO> interest(@Param("accIndex") int accIndex);
+	ArrayList<ItemDTO> interest(@Param("accIndex") int accIndex);
 
 	int deleteInterestItem(Map<String,Integer> params);
 
