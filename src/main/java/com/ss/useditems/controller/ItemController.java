@@ -28,7 +28,27 @@ public class ItemController {
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
+		
+		if(currentPage == null) {
+			currentPage = "1";
+		}
+		
+		int currentPage_ = Integer.parseInt(currentPage);
 		System.out.println("currentPage: " + currentPage);
+		
+		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
+		model.addAttribute("searchValue", searchValue);	
+		model.addAttribute("itemList", pageInfo.getDtoContainer2());
+		model.addAttribute("pageInfo", pageInfo);		
+
+		return "item/itemList";
+	}
+	
+	@RequestMapping("/item/categoryList.do")
+	public String categoryList(Model model, String categoryList, String currentPage) {
+		System.out.println("itemList 페이지");
+		System.out.println("currentPage: " + currentPage);
+		System.out.println("categoryList: " + categoryList);
 		
 		if(currentPage == null) {
 			currentPage = "1";
@@ -36,13 +56,7 @@ public class ItemController {
 		
 		int currentPage_ = Integer.parseInt(currentPage);
 		
-		//int currentPage = 1;
-		try {
-			// currentPage = Integer.parseInt(currentPage);
-			
-		} catch (Exception e) {
-		}
-		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
+		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
 		
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);		

@@ -12,13 +12,20 @@
 
 .category {
     width: 1000px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 150px;
     background-color: white;
-    gap: 30px;
+    margin:0;
+    padding-top: 40px;
     margin-bottom: 50px;
+    text-align: center;
+}
+
+.category label{
+	margin-right: 10px;
+}
+
+.category div:first-child {
+	margin-bottom: 10px;
 }
 .category button{
 	width: 80px;
