@@ -117,7 +117,7 @@ public class ItemController {
 		boolean isDeleted = service.deleteInterestItem(params);
 		System.out.println(isDeleted);
 		if (isDeleted) {
-			List<ItemDTO> interestItemList = service.interestItem(saccIndex);
+			List<ItemDTO> interestItemList = service.interestItem(accIndex);
 			model.addAttribute("interestItemList", interestItemList);
 		} else {
 			// 삭제 실패 시 처리 로직 추가
