@@ -39,7 +39,6 @@ public class ItemEnrollController {
 		}
 
 		String fileRealName = item_image.getOriginalFilename();
-		long size = item_image.getSize();
 
 		// 서버에 저장할 파일명으로 확장자명 지정하기
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
