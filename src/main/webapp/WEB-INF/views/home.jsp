@@ -6,41 +6,11 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+<script defer src="${path}/resources/js/home.js"></script>
 
->>>>>>> ocy
-<section id="content" class="container" style="padding-top: 100px;">
-	<h1>메인 컨테이너</h1>
-	<a href="${path}/account/login.do">로그인</a><br>
-	<a href="${path}/account/signup.do">회원가입</a><br>
-	<a href="${path}/item/itemList.do">매물검색</a><br>
-	<a href="${path}/item/itemEnroll.do">매물등록</a><br>
-	<a href="${path}/account/acc_info.do?acc_id=id_test2">계정 정보 조회 페이지(id_test2)</a><br>
-	<a href="${path}/account/acc_info.do?acc_id=id_test4">계정 정보 조회 페이지(id_test4)</a><br>
-	<a href="${path}/blacklist/complainList.do">사기 조회 페이지</a><br>
-	<a href="${path}/blacklist/mainProto1.do">메인프로토1</a><br>
-	<a href="${path}/item/interest.do">찜한 상품</a><br>
-	<a href="${path}/chat/chat.do">채팅하기</a><br>
-	<a href="${path}/common/test.do">테스트</a><br>
-	
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
-
->>>>>>> ocy
 <section id="content" class="home_page container">
 
 	<h1>캐러셀 ad1</h1>
@@ -207,25 +177,6 @@
 	</div>
 
 
-
-
-
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
->>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
-=======
-
->>>>>>> ocy
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
