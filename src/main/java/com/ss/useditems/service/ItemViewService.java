@@ -29,10 +29,9 @@ public class ItemViewService {
 		return mapper.insertReply(dto);
 	}
 
-	 // 댓글 조회 메소드 추가
-	   public List<ReplyDTO> selectRepliesByItemIndex(int item_index) {
-	      return mapper.selectRepliesByItemIndex(item_index);
-	   }
+	public List<ReplyDTO> selectReplyByItemIndex(int item_index) {
+	    return mapper.selectReplyByItemIndex(item_index);
+	}
 	
 	
 }

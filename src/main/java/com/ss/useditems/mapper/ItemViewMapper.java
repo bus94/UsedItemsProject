@@ -17,8 +17,7 @@ public interface ItemViewMapper {
 
 	int insertReply(ReplyDTO dto);
 
-	// 댓글 조회 메소드 추가
-	   List<ReplyDTO> selectRepliesByItemIndex(int item_index);
+	List<ReplyDTO> selectReplyByItemIndex(int item_index);
 
 
 

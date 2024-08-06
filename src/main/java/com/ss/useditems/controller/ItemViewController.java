@@ -27,8 +27,7 @@ public class ItemViewController {
 		
 		ItemDTO item = service.selectByItemIndex(item_index);
 		
-		// 댓글 목록을 데이터베이스에서 조회
-		List<ReplyDTO> replyList = service.selectRepliesByItemIndex(item_index);
+		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
 		
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
 		System.out.println("item: " + item);
@@ -50,7 +49,6 @@ public class ItemViewController {
 	    System.out.println(itemNo);
 	    System.out.println(content);
 	    
-	    // 로그인 확인
 	    if (loginMember == null) {
 	        model.addAttribute("msg", "로그인 후 이용 바랍니다.");
 	        model.addAttribute("location", "/account/login.do");
@@ -58,13 +56,7 @@ public class ItemViewController {
 	    }
 
 	    if (content == null || content.trim().isEmpty()) {
-	        model.addAttribute("msg", "리플 내용은 비어 있을 수 없습니다.");
-	        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
-	        return "common/msg";
-	    }
-	    
-	    if (content == null || content.trim().isEmpty()) {
-	        model.addAttribute("msg", "리플 내용은 비어 있을 수 없습니다.");
+	        model.addAttribute("msg", "댓글을 입력하세ㅕㅇ.");
 	        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 	        return "common/msg";
 	    }
@@ -81,7 +73,7 @@ public class ItemViewController {
 	    }
 	    
 	    // 댓글 목록 다시 조회
-	    List<ReplyDTO> replyList = service.selectRepliesByItemIndex(itemNo);
+	    List<ReplyDTO> replyList = service.selectReplyByItemIndex(itemNo);
 	    model.addAttribute("replyList", replyList);
 	    
 	    model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
