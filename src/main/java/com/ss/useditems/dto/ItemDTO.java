@@ -1,6 +1,7 @@
 package com.ss.useditems.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +26,7 @@ public class ItemDTO {
 	private int item_interest;
 	private Date item_offDate;
 	private int item_buyer;
+	
+	private List<ReplyDTO> replies;
 
 }
