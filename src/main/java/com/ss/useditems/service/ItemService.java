@@ -49,11 +49,8 @@ public class ItemService {
 		return mapper.interest(accIndex);
 	}
 
-	public boolean deleteInterestItem(int accIndex, int itemId) {
-		Map<String, Integer> params = new HashMap<String, Integer>();
-		System.out.println("service acc" + accIndex + "  Item" + itemId);
-		params.put("accIndex", accIndex);
-		params.put("itemId", itemId);
+	public boolean deleteInterestItem(Map<String, Integer> params) {
+	
 		return mapper.deleteInterestItem(params) > 0;
 	}
 
