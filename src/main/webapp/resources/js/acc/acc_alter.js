@@ -5,7 +5,14 @@
 // $().ready(function(){
 //    console.log('acc_alter.js 연결');
 //	});
+$(function() {
 
+	console.log('acc_alter.js 연결');
+
+	
+	
+
+});
 
 $('#alt_pw').click(function(){
 	// 비밀번호 '변경하기' 누르면
@@ -135,14 +142,7 @@ $('#setStatus').click(function() { // '탈퇴' 버튼 누르면
 
 
 
-$(function() {
 
-	console.log('acc_alter.js 연결');
-
-	
-	
-
-});
 
 
 

@@ -51,13 +51,17 @@ public class BlacklistController {
 		} catch (Exception e) {
 		}
 
-//		try {
-//			String black_object = param.get("black_object");
-//			if (black_object != null && black_object != "") {
-//				queryMap.put("black_object", black_object);
-//			}
-//		} catch (Exception e) {
-//		}
+		try {
+		String subject_id = param.get("subject_id");
+		if (subject_id != null && subject_id != "") {
+			queryMap.put("subject_id", subject_id);
+		}
+		} catch (Exception e) {
+		}
+		
+		
+		
+		
 //---------------------------------------------------------------------
 //----------------------------현재 페이지와 쿼리맵 넘김----------------------------		
 		int currentPage = 1;
@@ -121,7 +125,7 @@ public class BlacklistController {
 		
 		} catch (Exception e){
 			e.printStackTrace();
-			model.addAttribute("msg", "오류로 인하여 신고가 정상적으로 처리되지 않았습니다.");
+			model.addAttribute("msg", "오류로 인하여 신고가 정상적으로 처리되지 않았습니다."+"\\r\\n"+"아이디를 확인하여 주시기 바랍니다.");
 			model.addAttribute("location", "/blacklist/complainList.do");
 		}
 		return "common/msg";
