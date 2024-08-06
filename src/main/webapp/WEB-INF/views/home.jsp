@@ -12,7 +12,6 @@
 	<a href="${path}/account/login.do">로그인</a><br>
 	<a href="${path}/account/signup.do">회원가입</a><br>
 	<a href="${path}/item/itemList.do">매물검색</a><br>
-	<a href="${path}/item/itemView.do">매물상세</a><br>
 	<a href="${path}/item/itemEnroll.do">매물등록</a><br>
 	<a href="${path}/account/acc_info.do?acc_id=id_test2">계정 정보 조회 페이지(id_test2)</a><br>
 	<a href="${path}/account/acc_info.do?acc_id=id_test4">계정 정보 조회 페이지(id_test4)</a><br>
