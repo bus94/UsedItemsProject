@@ -53,7 +53,7 @@
 				</div>
 				<div id="input_box5" class="container">
 					<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
-					<input style="width: 270px" type="file" name="item_image" id="item_image">
+					<input style="width: 270px" type="file" name="item_image" id="item_image" multiple>
 				</div>
 				<div class="container_btn">
 					<button type="submit" id="itemEnroll_form"

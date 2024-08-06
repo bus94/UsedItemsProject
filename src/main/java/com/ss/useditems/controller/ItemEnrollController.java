@@ -38,10 +38,17 @@ public class ItemEnrollController {
 			return "common/msg";
 		}
 
+		// 파일명 가져오기
 		String fileRealName = item_image.getOriginalFilename();
+		// 파일 사이즈
+		long size = item_image.getSize();
+		System.out.println("파일명: " + fileRealName);
+		System.out.println("파일 사이즈: " + size);
 
 		// 서버에 저장할 파일명으로 확장자명 지정하기
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."));
+		System.out.println("파일 확장자명 fileExtension: " + fileExtension);
+		// 업로드 위치 지정
 		String uploadFolder = "C:\\test\\upload";
 
 		// 디렉토리 존재 여부 확인 후 없으면 생성
@@ -51,11 +58,14 @@ public class ItemEnrollController {
 		}
 
 		// UUID 적용하여 고유 파일명 생성하기
-		String uniqueName = UUID.randomUUID().toString();
-		String saveFileName = uniqueName + fileExtension;
-		System.out.println("saveFileName 이름: " + saveFileName);
-		File saveFile = new File(uploadFolder + "\\" + saveFileName);
+		/*
+		 * String uniqueName = UUID.randomUUID().toString(); String saveFileName =
+		 * uniqueName + fileExtension; System.out.println("saveFileName 이름: " +
+		 * saveFileName); File saveFile = new File(uploadFolder + "\\" + saveFileName);
+		 */
 
+		File saveFile = new File(uploadFolder + "\\" + fileRealName);		
+		
 		try {
 			// 실제 파일 저장 메서드
 			item_image.transferTo(saveFile);
@@ -77,7 +87,7 @@ public class ItemEnrollController {
 		enrollItem.setItem_category(item_category);
 		enrollItem.setItem_price(item_price);
 		enrollItem.setItem_place(item_place);
-		enrollItem.setItem_image(saveFileName);
+		enrollItem.setItem_image(fileRealName);
 		enrollItem.setItem_seller(loginMember.getAcc_index());
 
 		if (itemEnrollService.itemEnroll(enrollItem) > 0) {
