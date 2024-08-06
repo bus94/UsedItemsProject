@@ -13,6 +13,7 @@ import com.ss.useditems.dto.ItemDTO;
 public interface ItemMapper {
 
 	ArrayList<ItemDTO> searchItems(String searchValue);
+	ArrayList<ItemDTO> searchItems2(String categoryList);
 
 	List<ItemDTO> interest(@Param("accIndex") int accIndex);
 

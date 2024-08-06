@@ -20,9 +20,14 @@
 
 	<select id="searchItems" parameterType="String"
 		resultMap="itemMap">
-		SELECT *
-		FROM item
-		WHERE item_title LIKE '%${searchValue}%'
+		 SELECT *
+    	FROM item where item_title LIKE '%${searchValue}%'
+	</select>
+	
+	<select id="searchItems2" parameterType="String"
+		resultMap="itemMap">
+		 SELECT *
+    	FROM item where item_category = #{categoryList}
 	</select>
 
 	<select id="interest" parameterType="Integer" resultMap="itemMap">

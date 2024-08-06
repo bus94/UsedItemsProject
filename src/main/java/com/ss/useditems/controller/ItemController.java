@@ -55,7 +55,8 @@ public class ItemController {
 		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
 		
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
-		model.addAttribute("pageInfo", pageInfo);		
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("categoryList",categoryList);
 
 		return "item/itemList";
 	}
