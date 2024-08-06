@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="categoryList" value="${param.categoryList}" />
-<%-- <c:set var="categories" value="${'상의', '하의', '신발', '기타'}" /> --%>
+<%-- <c:set var="categories" value="${['상의', '하의', '신발', '기타의류', '지갑', '피규어', '전자기기', '가구', '식품', '기타']}" /> --%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="item_content_list" style="padding-top: 100px;">
@@ -14,13 +14,13 @@
 	<form action="${path}/item/categoryList.do" method="get">
 		<div class="category">
 			<div>
-				<input type="radio" name="searchType" id="content" value="nearPlace"/>
+				<input type="radio" name="searchType" id="searchType" value="nearPlace"/>
 				<label class="radio_type" for="내용">가까운 순</label>
 				
-				<input type="radio" name="searchType" id="content" value="popular" />
+				<input type="radio" name="searchType" id="searchType" value="popular" />
 				<label class="radio_type" for="내용">인기많은 순</label>
 				
-				<input type="radio" name="searchType" id="content" value="bestSeller" />
+				<input type="radio" name="searchType" id="searchType" value="bestSeller" />
 				<label class="radio_type" for="내용">거래가 많은 판매자순</label>
 			</div>
 			

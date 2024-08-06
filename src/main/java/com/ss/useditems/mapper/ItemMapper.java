@@ -25,7 +25,7 @@ public interface ItemMapper {
 
 	ArrayList<ItemDTO> selectByBestSeller(Map<String, Object> map);
 
-	ArrayList<ItemDTO> selectByDefault();
+	ArrayList<ItemDTO> selectByDefault(Map<String, Object> map);
 
 
 

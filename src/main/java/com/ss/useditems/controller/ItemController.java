@@ -47,6 +47,7 @@ public class ItemController {
 	public String categoryList(Model model, @RequestParam(required = false) String searchType, @RequestParam(required = false) String[] categoryList, String currentPage) {
 		System.out.println("itemList 페이지");
 
+		// 처음 페이지를 들어갈 땐 현재 페이지를 1로 설정
 		if (currentPage == null) {
 			currentPage = "1";
 		}
@@ -54,27 +55,34 @@ public class ItemController {
 		System.out.println("searchType: " + searchType);
 		System.out.println("categoryList: " + categoryList);
 		
+		// 라디오버튼에서 선택한 searchType이 없다면 default로 설정
 		if(searchType == null) {
 			searchType = "default";
 		}
 		
+		// 체크박스에서 선택한 categoryList이 없다면 default로 설정
 		if (categoryList == null || categoryList.length == 0) {
 	        categoryList = new String[]{"default"};
 	    }
 		
+		// 불러온 searchType과 categoryList를 매핑
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchType", searchType);
 		map.put("categoryList", categoryList);
 		
-		System.out.println("searchType: " + searchType);
-		System.out.println("categoryList: " + Arrays.toString(categoryList));
+		System.out.println("map: " + map);
 		
+		// String으로 불러온 현재 페이지를 int 타입으로 형변환
 		int currentPage_ = Integer.parseInt(currentPage);
 		
+		// PageInfo 선언
 		PageInfo pageInfo;
 
-		System.out.println("switch 시작");
+		System.out.println("=====switch 시작=====");
+		// searchType에 따른 switch문
 		switch(searchType) {
+		
+		// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
 		case "nearPlace":
 			pageInfo = service.selectByNearPlace(currentPage_, map);
 			break;
@@ -87,18 +95,16 @@ public class ItemController {
 			pageInfo = service.selectByBestSeller(currentPage_, map);
 			break;
 			
+		// default일땐 map에 searchType: default / categoryList: 선택한 값들 넘긴다
 		default :
-			pageInfo = service.selectByDefault(currentPage_);
+			pageInfo = service.selectByDefault(currentPage_, map);
 			break;
 		}
-		System.out.println("switch 끝");
+		System.out.println("=====switch 끝=====");
 		
-		model.addAttribute("itemList", pageInfo.getDtoContainer2());
-		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("categoryList",categoryList);
 		List<ItemDTO> itemList = pageInfo.getDtoContainer2();
 		System.out.println("getDtoContainer2의 itemList: " + itemList);
-		
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("pageInfo", pageInfo);
 

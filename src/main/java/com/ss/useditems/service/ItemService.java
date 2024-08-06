@@ -92,20 +92,16 @@ public class ItemService {
 		return pageinfo;
 	}
 
-	public PageInfo selectByDefault(int currentPage_) {
+	public PageInfo selectByDefault(int currentPage_, Map<String, Object> map) {
 		System.out.println("selectByDefault() 실행");
 		
-		ArrayList<ItemDTO> unpaged_list = mapper.selectByDefault();
-		System.out.println("1");
+		ArrayList<ItemDTO> unpaged_list = mapper.selectByDefault(map);
 		
 		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
-		System.out.println("2");
 		
 		List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
-		System.out.println("3");
 		
 		pageinfo.setDtoContainer2(paged_list);
-		System.out.println("4");
 
 		return pageinfo;
 	}
