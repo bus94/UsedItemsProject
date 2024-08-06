@@ -69,12 +69,7 @@ public class ItemEnrollController {
 		try {
 			// 실제 파일 저장 메서드
 			item_image.transferTo(saveFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-			model.addAttribute("msg", "파일 업로드 중 오류가 발생하였습니다.");
-			model.addAttribute("location", "/item/itemEnroll.do");
-			return "common/msg";
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "파일 업로드 중 오류가 발생하였습니다.");
 			model.addAttribute("location", "/item/itemEnroll.do");
