@@ -25,6 +25,10 @@
 
 body {
 	font-family: "GmarketSansMedium", "Noto Sans KR", sans-serif;
+	margin:0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
 }
 
 header {
@@ -34,6 +38,235 @@ header {
 	background-color: white;
 	z-index: 1;
 }
+
+footer {
+	position: relative;
+	text-align: center;
+	padding: 100px 0 50px 0;
+	color: black;
+}
+
+.section_toggleOn {
+	margin-top: 250px;
+}
+
+
+
+@media screen and (min-width: 992px) {
+	/* 992px보다 커지면 */
+
+
+}
+
+@media screen and (max-width: 992px) {
+	/* 992px보다 작아지면 */
+
+	#navigator .max992off {
+		display: none;
+	}
+
+}
+
+
+
+
+
+
+/* 어디에 쓰는 건지??????  */
+.list-group-item a {
+	text-decoration-line: none;
+	color: black;
+}
+
+.input_text {
+	width: 400px;
+	height: 40px;
+}
+
+/* 헤더.jsp navigator */
+#navigator #nav_container {
+	height: 60px;
+}
+
+
+#navigator .navbar-brand {
+	width: 240px;
+	height: 52px;
+}
+
+#navigator #brand_img {
+	width: auto;
+	height: auto;
+}
+
+
+#navigator .nav_icon {
+	width: 30px;
+	height: 30px;
+}
+
+#navigator .nav_side_icon {
+    color: black;
+    position: fixed;
+    right: 5%;
+
+    font-size: 2rem;
+}
+
+#navigator #nav_user {
+    top: 100px;
+}
+
+#navigator #nav_wish {
+    top: 150px;    
+}
+
+#navigator #nav_chat {
+    bottom: 8%;
+}
+
+#navigator #nav_toTop {
+    bottom: 2%;
+}
+
+
+/* home.jsp */
+.home_page {
+	padding-top: 100px;
+}
+
+
+#categories {
+    margin: auto;
+    text-align: center;
+}
+
+.majors {
+    list-style-type: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.major {
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px 10px;
+}
+
+.major_icon {
+    font-size: 15px;
+    margin: 10px;
+}
+
+.major_title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+.ad_banner {
+	width: 800px;
+	height: 200px;
+}
+
+
+.carsl {
+	height : 500px;
+}
+
+
+.acc_info_page .item { /* itemList.css 따옴*/
+    width: 190px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid rgb(219, 219, 219);
+    margin-bottom: 14px;
+}
+
+/*---------------itemList.css-----------------*/
+
+
+.item img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    margin-top: 12px;
+}
+
+.item_view {
+    width: 160px;
+    padding-top: 12px;
+}
+
+.item_view h3 {
+    font-size: 17px;
+
+}
+
+.item_price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item_view h4 {
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.item_view h5 {
+    font-size: 15px;
+
+}
+
+.item_like {
+    display: flex;
+    font-size: 13px;
+}
+
+.item_like p:first-child {
+    margin-right: 15px;
+}
+
+.item_like p {
+    margin-bottom: 6px;
+    color: rgb(187, 187, 187);
+}
+
+.item_addr {
+    border-top: 1px solid rgb(206, 206, 206);
+    display: flex;
+    gap: 3px;
+}
+
+.item_addr p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: 8px;
+}
+
+.item_addr img {
+    width: 16px;
+    height: 16px;
+    margin-top: 6px;
+    opacity: 50%;
+}
+
+
+
+
+
+/* 로그인 */
 
 .login-container {
 	width: 1000px;
@@ -45,25 +278,10 @@ header {
 	align-items: center;
 }
 
-.logo a {
-	width: 200px;
-	height: 100px;
-}
-
-.logo img {
-	width: auto;
-	height: auto;
-}
-
 .login-container form {
 	width: 450px;
 	height: 40px;
 	display: flex;
-}
-
-.input_text {
-	width: 400px;
-	height: 40px;
 }
 
 .login-container .sch_smit {
@@ -101,24 +319,6 @@ header {
 	display: flex;
 }
 
-#top_btn {
-	position: fixed;
-	bottom: 40px;
-	right: 40px;
-	z-index: 1;
-	background-color: white;
-	border: 2px solid #dbdbdb;
-	outline: none;
-	cursor: pointer;
-	padding: 5px;
-	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	font-size: 10px;
-	font-weight: 500;
-	color: #333333;
-}
-
 .login_profile {
 	display: flex;
 }
@@ -145,45 +345,7 @@ header {
 	left: -6px;
 }
 
-.sidebar {
-	position: fixed;
-	right: 40px;
-	top: 500px;
-	z-index: 1;
-	background-color: transparent;
-	outline: none;
-	cursor: pointer;
-	padding: 5px;
-	width: 200px;
-	height: 500px;
-	color: #333333;
-	transform: translateY(-50%);
-}
-
-.list-group-item a {
-	text-decoration-line: none;
-	color: black;
-}
-
-body {
-	margin:0;
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-}
-
-footer {
-	position: relative;
-	text-align: center;
-	padding: 100px 0 50px 0;
-	color: black;
-}
 
 
-@media screen and (max-width: 992px) {
-/* 사이드바 반응형 안보이기 */
-    .sidebar {
-        display: none;
-    }
 
-}
+

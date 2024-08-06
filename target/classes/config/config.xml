@@ -10,6 +10,9 @@
 
 		<typeAlias type="com.ss.useditems.dto.ItemDTO"
 			alias="itemDTO" />
+			
+		<typeAlias type="com.ss.useditems.dto.ReplyDTO"
+			alias="ReplyDTO" />
 
 
 	</typeAliases>
