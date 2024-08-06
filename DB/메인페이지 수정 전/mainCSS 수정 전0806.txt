@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "GmarketSansMedium", "Noto Sans KR", sans-serif;
+	margin:0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+header {
+	border-bottom: 1px solid gray;
+	position: fixed;
+	width: 100%;
+	background-color: white;
+	z-index: 1;
+}
+
+footer {
+	position: relative;
+	text-align: center;
+	padding: 100px 0 50px 0;
+	color: black;
+}
+
+
+.login-container {
+	width: 1000px;
+	margin: auto;
+	height: 60px;
+	background-color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+
+.list-group-item a {
+	text-decoration-line: none;
+	color: black;
+}
+
+.logo a {
+	width: 200px;
+	height: 100px;
+}
+
+.logo img {
+	width: auto;
+	height: auto;
+}
+
+.login-container form {
+	width: 450px;
+	height: 40px;
+	display: flex;
+}
+
+.input_text {
+	width: 400px;
+	height: 40px;
+}
+
+.login-container .sch_smit {
+	width: 30px;
+	background-color: white;
+	border: none;
+}
+
+.login-container .sch_smit  img {
+	width: 35px;
+	margin-top: 3px;
+}
+
+.login {
+	display: flex;
+}
+
+.login_img {
+	width: 30px;
+	height: 30px;
+}
+
+.login img {
+	width: 30px;
+	margin-right: 3px;
+}
+
+.login_text {
+	color: black;
+	text-decoration: none;
+	margin-top: 7px;
+}
+
+.login_btn {
+	display: flex;
+}
+
+.login_profile {
+	display: flex;
+}
+
+.login_profileIn {
+	display: flex;
+}
+
+.login_profileIn a:first-child {
+	margin-right: 10px;
+	margin-top: 1px;
+}
+
+.login_profile img {
+	width: 30px;
+}
+
+.login_profile_text {
+	color: black;
+	text-decoration: none;
+	margin-top: 5px;
+	position: relative;
+	top: 2px;
+	left: -6px;
+}
+
+/* #top_btn {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 1;
+	background-color: white;
+	border: 2px solid #dbdbdb;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	font-size: 10px;
+	font-weight: 500;
+	color: #333333;
+} */
+
+/* .sidebar {
+	position: fixed;
+	right: 40px;
+	top: 500px;
+	z-index: 1;
+	background-color: transparent;
+	outline: none;
+	cursor: pointer;
+	padding: 5px;
+	width: 200px;
+	height: 500px;
+	color: #333333;
+	transform: translateY(-50%);
+} */
+
+/* @media screen and (max-width: 992px) {
+사이드바 반응형 안보이기
+    .sidebar {
+        display: none;
+    } */
+
+}

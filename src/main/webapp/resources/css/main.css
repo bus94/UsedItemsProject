@@ -46,6 +46,12 @@ footer {
 	color: black;
 }
 
+.section_toggleOn {
+	margin-top: 250px;
+}
+
+
+
 @media screen and (min-width: 992px) {
 	/* 992px보다 커지면 */
 
@@ -126,12 +132,8 @@ footer {
 
 /* home.jsp */
 .home_page {
-	margin-top: 100px;
+	padding-top: 100px;
 }
-
-.home_page_toggleOn {
- 	padding-top: 250px;
- }
 
 
 #categories {

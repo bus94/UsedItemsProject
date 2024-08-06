@@ -177,7 +177,7 @@
 			
 			$('.navbar-toggler').click(function() {
 				console.log('Nav토글버튼 클릭');
-				$('.home_page').toggleClass('home_page_toggleOn');
+				$('section').toggleClass('section_toggleOn');
 				$('#nav_user').toggle();
 				$('#nav_wish').toggle();
 			});
