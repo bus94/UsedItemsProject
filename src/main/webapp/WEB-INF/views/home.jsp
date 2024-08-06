@@ -19,6 +19,8 @@
 	<a href="${path}/blacklist/mainProto1.do">메인프로토1</a><br>
 	<a href="${path}/item/interest.do">찜한 상품</a><br>
 	<a href="${path}/chat/chat.do">채팅하기</a><br>
+	<a href="${path}/common/test.do">테스트</a><br>
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

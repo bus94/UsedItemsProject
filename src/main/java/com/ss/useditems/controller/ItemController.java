@@ -134,4 +134,14 @@ public class ItemController {
 
 		return "redirect:/item/interest.do";
 	}
+	
+	@RequestMapping("/common/test.do")
+	public String test(Model model) {
+	
+		
+		
+		
+		return "common/test";
+
+	}
 }
