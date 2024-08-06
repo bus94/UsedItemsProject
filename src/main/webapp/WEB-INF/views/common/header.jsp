@@ -5,28 +5,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>세잎마켓</title>
+
+<!-- JQuery -->
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 <!-- 슬릭 css-->
 <link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
 <!-- 슬릭js -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<!-- 부트스트랩 -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
 
-<!-- css, js 포함 -->
+<!-- 개별 css, js 포함 -->
 <link rel="stylesheet"
 	href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
@@ -37,11 +41,6 @@
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemEnroll.css?v=${systemProperties['timestamp']}">
-
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemView.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
@@ -53,12 +52,6 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css?v=${systemProperties['timestamp']}" />
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css?v=${systemProperties['timestamp']}" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 <script src="${path}/resources/js/item/itemView.js"></script>
 
 <!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
@@ -71,61 +64,123 @@
 </head>
 <body>
 
-<div id="wrapper">
-	<header>
-		<div class="login-container">
-			<div class="logo">
-				<a href="${path}/"><img alt="로고"
-					src="${path}/resources/img/logo.png"></a>
+	<div id="wrapper">
+		<!-- 전체 페이지 wrapper -->
+
+		<nav id="navigator"
+			class="fixed-top navbar navbar-expand-lg bg-body-tertiary bg-success-subtle">
+			<div id="nav_container" class="container-fluid ">
+				<a class="navbar-brand" href="${path}/"> 
+				<img id="brand_img" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
+				</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="${path}/item/itemList.do">
+								<img class="nav_icon" alt="매물 검색" src="${path}/resources/img/shop.png">
+							매물검색</a>
+						</li>
+						<c:if test="${loginMember == null}">
+						<li class="nav-item">
+							<a class="nav-link"	href="${path}/account/login.do">
+								<img class="nav_icon" alt="로그인" src="${path}/resources/img/login.png">
+							로그인</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"	href="${path}/account/signup.do">
+								<img class="nav_icon" alt="회원가입" src="${path}/resources/img/login2.png">
+							회원가입</a>
+						</li>
+						</c:if>
+						<c:if test="${loginMember != null}">
+						<li class="nav-item">
+							<a class="nav-link" id="logout" href="">
+								<img class="nav_icon" alt="로그아웃" src="${path}/resources/img/login.png">
+							로그아웃</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${path}/item/itemEnroll.do">
+								<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/message.png">
+							매물등록</a>
+						</li>
+						</c:if>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="${path}/blacklist/complainList.do">신고 조회</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="${path}/account/acc_info.do?acc_id=id_test4">타계정 정보</a>
+								</li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<a class="dropdown-item" href="#">Something else here</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<form class="d-flex" role="search" action="${path}/item/itemList.do" method="get">
+						<input
+							class="form-control me-2 focus-ring focus-ring-success border border-success"
+							type="search" placeholder="매물을 검색해보세요!" aria-label="Search" 
+							id="searchValue" name="searchValue" value="${searchValue}">
+						<button class="btn btn-outline-success" type="submit">검색</button>
+					</form>
+				</div>
 			</div>
-			<form action="${path}/item/itemList.do" method="get">
-				<div>
-					<input type="text" id="searchValue" name="searchValue"
-						class="input_text" value="${searchValue}"/>
-					<button type="submit" class="sch_smit">
-						<img alt="검색" src="${path}/resources/img/search.png">
-					</button>
-				</div>
-			</form>
-
-			<c:if test="${loginMember == null}">
-				<div class="login">
-					<div class="login_btn" style="margin-right: 20px;">
-						<a class="login_img" href="${path}/account/login.do"><img
-							alt="로그인" src="${path}/resources/img/login.png"></a> <a
-							class="login_text" href="${path}/account/login.do">로그인</a>
-					</div>
-					<div class="login_btn">
-						<a class="login_img" href="${path}/account/signup.do"><img
-							alt="회원가입" src="${path}/resources/img/login2.png"></a> <a
-							class="login_text" href="${path}/account/signup.do">회원가입</a>
-					</div>
-				</div>
-			</c:if>
-
 			<c:if test="${loginMember != null}">
-				<div class="login_profile">
-					<div class="login_profileIn">
-						<a class="login_img" href="${path}/account/my_info.do"> <img
-							alt="${path}/resources/img/login.png"
-							src="${path}/resources/img/login.png"></a> <a
-							class="login_profile_text" href="${path}/account/my_info.do">${loginMember.acc_nickname}</a>
-					</div>
-					<div>
-						<button type="button" class="btn" id=logout>로그아웃</button>
-					</div>
-				</div>
+			<!-- 회원페이지 -->
+			<a href="${path}/account/my_info.do" id="nav_user" class="nav_side_icon max992off"
+				style="font-weight: bold;"><i class="fa-solid fa-circle-user"></i></a>
+			<!-- 즐겨찾기 -->
+			<a href="${path}/item/interest.do" id="nav_wish" class="nav_side_icon max992off"><i
+				class="fa-brands fa-gratipay"></i></a>
+			<!-- 링크 -->
+			<a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon"><i
+				class="fa-solid fa-circle-nodes"></i></a>
 			</c:if>
-		</div>
-	</header>
+			<!-- 위로가기 -->
+			<a href="" id="nav_toTop" class="nav_side_icon"><i
+				class="fa-solid fa-circle-arrow-up"></i></a>
+		</nav>
 
-	<script>
-		$(document).ready(function() {
-			$('#logout').click(function() {
 
-				if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-					location.href = "${path}/logoutOK.do";
-				}
-			})
-		});
-	</script>
+
+		<script>
+			$(document).ready(function() {
+				$('#logout').click(function() {
+
+					if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
+						location.href = "${path}/logoutOK.do";
+					}
+				})
+			});
+			
+			
+			$('#nav_toTop').click(function() {
+				console.log('TOP 클릭');
+				
+				$('html, body').animate({scrollTop:0	}, 50);
+					return false;
+			});
+
+			
+			$('.navbar-toggler').click(function() {
+				console.log('Nav토글버튼 클릭');
+				$('.home_page').toggleClass('home_page_toggleOn');
+				$('#nav_user').toggle();
+				$('#nav_wish').toggle();
+			});
+
+			
+		</script>
