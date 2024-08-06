@@ -46,45 +46,60 @@ public class ItemController {
 	}
 
 	@RequestMapping("/item/categoryList.do")
-	public String categoryList(Model model, String searchType, String categoryList, String currentPage) {
+	public String categoryList(Model model, @RequestParam(required = false) String searchType, @RequestParam(required = false) String[] categoryList, String currentPage) {
 		System.out.println("itemList 페이지");
-		System.out.println("currentPage: " + currentPage);
-		System.out.println("categoryList: " + categoryList);
 
-		if (currentPage == null) {
-			System.out.println("searchType: " + searchType);
-			System.out.println("categoryList: " + categoryList);
-		}
-
-		if (currentPage == null) {
-			System.out.println("searchType: " + searchType);
-			System.out.println("categoryList: " + categoryList);
-		}
 		if (currentPage == null) {
 			currentPage = "1";
 		}
 
+		System.out.println("searchType: " + searchType);
+		System.out.println("categoryList: " + categoryList);
+		
+		if(searchType == null) {
+			searchType = "default";
+		}
+		
+		if (categoryList == null || categoryList.length == 0) {
+	        categoryList = new String[]{"default"};
+	    }
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchType", searchType);
+		map.put("categoryList", categoryList);
+		
+		System.out.println("searchType: " + searchType);
+		System.out.println("categoryList: " + Arrays.toString(categoryList));
+		
 		int currentPage_ = Integer.parseInt(currentPage);
+		
+		PageInfo pageInfo;
 
-		// categoryList 문자열을 콤마로 분리하고 공백을 제거하여 List로 변환
-		String[] categoryArray = categoryList.split(",");
-
-		Stream<String> categoriesStream = Arrays.stream(categoryArray).map(String::trim);
-		List<String> categoryListItem = categoriesStream.collect(Collectors.toList());
-
-		System.out.println(categoryListItem);
-
-		// searchType과 categoryList를 Map에 저장
-		Map<String, Object> searchParams = new HashMap<>();
-		searchParams.put("searchType", searchType);
-		searchParams.put("categoryList", categoryListItem);
-		System.out.println(searchParams);
-
-		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
-
-		model.addAttribute("itemList", pageInfo.getDtoContainer2());
+		System.out.println("switch 시작");
+		switch(searchType) {
+		case "nearPlace":
+			pageInfo = service.selectByNearPlace(currentPage_, map);
+			break;
+			
+		case "popular":
+			pageInfo = service.selectByPopular(currentPage_, map);
+			break;
+			
+		case "bestSeller":
+			pageInfo = service.selectByBestSeller(currentPage_, map);
+			break;
+			
+		default :
+			pageInfo = service.selectByDefault(currentPage_);
+			break;
+		}
+		System.out.println("switch 끝");
+		
+		List<ItemDTO> itemList = pageInfo.getDtoContainer2();
+		System.out.println("getDtoContainer2의 itemList: " + itemList);
+		
+		model.addAttribute("itemList", itemList);
 		model.addAttribute("pageInfo", pageInfo);
-		model.addAttribute("searchParams", searchParams);
 
 		return "item/itemList";
 	}
@@ -139,3 +154,26 @@ public class ItemController {
 		return "redirect:/item/interest.do";
 	}
 }
+
+/*
+ * // categoryList 문자열을 콤마로 분리하고 공백을 제거하여 List로 변환 String[] categoryArray =
+ * categoryList.split(",");
+ * 
+ * Stream<String> categoriesStream =
+ * Arrays.stream(categoryArray).map(String::trim); List<String> categoryListItem
+ * = categoriesStream.collect(Collectors.toList());
+ * 
+ * System.out.println(categoryListItem);
+ * 
+ * // searchType과 categoryList를 Map에 저장 Map<String, Object> searchParams = new
+ * HashMap<>(); searchParams.put("searchType", searchType);
+ * searchParams.put("categoryList", categoryListItem);
+ * System.out.println(searchParams);
+ * 
+ * PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
+ * 
+ * model.addAttribute("itemList", pageInfo.getDtoContainer2());
+ * model.addAttribute("pageInfo", pageInfo); model.addAttribute("searchParams",
+ * searchParams);
+ * 
+ */

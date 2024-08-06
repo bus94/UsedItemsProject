@@ -18,6 +18,14 @@ public interface ItemMapper {
 
 	int deleteInterestItem(Map<String,Integer> params);
 
+	ArrayList<ItemDTO> selectByNearPlace(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByPopular(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByBestSeller(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByDefault();
+
 
 
 
