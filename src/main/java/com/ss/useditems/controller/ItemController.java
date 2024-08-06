@@ -93,17 +93,14 @@ public class ItemController {
 		}
 		System.out.println("switch 끝");
 		
-<<<<<<< HEAD
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("categoryList",categoryList);
-=======
 		List<ItemDTO> itemList = pageInfo.getDtoContainer2();
 		System.out.println("getDtoContainer2의 itemList: " + itemList);
 		
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("pageInfo", pageInfo);
->>>>>>> 3c168876b45a582209b59f043affdbeac7ae8e5e
 
 		return "item/itemList";
 	}
