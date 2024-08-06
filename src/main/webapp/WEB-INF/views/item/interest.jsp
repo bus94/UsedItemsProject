@@ -13,7 +13,7 @@
 
 	<h1>찜한상품</h1>
 	<div class="interest_item_container" style="padding-top: 100px">
-		<c:forEach var="item" items="${interestItemList}">
+		<c:forEach var="item" items="${interestitemList}">
 			<div class="interest_item">
 				<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
 				<div class="interest_item_info">
@@ -38,16 +38,22 @@
 					</div>
 				</div>
 				<div class="app">
-					<img src="${path}/resources/img/message.png" alt="삭제"> <img
-						src="${path}/resources/img/delete.png" alt="삭제"
+					<img src="${path}/resources/img/message.png" alt="채팅"> 
+					<img src="${path}/resources/img/delete.png" alt="삭제"
 						onclick="deleteInterestItem(${item.item_index})">
 				</div>
 			</div>
+
 		</c:forEach>
+		<c:if test="${empty interestitemList}">
+			<p>찜한 상품이 없습니다.</p>
+			<!-- 데이터가 없는 경우 -->
+		</c:if>
 		<!-- 페이징 -->
 		<div align="center"
 			class="pagination container d-flex justify-content-center">
-			<a href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
+			<a
+				href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
 			&nbsp; <a
 				href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
 			&nbsp;
@@ -59,6 +65,7 @@
 		&nbsp;
 		</c:forEach>
 		</div>
+	</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
