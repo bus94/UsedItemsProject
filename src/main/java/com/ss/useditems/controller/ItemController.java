@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
-import com.ss.useditems.service.MemberService;
 import com.ss.useditems.util.PageInfo;
 
 @Controller
@@ -23,79 +22,40 @@ public class ItemController {
 
 	@Autowired
 	private ItemService service;
-<<<<<<< HEAD
-//<<<<<<< HEAD
-	private MemberService mService;
 
-//=======
-//	
-//>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
-=======
-	
->>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
-		
-		if(currentPage == null) {
-			currentPage = "1";
-		}
-		
-		int currentPage_ = Integer.parseInt(currentPage);
-		System.out.println("currentPage: " + currentPage);
-<<<<<<< HEAD
-//<<<<<<< HEAD
 
 		if (currentPage == null) {
-//=======
-		
-=======
+			currentPage = "1";
+		}
 
->>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
+		int currentPage_ = Integer.parseInt(currentPage);
+		System.out.println("currentPage: " + currentPage);
+
 		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
-		model.addAttribute("searchValue", searchValue);	
+		model.addAttribute("searchValue", searchValue);
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
-		model.addAttribute("pageInfo", pageInfo);		
+		model.addAttribute("pageInfo", pageInfo);
 
 		return "item/itemList";
 	}
-	
+
 	@RequestMapping("/item/categoryList.do")
 	public String categoryList(Model model, String categoryList, String currentPage) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
 		System.out.println("categoryList: " + categoryList);
-		
-		if(currentPage == null) {
-<<<<<<< HEAD
-//>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
-=======
->>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
+
+		if (currentPage == null) {
 			currentPage = "1";
 		}
 
 		int currentPage_ = Integer.parseInt(currentPage);
-<<<<<<< HEAD
-//<<<<<<< HEAD
-
-		// int currentPage = 1;
-		try {
-			// currentPage = Integer.parseInt(currentPage);
-
-		} catch (Exception e) {
-		}
-		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
-
-//=======
-		
-		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
-		
-//>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
-=======
 
 		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
-		
->>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
+
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);
 
@@ -107,22 +67,6 @@ public class ItemController {
 		System.out.println("itemEnroll 페이지");
 		return "item/itemEnroll";
 	}
-
-//   @RequestMapping("/item/interest.do")
-//   public String interest(HttpSession session, Model model) {
-//      System.out.println("interest 페이지");
-//
-//      MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-//      if (loginMember != null) {
-//         int accIndex = loginMember.getAcc_index();
-//         List<ItemDTO> interestItemList = service.interestItem(accIndex);
-//         
-//         model.addAttribute("interestItemList", interestItemList);
-//      }else {
-//         return "account/login";
-//      }
-//      return "item/interest";
-//   }
 
 	@RequestMapping("/item/interest.do")
 	public String interest(Model model, HttpSession session, String currentPage) {
@@ -137,8 +81,8 @@ public class ItemController {
 			int currentPage_ = Integer.parseInt(currentPage);
 
 			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
-			List<ItemDTO> interestitemList= pageInfo.getDtoContainer2();
-			System.out.println("controller  : "+interestitemList);
+			List<ItemDTO> interestitemList = pageInfo.getDtoContainer2();
+			System.out.println("controller  : " + interestitemList);
 			model.addAttribute("interestitemList", interestitemList);
 			model.addAttribute("pageInfo", pageInfo);
 
