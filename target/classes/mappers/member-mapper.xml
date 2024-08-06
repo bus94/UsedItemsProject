@@ -4,6 +4,7 @@
 <mapper namespace="com.ss.useditems.mapper.MemberMapper">
 
 	<resultMap type="memberDTO" id="memberMap">
+		<result property="acc_index" column="acc_index" />
 		<result property="acc_id" column="acc_id" />
 		<result property="acc_password" column="acc_password" />
 		<result property="acc_birthDate" column="acc_birthDate" />

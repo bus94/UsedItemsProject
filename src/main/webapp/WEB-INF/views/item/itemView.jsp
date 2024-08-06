@@ -65,35 +65,31 @@
 					</div>
 				</div>
 			</div>
-			<div class="store_profile">
-				<div class="profile_img">
-					<img src="${path}/resources/img/study.jpg" alt="프사">
-				</div>
-				<div class="profile_txt">
-					<div>
-						<div style="display: flex;">
-							<h4>뭉지</h4>
-							<img src="${path}/resources/img/shop.png" alt="스토어"
-								style="width: 20px; height: 22px; opacity: 40%; margin-left: 5px;">
+			<a href="${path}/account/acc_info.do?acc_id=${itemMember.acc_id}">
+				<div class="store_profile">
+					<div class="profile_img">
+						<img src="${path}/resources/img/study.jpg" alt="프사">
+					</div>
+					<div class="profile_txt">
+						<div>
+							<div style="display: flex;">
+								<h4>${itemMember.acc_nickname}</h4>
+								<img src="${path}/resources/img/shop.png" alt="스토어"
+									style="width: 20px; height: 22px; opacity: 40%; margin-left: 5px;">
+							</div>
+							<p>${itemMember.acc_address}</p>
 						</div>
-						<p>서울시 강남구 테헤란로 엔데버타워</p>
-					</div>
-					<div style="display: flex;">
-						<p>매너등급</p>
-						<img src="${path}/resources/img/clover.png" alt="등급">
+						<div style="display: flex;">
+							<p>매너등급</p>
+							<img src="${path}/resources/img/clover.png" alt="등급">
+						</div>
 					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 	<div class="store_content">
-		<p>
-			요즘 유행하는 두바이초콜릿 팝니다<br> 3개 있고 직거래만 합니다. 많은 문의 바람<br> 네고. 사절.
-			합니다 네고. 사절. 합니다 네고. 사절. 합니다 네고. 사절. 합니다 네고. 사절. 합니다네고. 사절. 합니다네고. 사절.
-			합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절.
-			합니다네고.네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절. 합니다네고. 사절.
-			합니다네고. 사절. 합니다 사절. 합니다
-		</p>
+		<p>${item.item_content}</p>
 	</div>
 	<div class="reply">
 		<div class="reply_img">
@@ -169,36 +165,36 @@
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
 		const seconds = milliSeconds / 1000;
-		
-		if (seconds < 60){
+
+		if (seconds < 60) {
 			return document.getElementById('enrollDate').textContent = `방금 전`;
 		}
-		
+
 		const minutes = seconds / 60
 		if (minutes < 60) {
 			return document.getElementById('enrollDate').textContent = `${Math.floor(minutes)}분 전`
 		}
-			
+
 		const hours = minutes / 60
 		if (hours < 24) {
 			return document.getElementById('enrollDate').textContent = `${Math.floor(hours)}시간 전`
 		}
-			
+
 		const days = hours / 24
 		if (days < 7) {
 			return document.getElementById('enrollDate').textContent = `${Math.floor(days)}일 전`
 		}
-			
+
 		const weeks = days / 7
 		if (weeks < 5) {
 			return document.getElementById('enrollDate').textContent = `${Math.floor(weeks)}주 전`
 		}
-			
+
 		const months = days / 30
 		if (months < 12) {
 			return document.getElementById('enrollDate').textContent = `${Math.floor(months)}개월 전`
 		}
-			
+
 		const years = days / 365
 		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
 	}
