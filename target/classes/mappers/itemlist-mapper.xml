@@ -30,11 +30,12 @@
 		FROM item i
 		JOIN interest inter ON i.item_index = inter.int_item
 		WHERE inter.int_subject = #{accIndex}
+		order by item_index
 	</select>
 	
 	<delete id="deleteInterestItem" parameterType="Map">
         DELETE FROM INTEREST 
         WHERE int_subject = #{accIndex} AND int_item = #{itemId}
-        order by item_index
+        
     </delete>
 </mapper>
