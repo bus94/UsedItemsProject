@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.mapper.ItemViewMapper;
 
 @Service
@@ -15,5 +16,6 @@ public class ItemViewService {
 	public ItemDTO selectByItemIndex(int item_index) {
 		return mapper.selectByItemIndex(item_index);
 	}
+	
 	
 }

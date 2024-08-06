@@ -1,8 +1,11 @@
 package com.ss.useditems.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,21 +46,44 @@ public class ItemController {
 	}
 
 	@RequestMapping("/item/categoryList.do")
-	public String categoryList(Model model, String categoryList, String currentPage) {
+	public String categoryList(Model model, String searchType, String categoryList, String currentPage) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
+<<<<<<< HEAD
 		System.out.println("categoryList: " + categoryList);
 
 		if (currentPage == null) {
+=======
+		System.out.println("searchType: " + searchType);
+		System.out.println("categoryList: " + categoryList);		
+		
+		if(currentPage == null) {
+>>>>>>> moong
 			currentPage = "1";
 		}
 
 		int currentPage_ = Integer.parseInt(currentPage);
+		
+		// categoryList 문자열을 콤마로 분리하고 공백을 제거하여 List로 변환
+		String[] categoryArray = categoryList.split(",");
+		
+		Stream<String> categoriesStream = Arrays.stream(categoryArray).map(String::trim);
+		List<String> categoryListItem = categoriesStream.collect(Collectors.toList());
+		
+		System.out.println(categoryListItem);
+		
+		// searchType과 categoryList를 Map에 저장
+		Map<String, Object> searchParams = new HashMap<>();
+		searchParams.put("searchType", searchType);
+        searchParams.put("categoryList", categoryListItem);
+        System.out.println(searchParams);
+		
 
 		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
 
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("searchParams", searchParams);
 
 		return "item/itemList";
 	}
