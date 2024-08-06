@@ -70,13 +70,13 @@
 			<c:forEach var="item" items="${itemList}">
 				<div class="item_container">
 					<div class="item">
-						<a href="${path}/item/itemView?id=${item.item_index}" style="text-decoration: none; color: black"> <img src="${path}/resources/img/${item.item_image}"
+						<a href="${path}/item/itemView?item_index=${item.item_index}" style="text-decoration: none; color: black"> <img src="${path}/resources/img/${item.item_image}"
 							alt="매물사진">
 							<div class="item_view">
 								<h3>${item.item_title}</h3>
 								<div class="item_price">
 									<h4>${item.item_price}원</h4><br>
-									<%-- <h5>${item.item_enrollDate}</h5> --%>
+									<h5><fmt:formatDate value="${item.item_enrollDate}" pattern="yy/MM/dd"/></h5>
 								</div>
 								<div class="item_like">
 									<p>관심 ${item.item_interest}</p>

@@ -23,12 +23,16 @@ public class ItemController {
 
 	@Autowired
 	private ItemService service;
+<<<<<<< HEAD
 //<<<<<<< HEAD
 	private MemberService mService;
 
 //=======
 //	
 //>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
+=======
+	
+>>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String currentPage) {
 		System.out.println("itemList 페이지");
@@ -39,11 +43,15 @@ public class ItemController {
 		
 		int currentPage_ = Integer.parseInt(currentPage);
 		System.out.println("currentPage: " + currentPage);
+<<<<<<< HEAD
 //<<<<<<< HEAD
 
 		if (currentPage == null) {
 //=======
 		
+=======
+
+>>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
 		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
 		model.addAttribute("searchValue", searchValue);	
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
@@ -59,11 +67,15 @@ public class ItemController {
 		System.out.println("categoryList: " + categoryList);
 		
 		if(currentPage == null) {
+<<<<<<< HEAD
 //>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
+=======
+>>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
 			currentPage = "1";
 		}
 
 		int currentPage_ = Integer.parseInt(currentPage);
+<<<<<<< HEAD
 //<<<<<<< HEAD
 
 		// int currentPage = 1;
@@ -79,19 +91,15 @@ public class ItemController {
 		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
 		
 //>>>>>>> 8a36ba9de1de559fec6f52d1c01be6e17b849468
+=======
+
+		PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
+		
+>>>>>>> 5dc6e6b9b1beb0720396f99e89cbc1922537198b
 		model.addAttribute("itemList", pageInfo.getDtoContainer2());
 		model.addAttribute("pageInfo", pageInfo);
 
 		return "item/itemList";
-	}
-
-	@RequestMapping("/item/itemView")
-	public String itemView(Model model, int item_index) {
-		System.out.println("itemView 페이지");
-		
-		
-		
-		return "item/itemView";
 	}
 
 	@RequestMapping("/item/itemEnroll.do")
@@ -125,7 +133,7 @@ public class ItemController {
 			if (currentPage == null) {
 				currentPage = "1";
 			}
-			int accIndex=loginMember.getAcc_index();
+			int accIndex = loginMember.getAcc_index();
 			int currentPage_ = Integer.parseInt(currentPage);
 
 			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
