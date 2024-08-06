@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ss.useditems.mapper.ItemViewMapper">
+	<resultMap type="itemDTO" id="itemMap">
+		<result property="item_index" column="item_index" />
+		<result property="item_seller" column="item_seller" />
+		<result property="item_title" column="item_title" />
+		<result property="item_content" column="item_content" />
+		<result property="item_image" column="item_image" />
+		<result property="item_category" column="item_category" />
+		<result property="item_price" column="item_price" />
+		<result property="item_place" column="item_place" />
+		<result property="item_status" column="item_status" />
+		<result property="item_enrollDate" column="item_enrollDate" />
+		<result property="item_click" column="item_click" />
+		<result property="item_interest" column="item_interest" />
+		<result property="item_offDate" column="item_offDate" />
+		<result property="item_buyer" column="item_buyer" />
+	</resultMap>
+	
+	<select id="selectByItemIndex" parameterType="int" resultMap="itemMap">
+		SELECT * FROM ITEM WHERE ITEM_INDEX = #{item_index}
+	</select>
+	
+</mapper>
