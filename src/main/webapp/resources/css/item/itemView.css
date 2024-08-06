@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+a {
+	text-decoration-line: none;
+	color: black;
+}
+
 #item_detail {
 	width: 1000px;
 	margin: auto;
@@ -87,10 +92,6 @@
 	align-items: center;
 	margin-top: 20px;
 	cursor: pointer;
-}
-
-.store_profile a{
-	list-style: none;
 }
 
 .store_profile p {

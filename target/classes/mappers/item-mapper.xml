@@ -18,8 +18,12 @@
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
 	</resultMap>
-	
+
 	<insert id="itemEnroll" parameterType="itemDTO">
-		INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, #{item_seller}, #{item_title}, #{item_content}, #{item_image}, #{item_category}, #{item_price}, #{item_place}, 'onsale', sysdate, default, default, null, null)
+		INSERT INTO ITEM
+		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller}, #{item_title},
+		#{item_content}, #{item_image}, #{item_category}, #{item_price},
+		#{item_place}, 'onsale', sysdate, default, default, null, null)
 	</insert>
+
 </mapper>

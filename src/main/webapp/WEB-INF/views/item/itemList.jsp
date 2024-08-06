@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:set var="categoryList" value="${param.categoryList}" />
+<%-- <c:set var="categories" value="${'상의', '하의', '신발', '기타'}" /> --%>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="item_content_list" style="padding-top: 100px;">
@@ -54,6 +55,7 @@
 				<input type="checkbox" name="categoryList" id="categoryList" value="기타"${categoryList=='기타' ? 'checked':''} />
 				<label class="radio_type" for="item_category">기타</label>
 				<button type="submit" class="sear_category">상세검색</button>
+				<button type="reset" class="sear_category">초기화</button>
 			</div>			
 		</div>
 	</form>
