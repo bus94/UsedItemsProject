@@ -57,6 +57,10 @@ public class ItemController {
 		}
 
 		if (currentPage == null) {
+			System.out.println("searchType: " + searchType);
+			System.out.println("categoryList: " + categoryList);
+		}
+		if (currentPage == null) {
 			currentPage = "1";
 		}
 
