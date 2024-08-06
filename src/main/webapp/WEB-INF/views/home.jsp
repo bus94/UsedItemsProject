@@ -9,6 +9,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="content" class="container" style="padding-top: 100px;">
 	<h1>메인 컨테이너</h1>
 	<a href="${path}/account/login.do">로그인</a><br>
@@ -24,6 +25,8 @@
 	<a href="${path}/common/test.do">테스트</a><br>
 	
 =======
+=======
+>>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
 <section id="content" class="home_page container">
 
 	<h1>캐러셀 ad1</h1>
@@ -195,6 +198,9 @@
 
 
 
+<<<<<<< HEAD
+>>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
+=======
 >>>>>>> 984f9271c33c5add876e62eb976575aa1667b58a
 </section>
 
