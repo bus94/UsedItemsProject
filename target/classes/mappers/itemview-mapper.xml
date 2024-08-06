@@ -41,6 +41,7 @@
 			columnPrefix="a._" />
 	</resultMap>
 
+
 	<select id="selectByItemIndex" parameterType="int"
 		resultMap="itemMap">
 		SELECT *
@@ -52,5 +53,11 @@
 		resultMap="memberMap">
 		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
 	</select>
+	
+	
+	<insert id="insertReply" parameterType="ReplyDTO">
+		insert into reply(repl_index, repl_item, repl_candidate, repl_content,repl_enrolldate)
+		values(#{repl_index},#{repl_item}, #{repl_candidate},#{replContent}, DEFAULT)
+	</insert>
 
 </mapper>
