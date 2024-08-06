@@ -8,9 +8,9 @@ $().ready(function(){
  
  
  
-$('#logout2black').click(function(){
+$('input:radio[name=searchType]').click(function(){
 
-
-	alert("로그아웃 js");
+	console.log("searchType: " + $(this).val());
+	
 	
 });

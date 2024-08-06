@@ -56,7 +56,7 @@
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<p id="acc_mock" class="">&nbsp;</p>			
-					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-success btn-sm"
+					<button type="button" id="btn_acc_blacklist" class="btn_acc btn btn-warning btn-sm"
 							onclick="location.href='${path}/blacklist/complainList.do?currentPage=1&searchBlack=${account_info.acc_id}&searchType=acc_id'">신고내역 조회</button>
 				</div>
 			</div>
@@ -97,13 +97,15 @@
 	
 	<c:if test="${other_info == null}">
 	<div id="acc_interest" class="container items_domain">
-		<div class="container subtitle d-flex">
+		<div class="d-flex">
+		<div class="subtitle d-flex">
 			<div class="vr align-self-center"></div>
-			<h4>찜 Interest</h4>
+			<h4 class="container"><span>관</span><span>심</span><span>상</span><span>품</span></h4>
 			<div class="vr align-self-center"></div>
-			<button type="button" id="btn_int_detail"
-				class="btn btn-success btn-sm align-self-center"
-				onclick="location.href='${path}/'">자세히</button>
+		</div>
+			<button type="button" id="btn_item_interest"
+				class="btn_item btn btn-success btn-sm align-self-center"
+				onclick="location.href='${path}/item/interest.do'">자세히</button>
 		</div>
 		<div class="item_container_acc d-flex">
 			<div class="item">
@@ -203,9 +205,9 @@
 
 
 	<div id="acc_ondeal" class="container items_domain">
-		<div class="container subtitle d-flex">
+		<div class="subtitle d-flex">
 			<div class="vr align-self-center"></div>
-			<h4>거래 중 Ondeal</h4>
+			<h4 class="container"><span>거</span><span>래</span><span>중</span></h4>
 			<div class="vr align-self-center"></div>
 		</div>
 		<div class="item_container_acc d-flex">
@@ -216,14 +218,16 @@
 
 
 
-	<div id="acc_selling" class="container items_domain">
-		<div class="container subtitle d-flex">
+	<div id="acc_selling" class="container d-flex flex-column items_domain">
+		<div class="d-flex">
+		<div class="subtitle d-flex">
 			<div class="vr align-self-center"></div>
-			<h4>판매 내역 Selling</h4>
+			<h4 class="container"><span>판</span><span>매</span><span>내</span><span>역</span></h4>
 			<div class="vr align-self-center"></div>
+		</div>
 			<c:if test="${other_info == null}">
 			<button type="button" id="btn_item_enroll"
-				class="btn btn-success btn-sm align-self-center"
+				class="btn_item btn btn-success btn-sm align-self-center"
 				onclick="location.href='${path}/item/itemEnroll.do'">매물 등록</button>
 			</c:if>
 		</div>
@@ -287,9 +291,9 @@
 
 
 	<div id="acc_buying" class="container items_domain">
-		<div class="container subtitle d-flex">
+		<div class="subtitle d-flex">
 			<div class="vr align-self-center"></div>
-			<h4>구매 내역 Buying</h4>
+			<h4 class="container"><span>구</span><span>매</span><span>내</span><span>역</span></h4>
 			<div class="vr align-self-center"></div>
 		</div>
 		<div class="item_container_acc d-flex">

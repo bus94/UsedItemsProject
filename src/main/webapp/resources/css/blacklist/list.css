@@ -2,11 +2,23 @@
 
 .blacklist_page {
     /* margin: auto; */
+    padding-top: 100px;
     width: 100%;
 }
 
 .blacklist_page .whole-container {
 	width: 1000px;
+}
+
+.blacklist_page #blacklist_title_container {
+	padding-top: 16px;
+	margin-bottom: 20px;
+	background-color: salmon;
+	border-radius: 10px 30px;
+}
+
+.blacklist_page #safeMarket {
+	color: rgb(153, 234, 153);
 }
 
 .blacklist_page .search_box {
@@ -38,32 +50,56 @@
  }
  
  
- .blacklist_page #blacklist_container {
- 	border: 2px solid rgb(219, 219, 219);
- 	border-radius: 10px;
+.blacklist_page #blacklist_container thead th:first-child{
+ 	border-radius: 10px 0 0 0 ; 
  }
  
+.blacklist_page #blacklist_container thead th:last-child{
+ 	border-radius: 0 30px 0 0 ; 
+ }
+ 
+ .blacklist_page #blacklist_container tbody tr:last-child th:first-child{
+ 	border-radius: 0 0 0 30px ; 
+ }
+ 
+ .blacklist_page #blacklist_container tbody tr:last-child td:last-child{
+ 	border-radius: 0 0 10px 0 ; 
+ } 
  
  .blacklist_page .list_index {
- 	width: 100px;
+ 	width: 75px;
  }
  
  .blacklist_page .list_id {
- 	width: 150px;
+ 	width: 200px;
  }
  
  .blacklist_page .list_content {
- 	width: 450px;
+ 	width: 350px;
+ }
+ 
+ .blacklist_page #del_black {
+ 	color: salmon;
+ 	font-weight: lighter;
+ }
+ 
+ .blacklist_page #del_black:hover {
+ 	color: salmon;
+ 	font-weight: bold;
  }
  
  .blacklist_page .list_date {
- 	width: 150px;
+ 	width: 175px;
  }
  
- 
- 
- .blacklist_page .pagination a{
+/*  .blacklist_page .pagination_container a{
  	display: block;
  	text-decoration: none;
- 	
+ } */
+ 
+ 
+ .blacklist_page .btn_container{
+ 	width: 250px;
+ 	gap: 10px;
  }
+ 

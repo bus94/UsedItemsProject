@@ -76,18 +76,27 @@
     height: 20px;
 }
 
+.acc_info_page .subtitle {
+	padding: 0;
+	width: 190px;
+}
 
+.acc_info_page .vr {
+	margin: 0;
+}
 
 .acc_info_page .subtitle h4 {
-    margin: 5px 10px;
+    margin: auto; 
+    display: flex;
+    justify-content: space-between;
 }
 
 
 .acc_info_page .vr {
-    height: 20px;
+    height: 22px;
 }
 
-.acc_info_page #btn_item_enroll {
+.acc_info_page .btn_item {
     margin-left: 15px;
 }
 

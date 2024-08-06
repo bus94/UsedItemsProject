@@ -40,8 +40,8 @@
 					</c:when>
 					
 					<c:otherwise><!-- object_id가 파라미터로 안 넘어왔으면 입력한 값 -->
-						<input type="text" class="info_box form-control" name="object_id"
-							id="object_id" placeholder="id를 입력하세요." required>
+						<input type="text" class="info_box form-control border border-warning focus-ring focus-ring-danger" 
+						name="object_id" id="object_id" placeholder="id를 입력하세요." required>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -58,15 +58,15 @@
 			<div id="content_box" class="container mb-3">
 				<p class="subtitle fs-5">뭘 했길래</p>
 				<div class="form-floating">
-					<textarea class="form-control" id="black_content" name="black_content"
-						style="height: 200px" required></textarea>
+					<textarea class="form-control border border-warning focus-ring focus-ring-danger"
+					id="black_content" name="black_content" style="height: 200px" required></textarea>
 					<label for="black_content">무분별한 신고는 하지 말어~</label>
 				</div>
 			</div>
 			<div class="btn_container container">
 				<button type="reset" class="btn btn-success btn-sm">취소하기</button>
-				<button type="submit" id="" class="btn btn-success btn-sm">신고하기</button>
-				<button type="button" class="btn btn-success btn-sm"
+				<button type="submit" id="" class="btn btn-danger btn-sm">신고하기</button>
+				<button type="button" class="btn btn-warning btn-sm"
 					onclick="location.href='${path}/blacklist/complainList.do'">신고조회</button>
 			</div>
 			</form>

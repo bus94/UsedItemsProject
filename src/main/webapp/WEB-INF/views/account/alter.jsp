@@ -99,7 +99,7 @@
 			<hr>
 				<div id="wd_hide2" class="container">
 					<p class="subtitle fs-5 ">회&nbsp;원&nbsp;탈&nbsp;퇴</p>
-					<button type="button" id="btn_withdraw" class="btn btn-success btn-sm">탈퇴하기</button>
+					<button type="button" id="btn_withdraw" class="btn btn-warning btn-sm">탈퇴하기</button>
 				</div>
 					
 				<form id="wd_hide1" method="post" action="${path}/withdraw.do">
@@ -107,7 +107,7 @@
 						<p class="subtitle fs-5 ">회&nbsp;원&nbsp;탈&nbsp;퇴</p>
 						<input type="password" class="info_box form-control d-inline mb-2"
 								name="wd_currPW" id="wd_currPW" placeholder="현재 비밀번호" required>
-						<button type="submit" id="setStatus" class="btn btn-warning btn-sm">탈퇴</button>
+						<button type="submit" id="setStatus" class="btn btn-danger btn-sm">탈퇴</button>
 					</div>
 				</form>
 		</div>
