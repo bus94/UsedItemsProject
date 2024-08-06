@@ -52,7 +52,7 @@
 					<div class="like_txt">
 						<p>관심 ${item.item_interest}</p>
 						<p>조회 ${item.item_click}</p>
-						<p>20분전</p>
+						<p>date(${item.item_enrollDate});</p>
 					</div>
 					<div class="detail_report">
 						<img src="${path}/resources/img/report.png" alt="신고"><a href="#">신고하기</a>
