@@ -1,10 +1,9 @@
 package com.ss.useditems.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,9 @@ public class ItemEnrollController {
 
 	@Autowired
 	private ItemEnrollService itemEnrollService;
+	
+	@Autowired
+	private ServletContext context;
 
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
@@ -43,9 +45,12 @@ public class ItemEnrollController {
 		}
 
 		try {
+			int loginMemberIndex = loginMember.getAcc_index();
+			
 			// 업로드 위치 지정
-			String uploadFolder = "C:\\test\\upload";
-
+			String uploadFolder = context.getRealPath("/resources/img/" + loginMemberIndex);
+			System.out.println("uploadFolder: " + uploadFolder);
+			
 			// 디렉토리 존재 여부 확인 후 없으면 생성
 			File directory = new File(uploadFolder);
 			if (!directory.exists()) {
@@ -64,6 +69,7 @@ public class ItemEnrollController {
 				
 				// 실제 파일 저장 메서드
 				list.get(i).transferTo(saveFile);
+				System.out.println((i+1) + "번 파일 저장 성공!!");
 			}
 
 			/*
@@ -79,15 +85,14 @@ public class ItemEnrollController {
 			 * saveFileName); File saveFile = new File(uploadFolder + "\\" + saveFileName);
 			 */
 
-
 			ItemDTO enrollItem = new ItemDTO();
 			enrollItem.setItem_title(item_title);
 			enrollItem.setItem_content(item_content);
 			enrollItem.setItem_category(item_category);
 			enrollItem.setItem_price(item_price);
 			enrollItem.setItem_place(item_place);
-			enrollItem.setItem_image(fileRealName);
-			enrollItem.setItem_seller(loginMember.getAcc_index());
+			enrollItem.setItem_image(uploadFolder);
+			enrollItem.setItem_seller(loginMemberIndex);
 
 			if (itemEnrollService.itemEnroll(enrollItem) > 0) {
 
