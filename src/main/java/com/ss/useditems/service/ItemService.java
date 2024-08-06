@@ -57,8 +57,5 @@ public class ItemService {
 		return mapper.deleteInterestItem(params) > 0;
 	}
 
-	public boolean deleteInterestItem(Map<String, Integer> params) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }
