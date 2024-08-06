@@ -21,13 +21,16 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="${path}/resources/img/item1.jpg" class="d-block" alt="...">
+					<img src="${path}/resources/img/item1.jpg" class="d-block"
+						alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="${path}/resources/img/item2.jpg"class="d-block" alt="...">
+					<img src="${path}/resources/img/item2.jpg" class="d-block"
+						alt="...">
 				</div>
 				<div class="carousel-item">
-					<img src="${path}/resources/img/item3.jpg" class="d-block" alt="...">
+					<img src="${path}/resources/img/item3.jpg" class="d-block"
+						alt="...">
 				</div>
 			</div>
 			<button class="carousel-control-prev" type="button"
@@ -45,17 +48,20 @@
 			<div class="detail_top">
 				<div class="detail_info">
 					<h4>${item.item_title}</h4>
-					<h3><fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" /></h3>
+					<h3>
+						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
+					</h3>
 					<p>${item.item_place}</p>
 				</div>
 				<div class="detail_like">
 					<div class="like_txt">
 						<p>관심 ${item.item_interest}</p>
 						<p>조회 ${item.item_click}</p>
-						<p>date(${item.item_enrollDate});</p>
+						<p id="enrollDate"></p>
 					</div>
 					<div class="detail_report">
-						<img src="${path}/resources/img/report.png" alt="신고"><a href="#">신고하기</a>
+						<img src="${path}/resources/img/report.png" alt="신고"><a
+							href="#">신고하기</a>
 					</div>
 				</div>
 			</div>
@@ -136,9 +142,12 @@
 			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>
 		</div>
 		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
-			<img src="${path}/resources/img/item3.jpg" alt=""> <img src="${path}/resources/img/item4.jpg" alt="">
-			<img src="${path}/resources/img/item5.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
+			<img src="${path}/resources/img/item1.jpg" alt=""> <img
+				src="${path}/resources/img/item2.jpg" alt=""> <img
+				src="${path}/resources/img/item3.jpg" alt=""> <img
+				src="${path}/resources/img/item4.jpg" alt=""> <img
+				src="${path}/resources/img/item5.jpg" alt=""> <img
+				src="${path}/resources/img/item2.jpg" alt="">
 		</div>
 	</div>
 	<div class="carousel-wrapper">
@@ -146,11 +155,53 @@
 			<h3 style="font-size: 22px;">근처 매물 &gt;</h3>
 		</div>
 		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
-			<img src="${path}/resources/img/item3.jpg" alt=""> <img src="${path}/resources/img/item4.jpg" alt="">
-			<img src="${path}/resources/img/item5.jpg" alt=""> <img src="${path}/resources/img/item2.jpg" alt="">
+			<img src="${path}/resources/img/item1.jpg" alt=""> <img
+				src="${path}/resources/img/item2.jpg" alt=""> <img
+				src="${path}/resources/img/item3.jpg" alt=""> <img
+				src="${path}/resources/img/item4.jpg" alt=""> <img
+				src="${path}/resources/img/item5.jpg" alt=""> <img
+				src="${path}/resources/img/item2.jpg" alt="">
 		</div>
 	</div>
 </section>
+
+<script>
+	function date(enrollDate) {
+		const milliSeconds = new Date() - enrollDate;
+		const seconds = milliSeconds / 1000;
+		
+		if (seconds < 60){
+			return document.getElementById('enrollDate').textContent = `방금 전`;
+		}
+		
+		const minutes = seconds / 60
+		if (minutes < 60) {
+			return document.getElementById('enrollDate').textContent = `${Math.floor(minutes)}분 전`
+		}
+			
+		const hours = minutes / 60
+		if (hours < 24) {
+			return document.getElementById('enrollDate').textContent = `${Math.floor(hours)}시간 전`
+		}
+			
+		const days = hours / 24
+		if (days < 7) {
+			return document.getElementById('enrollDate').textContent = `${Math.floor(days)}일 전`
+		}
+			
+		const weeks = days / 7
+		if (weeks < 5) {
+			return document.getElementById('enrollDate').textContent = `${Math.floor(weeks)}주 전`
+		}
+			
+		const months = days / 30
+		if (months < 12) {
+			return document.getElementById('enrollDate').textContent = `${Math.floor(months)}개월 전`
+		}
+			
+		const years = days / 365
+		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
+	}
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
