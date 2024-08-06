@@ -49,16 +49,13 @@ public class ItemController {
 	public String categoryList(Model model, String searchType, String categoryList, String currentPage) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
-<<<<<<< HEAD
 		System.out.println("categoryList: " + categoryList);
 
 		if (currentPage == null) {
-=======
 		System.out.println("searchType: " + searchType);
 		System.out.println("categoryList: " + categoryList);		
-		
+		}
 		if(currentPage == null) {
->>>>>>> moong
 			currentPage = "1";
 		}
 
