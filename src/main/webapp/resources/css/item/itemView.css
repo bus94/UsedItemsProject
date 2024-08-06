@@ -89,6 +89,10 @@
 	cursor: pointer;
 }
 
+.store_profile a{
+	list-style: none;
+}
+
 .store_profile p {
 	color: gray;
 	font-weight: lighter;

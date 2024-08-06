@@ -16,6 +16,10 @@ public class ItemViewService {
 	public ItemDTO selectByItemIndex(int item_index) {
 		return mapper.selectByItemIndex(item_index);
 	}
+
+	public MemberDTO selectByIndex(int item_seller) {
+		return mapper.selectByIndex(item_seller);
+	}
 	
 	
 }

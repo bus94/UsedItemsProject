@@ -18,9 +18,39 @@
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
 	</resultMap>
-	
-	<select id="selectByItemIndex" parameterType="int" resultMap="itemMap">
-		SELECT * FROM ITEM WHERE ITEM_INDEX = #{item_index}
+
+	<resultMap type="memberDTO" id="memberMap">
+		<result property="acc_index" column="acc_index" />
+		<result property="acc_id" column="acc_id" />
+		<result property="acc_password" column="acc_password" />
+		<result property="acc_birthDate" column="acc_birthDate" />
+		<result property="acc_phone" column="acc_phone" />
+		<result property="acc_name" column="acc_name" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_profile" column="acc_profile" />
+		<result property="acc_level" column="acc_level" />
+		<result property="acc_count" column="acc_count" />
+		<result property="acc_status" column="acc_status" />
+		<result property="acc_enrollDate" column="acc_enrollDate" />
+	</resultMap>
+
+	<resultMap type="memberDTO" id="itemDetailMap"
+		extends="itemMap">
+		<collection property="acc_index" resultMap="memberMap"
+			columnPrefix="a._" />
+	</resultMap>
+
+	<select id="selectByItemIndex" parameterType="int"
+		resultMap="itemMap">
+		SELECT *
+		FROM item
+		WHERE ITEM_INDEX = #{item_index}
 	</select>
-	
+
+	<select id="selectByIndex" parameterType="int"
+		resultMap="memberMap">
+		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
+	</select>
+
 </mapper>
