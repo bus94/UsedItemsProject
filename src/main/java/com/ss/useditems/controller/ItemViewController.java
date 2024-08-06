@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
-<<<<<<< HEAD
 import com.ss.useditems.dto.ReplyDTO;
-=======
->>>>>>> bs
 import com.ss.useditems.service.ItemViewService;
 
 @Controller
@@ -27,20 +24,15 @@ public class ItemViewController {
 		System.out.println("item_index: " + item_index);
 		
 		ItemDTO item = service.selectByItemIndex(item_index);
-<<<<<<< HEAD
 
-=======
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
->>>>>>> bs
 		System.out.println("item: " + item);
 		System.out.println("itemMember: " + itemMember);
 		
 		model.addAttribute("item", item);
-<<<<<<< HEAD
-		model.addAttribute("replyList", item.getReplies());
-=======
 		model.addAttribute("itemMember", itemMember);
->>>>>>> bs
+		
+		model.addAttribute("replyList", item.getReplies());
 		
 		return "item/itemView";
 	}
