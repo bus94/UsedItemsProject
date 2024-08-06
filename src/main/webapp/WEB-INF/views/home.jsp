@@ -8,6 +8,8 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
+<script defer src="${path}/resources/js/home.js"></script>
+
 <section id="content" class="home_page container">
 
 	<h1>캐러셀 ad1</h1>

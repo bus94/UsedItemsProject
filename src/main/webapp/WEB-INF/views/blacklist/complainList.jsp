@@ -7,8 +7,7 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container blacklist_page"
-	style="padding-top: 100px;">
+<section id="content" class="container blacklist_page" style="padding-top: 100px;">
 
 
 	<div class="whole-container container d-flex flex-column align-items-center">
