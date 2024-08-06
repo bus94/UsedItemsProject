@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+a {
+	text-decoration-line: none;
+	color: black;
+}
+
 #item_detail {
 	width: 1000px;
 	margin: auto;
@@ -118,6 +123,27 @@
 
 .store_content p {
 	font-family: 'Pretendard-Regular';
+}
+
+.comment-container{
+	width: 1000px;
+	height: 100px;
+}
+
+.comment-editor{
+	display: flex;
+	padding-top:10px;
+}
+.comment-editor form{
+	height: 100px;
+}
+
+.comment-editor button{
+	width: 55px;
+	height: 60px;
+	border:none;
+	background-color: rgb(171, 236, 171);
+	
 }
 
 .reply_img {

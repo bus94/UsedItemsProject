@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+
+#before {
+
+}
+
+#after {
+	
+	position: fixed;
+    top: 0;
+    margin-top: 300px;
+}
+
+
 .navbar-brand{
     color: brown;
     font-size: 2rem;
@@ -63,35 +76,108 @@
     font-weight: bold;
 }
 
-#veggies:hover {
-    cursor: pointer;
-    background-color: darkgreen;
-    color: burlywood;
+
+.ad_banner {
+	width: 800px;
+	height: 200px;
 }
 
-#veggies:hover .major_icon {
-    transform: rotate(15deg);
-    color: burlywood;
+
+#carouselExampleAutoplaying {
+	margin-top: 200px;
 }
 
-#meat:hover {
-    cursor: pointer;
-    background-color: darkred;
-    color: lightsalmon;
+.carsl {
+	height : 500px;
 }
 
-#meat:hover .major_icon {
-    transform: rotate(-15deg);
-    color: lightsalmon;
+
+
+
+
+
+
+
+
+
+
+.acc_info_page .item { /* itemList.css 따옴*/
+    width: 190px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid rgb(219, 219, 219);
+    margin-bottom: 14px;
 }
 
-#seafood:hover {
-    cursor: pointer;
-    background-color: darkblue;
-    color: lightseagreen;
+/*---------------itemList.css-----------------*/
+
+
+.item img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    margin-top: 12px;
 }
 
-#seafood:hover .major_icon {
-    transform: rotate(15deg);
-    color: lightseagreen;
+.item_view {
+    width: 160px;
+    padding-top: 12px;
+}
+
+.item_view h3 {
+    font-size: 17px;
+
+}
+
+.item_price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item_view h4 {
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.item_view h5 {
+    font-size: 15px;
+
+}
+
+.item_like {
+    display: flex;
+    font-size: 13px;
+}
+
+.item_like p:first-child {
+    margin-right: 15px;
+}
+
+.item_like p {
+    margin-bottom: 6px;
+    color: rgb(187, 187, 187);
+}
+
+.item_addr {
+    border-top: 1px solid rgb(206, 206, 206);
+    display: flex;
+    gap: 3px;
+}
+
+.item_addr p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: lighter;
+    margin-top: 8px;
+}
+
+.item_addr img {
+    width: 16px;
+    height: 16px;
+    margin-top: 6px;
+    opacity: 50%;
 }

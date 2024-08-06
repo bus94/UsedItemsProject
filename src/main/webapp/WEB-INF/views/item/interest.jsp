@@ -10,13 +10,13 @@
 
 <section id="interest_content">
 
-	
+
 	<h1>찜한상품</h1>
 	<div class="interest_item_container" style="padding-top: 100px">
-		<c:forEach var="item" items="${interestItemList}">
+		<c:forEach var="item" items="${interestitemList}">
 			<div class="interest_item">
-				<img src="${path}/resources/img/${item.item_image}" alt="매물사진">
-				<div class="interest_item_info">
+				<img src="${path}/resources/img/${item.item_image}" alt="매물사진"OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer;">
+				<div class="interest_item_info" OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer; text-decoration: none; color: black" >
 					<h3>${item.item_title}</h3>
 					<div class="interest_item_price">
 						<p>${item.item_price}원</p>
@@ -27,6 +27,7 @@
 						<p>${item.item_place}</p>
 					</div>
 				</div>
+				
 				<div class="partition">
 					<div class="vr"></div>
 				</div>
@@ -37,15 +38,37 @@
 						<p>흥정여부</p>
 					</div>
 				</div>
+				
 				<div class="app">
-					<img src="${path}/resources/img/message.png" alt="삭제"> 
-					<img src="${path}/resources/img/delete.png" alt="삭제" onclick="deleteInterestItem(${item.item_index})">
+					<img src="${path}/resources/img/message.png" alt="채팅"> <img
+						src="${path}/resources/img/delete.png" alt="삭제"
+						onclick="deleteInterestItem(${item.item_index})">
 				</div>
+
 			</div>
+
 		</c:forEach>
-		
+		<c:if test="${empty interestitemList}">
+			<p>찜한 상품이 없습니다.</p>
+			<!-- 데이터가 없는 경우 -->
+		</c:if>
+		<!-- 페이징 -->
+		<div align="center"
+			class="pagination container d-flex justify-content-center">
+			<a
+				href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
+			&nbsp; <a
+				href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
+			&nbsp;
+			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
+				end="${pageInfo.tillPage}" step="1">
+				<a
+					href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}"
+					${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
+		&nbsp;
+		</c:forEach>
+		</div>
 	</div>
-	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ss.useditems.mapper.ItemViewMapper">
+	<resultMap type="itemDTO" id="itemMap">
+		<result property="item_index" column="item_index" />
+		<result property="item_seller" column="item_seller" />
+		<result property="item_title" column="item_title" />
+		<result property="item_content" column="item_content" />
+		<result property="item_image" column="item_image" />
+		<result property="item_category" column="item_category" />
+		<result property="item_price" column="item_price" />
+		<result property="item_place" column="item_place" />
+		<result property="item_status" column="item_status" />
+		<result property="item_enrollDate" column="item_enrollDate" />
+		<result property="item_click" column="item_click" />
+		<result property="item_interest" column="item_interest" />
+		<result property="item_offDate" column="item_offDate" />
+		<result property="item_buyer" column="item_buyer" />
+	</resultMap>
+
+	<resultMap type="memberDTO" id="memberMap">
+		<result property="acc_index" column="acc_index" />
+		<result property="acc_id" column="acc_id" />
+		<result property="acc_password" column="acc_password" />
+		<result property="acc_birthDate" column="acc_birthDate" />
+		<result property="acc_phone" column="acc_phone" />
+		<result property="acc_name" column="acc_name" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_profile" column="acc_profile" />
+		<result property="acc_level" column="acc_level" />
+		<result property="acc_count" column="acc_count" />
+		<result property="acc_status" column="acc_status" />
+		<result property="acc_enrollDate" column="acc_enrollDate" />
+	</resultMap>
+
+	<resultMap type="memberDTO" id="itemDetailMap"
+		extends="itemMap">
+		<collection property="acc_index" resultMap="memberMap"
+			columnPrefix="a._" />
+	</resultMap>
+
+
+	<select id="selectByItemIndex" parameterType="int"
+		resultMap="itemMap">
+		SELECT *
+		FROM item
+		WHERE ITEM_INDEX = #{item_index}
+	</select>
+
+	<select id="selectByIndex" parameterType="int"
+		resultMap="memberMap">
+		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
+	</select>
+	
+	
+	<insert id="insertReply" parameterType="ReplyDTO">
+		insert into reply(repl_index, repl_item, repl_candidate, repl_content,repl_enrolldate)
+		values(#{repl_index},#{repl_item}, #{repl_candidate},#{replContent}, DEFAULT)
+	</insert>
+
+</mapper>

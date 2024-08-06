@@ -4,11 +4,11 @@
 <mapper namespace="com.ss.useditems.mapper.MemberMapper">
 
 	<resultMap type="memberDTO" id="memberMap">
+		<result property="acc_index" column="acc_index" />
 		<result property="acc_id" column="acc_id" />
 		<result property="acc_password" column="acc_password" />
 		<result property="acc_birthDate" column="acc_birthDate" />
 		<result property="acc_phone" column="acc_phone" />
-		<!-- <result property="acc_email" column="acc_email" /> 0804 DB에서 삭제 -->
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_nickname" column="acc_nickname" />
@@ -19,14 +19,11 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>	
 
-
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
-
 
 	<resultMap type="memberDTO" id="memberInfoMap"
 		extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
-
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
 
@@ -35,18 +32,17 @@
 		SELECT * FROM account WHERE acc_id = #{acc_id} AND
 		acc_password = #{acc_password}
 	</select>
+	
+	<select id="selectById" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM ACCOUNT WHERE ACC_ID = #{id}
+	</select>
 
 	<insert id="signup" parameterType="memberDTO">
-		<!--0804 DB에서 email 삭제 INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, 
-			acc_birthDate, acc_phone, acc_email, acc_name, acc_address, acc_nickname, 
-			acc_profile, acc_level, acc_count, acc_status, acc_enrollDate) VALUES (ACCOUNT_SEQ.NEXTVAL, 
-			#{acc_id}, #{acc_password}, #{acc_birthDate}, #{acc_phone}, '', #{acc_name}, 
-			#{acc_address}, #{acc_id}, '', default, 0, 'active', sysdate) -->
 		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate,
 		acc_phone, acc_name, acc_address, acc_nickname, acc_profile,
 		acc_level, acc_count, acc_status, acc_enrollDate) VALUES
 		(ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate},
-		#{acc_phone}, '', #{acc_name}, #{acc_address}, #{acc_id}, '', default,
+		#{acc_phone}, #{acc_name}, #{acc_address}, #{acc_id}, '', default,
 		0, 'active', sysdate)
 	</insert>
 
@@ -54,8 +50,6 @@
 		resultType="int">
 		SELECT acc_index FROM account WHERE acc_id = #{acc_id}
 	</select>
-
-
 
 	<select id="selectAccountByAcc_id" parameterType="String"
 		resultType="memberDTO">
@@ -76,10 +70,8 @@
 		where acc_id = #{acc_id}
 	</select>      <!--정일 -->
 
-
 	<update id="withdraw" parameterType="String" >
 		update ACCOUNT set acc_status='inactive' where acc_id=#{acc_id}
 	</update>	<!--정일 -->
-
 
 </mapper>

@@ -30,16 +30,79 @@
     	FROM item where item_category = #{categoryList}
 	</select>
 
-	<select id="interest" parameterType="Integer" resultMap="itemMap">
+	<select id="interest" parameterType="Integer"
+		resultMap="itemMap">
 		SELECT i.*
 		FROM item i
-		JOIN interest inter ON i.item_index = inter.int_item
+		JOIN interest inter ON i.item_index =
+		inter.int_item
 		WHERE inter.int_subject = #{accIndex}
+		order by item_index
 	</select>
-	
+
 	<delete id="deleteInterestItem" parameterType="Map">
-        DELETE FROM INTEREST 
-        WHERE int_subject = #{accIndex} AND int_item = #{itemId}
-        order by item_index
-    </delete>
+		DELETE FROM INTEREST
+		WHERE int_subject = #{accIndex} AND int_item = #{itemId}
+	</delete>
+
+	<!-- nearPlace에 대한 조건을 동적으로 추가 -->
+	<select id="selectByNearPlace" parameterType="java.util.Map"
+		resultMap="itemMap">
+		SELECT * FROM ITEM
+		WHERE item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		<if test="nearPlace != null">
+			ORDER BY item_place asc
+		</if>
+	</select>
+
+	<select id="selectByPopular" parameterType="java.util.Map"
+		resultMap="itemMap">
+		SELECT * FROM ITEM
+		WHERE item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		<if test="popular != null">
+			ORDER BY item_click asc, item_interest asc
+		</if>
+	</select>
+
+	<select id="selectByBestSeller" parameterType="java.util.Map"
+		resultMap="itemMap">
+		SELECT
+		i.item_index,
+		i.item_seller,
+		i.item_title,
+		i.item_content,
+		i.item_image,
+		i.item_category,
+		i.item_price,
+		i.item_place,
+		i.item_status,
+		i.item_enrollDate,
+		i.item_click,
+		i.item_interest,
+		i.item_offDate,
+		i.item_buyer,
+		COUNT(*) OVER (PARTITION BY i.item_seller) AS
+		seller_item_count
+		FROM ITEM i
+		JOIN ACCOUNT a ON i.item_seller =
+		a.acc_index
+		WHERE i.item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		ORDER BY seller_item_count DESC, i.item_seller, i.item_index
+	</select>
+
+	<select id="selectByDefault" resultMap="itemMap">
+		SELECT * FROM ITEM
+	</select>
 </mapper>

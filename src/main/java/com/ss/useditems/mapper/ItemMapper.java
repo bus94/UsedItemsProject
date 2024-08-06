@@ -15,9 +15,17 @@ public interface ItemMapper {
 	ArrayList<ItemDTO> searchItems(String searchValue);
 	ArrayList<ItemDTO> searchItems2(String categoryList);
 
-	List<ItemDTO> interest(@Param("accIndex") int accIndex);
+	ArrayList<ItemDTO> interest(@Param("accIndex") int accIndex);
 
 	int deleteInterestItem(Map<String,Integer> params);
+
+	ArrayList<ItemDTO> selectByNearPlace(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByPopular(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByBestSeller(Map<String, Object> map);
+
+	ArrayList<ItemDTO> selectByDefault();
 
 
 
