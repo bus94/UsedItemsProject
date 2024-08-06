@@ -91,48 +91,53 @@
 	<div class="store_content">
 		<p>${item.item_content}</p>
 	</div>
-	<div class="reply">
-		<div class="reply_img">
-			<img src="${path}/resources/img/study.jpg" alt="프사">
+		<div id="comment-container">
+			<div class="comment-editor" align="center">
+				<form action="${path}/itemView/reply" method="post">
+					<input type="hidden" name="itemNo" value="${item.item_index}" />
+					<input type="hidden" name="writerId" value="${loginMember.id}" />
+					<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
+					<button type="submit" id="btn-insert">등록</button>
+				</form>
+			</div>
 		</div>
-		<div class="reply_container">
-			<div class="reply_txt">
-				<h4>뭉지</h4>
-				<p>너무 비싸요~~ 양심이 있으신가요?</p>
-			</div>
-			<div class="reply_btn">
-				<button onclick='btnClick()'>삭제하기</button>
-				<button>채팅하기</button>
-			</div>
-			<div id="delete_box" class="delete_box">
-				<div style="width: 85px; text-align: right; margin-top: 5px;">
-					<a onclick="closeClick()" style="cursor: pointer;">X</a>
-				</div>
-				<div style="margin-top: 3px;">
-					<input type="password" placeholder="비밀번호" size=6 maxlength=4>
-					<div class="delete_btn">
-						<button>삭제</button>
-						<button>수정</button>
+	<div class="reply">
+		<c:if test="${!empty replyList}">
+			<c:forEach var="reply" items="${replyList}">
+				<div class="reply_container">
+					<div class="reply_img">
+						<img src="${path}/resources/img/study.jpg" alt="프사">
+					</div>
+					<div class="reply_txt">
+						<h4>뭉지</h4>
+						<p>${reply.repl_content}</p>
+					</div>
+					<div class="reply_btn">
+						<button onclick='btnClick()'>삭제하기</button>
+						<button>채팅하기</button>
+					</div>
+					<div id="delete_box" class="delete_box">
+						<div style="width: 85px; text-align: right; margin-top: 5px;">
+							<a onclick="closeClick()" style="cursor: pointer;">X</a>
+						</div>
+						<div style="margin-top: 3px;">
+							<input type="password" placeholder="비밀번호" size=6 maxlength=4>
+							<div class="delete_btn">
+								<button>삭제</button>
+								<button>수정</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty replyList}">
+			<tr>
+				<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+			</tr>
+		</c:if>
 	</div>
-	<div class="reply">
-		<div class="reply_img">
-			<img src="${path}/resources/img/study.jpg" alt="프사">
-		</div>
-		<div class="reply_container">
-			<div class="reply_txt">
-				<h4>쌍용다람쥐</h4>
-				<p>사고싶어요</p>
-			</div>
-			<div class="reply_btn">
-				<button>삭제하기</button>
-				<button>채팅하기</button>
-			</div>
-		</div>
-	</div>
+
 	<div class="carousel-wrapper">
 		<div>
 			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>

@@ -37,11 +37,21 @@ public class ItemViewController {
 		return "item/itemView";
 	}
 	
-	@RequestMapping("/item/reply")
-	public String writeReply(Model model, @ModelAttribute ReplyDTO reply,
+	@RequestMapping("/itemView/reply")
+	public String writeReply(Model model, String content,int itemNo,
 			@SessionAttribute(name="loginMember",required = false) MemberDTO loginMember) {
-		
-		
+		System.out.println(itemNo);
+		System.out.println(content);
+		ReplyDTO dto = new ReplyDTO();
+		dto.setRepl_item(itemNo);
+//		reply.setRepl_index(loginMember.getAcc_index());
+		int result = service.saveReply(dto);
+		if(result > 0) {
+			model.addAttribute("msg","리플이 등록되었습니다.");
+		}else {
+			model.addAttribute("msg","리플 등록에 실패했습니다.");
+		}
+		model.addAttribute("location",  "/item/itemView?item_index=" + itemNo);
 		
 		return "common/msg";
 	}
