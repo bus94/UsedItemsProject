@@ -1,5 +1,7 @@
 package com.ss.useditems.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,10 @@ public class ItemViewController {
 		System.out.println("item_index: " + item_index);
 		
 		ItemDTO item = service.selectByItemIndex(item_index);
-
+		
+		// 댓글 목록을 데이터베이스에서 조회
+		List<ReplyDTO> replyList = service.selectRepliesByItemIndex(item_index);
+		
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
 		System.out.println("item: " + item);
 		System.out.println("itemMember: " + itemMember);
@@ -32,27 +37,55 @@ public class ItemViewController {
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
 		
-		model.addAttribute("replyList", item.getReplies());
+		// 댓글 목록을 모델에 추가
+	    model.addAttribute("replyList", replyList);
 		
 		return "item/itemView";
 	}
 	
 	@RequestMapping("/itemView/reply")
-	public String writeReply(Model model, String content,int itemNo,
-			@SessionAttribute(name="loginMember",required = false) MemberDTO loginMember) {
-		System.out.println(itemNo);
-		System.out.println(content);
-		ReplyDTO dto = new ReplyDTO();
-		dto.setRepl_item(itemNo);
-//		reply.setRepl_index(loginMember.getAcc_index());
-		int result = service.saveReply(dto);
-		if(result > 0) {
-			model.addAttribute("msg","리플이 등록되었습니다.");
-		}else {
-			model.addAttribute("msg","리플 등록에 실패했습니다.");
-		}
-		model.addAttribute("location",  "/item/itemView?item_index=" + itemNo);
-		
-		return "common/msg";
+	public String writeReply(Model model, String content, int itemNo,
+	        @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember) {
+	    
+	    System.out.println(itemNo);
+	    System.out.println(content);
+	    
+	    // 로그인 확인
+	    if (loginMember == null) {
+	        model.addAttribute("msg", "로그인 후 이용 바랍니다.");
+	        model.addAttribute("location", "/account/login.do");
+	        return "common/msg";
+	    }
+
+	    if (content == null || content.trim().isEmpty()) {
+	        model.addAttribute("msg", "리플 내용은 비어 있을 수 없습니다.");
+	        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
+	        return "common/msg";
+	    }
+	    
+	    if (content == null || content.trim().isEmpty()) {
+	        model.addAttribute("msg", "리플 내용은 비어 있을 수 없습니다.");
+	        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
+	        return "common/msg";
+	    }
+
+	    ReplyDTO dto = new ReplyDTO();
+	    dto.setRepl_item(itemNo);
+	    dto.setRepl_content(content);
+
+	    int result = service.saveReply(dto);
+	    if (result > 0) {
+	        model.addAttribute("msg", "리플이 등록되었습니다.");
+	    } else {
+	        model.addAttribute("msg", "리플 등록에 실패했습니다.");
+	    }
+	    
+	    // 댓글 목록 다시 조회
+	    List<ReplyDTO> replyList = service.selectRepliesByItemIndex(itemNo);
+	    model.addAttribute("replyList", replyList);
+	    
+	    model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
+	    
+	    return "common/msg";
 	}
 }

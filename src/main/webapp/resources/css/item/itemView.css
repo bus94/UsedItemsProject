@@ -161,6 +161,7 @@ a {
 
 .reply {
 	display: flex;
+	flex-direction:column;
 	height: 100%;
 	padding: 20px 5px 20px 5px;
 	border-bottom: 1px solid black;
@@ -168,13 +169,13 @@ a {
 	transition: all ease 0.5s 0s;
 }
 
-.reply:hover {
+.reply_container:hover {
 	background-color: rgb(241, 241, 241);
 }
 
 .reply_txt {
-	margin-top: 15px;
-	margin-left: 15px;
+	margin-top: 10px;
+	margin-left: 20px;
 }
 
 .reply_txt h4 {
@@ -192,6 +193,8 @@ a {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .reply_btn button {

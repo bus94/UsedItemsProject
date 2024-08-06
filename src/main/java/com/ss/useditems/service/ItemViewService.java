@@ -1,5 +1,7 @@
 package com.ss.useditems.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +24,15 @@ public class ItemViewService {
 		return mapper.selectByIndex(item_seller);
 	}
 
+
 	public int saveReply(ReplyDTO dto) {
 		return mapper.insertReply(dto);
 	}
+
+	 // 댓글 조회 메소드 추가
+	   public List<ReplyDTO> selectRepliesByItemIndex(int item_index) {
+	      return mapper.selectRepliesByItemIndex(item_index);
+	   }
 	
 	
 }

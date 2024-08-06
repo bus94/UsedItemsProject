@@ -40,8 +40,15 @@
 		<collection property="acc_index" resultMap="memberMap"
 			columnPrefix="a._" />
 	</resultMap>
-
-
+	
+	<resultMap type="replyDTO" id="replyMap">
+      <result property="repl_index" column="repl_index" />
+      <result property="repl_item" column="repl_item" />
+      <result property="repl_candidate" column="repl_candidate" />
+      <result property="repl_content" column="repl_content" />
+      <result property="repl_enrolldate" column="repl_enrolldate" />
+   </resultMap>
+	
 	<select id="selectByItemIndex" parameterType="int"
 		resultMap="itemMap">
 		SELECT *
@@ -56,8 +63,12 @@
 	
 	
 	<insert id="insertReply" parameterType="ReplyDTO">
-		insert into reply(repl_index, repl_item, repl_candidate, repl_content,repl_enrolldate)
-		values(#{repl_index},#{repl_item}, #{repl_candidate},#{replContent}, DEFAULT)
+    	insert into reply(repl_index, repl_item, repl_candidate, repl_content, repl_enrolldate)
+    	values(REPLY_SEQ.NEXTVAL, #{repl_item}, #{repl_candidate}, #{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
+
+	<select id="selectRepliesByItemIndex" parameterType="int" resultMap="replyMap">
+   		SELECT * FROM reply WHERE repl_item = #{item_index}
+	</select>
 
 </mapper>

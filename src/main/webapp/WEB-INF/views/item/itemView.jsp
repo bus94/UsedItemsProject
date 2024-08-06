@@ -101,16 +101,19 @@
 				</form>
 			</div>
 		</div>
-	<div class="reply">
-		<c:if test="${!empty replyList}">
+
+	<c:if test="${!empty replyList}">
+		<div class="reply">
 			<c:forEach var="reply" items="${replyList}">
 				<div class="reply_container">
-					<div class="reply_img">
-						<img src="${path}/resources/img/study.jpg" alt="프사">
-					</div>
-					<div class="reply_txt">
-						<h4>뭉지</h4>
-						<p>${reply.repl_content}</p>
+					<div style="display: flex;">
+						<div class="reply_img">
+							<img src="${path}/resources/img/study.jpg" alt="프사">
+						</div>
+						<div class="reply_txt">
+							<h4>뭉지</h4>
+							<p>${reply.repl_content}</p>
+						</div>
 					</div>
 					<div class="reply_btn">
 						<button onclick='btnClick()'>삭제하기</button>
@@ -130,13 +133,14 @@
 					</div>
 				</div>
 			</c:forEach>
-		</c:if>
-		<c:if test="${empty replyList}">
+		</div>
+	</c:if>
+	<c:if test="${empty replyList}">
 			<tr>
 				<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
 			</tr>
 		</c:if>
-	</div>
+
 
 	<div class="carousel-wrapper">
 		<div>

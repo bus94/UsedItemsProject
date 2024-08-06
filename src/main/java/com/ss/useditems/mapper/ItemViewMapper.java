@@ -1,5 +1,7 @@
 package com.ss.useditems.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ss.useditems.dto.ItemDTO;
@@ -14,5 +16,11 @@ public interface ItemViewMapper {
 	MemberDTO selectByIndex(int item_index);
 
 	int insertReply(ReplyDTO dto);
+
+	// 댓글 조회 메소드 추가
+	   List<ReplyDTO> selectRepliesByItemIndex(int item_index);
+
+
+
 	
 }
