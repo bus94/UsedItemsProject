@@ -61,7 +61,7 @@
 					</div>
 					<div class="detail_report">
 						<img src="${path}/resources/img/report.png" alt="신고"><a
-							href="#">신고하기</a>
+							href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
 					</div>
 				</div>
 			</div>
