@@ -51,11 +51,14 @@
 	<select id="selectByPopular" parameterType="java.util.Map"
 		resultMap="itemMap">
 		SELECT * FROM ITEM
-		WHERE item_category IN
-		<foreach item="category" collection="categoryList" open="("
-			separator="," close=")">
-			#{category}
-		</foreach>
+		WHERE 1 = 1
+		<if test="categoryList != null">
+			AND i.item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
 		<if test="popular != null">
 			ORDER BY item_click asc, item_interest asc
 		</if>
@@ -83,15 +86,19 @@
 		FROM ITEM i
 		JOIN ACCOUNT a ON i.item_seller =
 		a.acc_index
-		WHERE i.item_category IN
-		<foreach item="category" collection="categoryList" open="("
-			separator="," close=")">
-			#{category}
-		</foreach>
+		WHERE 1 = 1
+		<if test="categoryList != null">
+			AND i.item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
 		ORDER BY seller_item_count DESC, i.item_seller, i.item_index
 	</select>
 
-	<select id="selectByDefault" parameterType="java.util.Map" resultMap="itemMap">
+	<select id="selectByDefault" parameterType="java.util.Map"
+		resultMap="itemMap">
 		SELECT * FROM ITEM
 		WHERE 1 = 1
 		<if test="categoryList != null">
@@ -102,20 +109,12 @@
 			</foreach>
 		</if>
 		<if test="searchValue != null">
-			AND (item_index LIKE '%${searchValue}%'
-			OR item_seller LIKE '%${searchValue}%'
-			OR item_title LIKE '%${searchValue}%'
-			OR item_content LIKE '%${searchValue}%'
-			OR item_image LIKE '%${searchValue}%'
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
 			OR item_category LIKE '%${searchValue}%'
-			OR item_price LIKE '%${searchValue}%'
-			OR item_place LIKE '%${searchValue}%'
-			OR item_status LIKE '%${searchValue}%'
-			OR item_enrolldate LIKE '%${searchValue}%'
-			OR item_click LIKE '%${searchValue}%'
-			OR item_interest LIKE '%${searchValue}%'
-			OR item_offdate LIKE '%${searchValue}%'
-			OR item_buyer LIKE '%${searchValue}%')
+			OR
+			item_place LIKE '%${searchValue}%')
 		</if>
 	</select>
 </mapper>
