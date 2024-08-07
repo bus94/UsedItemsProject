@@ -94,6 +94,10 @@ public class ItemController {
 			model.addAttribute("itemList", itemList);
 			model.addAttribute("categoryList", categoryList);
 			model.addAttribute("searchValue", searchValue);
+			model.addAttribute("searchType", searchType);
+			System.out.println("보내는 searchValue: " + searchValue);
+			System.out.println("보내는 searchType: " + searchType);
+			
 			model.addAttribute("pageInfo", pageInfo);
 		} catch (Exception e) {
 			e.printStackTrace();

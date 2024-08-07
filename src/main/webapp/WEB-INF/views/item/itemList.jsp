@@ -13,20 +13,25 @@
 		<div class="category">
 			<div>
 				<input type="radio" name="searchType" id="searchTypeNearPlace"
-					value="nearPlace" ${searchType == 'nearPlace' ? 'checked' : ''} />
+					value="nearPlace" ${searchType != null && searchType == 'nearPlace' ? 'checked' : ''} />
 				<label class="radio_type" for="radio_nearPlace">가까운 순</label> <input
 					type="radio" name="searchType" id="searchTypePopular"
-					value="popular" ${searchType == 'popular' ? 'checked' : ''} /> <label
+					value="popular" ${searchType != null && searchType == 'popular' ? 'checked' : ''} /> <label
 					class="radio_type" for="radio_searchType">인기많은 순</label> <input
 					type="radio" name="searchType" id="searchTypeBestSeller"
-					value="bestSeller" ${searchType == 'bestSeller' ? 'checked' : ''} />
+					value="bestSeller" ${searchType != null && searchType == 'bestSeller' ? 'checked' : ''} />
 				<label class="radio_type" for="radio_beastSeller">거래가 많은
 					판매자순</label>
 			</div>
 
 			<div>
 				<c:forEach var="value" items="${categoryAllList}">
-					<c:set var="isChecked" value="${fn:contains(categoryList, value)}" />
+					<c:set var="isChecked" value="${categoryList != null && fn:contains(categoryList, value)}" />
+					<c:forEach var="category" items="${categoryList}">
+						<c:if test="${category == value}">
+							<c:set var="isChecked" value="true" />
+						</c:if>
+					</c:forEach>
 					<input type="checkbox" name="categoryList"
 						id="categoryList_${value}" value="${value}"
 						${isChecked ? 'checked':''} />
