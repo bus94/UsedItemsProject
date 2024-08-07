@@ -29,14 +29,13 @@ public class ItemViewService {
 		return mapper.insertReply(dto);
 	}
 
-<<<<<<< HEAD
 	public List<ReplyDTO> selectReplyByItemIndex(int item_index) {
 	    return mapper.selectReplyByItemIndex(item_index);
-=======
+	}
+	    
 	public void incrementViews(Long itemId) {
 		mapper.incrementViews(itemId);
 		
->>>>>>> ocy
 	}
 	
 	

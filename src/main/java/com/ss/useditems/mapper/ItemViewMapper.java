@@ -17,13 +17,8 @@ public interface ItemViewMapper {
 
 	int insertReply(ReplyDTO dto);
 
-<<<<<<< HEAD
 	List<ReplyDTO> selectReplyByItemIndex(int item_index);
 
-
-
-=======
 	void incrementViews(Long itemId);
->>>>>>> ocy
 	
 }

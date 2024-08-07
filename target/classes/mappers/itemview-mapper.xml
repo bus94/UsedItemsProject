@@ -61,24 +61,18 @@
 		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
 	</select>
 	
-	
 	<insert id="insertReply" parameterType="ReplyDTO">
     	insert into reply(repl_index, repl_item, repl_candidate, repl_content, repl_enrolldate)
     	values(REPLY_SEQ.NEXTVAL, #{repl_item}, #{repl_candidate}, #{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
-<<<<<<< HEAD
 
 	<select id="selectReplyByItemIndex" parameterType="int" resultMap="replyMap">
    		SELECT * FROM reply WHERE repl_item = #{item_index}
 	</select>
 
-=======
-    
-    
     <update id="incrementViews" parameterType="long">
         UPDATE items
         SET itemClick = itemClick + 1
         WHERE id = #{itemId}
     </update>
->>>>>>> ocy
 </mapper>
