@@ -24,89 +24,80 @@ public class ItemController {
 	@Autowired
 	private ItemService service;
 
+	private PageInfo pageInfo;
+
 	@RequestMapping("/item/itemList.do")
-	public String itemList(Model model, String searchValue, String currentPage) {
+	public String itemList(Model model, String searchValue, String searchType, String[] categoryList,
+			String currentPage) {
 		System.out.println("itemList 페이지");
-
-		if (currentPage == null) {
-			currentPage = "1";
-		}
-
-		int currentPage_ = Integer.parseInt(currentPage);
 		System.out.println("currentPage: " + currentPage);
+		
+		List<String> categoryAllList = Arrays.asList("상의", "하의", "신발", "기타의류", "지갑", "피규어", "전자기기", "가구", "식품", "기타");
+		model.addAttribute("categoryAllList", categoryAllList);
 
-		PageInfo pageInfo = service.searchItems(currentPage_, searchValue);
-		model.addAttribute("searchValue", searchValue);
-		model.addAttribute("itemList", pageInfo.getDtoContainer2());
-		model.addAttribute("pageInfo", pageInfo);
+		try {
+			// 처음 페이지를 들어갈 땐 현재 페이지를 1로 설정
+			if (currentPage == null) {
+				currentPage = "1";
+			}
 
-		return "item/itemList";
-	}
+			System.out.println("불러온 searchType: " + searchType);
+			System.out.println("불러온 categoryList: " + categoryList);
 
-	@RequestMapping("/item/categoryList.do")
-	public String categoryList(Model model, @RequestParam(required = false) String searchType, @RequestParam(required = false) String[] categoryList, String currentPage) {
-		System.out.println("itemList 페이지");
+			// 체크박스에서 선택한 categoryList이 없다면 default로 설정
+			if (categoryList == null || categoryList.length == 0) {
+				categoryList = null;
+			}
 
-		// 처음 페이지를 들어갈 땐 현재 페이지를 1로 설정
-		if (currentPage == null) {
-			currentPage = "1";
+			// 불러온 searchType과 categoryList를 매핑
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("searchValue", searchValue);
+			map.put("searchType", searchType);
+			map.put("categoryList", categoryList);
+
+			System.out.println("map: " + map);
+			System.out.println("searchValue: " + searchValue);
+			System.out.println("searchType: " + searchType);
+			System.out.println("categoryList: " + Arrays.toString(categoryList));
+
+			// String으로 불러온 현재 페이지를 int 타입으로 형변환
+			int currentPage_ = Integer.parseInt(currentPage);
+
+			System.out.println("=====switch 시작=====");
+
+			if (searchType != null) {
+				// searchType에 따른 switch문
+				switch (searchType) {
+
+				// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
+				case "nearPlace":
+					pageInfo = service.selectByNearPlace(currentPage_, map);
+					break;
+
+				case "popular":
+					pageInfo = service.selectByPopular(currentPage_, map);
+					break;
+
+				case "bestSeller":
+					pageInfo = service.selectByBestSeller(currentPage_, map);
+					break;
+				}
+			} else {
+				pageInfo = service.selectByDefault(currentPage_, map);
+			}
+
+			System.out.println("=====switch 끝=====");
+
+			List<ItemDTO> itemList = pageInfo.getDtoContainer2();
+			System.out.println("불러오는 itemList: " + itemList);
+
+			model.addAttribute("itemList", itemList);
+			model.addAttribute("categoryList", categoryList);
+			model.addAttribute("searchValue", searchValue);
+			model.addAttribute("pageInfo", pageInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		System.out.println("searchType: " + searchType);
-		System.out.println("categoryList: " + categoryList);
-		
-		// 라디오버튼에서 선택한 searchType이 없다면 default로 설정
-		if(searchType == null) {
-			searchType = "default";
-		}
-		
-		// 체크박스에서 선택한 categoryList이 없다면 default로 설정
-		if (categoryList == null || categoryList.length == 0) {
-	        categoryList = new String[]{"default"};
-	    }
-		
-		// 불러온 searchType과 categoryList를 매핑
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchType", searchType);
-		map.put("categoryList", categoryList);
-		
-		System.out.println("map: " + map);
-		
-		// String으로 불러온 현재 페이지를 int 타입으로 형변환
-		int currentPage_ = Integer.parseInt(currentPage);
-		
-		// PageInfo 선언
-		PageInfo pageInfo;
-
-		System.out.println("=====switch 시작=====");
-		// searchType에 따른 switch문
-		switch(searchType) {
-		
-		// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
-		case "nearPlace":
-			pageInfo = service.selectByNearPlace(currentPage_, map);
-			break;
-			
-		case "popular":
-			pageInfo = service.selectByPopular(currentPage_, map);
-			break;
-			
-		case "bestSeller":
-			pageInfo = service.selectByBestSeller(currentPage_, map);
-			break;
-			
-		// default일땐 map에 searchType: default / categoryList: 선택한 값들 넘긴다
-		default :
-			pageInfo = service.selectByDefault(currentPage_, map);
-			break;
-		}
-		System.out.println("=====switch 끝=====");
-		
-		List<ItemDTO> itemList = pageInfo.getDtoContainer2();
-		System.out.println("getDtoContainer2의 itemList: " + itemList);
-		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("itemList", itemList);
-		model.addAttribute("pageInfo", pageInfo);
 
 		return "item/itemList";
 	}
@@ -160,13 +151,10 @@ public class ItemController {
 
 		return "redirect:/item/interest.do";
 	}
-	
+
 	@RequestMapping("/common/test.do")
 	public String test(Model model) {
-	
-		
-		
-		
+
 		return "common/test";
 
 	}

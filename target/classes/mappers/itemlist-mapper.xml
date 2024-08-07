@@ -18,18 +18,6 @@
 		<result property="item_buyer" column="item_buyer" />
 	</resultMap>
 
-	<select id="searchItems" parameterType="String"
-		resultMap="itemMap">
-		SELECT *
-		FROM item where item_title LIKE '%${searchValue}%'
-	</select>
-
-	<select id="searchItems2" parameterType="String"
-		resultMap="itemMap">
-		SELECT *
-		FROM item where item_category = #{categoryList}
-	</select>
-
 	<select id="interest" parameterType="Integer"
 		resultMap="itemMap">
 		SELECT i.*
@@ -103,12 +91,31 @@
 		ORDER BY seller_item_count DESC, i.item_seller, i.item_index
 	</select>
 
-	<select id="selectByDefault" resultMap="itemMap">
+	<select id="selectByDefault" parameterType="java.util.Map" resultMap="itemMap">
 		SELECT * FROM ITEM
-		WHERE i.item_category IN
-		<foreach item="category" collection="categoryList" open="("
-			separator="," close=")">
-			#{category}
-		</foreach>
+		WHERE 1 = 1
+		<if test="categoryList != null">
+			AND item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
+		<if test="searchValue != null">
+			AND (item_index LIKE '%${searchValue}%'
+			OR item_seller LIKE '%${searchValue}%'
+			OR item_title LIKE '%${searchValue}%'
+			OR item_content LIKE '%${searchValue}%'
+			OR item_image LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR item_price LIKE '%${searchValue}%'
+			OR item_place LIKE '%${searchValue}%'
+			OR item_status LIKE '%${searchValue}%'
+			OR item_enrolldate LIKE '%${searchValue}%'
+			OR item_click LIKE '%${searchValue}%'
+			OR item_interest LIKE '%${searchValue}%'
+			OR item_offdate LIKE '%${searchValue}%'
+			OR item_buyer LIKE '%${searchValue}%')
+		</if>
 	</select>
 </mapper>
