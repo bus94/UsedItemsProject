@@ -27,10 +27,11 @@ public class ItemViewController {
 		ItemDTO item = service.selectByItemIndex(item_index);
 		
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
+		System.out.println("replyList: " + replyList); // []
 		
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
-		System.out.println("item: " + item);
-		System.out.println("itemMember: " + itemMember);
+		System.out.println("item: " + item); // item
+		System.out.println("itemMember: " + itemMember); // itemMember
 		
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
@@ -44,9 +45,9 @@ public class ItemViewController {
 	@RequestMapping("/itemView/reply")
 	public String writeReply(Model model, String content, int itemNo,
 	        @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember) {
-	    
-	    System.out.println(itemNo);
-	    System.out.println(content);
+	    System.out.println("writeReply() 실행");
+	    System.out.println("itemNo: " + itemNo);
+	    System.out.println("content: " + content);
 	    
 	    if (loginMember == null) {
 	        model.addAttribute("msg", "로그인 후 이용 바랍니다.");
@@ -55,7 +56,7 @@ public class ItemViewController {
 	    }
 
 	    if (content == null || content.trim().isEmpty()) {
-	        model.addAttribute("msg", "댓글을 입력하세ㅕㅇ.");
+	        model.addAttribute("msg", "댓글을 입력하세요.");
 	        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 	        return "common/msg";
 	    }

@@ -95,7 +95,7 @@
 			<div class="comment-editor" align="center">
 				<form action="${path}/itemView/reply" method="post">
 					<input type="hidden" name="itemNo" value="${item.item_index}" />
-					<input type="hidden" name="writerId" value="${loginMember.id}" />
+					<input type="hidden" name="writerId" value="${loginMember.acc_id}" />
 					<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
 					<button type="submit" id="btn-insert">등록</button>
 				</form>
