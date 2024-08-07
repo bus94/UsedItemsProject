@@ -52,6 +52,9 @@ footer {
 
 
 
+
+
+
 @media screen and (min-width: 992px) {
 	/* 992px보다 커지면 */
 
@@ -67,8 +70,18 @@ footer {
 
 }
 
+@media screen and (max-width: 1200px) {
+	/* 992px보다 작아지면 */
 
+	.navbar .menu_text {
+		display: none;
+	}
+	
+	.navbar .nav-item {
+		margin-right: 20px;
+	}
 
+}
 
 
 
@@ -82,6 +95,9 @@ footer {
 	width: 400px;
 	height: 40px;
 }
+
+
+
 
 /* 헤더.jsp navigator */
 .navbar #nav_container {
@@ -108,7 +124,7 @@ footer {
 .navbar .nav_side_icon {
     color: black;
     position: fixed;
-    right: 5%;
+    right: 2%;
 
     font-size: 2rem;
 }
@@ -127,6 +143,7 @@ footer {
 
 .navbar #nav_toTop {
     bottom: 2%;
+    display: none;
 }
 
 

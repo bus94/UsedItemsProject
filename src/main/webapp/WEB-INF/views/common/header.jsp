@@ -34,6 +34,8 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
+	href="${path}/resources/css/home/home.css?v=${systemProperties['timestamp']}">	
+<link rel="stylesheet"
 	href="${path}/resources/css/login/login.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
@@ -69,7 +71,7 @@
 
 		<nav id="navigator"
 			class="fixed-top navbar navbar-expand-lg bg-body-tertiary bg-success-subtle">
-			<div id="nav_container" class="container-fluid ">
+			<div id="nav_container" class="container-fluid">
 				<a class="navbar-brand" href="${path}/"> 
 				<img id="brand_img" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
 				</a>
@@ -84,39 +86,45 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="${path}/item/itemList.do">
 								<img class="nav_icon" alt="매물 검색" src="${path}/resources/img/shop.png">
-							매물검색</a>
+							<span class="menu_text">매물검색</span></a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link"	href="${path}/blacklist/complainList.do">
+								<img class="nav_icon" alt="신고 조회" src="${path}/resources/img/report.png">
+							<span class="menu_text">신고조회</span></a>
+						</li>
+						
+						
 						<c:if test="${loginMember == null}">
 						<li class="nav-item">
 							<a class="nav-link"	href="${path}/account/login.do">
 								<img class="nav_icon" alt="로그인" src="${path}/resources/img/login.png">
-							로그인</a>
+							<span class="menu_text">로그인</span></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link"	href="${path}/account/signup.do">
 								<img class="nav_icon" alt="회원가입" src="${path}/resources/img/login2.png">
-							회원가입</a>
+							<span class="menu_text">회원가입</span></a>
 						</li>
 						</c:if>
+						
+						
 						<c:if test="${loginMember != null}">
 						<li class="nav-item">
 							<a class="nav-link" id="logout" href="">
 								<img class="nav_icon" alt="로그아웃" src="${path}/resources/img/login.png">
-							로그아웃</a>
+							<span class="menu_text">로그아웃</span></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="${path}/item/itemEnroll.do">
 								<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/message.png">
-							매물등록</a>
+							<span class="menu_text">매물등록</span></a>
 						</li>
 						</c:if>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
 							<ul class="dropdown-menu">
-								<li>
-									<a class="dropdown-item" href="${path}/blacklist/complainList.do">신고 조회</a>
-								</li>
 								<li>
 									<a class="dropdown-item" href="${path}/account/acc_info.do?acc_id=id_test4">타계정 정보</a>
 								</li>
@@ -185,7 +193,20 @@
 				$('#nav_wish').toggle();
 			});
 
-			
+			window.addEventListener('scroll', function(){
+				//console.log(window.scrollY);
+				
+				// 스크롤 Y축 300 초과 시 실행
+				if(window.scrollY > '300') {
+					$('#nav_toTop').show();
+				}
+				
+				// 스크롤 Y축 300 미만 시 실행
+				if(window.scrollY < '300') {
+					$('#nav_toTop').hide();
+				}
+				
+			});
 
 
 		</script>
