@@ -1,11 +1,23 @@
 package com.ss.useditems.controller;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> ocy
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+>>>>>>> ocy
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ss.useditems.dto.ItemDTO;
@@ -80,5 +92,31 @@ public class ItemViewController {
 	    model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 	    
 	    return "common/msg";
+	}
+	
+	@PostMapping("/incrementViews")
+	public void incrementViews(@RequestParam Long itemId, HttpServletRequest request, HttpServletResponse response) {
+	    String cookieName = "itemView_" + itemId;
+	    Cookie[] cookies = request.getCookies();
+	    boolean viewed = false;
+
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals(cookieName)) {
+	                viewed = true;
+	                break;
+	            }
+	        }
+	    }
+
+	    if (!viewed) {
+	        service.incrementViews(itemId);
+	        Cookie newCookie = new Cookie(cookieName, "true");
+	        newCookie.setMaxAge(3600); // 1시간 동안 유효
+	        newCookie.setPath("/");
+	        response.addCookie(newCookie);
+	    }
+	    
+	    response.setStatus(HttpServletResponse.SC_OK); // 상태 코드 200 설정
 	}
 }
