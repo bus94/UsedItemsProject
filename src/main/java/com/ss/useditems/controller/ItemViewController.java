@@ -20,7 +20,7 @@ public class ItemViewController {
 	private ItemViewService service;
 
 	@RequestMapping("/item/itemView")
-	public String itemView(Model model, int item_index) {
+	public String itemView(Model model, int item_index, @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember) {
 		System.out.println("itemView 페이지");
 		System.out.println("item_index: " + item_index);
 		
@@ -35,6 +35,7 @@ public class ItemViewController {
 		
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
+		 model.addAttribute("loginMember", loginMember);
 		
 		// 댓글 목록을 모델에 추가
 	    model.addAttribute("replyList", replyList);

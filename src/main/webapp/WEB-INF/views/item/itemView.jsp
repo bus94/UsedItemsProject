@@ -59,10 +59,12 @@
 						<p>조회 ${item.item_click}</p>
 						<p id="enrollDate"></p>
 					</div>
-					<div class="detail_report">
-						<img src="${path}/resources/img/report.png" alt="신고"><a
-							href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
-					</div>
+					<c:if test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
+						<div class="detail_report">
+							<img src="${path}/resources/img/report.png" alt="신고"> <a
+								href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<a href="${path}/account/acc_info.do?acc_id=${itemMember.acc_id}">
