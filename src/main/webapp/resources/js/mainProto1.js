@@ -21,8 +21,7 @@ $('#nav_toTop').click(function() {
 window.addEventListener('scroll', function(){
 
 	//console.log(window.scrollY);
-	
-	
+
 	if(window.scrollY >= '300') {
 		console.log('scrollY >= 300');
 		
@@ -42,6 +41,7 @@ window.addEventListener('scroll', function(){
 	}
 	
 	if(window.scrollY < '300') {
+		
 		$('#after').attr('id','before');
 		$('#before').addClass('fixed-top');
 	}

@@ -86,8 +86,12 @@ footer {
 /* 헤더.jsp navigator */
 .navbar #nav_container {
 	height: 60px;
+	
 }
 
+.navbar{
+	transition: all 0.3s ease;
+}
 
 .navbar .navbar-brand {
 	width: 240px;
@@ -138,6 +142,7 @@ footer {
 	margin: 20px;
 	border: 2px solid rgb(219, 219, 219);
 	border-radius: 20px;
+	transition: all 0.3s ease;
 }
 
 
