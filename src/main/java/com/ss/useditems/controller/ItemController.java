@@ -32,19 +32,28 @@ public class ItemController {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
 		
+		// 기본 카테고리 셋팅
 		List<String> categoryAllList = Arrays.asList("상의", "하의", "신발", "기타의류", "지갑", "피규어", "전자기기", "가구", "식품", "기타");
 		model.addAttribute("categoryAllList", categoryAllList);
 
 		try {
-			// 처음 페이지를 들어갈 땐 현재 페이지를 1로 설정
+			// 처음 페이지 들어갈 땐 현재 페이지를 1로 설정
 			if (currentPage == null) {
 				currentPage = "1";
 			}
 
+			System.out.println("불러온 searchValue: " + searchValue);
 			System.out.println("불러온 searchType: " + searchType);
 			System.out.println("불러온 categoryList: " + categoryList);
+			
+			/*
+			 * if (searchValue.isEmpty() || searchValue.length() == 0) { searchValue = null;
+			 * }
+			 * 
+			 * if (searchType.isEmpty() || searchType.length() == 0) { searchType = null; }
+			 */
 
-			// 체크박스에서 선택한 categoryList이 없다면 default로 설정
+			// 체크박스에서 선택한 categoryList이 없다면 null로 설정
 			if (categoryList == null || categoryList.length == 0) {
 				categoryList = null;
 			}

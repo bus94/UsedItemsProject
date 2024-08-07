@@ -23,9 +23,6 @@ public class ItemEnrollController {
 	@Autowired
 	private ItemEnrollService itemEnrollService;
 	
-	@Autowired
-	private ServletContext context;
-
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
 			String item_category, int item_price, String item_place, MultipartHttpServletRequest item_image) {
@@ -48,10 +45,6 @@ public class ItemEnrollController {
 			int loginMemberIndex = loginMember.getAcc_index();
 			
 			// 업로드 위치 지정
-			/*
-			 * String uploadFolder = context.getRealPath("/resources/img/" +
-			 * loginMemberIndex);
-			 */
 			String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\" + loginMemberIndex;
 			System.out.println("uploadFolder: " + uploadFolder);
 			

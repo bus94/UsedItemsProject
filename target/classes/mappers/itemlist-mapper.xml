@@ -43,6 +43,14 @@
 			separator="," close=")">
 			#{category}
 		</foreach>
+		<if test="searchValue != null">
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR
+			item_place LIKE '%${searchValue}%')
+		</if>
 		<if test="nearPlace != null">
 			ORDER BY item_place asc
 		</if>
@@ -58,6 +66,14 @@
 				separator="," close=")">
 				#{category}
 			</foreach>
+		</if>
+		<if test="searchValue != null">
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR
+			item_place LIKE '%${searchValue}%')
 		</if>
 		<if test="popular != null">
 			ORDER BY item_click asc, item_interest asc
@@ -93,6 +109,14 @@
 				separator="," close=")">
 				#{category}
 			</foreach>
+		</if>
+		<if test="searchValue != null">
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR
+			item_place LIKE '%${searchValue}%')
 		</if>
 		ORDER BY seller_item_count DESC, i.item_seller, i.item_index
 	</select>
