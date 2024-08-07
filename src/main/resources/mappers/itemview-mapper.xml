@@ -59,5 +59,11 @@
 		insert into reply(repl_index, repl_item, repl_candidate, repl_content,repl_enrolldate)
 		values(#{repl_index},#{repl_item}, #{repl_candidate},#{replContent}, DEFAULT)
 	</insert>
-
+    
+    
+    <update id="incrementViews" parameterType="long">
+        UPDATE items
+        SET itemClick = itemClick + 1
+        WHERE id = #{itemId}
+    </update>
 </mapper>

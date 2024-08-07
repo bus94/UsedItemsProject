@@ -25,6 +25,11 @@ public class ItemViewService {
 	public int saveReply(ReplyDTO dto) {
 		return mapper.insertReply(dto);
 	}
+
+	public void incrementViews(Long itemId) {
+		mapper.incrementViews(itemId);
+		
+	}
 	
 	
 }

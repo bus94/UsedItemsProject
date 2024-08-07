@@ -14,5 +14,7 @@ public interface ItemViewMapper {
 	MemberDTO selectByIndex(int item_index);
 
 	int insertReply(ReplyDTO dto);
+
+	void incrementViews(Long itemId);
 	
 }
