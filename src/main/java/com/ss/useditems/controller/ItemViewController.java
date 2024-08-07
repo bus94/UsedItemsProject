@@ -84,7 +84,7 @@ public class ItemViewController {
 	        newCookie.setPath("/");
 	        response.addCookie(newCookie);
 	    }
-
+	    
 	    response.setStatus(HttpServletResponse.SC_OK); // 상태 코드 200 설정
 	}
 }
