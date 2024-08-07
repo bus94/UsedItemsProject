@@ -68,20 +68,20 @@ CREATE TABLE ITEM (
 
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', '전자기기', 100, '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', '의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여3', '내용_테스트2', '의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여6', '내용_테스트5', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 4, '아이스크림팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여', '내용_테스트', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', '전자기기', 100, '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여3', '내용_테스트2', '의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 4, '아이스크림팔아여3', '내용_테스트2', '의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '과자팔아여6', '내용_테스트5', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '팀장님팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '팀장님팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 
 COMMIT;
 
@@ -235,6 +235,7 @@ CREATE SEQUENCE SHOWCASE_SEQ;
 CREATE TABLE SHOWCASE (
 	show_index	    NUMBER		PRIMARY KEY,
 	show_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	show_thumb	VARCHAR2(500)	NOT	NULL,
 	show_img1	VARCHAR2(500)		NULL,
     show_img2	VARCHAR2(500)		NULL,
 	show_img3	VARCHAR2(500)		NULL,
@@ -243,6 +244,6 @@ CREATE TABLE SHOWCASE (
 	show_latDate	DATE	DEFAULT SYSDATE	NOT NULL
 );
 
-
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1) VALUES (SHOWCASE_SEQ.NEXTVAL, 0, '5.jpg', '7.jpg');
 
 COMMIT;

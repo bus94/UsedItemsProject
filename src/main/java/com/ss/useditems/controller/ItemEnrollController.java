@@ -48,7 +48,11 @@ public class ItemEnrollController {
 			int loginMemberIndex = loginMember.getAcc_index();
 			
 			// 업로드 위치 지정
-			String uploadFolder = context.getRealPath("/resources/img/" + loginMemberIndex);
+			/*
+			 * String uploadFolder = context.getRealPath("/resources/img/" +
+			 * loginMemberIndex);
+			 */
+			String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\" + loginMemberIndex;
 			System.out.println("uploadFolder: " + uploadFolder);
 			
 			// 디렉토리 존재 여부 확인 후 없으면 생성

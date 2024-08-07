@@ -45,16 +45,14 @@ public class MemberController {
 
 		loginMember = memberservice.selectByMember(loginMember);
 		if (loginMember != null) {
-			model.addAttribute("msg", "정상적으로 로그인 되었습니다.");
-			model.addAttribute("location", "/");
+			session.setAttribute("loginMember", loginMember);
+			return "home";
 		} else {
 			loginMember = null;
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
 			model.addAttribute("location", "/account/login.do");
 		}
 		
-		session.setAttribute("loginMember", loginMember);
-
 		return "common/msg";
 	}
 
