@@ -11,45 +11,27 @@
 
 <script defer src="${path}/resources/js/home.js"></script>
 
-<section id="content" class="home_page container">
-
-	<h1>캐러셀 ad1</h1>
-
-	<!-- concept viewer -->
+<section id="main_content" class="home_page container">
+	
 	<div id="carouselExampleAutoplaying" class="carousel slide"
 		data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="${path}/resources/img/item4.jpg"
-					class="carsl d-block w-100" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="${path}/resources/img/item2.jpg"
-					class="carsl d-block w-100" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="${path}/resources/img/item3.jpg"
-					class="carsl d-block w-100" alt="...">
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
+		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
+                </div>
+            </div>
+        </div>
 	</div>
-	<!-- concept viewer -->
 
-	<h1>Item Category</h1>
 
-	<!-- category viewer -->
 	<div id="categories" class="container w-100 mt-5 mb-5">
-		<h2 class="categ_title">Categories</h2>
 		<ul class="majors d-flex flex-wrap">
 			<li id="veggies" class="major"><i class="fa-solid fa-shirt"></i>
 				<p class="major_title">상의</p></li>
