@@ -11,9 +11,9 @@
 
 <script defer src="${path}/resources/js/home.js"></script>
 
-<section id="main_content" class="home_page container">
+<section id="main_content" class="home_page">
 	
-	<div id="carouselExampleAutoplaying" class="carousel slide"
+	<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade"
 		data-bs-ride="carousel">
 		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -21,45 +21,41 @@
                     <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
+                    <img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
                 </div>
             </div>
         </div>
 	</div>
 
 
-	<div id="categories" class="container w-100 mt-5 mb-5">
-		<ul class="majors d-flex flex-wrap">
-			<li id="veggies" class="major"><i class="fa-solid fa-shirt"></i>
+	<div id="categories" class="categories">
+		<ul class="majors">
+			<li id="category" class="major"><i class="fa-solid fa-shirt"></i>
 				<p class="major_title">상의</p></li>
-			<li id="meat" class="major"><i class="fa-solid fa-socks"></i>
+			<li id="category" class="major"><i class="fa-solid fa-socks"></i>
 				<p class="major_title">하의</p></li>
-			<li id="seafood" class="major"><i
+			<li id="category" class="major"><i
 				class="fa-solid fa-shoe-prints"></i>
 				<p class="major_title">신발</p></li>
-			<li id="seafood" class="major"><i class="fa-solid fa-glasses"></i>
+			<li id="category" class="major"><i class="fa-solid fa-glasses"></i>
 				<p class="major_title">기타의류</p></li>
-			<li id="seafood" class="major"><i class="fa-solid fa-wallet"></i>
+			<li id="category" class="major"><i class="fa-solid fa-wallet"></i>
 				<p class="major_title">지갑</p></li>
-			<li id="seafood" class="major"><i
+			<li id="category" class="major"><i
 				class="fa-solid fa-jet-fighter-up"></i>
 				<p class="major_title">피규어</p></li>
-			<li id="seafood" class="major"><i
+			<li id="category" class="major"><i
 				class="fa-solid fa-camera-retro"></i>
 				<p class="major_title">전자기기</p></li>
-			<li id="seafood" class="major"><i class="fa-solid fa-chair"></i>
+			<li id="category" class="major"><i class="fa-solid fa-chair"></i>
 				<p class="major_title">가구</p></li>
-			<li id="seafood" class="major"><i class="fa-solid fa-cheese"></i>
+			<li id="category" class="major"><i class="fa-solid fa-cheese"></i>
 				<p class="major_title">식품</p></li>
-			<li id="seafood" class="major"><i
+			<li id="category" class="major"><i
 				class="fa-regular fa-lightbulb"></i>
 				<p class="major_title">기타</p></li>
 		</ul>
 	</div>
-	<!-- category viewer -->
 
 	<h1>캐러셀 ad2</h1>
 

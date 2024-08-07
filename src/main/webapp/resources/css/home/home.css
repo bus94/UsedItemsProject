@@ -1,42 +1,20 @@
 @charset "UTF-8";
 
-@font-face {
-	font-family: 'GmarketSansMedium';
-	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Pretendard-Regular';
-	src:
-		url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-		format('woff');
-	font-weight: 400;
-	font-style: normal;
-}
 
 
-body {
-	font-family: "GmarketSansMedium", "Noto Sans KR", sans-serif;
-	margin:0;
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-}
+
 
 #main_content {
-    margin: 0;
-    padding: 0;
+	width: 100%;
+	margin:0;
+	padding: 0;
+	
 }
-
 
 /* 메인슬라이드 */
 #carouselExampleAutoplaying {
+	width: 100%;
 	position:relative;
-    width: 100%;
 }
 
 #carouselExampleAutoplaying .carousel-item img {
@@ -47,14 +25,38 @@ body {
 
 
 
+/*---카테고리--- */
+
+.categories {
+	width:1200px;
+    margin: auto;
+    text-align: center;
+    padding: 100px 0 100px 0;
+}
+
+.majors {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
 .major {
-    background-color: black;
-    color: white;
-    width: 80px;
-    height: 80px;
+    background-color: white;
+    width: 105px;
+    height: 105px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
+    padding-top:25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.major:hover {
+	 transform: scale(1.2);
+}
+
+.major p {
+	font-weight: lighter;
 }
 
 .major_icon {
@@ -67,30 +69,12 @@ body {
     font-weight: bold;
 }
 
-#categories {
-	width:100%;
-    margin: auto;
-    text-align: center;
-}
 
-.majors {
-    list-style-type: none;
-    padding: 0;
-
-    display: flex;
-    justify-content: space-around;
-}
 
 .ad_banner {
 	width: 800px;
 	height: 200px;
 }
-
-
-.carsl {
-	height : 500px;
-}
-
 
 
 
