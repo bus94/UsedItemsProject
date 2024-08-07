@@ -13,13 +13,15 @@
 		<div class="category">
 			<div>
 				<input type="radio" name="searchType" id="searchTypeNearPlace"
-					value="nearPlace" /> <label class="radio_type"
-					for="radio_nearPlace">가까운 순</label> <input type="radio"
-					name="searchType" id="searchTypePopular" value="popular" /> <label
+					value="nearPlace" ${searchType == 'nearPlace' ? 'checked' : ''} />
+				<label class="radio_type" for="radio_nearPlace">가까운 순</label> <input
+					type="radio" name="searchType" id="searchTypePopular"
+					value="popular" ${searchType == 'popular' ? 'checked' : ''} /> <label
 					class="radio_type" for="radio_searchType">인기많은 순</label> <input
 					type="radio" name="searchType" id="searchTypeBestSeller"
-					value="bestSeller" /> <label class="radio_type"
-					for="radio_beastSeller">거래가 많은 판매자순</label>
+					value="bestSeller" ${searchType == 'bestSeller' ? 'checked' : ''} />
+				<label class="radio_type" for="radio_beastSeller">거래가 많은
+					판매자순</label>
 			</div>
 
 			<div>
@@ -30,7 +32,7 @@
 						${isChecked ? 'checked':''} />
 					<label class="radio_type" for="item_category_${value}">${value}</label>
 				</c:forEach>
-				
+
 				<button type="submit" class="sear_category">상세검색</button>
 				<button type="reset" class="sear_category">초기화</button>
 			</div>
@@ -78,25 +80,32 @@
 				</c:forEach>
 			</div>
 		</c:if>
+	</form>
 
-		<!-- 페이징 -->
-		<div align="center"
-			class="pagination container d-flex justify-content-center">
-			<a href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${categoryList}">|&lt;</a> &nbsp; <a
-				href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${categoryList}">&lt;</a> &nbsp;
-			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
-				end="${pageInfo.tillPage}" step="1">
-				<a href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${categoryList}"
-					${pageInfo.currentPage == currentPage} ? "style='font-weight: bold;'":""}>${currentPage}</a>
+	<!-- 페이징 -->
+	<div align="center"
+		class="pagination container d-flex justify-content-center">
+		<a
+			href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">|&lt;</a>
+		&nbsp; <a
+			href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&lt;</a>
+		&nbsp;
+		<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
+			end="${pageInfo.tillPage}" step="1">
+			<a
+				href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}"
+				${pageInfo.currentPage == currentPage} ? "style='font-weight: bold;'":""}>${currentPage}</a>
 		&nbsp;
 		</c:forEach>
 
-			<a href="itemList.do?currentPage=${pageInfo.nextPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${categoryList}">&gt;</a>
-			&nbsp; <a href="itemList.do?currentPage=${pageInfo.lastPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${categoryList}">&gt;|</a>
-			&nbsp; <a href="${path}/item/itemEnroll.do" class="align-self-end"
-				target="_blank">매물 등록</a>
-		</div>
-	
+		<a
+			href="itemList.do?currentPage=${pageInfo.nextPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&gt;</a>
+		&nbsp; <a
+			href="itemList.do?currentPage=${pageInfo.lastPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&gt;|</a>
+		&nbsp; <a href="${path}/item/itemEnroll.do" class="align-self-end"
+			target="_blank">매물 등록</a>
+	</div>
+
 
 </section>
 
