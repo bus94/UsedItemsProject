@@ -3,7 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
 <c:set var="searchType" value="${param.searchType}" />
 <c:set var="subject_id" value="${param.subject_id}" />
 <!-- c:set을 안해주면 직접 param에서 값을 불러오면 됨, ex) searchBlack -->

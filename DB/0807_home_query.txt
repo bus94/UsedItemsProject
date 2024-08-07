@@ -1,0 +1,158 @@
+---------------------------------Home.getNew5()
+select * from item;
+
+
+--서브쿼리1차 조인--
+select
+*
+from ITEM item
+left join REPLY repl on (item.item_index=repl.repl_item);
+
+
+--서브쿼리2차 그룹--
+select
+item_index,
+item_seller,
+item_title,
+item_content,
+item_category,
+item_price,
+item_place,
+item_status,
+item_enrollDate,
+item_click,
+item_interest,
+item_offDate,
+item_buyer,
+count(repl_index)
+from 
+(select
+*
+from ITEM item
+left join REPLY repl on (item.item_index=repl.repl_item))
+group by item_index, item_seller, item_title, item_content, item_category, item_price, item_place, item_status,item_enrollDate, item_click, item_interest, item_offDate, item_buyer
+order by item_index desc;   --enrollDate 순과 index 순은 동일함(sequence)
+----------------------
+
+select * from
+(select
+item_index,
+item_seller,
+item_title,
+item_content,
+item_category,
+item_price,
+item_place,
+item_status,
+item_enrollDate,
+item_click,
+item_interest,
+item_offDate,
+item_buyer,
+count(repl_index) repl_count
+from 
+(select
+*
+from ITEM item
+left join REPLY repl on (item.item_index=repl.repl_item))
+group by item_index, item_seller, item_title, item_content, item_category, item_price, item_place, item_status,item_enrollDate, item_click, item_interest, item_offDate, item_buyer
+order by item_index desc)
+where rownum <=5;
+
+--첨부터 최근 5개만 뽑아서(그룹 먼저) REPLY 조인시키는게 더 나을 듯
+
+
+--그룹 먼저 해본다
+---------------------------------Home.getPowerSeller()
+select * from ITEM;
+
+--서브쿼리1차 그룹-- 매물을 많이 등록한 순서/ 판매 성사와는 무관
+select
+count(item_index) selling_count,
+item_seller
+from ITEM
+group by item_seller
+order by count(item_index) desc;
+--------------
+--매매를 성사시킨 친구를 찾으려면
+--Account의 acc_count로 조회 
+--또는 count(item_buyer)
+
+
+
+
+--서브쿼리2차 rownum 필터링
+select
+*
+from
+(select
+count(item_index) selling_count,
+item_seller
+from ITEM
+group by item_seller
+order by count(item_index) desc)
+where rownum = 1;
+--가장 많이 매물 등록한 친구
+
+
+select * from ACCOUNT acc
+join 
+(select
+*
+from
+(select
+count(item_index) selling_count,
+item_seller
+from ITEM
+group by item_seller
+order by count(item_index) desc)
+where rownum = 1) power on (acc.acc_index=power.item_seller);
+
+
+
+
+---------------------------------Home.getBlack5()
+select * from blacklist;
+
+select * from blacklist
+where black_object = 5;
+
+
+--서브쿼리1차 조인--
+select
+*
+from BLACKLIST blk
+join ACCOUNT acc on (blk.black_object = acc.acc_index)
+order by black_index;
+
+
+--서브쿼리 2차 그룹--
+select 
+black_object,
+acc_nickname object_nickname,
+acc_id object_id,
+count(black_index) black_count
+from
+(select
+*
+from BLACKLIST blk
+join ACCOUNT acc on (blk.black_object = acc.acc_index))
+group by black_object, acc_nickname, acc_id
+order by black_count desc;
+-------------------
+
+select * from
+(select 
+black_object,
+acc_nickname object_nickname,
+acc_id object_id,
+count(black_index) black_count
+from
+(select
+*
+from BLACKLIST blk
+join ACCOUNT acc on (blk.black_object = acc.acc_index))
+group by black_object, acc_nickname, acc_id
+order by black_count desc)
+where rownum <= 5;
+----------------------------------

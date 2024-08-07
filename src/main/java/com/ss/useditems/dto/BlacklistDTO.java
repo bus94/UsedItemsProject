@@ -21,4 +21,5 @@ public class BlacklistDTO {
 	private String black_content;	//테이블 값, 신고 내용
 	private Date black_enrollDate;	//테이블 값, 신고일자
 	
+	private int black_count;	//피신고횟수
 }
