@@ -50,6 +50,12 @@ footer {
 	margin-top: 250px;
 }
 
+.nav-item {
+	display: flex;
+}
+
+
+
 
 
 @media screen and (min-width: 992px) {
@@ -67,21 +73,37 @@ footer {
 
 }
 
+@media screen and (max-width: 1200px) {
+	/* 1200px보다 작아지면 */
 
+	.navbar .menu_text {
+		display: none;
+	}
+	
+	.navbar .nav-item {
+		margin-right: 20px;
+	}
 
-
-
-
-/* 어디에 쓰는 건지??????  */
-.list-group-item a {
-	text-decoration-line: none;
-	color: black;
 }
 
-.input_text {
-	width: 400px;
-	height: 40px;
+@media screen and (min-width: 1200px) {
+	/* 1200px보다 커지면 */
+
+	.navbar .menu_text {
+		display: block;
+	}
+
 }
+
+
+
+#navigator_home {
+	background-color: white;
+}
+.navbar {
+        transition: all 0.3s ease; /* 모든 속성 변경에 대해 0.3초 동안 부드러운 전환 */
+    }
+
 
 /* 헤더.jsp navigator */
 .navbar #nav_container {
@@ -112,7 +134,7 @@ footer {
 .navbar .nav_side_icon {
     color: black;
     position: fixed;
-    right: 5%;
+    right: 2%;
 
     font-size: 2rem;
 }
@@ -131,6 +153,7 @@ footer {
 
 .navbar #nav_toTop {
     bottom: 2%;
+    display: none;
 }
 
 
@@ -139,8 +162,10 @@ footer {
 
 /* 홈에서 스크롤 200미만이면 적용 */
 #navigator_home {
-	margin: 20px;
+	position:absolute;
+	margin: 20px 30px 0 30px;
 	border: 2px solid rgb(219, 219, 219);
+<<<<<<< HEAD
 	border-radius: 20px;
 	transition: all 0.3s ease;
 }
@@ -270,90 +295,25 @@ footer {
     height: 16px;
     margin-top: 6px;
     opacity: 50%;
+=======
+	border-radius: 10px;
+	z-index: 1000;
+	width: 95%;
+>>>>>>> 21531cb2b4639f6ebffc180df8720999358a6bc2
 }
 
 
 
 
 
-/* 로그인 */
 
-.login-container {
-	width: 1000px;
-	margin: auto;
-	height: 60px;
-	background-color: white;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
 
-.login-container form {
-	width: 450px;
-	height: 40px;
-	display: flex;
-}
 
-.login-container .sch_smit {
-	width: 30px;
-	background-color: white;
-	border: none;
-}
 
-.login-container .sch_smit  img {
-	width: 35px;
-	margin-top: 3px;
-}
 
-.login {
-	display: flex;
-}
 
-.login_img {
-	width: 30px;
-	height: 30px;
-}
 
-.login img {
-	width: 30px;
-	margin-right: 3px;
-}
 
-.login_text {
-	color: black;
-	text-decoration: none;
-	margin-top: 7px;
-}
-
-.login_btn {
-	display: flex;
-}
-
-.login_profile {
-	display: flex;
-}
-
-.login_profileIn {
-	display: flex;
-}
-
-.login_profileIn a:first-child {
-	margin-right: 10px;
-	margin-top: 1px;
-}
-
-.login_profile img {
-	width: 30px;
-}
-
-.login_profile_text {
-	color: black;
-	text-decoration: none;
-	margin-top: 5px;
-	position: relative;
-	top: 2px;
-	left: -6px;
-}
 
 
 

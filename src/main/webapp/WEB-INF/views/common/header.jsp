@@ -34,6 +34,8 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/main.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
+	href="${path}/resources/css/home/home.css?v=${systemProperties['timestamp']}">	
+<link rel="stylesheet"
 	href="${path}/resources/css/login/login.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
@@ -68,8 +70,8 @@
 		<!-- 전체 페이지 wrapper -->
 
 		<nav id="navigator"
-			class="fixed-top navbar navbar-expand-lg bg-body-tertiary bg-success-subtle">
-			<div id="nav_container" class="container-fluid ">
+			class="fixed-top navbar navbar-expand-lg bg-body-tertiary" style="background-color: white">
+			<div id="nav_container" class="container-fluid">
 				<a class="navbar-brand" href="${path}/"> 
 				<img id="brand_img" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
 				</a>
@@ -81,42 +83,53 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="${path}/item/itemList.do">
+						<a class="nav-link active" aria-current="page" href="${path}/item/itemList.do">
+							<li class="nav-item">
 								<img class="nav_icon" alt="매물 검색" src="${path}/resources/img/shop.png">
-							매물검색</a>
-						</li>
+								<span class="menu_text">매물검색</span>
+							</li>
+						</a>
+						<a class="nav-link"	href="${path}/blacklist/complainList.do">
+							<li class="nav-item">
+								<img class="nav_icon" alt="신고 조회" src="${path}/resources/img/report.png">
+								<span class="menu_text">신고조회</span>
+							</li>
+						</a>
+						
 						<c:if test="${loginMember == null}">
-						<li class="nav-item">
 							<a class="nav-link"	href="${path}/account/login.do">
-								<img class="nav_icon" alt="로그인" src="${path}/resources/img/login.png">
-							로그인</a>
-						</li>
-						<li class="nav-item">
+								<li class="nav-item">
+									<img class="nav_icon" alt="로그인" src="${path}/resources/img/login.png">
+									<span class="menu_text">로그인</span>
+								</li>
+							</a>
 							<a class="nav-link"	href="${path}/account/signup.do">
-								<img class="nav_icon" alt="회원가입" src="${path}/resources/img/login2.png">
-							회원가입</a>
-						</li>
+								<li class="nav-item">
+									<img class="nav_icon" alt="회원가입" src="${path}/resources/img/login2.png">
+									<span class="menu_text">회원가입</span>
+								</li>
+							</a>
 						</c:if>
+						
+						
 						<c:if test="${loginMember != null}">
-						<li class="nav-item">
 							<a class="nav-link" id="logout" href="">
-								<img class="nav_icon" alt="로그아웃" src="${path}/resources/img/login.png">
-							로그아웃</a>
-						</li>
-						<li class="nav-item">
+								<li class="nav-item">
+									<img class="nav_icon" alt="로그아웃" src="${path}/resources/img/logout.png">
+									<span class="menu_text">로그아웃</span>
+								</li>
+							</a>
 							<a class="nav-link" href="${path}/item/itemEnroll.do">
-								<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/message.png">
-							매물등록</a>
-						</li>
+								<li class="nav-item">
+									<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/sale.png">
+									<span class="menu_text">매물등록</span>
+								</li>
+							</a>
 						</c:if>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
 							<ul class="dropdown-menu">
-								<li>
-									<a class="dropdown-item" href="${path}/blacklist/complainList.do">신고 조회</a>
-								</li>
 								<li>
 									<a class="dropdown-item" href="${path}/account/acc_info.do?acc_id=id_test4">타계정 정보</a>
 								</li>
@@ -140,18 +153,18 @@
 			</div>
 			<c:if test="${loginMember != null}">
 			<!-- 회원페이지 -->
-			<a href="${path}/account/my_info.do" id="nav_user" class="nav_side_icon max992off"
-				style="font-weight: bold;"><i class="fa-solid fa-circle-user"></i></a>
+			<a href="${path}/account/my_info.do" id="nav_user" class="nav_side_icon max992off">
+			<i class="fa-solid fa-circle-user"></i></a>
 			<!-- 즐겨찾기 -->
-			<a href="${path}/item/interest.do" id="nav_wish" class="nav_side_icon max992off"><i
-				class="fa-brands fa-gratipay"></i></a>
+			<a href="${path}/item/interest.do" id="nav_wish" class="nav_side_icon max992off">
+			<i class="fa-brands fa-gratipay"></i></a>
 			<!-- 링크 -->
-			<a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon"><i
-				class="fa-solid fa-circle-nodes"></i></a>
+			<a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon">
+			<i class="fa-solid fa-circle-exclamation"></i></a>
 			</c:if>
 			<!-- 위로가기 -->
-			<a href="" id="nav_toTop" class="nav_side_icon"><i
-				class="fa-solid fa-circle-arrow-up"></i></a>
+			<a href="" id="nav_toTop" class="nav_side_icon">
+			<i class="fa-solid fa-circle-arrow-up"></i></a>
 		</nav>
 
 
@@ -183,9 +196,23 @@
 				$('section').toggleClass('section_toggleOn');
 				$('#nav_user').toggle();
 				$('#nav_wish').toggle();
+				$('.menu_text').toggle();
 			});
 
-			
+			window.addEventListener('scroll', function(){
+				//console.log(window.scrollY);
+				
+				// 스크롤 Y축 300 초과 시 실행
+				if(window.scrollY > '300') {
+					$('#nav_toTop').show();
+				}
+				
+				// 스크롤 Y축 300 미만 시 실행
+				if(window.scrollY < '300') {
+					$('#nav_toTop').hide();
+				}
+				
+			});
 
 
 		</script>

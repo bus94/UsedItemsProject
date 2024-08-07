@@ -17,18 +17,6 @@ public class ItemService {
 	@Autowired
 	private ItemMapper mapper;
 
-	public PageInfo searchItems(int currentPage, String searchValue) {
-		ArrayList<ItemDTO> unpaged_list = mapper.searchItems(searchValue);
-
-		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 10);
-
-		List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
-
-		pageinfo.setDtoContainer2(paged_list);
-
-		return pageinfo;
-	}
-
 	public PageInfo interestItem(int currentPage, int accIndex) {
 		System.out.println(mapper.interest(accIndex));
 
@@ -92,21 +80,19 @@ public class ItemService {
 		return pageinfo;
 	}
 
-	public PageInfo selectByDefault(int currentPage_) {
+	public PageInfo selectByDefault(int currentPage_, Map<String, Object> map) {
 		System.out.println("selectByDefault() 실행");
-		
-		ArrayList<ItemDTO> unpaged_list = mapper.selectByDefault();
-		System.out.println("1");
-		
+		System.out.println("service.map" + map);
+		ArrayList<ItemDTO> unpaged_list = mapper.selectByDefault(map);
+		System.out.println("unpaged_list:" + unpaged_list);
 		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
-		System.out.println("2");
+		System.out.println("pageinfo:" + pageinfo);
 		
 		List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
-		System.out.println("3");
+		System.out.println("paged_list:" + paged_list);
 		
 		pageinfo.setDtoContainer2(paged_list);
-		System.out.println("4");
-
+		System.out.println("set 후 pageinfo:" + pageinfo);
 		return pageinfo;
 	}
 

@@ -21,4 +21,6 @@ public interface MemberMapper {
 
 	int withdraw(String acc_id); //정일_회원탈퇴
 
+	MemberDTO getPowerSeller();	//정일_home.jsp_파워셀러
+
 }

@@ -59,10 +59,12 @@
 						<p>조회 ${item.item_click}</p>
 						<p id="enrollDate"></p>
 					</div>
-					<div class="detail_report">
-						<img src="${path}/resources/img/report.png" alt="신고"><a
-							href="#">신고하기</a>
-					</div>
+					<c:if test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
+						<div class="detail_report">
+							<img src="${path}/resources/img/report.png" alt="신고"> <a
+								href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<a href="${path}/account/acc_info.do?acc_id=${itemMember.acc_id}">
@@ -95,22 +97,25 @@
 			<div class="comment-editor" align="center">
 				<form action="${path}/itemView/reply" method="post">
 					<input type="hidden" name="itemNo" value="${item.item_index}" />
-					<input type="hidden" name="writerId" value="${loginMember.id}" />
+					<input type="hidden" name="writerId" value="${loginMember.acc_id}" />
 					<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
 					<button type="submit" id="btn-insert">등록</button>
 				</form>
 			</div>
 		</div>
-	<div class="reply">
-		<c:if test="${!empty replyList}">
+
+	<c:if test="${!empty replyList}">
+		<div class="reply">
 			<c:forEach var="reply" items="${replyList}">
 				<div class="reply_container">
-					<div class="reply_img">
-						<img src="${path}/resources/img/study.jpg" alt="프사">
-					</div>
-					<div class="reply_txt">
-						<h4>뭉지</h4>
-						<p>${reply.repl_content}</p>
+					<div style="display: flex;">
+						<div class="reply_img">
+							<img src="${path}/resources/img/study.jpg" alt="프사">
+						</div>
+						<div class="reply_txt">
+							<h4>뭉지</h4>
+							<p>${reply.repl_content}</p>
+						</div>
 					</div>
 					<div class="reply_btn">
 						<button onclick='btnClick()'>삭제하기</button>
@@ -130,13 +135,14 @@
 					</div>
 				</div>
 			</c:forEach>
-		</c:if>
-		<c:if test="${empty replyList}">
+		</div>
+	</c:if>
+	<c:if test="${empty replyList}">
 			<tr>
 				<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
 			</tr>
 		</c:if>
-	</div>
+
 
 	<div class="carousel-wrapper">
 		<div>

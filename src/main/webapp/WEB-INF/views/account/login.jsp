@@ -28,6 +28,8 @@
 						value="회원가입" onclick="location.href='${path}/account/signup.do';" />
 				</div>
 			</div>
+			<%-- <input type="hidden" class="preUrl"
+					name="preUrl" id="preUrl" value="${preUrl}"> --%>
 		</form>
 	</c:if>
 </section>
