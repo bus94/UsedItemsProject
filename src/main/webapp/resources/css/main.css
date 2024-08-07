@@ -85,18 +85,12 @@ footer {
 
 
 
-/* 어디에 쓰는 건지??????  */
-.list-group-item a {
-	text-decoration-line: none;
-	color: black;
-}
-
-.input_text {
-	width: 400px;
-	height: 40px;
-}
 
 
+
+.navbar {
+        transition: all 0.3s ease; /* 모든 속성 변경에 대해 0.3초 동안 부드러운 전환 */
+    }
 
 
 /* 헤더.jsp navigator */
@@ -152,9 +146,12 @@ footer {
 
 /* 홈에서 스크롤 200미만이면 적용 */
 #navigator_home {
-	margin: 20px;
+	position:absolute;
+	margin: 30px 50px 0 30px;
 	border: 2px solid rgb(219, 219, 219);
-	border-radius: 20px;
+	border-radius: 10px;
+	z-index: 1000;
+	width: 95%;
 }
 
 
