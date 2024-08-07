@@ -52,6 +52,18 @@ body {
     font-weight: bold;
 }
 
+#categories {
+    margin: auto;
+    text-align: center;
+}
+
+.majors {
+    list-style-type: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-around;
+}
 
 .ad_banner {
 	width: 800px;
