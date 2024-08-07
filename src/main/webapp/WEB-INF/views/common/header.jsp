@@ -117,7 +117,7 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="${path}/item/itemEnroll.do">
-								<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/message.png">
+								<img class="nav_icon" alt="매물 등록" src="${path}/resources/img/sale.png">
 							<span class="menu_text">매물등록</span></a>
 						</li>
 						</c:if>
