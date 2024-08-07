@@ -7,55 +7,85 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+
+
+<!-- 테스트페이지(헤더2) 연결 -->
+<jsp:include page="/WEB-INF/views/common/header2.jsp"></jsp:include>
+
+
 
 <script defer src="${path}/resources/js/home.js"></script>
 
-<section id="main_content" class="home_page">
-	
-	<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade"
+<section id="content" class="home_page container">
+
+
+	<h1>세잎마켓 테스트페이지(2)</h1>
+
+
+
+	<!-- concept viewer -->
+	<div id="carouselExampleAutoplaying" class="carousel slide"
 		data-bs-ride="carousel">
-		<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
-                </div>
-            </div>
-        </div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="${path}/resources/img/item4.jpg"
+					class="carsl d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="${path}/resources/img/item2.jpg"
+					class="carsl d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="${path}/resources/img/item3.jpg"
+					class="carsl d-block w-100" alt="...">
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button"
+			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button"
+			data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Next</span>
+		</button>
 	</div>
+	<!-- concept viewer -->
 
+	<h1>Item Category</h1>
 
-	<div id="categories" class="categories">
-		<ul class="majors">
-			<li id="category" class="major"><i class="fa-solid fa-shirt"></i>
+	<!-- category viewer -->
+	<div id="categories" class="container w-100 mt-5 mb-5">
+		<h2 class="categ_title">Categories</h2>
+		<ul class="majors d-flex flex-wrap">
+			<li id="veggies" class="major"><i class="fa-solid fa-shirt"></i>
 				<p class="major_title">상의</p></li>
-			<li id="category" class="major"><i class="fa-solid fa-socks"></i>
+			<li id="meat" class="major"><i class="fa-solid fa-socks"></i>
 				<p class="major_title">하의</p></li>
-			<li id="category" class="major"><i
+			<li id="seafood" class="major"><i
 				class="fa-solid fa-shoe-prints"></i>
 				<p class="major_title">신발</p></li>
-			<li id="category" class="major"><i class="fa-solid fa-glasses"></i>
+			<li id="seafood" class="major"><i class="fa-solid fa-glasses"></i>
 				<p class="major_title">기타의류</p></li>
-			<li id="category" class="major"><i class="fa-solid fa-wallet"></i>
+			<li id="seafood" class="major"><i class="fa-solid fa-wallet"></i>
 				<p class="major_title">지갑</p></li>
-			<li id="category" class="major"><i
+			<li id="seafood" class="major"><i
 				class="fa-solid fa-jet-fighter-up"></i>
 				<p class="major_title">피규어</p></li>
-			<li id="category" class="major"><i
+			<li id="seafood" class="major"><i
 				class="fa-solid fa-camera-retro"></i>
 				<p class="major_title">전자기기</p></li>
-			<li id="category" class="major"><i class="fa-solid fa-chair"></i>
+			<li id="seafood" class="major"><i class="fa-solid fa-chair"></i>
 				<p class="major_title">가구</p></li>
-			<li id="category" class="major"><i class="fa-solid fa-cheese"></i>
+			<li id="seafood" class="major"><i class="fa-solid fa-cheese"></i>
 				<p class="major_title">식품</p></li>
-			<li id="category" class="major"><i
+			<li id="seafood" class="major"><i
 				class="fa-regular fa-lightbulb"></i>
 				<p class="major_title">기타</p></li>
 		</ul>
 	</div>
+	<!-- category viewer -->
 
 	<h1>캐러셀 ad2</h1>
 
