@@ -27,6 +27,7 @@ public class ItemDTO {
 	private Date item_offDate;
 	private int item_buyer;
 	
+	private int repl_count;	//정일0807 Home.new5()
 	private List<ReplyDTO> replies;
 
 }

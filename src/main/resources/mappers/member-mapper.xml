@@ -17,7 +17,7 @@
 		<result property="acc_count" column="acc_count" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
-	</resultMap>	
+	</resultMap>
 
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
 
@@ -32,17 +32,22 @@
 		SELECT * FROM account WHERE acc_id = #{acc_id} AND
 		acc_password = #{acc_password}
 	</select>
-	
+
 	<select id="selectById" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM ACCOUNT WHERE ACC_ID = #{id}
 	</select>
 
 	<insert id="signup" parameterType="memberDTO">
-		INSERT INTO ACCOUNT(acc_index, acc_id, acc_password, acc_birthDate,
-		acc_phone, acc_name, acc_address, acc_nickname, acc_profile,
-		acc_level, acc_count, acc_status, acc_enrollDate) VALUES
-		(ACCOUNT_SEQ.NEXTVAL, #{acc_id}, #{acc_password}, #{acc_birthDate},
-		#{acc_phone}, #{acc_name}, #{acc_address}, #{acc_id}, '', default,
+		INSERT INTO ACCOUNT(acc_index,
+		acc_id, acc_password, acc_birthDate,
+		acc_phone, acc_name, acc_address,
+		acc_nickname, acc_profile,
+		acc_level, acc_count, acc_status,
+		acc_enrollDate) VALUES
+		(ACCOUNT_SEQ.NEXTVAL, #{acc_id},
+		#{acc_password}, #{acc_birthDate},
+		#{acc_phone}, #{acc_name},
+		#{acc_address}, #{acc_id}, '', default,
 		0, 'active', sysdate)
 	</insert>
 
@@ -65,13 +70,32 @@
 		left join (select
 		black_object,
 		count(black_index) acc_blackCount
-		from BLACKLIST group by black_object) black 
+		from BLACKLIST group by black_object)
+		black
 		on (acc.acc_index = black.black_object)
 		where acc_id = #{acc_id}
 	</select>      <!--정일 -->
 
-	<update id="withdraw" parameterType="String" >
-		update ACCOUNT set acc_status='inactive' where acc_id=#{acc_id}
+	<update id="withdraw" parameterType="String">
+		update ACCOUNT set
+		acc_status='inactive' where acc_id=#{acc_id}
 	</update>	<!--정일 -->
+
+
+	<select id="getPowerSeller" resultType="memberDTO">
+		select * from ACCOUNT acc
+		join
+		(select
+		*
+		from
+		(select
+		count(item_index) selling_count,
+		item_seller
+		from ITEM
+		group by item_seller
+		order by count(item_index) desc)
+		where rownum = 1) power on (acc.acc_index=power.item_seller)
+	</select>	<!--정일_home.jsp_파워셀러-->
+
 
 </mapper>

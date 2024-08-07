@@ -83,11 +83,7 @@ INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여3', '내�
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여6', '내용_테스트5', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-<<<<<<< HEAD
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 4, '아이스크림팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여', '내용_테스트', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-=======
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '안뜯은과자팝니다', '과자과자', '식품', 100, '송파구', 'drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,TO_DATE('20240726', 'YYYY-MM-DD'),1);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '안뜯은과자팝니다 엄청 많아요', '과자과자과자', '식품', 100, '송파구', 'drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,TO_DATE('20240726', 'YYYY-MM-DD'),1);
@@ -96,22 +92,16 @@ INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '뜯다만과자팝니다', '쪼금
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '플스 새거 팝니다', '1999년산', '전자기기', 100, '강남구', 'drop',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,TO_DATE('20240727', 'YYYY-MM-DD'),9);
->>>>>>> 58e94d69c169c7113c3d49453669c363b50c0665
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', '전자기기', 100, '인천광역시', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 4, '아이스크림팔아여3', '내용_테스트2', '의류잡화', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '과자팔아여6', '내용_테스트5', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-<<<<<<< HEAD
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '팀장님팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
-=======
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '팀장님팔아여7', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240726', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240727', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '식품', 100, '강남구', 'onsale',TO_DATE('20240727', 'YYYY-MM-DD'),default,default,null,null);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 7, '감자팔아요', '감자감자', '식품', 100, '용산구', 'drop',TO_DATE('20240727', 'YYYY-MM-DD'),default,default,TO_DATE('20240727', 'YYYY-MM-DD'),8);
 INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 7, '깨끗한감자팔아요', '호박감자', '식품', 100, '용산구', 'drop',TO_DATE('20240727', 'YYYY-MM-DD'),default,default,TO_DATE('20240728', 'YYYY-MM-DD'),5);
->>>>>>> 58e94d69c169c7113c3d49453669c363b50c0665
 
 COMMIT;
 

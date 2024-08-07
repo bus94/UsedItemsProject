@@ -1,6 +1,7 @@
 package com.ss.useditems.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -13,6 +14,8 @@ public interface BlacklistMapper {
 	ArrayList<BlacklistDTO> getBlacklist(Map<String, String> queryMap);
 
 	int enroll(BlacklistDTO complain);
+
+	ArrayList<BlacklistDTO> getBlack5();
 
 	
 	
