@@ -70,7 +70,7 @@
 		<!-- 전체 페이지 wrapper -->
 
 		<nav id="navigator"
-			class="fixed-top navbar navbar-expand-lg bg-body-tertiary bg-success-subtle">
+			class="fixed-top navbar navbar-expand-lg bg-body-tertiary" style="background-color: white">
 			<div id="nav_container" class="container-fluid">
 				<a class="navbar-brand" href="${path}/"> 
 				<img id="brand_img" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
