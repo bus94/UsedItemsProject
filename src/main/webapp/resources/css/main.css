@@ -50,6 +50,9 @@ footer {
 	margin-top: 250px;
 }
 
+.nav-item {
+	display: flex;
+}
 
 
 
@@ -71,7 +74,7 @@ footer {
 }
 
 @media screen and (max-width: 1200px) {
-	/* 992px보다 작아지면 */
+	/* 1200px보다 작아지면 */
 
 	.navbar .menu_text {
 		display: none;
@@ -83,7 +86,14 @@ footer {
 
 }
 
+@media screen and (min-width: 1200px) {
+	/* 1200px보다 커지면 */
 
+	.navbar .menu_text {
+		display: block;
+	}
+
+}
 
 /* 어디에 쓰는 건지??????  */
 .list-group-item a {
