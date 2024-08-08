@@ -72,32 +72,3 @@ $('.itemView_carousel').slick({
 });
 });
 
-function incrementViews(path,itemId) {
-    fetch(path+'/item/incrementViews?item_index=' + item_index, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-        body: JSON.stringify({ itemId: itemId })
-    }).then(response => {
-        if (!response.ok) {
-            response.text().then(text => {
-                console.error('Failed to increment views:', text);
-            });
-        } else {
-            console.log('Successfully incremented views');
-        }
-    }).catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-	
-    console.log(item_index);
-    console.log(path);
-    
-    incrementViews(path,item_index);
- 
-});

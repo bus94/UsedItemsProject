@@ -173,8 +173,7 @@
 </section>
 
 <script>
-	var path="${path}";
-	var item_index="${item.item_index}";
+
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
 		const seconds = milliSeconds / 1000;
