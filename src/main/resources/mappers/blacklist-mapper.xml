@@ -20,11 +20,11 @@
 	</resultMap>
 	
 	
-	<resultMap type="BlacklistDTO" id="black5Map">
-		<result property="black_object" column="black_object" />
-		<result property="object_nickname" column="object_nickname" />
-		<result property="object_id" column="object_id" />
-		<result property="black_count" column="black_count" />
+	<resultMap type="memberDTO" id="black5Map">
+		<result property="acc_index" column="black_object" />
+		<result property="acc_nickname" column="object_nickname" />
+		<result property="acc_id" column="object_id" />
+		<result property="acc_blackCount" column="black_count" />
 	</resultMap>
 	
 
