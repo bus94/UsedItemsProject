@@ -55,7 +55,7 @@
 					<div class="d-flex">
 						<p class="public_title container"><span>거</span><span>래</span><span>횟</span><span>수</span></p><p class="public_text ms-3">${account_info.acc_count}</p>
 					</div>
-					<div class="black_report d-flex">
+					<div class="black_report d-flex mb-3">
 						<div class="d-flex">
 							<p class="public_title container"><span>피</span><span>신</span><span>고</span><span>횟</span><span>수</span></p><p class="public_text ms-3">${account_info.acc_blackCount}</p>
 						</div>
