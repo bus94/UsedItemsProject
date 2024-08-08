@@ -38,11 +38,14 @@
 	<select id="selectByNearPlace" parameterType="java.util.Map"
 		resultMap="itemMap">
 		SELECT * FROM ITEM
-		WHERE item_category IN
-		<foreach item="category" collection="categoryList" open="("
-			separator="," close=")">
-			#{category}
-		</foreach>
+		WHERE 1 = 1 
+		<if test="categoryList != null and categoryList.length > 0">
+			AND item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
 		<if test="searchValue != null">
 			AND (item_title LIKE '%${searchValue}%'
 			OR item_content
@@ -60,7 +63,7 @@
 		resultMap="itemMap">
 		SELECT * FROM ITEM
 		WHERE 1 = 1
-		<if test="categoryList != null">
+		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
@@ -103,7 +106,7 @@
 		JOIN ACCOUNT a ON i.item_seller =
 		a.acc_index
 		WHERE 1 = 1
-		<if test="categoryList != null">
+		<if test="categoryList != null and categoryList.length > 0">
 			AND i.item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
@@ -118,14 +121,16 @@
 			OR
 			item_place LIKE '%${searchValue}%')
 		</if>
-		ORDER BY seller_item_count DESC, i.item_seller, i.item_index
+		<if test="bestSeller != null">
+			ORDER BY seller_item_count DESC, i.item_seller, i.item_index
+		</if>
 	</select>
 
 	<select id="selectByDefault" parameterType="java.util.Map"
 		resultMap="itemMap">
 		SELECT * FROM ITEM
 		WHERE 1 = 1
-		<if test="categoryList != null">
+		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">

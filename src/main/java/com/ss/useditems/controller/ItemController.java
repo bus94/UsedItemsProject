@@ -31,7 +31,7 @@ public class ItemController {
 			String currentPage) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
-		
+
 		// 기본 카테고리 셋팅
 		List<String> categoryAllList = Arrays.asList("상의", "하의", "신발", "기타의류", "지갑", "피규어", "전자기기", "가구", "식품", "기타");
 		model.addAttribute("categoryAllList", categoryAllList);
@@ -45,18 +45,6 @@ public class ItemController {
 			System.out.println("불러온 searchValue: " + searchValue);
 			System.out.println("불러온 searchType: " + searchType);
 			System.out.println("불러온 categoryList: " + categoryList);
-			
-			/*
-			 * if (searchValue.isEmpty() || searchValue.length() == 0) { searchValue = null;
-			 * }
-			 * 
-			 * if (searchType.isEmpty() || searchType.length() == 0) { searchType = null; }
-			 */
-
-			// 체크박스에서 선택한 categoryList이 없다면 null로 설정
-			if (categoryList == null || categoryList.length == 0) {
-				categoryList = null;
-			}
 
 			// 불러온 searchType과 categoryList를 매핑
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -72,26 +60,33 @@ public class ItemController {
 			// String으로 불러온 현재 페이지를 int 타입으로 형변환
 			int currentPage_ = Integer.parseInt(currentPage);
 
-			System.out.println("=====switch 시작=====");
-
 			if (searchType != null) {
+				System.out.println("=====switch 시작=====");
 				// searchType에 따른 switch문
 				switch (searchType) {
-
 				// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
 				case "nearPlace":
+					System.out.println("searchType = nearPlace 일 때");
 					pageInfo = service.selectByNearPlace(currentPage_, map);
 					break;
 
 				case "popular":
+					System.out.println("searchType = popular 일 때");
 					pageInfo = service.selectByPopular(currentPage_, map);
 					break;
 
 				case "bestSeller":
+					System.out.println("searchType = bestSeller 일 때");
 					pageInfo = service.selectByBestSeller(currentPage_, map);
+					break;
+					
+				default :
+					System.out.println("searchType = 정의 되지 않았을 때");
+					pageInfo = service.selectByDefault(currentPage_, map);
 					break;
 				}
 			} else {
+				System.out.println("searchType이 그 외의 값일 때");
 				pageInfo = service.selectByDefault(currentPage_, map);
 			}
 
@@ -106,7 +101,7 @@ public class ItemController {
 			model.addAttribute("searchType", searchType);
 			System.out.println("보내는 searchValue: " + searchValue);
 			System.out.println("보내는 searchType: " + searchType);
-			
+
 			model.addAttribute("pageInfo", pageInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
