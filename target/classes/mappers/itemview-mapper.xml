@@ -62,8 +62,8 @@
     
     
     <update id="incrementViews" parameterType="long">
-        UPDATE items
-        SET itemClick = itemClick + 1
-        WHERE id = #{itemId}
+        UPDATE item
+        SET item_click = item_click + 1
+        WHERE item_index = #{itemId}
     </update>
 </mapper>
