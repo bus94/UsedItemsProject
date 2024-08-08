@@ -165,7 +165,6 @@ footer {
 	position:absolute;
 	margin: 20px 30px 0 30px;
 	border: 2px solid rgb(219, 219, 219);
-<<<<<<< HEAD
 	border-radius: 20px;
 	transition: all 0.3s ease;
 }
@@ -295,11 +294,9 @@ footer {
     height: 16px;
     margin-top: 6px;
     opacity: 50%;
-=======
 	border-radius: 10px;
 	z-index: 1000;
 	width: 95%;
->>>>>>> 21531cb2b4639f6ebffc180df8720999358a6bc2
 }
 
 
