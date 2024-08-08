@@ -112,8 +112,6 @@
 
 
 	<!-- arraylist 받아서 map으로 sql 집어넣기 -->
-
-
 	<insert id="testarr" parameterType="map">
 		INSERT INTO SHOWCASE VALUES (SHOWCASE_SEQ.NEXTVAL, 1, 'thumb', 
 		 		<choose>
