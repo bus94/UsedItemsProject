@@ -48,55 +48,53 @@ document.addEventListener('DOMContentLoaded', function() {
   const container = document.querySelector('.newItem_container2');
   
   const items = Array.from(document.querySelectorAll('.item2'));
-  const itemsToShow = 6; // 화면에 보일 아이템 수
-  const gap = 20; // CSS gap 값
-  const itemWidth = 100 / itemsToShow; // 각 아이템의 너비 비율 (gap을 포함하여 수정)
-  
+  const itemsToShow = 6; 
+  const itemWidth = 100 / itemsToShow; 
+
   // 컨테이너에 복제된 아이템을 추가
   const firstItem = items[0];
   const lastItem = items[items.length - 1];
   const firstClone = firstItem.cloneNode(true);
   const lastClone = lastItem.cloneNode(true);
-  
-  container.appendChild(firstClone); // 끝에 복제 아이템 추가
-  container.insertBefore(lastClone, container.firstChild); // 처음에 복제 아이템 추가
+
+  container.appendChild(firstClone); 
+  container.insertBefore(lastClone, container.firstChild);
 
   const updatedItems = Array.from(container.querySelectorAll('.item2'));
-  const maxIndex = updatedItems.length - itemsToShow; // 최대 슬라이드 인덱스
-  let currentIndex = 1; // 초기 인덱스는 1로 설정 (복제된 첫 아이템을 포함하여 시작)
+  const maxIndex = updatedItems.length - itemsToShow - 1; // 최대 슬라이드 인덱스
+  let currentIndex = 1; 
 
   function updateSlider() {
     const offset = -currentIndex * itemWidth; // 현재 인덱스에 따라 오프셋 계산
     container.style.transform = `translateX(${offset}%)`;
-    container.style.transition = 'transform 0.5s ease'; // 애니메이션 속도 설정
 
-    // 슬라이드가 복제된 첫 아이템을 지나쳤을 때
-    if (currentIndex === maxIndex + 1) {
+    // 슬라이드가 복제된 마지막 아이템에 도달했을 때
+    if (currentIndex === updatedItems.length - itemsToShow) {
       setTimeout(() => {
-        container.style.transition = 'none';
-        container.style.transform = `translateX(${0}%)`; // 이동 위치 초기화
+        container.style.transition = 'none'; // 애니메이션 비활성화
+        container.style.transform = `translateX(${0}%)`; // 위치를 초기화
         currentIndex = 1; // 인덱스 초기화
         setTimeout(() => {
           container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
-        }, 50);
+        }, 20); // 짧은 시간 후 애니메이션 재설정
       }, 500); // 슬라이드가 끝난 후 잠시 대기
     }
-    
-    // 슬라이드가 복제된 마지막 아이템에 도달했을 때
+
+    // 슬라이드가 복제된 첫 아이템에 도달했을 때
     if (currentIndex === 0) {
       setTimeout(() => {
-        container.style.transition = 'none';
+        container.style.transition = 'none'; // 애니메이션 비활성화
         container.style.transform = `translateX(${-maxIndex * itemWidth}%)`; // 마지막 아이템 위치로 이동
         currentIndex = maxIndex; // 인덱스 조정
         setTimeout(() => {
           container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
-        }, 50);
+        }, 20); // 짧은 시간 후 애니메이션 재설정
       }, 500); // 슬라이드가 끝난 후 잠시 대기
     }
   }
 
   nextButton.addEventListener('click', function() {
-    if (currentIndex < maxIndex + 1) {
+    if (currentIndex < updatedItems.length - itemsToShow) {
       currentIndex++;
       updateSlider();
     }
