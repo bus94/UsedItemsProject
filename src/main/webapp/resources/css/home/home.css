@@ -95,7 +95,7 @@
     background-color: white;
     border: 1px solid rgb(219, 219, 219);
     margin-bottom: 14px;
-	flex: 0 0 16.66%; /* 6개 아이템이 100% 폭에 맞게 보이도록 설정 (100% / 6 ≈ 16.66%) */
+	flex: 0 0 16%; /* 6개 아이템이 100% 폭에 맞게 보이도록 설정 (100% / 6 ≈ 16.66%) */
   	box-sizing: border-box; /* padding과 border가 너비에 포함되도록 설정 */
 }
 

@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const itemsToShow = 6; // 화면에 보일 아이템 수
   const totalItems = items.length;
   const itemWidth = 100 / itemsToShow; // 각 아이템의 너비 비율
-
+  
   // 컨테이너에 복제된 아이템을 추가
   const firstItem = items[0];
   const lastItem = items[items.length - 1];
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   container.appendChild(firstClone); // 끝에 복제 아이템 추가
   container.insertBefore(lastClone, container.firstChild); // 처음에 복제 아이템 추가
 
-  const updatedItems = Array.from(document.querySelectorAll('.item2'));
+  const updatedItems = Array.from(container.querySelectorAll('.item2'));
   const maxIndex = updatedItems.length - itemsToShow; // 최대 슬라이드 인덱스
   let currentIndex = 1; // 초기 인덱스는 1로 설정 (복제된 첫 아이템을 포함하여 시작)
 
