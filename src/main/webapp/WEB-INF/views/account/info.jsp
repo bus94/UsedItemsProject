@@ -25,9 +25,15 @@
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p class="firstP">${account_info.acc_id}</p>
-					<p>${account_info.acc_nickname}</p>
-					<p>${account_info.acc_address}</p>
+					<div class="d-flex">
+						<p class="public_title container mt-3"><span>아</span><span>이</span><span>디</span></p><p class="public_text ms-3 mt-3">${account_info.acc_id}</p>
+					</div>
+					<div class="d-flex">
+						<p class="public_title container"><span>별</span><span>명</span></p><p class="public_text ms-3">${account_info.acc_nickname}</p>
+					</div>
+					<div class="d-flex">
+						<p class="public_title container"><span>주</span><span>소</span></p><p class="public_text ms-3">${account_info.acc_address}</p>
+					</div>
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<img id="acc_profile" class="s120"
@@ -43,14 +49,20 @@
 			<hr>
 			<div class="container d-flex">
 				<div class="container info_box">
-					<p class="firstP">등급 ${account_info.acc_level}</p>
-					<p>거래 횟수 ${account_info.acc_count}</p>
+					<div class="d-flex">
+						<p class="public_title container mt-3"><span>등</span><span>급</span></p><p class="public_text ms-3 mt-3">${account_info.acc_level}</p>
+					</div>
+					<div class="d-flex">
+						<p class="public_title container"><span>거</span><span>래</span><span>횟</span><span>수</span></p><p class="public_text ms-3">${account_info.acc_count}</p>
+					</div>
 					<div class="black_report d-flex">
-						<p class="me-3">피신고 횟수 ${account_info.acc_blackCount}</p>
+						<div class="d-flex">
+							<p class="public_title container"><span>피</span><span>신</span><span>고</span><span>횟</span><span>수</span></p><p class="public_text ms-3">${account_info.acc_blackCount}</p>
+						</div>
 						
 						<c:if test="${account_info.acc_id != loginMember.acc_id}">
 						<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
-							<img src="${path}/resources/img/report.png" alt="신고">
+							<img class="ms-3" src="${path}/resources/img/report.png" alt="신고">
 							<a href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
 						</c:if>
 						

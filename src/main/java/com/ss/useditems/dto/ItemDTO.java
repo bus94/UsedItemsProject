@@ -28,6 +28,6 @@ public class ItemDTO {
 	private int item_buyer;
 	
 	private int repl_count;	//정일0807 Home.new5()
-	private List<ReplyDTO> replies;
+//	private List<ReplyDTO> replies;
 
 }

@@ -153,19 +153,14 @@ public class BlacklistService {
 			System.out.println("안되넹");
 		}
 		
-		
 		System.out.println("testMap:" + testMap);
-		
-		
 		return blacklistMapper.testarr(testMap);
 
 	}
 
 
 	public int testarr1(ArrayList<String> strlist) {
-		// TODO Auto-generated method stub
-System.out.println("atService.param(Single): " + strlist.toString());
-		
+		System.out.println("atService.param(Single): " + strlist.toString());
 		
 		Map<String, String> testMap = new HashMap<String, String>();
 		

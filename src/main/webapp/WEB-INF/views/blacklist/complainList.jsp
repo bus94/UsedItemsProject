@@ -45,7 +45,7 @@
 					value="acc_id" ${searchType=='acc_id' ? 'checked':''} required/> 
 				<label class="radio_type" for="acc_id">아이디</label>
 				<input type="radio" name="searchType" id="content" 
-					value="content"	${searchType=='content' ? 'checked':''}required/>
+					value="content"	${searchType=='content' ? 'checked':''} required/>
 				<label class="radio_type" for="내용">내용</label>
 				</div>
 				

@@ -16,8 +16,12 @@
 }
 
 
-.acc_info_page .firstP {
-    margin-top: 15px;
+.acc_info_page .public_title {
+	width: 100px;
+	margin: 0 0 16px 0;
+	padding: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 
