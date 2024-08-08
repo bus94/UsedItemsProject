@@ -1,6 +1,7 @@
 package com.ss.useditems.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -126,15 +127,91 @@ public class BlacklistService {
 		return blacklistMapper.delet(black_index);
 	}
 
+	
+	
+	
+
+	
+	
+	
+	
+	///////////arraylist 받아서 map으로 sql 집어넣기
+	
+	public int testNull(ArrayList<String> strlist) {
+		
+		System.out.println("atService.param(null): " + strlist.toString());
+		
+		
+		Map<String, String> testMap = new HashMap<String, String>();
+		
+		try {
+			for(int i = 0; i < strlist.size(); i++) {
+				testMap.put("img"+(i+1), strlist.get(i));
+			}
+			
+		} catch(Exception e) {
+			System.out.println("안되넹");
+		}
+		
+		
+		System.out.println("testMap:" + testMap);
+		
+		
+		return blacklistMapper.testarr(testMap);
+
+	}
+
+
+	public int testarr1(ArrayList<String> strlist) {
+		// TODO Auto-generated method stub
+System.out.println("atService.param(Single): " + strlist.toString());
+		
+		
+		Map<String, String> testMap = new HashMap<String, String>();
+		
+		try {
+			for(int i = 0; i < strlist.size(); i++) {
+				testMap.put("img"+(i+1), strlist.get(i));
+			}
+			
+		} catch(Exception e) {
+			System.out.println("안되넹");
+		}
+		
+		
+		System.out.println("testMap:" + testMap);
+
+		
+		return blacklistMapper.testarr(testMap);
+	}
 
 
 
+	public int testarr4(ArrayList<String> strlist) {
 
+System.out.println("atService.param(arr4): " + strlist.toString());
+		
+		
+		Map<String, String> testMap = new HashMap<String, String>();
+		try {
+			for(int i = 0; i < strlist.size(); i++) {
+				
+				System.out.println((i+1) +"번"+ strlist.get(i));
+				
+				testMap.put("img"+(i+1), strlist.get(i));
+			}
+			
+		} catch(Exception e) {
+			System.out.println("안되넹");
+		}
+		
+		
+		System.out.println("testMap:" + testMap);
 
-
-
-
-
+		
+		
+		return blacklistMapper.testarr(testMap);
+	}
 
 
 
