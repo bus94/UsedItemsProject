@@ -155,9 +155,9 @@
 						<!-- stat.current: 현재 item 상세 // stat.index: 0부터 // stat.count: 1부터 -->
 						<tr class="text-center">
 							<th class="list_index text-end" scope="row">${stat.count}</th>
-							<td class="list_count">${each.black_count}</td>
-							<td class="list_id">${each.object_id}</td>
-							<td class="list_nickname">${each.object_nickname}</td>
+							<td class="list_count">${each.acc_blackCount}</td>
+							<td class="list_id">${each.acc_id}</td>
+							<td class="list_nickname">${each.acc_nickname}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
