@@ -20,6 +20,11 @@ public interface BlacklistMapper {
 
 	int delet(String black_index);
 
+
+
+	///////////arraylist 받아서 map으로 sql 집어넣기
+	int testarr(Map<String, String> testMap);
+
 	
 	
 	

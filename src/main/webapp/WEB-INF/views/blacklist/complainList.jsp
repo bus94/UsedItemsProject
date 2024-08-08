@@ -124,8 +124,12 @@
 		</c:if>
 	</div>
 
-
-
+		<button type="button" class="btn btn-danger btn-sm mt-3"
+					onclick="location.href='${path}/blacklist/testNull.do'">배열Null</button>
+		<button type="button" class="btn btn-danger btn-sm mt-3"
+					onclick="location.href='${path}/blacklist/testarr1.do'">배열1개</button>					
+		<button type="button" class="btn btn-danger btn-sm mt-3"
+					onclick="location.href='${path}/blacklist/testarr4.do'">배열4개</button>
 </section>
 
 <script src="${path}/resources/js/blacklist/complainList.js"></script>

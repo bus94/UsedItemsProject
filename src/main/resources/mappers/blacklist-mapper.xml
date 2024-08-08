@@ -108,4 +108,62 @@
 
 
 
+
+
+
+	<!-- arraylist 받아서 map으로 sql 집어넣기 -->
+
+
+	<insert id="testarr" parameterType="map">
+		INSERT INTO SHOWCASE VALUES (SHOWCASE_SEQ.NEXTVAL, 1, 'thumb', 
+		 		<choose>
+		 			<when test="img1 != null">
+		 				'${img1}',
+		 			</when>
+					<otherwise>
+						null,
+					</otherwise>
+				</choose>
+				<choose>
+		 			<when test="img2 != null">
+		 				'${img2}',
+		 			</when>
+					<otherwise>
+						null,
+					</otherwise>
+				</choose>
+				<choose>
+		 			<when test="img3 != null">
+		 				'${img3}',
+		 			</when>
+					<otherwise>
+						null,
+					</otherwise>
+				</choose>				
+				<choose>
+		 			<when test="img4 != null">
+		 				'${img4}',
+		 			</when>
+					<otherwise>
+						null,
+					</otherwise>
+				</choose>				
+				<choose>
+		 			<when test="img5 != null">
+		 				'${img5}',
+		 			</when>
+					<otherwise>
+						null,
+					</otherwise>
+				</choose>				
+		  sysdate)
+		
+	</insert>
+
+
+
+
+
+
+
 </mapper>
