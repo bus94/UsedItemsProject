@@ -107,32 +107,22 @@
 
 	<c:if test="${!empty replyList}">
 		<div class="reply">
-			<c:forEach var="reply" items="${replyList}">
+			<c:forEach var="reply" items="${replyList}">		
 				<div class="reply_container">
 					<div style="display: flex;">
 						<div class="reply_img">
 							<img src="${path}/resources/img/study.jpg" alt="프사">
 						</div>
 						<div class="reply_txt">
-							<h4>뭉지</h4>
+							<h4>${reply.repl_nickname}</h4>
 							<p>${reply.repl_content}</p>
 						</div>
 					</div>
 					<div class="reply_btn">
-						<button onclick='btnClick()'>삭제하기</button>
+					<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
+						<button>수정하기</button>
+						<button onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
-					</div>
-					<div id="delete_box" class="delete_box">
-						<div style="width: 85px; text-align: right; margin-top: 5px;">
-							<a onclick="closeClick()" style="cursor: pointer;">X</a>
-						</div>
-						<div style="margin-top: 3px;">
-							<input type="password" placeholder="비밀번호" size=6 maxlength=4>
-							<div class="delete_btn">
-								<button>삭제</button>
-								<button>수정</button>
-							</div>
-						</div>
 					</div>
 				</div>
 			</c:forEach>
@@ -148,19 +138,6 @@
 	<div class="carousel-wrapper">
 		<div>
 			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>
-		</div>
-		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt=""> <img
-				src="${path}/resources/img/item3.jpg" alt=""> <img
-				src="${path}/resources/img/item4.jpg" alt=""> <img
-				src="${path}/resources/img/item5.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt="">
-		</div>
-	</div>
-	<div class="carousel-wrapper">
-		<div>
-			<h3 style="font-size: 22px;">근처 매물 &gt;</h3>
 		</div>
 		<div class="itemView_carousel">
 			<img src="${path}/resources/img/item1.jpg" alt=""> <img

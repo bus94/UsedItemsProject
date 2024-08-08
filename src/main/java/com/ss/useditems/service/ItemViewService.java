@@ -48,6 +48,6 @@ public class ItemViewService {
 		System.out.println("interest 수 리턴");
 		return mapper.interestnum(item_index);
 	}
-	
-	
+
+
 }

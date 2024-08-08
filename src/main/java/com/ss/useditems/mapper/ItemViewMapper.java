@@ -23,5 +23,6 @@ public interface ItemViewMapper {
 	void incrementViews(int item_index);
 
 	int interestnum(int item_index);
+
 	
 }

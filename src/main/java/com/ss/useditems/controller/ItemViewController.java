@@ -108,6 +108,7 @@ public class ItemViewController {
 	    ReplyDTO dto = new ReplyDTO();
 	    dto.setRepl_item(itemNo);
 	    dto.setRepl_content(content);
+	    dto.setRepl_nickname(loginMember.getAcc_nickname());
 
 	    int result = service.saveReply(dto);
 	    if (result > 0) {
@@ -119,7 +120,7 @@ public class ItemViewController {
 	    // 댓글 목록 다시 조회
 	    List<ReplyDTO> replyList = service.selectReplyByItemIndex(itemNo);
 	    model.addAttribute("replyList", replyList);
-	    
+
 	    model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 	    
 	    return "common/msg";
