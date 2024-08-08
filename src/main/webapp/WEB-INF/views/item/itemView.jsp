@@ -6,7 +6,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-
+<div id="hiddenData" data-item-id="${item.item_index}" data-context-path="${path}" style="display: none;"></div>
 <section id="item_detail" style="padding-top: 90px;">
 	<div class="detail_content">
 		<div id="carouselExampleIndicators" class="carousel slide">
@@ -173,6 +173,8 @@
 </section>
 
 <script>
+	var path="${path}";
+	var item_index="${item.item_index}";
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
 		const seconds = milliSeconds / 1000;

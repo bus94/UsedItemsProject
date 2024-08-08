@@ -87,7 +87,7 @@ public class ItemViewController {
 	    return "common/msg";
 	}
 	
-	@PostMapping("/incrementViews")
+	@PostMapping("/item/incrementViews")
 	public void incrementViews(@RequestParam Long itemId, HttpServletRequest request, HttpServletResponse response) {
 	    String cookieName = "itemView_" + itemId;
 	    Cookie[] cookies = request.getCookies();
