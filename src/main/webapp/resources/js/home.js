@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const items = Array.from(document.querySelectorAll('.item2'));
   const itemsToShow = 6; // 화면에 보일 아이템 수
-  const totalItems = items.length;
-  const itemWidth = 100 / itemsToShow; // 각 아이템의 너비 비율
+  const gap = 20; // CSS gap 값
+  const itemWidth = 100 / itemsToShow; // 각 아이템의 너비 비율 (gap을 포함하여 수정)
   
   // 컨테이너에 복제된 아이템을 추가
   const firstItem = items[0];
@@ -68,25 +68,30 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateSlider() {
     const offset = -currentIndex * itemWidth; // 현재 인덱스에 따라 오프셋 계산
     container.style.transform = `translateX(${offset}%)`;
+    container.style.transition = 'transform 0.5s ease'; // 애니메이션 속도 설정
 
     // 슬라이드가 복제된 첫 아이템을 지나쳤을 때
     if (currentIndex === maxIndex + 1) {
-      container.style.transition = 'none';
-      container.style.transform = `translateX(${0}%)`; // 이동 위치 초기화
-      currentIndex = 1; // 인덱스 초기화
       setTimeout(() => {
-        container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
-      }, 50);
+        container.style.transition = 'none';
+        container.style.transform = `translateX(${0}%)`; // 이동 위치 초기화
+        currentIndex = 1; // 인덱스 초기화
+        setTimeout(() => {
+          container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
+        }, 50);
+      }, 500); // 슬라이드가 끝난 후 잠시 대기
     }
     
     // 슬라이드가 복제된 마지막 아이템에 도달했을 때
     if (currentIndex === 0) {
-      container.style.transition = 'none';
-      container.style.transform = `translateX(${-maxIndex * itemWidth}%)`; // 마지막 아이템 위치로 이동
-      currentIndex = maxIndex; // 인덱스 조정
       setTimeout(() => {
-        container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
-      }, 50);
+        container.style.transition = 'none';
+        container.style.transform = `translateX(${-maxIndex * itemWidth}%)`; // 마지막 아이템 위치로 이동
+        currentIndex = maxIndex; // 인덱스 조정
+        setTimeout(() => {
+          container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
+        }, 50);
+      }, 500); // 슬라이드가 끝난 후 잠시 대기
     }
   }
 
