@@ -120,6 +120,14 @@ public class BlacklistService {
 
 
 
+	public int delet(String black_index) {		//정일_신고등록
+		System.out.println("BlacklistService.delet()");
+
+		return blacklistMapper.delet(black_index);
+	}
+
+
+
 
 
 

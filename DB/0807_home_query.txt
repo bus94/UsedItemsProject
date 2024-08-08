@@ -1,4 +1,4 @@
----------------------------------Home.getNew5()
+---------------------------------Home.getNew5() 0807
 select * from item;
 
 
@@ -63,7 +63,7 @@ where rownum <=5;
 
 
 --그룹 먼저 해본다
----------------------------------Home.getPowerSeller()
+---------------------------------Home.getPowerSeller() 0807
 select * from ITEM;
 
 --서브쿼리1차 그룹-- 매물을 많이 등록한 순서/ 판매 성사와는 무관
@@ -111,7 +111,7 @@ where rownum = 1) power on (acc.acc_index=power.item_seller);
 
 
 
----------------------------------Home.getBlack5()
+---------------------------------Home.getBlack5() 0807
 select * from blacklist;
 
 select * from blacklist
@@ -156,3 +156,78 @@ group by black_object, acc_nickname, acc_id
 order by black_count desc)
 where rownum <= 5;
 ----------------------------------
+
+---------------------------------Home.getHot5() 0808
+select * from ITEM
+where item_status = 'onsale';
+
+select 
+count(int_index),
+int_item
+from INTEREST
+group by int_item
+order by count(int_index) desc;
+
+--서브쿼리1차 조인-- 판매중(onsale)인 상품만 골라내려면 먼저 조인
+select
+*
+from ITEM item
+left join INTEREST int on (item.item_index = int.int_item)
+where item_status = 'onsale';
+
+--서브쿼리2차 그룹--
+select
+count(int_index) int_count,
+item_index,
+item_seller,
+item_title,
+item_content,
+item_category,
+item_price,
+item_place,
+item_status,
+item_enrollDate,
+item_click,
+item_interest,
+item_offDate,
+item_buyer
+from
+(select
+*
+from ITEM item
+left join INTEREST int on (item.item_index = int.int_item)
+where item_status = 'onsale')
+group by item_index, item_seller, item_title, item_content, item_category, item_price, item_place, item_status,item_enrollDate, item_click, item_interest, item_offDate, item_buyer
+order by int_count desc;
+
+
+--서브쿼리3차 rownum--
+select * from
+(select
+count(int_index) int_count,
+item_index,
+item_seller,
+item_title,
+item_content,
+item_category,
+item_price,
+item_place,
+item_status,
+item_enrollDate,
+item_click,
+item_interest,
+item_offDate,
+item_buyer
+from
+(select
+*
+from ITEM item
+left join INTEREST int on (item.item_index = int.int_item)
+where item_status = 'onsale')
+group by item_index, item_seller, item_title, item_content, item_category, item_price, item_place, item_status,item_enrollDate, item_click, item_interest, item_offDate, item_buyer
+order by int_count desc)
+where rownum <=5;
+----------------------------------
+
+
+

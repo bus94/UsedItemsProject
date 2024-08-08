@@ -18,6 +18,8 @@ public interface BlacklistMapper {
 
 	ArrayList<MemberDTO> getBlack5();
 
+	int delet(String black_index);
+
 	
 	
 	

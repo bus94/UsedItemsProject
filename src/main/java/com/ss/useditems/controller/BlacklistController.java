@@ -121,6 +121,33 @@ public class BlacklistController {
 			model.addAttribute("location", "/blacklist/complainList.do");
 		}
 		return "common/msg";
+		
+	}
+	
+	@GetMapping("/complainDel.do")		//신고 삭제 처리
+	public String complainDel(Model model, @RequestParam String black_index) {
+		System.out.println("==blacklist.complainDel==");
+		System.out.println("삭제 요청: "+ black_index);
+
+
+		try {
+			int result = service.delet(black_index);
+				if(result > 0 ) {
+					model.addAttribute("msg", "게시글이 삭제되었습니다.");
+					model.addAttribute("location", "/blacklist/complainList.do");
+				} else {
+					System.out.println("blacklist.complainDel_result <= 0");
+					model.addAttribute("msg", "오류로 인하여 삭제가 정상적으로 처리되지 않았습니다.");
+					model.addAttribute("location", "/blacklist/complainList.do");
+				}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "오류로 인하여 삭제가 정상적으로 처리되지 않았습니다.");
+			model.addAttribute("location", "/blacklist/complainList.do");
+		}
+		
+		return "common/msg";
 	}
 
 
