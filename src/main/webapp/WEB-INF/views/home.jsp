@@ -29,7 +29,7 @@
 
 
 	<div id="categories" class="categories">
-		<ul class="majors">
+		<div class="majors">
 			<a href="${path}/item/itemList.do?categoryList=상의" id="category" class="major"><i class="fa-solid fa-shirt"></i>
 				<p class="major_title">상의</p></a>
 			<a href="${path}/item/itemList.do?categoryList=하의" id="category" class="major"><i class="fa-solid fa-socks"></i>
@@ -54,7 +54,7 @@
 			<a href="${path}/item/itemList.do?categoryList=기타" id="category" class="major"><i
 				class="fa-regular fa-lightbulb"></i>
 				<p class="major_title">기타</p></a>
-		</ul>
+		</div>
 	</div>
 
 	<div class="container d-flex">

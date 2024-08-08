@@ -49,6 +49,7 @@
     padding-top:25px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    color: black;
 }
 
 .major:hover {
@@ -65,10 +66,7 @@
     margin: 10px;
 }
 
-.major_title {
-    font-size: 15px;
-    font-weight: bold;
-}
+
 
 
 
