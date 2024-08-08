@@ -16,7 +16,7 @@ window.addEventListener('scroll', function(){
 	//console.log(window.scrollY);
 	console.log(window.scrollY);
 	// 스크롤 Y축 200 초과 시 실행
-	if(window.scrollY > '0') {
+	if(window.scrollY > '200') {
 		$('.navbar').attr('id','navigator');
 		$('.navbar').addClass('fixed-top');
 	}else {
