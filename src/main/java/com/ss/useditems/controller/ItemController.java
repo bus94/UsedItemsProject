@@ -79,8 +79,8 @@ public class ItemController {
 					System.out.println("searchType = bestSeller 일 때");
 					pageInfo = service.selectByBestSeller(currentPage_, map);
 					break;
-					
-				default :
+
+				default:
 					System.out.println("searchType = 정의 되지 않았을 때");
 					pageInfo = service.selectByDefault(currentPage_, map);
 					break;
@@ -93,14 +93,13 @@ public class ItemController {
 			System.out.println("=====switch 끝=====");
 
 			List<ItemDTO> itemList = pageInfo.getDtoContainer2();
-			System.out.println("불러오는 itemList: " + itemList);
 
-			model.addAttribute("itemList", itemList);
-			model.addAttribute("categoryList", categoryList);
 			model.addAttribute("searchValue", searchValue);
 			model.addAttribute("searchType", searchType);
-			System.out.println("보내는 searchValue: " + searchValue);
-			System.out.println("보내는 searchType: " + searchType);
+			model.addAttribute("categoryList", categoryList);
+			System.out.println("모델 searchValue: " + searchValue);
+			System.out.println("모델 searchType: " + searchType);
+			System.out.println("모델 categoryList: " + searchType);
 
 			model.addAttribute("pageInfo", pageInfo);
 		} catch (Exception e) {
@@ -167,26 +166,3 @@ public class ItemController {
 
 	}
 }
-
-/*
- * // categoryList 문자열을 콤마로 분리하고 공백을 제거하여 List로 변환 String[] categoryArray =
- * categoryList.split(",");
- * 
- * Stream<String> categoriesStream =
- * Arrays.stream(categoryArray).map(String::trim); List<String> categoryListItem
- * = categoriesStream.collect(Collectors.toList());
- * 
- * System.out.println(categoryListItem);
- * 
- * // searchType과 categoryList를 Map에 저장 Map<String, Object> searchParams = new
- * HashMap<>(); searchParams.put("searchType", searchType);
- * searchParams.put("categoryList", categoryListItem);
- * System.out.println(searchParams);
- * 
- * PageInfo pageInfo = service.searchItems(currentPage_, categoryList);
- * 
- * model.addAttribute("itemList", pageInfo.getDtoContainer2());
- * model.addAttribute("pageInfo", pageInfo); model.addAttribute("searchParams",
- * searchParams);
- * 
- */
