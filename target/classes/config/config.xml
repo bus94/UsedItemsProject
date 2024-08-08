@@ -14,6 +14,8 @@
 		<typeAlias type="com.ss.useditems.dto.ReplyDTO"
 			alias="ReplyDTO" />
 
+		<typeAlias type="com.ss.useditems.dto.ItemInfoDTO"
+			alias="itemInfoDTO" />
 
 	</typeAliases>
 </configuration>

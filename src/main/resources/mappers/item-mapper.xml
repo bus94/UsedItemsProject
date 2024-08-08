@@ -7,7 +7,6 @@
 		<result property="item_seller" column="item_seller" />
 		<result property="item_title" column="item_title" />
 		<result property="item_content" column="item_content" />
-		<result property="item_image" column="item_image" />
 		<result property="item_category" column="item_category" />
 		<result property="item_price" column="item_price" />
 		<result property="item_place" column="item_place" />
@@ -24,6 +23,18 @@
 		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller}, #{item_title},
 		#{item_content}, #{item_image}, #{item_category}, #{item_price},
 		#{item_place}, 'onsale', sysdate, default, default, null, null)
+	</insert>
+
+	<insert id="itemEnrollAll" parameterType="itemDTO">
+		INSERT ALL
+		INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, #{item_seller}, #{item_title},
+		#{item_content}, #{item_category}, #{item_price},
+		#{item_place},
+		'onsale', sysdate, default, default, null, null)
+		INTO
+		SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2,
+		show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL,
+		'5.jpg', '7.jpg', null, null, null, null)
 	</insert>
 
 </mapper>
