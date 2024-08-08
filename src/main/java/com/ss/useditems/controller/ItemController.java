@@ -94,6 +94,7 @@ public class ItemController {
 
 			List<ItemDTO> itemList = pageInfo.getDtoContainer2();
 
+			model.addAttribute("itemList", itemList);
 			model.addAttribute("searchValue", searchValue);
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("categoryList", categoryList);
