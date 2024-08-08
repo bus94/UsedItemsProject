@@ -77,7 +77,7 @@
 							<td class="list_id">${each.object_id}</td>
 							<td class="list_content text-start ps-3">
 								<c:if test="${loginMember.acc_id==each.subject_id||loginMember.acc_status=='admin'}">
-									<a href="" id="del_black">&lt;삭제&gt;</a>
+									<a href="complainDel.do?black_index=${each.black_index}" id="del_black">&lt;삭제&gt;</a>
 								</c:if>
 								<span>${each.black_content}</span>
 							</td>

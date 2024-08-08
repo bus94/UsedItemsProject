@@ -101,7 +101,10 @@
 		 insert into BLACKLIST values (BLACKLIST_seq.nextval, #{black_subject}, #{black_object}, #{black_content}, sysdate)
 	</insert>
 
-
+	<delete id="delet" parameterType="String">
+		delete from BLACKLIST
+		where black_index = #{black_index}
+	</delete>
 
 
 
