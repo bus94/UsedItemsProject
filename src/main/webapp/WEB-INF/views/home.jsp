@@ -65,26 +65,29 @@
 	</div>
 
 	<div class="newItem_wrap">
-		
+
 		<div class="new_arrow prev">
-				<img alt=".." src="${path}/resources/img/prev.png">
+			<img alt=".." src="${path}/resources/img/prev.png">
 		</div>
 		<div class="new_arrow next">
-				<img alt=".." src="${path}/resources/img/next.png">
+			<img alt=".." src="${path}/resources/img/next.png">
 		</div>
 		<div class="newItem_container">
 			<h3 style="font-size: 22px;">새로 올라온 상품 &gt;</h3>
 			<div class="newItem_container2">
 				<c:forEach var="each" items="${new5}">
 					<div class="item2">
-						<a href="${path}/item/itemView?item_index=${each.item_index}" style="text-decoration: none; color: black">
-							<img src="${path}/resources/img/item2.jpg" alt="1">
+						<a href="${path}/item/itemView?item_index=${each.item_index}"
+							style="text-decoration: none; color: black"> <img
+							src="${path}/resources/img/item2.jpg" alt="1">
 							<div class="item_view">
 								<h3>${each.item_title}</h3>
 								<div class="item_price">
 									<h4>${each.item_price}원</h4>
-									<h5><fmt:formatDate value="${each.item_enrollDate}"
-													pattern="yy/MM/dd" /></h5>
+									<h5>
+										<fmt:formatDate value="${each.item_enrollDate}"
+											pattern="yy/MM/dd" />
+									</h5>
 								</div>
 								<div class="item_like">
 									<p>관심 ${each.item_interest}</p>
@@ -102,6 +105,37 @@
 			</div>
 		</div>
 
+	</div>
+
+	<h1>Hot5</h1>
+
+	<div class="container d-flex">
+
+		<c:forEach var="each" items="${hot5}">
+
+			<div class="container d-flex flex-wrap">
+				<div class="item">
+					<img src="${path}/resources/img/item2.jpg" alt="1">
+					<div class="item_view">
+						<h3>${each.item_title}</h3>
+						<div class="item_price">
+							<h4>${each.item_price}원</h4>
+							<h5>${each.item_enrollDate}</h5>
+						</div>
+						<div class="item_like">
+							<p>${each.item_interest}</p>
+							<p>${each.repl_count}</p>
+							<!-- 채팅개수???  -->
+						</div>
+						<div class="item_addr">
+							<img src="${path}/resources/img/gps.png" alt="위치">
+							<p>${each.item_place }</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</c:forEach>
 	</div>
 
 	<h1>개조심</h1>
