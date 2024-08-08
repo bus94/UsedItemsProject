@@ -70,7 +70,7 @@
    		SELECT * FROM reply WHERE repl_item = #{item_index}
 	</select>
 
-    <update id="incrementViews" parameterType="long">
+    <update id="incrementViews" >
         UPDATE item
         SET item_click = item_click + 1
         WHERE item_index = #{itemId}

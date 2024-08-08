@@ -33,8 +33,8 @@ public class ItemViewService {
 	    return mapper.selectReplyByItemIndex(item_index);
 	}
 	    
-	public void incrementViews(Long itemId) {
-		mapper.incrementViews(itemId);
+	public void incrementViews(int item_index) {
+		mapper.incrementViews(item_index);
 		
 	}
 	

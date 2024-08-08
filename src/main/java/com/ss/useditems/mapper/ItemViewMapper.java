@@ -19,6 +19,6 @@ public interface ItemViewMapper {
 
 	List<ReplyDTO> selectReplyByItemIndex(int item_index);
 
-	void incrementViews(Long itemId);
+	void incrementViews(int item_index);
 	
 }

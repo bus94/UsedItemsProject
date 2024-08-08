@@ -73,11 +73,12 @@ $('.itemView_carousel').slick({
 });
 
 function incrementViews(path,itemId) {
-    fetch('${path}/item/incrementViews?item_index=' + item_index, {
+    fetch(path+'/item/incrementViews?item_index=' + item_index, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
+        body: JSON.stringify({ itemId: itemId })
     }).then(response => {
         if (!response.ok) {
             response.text().then(text => {

@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
@@ -25,12 +27,36 @@ public class ItemViewController {
 	private ItemViewService service;
 
 	@RequestMapping("/item/itemView")
-	public String itemView(Model model, int item_index, @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember) {
+	public String itemView(Model model, int item_index, @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember,HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("itemView 페이지");
 		System.out.println("item_index: " + item_index);
 		
+		// 조회수 증가 로직
+        String cookieName = "itemView_" + item_index;
+        Cookie[] cookies = request.getCookies();
+        boolean viewed = false;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
+                    viewed = true;
+                    break;
+                }
+            }
+        }
+
+        if (!viewed) {
+            service.incrementViews(item_index);
+            Cookie newCookie = new Cookie(cookieName, "true");
+            newCookie.setMaxAge(3600); // 1시간 동안 유효
+            newCookie.setPath("/");
+            response.addCookie(newCookie);
+        }
+       
+        
+        
 		ItemDTO item = service.selectByItemIndex(item_index);
-		
+		 System.out.println("조회수 증가" +item.getItem_click());
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
 		System.out.println("replyList: " + replyList); // []
 		
@@ -44,6 +70,8 @@ public class ItemViewController {
 		
 		// 댓글 목록을 모델에 추가
 	    model.addAttribute("replyList", replyList);
+	    
+	   
 		
 		return "item/itemView";
 	}
@@ -87,29 +115,5 @@ public class ItemViewController {
 	    return "common/msg";
 	}
 	
-	@PostMapping("/item/incrementViews")
-	public void incrementViews(@RequestParam Long itemId, HttpServletRequest request, HttpServletResponse response) {
-	    String cookieName = "itemView_" + itemId;
-	    Cookie[] cookies = request.getCookies();
-	    boolean viewed = false;
-	    System.out.println("조회수 1");
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	            if (cookie.getName().equals(cookieName)) {
-	                viewed = true;
-	                break;
-	            }
-	        }
-	    }
-
-	    if (!viewed) {
-	        service.incrementViews(itemId);
-	        Cookie newCookie = new Cookie(cookieName, "true");
-	        newCookie.setMaxAge(3600); // 1시간 동안 유효
-	        newCookie.setPath("/");
-	        response.addCookie(newCookie);
-	    }
-	    
-	    response.setStatus(HttpServletResponse.SC_OK); // 상태 코드 200 설정
-	}
 }
+
