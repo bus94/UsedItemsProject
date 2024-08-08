@@ -11,4 +11,6 @@ public interface ItemMapper2 {
 
 	ArrayList<ItemDTO> getNew5();
 
+	ArrayList<ItemDTO> getHot5();
+
 }
