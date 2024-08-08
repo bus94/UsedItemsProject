@@ -32,9 +32,14 @@
 		item_price, item_place, item_status,item_enrollDate,
 		item_click,
 		item_interest, item_offDate, item_buyer
+<<<<<<< HEAD
 		order by item_index
 		desc)
 		where rownum &lt;=5
+=======
+		order by item_index desc)
+		where rownum &lt;=10
+>>>>>>> moong
 
 	</select>
 
