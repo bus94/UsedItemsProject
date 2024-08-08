@@ -63,73 +63,46 @@
 				<p class="major_title">기타</p></a>
 		</div>
 	</div>
-	<h1>새로 올라온 상품</h1>
 
-	<div class="container d-flex">
-
-		<c:forEach var="each" items="${new5}">
-
-			<div class="container d-flex flex-wrap">
-				<div class="item">
-					<img src="${path}/resources/img/item2.jpg" alt="1">
-					<div class="item_view">
-						<h3>${each.item_title}</h3>
-						<div class="item_price">
-							<h4>${each.item_price}원</h4>
-							<h5>${each.item_enrollDate}</h5>
-						</div>
-						<div class="item_like">
-							<p>${each.item_interest}</p>
-							<p>${each.repl_count}</p>
-							<!-- 채팅개수???  -->
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>${each.item_place }</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</c:forEach>
-	</div>
-
-
-
-	<h1>Power Seller</h1>
-	<p>ID: ${powerSeller.acc_id}, 별명: ${powerSeller.acc_nickname} 주소:
-		${powerSeller.acc_address}</p>
-
-	<div class="container d-flex">
-		<!-- power seller -->
-		<div>
-			<img src="${path}/resources/img/study.jpg" class="d-block w-100"
-				alt="...">
+	<div class="newItem_wrap">
+		
+		<div class="new_arrow prev">
+				<img alt=".." src="${path}/resources/img/prev.png">
 		</div>
-		<div class="container d-flex flex-wrap">
-			<div class="item">
-				<img src="${path}/resources/img/item2.jpg" alt="1">
-				<div class="item_view">
-					<h3>제품명입니다</h3>
-					<div class="item_price">
-						<h4>9999원</h4>
-						<h5>몇분 전</h5>
+		<div class="new_arrow next">
+				<img alt=".." src="${path}/resources/img/next.png">
+		</div>
+		<div class="newItem_container">
+			<h3 style="font-size: 22px;">새로 올라온 상품 &gt;</h3>
+			<div class="newItem_container2">
+				<c:forEach var="each" items="${new5}">
+					<div class="item2">
+						<a href="${path}/item/itemView?item_index=${each.item_index}" style="text-decoration: none; color: black">
+							<img src="${path}/resources/img/item2.jpg" alt="1">
+							<div class="item_view">
+								<h3>${each.item_title}</h3>
+								<div class="item_price">
+									<h4>${each.item_price}원</h4>
+									<h5><fmt:formatDate value="${each.item_enrollDate}"
+													pattern="yy/MM/dd" /></h5>
+								</div>
+								<div class="item_like">
+									<p>관심 ${each.item_interest}</p>
+									<p>댓글 ${each.repl_count}</p>
+									<!-- 채팅개수???  -->
+								</div>
+								<div class="item_addr">
+									<img src="${path}/resources/img/gps.png" alt="위치">
+									<p>${each.item_place }</p>
+								</div>
+							</div>
+						</a>
 					</div>
-					<div class="item_like">
-						<p>관심 22</p>
-						<p>채팅 10</p>
-					</div>
-					<div class="item_addr">
-						<img src="${path}/resources/img/gps.png" alt="위치">
-						<p>인천광역시 계양구</p>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
+
 	</div>
-
-
-
 
 	<h1>개조심</h1>
 
