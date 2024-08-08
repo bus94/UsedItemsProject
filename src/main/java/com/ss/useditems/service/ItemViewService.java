@@ -1,6 +1,7 @@
 package com.ss.useditems.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,16 @@ public class ItemViewService {
 	public void incrementViews(int item_index) {
 		mapper.incrementViews(item_index);
 		
+	}
+
+	public void interestnum(int acc_index, int item_index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int interestnum(int item_index) {
+		System.out.println("interest 수 리턴");
+		return mapper.interestnum(item_index);
 	}
 	
 	

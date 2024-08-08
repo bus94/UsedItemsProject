@@ -1,6 +1,7 @@
 package com.ss.useditems.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,5 +21,7 @@ public interface ItemViewMapper {
 	List<ReplyDTO> selectReplyByItemIndex(int item_index);
 
 	void incrementViews(int item_index);
+
+	int interestnum(int item_index);
 	
 }

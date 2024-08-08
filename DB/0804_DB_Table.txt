@@ -188,6 +188,26 @@ CREATE TABLE INTEREST (
 	int_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL
 );
 
+CREATE OR REPLACE TRIGGER update_item_interest_after_insert
+AFTER INSERT ON interest
+FOR EACH ROW
+BEGIN
+    UPDATE item
+    SET item_interest = item_interest + 1
+    WHERE item_index = :NEW.int_item;
+END;
+/
+
+CREATE OR REPLACE TRIGGER update_item_interest_after_delete
+AFTER DELETE ON interest
+FOR EACH ROW
+BEGIN
+    UPDATE item
+    SET item_interest = item_interest - 1
+    WHERE item_index = :OLD.int_item;
+END;
+/
+
 INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 3, 0);
 INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 0);
 INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 1);
@@ -233,7 +253,6 @@ INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 12);
 COMMIT;
 
 select * from interest;
-
 
 ------------------------------------------------------
 CREATE SEQUENCE SEARCH_SEQ;

@@ -1,9 +1,13 @@
 package com.ss.useditems.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +33,13 @@ public class ItemViewController {
 	@RequestMapping("/item/itemView")
 	public String itemView(Model model, int item_index, @SessionAttribute(name="loginMember", required = false) MemberDTO loginMember,HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("itemView 페이지");
-		System.out.println("item_index: " + item_index);
-		
+		System.out.println("item_index controlloer: " + loginMember);
+
+//		int acc_index= loginMember.getAcc_index();
+//		Map<String, Integer> params = new HashMap<String, Integer>();
+//		
+//		params.put("acc_index", acc_index);
+//		params.put("item_index", item_index);
 		// 조회수 증가 로직
         String cookieName = "itemView_" + item_index;
         Cookie[] cookies = request.getCookies();
@@ -52,6 +61,7 @@ public class ItemViewController {
             newCookie.setPath("/");
             response.addCookie(newCookie);
         }
+     
        
         
         

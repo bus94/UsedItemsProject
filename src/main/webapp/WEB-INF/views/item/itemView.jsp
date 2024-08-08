@@ -47,7 +47,8 @@
 		<div class="detail_right">
 			<div class="detail_top">
 				<div class="detail_info">
-					<h4>${item.item_title}</h4>
+					<h4>${item.item_title}</h4> 
+					<button>관심</button>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
