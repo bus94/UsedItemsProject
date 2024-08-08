@@ -92,7 +92,7 @@ public class ItemViewController {
 	    String cookieName = "itemView_" + itemId;
 	    Cookie[] cookies = request.getCookies();
 	    boolean viewed = false;
-
+	    System.out.println("조회수 1");
 	    if (cookies != null) {
 	        for (Cookie cookie : cookies) {
 	            if (cookie.getName().equals(cookieName)) {
