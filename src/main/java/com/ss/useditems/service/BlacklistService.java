@@ -41,6 +41,17 @@ public class BlacklistService {
 		return result;
 	}
 	
+	
+
+	public ArrayList<ItemDTO> getHot5() { 	//정일_home.jsp-HomeController
+
+		return itemMapper.getHot5();
+	}
+	
+	
+	
+	
+	
 	public MemberDTO getPowerSeller() {		//정일_home.jsp-HomeController
 		System.out.println("BlacklistService.getPowerSeller()");
 		
@@ -53,11 +64,11 @@ public class BlacklistService {
 	
 	
 	
-	public ArrayList<BlacklistDTO> getBlack5() {	//정일_home.jsp-HomeController
+	public ArrayList<MemberDTO> getBlack5() {	//정일_home.jsp-HomeController
 		System.out.println("BlacklistService.getBlack5()");
 
 
-		ArrayList<BlacklistDTO> result = blacklistMapper.getBlack5();
+		ArrayList<MemberDTO> result = blacklistMapper.getBlack5();
 		System.out.println("bService.getBlack5 result: " + result);
 		
 		return result;
@@ -106,6 +117,7 @@ public class BlacklistService {
 
 		return blacklistMapper.enroll(complain);
 	}
+
 
 
 

@@ -44,6 +44,14 @@ public class HomeController {
 		model.addAttribute("new5", new5);
 		
 		
+		//아이템 hot5(현재 판매 중인 아이템 중 관심상품 순//DB에 더미데이터가 불안해서 조인으로 구함
+		ArrayList<ItemDTO> hot5;
+		hot5 = blackService.getHot5();//임시로 블랙서비스에서 실행, 안겹치려고
+		
+		model.addAttribute("hot5", hot5);
+		
+		
+		
 		//파워셀러의 last3
 		MemberDTO powerSeller = new MemberDTO();
 		//임시로 블랙서비스에서 실행, 안겹치려고
@@ -58,7 +66,7 @@ public class HomeController {
 		
 		
 		//블랙리스트 top5
-		ArrayList<BlacklistDTO> black5;
+		ArrayList<MemberDTO> black5;
 		
 		black5 = blackService.getBlack5();
 		

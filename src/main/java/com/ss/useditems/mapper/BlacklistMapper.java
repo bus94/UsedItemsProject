@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ss.useditems.dto.BlacklistDTO;
+import com.ss.useditems.dto.MemberDTO;
 
 @Mapper
 public interface BlacklistMapper {
@@ -15,7 +16,7 @@ public interface BlacklistMapper {
 
 	int enroll(BlacklistDTO complain);
 
-	ArrayList<BlacklistDTO> getBlack5();
+	ArrayList<MemberDTO> getBlack5();
 
 	
 	
