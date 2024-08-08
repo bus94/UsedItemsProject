@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
 import com.ss.useditems.util.PageInfo;
@@ -28,7 +29,7 @@ public class ItemController {
 
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String searchType, String[] categoryList,
-			String currentPage) {
+			String currentPage, HttpSession session) {
 		System.out.println("itemList 페이지");
 		System.out.println("currentPage: " + currentPage);
 
@@ -92,7 +93,17 @@ public class ItemController {
 
 			System.out.println("=====switch 끝=====");
 
-			List<ItemDTO> itemList = pageInfo.getDtoContainer2();
+			List<ItemInfoDTO> itemList = pageInfo.getDtoContainerInfo();
+			String filePath;
+			for (int i = 0; i < itemList.size(); i++) {
+				filePath = itemList.get(i).getItem_seller() + "/";
+				itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
+				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img1());
+				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img2());
+				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img3());
+				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img4());
+				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img5());
+			}
 
 			model.addAttribute("itemList", itemList);
 			model.addAttribute("searchValue", searchValue);
@@ -101,6 +112,9 @@ public class ItemController {
 			System.out.println("모델 searchValue: " + searchValue);
 			System.out.println("모델 searchType: " + searchType);
 			System.out.println("모델 categoryList: " + searchType);
+			System.out.println();
+			System.out.println("모델 itemList: " + itemList);
+			System.out.println();
 
 			model.addAttribute("pageInfo", pageInfo);
 		} catch (Exception e) {

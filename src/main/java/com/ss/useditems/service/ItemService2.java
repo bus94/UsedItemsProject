@@ -87,21 +87,20 @@ public class ItemService2 {
 //		return pageinfo;
 //	}
 
-	public PageInfo selectByDefault(int currentPage_, Map<String, Object> map) {
-		System.out.println("테스터(service2): selectByDefault() 실행");
-		System.out.println("service.map" + map);
-		ArrayList<ItemDTO> unpaged_list = mapper.selectByDefault(map);
-		System.out.println("unpaged_list:" + unpaged_list);
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
-		System.out.println("pageinfo:" + pageinfo);
-		
-		List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
-		System.out.println("paged_list:" + paged_list);
-		
-		pageinfo.setDtoContainer2(paged_list);
-		System.out.println("set 후 pageinfo:" + pageinfo);
-		return pageinfo;
-	}
+	/*
+	 * public PageInfo selectByDefault(int currentPage_, Map<String, Object> map) {
+	 * System.out.println("테스터(service2): selectByDefault() 실행");
+	 * System.out.println("service.map" + map); ArrayList<ItemDTO> unpaged_list =
+	 * mapper.selectByDefault(map); System.out.println("unpaged_list:" +
+	 * unpaged_list); PageInfo pageinfo = new PageInfo(currentPage_, 5,
+	 * unpaged_list.size(), 10); System.out.println("pageinfo:" + pageinfo);
+	 * 
+	 * List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(),
+	 * pageinfo.getTillIndex()); System.out.println("paged_list:" + paged_list);
+	 * 
+	 * pageinfo.setDtoContainer2(paged_list); System.out.println("set 후 pageinfo:" +
+	 * pageinfo); return pageinfo; }
+	 */
 
 	
 		

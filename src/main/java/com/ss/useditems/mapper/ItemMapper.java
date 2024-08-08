@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.dto.ItemInfoDTO;
 
 @Mapper
 public interface ItemMapper {
@@ -15,13 +16,13 @@ public interface ItemMapper {
 
 	int deleteInterestItem(Map<String,Integer> params);
 
-	ArrayList<ItemDTO> selectByNearPlace(Map<String, Object> map);
+	ArrayList<ItemInfoDTO> selectByNearPlace(Map<String, Object> map);
 
-	ArrayList<ItemDTO> selectByPopular(Map<String, Object> map);
+	ArrayList<ItemInfoDTO> selectByPopular(Map<String, Object> map);
 
-	ArrayList<ItemDTO> selectByBestSeller(Map<String, Object> map);
+	ArrayList<ItemInfoDTO> selectByBestSeller(Map<String, Object> map);
 
-	ArrayList<ItemDTO> selectByDefault(Map<String, Object> map);
+	ArrayList<ItemInfoDTO> selectByDefault(Map<String, Object> map);
 
 
 
