@@ -106,24 +106,45 @@
 
 	</div>
 
-	<div class="top5">
-		<div class="left_section">
-			<div>
-				<h3>Popular</h3>
-				<p>세잎마켓에서 인기있는 상품들을 만나보세요.
-			</div>
-			<div>
-				<img alt="" src="${path}/resources/img/zz.png">
-			</div>
-		</div>
-		<div class="right_section">
-			<div class="pic_box">
-				<div class="pic">
-					<img alt="" src="${path}/resources/img/item1.png">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="popular_product">
+        <div class="left_section">
+            <div>
+                <h3>Popular Product</h3>
+                <p>세잎마켓에서 인기있는 상품들을 만나보세요.
+            </div>
+            <div>
+                <img alt="" src="${path}/resources/img/zz.png">
+            </div>
+        </div>
+        <div class="right_section">
+            <div class="pic_box">
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+                <div class="pic">
+                    <img alt="" src="${path}/resources/img/study.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
