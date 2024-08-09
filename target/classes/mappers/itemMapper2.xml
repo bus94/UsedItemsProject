@@ -34,7 +34,7 @@
 		item_interest, item_offDate, item_buyer
 		order by item_index
 		desc)
-		where rownum &lt;=5
+		where rownum &lt;=10
 
 	</select>
 

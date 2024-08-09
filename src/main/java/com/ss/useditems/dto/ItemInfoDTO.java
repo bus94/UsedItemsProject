@@ -34,5 +34,9 @@ public class ItemInfoDTO {
 	private String show_img4;
 	private String show_img5;
 	private String item_thumbPath;
-	private String item_imgPath;
+	private String item_img1Path;
+	private String item_img2Path;
+	private String item_img3Path;
+	private String item_img4Path;
+	private String item_img5Path;
 }

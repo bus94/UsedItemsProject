@@ -74,8 +74,8 @@
 						<td>
 							<div class="container input_thumbnail">
 								<p class="itemEnroll_subtitle fs-5">썸네일 첨부</p>
-								<input style="width: 270px" type="file" name="item_image"
-									id="item_image">
+								<input style="width: 270px" type="file" name="item_thumb"
+									id="item_thumb">
 							</div>
 						</td>
 					</tr>

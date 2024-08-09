@@ -1,23 +1,16 @@
 package com.ss.useditems.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.MemberDTO;
@@ -72,7 +65,7 @@ public class ItemViewController {
 		
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
-		 model.addAttribute("loginMember", loginMember);
+		model.addAttribute("loginMember", loginMember);
 		
 		// 댓글 목록을 모델에 추가
 	    model.addAttribute("replyList", replyList);
@@ -104,6 +97,7 @@ public class ItemViewController {
 	    ReplyDTO dto = new ReplyDTO();
 	    dto.setRepl_item(itemNo);
 	    dto.setRepl_content(content);
+	    dto.setRepl_nickname(loginMember.getAcc_nickname());
 
 	    int result = service.saveReply(dto);
 	    if (result > 0) {
@@ -115,7 +109,7 @@ public class ItemViewController {
 	    // 댓글 목록 다시 조회
 	    List<ReplyDTO> replyList = service.selectReplyByItemIndex(itemNo);
 	    model.addAttribute("replyList", replyList);
-	    
+
 	    model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 	    
 	    return "common/msg";

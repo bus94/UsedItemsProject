@@ -18,10 +18,10 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="carousel-item active" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
-				<div class="carousel-item">
+				<div class="carousel-item" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>
@@ -65,26 +65,29 @@
 	</div>
 
 	<div class="newItem_wrap">
-		
+
 		<div class="new_arrow prev">
-				<img alt=".." src="${path}/resources/img/prev.png">
+			<img alt=".." src="${path}/resources/img/prev.png">
 		</div>
 		<div class="new_arrow next">
-				<img alt=".." src="${path}/resources/img/next.png">
+			<img alt=".." src="${path}/resources/img/next.png">
 		</div>
 		<div class="newItem_container">
 			<h3 style="font-size: 22px;">새로 올라온 상품 &gt;</h3>
 			<div class="newItem_container2">
 				<c:forEach var="each" items="${new5}">
 					<div class="item2">
-						<a href="${path}/item/itemView?item_index=${each.item_index}" style="text-decoration: none; color: black">
-							<img src="${path}/resources/img/item2.jpg" alt="1">
+						<a href="${path}/item/itemView?item_index=${each.item_index}"
+							style="text-decoration: none; color: black"> <img
+							src="${path}/resources/img/item2.jpg" alt="1">
 							<div class="item_view">
 								<h3>${each.item_title}</h3>
 								<div class="item_price">
 									<h4>${each.item_price}원</h4>
-									<h5><fmt:formatDate value="${each.item_enrollDate}"
-													pattern="yy/MM/dd" /></h5>
+									<h5>
+										<fmt:formatDate value="${each.item_enrollDate}"
+											pattern="yy/MM/dd" />
+									</h5>
 								</div>
 								<div class="item_like">
 									<p>관심 ${each.item_interest}</p>
@@ -103,6 +106,28 @@
 		</div>
 
 	</div>
+
+	<div class="top5">
+		<div class="left_section">
+			<div>
+				<h3>Popular</h3>
+				<p>세잎마켓에서 인기있는 상품들을 만나보세요.
+			</div>
+			<div>
+				<img alt="" src="${path}/resources/img/zz.png">
+			</div>
+		</div>
+		<div class="right_section">
+			<div class="pic_box">
+				<div class="pic">
+					<img alt="" src="${path}/resources/img/item1.png">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 
 	<h1>개조심</h1>
 

@@ -96,13 +96,13 @@ public class ItemController {
 			List<ItemInfoDTO> itemList = pageInfo.getDtoContainerInfo();
 			String filePath;
 			for (int i = 0; i < itemList.size(); i++) {
-				filePath = itemList.get(i).getItem_seller() + "/";
+				filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
 				itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
-				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img1());
-				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img2());
-				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img3());
-				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img4());
-				itemList.get(i).setItem_imgPath(filePath + itemList.get(i).getShow_img5());
+				itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
+				itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
+				itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
+				itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
+				itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
 			}
 
 			model.addAttribute("itemList", itemList);

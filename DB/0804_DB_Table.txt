@@ -65,7 +65,7 @@ CREATE TABLE ITEM (
 	item_seller	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
 	item_title	VARCHAR2(300)		NOT NULL,
 	item_content	VARCHAR2(500)		NOT NULL,
-	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('의류잡화', '전자기기', '가구', '식품', '기타')),
+	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('상의', '하의', '신발', '기타의류', '지갑', '피규어', '전자기기', '가구', '식품', '기타')),
 	item_price  NUMBER        NOT NULL,
 	item_place	VARCHAR2(100)	NULL,
 	item_status	VARCHAR2(100)	NOT NULL CHECK (item_status IN('onsale', 'ondeal', 'drop')),
@@ -150,13 +150,15 @@ CREATE TABLE REPLY (
 	repl_index	NUMBER		PRIMARY KEY,
 	repl_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
 	repl_candidate	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+    repl_nickName VARCHAR2(100) REFERENCES ACCOUNT(acc_nickname) NOT NULL,
 	repl_content	VARCHAR2(300)		NOT NULL,
 	repl_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
 );
 
-INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 3, 0, '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
-INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 0, '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
-INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 1, '제가 살래요',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 3, 0,'스탶입니다', '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 0,'스탶입니다', '댓글_테스트',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 1, 1, '별명1','제가 살래요',TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 2, 3, '별명3','제가 살래요',TO_DATE('20240726', 'YYYY-MM-DD'));
 
 COMMIT;
 
@@ -278,13 +280,6 @@ INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 12);
 
 COMMIT;
 
-select * from interest;
-
-=======
-
-COMMIT;
-
->>>>>>> bs
 ------------------------------------------------------
 CREATE SEQUENCE SEARCH_SEQ;
 CREATE TABLE SEARCH (
@@ -294,9 +289,7 @@ CREATE TABLE SEARCH (
 	sear_date	DATE	DEFAULT SYSDATE	NOT NULL
 );
 
-
 COMMIT;
-
 
 ------------------------------------------------------
 CREATE SEQUENCE BLACKLIST_SEQ;

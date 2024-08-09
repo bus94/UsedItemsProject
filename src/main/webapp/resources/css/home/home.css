@@ -31,7 +31,7 @@
 	width:1200px;
     margin: auto;
     text-align: center;
-    padding: 100px 0 100px 0;
+    padding-top: 130px;
 }
 
 .majors {
@@ -69,6 +69,7 @@
 	flex-direction: column;
 	justify-content: center;
 	overflow: hidden;
+	padding-top:130px;
 }
 
 .newItem_container{
@@ -80,8 +81,13 @@
 	overflow: hidden;
 }
 
+.newItem_container h3{
+	margin-bottom:20px;
+}
+
 .newItem_container2{
 	display: flex;
+	justify-content: space-between;
 	gap:20px;
 	transition: transform 0.5s ease;
 }

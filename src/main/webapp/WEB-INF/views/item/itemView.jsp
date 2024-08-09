@@ -6,7 +6,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-<div id="hiddenData" data-item-id="${item.item_index}" data-context-path="${path}" style="display: none;"></div>
+<div id="hiddenData" data-item-id="${item.item_index}"
+	data-context-path="${path}" style="display: none;"></div>
 <section id="item_detail" style="padding-top: 90px;">
 	<div class="detail_content">
 		<div id="carouselExampleIndicators" class="carousel slide">
@@ -21,17 +22,39 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="${path}/resources/img/item1.jpg" class="d-block"
-						alt="...">
+					<img src="${path}/resources/img/${item.item_thumbPath}"
+						class="d-block" alt="...">
 				</div>
-				<div class="carousel-item">
-					<img src="${path}/resources/img/item2.jpg" class="d-block"
-						alt="...">
-				</div>
-				<div class="carousel-item">
-					<img src="${path}/resources/img/item3.jpg" class="d-block"
-						alt="...">
-				</div>
+				<c:if test="item_img1Path != null">
+					<div class="carousel-item">
+						<img src="${path}/resources/img/${item.item_img1Path}"
+							class="d-block" alt="...">
+					</div>
+				</c:if>
+				<c:if test="item_img2Path != null">
+					<div class="carousel-item">
+						<img src="${path}/resources/img/${item.item_img2Path}"
+							class="d-block" alt="...">
+					</div>
+				</c:if>
+				<c:if test="item_img3Path != null">
+					<div class="carousel-item">
+						<img src="${path}/resources/img/${item.item_img3Path}"
+							class="d-block" alt="...">
+					</div>
+				</c:if>
+				<c:if test="item_img4Path != null">
+					<div class="carousel-item">
+						<img src="${path}/resources/img/${item.item_img4Path}"
+							class="d-block" alt="...">
+					</div>
+				</c:if>
+				<c:if test="item_img5Path != null">
+					<div class="carousel-item">
+						<img src="${path}/resources/img/${item.item_img5Path}"
+							class="d-block" alt="...">
+					</div>
+				</c:if>
 			</div>
 			<button class="carousel-control-prev" type="button"
 				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -47,7 +70,7 @@
 		<div class="detail_right">
 			<div class="detail_top">
 				<div class="detail_info">
-					<h4>${item.item_title}</h4> 
+					<h4>${item.item_title}</h4>
 					<button>관심</button>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
@@ -60,7 +83,8 @@
 						<p>조회 ${item.item_click}</p>
 						<p id="enrollDate"></p>
 					</div>
-					<c:if test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
+					<c:if
+						test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
 						<div class="detail_report">
 							<img src="${path}/resources/img/report.png" alt="신고"> <a
 								href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
@@ -94,16 +118,16 @@
 	<div class="store_content">
 		<p>${item.item_content}</p>
 	</div>
-		<div id="comment-container">
-			<div class="comment-editor" align="center">
-				<form action="${path}/itemView/reply" method="post">
-					<input type="hidden" name="itemNo" value="${item.item_index}" />
-					<input type="hidden" name="writerId" value="${loginMember.acc_id}" />
-					<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
-					<button type="submit" id="btn-insert">등록</button>
-				</form>
-			</div>
+	<div id="comment-container">
+		<div class="comment-editor" align="center">
+			<form action="${path}/itemView/reply" method="post">
+				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
+					type="hidden" name="writerId" value="${loginMember.acc_id}" />
+				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
+				<button type="submit" id="btn-insert">등록</button>
+			</form>
 		</div>
+	</div>
 
 	<c:if test="${!empty replyList}">
 		<div class="reply">
@@ -114,35 +138,26 @@
 							<img src="${path}/resources/img/study.jpg" alt="프사">
 						</div>
 						<div class="reply_txt">
-							<h4>뭉지</h4>
+							<h4>${reply.repl_nickname}</h4>
 							<p>${reply.repl_content}</p>
 						</div>
 					</div>
 					<div class="reply_btn">
-						<button onclick='btnClick()'>삭제하기</button>
+						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
+						<button>수정하기</button>
+						<button
+							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
-					</div>
-					<div id="delete_box" class="delete_box">
-						<div style="width: 85px; text-align: right; margin-top: 5px;">
-							<a onclick="closeClick()" style="cursor: pointer;">X</a>
-						</div>
-						<div style="margin-top: 3px;">
-							<input type="password" placeholder="비밀번호" size=6 maxlength=4>
-							<div class="delete_btn">
-								<button>삭제</button>
-								<button>수정</button>
-							</div>
-						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 	</c:if>
 	<c:if test="${empty replyList}">
-			<tr>
-				<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
-			</tr>
-		</c:if>
+		<tr>
+			<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+		</tr>
+	</c:if>
 
 
 	<div class="carousel-wrapper">
@@ -158,23 +173,9 @@
 				src="${path}/resources/img/item2.jpg" alt="">
 		</div>
 	</div>
-	<div class="carousel-wrapper">
-		<div>
-			<h3 style="font-size: 22px;">근처 매물 &gt;</h3>
-		</div>
-		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt=""> <img
-				src="${path}/resources/img/item3.jpg" alt=""> <img
-				src="${path}/resources/img/item4.jpg" alt=""> <img
-				src="${path}/resources/img/item5.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt="">
-		</div>
-	</div>
 </section>
 
 <script>
-
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
 		const seconds = milliSeconds / 1000;
