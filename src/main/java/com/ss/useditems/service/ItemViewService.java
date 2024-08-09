@@ -43,16 +43,11 @@ public class ItemViewService {
 		
 	}
 
-<<<<<<< HEAD
 
-	
-	
-=======
 	public int interestnum(int item_index) {
 		System.out.println("interest 수 리턴");
 		return mapper.interestnum(item_index);
 	}
 
 
->>>>>>> 24cc96fa72d0a71fbd42483fceaab90532c9d68f
 }

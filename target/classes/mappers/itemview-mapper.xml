@@ -77,14 +77,11 @@
         WHERE item_index = #{itemId}
     </update>
     
-<<<<<<< HEAD
 
-=======
     <select id="interestnum" parameterType="int">
     	select count(*) from interest where int_item = #{item_index} 
     </select>
     
 
-    
->>>>>>> 24cc96fa72d0a71fbd42483fceaab90532c9d68f
+
 </mapper>
