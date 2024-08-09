@@ -35,11 +35,7 @@ public class ItemViewController {
 		System.out.println("itemView 페이지");
 		System.out.println("item_index controlloer: " + loginMember);
 
-//		int acc_index= loginMember.getAcc_index();
-//		Map<String, Integer> params = new HashMap<String, Integer>();
-//		
-//		params.put("acc_index", acc_index);
-//		params.put("item_index", item_index);
+
 		// 조회수 증가 로직
         String cookieName = "itemView_" + item_index;
         Cookie[] cookies = request.getCookies();

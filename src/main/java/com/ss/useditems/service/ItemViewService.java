@@ -44,10 +44,7 @@ public class ItemViewService {
 		
 	}
 
-	public int interestnum(int item_index) {
-		System.out.println("interest 수 리턴");
-		return mapper.interestnum(item_index);
-	}
+
 	
 	
 }
