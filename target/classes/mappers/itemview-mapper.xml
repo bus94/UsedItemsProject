@@ -40,37 +40,53 @@
 		<collection property="acc_index" resultMap="memberMap"
 			columnPrefix="a._" />
 	</resultMap>
-	
+
 	<resultMap type="replyDTO" id="replyMap">
-      <result property="repl_index" column="repl_index" />
-      <result property="repl_item" column="repl_item" />
-      <result property="repl_candidate" column="repl_candidate" />
-      <result property="repl_nickname" column="repl_nickname" />
-      <result property="repl_content" column="repl_content" />
-      <result property="repl_enrolldate" column="repl_enrolldate" />
-   </resultMap>
-	
+		<result property="repl_index" column="repl_index" />
+		<result property="repl_item" column="repl_item" />
+		<result property="repl_candidate" column="repl_candidate" />
+		<result property="repl_nickname" column="repl_nickname" />
+		<result property="repl_content" column="repl_content" />
+		<result property="repl_enrolldate" column="repl_enrolldate" />
+	</resultMap>
+
+	<resultMap type="itemInfoDTO" id="itemInfoMap"
+		extends="itemMap">
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_level" column="acc_level" />
+		<result property="show_thumb" column="show_thumb" />
+		<result property="show_img1" column="show_img1" />
+		<result property="show_img2" column="show_img2" />
+		<result property="show_img3" column="show_img3" />
+		<result property="show_img4" column="show_img4" />
+		<result property="show_img5" column="show_img5" />
+	</resultMap>
+
 	<select id="selectByItemIndex" parameterType="int"
-		resultMap="itemMap">
-		SELECT *
-		FROM item
-		WHERE ITEM_INDEX = #{item_index}
+		resultMap="itemInfoMap">
+		SELECT * FROM item i JOIN showcase s ON s.show_item =
+		i.item_index WHERE item_index = #{item_index}
 	</select>
 
 	<select id="selectByIndex" parameterType="int"
 		resultMap="memberMap">
 		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
 	</select>
-	
+
 	<insert id="insertReply" parameterType="ReplyDTO">
-    	insert into reply(repl_index, repl_item, repl_candidate,repl_nickname, repl_content, repl_enrolldate)
-    	values(REPLY_SEQ.NEXTVAL, #{repl_item}, #{repl_candidate},#{repl_nickname,jdbcType=VARCHAR}, #{repl_content,jdbcType=VARCHAR}, DEFAULT)
+		insert into reply(repl_index, repl_item, repl_candidate,repl_nickname,
+		repl_content, repl_enrolldate)
+		values(REPLY_SEQ.NEXTVAL, #{repl_item}, #{repl_candidate},#{repl_nickname,jdbcType=VARCHAR},
+		#{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
 
-	<select id="selectReplyByItemIndex" parameterType="int" resultMap="replyMap">
-   		SELECT * FROM reply WHERE repl_item = #{item_index}
+	<select id="selectReplyByItemIndex" parameterType="int"
+		resultMap="replyMap">
+		SELECT * FROM reply WHERE repl_item = #{item_index}
 	</select>
 
+<<<<<<< HEAD
     <update id="incrementViews" >
         UPDATE item
         SET item_click = item_click + 1
@@ -84,4 +100,18 @@
     
 
 
+=======
+	<update id="incrementViews">
+		UPDATE item
+		SET item_click = item_click + 1
+		WHERE item_index = #{itemId}
+	</update>
+
+	<select id="interestnum" parameterType="int">
+		select count(*) from interest where int_item = #{item_index}
+	</select>
+
+
+
+>>>>>>> 155bec869cf17da5b34f1b1cf47a9ec225e07f3f
 </mapper>
