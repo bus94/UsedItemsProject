@@ -76,7 +76,7 @@ public class ItemViewController {
 		
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
-		 model.addAttribute("loginMember", loginMember);
+		model.addAttribute("loginMember", loginMember);
 		
 		// 댓글 목록을 모델에 추가
 	    model.addAttribute("replyList", replyList);

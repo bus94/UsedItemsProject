@@ -18,10 +18,10 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
+				<div class="carousel-item active" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
-				<div class="carousel-item">
+				<div class="carousel-item" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>
@@ -107,36 +107,27 @@
 
 	</div>
 
-	<h1>Hot5</h1>
-
-	<div class="container d-flex">
-
-		<c:forEach var="each" items="${hot5}">
-
-			<div class="container d-flex flex-wrap">
-				<div class="item">
-					<img src="${path}/resources/img/item2.jpg" alt="1">
-					<div class="item_view">
-						<h3>${each.item_title}</h3>
-						<div class="item_price">
-							<h4>${each.item_price}원</h4>
-							<h5>${each.item_enrollDate}</h5>
-						</div>
-						<div class="item_like">
-							<p>${each.item_interest}</p>
-							<p>${each.repl_count}</p>
-							<!-- 채팅개수???  -->
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>${each.item_place }</p>
-						</div>
-					</div>
+	<div class="top5">
+		<div class="left_section">
+			<div>
+				<h3>Popular</h3>
+				<p>세잎마켓에서 인기있는 상품들을 만나보세요.
+			</div>
+			<div>
+				<img alt="" src="${path}/resources/img/zz.png">
+			</div>
+		</div>
+		<div class="right_section">
+			<div class="pic_box">
+				<div class="pic">
+					<img alt="" src="${path}/resources/img/item1.png">
 				</div>
 			</div>
-
-		</c:forEach>
+		</div>
 	</div>
+
+
+
 
 	<h1>개조심</h1>
 
