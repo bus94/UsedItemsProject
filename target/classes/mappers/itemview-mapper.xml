@@ -86,7 +86,6 @@
 		SELECT * FROM reply WHERE repl_item = #{item_index}
 	</select>
 
-<<<<<<< HEAD
     <update id="incrementViews" >
         UPDATE item
         SET item_click = item_click + 1
@@ -100,18 +99,5 @@
     
 
 
-=======
-	<update id="incrementViews">
-		UPDATE item
-		SET item_click = item_click + 1
-		WHERE item_index = #{itemId}
-	</update>
 
-	<select id="interestnum" parameterType="int">
-		select count(*) from interest where int_item = #{item_index}
-	</select>
-
-
-
->>>>>>> 155bec869cf17da5b34f1b1cf47a9ec225e07f3f
 </mapper>
