@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ss.useditems.dto.ItemDTO;
+import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.dto.ReplyDTO;
 import com.ss.useditems.mapper.ItemViewMapper;
@@ -16,7 +16,7 @@ public class ItemViewService {
 	@Autowired
 	private ItemViewMapper mapper;
 
-	public ItemDTO selectByItemIndex(int item_index) {
+	public ItemInfoDTO selectByItemIndex(int item_index) {
 		return mapper.selectByItemIndex(item_index);
 	}
 

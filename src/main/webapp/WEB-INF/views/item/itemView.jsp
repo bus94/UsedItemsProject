@@ -25,31 +25,31 @@
 					<img src="${path}/resources/img/${item.item_thumbPath}"
 						class="d-block" alt="...">
 				</div>
-				<c:if test="item_img1Path != null">
+				<c:if test="${item.show_img1 != null}">
 					<div class="carousel-item">
 						<img src="${path}/resources/img/${item.item_img1Path}"
 							class="d-block" alt="...">
 					</div>
 				</c:if>
-				<c:if test="item_img2Path != null">
+				<c:if test="${item.show_img2 != null}">
 					<div class="carousel-item">
 						<img src="${path}/resources/img/${item.item_img2Path}"
 							class="d-block" alt="...">
 					</div>
 				</c:if>
-				<c:if test="item_img3Path != null">
+				<c:if test="${item.show_img3 != null}">
 					<div class="carousel-item">
 						<img src="${path}/resources/img/${item.item_img3Path}"
 							class="d-block" alt="...">
 					</div>
 				</c:if>
-				<c:if test="item_img4Path != null">
+				<c:if test="${item.show_img4 != null}">
 					<div class="carousel-item">
 						<img src="${path}/resources/img/${item.item_img4Path}"
 							class="d-block" alt="...">
 					</div>
 				</c:if>
-				<c:if test="item_img5Path != null">
+				<c:if test="${item.show_img5 != null}">
 					<div class="carousel-item">
 						<img src="${path}/resources/img/${item.item_img5Path}"
 							class="d-block" alt="...">

@@ -33,6 +33,8 @@ public class ItemInfoDTO {
 	private String show_img3;
 	private String show_img4;
 	private String show_img5;
+	
+	private String filePath;
 	private String item_thumbPath;
 	private String item_img1Path;
 	private String item_img2Path;
