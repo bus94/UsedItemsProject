@@ -79,7 +79,7 @@
 					<div class="item2">
 						<a href="${path}/item/itemView?item_index=${each.item_index}"
 							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/item2.jpg" alt="1">
+							src="${path}/resources/img/${each.item_thumbPath}" alt="..">
 							<div class="item_view">
 								<h3>${each.item_title}</h3>
 								<div class="item_price">
@@ -92,11 +92,10 @@
 								<div class="item_like">
 									<p>관심 ${each.item_interest}</p>
 									<p>댓글 ${each.repl_count}</p>
-									<!-- 채팅개수???  -->
 								</div>
 								<div class="item_addr">
 									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${each.item_place }</p>
+									<p>${each.item_place}</p>
 								</div>
 							</div>
 						</a>

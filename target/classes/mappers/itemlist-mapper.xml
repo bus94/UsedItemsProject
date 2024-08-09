@@ -23,6 +23,7 @@
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_level" column="acc_level" />
+		<result property="repl_count" column="repl_count" />
 		<result property="show_thumb" column="show_thumb" />
 		<result property="show_img1" column="show_img1" />
 		<result property="show_img2" column="show_img2" />

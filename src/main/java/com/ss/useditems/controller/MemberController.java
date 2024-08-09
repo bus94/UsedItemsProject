@@ -46,24 +46,24 @@ public class MemberController {
 		loginMember = memberservice.selectByMember(loginMember);
 		if (loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
-			return "home";
+			return "redirect:/";
 		} else {
 			loginMember = null;
 			model.addAttribute("msg", "로그인에 실패하였습니다. 다시 로그인 해주세요.");
 			model.addAttribute("location", "/account/login.do");
 		}
-		
 		return "common/msg";
 	}
 
-	@RequestMapping("/logoutOK.do")
+	@RequestMapping("/account/logoutOK.do")
 	public String logoutOK(Model model, HttpSession session) {
+		System.out.println("logoutOK");
 		try {
 			session.removeAttribute("loginMember");
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
-		model.addAttribute("location", "/");
+		model.addAttribute("location", "/home");
 		return "common/msg";
 	}
 
