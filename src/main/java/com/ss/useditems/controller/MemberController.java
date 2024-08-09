@@ -198,8 +198,8 @@ public class MemberController {
 		}
 		
 		model.addAttribute("onsaleItem", onsaleItem);
-		model.addAttribute("dropItem", onsaleItem);
-		model.addAttribute("buyItem", onsaleItem);
+		model.addAttribute("dropItem", dropItem);
+		model.addAttribute("buyItem", buyItem);
 
 		System.out.println("response acc_info: " + account_info);
 		System.out.println("response item_info: " + itemList);
