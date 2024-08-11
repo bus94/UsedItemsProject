@@ -127,7 +127,7 @@
 							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item"
-									href="${path}/account/acc_info.do?acc_id=id_test4">타계정 정보</a></li>
+									href="${path}">뭐 넣지?</a></li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
