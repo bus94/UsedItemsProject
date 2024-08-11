@@ -1,8 +1,11 @@
 package com.ss.useditems.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.mapper.MemberMapper;
 
@@ -49,6 +52,11 @@ public class MemberService {
 	public int withdraw(String acc_id) {	//정일_회원탈퇴
 		System.out.println("service.withdraw: " + acc_id);
 		return mapper.withdraw(acc_id);
+	}
+
+	public List<ItemInfoDTO> selectItemByAcc_index(int acc_index) {
+		System.out.println("MemberService의 selectItemByAcc_index()");
+		return mapper.selectItemByAcc_index(acc_index);
 	}
 	
 }

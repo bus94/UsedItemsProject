@@ -72,7 +72,7 @@
 									</div>
 									<div class="item_like">
 										<p>관심 ${item.item_interest}</p>
-										<p>채팅 22</p>
+										<p>댓글 ${item.repl_count}</p>
 									</div>
 									<div class="item_addr">
 										<img src="${path}/resources/img/gps.png" alt="위치">

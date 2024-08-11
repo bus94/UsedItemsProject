@@ -144,12 +144,22 @@
 					</div>
 					<div class="reply_btn">
 						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
-						<button>수정하기</button>
+						<button onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 						<button
 							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
 					</div>
 				</div>
+				<!-- 수정 폼 -->
+                <div id="edit-form-${reply.repl_index}" style="display: none;">
+                    <form action="${path}/itemView/replyEdit" method="post">
+                    	<input type="hidden" name="itemNo" value="${item.item_index}" />
+                        <input type="hidden" name="replyNo" value="${reply.repl_index}" />
+                        <textarea name="content" rows="3">${reply.repl_content}</textarea>
+                        <button type="submit">수정 완료</button>
+                        <button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
+                    </form>
+                </div>
 			</c:forEach>
 		</div>
 	</c:if>
@@ -212,6 +222,29 @@
 		const years = days / 365
 		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
 	}
+</script>
+
+<script>
+
+	function deleteReply(replyNo, itemNo) {
+		var url = "${path}/itemView/replyDel?replyNo=";
+		var requestURL = url + replyNo + "&itemNo=" + itemNo;
+		console.log(requestURL);
+		location.href = requestURL;
+	}
+
+</script>
+
+<script>
+    function showEditForm(replyIndex, currentContent) {
+        document.getElementById('edit-form-' + replyIndex).style.display = 'block';
+        document.getElementById('reply-content-' + replyIndex).style.display = 'none';
+    }
+
+    function hideEditForm(replyIndex) {
+        document.getElementById('edit-form-' + replyIndex).style.display = 'none';
+        document.getElementById('reply-content-' + replyIndex).style.display = 'block';
+    }
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
