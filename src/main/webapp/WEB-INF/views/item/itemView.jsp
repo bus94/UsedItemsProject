@@ -71,7 +71,12 @@
 			<div class="detail_top">
 				<div class="detail_info">
 					<h4>${item.item_title}</h4>
-					<button>관심</button>
+					<form action="${path}/item/itemView/addInterest" method="post">
+						<input type="hidden" name="acc_index"
+							value="${loginMember.acc_index}"> <input type="hidden"
+							name="item_index" value="${item.item_index}">
+						<button type="submit">관심</button>
+					</form>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
@@ -144,22 +149,23 @@
 					</div>
 					<div class="reply_btn">
 						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
-						<button onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
+						<button
+							onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 						<button
 							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
 					</div>
 				</div>
 				<!-- 수정 폼 -->
-                <div id="edit-form-${reply.repl_index}" style="display: none;">
-                    <form action="${path}/itemView/replyEdit" method="post">
-                    	<input type="hidden" name="itemNo" value="${item.item_index}" />
-                        <input type="hidden" name="replyNo" value="${reply.repl_index}" />
-                        <textarea name="content" rows="3">${reply.repl_content}</textarea>
-                        <button type="submit">수정 완료</button>
-                        <button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
-                    </form>
-                </div>
+				<div id="edit-form-${reply.repl_index}" style="display: none;">
+					<form action="${path}/itemView/replyEdit" method="post">
+						<input type="hidden" name="itemNo" value="${item.item_index}" />
+						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
+						<textarea name="content" rows="3">${reply.repl_content}</textarea>
+						<button type="submit">수정 완료</button>
+						<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
+					</form>
+				</div>
 			</c:forEach>
 		</div>
 	</c:if>
@@ -245,6 +251,40 @@
         document.getElementById('edit-form-' + replyIndex).style.display = 'none';
         document.getElementById('reply-content-' + replyIndex).style.display = 'block';
     }
+    
 </script>
+<!-- <script>
+function addInterest(accIndex, itemIndex) {
+ 
+    var url = `${path}/itemView/addInterest`;
+	console.log(url);
+    
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({ 
+            acc_index: accIndex,
+            item_index: itemIndex
+        })
+    })
+    .then(response => response.text()) 
+    .then(data => {
+        if (data === "Success") {
+            alert("관심에 추가되었습니다.");
+        } else {
+            alert("관심 추가에 실패했습니다. 다시 시도해주세요.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("서버와의 통신 중 오류가 발생했습니다.");
+    });
+}
+
+</script> -->
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
