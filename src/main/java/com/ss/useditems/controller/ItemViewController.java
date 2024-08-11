@@ -1,6 +1,8 @@
 package com.ss.useditems.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +120,42 @@ public class ItemViewController {
 		model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 
 		return "common/msg";
+	}
+	
+	
+	@RequestMapping("/itemView/replyDel")
+	public String deleteReply(Model model, int replyNo, int itemNo) {
+		System.out.println("deleteReply() 실행");
+		System.out.println(replyNo + "+"+ itemNo);
+		Map<String, Integer>hmap =new HashMap<String, Integer>();
+		hmap.put("replyNo", replyNo);
+		int result = service.deleteReply(hmap);
+		if(result > 0) {
+			model.addAttribute("msg", "댓글이 삭제되었습니다");
+		}else {
+			model.addAttribute("msg", "댓글 삭제에 실패했습니다");
+		}
+		model.addAttribute("location", "/item/itemView?item_index="+ itemNo);
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/itemView/replyEdit")
+	public String editReply(Model model, String content, int replyNo,  int itemNo) {
+
+		ReplyDTO dto = new ReplyDTO();
+	    dto.setRepl_index(replyNo);
+	    dto.setRepl_content(content);
+
+	    int result = service.updateReply(dto);
+	    if (result > 0) {
+	    	 model.addAttribute("msg", "댓글이 수정되었습니다.");
+	    } else {
+	        model.addAttribute("msg", "댓글 수정에 실패했습니다.");
+	    }
+        model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
+        
+        return "common/msg";
 	}
 
 }

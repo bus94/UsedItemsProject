@@ -97,7 +97,14 @@
     	select count(*) from interest where int_item = #{item_index} 
     </select>
     
+		<delete id="deleteReply" parameterType="map">
+			<if test="replyNo != null">delete from reply where repl_index = ${replyNo}</if>
+			<if test="itemNo != null">delete from reply where item_index = ${itemNo}</if>
+	</delete>
 
-
-
+	<update id="updateReply" parameterType="ReplyDTO">
+	    UPDATE reply
+	    SET repl_content = #{repl_content}
+	    WHERE repl_index = #{repl_index}
+	</update>
 </mapper>
