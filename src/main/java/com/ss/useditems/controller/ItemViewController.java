@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ss.useditems.dto.ItemInfoDTO;
@@ -157,5 +160,12 @@ public class ItemViewController {
         
         return "common/msg";
 	}
+	
+	@PostMapping("/addInterest")
+    public String addInterest(@RequestParam("acc_index") int accIndex,
+                                              @RequestParam("item_index") int itemIndex) {
+      System.out.println("acc_index: "+accIndex+"\nitm_index"+itemIndex);
+      return "Success";
+    }
 
 }
