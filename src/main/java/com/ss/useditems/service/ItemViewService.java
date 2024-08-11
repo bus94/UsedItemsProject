@@ -1,6 +1,7 @@
 package com.ss.useditems.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,15 @@ public class ItemViewService {
 	public int interestnum(int item_index) {
 		System.out.println("interest 수 리턴");
 		return mapper.interestnum(item_index);
+	}
+
+
+	public int deleteReply(Map<String, Integer> hmap) {
+		return mapper.deleteReply(hmap);
+	}
+
+	public int updateReply(ReplyDTO dto) {
+	    return mapper.updateReply(dto);
 	}
 
 
