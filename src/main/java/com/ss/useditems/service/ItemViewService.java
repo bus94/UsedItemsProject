@@ -40,9 +40,8 @@ public class ItemViewService {
 		
 	}
 
-	public void interestnum(int acc_index, int item_index) {
-		// TODO Auto-generated method stub
-		
+	public boolean isInterest(Map<String,Integer> map) {
+		return mapper.checkInterest(map)>0;
 	}
 
 
@@ -63,6 +62,14 @@ public class ItemViewService {
 	public List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map) {
 		return mapper.selectByItemSeller(map);
 	}
+	
+	public void addInterest(Map<String, Integer> map) {
+		mapper.addInterest(map);
+	}
 
+	public void removeInterest(Map<String,Integer> map) {
+		mapper.removeInterest(map);
+		
+	}
 
 }

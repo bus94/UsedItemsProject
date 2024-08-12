@@ -32,5 +32,12 @@ public interface ItemViewMapper {
 
 	List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map);
 
+	void addInterest(Map<String,Integer> map);
+
+	int checkInterest(Map<String, Integer> map);
+
+	void removeInterest(Map<String, Integer> map);
+
+
 
 }

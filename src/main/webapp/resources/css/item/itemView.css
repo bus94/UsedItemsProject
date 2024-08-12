@@ -285,4 +285,17 @@ a {
 }
 
 
+.btn-add-interest {
+    background-color: green;
+    color: white;
+ 
+}
+
+.btn-cancel-interest {
+    background-color: red;
+    color: white;
+   
+}
+
+
 
