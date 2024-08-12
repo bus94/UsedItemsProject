@@ -22,6 +22,8 @@ public interface MemberMapper {
 
 	int selectIdIndex(String acc_id);
 
+	int checkCurrPW(String currPW_input); //정일_비밀번호 변경_현재 비밀번호 확인
+	
 	int withdraw(String acc_id); //정일_회원탈퇴
 
 	MemberDTO getPowerSeller();	//정일_home.jsp_파워셀러
@@ -29,5 +31,6 @@ public interface MemberMapper {
 	List<ItemInfoDTO> selectItemByAcc_index(int acc_index);
 
 	List<ItemInfoDTO> selectInterestsByAcc_index(int acc_index); //정일_계정 정보(찜목록)
+
 
 }

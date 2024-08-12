@@ -105,6 +105,17 @@
 		where acc_id = #{acc_id}
 	</select>      <!--정일 -->
 
+
+	<select id="checkCurrPW" parameterType="String" resultType="int">
+	
+	</select>
+
+
+
+
+
+
+
 	<update id="withdraw" parameterType="String">
 		update ACCOUNT set
 		acc_status='inactive' where acc_id=#{acc_id}
