@@ -29,5 +29,7 @@ public interface ItemViewMapper {
 
 	int updateReply(ReplyDTO dto);
 
+	List<ItemInfoDTO> selectByItemSeller(int item_seller);
+
 
 }

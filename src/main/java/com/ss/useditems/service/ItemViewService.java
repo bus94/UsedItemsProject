@@ -59,5 +59,9 @@ public class ItemViewService {
 	    return mapper.updateReply(dto);
 	}
 
+	public List<ItemInfoDTO> selectByItemSeller(int item_seller) {
+		return mapper.selectByItemSeller(item_seller);
+	}
+
 
 }
