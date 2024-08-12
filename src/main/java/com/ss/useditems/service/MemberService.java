@@ -132,5 +132,10 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int checkCurrPW(String currPW_input) {
+		
+		return mapper.checkCurrPW(currPW_input);
+	}
 	
 }

@@ -7,11 +7,8 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container acc_info_page"
-	style="padding-top: 100px;">
+<section id="content" class="container acc_info_page" style="padding-top: 100px;">
 
-	<c:if test="${loginMember != null}">
-	</c:if>
 
 	<c:choose>
 		<c:when test="${other_info == null}">

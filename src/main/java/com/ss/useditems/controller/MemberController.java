@@ -240,6 +240,40 @@ public class MemberController {
 		return "account/alter";
 	}
 
+	
+	
+	@RequestMapping("/account/setPW.do")
+	@ResponseBody
+	public String setPW(Model model, HttpSession session, @RequestParam String currPW_input, @RequestParam String neoPWconf_input) {
+		System.out.println("==account.setPW==");
+		System.out.println(currPW_input + "////" + neoPWconf_input);
+		
+		String result = "";
+		
+		try {
+			MemberDTO nowLogged = (MemberDTO) session.getAttribute("loginMember");
+			int acc_index = nowLogged.getAcc_index();
+			int subResult = memberservice.checkCurrPW(currPW_input);
+			
+			
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/withdraw.do")
 	public String withdraw(Model model, HttpSession session, @RequestParam String wd_currPW) {
 		System.out.println("==account.withdraw==");
@@ -287,57 +321,6 @@ public class MemberController {
 	
 	
 	
-	
-//	private Map<String, List<ItemInfoDTO>> getItemInfo (int acc_index) {
-//		
-//		List<ItemInfoDTO> itemList = memberservice.selectItemByAcc_index(acc_index);
-//		String filePath;
-//		for (int i = 0; i < itemList.size(); i++) {
-//			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
-//			itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
-//			itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
-//			itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
-//			itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
-//			itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
-//			itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
-//		}
-//
-//		
-//		List<ItemInfoDTO> onsaleItem = new ArrayList<ItemInfoDTO>();
-//		List<ItemInfoDTO> dropItem = new ArrayList<ItemInfoDTO>();
-//		List<ItemInfoDTO> buyItem = new ArrayList<ItemInfoDTO>();
-//
-//		for (int i = 0; i < itemList.size(); i++) {
-//			String checkStatus = itemList.get(i).getItem_status();
-//			int checkBuyer = itemList.get(i).getItem_buyer();
-//			
-//			// 불러온 itemList 분류 (거래 중/판매내역/구매내역)
-//			if(checkStatus.equals("onsale") && checkBuyer != acc_index) { // 거래 중
-//				onsaleItem.add(itemList.get(i));
-//			} else if (checkStatus.equals("drop") && checkBuyer != acc_index) { // 판매 내역
-//				dropItem.add(itemList.get(i));
-//			} else if (checkBuyer == acc_index) { // 구매 내역
-//				buyItem.add(itemList.get(i));
-//			}
-//		}
-//		
-//		System.out.println("response item_info: " + itemList);
-//		
-//		System.out.println("onsaleItem: " + onsaleItem);
-//		System.out.println("dropItem: " + dropItem);
-//		System.out.println("buyItem: " + buyItem);
-//		
-//		
-//		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
-//		result.put("itemList", itemList);
-//		result.put("onsaleItem", onsaleItem);
-//		result.put("dropItem", dropItem);
-//		result.put("buyItem", buyItem);
-//
-//		
-//		return result;
-//		
-//	}
 	
 	
 	

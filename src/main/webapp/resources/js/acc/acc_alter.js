@@ -5,6 +5,7 @@
 // $().ready(function(){
 //    console.log('acc_alter.js 연결');
 //	});
+
 $(function() {
 
 	console.log('acc_alter.js 연결');
@@ -49,9 +50,9 @@ function filledAll(){ //비밀번호 필드 전체(현재+새+확인) 체크
 	if(currPW_isNull == false && neoPW_isNull == false && neoPWconf_isNull == false){
 		$('#setPW').attr('disabled', false);
 	}else {
-		console.log("currPW_isNull: "+currPW_isNull);
-		console.log("neoPW_isNull: "+neoPW_isNull);
-		console.log("neoPWconf_isNull: "+neoPWconf_isNull);
+		// console.log("currPW_isNull: "+currPW_isNull);
+		// console.log("neoPW_isNull: "+neoPW_isNull);
+		// console.log("neoPWconf_isNull: "+neoPWconf_isNull);
 		$('#setPW').attr('disabled', true);
 	}
 }
@@ -101,16 +102,51 @@ function neoPW2check(param3){ //새 비밀번호 확인 입력 시
 }
 
 
+
 $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 	
 	if(neoPW_input != neoPWconf_input){
 		alert("'새 비밀번호'가 서로 일치하지 않습니다.");
 		return;
 	}else{
-		alert("바꿔줄게");
+		// alert("바꿔줄게");
+		
+		var path = "/useditems";
+		
+		//ajax로 넘겨줄 data : 객체({key : value}) 형태
+		const queryPW = { currPW_input : currPW_input, neoPWconf_input : neoPWconf_input };
+		
+		$.ajax({
+			type : "POST",
+			url : path + "/account/setPW.do",
+			data : queryPW,
+			success : function(data) {
+						console.log("AJAXresponse : " + data.result);
+						
+						
+						
+						alert("비밀번호가 변경되었습니다.");
+						},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+					}
+		}); //ajax
+		
+		location.href = path + "/account/alter.do";
 	}
 
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -120,24 +156,6 @@ $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 		$('#wd_hide1').css('display','block');
 		$('#wd_hide2').hide();
 	}
-
-	
-	
-});
-
-
-$('#setStatus').click(function() { // '탈퇴' 버튼 누르면
-
-	//var wd_currPW = $.trim($('#wd_currPW').val());
-	
-	//if(!wd_currPW){
-	//	alert("'현재 비밀번호'를 입력하여 주세요.");
-	//	return;
-	//}
-	
-	//if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
-	//	location.href = "/useditems/withdraw.do";
-	//}
 });
 
 
