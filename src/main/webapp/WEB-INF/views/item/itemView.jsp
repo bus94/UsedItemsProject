@@ -182,7 +182,7 @@
 		</div>
 		<c:if test="${empty otherItemList}">
 			<tr>
-				<td colspan="6">판매하는 상품이 없습니다.</td>
+				<td colspan="6">현재 판매하는 다른 상품이 없습니다.</td>
 			</tr>
 		</c:if>
 		<c:if test="${not empty otherItemList}">

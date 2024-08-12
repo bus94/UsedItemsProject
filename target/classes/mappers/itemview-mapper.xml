@@ -110,7 +110,7 @@
 		WHERE repl_index = #{repl_index}
 	</update>
 
-	<select id="selectByItemSeller" parameterType="int" resultMap="itemInfoMap">
+	<select id="selectByItemSeller" parameterType="HashMap" resultMap="itemInfoMap">
 		SELECT
 		*
 		FROM
@@ -120,5 +120,6 @@
 		WHERE
 		item_seller = #{item_seller}
 		AND item_status = 'onsale'
+		AND NOT item_index = #{item_index}
 	</select>
 </mapper>

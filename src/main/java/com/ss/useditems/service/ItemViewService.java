@@ -1,5 +1,6 @@
 package com.ss.useditems.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,8 +60,8 @@ public class ItemViewService {
 	    return mapper.updateReply(dto);
 	}
 
-	public List<ItemInfoDTO> selectByItemSeller(int item_seller) {
-		return mapper.selectByItemSeller(item_seller);
+	public List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map) {
+		return mapper.selectByItemSeller(map);
 	}
 
 

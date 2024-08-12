@@ -1,5 +1,6 @@
 package com.ss.useditems.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public interface ItemViewMapper {
 
 	int updateReply(ReplyDTO dto);
 
-	List<ItemInfoDTO> selectByItemSeller(int item_seller);
+	List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map);
 
 
 }

@@ -74,10 +74,12 @@ public class ItemViewController {
 		System.out.println("item: " + item); // item
 		System.out.println("itemMember: " + itemMember); // itemMember
 		
-		System.out.println("item.getItem_seller(): " + item.getItem_seller());
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("item_seller", item.getItem_seller());
+		map.put("item_index", item_index);
 		
 		// 해당 매물에 대한 판매자의 다른 상품
-		List<ItemInfoDTO> otherItemList = service.selectByItemSeller(item.getItem_seller());
+		List<ItemInfoDTO> otherItemList = service.selectByItemSeller(map);
 		String filePathOther;
 		for (int i = 0; i < otherItemList.size(); i++) {
 			filePathOther = otherItemList.get(i).getItem_seller() + "/item_" + otherItemList.get(i).getItem_index() + "/";
