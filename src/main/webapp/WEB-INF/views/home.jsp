@@ -18,10 +18,10 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active" data-bs-interval="2000">
+				<div class="carousel-item active" data-bs-interval="1500">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
-				<div class="carousel-item" data-bs-interval="2000">
+				<div class="carousel-item" data-bs-interval="1500">
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 		</div>
 
 	</div>
-
+<%-- 
 	<div class="popular_product">
         <div class="left_section">
             <div>
@@ -144,27 +144,20 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --%>
 
-
-
-
-	<h1>개조심</h1>
 
 	<div class="container d-flex">
 		<div>
-			<img src="${path}/resources/img/redwhistle.jpg" class="d-block"
-				style="width: 200px;" alt="...">
-		</div>
-		<div>
 			<table id="blacklist_container"
 				class="table table-warning table-borderless table-striped table-hover">
+				<h3 style="font-size: 22px;">신고조회 하러가기 &gt;</h3>
 				<thead class="table-dark">
 					<tr class="text-center">
 						<th class="list_index text-end" scope="col">#</th>
-						<th class="list_count" scope="col">피신고횟수</th>
-						<th class="list_id" scope="col">ID</th>
-						<th class="list_nickname" scope="col">별명</th>
+						<th class="list_count" scope="col" style="width: 100px;">피신고횟수</th>
+						<th class="list_id" scope="col" style="width: 120px;">ID</th>
+						<th class="list_nickname" scope="col" style="width: 120px;">별명</th>
 					</tr>
 				</thead>
 				<tbody>
