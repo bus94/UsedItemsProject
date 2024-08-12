@@ -105,7 +105,7 @@
 		</div>
 
 	</div>
-<%-- 
+	<%-- 
 	<div class="popular_product">
         <div class="left_section">
             <div>
@@ -151,13 +151,14 @@
 		<div>
 			<table id="blacklist_container"
 				class="table table-warning table-borderless table-striped table-hover">
-				<h3 style="font-size: 22px;">신고조회 하러가기 &gt;</h3>
+				<a href="${path}/blacklist/complainList.do" style="font-size: 22px;">신고조회
+					하러가기 &gt;</a>
 				<thead class="table-dark">
-					<tr class="text-center">
-						<th class="list_index text-end" scope="col">#</th>
-						<th class="list_count" scope="col" style="width: 100px;">피신고횟수</th>
-						<th class="list_id" scope="col" style="width: 120px;">ID</th>
-						<th class="list_nickname" scope="col" style="width: 120px;">별명</th>
+					<tr class="text-center" style="background-color: #AAFFA3">
+						<th class="list_index text-end" scope="col"></th>
+						<th class="list_count" scope="col" style="width: 100px;">신고접수</th>
+						<th class="list_id" scope="col" style="width: 150px;">ID</th>
+						<th class="list_nickname" scope="col" style="width: 200px;">별명</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -166,7 +167,7 @@
 						<!-- stat.current: 현재 item 상세 // stat.index: 0부터 // stat.count: 1부터 -->
 						<tr class="text-center">
 							<th class="list_index text-end" scope="row">${stat.count}</th>
-							<td class="list_count">${each.acc_blackCount}</td>
+							<td class="list_count">${each.acc_blackCount}건</td>
 							<td class="list_id">${each.acc_id}</td>
 							<td class="list_nickname">${each.acc_nickname}</td>
 						</tr>
@@ -176,7 +177,22 @@
 		</div>
 	</div>
 
-
+	<div class="rolling">
+		<div class="rolling-list">
+			<ul>
+				<li style="list-style: none">
+					<div class="image-wrap">
+						<img src="${path}/resources/img/banner.png" alt="">
+					</div>
+				</li>
+				<li style="list-style: none">
+					<div class="image-wrap">
+						<img src="${path}/resources/img/banner.png" alt="">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

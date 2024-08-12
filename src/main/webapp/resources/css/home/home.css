@@ -134,15 +134,60 @@
 	width: 100%;
 }
 .prev {
-	left: 110px;
+	left: 200px;
 	
 }
 
 .next {
-	right: 110px;
+	right: 200px;
 }
 
+.rolling {
+    display: flex;
+    overflow: hidden;
+}
 
+.rolling .rolling-list ul {
+    display: flex;
+    padding-left: 0;
+}
+
+/* 롤링 애니메이션 */
+.rolling-list.original {
+    animation: rollingleft1 50s linear infinite;
+}
+
+.rolling-list.clone {
+    animation: rollingleft2 50s linear infinite;
+}
+
+@keyframes rollingleft1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes rollingleft2 {
+    0% {
+        transition: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
 
 
 

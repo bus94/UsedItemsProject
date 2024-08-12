@@ -163,7 +163,7 @@ footer {
 
 /* 홈에서 스크롤 200미만이면 적용 */
 #navigator_home {
-	width:1530px;
+	width:100%;
 	position:absolute;
 	margin: 20px 20px 0 20px;
 	border: 2px solid rgb(219, 219, 219);
