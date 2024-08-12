@@ -3,7 +3,9 @@ package com.ss.useditems.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.sql.Date;
 
 import javax.servlet.http.HttpSession;
@@ -136,7 +138,7 @@ public class MemberController {
 
 		try {
 			if (session.getAttribute("loginMember") == null) {
-				model.addAttribute("msg", "로그인부터 하렴.");
+				model.addAttribute("msg", "로그인 먼저 해주세요.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
 			} else { // 0804추가
@@ -147,6 +149,20 @@ public class MemberController {
 //				System.out.println("마이인포 후: " + my_info);
 
 				model.addAttribute("loginMember", my_info);
+				
+				
+				
+				
+				int acc_index = my_info.getAcc_index();
+				//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
+				Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
+				
+				model.addAttribute("itemList", itemInfo.get("itemList"));
+				model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
+				model.addAttribute("dropItem", itemInfo.get("dropItem"));
+				model.addAttribute("buyItem", itemInfo.get("buyItem"));
+				
+				
 			}
 		} catch (Exception e) {
 		}
@@ -163,50 +179,21 @@ public class MemberController {
 
 		MemberDTO account_info = new MemberDTO();
 		account_info = memberservice.selectInfoByAcc_id(acc_id);
-
-		int acc_index = account_info.getAcc_index();
-		List<ItemInfoDTO> itemList = memberservice.selectItemByAcc_index(acc_index);
-		String filePath;
-		for (int i = 0; i < itemList.size(); i++) {
-			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
-			itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
-			itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
-			itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
-			itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
-			itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
-			itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
-		}
-
 		model.addAttribute("other_info", account_info);
 		
-		List<ItemInfoDTO> onsaleItem = new ArrayList<ItemInfoDTO>();
-		List<ItemInfoDTO> dropItem = new ArrayList<ItemInfoDTO>();
-		List<ItemInfoDTO> buyItem = new ArrayList<ItemInfoDTO>();
-
-		for (int i = 0; i < itemList.size(); i++) {
-			String checkStatus = itemList.get(i).getItem_status();
-			int checkBuyer = itemList.get(i).getItem_buyer();
-			
-			// 불러온 itemList 분류 (거래 중/판매내역/구매내역)
-			if(checkStatus.equals("onsale") && checkBuyer != acc_index) { // 거래 중
-				onsaleItem.add(itemList.get(i));
-			} else if (checkStatus.equals("drop") && checkBuyer != acc_index) { // 판매 내역
-				dropItem.add(itemList.get(i));
-			} else if (checkBuyer == acc_index) { // 구매 내역
-				buyItem.add(itemList.get(i));
-			}
-		}
 		
-		model.addAttribute("onsaleItem", onsaleItem);
-		model.addAttribute("dropItem", dropItem);
-		model.addAttribute("buyItem", buyItem);
+		int acc_index = account_info.getAcc_index();
+		//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
+		Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
+		
+		
+		model.addAttribute("itemList", itemInfo.get("itemList"));
+		model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
+		model.addAttribute("dropItem", itemInfo.get("dropItem"));
+		model.addAttribute("buyItem", itemInfo.get("buyItem"));
 
+		
 		System.out.println("response acc_info: " + account_info);
-		System.out.println("response item_info: " + itemList);
-		
-		System.out.println("onsaleItem: " + onsaleItem);
-		System.out.println("dropItem: " + dropItem);
-		System.out.println("buyItem: " + buyItem);
 
 		return "account/info";
 	}
@@ -259,6 +246,7 @@ public class MemberController {
 		return "common/msg";
 	}
 
+
 	//////////////////////////////////// 정일/////////////////////
 
 	@RequestMapping("/map/maptest1")
@@ -266,4 +254,68 @@ public class MemberController {
 		System.out.println("maptest 페이지");
 		return "map/maptest1";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private Map<String, List<ItemInfoDTO>> getItemInfo (int acc_index) {
+		
+		List<ItemInfoDTO> itemList = memberservice.selectItemByAcc_index(acc_index);
+		String filePath;
+		for (int i = 0; i < itemList.size(); i++) {
+			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
+			itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
+			itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
+			itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
+			itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
+			itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
+			itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
+		}
+
+		
+		List<ItemInfoDTO> onsaleItem = new ArrayList<ItemInfoDTO>();
+		List<ItemInfoDTO> dropItem = new ArrayList<ItemInfoDTO>();
+		List<ItemInfoDTO> buyItem = new ArrayList<ItemInfoDTO>();
+
+		for (int i = 0; i < itemList.size(); i++) {
+			String checkStatus = itemList.get(i).getItem_status();
+			int checkBuyer = itemList.get(i).getItem_buyer();
+			
+			// 불러온 itemList 분류 (거래 중/판매내역/구매내역)
+			if(checkStatus.equals("onsale") && checkBuyer != acc_index) { // 거래 중
+				onsaleItem.add(itemList.get(i));
+			} else if (checkStatus.equals("drop") && checkBuyer != acc_index) { // 판매 내역
+				dropItem.add(itemList.get(i));
+			} else if (checkBuyer == acc_index) { // 구매 내역
+				buyItem.add(itemList.get(i));
+			}
+		}
+		
+		System.out.println("response item_info: " + itemList);
+		
+		System.out.println("onsaleItem: " + onsaleItem);
+		System.out.println("dropItem: " + dropItem);
+		System.out.println("buyItem: " + buyItem);
+		
+		
+		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
+		result.put("itemList", itemList);
+		result.put("onsaleItem", onsaleItem);
+		result.put("dropItem", dropItem);
+		result.put("buyItem", buyItem);
+
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 }
