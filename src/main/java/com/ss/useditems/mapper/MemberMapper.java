@@ -12,7 +12,7 @@ public interface MemberMapper {
 
 	MemberDTO selectByMember(MemberDTO loginMember);
 	
-	MemberDTO selectInfoByAcc_id(String acc_id); //정일_계정 정보(테이블정보 + 피신고 + 아이템목록...)
+	MemberDTO selectInfoByAcc_id(String acc_id); //정일_계정 정보(테이블정보 + 피신고)
 
 	MemberDTO selectAccountByAcc_id(String acc_id); //정일_계정 정보(테이블정보만)
 	
@@ -27,5 +27,7 @@ public interface MemberMapper {
 	MemberDTO getPowerSeller();	//정일_home.jsp_파워셀러
 
 	List<ItemInfoDTO> selectItemByAcc_index(int acc_index);
+
+	List<ItemInfoDTO> selectInterestsByAcc_index(int acc_index); //정일_계정 정보(찜목록)
 
 }
