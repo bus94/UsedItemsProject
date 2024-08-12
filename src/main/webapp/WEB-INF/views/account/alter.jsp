@@ -77,13 +77,6 @@
 								name="birthDate" id="birthDate"
 								value="<fmt:formatDate value='${loginMember.acc_birthDate}' pattern='yyyy-MM-dd' />">
 						</div>
-						<%-- 0804 DB에서 이메일 삭제
-						<div>
-							<p class="subtitle fs-5">이&nbsp;&nbsp;&nbsp;메&nbsp;&nbsp;&nbsp;일</p>
-							<input type="email" class="info_box form-control d-inline"
-								name="email" id="email" value="${loginMember.acc_email}">
-						</div>
-						--%>
 						<div>
 							<p class="subtitle fs-5">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 							<input type="text" class="info_box form-control d-inline"

@@ -241,37 +241,141 @@ public class MemberController {
 	}
 
 	
-	
 	@RequestMapping("/account/setPW.do")
-	@ResponseBody
-	public String setPW(Model model, HttpSession session, @RequestParam String currPW_input, @RequestParam String neoPWconf_input) {
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setPW(Model model, HttpSession session, @RequestParam String currPW_input, @RequestParam String neoPWconf_input) {
 		System.out.println("==account.setPW==");
-		System.out.println(currPW_input + "////" + neoPWconf_input);
 		
-		String result = "";
+		//System.out.println(currPW_input + "////" + neoPWconf_input); //넘어온 값 확인
 		
+		int result = -1;
 		try {
-			MemberDTO nowLogged = (MemberDTO) session.getAttribute("loginMember");
-			int acc_index = nowLogged.getAcc_index();
-			int subResult = memberservice.checkCurrPW(currPW_input);
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
 			
-			
+			if(loginMember.getAcc_password().equals(currPW_input)) {
+				//System.out.println("같다");
+				String acc_id = loginMember.getAcc_id();
+				//현재 아이디와 바꿀 비밀번호 넘겨줌
+				result = memberservice.updatePW(acc_id, neoPWconf_input); //result == 처리된 행의 개수
+				
+				loginMember.setAcc_password(neoPWconf_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+				
+			} else {
+				//System.out.println("다르다");
+				result = 0;
+			}
 			
 		} catch (Exception e) {
-			
+			//System.out.println("예외에 막혔다"); //result == -1
 		}
-		
-		
-		
-		
-		
+
 		return result;
 	}
 	
 	
+	@RequestMapping("/account/setNickname.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setNickname(Model model, HttpSession session, @RequestParam String nickname_input) {
+		System.out.println("==account.setNickname==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
+			
+			
+			if(loginMember.getAcc_nickname().equals(nickname_input)) {
+				//기존과 같다
+				result = 0;
+			} else {
+				
+				String acc_id = loginMember.getAcc_id();
+				result = memberservice.updateNickname(acc_id, nickname_input); //result == 처리된 행의 개수
+					
+				loginMember.setAcc_nickname(nickname_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+			}
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
 	
+	@RequestMapping("/account/setPhone.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setPhone(Model model, HttpSession session, @RequestParam String phone_input) {
+		System.out.println("==account.setPhone==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
+			
+			
+			if(loginMember.getAcc_phone().equals(phone_input)) {
+				//기존과 같다
+				result = 0;
+			} else {
+				
+				String acc_id = loginMember.getAcc_id();
+				result = memberservice.updatePhone(acc_id, phone_input); //result == 처리된 행의 개수
+					
+				loginMember.setAcc_phone(phone_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+			}
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
 	
-	
+	@RequestMapping("/account/setRedunds.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, @RequestParam String address_input) {
+		System.out.println("==account.setRedunds==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			System.out.println("수정 전: " + loginMember);
+			System.out.println(birthDate_input);
+			
+			
+			//signupOK.do 포매터 : ??? dho sqlDAte를??
+			//formatter.format(date) : Date -> String
+			//formatter.parse(string) : String -> Date 
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date birthDate_ = formatter.parse(birthDate_input);
+			
+			
+			String acc_id = loginMember.getAcc_id();
+			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input); //result == 처리된 행의 개수
+				
+			loginMember.setAcc_name(name_input);
+			loginMember.setAcc_birthDate(birthDate_);//날짜 포맷
+			loginMember.setAcc_address(address_input);
+			System.out.println("수정 후: " + loginMember);
+			
+			session.setAttribute("loginMember", loginMember);
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
 	
 	
 	@RequestMapping("/withdraw.do")
@@ -286,7 +390,7 @@ public class MemberController {
 
 			if (wd_currPW.trim().equals(acc_password)) { // 탈퇴 처리
 				// int result = memberservice.withdraw(acc_id);
-				// 이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게??
+				// 이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게?? : 'inactive'는 로그인조차 못하게
 //				System.out.println("result: " +result);
 				memberservice.withdraw(acc_id);
 				session.removeAttribute("loginMember");

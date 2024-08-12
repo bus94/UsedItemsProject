@@ -52,6 +52,24 @@ public class MemberService {
 		return mapper.selectIdIndex(acc_id);
 	}
 
+	
+	
+	public int updatePW(String acc_id, String neoPWconf_input) {	//정일_계정정보수정
+		return mapper.updatePW(acc_id, neoPWconf_input);
+	}
+
+	public int updateNickname(String acc_id, String nickname_input) {	//정일_계정정보수정
+		return mapper.updateNickname(acc_id, nickname_input);
+	}
+
+	public int updatePhone(String acc_id, String phone_input) {		//정일_계정정보수정
+		return mapper.updatePhone(acc_id, phone_input);
+	}
+
+	public int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input) {
+		return mapper.updateRedunds(acc_id, name_input, birthDate_input, address_input);
+	}	//정일_계정정보수정
+	
 	public int withdraw(String acc_id) {	//정일_회원탈퇴
 		System.out.println("service.withdraw: " + acc_id);
 		return mapper.withdraw(acc_id);
@@ -133,9 +151,8 @@ public class MemberService {
 		return result;
 	}
 
-	public int checkCurrPW(String currPW_input) {
-		
-		return mapper.checkCurrPW(currPW_input);
-	}
+
+
+
 	
 }

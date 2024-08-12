@@ -235,13 +235,15 @@
 		</c:if>
 	</div>
 
-	<div id="acc_selling" class="container d-flex flex-column items_domain">
-		<div class="subtitle d-flex">
-			<div class="vr align-self-center"></div>
-			<h4 class="container">
-				<span>판</span><span>매</span><span>내</span><span>역</span>
-			</h4>
-			<div class="vr align-self-center"></div>
+	<div id="acc_selling" class="container items_domain">
+		<div class="d-flex">
+			<div class="subtitle d-flex">
+				<div class="vr align-self-center"></div>
+				<h4 class="container">
+					<span>판</span><span>매</span><span>내</span><span>역</span>
+				</h4>
+				<div class="vr align-self-center"></div>
+			</div>
 			<c:if test="${other_info == null}">
 				<button type="button" id="btn_item_enroll"
 					class="btn_item btn btn-success btn-sm align-self-center"

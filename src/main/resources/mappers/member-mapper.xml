@@ -51,8 +51,7 @@
 
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
 
-	<resultMap type="memberDTO" id="memberInfoMap"
-		extends="memberMap">
+	<resultMap type="memberDTO" id="memberInfoMap" extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
@@ -103,18 +102,31 @@
 		black
 		on (acc.acc_index = black.black_object)
 		where acc_id = #{acc_id}
-	</select>      <!--정일 -->
+	</select>	<!--정일 -->
 
 
-	<select id="checkCurrPW" parameterType="String" resultType="int">
-	
-	</select>
+	<update id="updatePW" parameterType="String">
+		update ACCOUNT set
+		acc_password=#{neoPWconf_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
+	<update id="updateNickname" parameterType="String">
+		update ACCOUNT set
+		acc_nickname=#{nickname_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
+	<update id="updatePhone" parameterType="String">
+		update ACCOUNT set
+		acc_phone=#{phone_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
-
-
-
+	<update id="updateRedunds" parameterType="String">
+		update ACCOUNT set
+		acc_name=#{name_input},
+		acc_birthDate=TO_DATE(#{birthDate_input}, 'YYYY-MM-DD'),
+		acc_address=#{address_input}
+		where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
 	<update id="withdraw" parameterType="String">
 		update ACCOUNT set
