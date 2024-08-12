@@ -220,7 +220,7 @@ public class ItemViewController {
 		
 	    service.removeInterest(acc_item_index(accIndex,itemIndex));
 	    
-	    model.addAttribute("mag","관심 상품이 삭제되었습니다.");
+	    model.addAttribute("msg","관심 상품이 삭제되었습니다.");
 	    model.addAttribute("location", "/item/itemView?item_index=" + itemIndex);
 	    // 처리 후, 다시 뷰로 돌아가기
 	    return "common/msg";

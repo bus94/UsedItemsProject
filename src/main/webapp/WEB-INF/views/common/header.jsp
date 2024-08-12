@@ -126,8 +126,7 @@
 							class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-									href="${path}">뭐 넣지?</a></li>
+								<li><a class="dropdown-item" href="${path}">뭐 넣지?</a></li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
@@ -172,6 +171,7 @@
 				$('#logout').click(function() {
 
 					if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
+						console.log("logout");
 						location.href = "${path}/account/logoutOK.do";
 					}
 				})

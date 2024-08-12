@@ -6,12 +6,19 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-
+<style>
+/* 모달 내 Daum Postcode API의 크기 조정 */
+#postcode {
+	width: 100%;
+	height: 400px; /* 높이 조정 */
+}
+</style>
 <section id="content" class="container login_container"
 	style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<div class="login_containerIn">
-			<form id="loginForm" action="${path}/account/signupOK.do" method="post">
+			<form id="loginForm" action="${path}/account/signupOK.do"
+				method="post">
 				<div class="loginTitle">
 					<img class="loginLogo" alt="로고"
 						src="${path}/resources/img/logo.png">
@@ -20,8 +27,9 @@
 					<div class="login_inputId">
 						<input type="text" class="form-control login_inputStyle mt-1"
 							name="id" id="id" placeholder="아이디" autocapitalize="off" required
-							onblur="validateInputId()" onkeyup="currIdCheck(this)"> <input type="button"
-							class="btn checkBtn" id="checkId" value="중복확인" disabled>
+							onblur="validateInputId()" onkeyup="currIdCheck(this)"> <input
+							type="button" class="btn checkBtn" id="checkId" value="중복확인"
+							disabled>
 					</div>
 					<input type="password" class="form-control login_inputStyle"
 						name="password" id="password" placeholder="비밀번호"
@@ -34,12 +42,14 @@
 						입력해주세요.</p>
 					<input type="text" class="form-control login_inputStyle"
 						name="name" id="name" placeholder="이름" required
-						style="margin-top: 5px;" /><input type="text"
+						style="margin-top: 5px;" /> <input type="text"
 						class="form-control login_inputStyle" name="birthDate"
 						id="birthDate" placeholder="생년월일(8자리) ex.20010203" required /> <input
 						type="text" class="form-control login_inputStyle" name="address"
-						id="address" placeholder="주소" required /><input type="text"
-						class="form-control login_inputStyle" name="phone" id="phone"
+						id="address" placeholder="주소" readonly required /> <input
+						type="button" onclick="openAddressModal()" value="주소 검색">
+					<input type="text" class="form-control login_inputStyle"
+						name="phone" id="phone"
 						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
 				</div>
 
@@ -51,7 +61,26 @@
 						하러 가기</button>
 				</div>
 			</form>
+			<!-- 주소 검색 모달 -->
+			<div class="modal fade" id="addressModal" tabindex="-1"
+				aria-labelledby="addressModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="addressModalLabel">주소 검색</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div id="postcode"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
+		<script
+			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;
@@ -138,8 +167,26 @@
 					}
 				});
 			});
+			
+			function openAddressModal() {
+				var modal = new bootstrap.Modal(document.getElementById('addressModal'));
+				modal.show();
+
+				new daum.Postcode({
+					oncomplete : function(data) {
+						var addr = data.address; // 최종 주소 변수
+
+						// 주소 정보를 해당 필드에 넣는다.
+						document.getElementById("address").value = addr;
+						modal.hide();
+					},
+					width: '100%',
+					height: '100%'
+				}).embed(document.getElementById('postcode'));
+			}
+
 		</script>
-		
+
 		<%-- <div class="mt-2"
 				style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
 				<form id="uploadFile" method="post"
