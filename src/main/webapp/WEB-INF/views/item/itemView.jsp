@@ -1,3 +1,5 @@
+<%@page import="com.ss.useditems.dto.ItemInfoDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -221,6 +223,11 @@
 	</div>
 </section>
 
+<%
+	ItemInfoDTO item = (ItemInfoDTO) request.getAttribute("item");
+	String item_enrollDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(item.getItem_enrollDate());
+	System.out.println("item_enrollDate: " + item_enrollDate);
+%>
 <script>
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
@@ -258,6 +265,13 @@
 		const years = days / 365
 		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
 	}
+	
+	const item_enrollDate = new Date('${item_enrollDate}');
+	
+	console.log("item_enrollDate: " + item_enrollDate);
+	
+	// 함수 호출
+	date(item_enrollDate);
 </script>
 
 <script>
