@@ -108,6 +108,9 @@ $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 	if(neoPW_input != neoPWconf_input){
 		alert("'새 비밀번호'가 서로 일치하지 않습니다.");
 		return;
+	} else if( currPW_input == neoPWconf_input){
+		alert("입력한 '현재 비밀번호'와 '새 비밀번호'가 같습니다.");
+		return;	
 	}else{
 		
 		//ajax로 넘겨줄 data : 객체({key : value}) 형태

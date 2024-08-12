@@ -349,8 +349,8 @@ public class MemberController {
 		int result = -1;
 		try {
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-			System.out.println("수정 전: " + loginMember);
-			System.out.println(birthDate_input);
+//			System.out.println("수정 전: " + loginMember);
+//			System.out.println(birthDate_input);
 			
 			
 			//signupOK.do 포매터 : ??? dho sqlDAte를??
