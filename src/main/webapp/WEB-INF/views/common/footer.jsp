@@ -12,7 +12,7 @@
 		&lt;Copyright 2024. <strong>Safe Market</strong>. All rights
 		reserved.&gt;
 	</p>
-	<button onclick="location.href ='${path}/map/maptest1'">map</button>
+	<%-- <button onclick="location.href ='${path}/map/maptest1'">map</button> --%>
 </footer>
 
 </div> <!-- 전체 페이지 wrapper -->
