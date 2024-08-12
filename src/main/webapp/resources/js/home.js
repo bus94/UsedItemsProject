@@ -145,42 +145,44 @@ document.addEventListener('DOMContentLoaded', function () {
     
 });
 
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const popularProduct = document.querySelector('.popular_product');
     const rightSection = document.querySelector('.right_section');
 
-    // 오른쪽 섹션의 스크롤과 전체 페이지 스크롤을 위한 변수
     let isScrolling = false;
 
     popularProduct.addEventListener('wheel', (event) => {
-      if (event.deltaY !== 0) {
-        event.preventDefault(); // 기본 스크롤 동작 방지
+        if (event.deltaY !== 0) {
+            event.preventDefault(); // 기본 스크롤 동작 방지
 
-        if (!isScrolling) {
-          isScrolling = true; // 스크롤이 진행 중임을 표시
+            if (!isScrolling) {
+                isScrolling = true; // 스크롤이 진행 중임을 표시
 
-          // right_section을 스크롤
-          rightSection.scrollBy({
-            top: event.deltaY,
-            behavior: 'smooth'
-          });
+                // 스크롤 속도를 증가시키기 위해 deltaY에 곱셈 연산자를 사용
+                const scrollAmount = event.deltaY * 2; // 속도를 두 배로 증가
 
-          // right_section의 끝에 도달했는지 확인
-          const isAtBottom = rightSection.scrollHeight === rightSection.scrollTop + rightSection.clientHeight;
+                // right_section을 스크롤
+                rightSection.scrollBy({
+                    top: scrollAmount,
+                    behavior: 'smooth'
+                });
 
-          if (isAtBottom) {
-            // right_section이 바닥에 도달하면 전체 페이지를 스크롤
-            window.scrollBy({
-              top: event.deltaY,
-              behavior: 'smooth'
-            });
-          }
+                // right_section의 끝에 도달했는지 확인
+                const isAtBottom = rightSection.scrollHeight === rightSection.scrollTop + rightSection.clientHeight;
 
-          // 스크롤이 완료될 때까지 대기
-          setTimeout(() => {
-            isScrolling = false;
-          }, 500); // 500ms는 스크롤 애니메이션 시간에 맞게 조정 가능
+                if (isAtBottom) {
+                    // right_section이 바닥에 도달하면 전체 페이지를 스크롤
+                    window.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // 스크롤이 완료될 때까지 대기 (시간을 줄여서 더 빠르게 스크롤)
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 100); // 100ms로 줄이기
+            }
         }
-      }
     });
-  });
+});
