@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ss.useditems.dto.ItemInfoDTO;
@@ -74,10 +73,33 @@ public class ItemViewController {
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
 		System.out.println("item: " + item); // item
 		System.out.println("itemMember: " + itemMember); // itemMember
+		
+		System.out.println("item.getItem_seller(): " + item.getItem_seller());
+		
+		// 해당 매물에 대한 판매자의 다른 상품
+		List<ItemInfoDTO> otherItemList = service.selectByItemSeller(item.getItem_seller());
+		String filePathOther;
+		for (int i = 0; i < otherItemList.size(); i++) {
+			filePathOther = otherItemList.get(i).getItem_seller() + "/item_" + otherItemList.get(i).getItem_index() + "/";
+			otherItemList.get(i).setItem_thumbPath(filePathOther + otherItemList.get(i).getShow_thumb());
+			otherItemList.get(i).setItem_img1Path(filePathOther + otherItemList.get(i).getShow_img1());
+			otherItemList.get(i).setItem_img2Path(filePathOther + otherItemList.get(i).getShow_img2());
+			otherItemList.get(i).setItem_img3Path(filePathOther + otherItemList.get(i).getShow_img3());
+			otherItemList.get(i).setItem_img4Path(filePathOther + otherItemList.get(i).getShow_img4());
+			otherItemList.get(i).setItem_img5Path(filePathOther + otherItemList.get(i).getShow_img5());
+		}
+		
+		System.out.println();
+		System.out.println("otherItemList: " + otherItemList.size() + "개");
+		for (int i = 0; i < otherItemList.size(); i++) {
+			System.out.println("otherItemList: " + otherItemList.get(i));			
+		}
+		System.out.println();
 
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
+		model.addAttribute("otherItemList", otherItemList);
 
 		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);

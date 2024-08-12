@@ -180,14 +180,44 @@
 		<div>
 			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>
 		</div>
-		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt=""> <img
-				src="${path}/resources/img/item3.jpg" alt=""> <img
-				src="${path}/resources/img/item4.jpg" alt=""> <img
-				src="${path}/resources/img/item5.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt="">
-		</div>
+		<c:if test="${empty otherItemList}">
+			<tr>
+				<td colspan="6">판매하는 상품이 없습니다.</td>
+			</tr>
+		</c:if>
+		<c:if test="${not empty otherItemList}">
+			<div class="item_wrapper">
+				<c:forEach var="item" items="${otherItemList}">
+					<div class="item_container">
+						<div class="item">
+							<a href="${path}/item/itemView?item_index=${item.item_index}"
+								style="text-decoration: none; color: black"> <img
+								src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진">
+								<div class="item_view">
+									<h3>${item.item_title}</h3>
+									<div class="item_price">
+										<h4>${item.item_price}원</h4>
+										<br>
+										<h5>
+											<fmt:formatDate value="${item.item_enrollDate}"
+												pattern="yy/MM/dd" />
+										</h5>
+									</div>
+									<div class="item_like">
+										<p>관심 ${item.item_interest}</p>
+										<p>댓글 ${item.repl_count}</p>
+									</div>
+									<div class="item_addr">
+										<img src="${path}/resources/img/gps.png" alt="위치">
+										<p>${item.item_place}</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 	</div>
 </section>
 
