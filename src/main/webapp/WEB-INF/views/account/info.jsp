@@ -149,6 +149,8 @@
 					onclick="location.href='${path}/item/interest.do'">자세히</button>
 			</div>
 			<div class="item_container_acc d-flex">
+			
+			
 				<div class="item">
 					<img src="${path}/resources/img/item1.jpg" alt="1">
 					<div class="item_view">
@@ -167,78 +169,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="item">
-					<img src="${path}/resources/img/item2.jpg" alt="1">
-					<div class="item_view">
-						<h3>제품명입니다</h3>
-						<div class="item_price">
-							<h4>9999원</h4>
-							<h5>몇분 전</h5>
-						</div>
-						<div class="item_like">
-							<p>관심 22</p>
-							<p>채팅 10</p>
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>인천광역시 계양구</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="${path}/resources/img/item3.jpg" alt="1">
-					<div class="item_view">
-						<h3>제품명입니다</h3>
-						<div class="item_price">
-							<h4>9999원</h4>
-							<h5>몇분 전</h5>
-						</div>
-						<div class="item_like">
-							<p>관심 22</p>
-							<p>채팅 10</p>
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>인천광역시 계양구</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="${path}/resources/img/item3.jpg" alt="1">
-					<div class="item_view">
-						<h3>제품명입니다</h3>
-						<div class="item_price">
-							<h4>9999원</h4>
-							<h5>몇분 전</h5>
-						</div>
-						<div class="item_like">
-							<p>관심 22</p>
-							<p>채팅 10</p>
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>인천광역시 계양구</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="${path}/resources/img/item3.jpg" alt="1">
-					<div class="item_view">
-						<h3>제품명입니다</h3>
-						<div class="item_price">
-							<h4>9999원</h4>
-							<h5>몇분 전</h5>
-						</div>
-						<div class="item_like">
-							<p>관심 22</p>
-							<p>채팅 10</p>
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>인천광역시 계양구</p>
-						</div>
-					</div>
-				</div>
+				
+				
+				
 			</div>
 		</div>
 	</c:if>

@@ -217,7 +217,7 @@ public class MemberController {
 
 		try {
 			if (session.getAttribute("loginMember") == null) {
-				model.addAttribute("msg", "로그인부터 하렴.");
+				model.addAttribute("msg", "로그인 먼저 해주세요.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
 			}
