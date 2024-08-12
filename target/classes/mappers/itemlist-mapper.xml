@@ -65,7 +65,19 @@
 		FROM
 		(
 		SELECT
-		item.*,
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
 		COUNT(repl_index) repl_count
 		FROM
 		item
@@ -127,7 +139,19 @@
 		FROM
 		(
 		SELECT
-		item.*,
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
 		COUNT(repl_index) repl_count
 		FROM
 		item
@@ -153,7 +177,7 @@
 		)
 		WHERE 1 = 1
 		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
+			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
 				#{category}
@@ -176,13 +200,31 @@
 		resultMap="itemInfoMap">
 		SELECT
 		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5,
 		COUNT(*)
 		OVER(PARTITION BY i.item_seller) AS
 		seller_item_count
 		FROM
 		(
 		SELECT
-		item.*,
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
 		COUNT(repl_index) repl_count
 		FROM
 		item
@@ -207,7 +249,7 @@
 		JOIN showcase s ON i.item_index = s.show_item
 		WHERE 1 = 1
 		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
+			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
 				#{category}
@@ -244,7 +286,19 @@
 		FROM
 		(
 		SELECT
-		item.*,
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
 		COUNT(repl_index) repl_count
 		FROM
 		item
