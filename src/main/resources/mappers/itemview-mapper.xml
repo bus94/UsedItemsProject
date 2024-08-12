@@ -91,12 +91,14 @@
 	<update id="incrementViews">
 		UPDATE item
 		SET item_click = item_click + 1
-		WHERE item_index = #{itemId}
+		WHERE
+		item_index = #{itemId}
 	</update>
 
 
 	<select id="interestnum" parameterType="int">
-		select count(*) from interest where int_item = #{item_index}
+		select count(*) from
+		interest where int_item = #{item_index}
 	</select>
 
 	<delete id="deleteReply" parameterType="map">
@@ -106,20 +108,39 @@
 
 	<update id="updateReply" parameterType="ReplyDTO">
 		UPDATE reply
-		SET repl_content = #{repl_content}
+		SET
+		repl_content = #{repl_content}
 		WHERE repl_index = #{repl_index}
 	</update>
 
-	<select id="selectByItemSeller" parameterType="HashMap" resultMap="itemInfoMap">
+	<select id="selectByItemSeller" parameterType="HashMap"
+		resultMap="itemInfoMap">
 		SELECT
 		*
 		FROM
 		item
-		LEFT JOIN account ON ( item_seller = acc_index )
+		LEFT JOIN account ON ( item_seller =
+		acc_index )
 		LEFT JOIN showcase ON ( show_item = item_index )
 		WHERE
 		item_seller = #{item_seller}
 		AND item_status = 'onsale'
-		AND NOT item_index = #{item_index}
+		AND NOT
+		item_index = #{item_index}
 	</select>
+
+	<insert id="addInterest" parameterType="Map">
+		INSERT INTO INTEREST
+		VALUES (INTEREST_SEQ.NEXTVAL,#{item_index} ,#{acc_index} )
+	</insert>
+
+	<select id="checkInterest" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM INTEREST
+		WHERE int_item = #{item_index} AND
+		int_subject = #{acc_index}
+	</select>
+	
+	<delete id="removeInterest" parameterType="Map">
+		DELETE FROM INTEREST WHERE int_item = #{item_index} AND int_subject =#{acc_index}
+	</delete>
 </mapper>

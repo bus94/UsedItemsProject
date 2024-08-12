@@ -71,11 +71,16 @@
 			<div class="detail_top">
 				<div class="detail_info">
 					<h4>${item.item_title}</h4>
-					<form action="${path}/item/itemView/addInterest" method="post">
+					<form id="interestForm"
+						action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
+						method="post">
 						<input type="hidden" name="acc_index"
 							value="${loginMember.acc_index}"> <input type="hidden"
 							name="item_index" value="${item.item_index}">
-						<button type="submit">관심</button>
+						<button type="submit"
+							class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
+							onclick="return confirmInterestAction('${isInterested}')">
+							${isInterested ? '관심 취소' : '관심'}</button>
 					</form>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
@@ -283,37 +288,15 @@
     }
     
 </script>
-<!-- <script>
-function addInterest(accIndex, itemIndex) {
- 
-    var url = `${path}/itemView/addInterest`;
-	console.log(url);
-    
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({ 
-            acc_index: accIndex,
-            item_index: itemIndex
-        })
-    })
-    .then(response => response.text()) 
-    .then(data => {
-        if (data === "Success") {
-            alert("관심에 추가되었습니다.");
-        } else {
-            alert("관심 추가에 실패했습니다. 다시 시도해주세요.");
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("서버와의 통신 중 오류가 발생했습니다.");
-    });
-}
+<script>
+	function confirmInterestAction(isInterested) {
+	    if (isInterested === 'true') {
+	        return confirm("관심 상품에서 삭제하시겠습니까?");
+	    }
+	    return true;
+	}
+</script>
 
-</script> -->
 
 
 
