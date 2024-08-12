@@ -111,7 +111,7 @@ public class ItemController {
 			model.addAttribute("categoryList", categoryList);
 			System.out.println("모델 searchValue: " + searchValue);
 			System.out.println("모델 searchType: " + searchType);
-			System.out.println("모델 categoryList: " + searchType);
+			System.out.println("모델 categoryList: " + categoryList);
 			System.out.println();
 			System.out.println("모델 itemList: " + itemList);
 			System.out.println();

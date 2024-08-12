@@ -65,8 +65,28 @@
 
 	<select id="selectByItemIndex" parameterType="int"
 		resultMap="itemInfoMap">
-		SELECT * FROM item i JOIN showcase s ON s.show_item =
-		i.item_index WHERE item_index = #{item_index}
+		SELECT item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		show_thumb,
+		show_img1,
+		show_img2,
+		show_img3,
+		show_img4,
+		show_img5 FROM item i JOIN
+		showcase s ON s.show_item =
+		i.item_index WHERE item_index =
+		#{item_index}
 	</select>
 
 	<select id="selectByIndex" parameterType="int"
@@ -116,7 +136,25 @@
 	<select id="selectByItemSeller" parameterType="HashMap"
 		resultMap="itemInfoMap">
 		SELECT
-		*
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+        show_thumb,
+		show_img1,
+		show_img2,
+		show_img3,
+		show_img4,
+		show_img5
 		FROM
 		item
 		LEFT JOIN account ON ( item_seller =
@@ -139,8 +177,9 @@
 		WHERE int_item = #{item_index} AND
 		int_subject = #{acc_index}
 	</select>
-	
+
 	<delete id="removeInterest" parameterType="Map">
-		DELETE FROM INTEREST WHERE int_item = #{item_index} AND int_subject =#{acc_index}
+		DELETE FROM INTEREST
+		WHERE int_item = #{item_index} AND int_subject =#{acc_index}
 	</delete>
 </mapper>
