@@ -139,5 +139,21 @@
 		acc_index = #{acc_index}
 		OR item_buyer = #{acc_index}
 	</select>
+	
+	
+	<select id="selectInterestsByAcc_index" parameterType="int"
+		resultMap="itemInfoMap">
+		SELECT *
+		FROM item
+		LEFT JOIN interest ON item_index = int_item
+		LEFT JOIN showcase on show_item = item_index
+		WHERE int_subject = #{acc_index}
+		order by int_index desc
+	</select>
+	
+	
+	
+	
+	
 
 </mapper>

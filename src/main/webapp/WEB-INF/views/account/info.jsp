@@ -148,31 +148,46 @@
 					class="btn_item btn btn-success btn-sm align-self-center"
 					onclick="location.href='${path}/item/interest.do'">자세히</button>
 			</div>
-			<div class="item_container_acc d-flex">
 			
+			<c:if test="${empty my_interests}">
+				<p>등록된 관심상품이 없습니다.</p>
+			</c:if>
 			
-				<div class="item">
-					<img src="${path}/resources/img/item1.jpg" alt="1">
-					<div class="item_view">
-						<h3>제품명입니다</h3>
-						<div class="item_price">
-							<h4>9999원</h4>
-							<h5>몇분 전</h5>
-						</div>
-						<div class="item_like">
-							<p>관심 22</p>
-							<p>채팅 10</p>
-						</div>
-						<div class="item_addr">
-							<img src="${path}/resources/img/gps.png" alt="위치">
-							<p>인천광역시 계양구</p>
-						</div>
+			<c:if test="${not empty my_interests}">
+			<!-- <div class="item_wrapper"> -->
+			<c:forEach var="my_interests" items="${my_interests}">
+				<div class="item_container_acc d-flex">
+					<div class="item">
+						<a
+							href="${path}/item/itemView?item_index=${my_interests.item_index}"
+							style="text-decoration: none; color: black"> <img
+							src="${path}/resources/img/${my_interests.item_thumbPath}"
+							alt="매물사진">
+							<div class="item_view">
+								<h3>${my_interests.item_title}</h3>
+								<div class="item_price">
+									<h4>${my_interests.item_price}원</h4>
+									<br>
+									<h5>
+										<fmt:formatDate value="${my_interests.item_enrollDate}"
+											pattern="yy/MM/dd" />
+									</h5>
+								</div>
+								<div class="item_like">
+									<p>관심 ${my_interests.item_interest}</p>
+									<p>댓글 ${my_interests.repl_count}</p>
+								</div>
+								<div class="item_addr">
+									<img src="${path}/resources/img/gps.png" alt="위치">
+									<p>${my_interests.item_place}</p>
+								</div>
+							</div>
+						</a>
 					</div>
 				</div>
-				
-				
-				
-			</div>
+			</c:forEach>
+			<!-- </div> -->
+			</c:if>
 		</div>
 	</c:if>
 
@@ -186,9 +201,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty onsaleItem}">
-			<tr>
-				<td colspan="6">조회된 글이 없습니다.</td>
-			</tr>
+			<p>거래 중인 상품이 없습니다.</p>
 		</c:if>
 		<c:if test="${not empty onsaleItem}">
 			<c:forEach var="onsaleItem" items="${onsaleItem}">
@@ -239,9 +252,7 @@
 			</c:if>
 		</div>
 		<c:if test="${empty dropItem}">
-			<tr>
-				<td colspan="6">조회된 글이 없습니다.</td>
-			</tr>
+			<p>등록한 매물이 없습니다.</p>
 		</c:if>
 		<c:if test="${not empty dropItem}">
 			<c:forEach var="dropItem" items="${dropItem}">
@@ -285,9 +296,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty buyItem}">
-			<tr>
-				<td colspan="6">조회된 글이 없습니다.</td>
-			</tr>
+			<p>구매한 상품이 없습니다.</p>
 		</c:if>
 		<c:if test="${not empty buyItem}">
 			<c:forEach var="buyItem" items="${buyItem}">
