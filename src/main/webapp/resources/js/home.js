@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex === updatedItems.length - itemsToShow) {
             setTimeout(() => {
                 container.style.transition = 'none'; // 애니메이션 비활성화
-                container.style.transform = `translateX(${-itemWidth}%)`; // 위치를 초기화
-                currentIndex = 1; // 인덱스 초기화
                 setTimeout(() => {
                     container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
                 }, 20); // 짧은 시간 후 애니메이션 재설정
@@ -107,21 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 자동 슬라이드
-    let autoSlideInterval = setInterval(() => {
-        if (currentIndex < updatedItems.length - itemsToShow) {
-            currentIndex++;
-            updateSlider();
-        } else {
-            // 슬라이드가 끝나면 부드럽게 처음으로 돌아가도록
-            container.style.transition = 'none'; // 애니메이션 비활성화
-            container.style.transform = `translateX(${-itemWidth}%)`; // 위치를 초기화
-            currentIndex = 1; // 인덱스 초기화
-            setTimeout(() => {
-                container.style.transition = 'transform 0.5s ease'; // 애니메이션 재설정
-            }, 20); // 짧은 시간 후 애니메이션 재설정
-        }
-    }, 3000); // 3초마다 슬라이드
+    
 
 });
 
