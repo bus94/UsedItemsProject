@@ -18,10 +18,10 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active" data-bs-interval="2000">
+				<div class="carousel-item active" data-bs-interval="1800">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
-				<div class="carousel-item" data-bs-interval="2000">
+				<div class="carousel-item" data-bs-interval="1800">
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>
@@ -103,68 +103,70 @@
 				</c:forEach>
 			</div>
 		</div>
+	</div>
+	<div class="ad_banner">
+		<img alt="" src="${path}/resources/img/banner.png">
 
 	</div>
 
-	<div class="popular_product">
-        <div class="left_section">
-            <div>
-                <h3>Popular Product</h3>
-                <p>세잎마켓에서 인기있는 상품들을 만나보세요.
-            </div>
-            <div>
-                <img alt="" src="${path}/resources/img/zz.png">
-            </div>
-        </div>
-        <div class="right_section">
-            <div class="pic_box">
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-            </div>
-        </div>
-    </div>
+	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요 &gt;</h3>
+	<div class="best_Container" style="height: 600px">
+		<ul class="best_Carousel">
+			<li class="best_Items Front">
+				<div class="best_item">
+					<img src="${path}/resources/img/study.jpg" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
+					</div>
+				</div>
+			</li>
+			<li class="best_Items Left">
+					<div class="best_item">
+						<img src="${path}/resources/img/redwhistle.jpg" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div></li>
+			<li class="best_Items Left2">
+					<div class="best_item">
+						<img src="${path}/resources/img/zz.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>	
+						</div>
+					</div></li>
+			<li class="best_Items Right">
+					<div class="best_item">
+						<img src="${path}/resources/img/clover.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div></li>
+			<li class="best_Items Right2">
+					<div class="best_item">
+						<img src="${path}/resources/img/message.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div>
+			</li>
+		</ul>
+	</div>
 
 
 
-
-	<h1>개조심</h1>
 
 	<div class="container d-flex">
 		<div>
-			<img src="${path}/resources/img/redwhistle.jpg" class="d-block"
-				style="width: 200px;" alt="...">
-		</div>
-		<div>
 			<table id="blacklist_container"
 				class="table table-warning table-borderless table-striped table-hover">
+				<a href="${path}/blacklist/complainList.do" style="font-size: 22px;">신고조회
+					하러가기 &gt;</a>
 				<thead class="table-dark">
 					<tr class="text-center">
 						<th class="list_index text-end" scope="col">#</th>
-						<th class="list_count" scope="col">피신고횟수</th>
-						<th class="list_id" scope="col">ID</th>
-						<th class="list_nickname" scope="col">별명</th>
+						<th class="list_count" scope="col" style="width: 120px;">신고접수</th>
+						<th class="list_id" scope="col" style="width: 200px;">ID</th>
+						<th class="list_nickname" scope="col" style="width: 200px;">별명</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -173,7 +175,7 @@
 						<!-- stat.current: 현재 item 상세 // stat.index: 0부터 // stat.count: 1부터 -->
 						<tr class="text-center">
 							<th class="list_index text-end" scope="row">${stat.count}</th>
-							<td class="list_count">${each.acc_blackCount}</td>
+							<td class="list_count">${each.acc_blackCount}건</td>
 							<td class="list_id">${each.acc_id}</td>
 							<td class="list_nickname">${each.acc_nickname}</td>
 						</tr>
@@ -182,8 +184,18 @@
 			</table>
 		</div>
 	</div>
-
-
+	<div class="rolling">
+            <div class="rolling-list">
+                <ul style="list-style: none">
+                    <li>
+                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
+                    </li>
+                    <li>
+                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
+                    </li>   
+                </ul>
+            </div>
+        </div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

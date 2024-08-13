@@ -130,57 +130,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 인기상품
 
-document.addEventListener('DOMContentLoaded', function () {
-    const popularProduct = document.querySelector('.popular_product');
-    const homePage = document.querySelector('.home_page');
-
-    popularProduct.addEventListener('mouseenter', function () {
-        homePage.classList.add('bg-black');
-    });
-
-    popularProduct.addEventListener('mouseleave', function () {
-        homePage.classList.remove('bg-black');
-    });
+$(function(){
+  var front = $('.Front'),
+      others = ['Left2', 'Left', 'Right', 'Right2'];
+      interval = 5000;
+      
+  function slideNext() {
+    var $next = front.next('.best_Items');
+    if ($next.length === 0) {
+      $next = $('.best_Items').first(); // 마지막 슬라이드 다음은 첫 번째 슬라이드로 돌아감
+    }
     
+    $.each(others, function(i, cl) {
+      if ($next.hasClass(cl)) {
+        front.removeClass('Front').addClass(cl);
+        front = $next;
+        front.addClass('Front').removeClass(cl);
+      }
+    });
+  }    
+  
+  $('.best_Carousel').on('click', '.best_Items', function() {
+    var $this = $(this);
     
-});
-
- document.addEventListener('DOMContentLoaded', () => {
-    const popularProduct = document.querySelector('.popular_product');
-    const rightSection = document.querySelector('.right_section');
-
-    // 오른쪽 섹션의 스크롤과 전체 페이지 스크롤을 위한 변수
-    let isScrolling = false;
-
-    popularProduct.addEventListener('wheel', (event) => {
-      if (event.deltaY !== 0) {
-        event.preventDefault(); // 기본 스크롤 동작 방지
-
-        if (!isScrolling) {
-          isScrolling = true; // 스크롤이 진행 중임을 표시
-
-          // right_section을 스크롤
-          rightSection.scrollBy({
-            top: event.deltaY,
-            behavior: 'smooth'
-          });
-
-          // right_section의 끝에 도달했는지 확인
-          const isAtBottom = rightSection.scrollHeight === rightSection.scrollTop + rightSection.clientHeight;
-
-          if (isAtBottom) {
-            // right_section이 바닥에 도달하면 전체 페이지를 스크롤
-            window.scrollBy({
-              top: event.deltaY,
-              behavior: 'smooth'
-            });
-          }
-
-          // 스크롤이 완료될 때까지 대기
-          setTimeout(() => {
-            isScrolling = false;
-          }, 500); // 500ms는 스크롤 애니메이션 시간에 맞게 조정 가능
-        }
+    $.each(others, function(i, cl) {
+      if ($this.hasClass(cl)) {
+        front.removeClass('Front').addClass(cl);
+        front = $this;
+        front.addClass('Front').removeClass(cl);
       }
     });
   });
+  
+   setInterval(slideNext, interval);
+});
+
+
+
+
+// 이미지 롤링
+
+// 롤링 배너 복제본 생성
+let roller = document.querySelector('.rolling-list');
+roller.id = 'roller1'; // 아이디 부여
+
+let clone = roller.cloneNode(true)
+clone.id = 'roller2';
+document.querySelector('.rolling').appendChild(clone);
+
+document.querySelector('#roller1').style.left = '0px';
+document.querySelector('#roller2').style.left = document.querySelector('.rolling-list ul').offsetWidth + 'px';
+
+roller.classList.add('original');
+clone.classList.add('clone');
