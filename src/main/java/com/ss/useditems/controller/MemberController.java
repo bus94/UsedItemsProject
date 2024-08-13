@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.sql.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
@@ -26,6 +28,10 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private ServletContext context;
+	
 
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
@@ -239,7 +245,36 @@ public class MemberController {
 
 		return "account/alter";
 	}
+	
+	
+	@RequestMapping("/account/setProfile.do")
+	public String setProfile(Model model, HttpSession session, @RequestParam MultipartFile profile) { // 정보수정 페이지
+		System.out.println("==account.setProfile==");
+		
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 
+			String originalFileName = profile.getOriginalFilename();
+			long fileSize = profile.getSize();
+			System.out.println("파일명: " + originalFileName + " 파일크기: " + fileSize);
+			
+			
+			String fileDirPath = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img";
+			fileDirPath += "\\" + loginMember.getAcc_index();
+			
+			System.out.println(fileDirPath);
+			
+			
+			
+			
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
+			model.addAttribute("location", "/account/my_info.do");
+		}
+
+		return "account/alter";
+	}
+	
 	
 	@RequestMapping("/account/setPW.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
@@ -353,7 +388,7 @@ public class MemberController {
 //			System.out.println(birthDate_input);
 			
 			
-			//signupOK.do 포매터 : ??? dho sqlDAte를??
+			//signupOK.do 포매터 : ??? 왜 sqlDate를??
 			//formatter.format(date) : Date -> String
 			//formatter.parse(string) : String -> Date 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
