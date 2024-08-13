@@ -6,21 +6,33 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 
-
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+
 
 <section id="content" class="container acc_alt_page"
 	style="padding-top: 100px;">
 
 	<c:if test="${loginMember != null}">
 
+	<c:choose>
+		<c:when test="${loginMember.acc_profile == null}">
+			<!-- DB에 프로필이미지가 null인 경우 기본이미지 -->
+			<c:set var="profile_path" value="${path}/resources/img/login.png" />
+		</c:when>
+		<c:otherwise>
+			<!-- DB에 프로필이미지가 있는 경우 -->
+			<c:set var="profile_path" value="${path}/resources/img/${loginMember.acc_index}/profile/${loginMember.acc_profile}" />
+		</c:otherwise>
+	</c:choose>
+
+
 		<div id="acc_detail" class="container d-flex flex-column">
 
 			<form method="post" enctype="multipart/form-data" action="${path}/account/setProfile.do">
 				<div id="profile_box" class="container d-flex flex-column align-items-center">
 					<label id="acc_id" for="profile">${loginMember.acc_id}</label>
-						<img id="profile" src="${path}/resources/img/login.png" alt="프로필이미지">
-						<input type="file" name="profile">
+						<img id="profile" src="${profile_path}" alt="프로필이미지">
+						<input type="file" name="profile" required>
 						<button type="submit" id="alt_profile"
 							class="btn btn-success btn-sm">프로필 사진 변경</button>
 				</div>

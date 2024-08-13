@@ -1,5 +1,7 @@
 package com.ss.useditems.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
@@ -52,23 +55,45 @@ public class MemberService {
 		return mapper.selectIdIndex(acc_id);
 	}
 
+	public int updateProfile(MemberDTO loginMember, MultipartFile profile) throws Exception {
+		//정일_계정정보수정_프로필이미지
+		
+		String fileDirPath = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img";
+		fileDirPath += "\\" + loginMember.getAcc_index() + "\\profile";//저장폴더 경로
+		//System.out.println(fileDirPath);
+		
+		File fileDir = new File(fileDirPath);//저장폴더 객체 생성
+		
+		if(!fileDir.exists()) {
+			fileDir.mkdirs();	//저장폴더 생성
+		}
+		
+		String originalFileName = profile.getOriginalFilename();
+
+		File newProfile = new File(fileDirPath+ "\\" + originalFileName);
+		profile.transferTo(newProfile); //해당 경로에 프로필 파일 저장
+		
+		
+		String acc_id = loginMember.getAcc_id();
+		//DB에 originalFileName 값으로 저장
+		return mapper.updateProfile(acc_id, originalFileName);
+	}
 	
-	
-	public int updatePW(String acc_id, String neoPWconf_input) {	//정일_계정정보수정
+	public int updatePW(String acc_id, String neoPWconf_input) {	//정일_계정정보수정_비밀번호
 		return mapper.updatePW(acc_id, neoPWconf_input);
 	}
 
-	public int updateNickname(String acc_id, String nickname_input) {	//정일_계정정보수정
+	public int updateNickname(String acc_id, String nickname_input) {	//정일_계정정보수정_별명
 		return mapper.updateNickname(acc_id, nickname_input);
 	}
 
-	public int updatePhone(String acc_id, String phone_input) {		//정일_계정정보수정
+	public int updatePhone(String acc_id, String phone_input) {		//정일_계정정보수정_전화번호
 		return mapper.updatePhone(acc_id, phone_input);
 	}
 
 	public int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input) {
 		return mapper.updateRedunds(acc_id, name_input, birthDate_input, address_input);
-	}	//정일_계정정보수정
+	}	//정일_계정정보수정_[이름,생년월일,주소]
 	
 	public int withdraw(String acc_id) {	//정일_회원탈퇴
 		System.out.println("service.withdraw: " + acc_id);
@@ -81,7 +106,7 @@ public class MemberService {
 //	}
 
 	
-	public List<ItemInfoDTO> getMyInterests(int acc_index) {
+	public List<ItemInfoDTO> getMyInterests(int acc_index) {	//정일_인포페이지 관심상품 띄우기
 
 		List<ItemInfoDTO> my_Interests = mapper.selectInterestsByAcc_index(acc_index);
 		String filePath;
@@ -98,10 +123,8 @@ public class MemberService {
 		return my_Interests;
 	}
 	
-	
-	
-	
-	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { //정일_(범상_인포페이지 내역띄우기)_0812_수정
+
+	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { //정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정
 
 		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
 		String filePath;
@@ -150,6 +173,8 @@ public class MemberService {
 		
 		return result;
 	}
+
+
 
 
 

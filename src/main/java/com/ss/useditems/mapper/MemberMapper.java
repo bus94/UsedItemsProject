@@ -22,6 +22,8 @@ public interface MemberMapper {
 
 	int selectIdIndex(String acc_id);
 
+	int updateProfile(String acc_id, String originalFileName); //정일_프로필이미지 변경
+	
 	int updatePW(String acc_id, String neoPWconf_input); //정일_비밀번호 변경
 	
 	int updateNickname(String acc_id, String nickname_input); //정일_별명 변경
@@ -37,6 +39,7 @@ public interface MemberMapper {
 	List<ItemInfoDTO> selectItemByAcc_index(int acc_index);
 
 	List<ItemInfoDTO> selectInterestsByAcc_index(int acc_index); //정일_계정 정보(찜목록)
+
 
 
 

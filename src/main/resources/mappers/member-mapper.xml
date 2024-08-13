@@ -104,6 +104,10 @@
 		where acc_id = #{acc_id}
 	</select>	<!--정일 -->
 
+	<update id="updateProfile" parameterType="String">
+		update ACCOUNT set
+		acc_profile=#{originalFileName} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
 	<update id="updatePW" parameterType="String">
 		update ACCOUNT set

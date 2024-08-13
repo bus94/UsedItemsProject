@@ -22,6 +22,18 @@
 	</c:choose>
 
 
+	<c:choose>
+		<c:when test="${account_info.acc_profile == null}">
+			<!-- DB에 프로필이미지가 null인 경우 기본이미지-->
+			<c:set var="profile_path" value="${path}/resources/img/login.png" />
+		</c:when>
+		<c:otherwise>
+			<!-- DB에 프로필이미지가 있는 경우 -->
+			<c:set var="profile_path" value="${path}/resources/img/${account_info.acc_index}/profile/${account_info.acc_profile}" />
+		</c:otherwise>
+	</c:choose>
+
+
 	<div class="container acc_summary">
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
@@ -47,7 +59,7 @@
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<img id="acc_profile" class="s120"
-						src="${path}/resources/img/login.png" alt="프로필사진">
+						src="${profile_path}" alt="프로필사진">
 					<c:if test="${other_info == null}">
 						<button type="button" id="btn_acc_mod"
 							class="btn_acc btn btn-success btn-sm"
