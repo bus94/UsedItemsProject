@@ -27,7 +27,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 
 	<div id="categories" class="categories">
@@ -152,35 +151,6 @@
 		</ul>
 	</div>
 
-	<div class="container d-flex">
-		<div>
-			<table id="blacklist_container"
-				class="table table-warning table-borderless table-striped table-hover">
-				<a href="${path}/blacklist/complainList.do" style="font-size: 22px;">신고조회
-					하러가기 &gt;</a>
-				<thead class="table-dark">
-					<tr class="text-center" style="background-color: #AAFFA3">
-						<th class="list_index text-end" scope="col"></th>
-						<th class="list_count" scope="col" style="width: 100px;">신고접수</th>
-						<th class="list_id" scope="col" style="width: 150px;">ID</th>
-						<th class="list_nickname" scope="col" style="width: 200px;">별명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="each" varStatus="stat" begin="0" step="1"
-						items="${black5}">
-						<!-- stat.current: 현재 item 상세 // stat.index: 0부터 // stat.count: 1부터 -->
-						<tr class="text-center">
-							<th class="list_index text-end" scope="row">${stat.count}</th>
-							<td class="list_count">${each.acc_blackCount}건</td>
-							<td class="list_id">${each.acc_id}</td>
-							<td class="list_nickname">${each.acc_nickname}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
 	<div class="rolling">
             <div class="rolling-list">
                 <ul style="list-style: none">
