@@ -109,7 +109,7 @@
 		</div>
 	</div>
 	<div class="ad_banner">
-		<img alt="" src="${path}/resources/img/banner.png">
+		<img alt="" src="${path}/resources/img/safemarket_banner.png">
 	</div>
 
 	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요 &gt;</h3>
@@ -162,10 +162,6 @@
 				<a href="${path}/blacklist/complainList.do" style="font-size: 22px;">신고조회
 					하러가기 &gt;</a>
 				<thead class="table-dark">
-					<tr class="text-center">
-						<th class="list_index text-end" scope="col">#</th>
-						<th class="list_count" scope="col" style="width: 120px;">신고접수</th>
-						<th class="list_id" scope="col" style="width: 200px;">ID</th>
 					<tr class="text-center" style="background-color: #AAFFA3">
 						<th class="list_index text-end" scope="col"></th>
 						<th class="list_count" scope="col" style="width: 100px;">신고접수</th>
