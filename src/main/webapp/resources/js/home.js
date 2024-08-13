@@ -157,7 +157,6 @@ $(function(){
       $next = $('.best_Items').first(); // 마지막 슬라이드 다음은 첫 번째 슬라이드로 돌아감
     }
     
-<<<<<<< HEAD
     $.each(others, function(i, cl) {
       if ($next.hasClass(cl)) {
         front.removeClass('Front').addClass(cl);
@@ -200,9 +199,7 @@ document.querySelector('#roller2').style.left = document.querySelector('.rolling
 
 roller.classList.add('original');
 clone.classList.add('clone');
-=======
-    
-});
+  
 
 document.addEventListener('DOMContentLoaded', () => {
     const popularProduct = document.querySelector('.popular_product');
@@ -245,4 +242,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
->>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106

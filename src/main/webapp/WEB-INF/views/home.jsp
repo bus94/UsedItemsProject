@@ -18,17 +18,14 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-<<<<<<< HEAD
 				<div class="carousel-item active" data-bs-interval="1800">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-bs-interval="1800">
-=======
 				<div class="carousel-item active" data-bs-interval="1500">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
 				<div class="carousel-item" data-bs-interval="1500">
->>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>
@@ -113,9 +110,7 @@
 	</div>
 	<div class="ad_banner">
 		<img alt="" src="${path}/resources/img/banner.png">
-
 	</div>
-<<<<<<< HEAD
 
 	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요 &gt;</h3>
 	<div class="best_Container" style="height: 600px">
@@ -160,53 +155,6 @@
 		</ul>
 	</div>
 
-
-
-
-=======
-	<%-- 
-	<div class="popular_product">
-        <div class="left_section">
-            <div>
-                <h3>Popular Product</h3>
-                <p>세잎마켓에서 인기있는 상품들을 만나보세요.
-            </div>
-            <div>
-                <img alt="" src="${path}/resources/img/zz.png">
-            </div>
-        </div>
-        <div class="right_section">
-            <div class="pic_box">
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-            </div>
-        </div>
-    </div> --%>
-
-
->>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
 	<div class="container d-flex">
 		<div>
 			<table id="blacklist_container"
@@ -214,17 +162,14 @@
 				<a href="${path}/blacklist/complainList.do" style="font-size: 22px;">신고조회
 					하러가기 &gt;</a>
 				<thead class="table-dark">
-<<<<<<< HEAD
 					<tr class="text-center">
 						<th class="list_index text-end" scope="col">#</th>
 						<th class="list_count" scope="col" style="width: 120px;">신고접수</th>
 						<th class="list_id" scope="col" style="width: 200px;">ID</th>
-=======
 					<tr class="text-center" style="background-color: #AAFFA3">
 						<th class="list_index text-end" scope="col"></th>
 						<th class="list_count" scope="col" style="width: 100px;">신고접수</th>
 						<th class="list_id" scope="col" style="width: 150px;">ID</th>
->>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
 						<th class="list_nickname" scope="col" style="width: 200px;">별명</th>
 					</tr>
 				</thead>
@@ -243,7 +188,6 @@
 			</table>
 		</div>
 	</div>
-<<<<<<< HEAD
 	<div class="rolling">
             <div class="rolling-list">
                 <ul style="list-style: none">
@@ -256,25 +200,6 @@
                 </ul>
             </div>
         </div>
-=======
-
-	<div class="rolling">
-		<div class="rolling-list">
-			<ul>
-				<li style="list-style: none">
-					<div class="image-wrap">
-						<img src="${path}/resources/img/banner.png" alt="">
-					</div>
-				</li>
-				<li style="list-style: none">
-					<div class="image-wrap">
-						<img src="${path}/resources/img/banner.png" alt="">
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
->>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
