@@ -19,6 +19,8 @@ public class MemberDTO {
 	//private String acc_email;	//0804 DB에서 열 삭제
 	private String acc_name;
 	private String acc_address;
+	private String acc_addressX;
+	private String acc_addressY;
 	private String acc_nickname;
 	private String acc_profile;
 	private String acc_level;
