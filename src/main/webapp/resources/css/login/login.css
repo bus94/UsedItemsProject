@@ -27,7 +27,6 @@
 
 .loginButton {
 	padding: 0px;
-	text-align: center;
 }
 
 .login_inputStyle {
@@ -82,4 +81,8 @@
 
 .findPw:hover {
 	text-decoration: underline;
+}
+
+.condition {
+	text-align: left;
 }

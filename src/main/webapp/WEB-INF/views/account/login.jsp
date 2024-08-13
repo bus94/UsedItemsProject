@@ -29,9 +29,80 @@
 						class="btn login_btnStyle mb-1" value="회원가입"
 						onclick="location.href='${path}/account/signup.do';" />
 					<div class="find">
-						<a href="#" class="findId" onclick="inputPrompt(); return false;">아이디 찾기</a>
+						<!-- <a href="#" class="findId" onclick="inputPrompt(); return false;">아이디 찾기</a> -->
+						<button type="button" class="btn btn-primary findId"
+							data-bs-toggle="modal" data-bs-target="#exampleModalId"
+							data-bs-whatever="@mdo">아이디 찾기</button>
+						<div class="modal fade" id="exampleModalId" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">아이디
+											찾기</h1>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<form>
+											<div class="mb-3">
+												<label for="recipient-name" class="col-form-label condition">이름:</label>
+												<input type="text" class="form-control" id="findId_name">
+											</div>
+											<div class="mb-3">
+												<label for="message-text" class="col-form-label condition">핸드폰
+													번호:</label>
+												<input type="text" class="form-control" id="findId_phone">
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success">확인</button>
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">취소</button>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="findBorder"></div>
-						<a href="#" class="findPw">비밀번호 찾기</a>
+						<!-- <a href="#" class="findPw">비밀번호 찾기</a> -->
+						<button type="button" class="btn btn-primary findId"
+							data-bs-toggle="modal" data-bs-target="#exampleModalPw"
+							data-bs-whatever="@mdo">비밀번호 찾기</button>
+						<div class="modal fade" id="exampleModalPw" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 찾기</h1>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<form>
+											<div class="mb-3">
+												<label for="recipient-name" class="col-form-label condition">아이디:</label>
+												<input type="text" class="form-control" id="findPw_id">
+											</div>
+											<div class="mb-3">
+												<label for="message-text" class="col-form-label condition">이름:</label>
+												<input type="text" class="form-control" id="findPw_name">
+											</div>
+											<div class="mb-3">
+												<label for="message-text" class="col-form-label condition">핸드폰 번호:</label>
+												<input type="text" class="form-control" id="findPw_phone">
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success">확인</button>
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">취소</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
