@@ -7,6 +7,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+
+<c:choose>
+	<c:when test="${itemMember.acc_profile == null}">
+		<!-- 판매자 DB에 프로필이미지가 null인 경우 기본이미지-->
+		<c:set var="seller_profile_path" value="${path}/resources/img/login.png" />
+	</c:when>
+	<c:otherwise>
+		<!-- DB에 프로필이미지가 있는 경우 -->
+		<c:set var="seller_profile_path" value="${path}/resources/img/${itemMember.acc_index}/profile/${itemMember.acc_profile}" />
+	</c:otherwise>
+</c:choose>
+
+
+
+
+
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <div id="hiddenData" data-item-id="${item.item_index}"
 	data-context-path="${path}" style="display: none;"></div>
@@ -107,7 +124,7 @@
 			<a href="${path}/account/acc_info.do?acc_id=${itemMember.acc_id}">
 				<div class="store_profile">
 					<div class="profile_img">
-						<img src="${path}/resources/img/study.jpg" alt="프사">
+						<img src="${seller_profile_path}" alt="프사">
 					</div>
 					<div class="profile_txt">
 						<div>
@@ -141,14 +158,28 @@
 		</div>
 	</div>
 
+
 	<c:if test="${!empty replyList}">
 		<div class="reply">
 			<c:forEach var="reply" items="${replyList}">
 				<div class="reply_container">
 					<div style="display: flex;">
+					
+							<c:choose>
+								<c:when test="${reply.repl_profile == null}">
+									<!-- DB에 프로필이미지가 null인 경우 기본이미지-->
+									<c:set var="repl_profile_path" value="${path}/resources/img/login.png" />
+								</c:when>
+								<c:otherwise>
+									<!-- DB에 프로필이미지가 있는 경우 -->
+									<c:set var="repl_profile_path" value="${path}/resources/img/${reply.repl_candidate}/profile/${reply.repl_profile}" />
+								</c:otherwise>
+							</c:choose>
+					
 						<div class="reply_img">
-							<img src="${path}/resources/img/study.jpg" alt="프사">
+							<img src="${repl_profile_path}" alt="프사">
 						</div>
+						
 						<div class="reply_txt">
 							<h4>${reply.repl_nickname}</h4>
 							<p>${reply.repl_content}</p>
