@@ -122,17 +122,19 @@
 									class="menu_text">매물등록</span></li>
 							</a>
 						</c:if>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="${path}">뭐 넣지?</a></li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
-							</ul></li>
+						<c:if test="${loginMember.acc_status == 'admin'}">
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="${path}">뭐 넣지?</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" href="#">Something else
+											here</a></li>
+								</ul></li>
+						</c:if>
 					</ul>
 					<form class="d-flex" role="search"
 						action="${path}/item/itemList.do" method="get">

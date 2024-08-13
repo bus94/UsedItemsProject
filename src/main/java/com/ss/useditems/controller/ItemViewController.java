@@ -42,6 +42,15 @@ public class ItemViewController {
 			acc_item_index(loginMember.getAcc_index(),item_index);
 		}
 		
+
+
+		boolean isInterested = false;
+		if (loginMember != null) {
+			isInterested = service.isInterest(acc_item_index(loginMember.getAcc_index(), item_index));
+
+			acc_item_index(loginMember.getAcc_index(), item_index);
+		}
+
 		// 조회수 증가 로직
 		String cookieName = "itemView_" + item_index;
 		Cookie[] cookies = request.getCookies();
@@ -110,7 +119,7 @@ public class ItemViewController {
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("otherItemList", otherItemList);
-		model.addAttribute("isInterested",isInterested);
+		model.addAttribute("isInterested", isInterested);
 		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);
 
@@ -205,32 +214,32 @@ public class ItemViewController {
 
 		// 관심 항목 추가 로직 수행
 		System.out.println("acc_index: " + accIndex + "\nitem_index: " + itemIndex);
-		
 
-		service.addInterest(acc_item_index(accIndex,itemIndex));
+		service.addInterest(acc_item_index(accIndex, itemIndex));
 
 		// 성공 메시지와 함께 현재 페이지로 리디렉션
 		model.addAttribute("msg", "관심 상품에 등록되었습니다.");
 		model.addAttribute("location", "/item/itemView?item_index=" + itemIndex);
 		return "common/msg"; // msg.jsp로 이동
 	}
-	
+
 	@PostMapping("/item/itemView/removeInterest")
-	public String removeInterest(@RequestParam("acc_index") int accIndex,
-	                             @RequestParam("item_index") int itemIndex, Model model) {
-		
-	    service.removeInterest(acc_item_index(accIndex,itemIndex));
-	    
-	    model.addAttribute("msg","관심 상품이 삭제되었습니다.");
-	    model.addAttribute("location", "/item/itemView?item_index=" + itemIndex);
-	    // 처리 후, 다시 뷰로 돌아가기
-	    return "common/msg";
+	public String removeInterest(@RequestParam("acc_index") int accIndex, @RequestParam("item_index") int itemIndex,
+			Model model) {
+
+		service.removeInterest(acc_item_index(accIndex, itemIndex));
+
+		model.addAttribute("msg", "관심 상품이 삭제되었습니다.");
+		model.addAttribute("location", "/item/itemView?item_index=" + itemIndex);
+		// 처리 후, 다시 뷰로 돌아가기
+		return "common/msg";
 	}
-	public Map<String, Integer> acc_item_index(int acc_index,int item_index){
+
+	public Map<String, Integer> acc_item_index(int acc_index, int item_index) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("acc_index", acc_index);
 		map.put("item_index", item_index);
-		
+
 		return map;
 	}
 
