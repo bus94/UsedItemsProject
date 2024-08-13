@@ -146,59 +146,41 @@ clone.classList.add('clone');
 
 // 인기상품
 
-document.addEventListener('DOMContentLoaded', function () {
-    const popularProduct = document.querySelector('.popular_product');
-    const homePage = document.querySelector('.home_page');
-
-    popularProduct.addEventListener('mouseenter', function () {
-        homePage.classList.add('bg-black');
-    });
-
-    popularProduct.addEventListener('mouseleave', function () {
-        homePage.classList.remove('bg-black');
-    });
+$(function(){
+  var front = $('.Front'),
+      others = ['Left2', 'Left', 'Right', 'Right2'];
+      interval = 5000;
+      
+  function slideNext() {
+    var $next = front.next('.best_Items');
+    if ($next.length === 0) {
+      $next = $('.best_Items').first(); // 마지막 슬라이드 다음은 첫 번째 슬라이드로 돌아감
+    }
     
+    $.each(others, function(i, cl) {
+      if ($next.hasClass(cl)) {
+        front.removeClass('Front').addClass(cl);
+        front = $next;
+        front.addClass('Front').removeClass(cl);
+      }
+    });
+  }    
+  
+  $('.best_Carousel').on('click', '.best_Items', function() {
+    var $this = $(this);
     
+    $.each(others, function(i, cl) {
+      if ($this.hasClass(cl)) {
+        front.removeClass('Front').addClass(cl);
+        front = $this;
+        front.addClass('Front').removeClass(cl);
+      }
+    });
+  });
+  
+   setInterval(slideNext, interval);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const popularProduct = document.querySelector('.popular_product');
-    const rightSection = document.querySelector('.right_section');
 
-    let isScrolling = false;
 
-    popularProduct.addEventListener('wheel', (event) => {
-        if (event.deltaY !== 0) {
-            event.preventDefault(); // 기본 스크롤 동작 방지
 
-            if (!isScrolling) {
-                isScrolling = true; // 스크롤이 진행 중임을 표시
-
-                // 스크롤 속도를 증가시키기 위해 deltaY에 곱셈 연산자를 사용
-                const scrollAmount = event.deltaY * 2; // 속도를 두 배로 증가
-
-                // right_section을 스크롤
-                rightSection.scrollBy({
-                    top: scrollAmount,
-                    behavior: 'smooth'
-                });
-
-                // right_section의 끝에 도달했는지 확인
-                const isAtBottom = rightSection.scrollHeight === rightSection.scrollTop + rightSection.clientHeight;
-
-                if (isAtBottom) {
-                    // right_section이 바닥에 도달하면 전체 페이지를 스크롤
-                    window.scrollBy({
-                        top: scrollAmount,
-                        behavior: 'smooth'
-                    });
-                }
-
-                // 스크롤이 완료될 때까지 대기 (시간을 줄여서 더 빠르게 스크롤)
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 100); // 100ms로 줄이기
-            }
-        }
-    });
-});

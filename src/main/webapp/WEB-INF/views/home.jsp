@@ -27,6 +27,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 
 	<div id="categories" class="categories">
@@ -103,49 +104,53 @@
 				</c:forEach>
 			</div>
 		</div>
-
 	</div>
-	<%-- 
-	<div class="popular_product">
-        <div class="left_section">
-            <div>
-                <h3>Popular Product</h3>
-                <p>세잎마켓에서 인기있는 상품들을 만나보세요.
-            </div>
-            <div>
-                <img alt="" src="${path}/resources/img/zz.png">
-            </div>
-        </div>
-        <div class="right_section">
-            <div class="pic_box">
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-                <div class="pic">
-                    <img alt="" src="${path}/resources/img/study.jpg">
-                </div>
-            </div>
-        </div>
-    </div> --%>
+	<div class="ad_banner">
+		<img alt="" src="${path}/resources/img/safemarket_banner.png">
+	</div>
 
+	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요 &gt;</h3>
+	<div class="best_Container" style="height: 600px">
+		<ul class="best_Carousel">
+			<li class="best_Items Front">
+				<div class="best_item">
+					<img src="${path}/resources/img/study.jpg" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
+					</div>
+				</div>
+			</li>
+			<li class="best_Items Left">
+					<div class="best_item">
+						<img src="${path}/resources/img/redwhistle.jpg" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div></li>
+			<li class="best_Items Left2">
+					<div class="best_item">
+						<img src="${path}/resources/img/zz.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>	
+						</div>
+					</div></li>
+			<li class="best_Items Right">
+					<div class="best_item">
+						<img src="${path}/resources/img/clover.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div></li>
+			<li class="best_Items Right2">
+					<div class="best_item">
+						<img src="${path}/resources/img/message.png" alt="1">
+						<div class="bestitem_view">
+							<h3>제품명입니다1</h3>
+						</div>
+					</div>
+			</li>
+		</ul>
+	</div>
 
 	<div class="container d-flex">
 		<div>
@@ -176,23 +181,18 @@
 			</table>
 		</div>
 	</div>
-
 	<div class="rolling">
-		<div class="rolling-list">
-			<ul>
-				<li style="list-style: none">
-					<div class="image-wrap">
-						<img src="${path}/resources/img/banner.png" alt="">
-					</div>
-				</li>
-				<li style="list-style: none">
-					<div class="image-wrap">
-						<img src="${path}/resources/img/banner.png" alt="">
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
+            <div class="rolling-list">
+                <ul style="list-style: none">
+                    <li>
+                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
+                    </li>
+                    <li>
+                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
+                    </li>   
+                </ul>
+            </div>
+        </div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

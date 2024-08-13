@@ -28,11 +28,6 @@
 								<input type="text" class="form-control item_input d-inline"
 									name="item_title" id="item_title" placeholder="제목">
 							</div>
-							<div id="input_box1" class="container">
-								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
-								<input type="text" class="form-control item_input d-inline"
-									name="item_content" id="item_content" placeholder="내용">
-							</div>
 							<div id="input_box2" class="container box3">
 								<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 								<select id="item_category" name="item_category"
@@ -60,10 +55,20 @@
 								<input type="text" class="form-control item_input d-inline"
 									name="item_place" id="item_place" placeholder="장소">
 							</div>
+							<div class="container input_thumbnail">
+								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
+								<input style="width: 270px" type="file" name="item_thumb"
+									id="item_thumb">
+							</div>
 							<div id="input_box5" class="container">
 								<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
 								<input style="width: 270px" type="file" name="item_image"
 									id="item_image" multiple>
+							</div>
+							<div id="input_box1" class="container">
+								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
+								<textarea class="form-control item_input d-inline input_text"
+									name="item_content" id="item_content" placeholder="내용을 입력해주세요"></textarea>
 							</div>
 							<div class="container_btn">
 								<button type="submit" id="itemEnroll_form"
@@ -72,10 +77,8 @@
 							</div>
 						</td>
 						<td>
-							<div class="container input_thumbnail">
-								<p class="itemEnroll_subtitle fs-5">썸네일 첨부</p>
-								<input style="width: 270px" type="file" name="item_thumb"
-									id="item_thumb">
+							<div class="container_preview">
+								<img id="preview" alt="첨부된 썸네일 파일이 없습니다.">
 							</div>
 						</td>
 					</tr>
@@ -83,6 +86,30 @@
 			</form>
 		</div>
 	</c:if>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const item_thumb = document.getElementById("item_thumb");
+			const preview = document.getElementById("preview");
+			const itemEnroll_form = document.getElementById("itemEnroll_form");
+			
+			item_thumb.addEventListener('change', () => {
+				const file = item_thumb.files[0];
+				if(file) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						preview.src = e.target.result;
+						preview.style.display = 'block';
+						itemEnroll_form.classList.remove('hidden');
+					}
+					reader.readAsDataURL(file);
+				} else {
+					preview.style.display = 'none';
+					itemEnroll_form.classList.add('hidden');
+				}
+			});
+		});
+	</script>
 
 	<c:if test="${loginMember == null}">
 		<script>
@@ -92,13 +119,5 @@
 	</c:if>
 
 </section>
-
-<!-- <script>
-	function submitUploadForm(url) {
-		console.log("submitUploadForm() 실행")
-		$("#itemEnroll_form").attr("action", url);
-        $("#itemEnroll_form").submit();
-	}
-</script> -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
