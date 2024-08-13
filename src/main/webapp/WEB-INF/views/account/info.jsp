@@ -34,7 +34,7 @@
 	</c:choose>
 
 
-	<div class="container acc_summary">
+	<div class="container acc_summary d-flex">
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
