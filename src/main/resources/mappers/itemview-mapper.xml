@@ -46,6 +46,7 @@
 		<result property="repl_item" column="repl_item" />
 		<result property="repl_candidate" column="repl_candidate" />
 		<result property="repl_nickname" column="repl_nickname" />
+		<result property="repl_profile" column="acc_profile" />	<!-- 정일 추가 0813 프로필 사진 -->
 		<result property="repl_content" column="repl_content" />
 		<result property="repl_enrolldate" column="repl_enrolldate" />
 	</resultMap>
@@ -105,7 +106,9 @@
 
 	<select id="selectReplyByItemIndex" parameterType="int"
 		resultMap="replyMap">
-		SELECT * FROM reply WHERE repl_item = #{item_index}
+		SELECT * FROM reply 
+		left join account on repl_candidate=acc_index	<!-- 정일 추가 0813 프로필 사진 -->
+		WHERE repl_item = #{item_index}
 	</select>
 
 	<update id="incrementViews">
