@@ -30,7 +30,7 @@
 						onclick="location.href='${path}/account/signup.do';" />
 					<div class="find">
 						<!-- <a href="#" class="findId" onclick="inputPrompt(); return false;">아이디 찾기</a> -->
-						<button type="button" class="btn btn-primary findId"
+						<button type="button" class="btn findId"
 							data-bs-toggle="modal" data-bs-target="#exampleModalId"
 							data-bs-whatever="@mdo">아이디 찾기</button>
 						<div class="modal fade" id="exampleModalId" tabindex="-1"
@@ -66,7 +66,7 @@
 						</div>
 						<div class="findBorder"></div>
 						<!-- <a href="#" class="findPw">비밀번호 찾기</a> -->
-						<button type="button" class="btn btn-primary findId"
+						<button type="button" class="btn findId"
 							data-bs-toggle="modal" data-bs-target="#exampleModalPw"
 							data-bs-whatever="@mdo">비밀번호 찾기</button>
 						<div class="modal fade" id="exampleModalPw" tabindex="-1"

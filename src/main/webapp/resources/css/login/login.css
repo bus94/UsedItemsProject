@@ -75,6 +75,14 @@
 	border-right : 2px solid rgb(219, 219, 219);
 }
 
+.findId {
+	
+}
+
+.findPw {
+	
+}
+
 .findId:hover {
 	text-decoration: underline;
 }
