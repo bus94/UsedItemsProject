@@ -15,14 +15,14 @@
 					<img class="loginLogo" alt="로고" src="${path}/resources/img/logo.png">
 				</div>
 				<div class="login_input">
-					<input type="text" class="form-control login_inputStyle mt-1"
+					<input type="text" class="form-control login_inputStyle mb-1 mt-1"
 						name="acc_id" id="acc_id" placeholder="아이디"
 						required="requeired" /> <input type="password"
 						class="form-control login_inputStyle" name="acc_password"
 						id="acc_password" placeholder="비밀번호" required="required" />
 				</div>
 				<div class="loginButton">
-					<input type="submit" class="btn login_btnStyle mb-1 mt-1"
+					<input type="submit" class="btn login_btnStyle mb-1 mt-2"
 						value="로그인" />
 					<input type="button" class="btn login_btnStyle"
 						value="회원가입" onclick="location.href='${path}/account/signup.do';" />

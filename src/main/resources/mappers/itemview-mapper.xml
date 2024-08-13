@@ -11,6 +11,8 @@
 		<result property="item_category" column="item_category" />
 		<result property="item_price" column="item_price" />
 		<result property="item_place" column="item_place" />
+		<result property="item_placeX" column="item_placeX" />
+		<result property="item_placeY" column="item_placeY" />
 		<result property="item_status" column="item_status" />
 		<result property="item_enrollDate" column="item_enrollDate" />
 		<result property="item_click" column="item_click" />
@@ -72,6 +74,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
 		item_click,
@@ -143,6 +147,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
 		item_click,

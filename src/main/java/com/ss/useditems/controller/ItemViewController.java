@@ -44,13 +44,6 @@ public class ItemViewController {
 		
 
 
-		boolean isInterested = false;
-		if (loginMember != null) {
-			isInterested = service.isInterest(acc_item_index(loginMember.getAcc_index(), item_index));
-
-			acc_item_index(loginMember.getAcc_index(), item_index);
-		}
-
 		// 조회수 증가 로직
 		String cookieName = "itemView_" + item_index;
 		Cookie[] cookies = request.getCookies();

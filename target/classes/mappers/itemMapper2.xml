@@ -33,6 +33,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		item_enrolldate,
 		item_click,
@@ -81,6 +83,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		item_enrolldate,
 		item_click,
@@ -97,24 +101,5 @@
 		WHERE
 		ROWNUM &lt;= 10
 	</select>
-
-	<!-- <select id="getNew5" resultType="itemDTO"> select * from (select item_index, 
-		item_seller, item_title, item_content, item_category, item_price, item_place, 
-		item_status, item_enrollDate, item_click, item_interest, item_offDate, item_buyer, 
-		count(repl_index) repl_count from (select * from ITEM item left join REPLY 
-		repl on (item.item_index=repl.repl_item)) group by item_index, item_seller, 
-		item_title, item_content, item_category, item_price, item_place, item_status,item_enrollDate, 
-		item_click, item_interest, item_offDate, item_buyer order by item_index desc) 
-		where rownum &lt;=10 </select> -->
-
-	<!-- <select id="getHot5" resultType="itemDTO"> select * from (select count(int_index) 
-		int_count, item_index, item_seller, item_title, item_content, item_category, 
-		item_price, item_place, item_status, item_enrollDate, item_click, item_interest, 
-		item_offDate, item_buyer from (select * from ITEM item left join INTEREST 
-		int on (item.item_index = int.int_item) where item_status = 'onsale') group 
-		by item_index, item_seller, item_title, item_content, item_category, item_price, 
-		item_place, item_status,item_enrollDate, item_click, item_interest, item_offDate, 
-		item_buyer order by int_count desc) where rownum &lt;=5 </select> -->
-
 
 </mapper>
