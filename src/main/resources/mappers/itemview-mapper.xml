@@ -11,6 +11,8 @@
 		<result property="item_category" column="item_category" />
 		<result property="item_price" column="item_price" />
 		<result property="item_place" column="item_place" />
+		<result property="item_placeX" column="item_placeX" />
+		<result property="item_placeY" column="item_placeY" />
 		<result property="item_status" column="item_status" />
 		<result property="item_enrollDate" column="item_enrollDate" />
 		<result property="item_click" column="item_click" />
@@ -46,6 +48,7 @@
 		<result property="repl_item" column="repl_item" />
 		<result property="repl_candidate" column="repl_candidate" />
 		<result property="repl_nickname" column="repl_nickname" />
+		<result property="repl_profile" column="acc_profile" />	<!-- 정일 추가 0813 프로필 사진 -->
 		<result property="repl_content" column="repl_content" />
 		<result property="repl_enrolldate" column="repl_enrolldate" />
 	</resultMap>
@@ -72,6 +75,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
 		item_click,
@@ -105,7 +110,9 @@
 
 	<select id="selectReplyByItemIndex" parameterType="int"
 		resultMap="replyMap">
-		SELECT * FROM reply WHERE repl_item = #{item_index}
+		SELECT * FROM reply 
+		left join account on repl_candidate=acc_index	<!-- 정일 추가 0813 프로필 사진 -->
+		WHERE repl_item = #{item_index}
 	</select>
 
 	<update id="incrementViews">
@@ -143,6 +150,8 @@
 		item_category,
 		item_price,
 		item_place,
+		item_placeX,
+		item_placeY,
 		item_status,
 		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
 		item_click,

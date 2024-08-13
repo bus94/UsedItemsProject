@@ -11,6 +11,8 @@
 		<result property="acc_phone" column="acc_phone" />
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
+		<result property="acc_addressX" column="acc_addressX" />
+		<result property="acc_addressY" column="acc_addressY" />
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_profile" column="acc_profile" />
 		<result property="acc_level" column="acc_level" />
@@ -27,6 +29,8 @@
 		<result property="item_category" column="item_category" />
 		<result property="item_price" column="item_price" />
 		<result property="item_place" column="item_place" />
+		<result property="item_placeX" column="item_placeX" />
+		<result property="item_placeY" column="item_placeY" />
 		<result property="item_status" column="item_status" />
 		<result property="item_enrollDate" column="item_enrollDate" />
 		<result property="item_click" column="item_click" />
@@ -51,7 +55,8 @@
 
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
 
-	<resultMap type="memberDTO" id="memberInfoMap" extends="memberMap">
+	<resultMap type="memberDTO" id="memberInfoMap"
+		extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
@@ -127,7 +132,8 @@
 	<update id="updateRedunds" parameterType="String">
 		update ACCOUNT set
 		acc_name=#{name_input},
-		acc_birthDate=TO_DATE(#{birthDate_input}, 'YYYY-MM-DD'),
+		acc_birthDate=TO_DATE(#{birthDate_input},
+		'YYYY-MM-DD'),
 		acc_address=#{address_input}
 		where acc_id=#{acc_id}
 	</update>	<!--정일 -->
@@ -163,24 +169,26 @@
 		LEFT JOIN account ON item_seller = acc_index
 		LEFT JOIN showcase ON show_item = item_index
 		WHERE
-		acc_index = #{acc_index}
+		acc_index =
+		#{acc_index}
 		OR item_buyer = #{acc_index}
 	</select>
-	
-	
+
+
 	<select id="selectInterestsByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT *
 		FROM item
 		LEFT JOIN interest ON item_index = int_item
 		LEFT JOIN showcase on show_item = item_index
-		WHERE int_subject = #{acc_index}
+		WHERE int_subject =
+		#{acc_index}
 		order by int_index desc
 	</select>
-	
-	
-	
-	
-	
+
+
+
+
+
 
 </mapper>

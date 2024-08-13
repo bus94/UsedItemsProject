@@ -66,3 +66,20 @@
 	background-color: #40a523;
 	color: white;
 }
+
+.find {
+	display: flex;
+	justify-content: space-around; 
+}
+
+.findBorder {
+	border-right : 2px solid rgb(219, 219, 219);
+}
+
+.findId:hover {
+	text-decoration: underline;
+}
+
+.findPw:hover {
+	text-decoration: underline;
+}

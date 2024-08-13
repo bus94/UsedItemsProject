@@ -34,15 +34,6 @@ public class ItemViewController {
 			HttpServletResponse response) {
 		System.out.println("itemView 페이지");
 		System.out.println("item_index controlloer: " + loginMember);
-		
-		boolean isInterested=false;
-		if(loginMember!=null){
-			isInterested=service.isInterest(acc_item_index(loginMember.getAcc_index(),item_index));
-	
-			acc_item_index(loginMember.getAcc_index(),item_index);
-		}
-		
-
 
 	
 
