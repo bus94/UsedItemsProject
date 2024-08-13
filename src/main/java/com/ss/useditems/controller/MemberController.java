@@ -3,12 +3,10 @@ package com.ss.useditems.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.sql.Date;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +26,6 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberservice;
-	
-	@Autowired
-	private ServletContext context;
 	
 
 	@RequestMapping("/account/login.do")
@@ -247,32 +242,41 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/account/setProfile.do")
-	public String setProfile(Model model, HttpSession session, @RequestParam MultipartFile profile) { // 정보수정 페이지
+	@RequestMapping("/account/setProfile.do")	//프로필이미지 수정
+	public String setProfile(Model model, HttpSession session, @RequestParam MultipartFile profile) { 
 		System.out.println("==account.setProfile==");
 		
 		try {
-			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-
+			//넘어온 파일 정보 확인
 			String originalFileName = profile.getOriginalFilename();
-			long fileSize = profile.getSize();
-			System.out.println("파일명: " + originalFileName + " 파일크기: " + fileSize);
+			//long fileSize = profile.getSize();
+			//System.out.println("파일명: " + originalFileName + " 파일크기: " + fileSize);
 			
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 			
-			String fileDirPath = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img";
-			fileDirPath += "\\" + loginMember.getAcc_index();
-			
-			System.out.println(fileDirPath);
-			
-			
-			
+			if(originalFileName.equals(loginMember.getAcc_profile())) {
+				model.addAttribute("msg", "현재 프로필이미지와 파일명이 같습니다."+ "\\r\\n" + "파일명을 변경해주시기 바랍니다.");
+				model.addAttribute("location", "/account/alter.do");
+				
+			} else {
+				
+				memberservice.updateProfile(loginMember, profile);
+				
+				loginMember.setAcc_profile(originalFileName);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+				
+				model.addAttribute("msg", "프로필이미지가 변경되었습니다.");
+				model.addAttribute("location", "/account/alter.do");
+			}
 			
 		} catch (Exception e) {
 			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
-			model.addAttribute("location", "/account/my_info.do");
+			model.addAttribute("location", "/account/alter.do");
 		}
 
-		return "account/alter";
+		return "common/msg";
 	}
 	
 	
