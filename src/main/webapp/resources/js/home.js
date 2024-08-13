@@ -128,6 +128,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+let roller = document.querySelector('.rolling-list');
+roller.id = 'roller1'; // 아이디 부여
+
+let clone = roller.cloneNode(true)
+clone.id = 'roller2';
+document.querySelector('.rolling').appendChild(clone); // rolling 하위 자식으로 부착
+
+document.querySelector('#roller1').style.left = '0px';
+document.querySelector('#roller2').style.left = document.querySelector('.rolling-list ul').offsetWidth + 'px';
+// offsetWidth : 요소의 크기 확인(margin을 제외한 padding값, border값까지 계산한 값)
+
+roller.classList.add('original');
+clone.classList.add('clone');
+
+
+
 // 인기상품
 
 $(function(){
@@ -141,6 +157,7 @@ $(function(){
       $next = $('.best_Items').first(); // 마지막 슬라이드 다음은 첫 번째 슬라이드로 돌아감
     }
     
+<<<<<<< HEAD
     $.each(others, function(i, cl) {
       if ($next.hasClass(cl)) {
         front.removeClass('Front').addClass(cl);
@@ -183,3 +200,49 @@ document.querySelector('#roller2').style.left = document.querySelector('.rolling
 
 roller.classList.add('original');
 clone.classList.add('clone');
+=======
+    
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const popularProduct = document.querySelector('.popular_product');
+    const rightSection = document.querySelector('.right_section');
+
+    let isScrolling = false;
+
+    popularProduct.addEventListener('wheel', (event) => {
+        if (event.deltaY !== 0) {
+            event.preventDefault(); // 기본 스크롤 동작 방지
+
+            if (!isScrolling) {
+                isScrolling = true; // 스크롤이 진행 중임을 표시
+
+                // 스크롤 속도를 증가시키기 위해 deltaY에 곱셈 연산자를 사용
+                const scrollAmount = event.deltaY * 2; // 속도를 두 배로 증가
+
+                // right_section을 스크롤
+                rightSection.scrollBy({
+                    top: scrollAmount,
+                    behavior: 'smooth'
+                });
+
+                // right_section의 끝에 도달했는지 확인
+                const isAtBottom = rightSection.scrollHeight === rightSection.scrollTop + rightSection.clientHeight;
+
+                if (isAtBottom) {
+                    // right_section이 바닥에 도달하면 전체 페이지를 스크롤
+                    window.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // 스크롤이 완료될 때까지 대기 (시간을 줄여서 더 빠르게 스크롤)
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 100); // 100ms로 줄이기
+            }
+        }
+    });
+});
+>>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106

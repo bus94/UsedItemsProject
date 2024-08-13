@@ -32,6 +32,7 @@ public class HomeController {
 
 		new5 = blackService.getNew5();// 임시로 블랙서비스에서 실행, 안겹치려고
 		System.out.println("HomeCont new5 result: " + new5.size() + "개" + new5);
+		System.out.println();
 
 		// 이미지 파일을 불러올 때 필요한 경로를 저장
 		String filePath;

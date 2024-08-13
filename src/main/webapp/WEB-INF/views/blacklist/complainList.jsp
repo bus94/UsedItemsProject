@@ -38,12 +38,12 @@
 				</div>
 				
 				<div class="container d-flex justify-content-center mt-2 mb-2">
+				<input type="radio"	name="searchType" id="acc_id" 
+					value="acc_id" ${searchType==null || searchType=='' || searchType=='acc_id' ? 'checked':''} required/> 
+				<label class="radio_type" for="acc_id">아이디</label>
 				<input type="radio" name="searchType" id="acc_nickname" 
 					value="acc_nickname" ${searchType=='acc_nickname' ? 'checked':''} required/>
 				<label class="radio_type" for="acc_nickname">별명</label> 
-				<input type="radio"	name="searchType" id="acc_id" 
-					value="acc_id" ${searchType=='acc_id' ? 'checked':''} required/> 
-				<label class="radio_type" for="acc_id">아이디</label>
 				<input type="radio" name="searchType" id="content" 
 					value="content"	${searchType=='content' ? 'checked':''} required/>
 				<label class="radio_type" for="내용">내용</label>
@@ -119,17 +119,10 @@
 				</form>
 				<button type="button" class="btn btn-danger btn-sm mt-3"
 					onclick="location.href='${path}/blacklist/complain.do'">신고하러 가기</button>
-				<%-- <a href="${path}/blacklist/complain.do" class="align-self-end">신고하러 가기</a> --%>
 			</div>
 		</c:if>
 	</div>
 
-		<button type="button" class="btn btn-danger btn-sm mt-3"
-					onclick="location.href='${path}/blacklist/testNull.do'">배열Null</button>
-		<button type="button" class="btn btn-danger btn-sm mt-3"
-					onclick="location.href='${path}/blacklist/testarr1.do'">배열1개</button>					
-		<button type="button" class="btn btn-danger btn-sm mt-3"
-					onclick="location.href='${path}/blacklist/testarr4.do'">배열4개</button>
 </section>
 
 <script src="${path}/resources/js/blacklist/complainList.js"></script>

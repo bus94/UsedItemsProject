@@ -69,7 +69,7 @@ public class BlacklistService {
 		ArrayList<BlacklistDTO> unpaged_list = blacklistMapper.getBlacklist(queryMap);
 
 		// 생성자: pageInfo(currentPage, pagePerViewer, dtoTotal, dtoPerPage)
-		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 5);
+		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 10);
 
 		// 페이지인포로 서브리스트 만들어서
 		List<BlacklistDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
@@ -97,7 +97,7 @@ public class BlacklistService {
 		return blacklistMapper.enroll(complain);
 	}
 
-	public int delet(String black_index) { // 정일_신고등록
+	public int delet(String black_index) { // 정일_신고삭제(본인 또는 관리자 권한)
 		System.out.println("BlacklistService.delet()");
 
 		return blacklistMapper.delet(black_index);

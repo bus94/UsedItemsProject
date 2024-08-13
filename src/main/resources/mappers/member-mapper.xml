@@ -19,10 +19,39 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
+	<resultMap type="itemDTO" id="itemMap">
+		<result property="item_index" column="item_index" />
+		<result property="item_seller" column="item_seller" />
+		<result property="item_title" column="item_title" />
+		<result property="item_content" column="item_content" />
+		<result property="item_category" column="item_category" />
+		<result property="item_price" column="item_price" />
+		<result property="item_place" column="item_place" />
+		<result property="item_status" column="item_status" />
+		<result property="item_enrollDate" column="item_enrollDate" />
+		<result property="item_click" column="item_click" />
+		<result property="item_interest" column="item_interest" />
+		<result property="item_offDate" column="item_offDate" />
+		<result property="item_buyer" column="item_buyer" />
+	</resultMap>
+
+	<resultMap type="itemInfoDTO" id="itemInfoMap"
+		extends="itemMap">
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_level" column="acc_level" />
+		<result property="repl_count" column="repl_count" />
+		<result property="show_thumb" column="show_thumb" />
+		<result property="show_img1" column="show_img1" />
+		<result property="show_img2" column="show_img2" />
+		<result property="show_img3" column="show_img3" />
+		<result property="show_img4" column="show_img4" />
+		<result property="show_img5" column="show_img5" />
+	</resultMap>
+
 	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
 
-	<resultMap type="memberDTO" id="memberInfoMap"
-		extends="memberMap">
+	<resultMap type="memberDTO" id="memberInfoMap" extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
@@ -61,7 +90,6 @@
 		select * from ACCOUNT where acc_id = #{acc_id}
 	</select>	<!--정일 -->
 
-
 	<select id="selectInfoByAcc_id" parameterType="String"
 		resultMap="memberInfoMap">
 		select
@@ -74,7 +102,31 @@
 		black
 		on (acc.acc_index = black.black_object)
 		where acc_id = #{acc_id}
-	</select>      <!--정일 -->
+	</select>	<!--정일 -->
+
+
+	<update id="updatePW" parameterType="String">
+		update ACCOUNT set
+		acc_password=#{neoPWconf_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
+
+	<update id="updateNickname" parameterType="String">
+		update ACCOUNT set
+		acc_nickname=#{nickname_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
+
+	<update id="updatePhone" parameterType="String">
+		update ACCOUNT set
+		acc_phone=#{phone_input} where acc_id=#{acc_id}
+	</update>	<!--정일 -->
+
+	<update id="updateRedunds" parameterType="String">
+		update ACCOUNT set
+		acc_name=#{name_input},
+		acc_birthDate=TO_DATE(#{birthDate_input}, 'YYYY-MM-DD'),
+		acc_address=#{address_input}
+		where acc_id=#{acc_id}
+	</update>	<!--정일 -->
 
 	<update id="withdraw" parameterType="String">
 		update ACCOUNT set
@@ -94,8 +146,37 @@
 		from ITEM
 		group by item_seller
 		order by count(item_index) desc)
-		where rownum = 1) power on (acc.acc_index=power.item_seller)
-	</select>	<!--정일_home.jsp_파워셀러-->
+		where
+		rownum = 1) power on (acc.acc_index=power.item_seller)
+	</select>	<!--정일_home.jsp_파워셀러 -->
 
+	<select id="selectItemByAcc_index" parameterType="int"
+		resultMap="itemInfoMap">
+		SELECT
+		*
+		FROM
+		item
+		LEFT JOIN account ON item_seller = acc_index
+		LEFT JOIN showcase ON show_item = item_index
+		WHERE
+		acc_index = #{acc_index}
+		OR item_buyer = #{acc_index}
+	</select>
+	
+	
+	<select id="selectInterestsByAcc_index" parameterType="int"
+		resultMap="itemInfoMap">
+		SELECT *
+		FROM item
+		LEFT JOIN interest ON item_index = int_item
+		LEFT JOIN showcase on show_item = item_index
+		WHERE int_subject = #{acc_index}
+		order by int_index desc
+	</select>
+	
+	
+	
+	
+	
 
 </mapper>

@@ -65,8 +65,28 @@
 
 	<select id="selectByItemIndex" parameterType="int"
 		resultMap="itemInfoMap">
-		SELECT * FROM item i JOIN showcase s ON s.show_item =
-		i.item_index WHERE item_index = #{item_index}
+		SELECT item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		show_thumb,
+		show_img1,
+		show_img2,
+		show_img3,
+		show_img4,
+		show_img5 FROM item i JOIN
+		showcase s ON s.show_item =
+		i.item_index WHERE item_index =
+		#{item_index}
 	</select>
 
 	<select id="selectByIndex" parameterType="int"
@@ -75,9 +95,11 @@
 	</select>
 
 	<insert id="insertReply" parameterType="ReplyDTO">
-		insert into reply(repl_index, repl_item, repl_candidate,repl_nickname,
+		insert into
+		reply(repl_index, repl_item, repl_candidate,repl_nickname,
 		repl_content, repl_enrolldate)
-		values(REPLY_SEQ.NEXTVAL, #{repl_item}, #{repl_candidate},#{repl_nickname,jdbcType=VARCHAR},
+		values(REPLY_SEQ.NEXTVAL, #{repl_item},
+		#{repl_candidate},#{repl_nickname,jdbcType=VARCHAR},
 		#{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
 
@@ -86,18 +108,78 @@
 		SELECT * FROM reply WHERE repl_item = #{item_index}
 	</select>
 
-    <update id="incrementViews" >
-        UPDATE item
-        SET item_click = item_click + 1
-        WHERE item_index = #{itemId}
-    </update>
-    
-
-    <select id="interestnum" parameterType="int">
-    	select count(*) from interest where int_item = #{item_index} 
-    </select>
-    
+	<update id="incrementViews">
+		UPDATE item
+		SET item_click = item_click + 1
+		WHERE
+		item_index = #{itemId}
+	</update>
 
 
+	<select id="interestnum" parameterType="int">
+		select count(*) from
+		interest where int_item = #{item_index}
+	</select>
 
+	<delete id="deleteReply" parameterType="map">
+		<if test="replyNo != null">delete from reply where repl_index = ${replyNo}</if>
+		<if test="itemNo != null">delete from reply where item_index = ${itemNo}</if>
+	</delete>
+
+	<update id="updateReply" parameterType="ReplyDTO">
+		UPDATE reply
+		SET
+		repl_content = #{repl_content}
+		WHERE repl_index = #{repl_index}
+	</update>
+
+	<select id="selectByItemSeller" parameterType="HashMap"
+		resultMap="itemInfoMap">
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+        show_thumb,
+		show_img1,
+		show_img2,
+		show_img3,
+		show_img4,
+		show_img5
+		FROM
+		item
+		LEFT JOIN account ON ( item_seller =
+		acc_index )
+		LEFT JOIN showcase ON ( show_item = item_index )
+		WHERE
+		item_seller = #{item_seller}
+		AND item_status = 'onsale'
+		AND NOT
+		item_index = #{item_index}
+	</select>
+
+	<insert id="addInterest" parameterType="Map">
+		INSERT INTO INTEREST
+		VALUES (INTEREST_SEQ.NEXTVAL,#{item_index} ,#{acc_index} )
+	</insert>
+
+	<select id="checkInterest" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM INTEREST
+		WHERE int_item = #{item_index} AND
+		int_subject = #{acc_index}
+	</select>
+
+	<delete id="removeInterest" parameterType="Map">
+		DELETE FROM INTEREST
+		WHERE int_item = #{item_index} AND int_subject =#{acc_index}
+	</delete>
 </mapper>

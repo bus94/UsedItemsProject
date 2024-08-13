@@ -5,11 +5,12 @@
 // $().ready(function(){
 //    console.log('acc_alter.js 연결');
 //	});
+
 $(function() {
 
 	console.log('acc_alter.js 연결');
 
-	
+
 	
 
 });
@@ -33,6 +34,7 @@ $('#setPWcancel').click(function(){
 });
 
 
+var path = "/useditems";
 
 var currPW_input = null;
 var neoPW_input = null;
@@ -43,15 +45,14 @@ var neoPW_isNull = null;
 var neoPWconf_isNull = null;
 
 
-
 function filledAll(){ //비밀번호 필드 전체(현재+새+확인) 체크
 
 	if(currPW_isNull == false && neoPW_isNull == false && neoPWconf_isNull == false){
 		$('#setPW').attr('disabled', false);
 	}else {
-		console.log("currPW_isNull: "+currPW_isNull);
-		console.log("neoPW_isNull: "+neoPW_isNull);
-		console.log("neoPWconf_isNull: "+neoPWconf_isNull);
+		// console.log("currPW_isNull: "+currPW_isNull);
+		// console.log("neoPW_isNull: "+neoPW_isNull);
+		// console.log("neoPWconf_isNull: "+neoPWconf_isNull);
 		$('#setPW').attr('disabled', true);
 	}
 }
@@ -101,16 +102,172 @@ function neoPW2check(param3){ //새 비밀번호 확인 입력 시
 }
 
 
+
 $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 	
 	if(neoPW_input != neoPWconf_input){
 		alert("'새 비밀번호'가 서로 일치하지 않습니다.");
 		return;
+	} else if( currPW_input == neoPWconf_input){
+		alert("입력한 '현재 비밀번호'와 '새 비밀번호'가 같습니다.");
+		return;	
 	}else{
-		alert("바꿔줄게");
+		
+		//ajax로 넘겨줄 data : 객체({key : value}) 형태
+		const queryPW = { currPW_input : currPW_input, neoPWconf_input : neoPWconf_input };
+		
+		$.ajax({
+			type : "POST",
+			url : path + "/account/setPW.do", //path는 전역변수
+			data : queryPW,
+			success : function(data) {
+						console.log("AJAXresponse : " + data);
+						if(data > 0) {
+							alert("비밀번호가 변경되었습니다.");
+							//'#setPWcancel' 버튼 클릭 효과 
+							$('#setPWcancel').trigger("click");
+						} else if(data == 0) {
+							alert("'현재 비밀번호'가 일치하지 않습니다.");
+						} else {
+							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+		
+		
+		//location.href = path + "/account/alter.do";
 	}
 
 });
+
+
+
+$('#setNickname').click(function(){ // 별명 '수정' 누르면
+	
+	var nickname_input = $.trim($('#nickname').val());
+
+	if(!nickname_input) {
+		alert("새로운 별명을 입력하여 주시기 바랍니다");
+		return;
+	} else {
+		
+		const queryNickname = { nickname_input : nickname_input };
+		
+		$.ajax({
+			type : "POST",
+			url : path + "/account/setNickname.do", //path는 전역변수
+			data : queryNickname,
+			success : function(data) {
+						console.log("AJAXresponse : " + data);
+						if(data > 0) {
+							alert("별명이 변경되었습니다.");
+						} else if(data == 0) {
+							alert("현재 별명과 같습니다.");
+						} else {
+							alert("이미 존재하는 별명입니다. 다른 별명을 지어주세요");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+	}
+
+});
+
+
+$('#setPhone').click(function(){ // 전화번호 '수정' 누르면
+	
+	var phone_input = $.trim($('#phone').val());
+
+	if(!phone_input) {
+		alert("새로운 전화번호를 입력하여 주시기 바랍니다");
+		return;
+	} else {
+		
+		const queryPhone = { phone_input : phone_input };
+		
+		$.ajax({
+			type : "POST",
+			url : path + "/account/setPhone.do", //path는 전역변수
+			data : queryPhone,
+			success : function(data) {
+						console.log("AJAXresponse : " + data);
+						if(data > 0) {
+							alert("전화번호가 변경되었습니다.");
+						} else if(data == 0) {
+							alert("현재 전화번호와 같습니다.");
+						} else {
+							alert("이미 등록된 전화번호입니다. 다른 사용자와 같은 전화번호를 등록할 수 없습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+	}
+
+});
+
+
+
+
+//기존값 변수 저장
+var name = $.trim($('#name').val());
+var birthDate = $.trim($('#birthDate').val());
+var address = $.trim($('#address').val());
+
+
+$('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누르면
+	
+	var name_input = $.trim($('#name').val());
+	var birthDate_input = $.trim($('#birthDate').val());
+	var address_input = $.trim($('#address').val());
+	
+	
+	if(name == name_input && birthDate == birthDate_input && address == address_input) {
+		alert("변경된 값이 없습니다.");
+		return;
+	} else {
+		
+		const queryRedunds = { name_input : name_input, birthDate_input : birthDate_input, address_input : address_input };
+		
+		$.ajax({
+			type : "POST",
+			url : path + "/account/setRedunds.do", //path는 전역변수
+			data : queryRedunds,
+			success : function(data) {
+						console.log("AJAXresponse : " + data);
+						if(data > 0) {
+							alert("정보가 변경되었습니다.");
+							
+							//바뀐값을 기존값 변수에 저장
+							name = $.trim($('#name').val());
+							birthDate = $.trim($('#birthDate').val());
+							address = $.trim($('#address').val());
+							
+						} else {
+							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+	}
+
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -120,24 +277,6 @@ $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 		$('#wd_hide1').css('display','block');
 		$('#wd_hide2').hide();
 	}
-
-	
-	
-});
-
-
-$('#setStatus').click(function() { // '탈퇴' 버튼 누르면
-
-	//var wd_currPW = $.trim($('#wd_currPW').val());
-	
-	//if(!wd_currPW){
-	//	alert("'현재 비밀번호'를 입력하여 주세요.");
-	//	return;
-	//}
-	
-	//if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
-	//	location.href = "/useditems/withdraw.do";
-	//}
 });
 
 

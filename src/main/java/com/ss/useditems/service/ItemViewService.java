@@ -1,6 +1,8 @@
 package com.ss.useditems.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,9 +40,8 @@ public class ItemViewService {
 		
 	}
 
-	public void interestnum(int acc_index, int item_index) {
-		// TODO Auto-generated method stub
-		
+	public boolean isInterest(Map<String,Integer> map) {
+		return mapper.checkInterest(map)>0;
 	}
 
 
@@ -49,5 +50,26 @@ public class ItemViewService {
 		return mapper.interestnum(item_index);
 	}
 
+
+	public int deleteReply(Map<String, Integer> hmap) {
+		return mapper.deleteReply(hmap);
+	}
+
+	public int updateReply(ReplyDTO dto) {
+	    return mapper.updateReply(dto);
+	}
+
+	public List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map) {
+		return mapper.selectByItemSeller(map);
+	}
+	
+	public void addInterest(Map<String, Integer> map) {
+		mapper.addInterest(map);
+	}
+
+	public void removeInterest(Map<String,Integer> map) {
+		mapper.removeInterest(map);
+		
+	}
 
 }

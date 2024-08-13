@@ -134,14 +134,15 @@
 	width: 100%;
 }
 .prev {
-	left: 110px;
+	left: 200px;
 	
 }
 
 .next {
-	right: 110px;
+	right: 200px;
 }
 
+<<<<<<< HEAD
 
 /* 광고배너 */
 
@@ -292,6 +293,8 @@
 
 /* 롤링 */
 .rolling {
+=======
+.rolling {
     display: flex;
     overflow: hidden;
 }
@@ -301,6 +304,7 @@
     padding-left: 0;
 }
 
+/* 롤링 애니메이션 */
 .rolling-list.original {
     animation: rollingleft1 50s linear infinite;
 }
@@ -336,3 +340,112 @@
         transform: translateX(-200%);
     }
 }
+
+
+
+/* 인기상품--------------------- */
+
+/* .popular_product {
+>>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
+    display: flex;
+    overflow: hidden;
+<<<<<<< HEAD
+}
+
+.rolling .rolling-list ul {
+=======
+     overflow: hidden; 전체적으로 스크롤 숨김
+    position: relative; 스크롤을 위한 설정
+}
+
+.home_page.bg-black {
+    background-color: black;
+}
+
+.left_section,
+.right_section {
+    padding: 20px;
+}
+
+.left_section {
+	padding-top:100px;
+    padding-left: 180px;
+    padding-right: 80px;
+    color: white;
+
+}
+
+
+.left_section h3 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.left_section p {
+    font-size: 18px;
+}
+
+.right_section {
+	padding-right:40px;
+    padding-top: 170px;
+    height: 100vh;
+    overflow-y: auto;
+    
+}
+
+.right_section::-webkit-scrollbar {
+  display: none; 스크롤바를 숨깁니다
+}
+
+
+
+.pic_box {
+>>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106
+    display: flex;
+    padding-left: 0;
+}
+
+.rolling-list.original {
+    animation: rollingleft1 50s linear infinite;
+}
+
+<<<<<<< HEAD
+.rolling-list.clone {
+    animation: rollingleft2 50s linear infinite;
+}
+
+@keyframes rollingleft1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes rollingleft2 {
+    0% {
+        transition: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+=======
+
+.pic img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+} */
+>>>>>>> 56ae0f05442c663f23fe8d1ea60e378eff99d106

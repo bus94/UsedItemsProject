@@ -50,92 +50,12 @@
 
 	<select id="selectByNearPlace" parameterType="java.util.Map"
 		resultMap="itemInfoMap">
-		SELECT i.*, a.acc_nickname, a.acc_address, a.acc_level, s.show_thumb,
-		s.show_img1, s.show_img2, s.show_img3,
-		s.show_img4, s.show_img5
-		FROM
-		ITEM i
-		JOIN account a ON i.item_seller =
-		a.acc_index
-		JOIN showcase s ON
-		i.item_index =
-		s.show_item
-		WHERE 1 = 1
-		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
-			<foreach item="category" collection="categoryList" open="("
-				separator="," close=")">
-				#{category}
-			</foreach>
-		</if>
-		<if test="searchValue != null">
-			AND (i.item_title LIKE '%${searchValue}%'
-			OR i.item_content
-			LIKE '%${searchValue}%'
-			OR i.item_category LIKE '%${searchValue}%'
-			OR
-			i.item_place LIKE '%${searchValue}%')
-		</if>
-		<if test="nearPlace != null">
-			ORDER BY i.item_place
-		</if>
-	</select>
-
-	<select id="selectByPopular" parameterType="java.util.Map"
-		resultMap="itemInfoMap">
-		SELECT i.*, a.acc_nickname, a.acc_address, a.acc_level, s.show_thumb,
-		s.show_img1, s.show_img2, s.show_img3,
-		s.show_img4, s.show_img5
-		FROM
-		ITEM i
-		JOIN account a ON i.item_seller =
-		a.acc_index
-		JOIN showcase s ON
-		i.item_index =
-		s.show_item
-		WHERE 1 = 1
-		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
-			<foreach item="category" collection="categoryList" open="("
-				separator="," close=")">
-				#{category}
-			</foreach>
-		</if>
-		<if test="searchValue != null">
-			AND (i.item_title LIKE '%${searchValue}%'
-			OR i.item_content
-			LIKE '%${searchValue}%'
-			OR i.item_category LIKE '%${searchValue}%'
-			OR
-			i.item_place LIKE '%${searchValue}%')
-		</if>
-		<if test="popular != null">
-			ORDER BY i.item_click, i.item_interest
-		</if>
-	</select>
-
-	<select id="selectByBestSeller" parameterType="java.util.Map"
-		resultMap="itemInfoMap">
 		SELECT
-		i.item_index,
-		i.item_seller,
-		i.item_title,
-		i.item_content,
-		i.item_category,
-		i.item_price,
-		i.item_place,
-		i.item_status,
-		i.item_enrolldate,
-		i.item_click,
-		i.item_interest,
-		i.item_offdate,
-		i.item_buyer,
-		COUNT(*)
-		OVER(PARTITION BY i.item_seller) AS
-		seller_item_count,
-		a.acc_nickname,
-		a.acc_address,
-		a.acc_level,
+		*
+		FROM
+		(
+		SELECT
+		i.*,
 		s.show_thumb,
 		s.show_img1,
 		s.show_img2,
@@ -143,60 +63,280 @@
 		s.show_img4,
 		s.show_img5
 		FROM
-		item i
-		JOIN account a ON i.item_seller =
-		a.acc_index
-		JOIN
-		showcase s ON i.item_index = s.show_item
+		(
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT JOIN reply ON repl_item =
+		item_index
+		GROUP BY
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer
+		) i
+		LEFT JOIN showcase
+		s ON s.show_item = i.item_index
+		)
 		WHERE 1 = 1
 		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
+			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
 				#{category}
 			</foreach>
 		</if>
 		<if test="searchValue != null">
-			AND (i.item_title LIKE '%${searchValue}%'
-			OR i.item_content
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
 			LIKE '%${searchValue}%'
-			OR i.item_category LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
 			OR
-			i.item_place LIKE '%${searchValue}%')
+			item_place LIKE '%${searchValue}%')
+		</if>
+		<if test="nearPlace != null">
+			ORDER BY item_place
+		</if>
+	</select>
+
+	<select id="selectByPopular" parameterType="java.util.Map"
+		resultMap="itemInfoMap">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5
+		FROM
+		(
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT JOIN reply ON repl_item =
+		item_index
+		GROUP BY
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer
+		) i
+		LEFT JOIN showcase
+		s ON s.show_item = i.item_index
+		)
+		WHERE 1 = 1
+		<if test="categoryList != null and categoryList.length > 0">
+			AND item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
+		<if test="searchValue != null">
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR
+			item_place LIKE '%${searchValue}%')
+		</if>
+		<if test="popular != null">
+			ORDER BY item_click, item_interest
+		</if>
+	</select>
+
+	<select id="selectByBestSeller" parameterType="java.util.Map"
+		resultMap="itemInfoMap">
+		SELECT
+		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5,
+		COUNT(*)
+		OVER(PARTITION BY i.item_seller) AS
+		seller_item_count
+		FROM
+		(
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT JOIN reply ON repl_item = item_index
+		GROUP BY
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer
+		) i
+		JOIN account a ON i.item_seller =
+		a.acc_index
+		JOIN showcase s ON i.item_index = s.show_item
+		WHERE 1 = 1
+		<if test="categoryList != null and categoryList.length > 0">
+			AND item_category IN
+			<foreach item="category" collection="categoryList" open="("
+				separator="," close=")">
+				#{category}
+			</foreach>
+		</if>
+		<if test="searchValue != null">
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
+			LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
+			OR
+			item_place LIKE '%${searchValue}%')
 		</if>
 		<if test="bestSeller != null">
-			ORDER BY seller_item_count DESC, i.item_seller,
-			i.item_index
+			ORDER BY seller_item_count DESC, item_seller,
+			item_index
 		</if>
 	</select>
 
 	<select id="selectByDefault" parameterType="java.util.Map"
 		resultMap="itemInfoMap">
-		SELECT i.*, a.acc_nickname, a.acc_address, a.acc_level, s.show_thumb,
-		s.show_img1, s.show_img2, s.show_img3,
-		s.show_img4, s.show_img5
+		SELECT
+		*
 		FROM
-		ITEM i
-		JOIN account a ON i.item_seller =
-		a.acc_index
-		JOIN showcase s ON
-		i.item_index =
-		s.show_item
-		WHERE 1 = 1
+		(
+		SELECT
+		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5
+		FROM
+		(
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT JOIN reply ON repl_item = item_index
+		GROUP BY
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer
+		) i
+		LEFT JOIN showcase
+		s ON s.show_item = i.item_index
+		)
+		WHERE
+		1 = 1
 		<if test="categoryList != null and categoryList.length > 0">
-			AND i.item_category IN
+			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
 				separator="," close=")">
 				#{category}
 			</foreach>
 		</if>
 		<if test="searchValue != null">
-			AND (i.item_title LIKE '%${searchValue}%'
-			OR i.item_content
+			AND (item_title LIKE '%${searchValue}%'
+			OR item_content
 			LIKE '%${searchValue}%'
-			OR i.item_category LIKE '%${searchValue}%'
+			OR item_category LIKE '%${searchValue}%'
 			OR
-			i.item_place LIKE '%${searchValue}%')
+			item_place LIKE '%${searchValue}%')
 		</if>
 	</select>
 </mapper>

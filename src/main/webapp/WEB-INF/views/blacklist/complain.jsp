@@ -27,7 +27,7 @@
 		
 			<form method="post" action="${path}/blacklist/complainPro.do">
 			<div id="object_box" class="container">
-				<p class="subtitle fs-5">누구를</p>
+				<p class="subtitle fs-5">혐의자(ID)</p>
 				
 				<c:choose>
 					<c:when test="${object_id !=null}"><!-- object_id가 파라미터로 넘어왔으면 넘어온 값 -->
@@ -47,7 +47,7 @@
 			</div>
 		<hr>
 			<div id="subject_box" class="container">
-				<p class="subtitle fs-5">누가</p>
+				<p class="subtitle fs-5">작성자(ID)</p>
 				<input type="text" class="info_box form-control"
 					name="subject_id_show" id="subject_id_show" value="${loginMember.acc_id}"
 					disabled>
@@ -56,11 +56,11 @@
 			</div>
 		<hr>
 			<div id="content_box" class="container mb-3">
-				<p class="subtitle fs-5">뭘 했길래</p>
+				<p class="subtitle fs-5">내용(150자 이내)</p>
 				<div class="form-floating">
 					<textarea class="form-control border border-warning focus-ring focus-ring-danger"
 					id="black_content" name="black_content" style="height: 200px" required></textarea>
-					<label for="black_content">무분별한 신고는 하지 말어~</label>
+					<label for="black_content">무분별한 신고는 자제해주세요! 관리자의 권한으로 게시 글이 삭제될 수 있습니다. </label>
 				</div>
 			</div>
 			<div class="btn_container container">

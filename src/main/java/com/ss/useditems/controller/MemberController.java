@@ -2,8 +2,13 @@ package com.ss.useditems.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.sql.Date;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.MemberService;
 
@@ -21,6 +28,10 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private ServletContext context;
+	
 
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
@@ -124,7 +135,6 @@ public class MemberController {
 		return "common/msg";
 	}
 
-
 	//////////////////////////////////// 정일/////////////////////
 
 	@RequestMapping("/account/my_info.do")
@@ -132,59 +142,276 @@ public class MemberController {
 		System.out.println("==account.my_info==");
 		// 마이페이지 눌렀을 때 실행!!!
 
-
 		try {
-			if(session.getAttribute("loginMember") == null) {
-				model.addAttribute("msg", "로그인부터 하렴.");
+			if (session.getAttribute("loginMember") == null) {
+				model.addAttribute("msg", "로그인 먼저 해주세요.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
-			} else { //0804추가
+			} else { // 0804추가
 				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
 //				System.out.println("마이인포 전: " + my_info);
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
-				
+
 				model.addAttribute("loginMember", my_info);
+				
+				
+				int acc_index = my_info.getAcc_index();
+				
+				
+				//찜 목록 불러오기
+				List<ItemInfoDTO> my_interests = new ArrayList<ItemInfoDTO>();
+				my_interests = memberservice.getMyInterests(acc_index);
+				
+				model.addAttribute("my_interests", my_interests);
+
+				
+				
+				//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
+				//Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
+				//거래중, 판매내역, 구매내역 불러오기: 서비스에서 전처리
+				Map<String, List<ItemInfoDTO>> itemInfo = memberservice.getItemInfo(acc_index);
+
+				
+				//model.addAttribute("itemList", itemInfo.get("itemList"));
+				model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
+				model.addAttribute("dropItem", itemInfo.get("dropItem"));
+				model.addAttribute("buyItem", itemInfo.get("buyItem"));
+				
+				
 			}
-		} catch(Exception e) {	}
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
+			model.addAttribute("location", "/");
+		}
 
 		return "account/info";
 	}
 
 	@RequestMapping("/account/acc_info.do")
 	public String acc_info(Model model, @RequestParam String acc_id) {
-		System.out.println("==account.acc_info==");
 		// 다른사람의 계정을 눌렀을 때 실행!!!
+		System.out.println("==account.acc_info==");
 
 		System.out.println("request.acc_id: " + acc_id);
+		try {
+			
+			MemberDTO account_info = new MemberDTO();
+			account_info = memberservice.selectInfoByAcc_id(acc_id);
+			model.addAttribute("other_info", account_info);
+			
+			
+			int acc_index = account_info.getAcc_index();
+			//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
+			//Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
+			//거래중, 판매내역, 구매내역 불러오기: 서비스에서 전처리
+			Map<String, List<ItemInfoDTO>> itemInfo = memberservice.getItemInfo(acc_index);
 
-		MemberDTO account_info = new MemberDTO();
-		account_info = memberservice.selectInfoByAcc_id(acc_id);
-		model.addAttribute("other_info", account_info);
+			
+			//model.addAttribute("itemList", itemInfo.get("itemList"));
+			model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
+			model.addAttribute("dropItem", itemInfo.get("dropItem"));
+			model.addAttribute("buyItem", itemInfo.get("buyItem"));
 
-		System.out.println("response: " + account_info);
+			
+			System.out.println("response acc_info: " + account_info);
+			
+			
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
+			model.addAttribute("location", "/");
+		}
+		
 
 		return "account/info";
 	}
 
-	
-	
 	@RequestMapping("/account/alter.do")
-	public String alter(Model model, HttpSession session) { //정보수정 페이지
+	public String alter(Model model, HttpSession session) { // 정보수정 페이지
 		System.out.println("==account.alter==");
 
 		try {
-			if(session.getAttribute("loginMember") == null) {
-				model.addAttribute("msg", "로그인부터 하렴.");
+			if (session.getAttribute("loginMember") == null) {
+				model.addAttribute("msg", "로그인 먼저 해주세요.");
 				model.addAttribute("location", "/account/login.do");
 				return "common/msg";
-			} 
-			
-		} catch(Exception e) {	}
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
+			model.addAttribute("location", "/account/my_info.do");
+		}
 
 		return "account/alter";
 	}
+	
+	
+	@RequestMapping("/account/setProfile.do")
+	public String setProfile(Model model, HttpSession session, @RequestParam MultipartFile profile) { // 정보수정 페이지
+		System.out.println("==account.setProfile==");
+		
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+
+			String originalFileName = profile.getOriginalFilename();
+			long fileSize = profile.getSize();
+			System.out.println("파일명: " + originalFileName + " 파일크기: " + fileSize);
+			
+			
+			String fileDirPath = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img";
+			fileDirPath += "\\" + loginMember.getAcc_index();
+			
+			System.out.println(fileDirPath);
+			
+			
+			
+			
+		} catch (Exception e) {
+			model.addAttribute("msg", "오류로 인하여 정상적으로 처리되지 않았습니다." + "\\r\\n" + "다시 시도해 주시기 바랍니다.");
+			model.addAttribute("location", "/account/my_info.do");
+		}
+
+		return "account/alter";
+	}
+	
+	
+	@RequestMapping("/account/setPW.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setPW(Model model, HttpSession session, @RequestParam String currPW_input, @RequestParam String neoPWconf_input) {
+		System.out.println("==account.setPW==");
+		
+		//System.out.println(currPW_input + "////" + neoPWconf_input); //넘어온 값 확인
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
+			
+			if(loginMember.getAcc_password().equals(currPW_input)) {
+				//System.out.println("같다");
+				String acc_id = loginMember.getAcc_id();
+				//현재 아이디와 바꿀 비밀번호 넘겨줌
+				result = memberservice.updatePW(acc_id, neoPWconf_input); //result == 처리된 행의 개수
+				
+				loginMember.setAcc_password(neoPWconf_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+				
+			} else {
+				//System.out.println("다르다");
+				result = 0;
+			}
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
+	
+	
+	@RequestMapping("/account/setNickname.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setNickname(Model model, HttpSession session, @RequestParam String nickname_input) {
+		System.out.println("==account.setNickname==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
+			
+			
+			if(loginMember.getAcc_nickname().equals(nickname_input)) {
+				//기존과 같다
+				result = 0;
+			} else {
+				
+				String acc_id = loginMember.getAcc_id();
+				result = memberservice.updateNickname(acc_id, nickname_input); //result == 처리된 행의 개수
+					
+				loginMember.setAcc_nickname(nickname_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+			}
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
+	
+	@RequestMapping("/account/setPhone.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setPhone(Model model, HttpSession session, @RequestParam String phone_input) {
+		System.out.println("==account.setPhone==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			//System.out.println("수정 전: " + loginMember);
+			
+			
+			if(loginMember.getAcc_phone().equals(phone_input)) {
+				//기존과 같다
+				result = 0;
+			} else {
+				
+				String acc_id = loginMember.getAcc_id();
+				result = memberservice.updatePhone(acc_id, phone_input); //result == 처리된 행의 개수
+					
+				loginMember.setAcc_phone(phone_input);
+				System.out.println("수정 후: " + loginMember);
+				
+				session.setAttribute("loginMember", loginMember);
+			}
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
+	
+	@RequestMapping("/account/setRedunds.do")
+	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
+	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, @RequestParam String address_input) {
+		System.out.println("==account.setRedunds==");
+		
+		int result = -1;
+		try {
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+//			System.out.println("수정 전: " + loginMember);
+//			System.out.println(birthDate_input);
+			
+			
+			//signupOK.do 포매터 : ??? 왜 sqlDate를??
+			//formatter.format(date) : Date -> String
+			//formatter.parse(string) : String -> Date 
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date birthDate_ = formatter.parse(birthDate_input);
+			
+			
+			String acc_id = loginMember.getAcc_id();
+			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input); //result == 처리된 행의 개수
+				
+			loginMember.setAcc_name(name_input);
+			loginMember.setAcc_birthDate(birthDate_);//날짜 포맷
+			loginMember.setAcc_address(address_input);
+			System.out.println("수정 후: " + loginMember);
+			
+			session.setAttribute("loginMember", loginMember);
+			
+		} catch (Exception e) {
+			//System.out.println("예외에 막혔다"); //result == -1
+		}
+
+		return result;
+	}
+	
 	
 	@RequestMapping("/withdraw.do")
 	public String withdraw(Model model, HttpSession session, @RequestParam String wd_currPW) {
@@ -195,16 +422,16 @@ public class MemberController {
 			String acc_password = my_info.getAcc_password().trim();
 //			System.out.println("acc_id: "+ acc_id + ", acc_pw: " + acc_password);
 //			System.out.println("Param.wd_currPW: "+ wd_currPW);
-			
-			if(wd_currPW.trim().equals(acc_password)) { // 탈퇴 처리
-				//int result = memberservice.withdraw(acc_id);
-				//이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게??
+
+			if (wd_currPW.trim().equals(acc_password)) { // 탈퇴 처리
+				// int result = memberservice.withdraw(acc_id);
+				// 이미 inactive인 것도 결과는 1로 돌아옴!!!! 예외처리 어떻게?? : 'inactive'는 로그인조차 못하게
 //				System.out.println("result: " +result);
 				memberservice.withdraw(acc_id);
 				session.removeAttribute("loginMember");
 				model.addAttribute("msg", "정상적으로 탈퇴 처리되었습니다.");
 				model.addAttribute("location", "/");
-			} else { //세션의 비밀번호와 입력 비밀번호가 다르면
+			} else { // 세션의 비밀번호와 입력 비밀번호가 다르면
 				model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
 				model.addAttribute("location", "/account/alter.do");
 			}
@@ -213,20 +440,30 @@ public class MemberController {
 			model.addAttribute("msg", "오류로 인하여 탈퇴가 정상적으로 처리되지 않았습니다.");
 			model.addAttribute("location", "/account/alter.do");
 		}
-		
+
 		return "common/msg";
 	}
-	
-	
-	
-	
-	
+
+
 	//////////////////////////////////// 정일/////////////////////
 
-	
 	@RequestMapping("/map/maptest1")
 	public String mapTest(Model model) {
 		System.out.println("maptest 페이지");
 		return "map/maptest1";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

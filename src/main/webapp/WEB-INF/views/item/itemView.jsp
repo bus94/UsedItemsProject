@@ -1,3 +1,5 @@
+<%@page import="com.ss.useditems.dto.ItemInfoDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -71,7 +73,17 @@
 			<div class="detail_top">
 				<div class="detail_info">
 					<h4>${item.item_title}</h4>
-					<button>관심</button>
+					<form id="interestForm"
+						action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
+						method="post">
+						<input type="hidden" name="acc_index"
+							value="${loginMember.acc_index}"> <input type="hidden"
+							name="item_index" value="${item.item_index}">
+						<button type="submit"
+							class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
+							onclick="return confirmInterestAction('${isInterested}')">
+							${isInterested ? '관심 취소' : '관심'}</button>
+					</form>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
@@ -144,11 +156,22 @@
 					</div>
 					<div class="reply_btn">
 						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
-						<button>수정하기</button>
+						<button
+							onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 						<button
 							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
 					</div>
+				</div>
+				<!-- 수정 폼 -->
+				<div id="edit-form-${reply.repl_index}" style="display: none;">
+					<form action="${path}/itemView/replyEdit" method="post">
+						<input type="hidden" name="itemNo" value="${item.item_index}" />
+						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
+						<textarea name="content" rows="3">${reply.repl_content}</textarea>
+						<button type="submit">수정 완료</button>
+						<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
+					</form>
 				</div>
 			</c:forEach>
 		</div>
@@ -164,17 +187,52 @@
 		<div>
 			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>
 		</div>
-		<div class="itemView_carousel">
-			<img src="${path}/resources/img/item1.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt=""> <img
-				src="${path}/resources/img/item3.jpg" alt=""> <img
-				src="${path}/resources/img/item4.jpg" alt=""> <img
-				src="${path}/resources/img/item5.jpg" alt=""> <img
-				src="${path}/resources/img/item2.jpg" alt="">
-		</div>
+		<c:if test="${empty otherItemList}">
+			<tr>
+				<td colspan="6">현재 판매하는 다른 상품이 없습니다.</td>
+			</tr>
+		</c:if>
+		<c:if test="${not empty otherItemList}">
+			<div class="item_wrapper">
+				<c:forEach var="item" items="${otherItemList}">
+					<div class="item_container">
+						<div class="item">
+							<a href="${path}/item/itemView?item_index=${item.item_index}"
+								style="text-decoration: none; color: black"> <img
+								src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진">
+								<div class="item_view">
+									<h3>${item.item_title}</h3>
+									<div class="item_price">
+										<h4>${item.item_price}원</h4>
+										<br>
+										<h5>
+											<fmt:formatDate value="${item.item_enrollDate}"
+												pattern="yy/MM/dd" />
+										</h5>
+									</div>
+									<div class="item_like">
+										<p>관심 ${item.item_interest}</p>
+										<p>댓글 ${item.repl_count}</p>
+									</div>
+									<div class="item_addr">
+										<img src="${path}/resources/img/gps.png" alt="위치">
+										<p>${item.item_place}</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 	</div>
 </section>
 
+<%
+	ItemInfoDTO item = (ItemInfoDTO) request.getAttribute("item");
+	String item_enrollDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(item.getItem_enrollDate());
+	System.out.println("item_enrollDate: " + item_enrollDate);
+%>
 <script>
 	function date(enrollDate) {
 		const milliSeconds = new Date() - enrollDate;
@@ -212,6 +270,48 @@
 		const years = days / 365
 		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
 	}
+	
+	const item_enrollDate = new Date('${item_enrollDate}');
+	
+	console.log("item_enrollDate: " + item_enrollDate);
+	
+	// 함수 호출
+	date(item_enrollDate);
 </script>
+
+<script>
+
+	function deleteReply(replyNo, itemNo) {
+		var url = "${path}/itemView/replyDel?replyNo=";
+		var requestURL = url + replyNo + "&itemNo=" + itemNo;
+		console.log(requestURL);
+		location.href = requestURL;
+	}
+
+</script>
+
+<script>
+    function showEditForm(replyIndex, currentContent) {
+        document.getElementById('edit-form-' + replyIndex).style.display = 'block';
+        document.getElementById('reply-content-' + replyIndex).style.display = 'none';
+    }
+
+    function hideEditForm(replyIndex) {
+        document.getElementById('edit-form-' + replyIndex).style.display = 'none';
+        document.getElementById('reply-content-' + replyIndex).style.display = 'block';
+    }
+    
+</script>
+<script>
+	function confirmInterestAction(isInterested) {
+	    if (isInterested === 'true') {
+	        return confirm("관심 상품에서 삭제하시겠습니까?");
+	    }
+	    return true;
+	}
+</script>
+
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

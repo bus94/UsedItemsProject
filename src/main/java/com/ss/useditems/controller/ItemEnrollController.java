@@ -77,19 +77,6 @@ public class ItemEnrollController {
 			show_thumb.transferTo(saveThumbFile);
 			System.out.println("썸네일 저장 성공!!");
 
-			/*
-			 * // 서버에 저장할 파일명으로 확장자명 지정하기 String fileExtension =
-			 * fileRealName.substring(fileRealName.lastIndexOf("."));
-			 * System.out.println("파일 확장자명 fileExtension: " + fileExtension);
-			 */
-
-			// UUID 적용하여 고유 파일명 생성하기
-			/*
-			 * String uniqueName = UUID.randomUUID().toString(); String saveFileName =
-			 * uniqueName + fileExtension; System.out.println("saveFileName 이름: " +
-			 * saveFileName); File saveFile = new File(uploadFolder + "\\" + saveFileName);
-			 */
-
 			ItemInfoDTO enrollItemInfo = new ItemInfoDTO();
 			enrollItemInfo.setItem_seller(loginMemberIndex);
 			enrollItemInfo.setItem_title(item_title);

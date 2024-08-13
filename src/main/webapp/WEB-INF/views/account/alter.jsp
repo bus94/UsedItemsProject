@@ -16,12 +16,15 @@
 
 		<div id="acc_detail" class="container d-flex flex-column">
 
-			<div id="profile_box" class="container d-flex flex-column align-items-center">
-				<label id="acc_id" for="profile">${loginMember.acc_id}</label>
-				<img id="profile" src="${path}/resources/img/login.png" alt="프로필사진">
-				<button type="button" id="alt_profile"
-					class="btn btn-success btn-sm">프로필 사진 변경</button>
-			</div>
+			<form method="post" enctype="multipart/form-data" action="${path}/account/setProfile.do">
+				<div id="profile_box" class="container d-flex flex-column align-items-center">
+					<label id="acc_id" for="profile">${loginMember.acc_id}</label>
+						<img id="profile" src="${path}/resources/img/login.png" alt="프로필이미지">
+						<input type="file" name="profile">
+						<button type="submit" id="alt_profile"
+							class="btn btn-success btn-sm">프로필 사진 변경</button>
+				</div>
+			</form>	
 
 			<hr>
 				<div id="pw_box" class="container">
@@ -77,13 +80,6 @@
 								name="birthDate" id="birthDate"
 								value="<fmt:formatDate value='${loginMember.acc_birthDate}' pattern='yyyy-MM-dd' />">
 						</div>
-						<%-- 0804 DB에서 이메일 삭제
-						<div>
-							<p class="subtitle fs-5">이&nbsp;&nbsp;&nbsp;메&nbsp;&nbsp;&nbsp;일</p>
-							<input type="email" class="info_box form-control d-inline"
-								name="email" id="email" value="${loginMember.acc_email}">
-						</div>
-						--%>
 						<div>
 							<p class="subtitle fs-5">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 							<input type="text" class="info_box form-control d-inline"
