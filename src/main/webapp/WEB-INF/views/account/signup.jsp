@@ -48,6 +48,9 @@
 						type="text" class="form-control login_inputStyle" name="address"
 						id="address" placeholder="주소" readonly required /> <input
 						type="button" onclick="openAddressModal()" value="주소 검색">
+						<input
+						type="text" class="form-control login_inputStyle" name="detail_address"
+						id="address" placeholder="상세 주소" required />
 					<input type="text" class="form-control login_inputStyle"
 						name="phone" id="phone"
 						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
