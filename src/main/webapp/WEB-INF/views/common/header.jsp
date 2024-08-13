@@ -174,7 +174,7 @@
 
 					if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
 						console.log("logout");
-						location.href = "${path}/account/logoutOK.do";
+						window.location.href = "${path}/account/logoutOK.do";
 					}
 				})
 
