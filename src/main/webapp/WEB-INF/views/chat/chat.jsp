@@ -8,8 +8,15 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container" style="padding-top: 100px;">
-	<h1>채팅하기</h1>
+	<h1>채팅리스트</h1>
 	<a href="javascript:window.history.back();">뒤로가기</a>
+	
+	
+	<a href="${path}/chat/chatRoom.do">채팅방 입장</a>
+	
+	
+	
+	
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
