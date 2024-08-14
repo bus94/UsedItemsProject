@@ -76,19 +76,31 @@
 }
 
 .findId {
-	
+	border: none;
+	background-color: inherit;
 }
 
 .findPw {
-	
+	border: none;
+	background-color: inherit;
 }
 
 .findId:hover {
 	text-decoration: underline;
 }
 
+.findId:active, .findId:focus {
+	border: none !important;
+	box-shadow: none !important;
+}
+
 .findPw:hover {
 	text-decoration: underline;
+}
+
+.findPw:active, .findPw:focus {
+	border: none !important;
+	box-shadow: none !important;
 }
 
 .condition {
