@@ -116,6 +116,30 @@
     margin-top: 12px;
 }
 
+.item_view2 {
+    width: 160px;
+    padding-top: 12px;
+}
+
+.item_view2 h3{
+	font-size: 16px;
+	margin-bottom: 6px;
+	white-space: nowrap;         
+    overflow: hidden;         
+    text-overflow: ellipsis;
+}
+
+.item_view2 h4{
+	font-size: 15px;
+}
+
+.item_view2 h5{
+	margin-top:9px;
+	font-size: 14px;
+	color: gray;
+	font-weight: lighter;
+}
+
 .new_arrow{
 	width: 35px;
 	height:35px;
@@ -289,6 +313,121 @@
 }
 
 
+/* 구라 박스컨테이너 */
+
+.mainbox_container {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction:column;
+    margin-bottom:130px;
+}
+
+.mainbox {
+    width: 590px;
+    height: 250px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    margin-bottom: 20px;
+}
+
+.mainbox h3 {
+    font-size: 22px;
+}
+
+.mainbox h2 {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.box_txt {
+    z-index: 4;
+}
+
+.box_img {
+    width: 100px;
+    z-index: 1;
+}
+
+.box_img img {
+    width: 100%;
+}
+
+.mainbox {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
+}
+
+.mainbox .boxhover_img {
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.mainbox .boxhover_img img {
+    width: 100%;
+}
+
+.mainbox:hover .boxhover_img {
+    display: block;
+}
+
+.mainbox.hovered .boxhover_img {
+    display: block;
+}
+
+.mainbox:hover {
+    transform: scale(0.95);
+}
+
+.mainbox.hovered {
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 3;
+}
+
+.mainbox.hovered .overlay {
+    opacity: 1;
+    /* 호버 시 오버레이가 나타남 */
+}
+
+
+.boxLeft {
+    background-color: rgb(167, 255, 159);
+}
+
+.boxRight {
+    background-color: rgb(152, 226, 255);
+}
+
+.boxUnderLeft {
+    background-color: rgb(219, 175, 255);
+}
+
+.boxUnderRight {
+    background-color: rgb(255, 206, 101);
+}
 
 /* 롤링 */
 

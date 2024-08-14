@@ -11,35 +11,49 @@
 
 	<form action="${path}/item/itemList.do" method="post">
 		<div class="category">
-			<div>
-				<input type="radio" name="searchType" id="searchTypeNearPlace"
-					value="nearPlace" ${searchType != null && searchType == 'nearPlace' ? 'checked' : ''} />
-				<label class="radio_type" for="radio_nearPlace">가까운 순</label> <input
-					type="radio" name="searchType" id="searchTypePopular"
-					value="popular" ${searchType != null && searchType == 'popular' ? 'checked' : ''} /> <label
-					class="radio_type" for="radio_searchType">인기많은 순</label> <input
-					type="radio" name="searchType" id="searchTypeBestSeller"
-					value="bestSeller" ${searchType != null && searchType == 'bestSeller' ? 'checked' : ''} />
-				<label class="radio_type" for="radio_beastSeller">거래가 많은
-					판매자순</label>
-			</div>
+			<div class="selectBox">
+				<div class="selectBoxIn">
+					<p>정렬:</p>
+					<select class="selectBox_value">
+						<option>===정렬 선택===</option>
+						<option name="searchType" id="searchTypeNearPlace"
+							value="nearPlace"
+							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>가까운
+							순</option>
+						<option name="searchType" id="searchTypePopular" value="popular"
+							${searchType != null && searchType == 'popular' ? 'selected' : ''}>인기많은
+							순</option>
+						<option name="searchType" id="searchTypeBestSeller"
+							value="bestSeller"
+							${searchType != null && searchType == 'bestSeller' ? 'selected' : ''}>거래가
+							많은 판매자 순</option>
+					</select>
+					<p>필터:</p>
+					<div class="dropdown dropdown_checkBox">
+						<button class="btn dropdown-toggle dropdownBtn" type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">===필터
+							선택===</button>
+						<ul class="dropdown-menu">
+							<c:forEach var="value" items="${categoryAllList}">
+								<li><c:set var="isChecked"
+										value="${categoryList != null && fn:contains(categoryList, value)}" />
+									<c:forEach var="category" items="${categoryList}">
+										<c:if test="${category == value}">
+											<c:set var="isChecked" value="true" />
+										</c:if>
+									</c:forEach> <input type="checkbox" name="categoryList"
+									id="categoryList_${value}" value="${value}"
+									${isChecked ? 'checked':''} /> <label class="radio_type"
+									for="item_category_${value}">${value}</label></li>
+							</c:forEach>
+						</ul>
+					</div>
+				</div>
 
-			<div>
-				<c:forEach var="value" items="${categoryAllList}">
-					<c:set var="isChecked" value="${categoryList != null && fn:contains(categoryList, value)}" />
-					<c:forEach var="category" items="${categoryList}">
-						<c:if test="${category == value}">
-							<c:set var="isChecked" value="true" />
-						</c:if>
-					</c:forEach>
-					<input type="checkbox" name="categoryList"
-						id="categoryList_${value}" value="${value}"
-						${isChecked ? 'checked':''} />
-					<label class="radio_type" for="item_category_${value}">${value}</label>
-				</c:forEach>
-
-				<button type="submit" class="sear_category">상세검색</button>
-				<button type="reset" class="sear_category">초기화</button>
+				<div class="sear_categoryBtn">
+					<button type="submit" class="sear_category">상세검색</button>
+					<button type="reset" class="sear_category">초기화</button>
+				</div>
 			</div>
 		</div>
 

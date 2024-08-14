@@ -27,7 +27,6 @@
 
 .loginButton {
 	padding: 0px;
-	text-align: center;
 }
 
 .login_inputStyle {
@@ -70,16 +69,46 @@
 .find {
 	display: flex;
 	justify-content: space-around; 
+	width: 80%;
+	margin: auto;
 }
 
 .findBorder {
 	border-right : 2px solid rgb(219, 219, 219);
 }
 
+.findId {
+	border: none;
+	background-color: inherit;
+}
+
+.findPw {
+	border: none;
+	background-color: inherit;
+}
+
 .findId:hover {
 	text-decoration: underline;
 }
 
+.findId:active, .findId:focus {
+	border: none !important;
+	box-shadow: none !important;
+}
+
 .findPw:hover {
 	text-decoration: underline;
+}
+
+.findPw:active, .findPw:focus {
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.findBtnW {
+	width: 100px;
+}
+
+.condition {
+	text-align: left;
 }

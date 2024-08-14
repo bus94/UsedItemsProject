@@ -168,3 +168,37 @@ $(function(){
 
 
 
+// 구라박스
+document.addEventListener('DOMContentLoaded', function () {
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach(counter => {
+        const updateCounter = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+
+            const increment = target / 100;
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCounter, 8);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        counter.closest('.mainbox').addEventListener('mouseover', updateCounter);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const boxes = document.querySelectorAll('.mainbox');
+
+    boxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+            box.classList.add('hovered');
+        });
+
+        box.addEventListener('mouseout', () => {
+        });
+    });
+});

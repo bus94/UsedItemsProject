@@ -59,9 +59,9 @@
 				<div class="loginButton mt-2">
 					<button type="submit" class="btn login_btnStyle mb-1 mt-1"
 						value="회원가입 완료">회원가입</button>
-					<button type="button" class="btn login_btnStyle" value="로그인 하러 가기"
+					<%-- <button type="button" class="btn login_btnStyle" value="로그인 하러 가기"
 						onclick="location.href='${path}/account/login.do';">로그인
-						하러 가기</button>
+						하러 가기</button> --%>
 				</div>
 			</form>
 			<!-- 주소 검색 모달 -->
@@ -189,21 +189,6 @@
 			}
 
 		</script>
-
-		<%-- <div class="mt-2"
-				style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-				<form id="uploadFile" method="post"
-					enctype="multipart/form-data">
-					&nbsp;프로필 사진 첨부:&nbsp;<input style="width: 250px;" type="file" name="file">
-					<button type="button" class="btn btn-outline-secondary" onclick="submitUploadForm('${path}/uploadOK.do')">업로드</button>
-				</form>
-			</div> --%>
-		<!-- <script>
-	function submitUploadForm(url) {
-		${"#uploadFile"}.attr("action", url);
-		${"#uploadFile"}.submit();
-	}
-</script> -->
 	</c:if>
 </section>
 

@@ -111,7 +111,7 @@ public class ItemViewController {
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("otherItemList", otherItemList);
-		model.addAttribute("isInterested", isInterested);
+		/* model.addAttribute("isInterested", isInterested); */
 		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);
 
