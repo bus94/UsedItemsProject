@@ -38,7 +38,7 @@ public class ItemViewController {
 		boolean isInterested=false;
 		if(loginMember!=null){
 			isInterested=service.isInterest(acc_item_index(loginMember.getAcc_index(),item_index));
-
+			System.out.println(isInterested);
 			acc_item_index(loginMember.getAcc_index(),item_index);
 		}
 
@@ -111,7 +111,7 @@ public class ItemViewController {
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("otherItemList", otherItemList);
-		/* model.addAttribute("isInterested", isInterested); */
+		model.addAttribute("isInterested", isInterested); 
 		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);
 
