@@ -143,9 +143,15 @@ public class ItemController {
 			}
 			int accIndex = loginMember.getAcc_index();
 			int currentPage_ = Integer.parseInt(currentPage);
-
+			
 			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
-			List<ItemDTO> interestitemList = pageInfo.getDtoContainer2();
+			List<ItemInfoDTO> interestitemList = pageInfo.getDtoContainerInfo();
+			String filePath;
+			for (int i = 0; i < interestitemList.size(); i++) {
+				filePath = interestitemList.get(i).getItem_seller() + "/item_" + interestitemList.get(i).getItem_index() + "/";
+				interestitemList.get(i).setItem_thumbPath(filePath + interestitemList.get(i).getShow_thumb());
+			}
+			
 			System.out.println("controller  : " + interestitemList);
 			model.addAttribute("interestitemList", interestitemList);
 			model.addAttribute("pageInfo", pageInfo);
@@ -166,7 +172,7 @@ public class ItemController {
 		boolean isDeleted = service.deleteInterestItem(params);
 		System.out.println(isDeleted);
 		if (isDeleted) {
-			List<ItemDTO> interestItemList = service.interestItem(accIndex);
+			List<ItemInfoDTO> interestItemList = service.interestItem(accIndex);
 			model.addAttribute("interestItemList", interestItemList);
 		} else {
 			// 삭제 실패 시 처리 로직 추가

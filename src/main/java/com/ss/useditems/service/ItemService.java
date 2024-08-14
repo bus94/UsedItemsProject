@@ -21,18 +21,18 @@ public class ItemService {
 	public PageInfo interestItem(int currentPage, int accIndex) {
 		System.out.println(mapper.interest(accIndex));
 
-		ArrayList<ItemDTO> unpaged_list = mapper.interest(accIndex);
+		ArrayList<ItemInfoDTO> unpaged_list = mapper.interest(accIndex);
 
 		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 10);
 
-		List<ItemDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
+		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
-		pageinfo.setDtoContainer2(paged_list);
+		pageinfo.setDtoContainerInfo(paged_list);
 
 		return pageinfo;
 	}
 
-	public List<ItemDTO> interestItem(int accIndex) {
+	public ArrayList<ItemInfoDTO> interestItem(int accIndex) {
 		System.out.println(mapper.interest(accIndex));
 		return mapper.interest(accIndex);
 	}

@@ -12,7 +12,7 @@ import com.ss.useditems.dto.ItemInfoDTO;
 @Mapper
 public interface ItemMapper {
 
-	ArrayList<ItemDTO> interest(@Param("accIndex") int accIndex);
+	ArrayList<ItemInfoDTO> interest(@Param("accIndex") int accIndex);
 
 	int deleteInterestItem(Map<String,Integer> params);
 

@@ -33,13 +33,64 @@
 	</resultMap>
 
 	<select id="interest" parameterType="Integer"
-		resultMap="itemMap">
-		SELECT i.*
-		FROM item i
-		JOIN interest inter ON i.item_index =
-		inter.int_item
-		WHERE inter.int_subject = #{accIndex}
-		order by item_index
+		resultMap="itemInfoMap">
+	SELECT
+		*
+		FROM
+		(
+		SELECT
+		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5,
+        inter.int_subject
+		FROM
+		(
+		SELECT
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_placeX,
+		item_placeY,
+		item_status,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT JOIN reply ON repl_item = item_index
+		GROUP BY
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_placeX,
+		item_placeY,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer
+		) i
+		LEFT JOIN showcase
+		s ON s.show_item = i.item_index
+        JOIN interest inter ON i.item_index = inter.int_item
+		)
+		WHERE INT_SUBJECT = #{accIndex}
 	</select>
 
 	<delete id="deleteInterestItem" parameterType="Map">
@@ -61,7 +112,8 @@
 		s.show_img2,
 		s.show_img3,
 		s.show_img4,
-		s.show_img5
+		s.show_img5,
+		inter.int_subject 
 		FROM
 		(
 		SELECT

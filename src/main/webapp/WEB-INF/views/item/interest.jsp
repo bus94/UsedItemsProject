@@ -15,7 +15,8 @@
 	<div class="interest_item_container" style="padding-top: 100px">
 		<c:forEach var="item" items="${interestitemList}">
 			<div class="interest_item">
-				<img src="${path}/resources/img/${item.item_image}" alt="매물사진"OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer;">
+			
+				<img src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진" OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer;">
 				<div class="interest_item_info" OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer; text-decoration: none; color: black" >
 					<h3>${item.item_title}</h3>
 					<div class="interest_item_price">
@@ -87,4 +88,5 @@ function deleteInterestItem(itemId) {
         form.submit();
     }
 }
+console.log(${item.item_thumbPath});
 </script>
