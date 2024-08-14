@@ -53,6 +53,8 @@
 	href="${path}/resources/css/blacklist/list.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/chat/chatRoom.css?v=${systemProperties['timestamp']}">
 
 <script src="${path}/resources/js/item/itemView.js"></script>
 

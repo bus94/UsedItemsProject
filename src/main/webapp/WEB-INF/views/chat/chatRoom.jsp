@@ -7,16 +7,36 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-<section id="content" class="container" style="padding-top: 100px;">
-	<h1>채팅리스트</h1>
-	<a href="javascript:window.history.back();">뒤로가기</a>
+
+<section id="content" class="container chatRoom_page" style="padding-top: 100px;">
+	<h1>채팅방</h1>
+	<a href="${path}/chat/chat.do">나가기</a>
 	
-	
-	<a href="${path}/chat/chatRoom.do">채팅방 입장</a>
+	<div class="chat-container">
+    <div class="header">
+        세이프챗
+    </div>
+
+    <div class="chat-area" id="chatArea">
+        
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="chatInput" placeholder="메시지입력">
+        <button id="sendButton">전송</button>
+    </div>
+</div>
 	
 	
 	
 	
 </section>
+
+<script>
+
+
+
+
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
