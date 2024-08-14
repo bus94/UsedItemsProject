@@ -7,7 +7,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-
 <c:choose>
 	<c:when test="${itemMember.acc_profile == null}">
 		<!-- 판매자 DB에 프로필이미지가 null인 경우 기본이미지-->
@@ -18,11 +17,6 @@
 		<c:set var="seller_profile_path" value="${path}/resources/img/${itemMember.acc_index}/profile/${itemMember.acc_profile}" />
 	</c:otherwise>
 </c:choose>
-
-
-
-
-
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <div id="hiddenData" data-item-id="${item.item_index}"
