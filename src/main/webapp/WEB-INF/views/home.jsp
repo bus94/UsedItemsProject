@@ -83,7 +83,11 @@
 							<div class="item_view2">
 								<h3>${each.item_title}</h3>
 								<div class="item_price">
-									<h4><fmt:formatNumber value="${each.item_price}" type="number" groupingUsed="true" />원</h4>
+									<h4>
+										<fmt:formatNumber value="${each.item_price}" type="number"
+											groupingUsed="true" />
+										원
+									</h4>
 
 								</div>
 								<div class="item_like">
@@ -114,7 +118,8 @@
 		<img alt="" src="${path}/resources/img/safemarket_banner.png">
 	</div>
 
-	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요 &gt;</h3>
+	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요
+		&gt;</h3>
 	<div class="best_Container" style="height: 600px">
 		<ul class="best_Carousel">
 			<li class="best_Items Front">
@@ -126,105 +131,124 @@
 				</div>
 			</li>
 			<li class="best_Items Left">
-					<div class="best_item">
-						<img src="${path}/resources/img/redwhistle.jpg" alt="1">
-						<div class="bestitem_view">
-							<h3>제품명입니다1</h3>
-						</div>
-					</div></li>
-			<li class="best_Items Left2">
-					<div class="best_item">
-						<img src="${path}/resources/img/zz.png" alt="1">
-						<div class="bestitem_view">
-							<h3>제품명입니다1</h3>	
-						</div>
-					</div></li>
-			<li class="best_Items Right">
-					<div class="best_item">
-						<img src="${path}/resources/img/clover.png" alt="1">
-						<div class="bestitem_view">
-							<h3>제품명입니다1</h3>
-						</div>
-					</div></li>
-			<li class="best_Items Right2">
-					<div class="best_item">
-						<img src="${path}/resources/img/message.png" alt="1">
-						<div class="bestitem_view">
-							<h3>제품명입니다1</h3>
-						</div>
+				<div class="best_item">
+					<img src="${path}/resources/img/redwhistle.jpg" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
 					</div>
+				</div>
+			</li>
+			<li class="best_Items Left2">
+				<div class="best_item">
+					<img src="${path}/resources/img/zz.png" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
+					</div>
+				</div>
+			</li>
+			<li class="best_Items Right">
+				<div class="best_item">
+					<img src="${path}/resources/img/clover.png" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
+					</div>
+				</div>
+			</li>
+			<li class="best_Items Right2">
+				<div class="best_item">
+					<img src="${path}/resources/img/message.png" alt="1">
+					<div class="bestitem_view">
+						<h3>제품명입니다1</h3>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
-	
-	<div class="mainbox_container">
-        <div class="mainbox boxLeft">
-            <div class="box_txt">
-                <h3>누적 회원수</h3>
-                <h2><span class="counter" data-target="3687546">0</span>명</h2>
-            </div>
-            <div class="box_img">
-                <img src="${path}/resources/img/clover.png" alt="">
-            </div>
-            <div class="boxhover_img">
-                <img src="${path}/resources/img/internet.jpg" alt="">
-            </div>
-            <div class="overlay"></div>
-        </div>
-        <div class="mainbox boxRight">
-            <div class="box_txt">
-                <h3>누적 거래량</h3>
-                <h2><span class="counter" data-target="9999">0</span>건</h2>
-            </div>
-            <div class="box_img">
-                <img src="${path}/resources/img/clover.png" alt="">
-            </div>
-            <div class="boxhover_img">
-                <img src="${path}/resources/img/trade.jpg" alt="">
-            </div>
-            <div class="overlay"></div>
-        </div>
-        <div class="mainbox boxUnderLeft">
-            <div class="box_txt">
-                <h3>금일 거래량</h3>
-                <h2><span class="counter" data-target="65">0</span>건</h2>
-            </div>
-            <div class="box_img">
-                <img src="${path}/resources/img/clover.png" alt="">
-            </div>
-            <div class="boxhover_img">
-                <img src="${path}/resources/img/trade2.png" alt="">
-            </div>
-            <div class="overlay"></div>
-        </div>
-        <div class="mainbox boxUnderRight">
-            <div class="box_txt">
-                <h3>누적 신고</h3>
-                <h2><span class="counter" data-target="1234">0</span>건</h2>
-            </div>
-            <div class="box_img">
-                <img src="${path}/resources/img/clover.png" alt="">
-            </div>
-            <div class="boxhover_img">
-                <img src="${path}/resources/img/police.jpeg" alt="">
-            </div>
-            <div class="overlay"></div>
-        </div>
 
-    </div>
+	<div class="mainbox_container">
+		<div style="display:flex;width: 100%; justify-content: space-between;">
+			<div class="mainbox boxLeft">
+				<div class="box_txt">
+					<h3>누적 회원수</h3>
+					<h2>
+						<span class="counter" data-target="3687546">0</span>명
+					</h2>
+				</div>
+				<div class="box_img">
+					<img src="${path}/resources/img/clover.png" alt="">
+				</div>
+				<div class="boxhover_img">
+					<img src="${path}/resources/img/internet.jpg" alt="">
+				</div>
+				<div class="overlay"></div>
+			</div>
+			<div class="mainbox boxRight">
+				<div class="box_txt">
+					<h3>누적 거래량</h3>
+					<h2>
+						<span class="counter" data-target="9999">0</span>건
+					</h2>
+				</div>
+				<div class="box_img">
+					<img src="${path}/resources/img/clover.png" alt="">
+				</div>
+				<div class="boxhover_img">
+					<img src="${path}/resources/img/trade.jpg" alt="">
+				</div>
+				<div class="overlay"></div>
+			</div>
+		</div>
+		<div style="display:flex; gap:20px;">
+			<div class="mainbox boxUnderLeft">
+				<div class="box_txt">
+					<h3>금일 거래량</h3>
+					<h2>
+						<span class="counter" data-target="65">0</span>건
+					</h2>
+				</div>
+				<div class="box_img">
+					<img src="${path}/resources/img/clover.png" alt="">
+				</div>
+				<div class="boxhover_img">
+					<img src="${path}/resources/img/trade2.png" alt="">
+				</div>
+				<div class="overlay"></div>
+			</div>
+			<div class="mainbox boxUnderRight">
+				<div class="box_txt">
+					<h3>누적 신고</h3>
+					<h2>
+						<span class="counter" data-target="1234">0</span>건
+					</h2>
+				</div>
+				<div class="box_img">
+					<img src="${path}/resources/img/clover.png" alt="">
+				</div>
+				<div class="boxhover_img">
+					<img src="${path}/resources/img/police.jpeg" alt="">
+				</div>
+				<div class="overlay"></div>
+			</div>
+		</div>
+
+	</div>
 
 	<div class="rolling">
-            <div class="rolling-list">
-                <ul style="list-style: none">
-                    <li>
-                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
-                    </li>
-                    <li>
-                        <div class="image-wrap"><img src="${path}/resources/img/rolling.png" alt=""></div>
-                    </li>   
-                </ul>
-            </div>
-        </div>
+		<div class="rolling-list">
+			<ul style="list-style: none">
+				<li>
+					<div class="image-wrap">
+						<img src="${path}/resources/img/rolling.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="image-wrap">
+						<img src="${path}/resources/img/rolling.png" alt="">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
