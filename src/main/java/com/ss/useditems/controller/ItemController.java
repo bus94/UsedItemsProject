@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class ItemController {
 
 	private PageInfo pageInfo;
 
+	@CacheEvict
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String searchType, String[] categoryList,
 			String currentPage, HttpSession session) {

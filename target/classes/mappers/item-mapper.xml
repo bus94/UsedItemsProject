@@ -14,13 +14,6 @@
 		item_index DESC
 	</select>
 
-	<insert id="itemEnroll" parameterType="itemDTO">
-		INSERT INTO ITEM
-		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller}, #{item_title},
-		#{item_content}, #{item_image}, #{item_category}, #{item_price},
-		#{item_place}, 'onsale', sysdate, default, default, null, null)
-	</insert>
-
 	<insert id="enrollItem" parameterType="itemInfoDTO">
 		INSERT ALL
 		INTO ITEM
