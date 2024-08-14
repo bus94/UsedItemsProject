@@ -319,19 +319,19 @@
     width: 1200px;
     margin: auto;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction:column;
     margin-bottom:130px;
 }
 
 .mainbox {
-    width: 580px;
+    width: 590px;
     height: 250px;
     border-radius: 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 50px;
+    margin-bottom: 20px;
 }
 
 .mainbox h3 {
