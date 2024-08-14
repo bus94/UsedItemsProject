@@ -1,40 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+/**
+ * 
+ */
+ $(function() {
+
+	console.log('chatRoom.js 연결');
+		
+});
+ 
 
 
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<c:set var="serverName" value="${pageContext.request.serverName}" />
-<c:set var="serverPort" value="${pageContext.request.serverPort}" />
+ window.onload = function() {
+ 
+ 	const acc_index = chat_accIndex;
+	const acc_id = chat_accId;
+	const acc_nickname = chat_accNickname;
+	const acc_profile = chat_accProfile; 	 	 	
 
 
 
-<div class="chat-container">
-    	<div class="header">세이프챗</div>
+ console.log(acc_index);
+ console.log(acc_id);
+ console.log(acc_nickname);
+ console.log(acc_profile);
+};
+ 
 
-    	<div class="chat-area" id="chatArea">
-   
-    	</div>
-
-    	<div class="input-area">
-        	<input type="text" id="chatInput" placeholder="메시지입력">
-        	<button id="sendButton">전송</button>
-    	</div>
-</div>
-
-
-<script>
+ 
+ 	//var path =  "/useditems";
+	//var serverName = "localhost";
+	//var serverPort = "8282";
 	
+	var chatURL = "ws://localhost:8282/useditems/chat/safeChat"
+
+	
+
+
+
+
 	//클라이언트의 jsp에서 웹소켓 객체 생성
 	//protocol: ws
 	//요청 경로는 서버의 웹소켓 핸들러 제공 url(WebSocketConfig에서 설정)
-	var ws = new WebSocket("ws://${serverName}:${serverPort}${path}/chat/safeChat");
+	var ws = new WebSocket(chatURL);
 
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
 		console.log("서버 웹소켓에 연결 성공");
-		ws.send("${loginMember.acc_nickname} 님 입장하였습니다.");
+		ws.send(clientNickname + "님 입장하였습니다.");
 		
 	};
 	
@@ -89,8 +99,5 @@
 	}
 	
 	
+ 
 	
-
-
-
-</script>

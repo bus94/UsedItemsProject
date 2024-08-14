@@ -71,6 +71,107 @@
 	<div id="wrapper">
 		<!-- 전체 페이지 wrapper -->
 
+<!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
+				 <!-- ChatRoom_List_Modal -->
+<div class="modal fade" id="chatRoomListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">거래 중인 매물</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+			 						<button class="btn btn-primary" data-bs-target="#chatRoomModal1" data-bs-toggle="modal">채팅방1</button>
+        							<hr>
+									<button class="btn btn-primary" data-bs-target="#chatRoomModal2" data-bs-toggle="modal">채팅방2</button>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+				 <!-- ChatRoom_Modal -->
+<div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">채팅방1</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+			 		<div class="chat-container">
+	    	<div class="header">세이프챗</div>
+
+    		<div class="chat-area" id="chatArea">
+   
+	    	</div>
+
+    		<div class="input-area">
+        		<input type="text" id="chatInput" placeholder="메시지입력">
+        		<button id="sendButton">전송</button>
+    		</div>
+				</div>		
+				
+			<!-- 챗룸JS에 넘겨줄 로그인멤버 변수 -->
+			<script>
+				var chat_accIndex = "${loginMember.acc_index}";
+				var chat_accId = "${loginMember.acc_id}";
+				var chat_accNickname = "${loginMember.acc_nickname}";
+				var chat_accProfile = "${loginMember.acc_profile}";
+			</script>
+			<script defer src="${path}/resources/js/chat/chatRoom.js">
+			</script>
+					
+      </div>
+      <div class="modal-footer">
+      	<button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">채팅방리스트로 돌아가기</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+				 <!-- ChatRoom_Modal -->
+<div class="modal fade" id="chatRoomModal2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">채팅방2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+			 		<div class="chat-container">
+	    	<div class="header">세이프챗</div>
+
+    		<div class="chat-area" id="chatArea">
+   
+	    	</div>
+
+    		<div class="input-area">
+        		<input type="text" id="chatInput" placeholder="메시지입력">
+        		<button id="sendButton">전송</button>
+    		</div>
+				</div>		 						
+			 						
+      </div>
+      <div class="modal-footer">
+      	<button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">채팅방리스트로 돌아가기</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 네비게이터 (fixed-top!!!) -->
 		<nav id="navigator"
 			class="fixed-top navbar navbar-expand-lg bg-body-tertiary"
 			style="background-color: white">
@@ -157,11 +258,23 @@
 				<a href="${path}/item/interest.do" id="nav_wish"
 					class="nav_side_icon max992off"> <i
 					class="fa-brands fa-gratipay"></i></a>
-				<!-- 링크 -->
-				<a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon">
+				<!-- 챗 -->
+<%-- 				 <a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon"> 
 					<i class="fa-solid fa-circle-exclamation"></i>
-				</a>
-			</c:if>
+				 </a>  --%>
+				 
+				 
+				 <!-- Button trigger modal -->
+				 <button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
+					<i class="fa-solid fa-circle-exclamation"></i>
+				 </button>
+				
+
+
+				
+			</c:if>	<!-- 로그인되었을 때만 보일 부분 -->
+
+			
 			<!-- 위로가기 -->
 			<a href="" id="nav_toTop" class="nav_side_icon"> <i
 				class="fa-solid fa-circle-arrow-up"></i></a>
