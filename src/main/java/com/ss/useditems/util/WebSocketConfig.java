@@ -17,7 +17,7 @@ public class WebSocketConfig implements WebSocketConfigurer{
 		
 		// "/safeChat" url 요청에 대해
 		//setAllowedOrigins("*"): 어떤 클라이언트(어디서 접속하든지)든 접속 허용
-		registry.addHandler(new SafeWebSocketHandler(), "/safeChat").setAllowedOrigins("*");
+		registry.addHandler(new SafeWebSocketHandler(), "/chat/safeChat").setAllowedOrigins("*");
 		
 	}
 

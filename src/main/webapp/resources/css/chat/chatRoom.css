@@ -50,7 +50,7 @@
 	color: black;
 }
 
-.chatRoom_page .message.other {
+.chatRoom_page .message {
 	align-self: flex-start;
 	background-color: #ebebeb;
 	color: black;
