@@ -69,6 +69,8 @@
 .find {
 	display: flex;
 	justify-content: space-around; 
+	width: 80%;
+	margin: auto;
 }
 
 .findBorder {
@@ -101,6 +103,10 @@
 .findPw:active, .findPw:focus {
 	border: none !important;
 	box-shadow: none !important;
+}
+
+.findBtnW {
+	width: 100px;
 }
 
 .condition {

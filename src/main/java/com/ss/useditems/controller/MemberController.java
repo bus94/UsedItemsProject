@@ -391,8 +391,6 @@ public class MemberController {
 //			System.out.println("수정 전: " + loginMember);
 //			System.out.println(birthDate_input);
 			
-			
-			//signupOK.do 포매터 : ??? 왜 sqlDate를??
 			//formatter.format(date) : Date -> String
 			//formatter.parse(string) : String -> Date 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

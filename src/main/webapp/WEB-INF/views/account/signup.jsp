@@ -59,9 +59,9 @@
 				<div class="loginButton mt-2">
 					<button type="submit" class="btn login_btnStyle mb-1 mt-1"
 						value="회원가입 완료">회원가입</button>
-					<button type="button" class="btn login_btnStyle" value="로그인 하러 가기"
+					<%-- <button type="button" class="btn login_btnStyle" value="로그인 하러 가기"
 						onclick="location.href='${path}/account/login.do';">로그인
-						하러 가기</button>
+						하러 가기</button> --%>
 				</div>
 			</form>
 			<!-- 주소 검색 모달 -->

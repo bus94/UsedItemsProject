@@ -28,8 +28,8 @@
 						value="로그인" /> <input type="button"
 						class="btn login_btnStyle mb-1" value="회원가입"
 						onclick="location.href='${path}/account/signup.do';" />
-					<div class="find">
-						<button type="button" class="findId" data-bs-toggle="modal"
+					<div class="find mt-1">
+						<button type="button" class="findId findBtnW" data-bs-toggle="modal"
 							data-bs-target="#exampleModalId" data-bs-whatever="@mdo">아이디
 							찾기</button>
 						<div class="modal fade" id="exampleModalId" tabindex="-1"
@@ -64,7 +64,7 @@
 							</div>
 						</div>
 						<div class="findBorder"></div>
-						<button type="button" class="findPw" data-bs-toggle="modal"
+						<button type="button" class="findPw findBtnW" data-bs-toggle="modal"
 							data-bs-target="#exampleModalPw" data-bs-whatever="@mdo">비밀번호
 							찾기</button>
 						<div class="modal fade" id="exampleModalPw" tabindex="-1"
