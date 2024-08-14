@@ -189,21 +189,6 @@
 			}
 
 		</script>
-
-		<%-- <div class="mt-2"
-				style="display: flex; justify-content: space-around; align-content: center; align-items: center;">
-				<form id="uploadFile" method="post"
-					enctype="multipart/form-data">
-					&nbsp;프로필 사진 첨부:&nbsp;<input style="width: 250px;" type="file" name="file">
-					<button type="button" class="btn btn-outline-secondary" onclick="submitUploadForm('${path}/uploadOK.do')">업로드</button>
-				</form>
-			</div> --%>
-		<!-- <script>
-	function submitUploadForm(url) {
-		${"#uploadFile"}.attr("action", url);
-		${"#uploadFile"}.submit();
-	}
-</script> -->
 	</c:if>
 </section>
 
