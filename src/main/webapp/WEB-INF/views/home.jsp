@@ -80,22 +80,28 @@
 						<a href="${path}/item/itemView?item_index=${each.item_index}"
 							style="text-decoration: none; color: black"> <img
 							src="${path}/resources/img/${each.item_thumbPath}" alt="..">
-							<div class="item_view">
+							<div class="item_view2">
 								<h3>${each.item_title}</h3>
 								<div class="item_price">
-									<h4>${each.item_price}원</h4>
-									<h5>
-										<fmt:formatDate value="${each.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
+									<h4><fmt:formatNumber value="${each.item_price}" type="number" groupingUsed="true" />원</h4>
+
 								</div>
 								<div class="item_like">
 									<p>관심 ${each.item_interest}</p>
 									<p>댓글 ${each.repl_count}</p>
 								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${each.item_place}</p>
+								<div class="item_addr"
+									style="display: flex; justify-content: space-between;">
+									<div style="display: flex">
+										<img src="${path}/resources/img/gps.png" alt="위치">
+										<p>${each.item_place}</p>
+									</div>
+									<div>
+										<h5>
+											<fmt:formatDate value="${each.item_enrollDate}"
+												pattern="yy/MM/dd" />
+										</h5>
+									</div>
 								</div>
 							</div>
 						</a>
@@ -150,6 +156,62 @@
 			</li>
 		</ul>
 	</div>
+	
+	<div class="mainbox_container">
+        <div class="mainbox boxLeft">
+            <div class="box_txt">
+                <h3>누적 회원수</h3>
+                <h2><span class="counter" data-target="3687546">0</span>명</h2>
+            </div>
+            <div class="box_img">
+                <img src="${path}/resources/img/clover.png" alt="">
+            </div>
+            <div class="boxhover_img">
+                <img src="${path}/resources/img/internet.jpg" alt="">
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div class="mainbox boxRight">
+            <div class="box_txt">
+                <h3>누적 거래량</h3>
+                <h2><span class="counter" data-target="9999">0</span>건</h2>
+            </div>
+            <div class="box_img">
+                <img src="${path}/resources/img/clover.png" alt="">
+            </div>
+            <div class="boxhover_img">
+                <img src="${path}/resources/img/trade.jpg" alt="">
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div class="mainbox boxUnderLeft">
+            <div class="box_txt">
+                <h3>금일 거래량</h3>
+                <h2><span class="counter" data-target="65">0</span>건</h2>
+            </div>
+            <div class="box_img">
+                <img src="${path}/resources/img/clover.png" alt="">
+            </div>
+            <div class="boxhover_img">
+                <img src="${path}/resources/img/trade2.png" alt="">
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div class="mainbox boxUnderRight">
+            <div class="box_txt">
+                <h3>누적 신고</h3>
+                <h2><span class="counter" data-target="1234">0</span>건</h2>
+            </div>
+            <div class="box_img">
+                <img src="${path}/resources/img/clover.png" alt="">
+            </div>
+            <div class="boxhover_img">
+                <img src="${path}/resources/img/police.jpeg" alt="">
+            </div>
+            <div class="overlay"></div>
+        </div>
+
+    </div>
 
 	<div class="rolling">
             <div class="rolling-list">
