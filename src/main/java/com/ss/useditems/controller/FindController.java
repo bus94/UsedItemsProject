@@ -31,11 +31,11 @@ public class FindController {
 		Map<String, String> response = new HashMap<String, String>();
 		String msg = null;
 		if (checkId == null || checkId.trim().isEmpty()) {
-			System.out.println("못찾았습니다.");
+			System.out.println("아이디를 찾지 못했습니다.");
 			msg = "이름 또는 핸드폰 번호를 다시 확인해주세요.";
 			response.put("msg", msg);
 		} else {
-			System.out.println("찾았습니다.");
+			System.out.println("아이디를 찾았습니다.");
 			response.put("checkId", checkId);
 		}
 		System.out.println("checkId: " + checkId);
@@ -55,18 +55,19 @@ public class FindController {
 		System.out.println("전송 받은 name: " + name);
 		System.out.println("전송 받은 phone: " + phone);
 
-		String checkPw = "pw_test";
-		System.out.println("checkPw: " + checkPw);
+		String checkPw = service.findPw(request);
 		Map<String, String> response = new HashMap<String, String>();
-
-		if (checkPw == null || !checkPw.equals("") || checkPw.isEmpty()) {
-			System.out.println("못찾았습니다.");
-			String msg = "아이디, 이름, 핸드폰 번호를 다시 확인해주세요.";
+		String msg = null;
+		if (checkPw == null || checkPw.trim().isEmpty()) {
+			System.out.println("비밀번호를 찾지 못했습니다.");
+			msg = "아이디, 이름, 핸드폰 번호를 다시 확인해주세요.";
 			response.put("msg", msg);
 		} else {
-			System.out.println("찾았습니다.");
-			response.put("checkId", checkPw);
+			System.out.println("비밀번호를 찾았습니다.");
+			response.put("checkPw", checkPw);
 		}
+		System.out.println("checkPw: " + checkPw);
+		System.out.println("msg: " + msg);
 
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}

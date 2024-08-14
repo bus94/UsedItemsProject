@@ -12,4 +12,14 @@
 		AND acc_phone = #{phone}
 	</select>
 
+	<select id="findPw" parameterType="Map" resultType="String">
+		SELECT
+		acc_password
+		FROM
+		account
+		WHERE
+		acc_id = #{id}
+		AND acc_name = #{name}
+		AND acc_phone = #{phone}
+	</select>
 </mapper>

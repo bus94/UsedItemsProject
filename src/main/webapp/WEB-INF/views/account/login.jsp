@@ -57,7 +57,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-success" id="findIdBtn">확인</button>
-										<button type="button" class="btn btn-secondary"
+										<button type="button" class="btn btn-secondary" id="findCancel"
 											data-bs-dismiss="modal">취소</button>
 									</div>
 								</div>
@@ -96,7 +96,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-success" id="findPwBtn">확인</button>
-										<button type="button" class="btn btn-secondary"
+										<button type="button" class="btn btn-secondary" id="findCancel"
 											data-bs-dismiss="modal">취소</button>
 									</div>
 								</div>
@@ -133,7 +133,7 @@
 					console.log("checkId: " + checkId);
 					console.log("msg: " + msg);
 					if(checkId !== null && checkId !== undefined && checkId !== "") {
-						alert('아이디 찾기 성공!');
+						alert('아이디 찾기 성공!\n아이디: ' + checkId);
 						$('#acc_id').val(checkId);
 						$('#findId_name').val('');
 						$('#findId_phone').val('');
@@ -162,16 +162,35 @@
 				dataType : "json",
 				success : function(data) {
 					console.log("전송 성공: " + data);
-					$('#findPwid').val('');
-					$('#findPw_name').val('');
-					$('#findPw_phone').val('');
-					$('#exampleModalPw').modal('hide');
+					var checkPw = data.checkPw;
+					var msg = data.msg;
+					console.log("checkPw: " + checkPw);
+					console.log("msg: " + msg);
+					if(checkPw !== null && checkPw !== undefined && checkPw !== "") {
+						alert('비밀번호 찾기 성공!\n비밀번호: ' + checkPw);
+						$('#findPw_id').val('');
+						$('#findPw_name').val('');
+						$('#findPw_phone').val('');
+						$('#exampleModalPw').modal('hide');
+					} else {
+						alert(msg);
+					}
 				},
 				error : function(xhr, status, error) {
 				    console.error("전송 실패. 상태: " + status + ", 오류: " + error);
 				    console.error("응답 텍스트: " + xhr.responseText);
 				}
 			});
+		});
+		
+		$('#findCancel').click(function() {
+			$('#findId_name').val('');
+			$('#findId_phone').val('');
+			$('#findPw_id').val('');
+			$('#findPw_name').val('');
+			$('#findPw_phone').val('');
+			$('#exampleModalId').modal('hide');
+			$('#exampleModalPw').modal('hide');
 		});
 	});
 </script>

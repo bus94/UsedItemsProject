@@ -8,5 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface FindMapper {
 
 	String findId(Map<String, String> request);
+
+	String findPw(Map<String, String> request);
 	
 }

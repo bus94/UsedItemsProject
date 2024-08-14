@@ -16,5 +16,9 @@ public class FindService {
 	public String findId(Map<String, String> request) {
 		return mapper.findId(request);
 	}
+
+	public String findPw(Map<String, String> request) {
+		return mapper.findPw(request);
+	}
 	
 }
