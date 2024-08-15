@@ -24,7 +24,7 @@ public class ItemEnrollController {
 
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
-			String item_category, int item_price, String item_place, MultipartHttpServletRequest item_image,
+			String item_category, int item_price, String item_place, String addressX, String addressY, MultipartHttpServletRequest item_image,
 			MultipartHttpServletRequest item_thumb) {
 		System.out.println("itemEnroll() 실행");
 
@@ -84,6 +84,8 @@ public class ItemEnrollController {
 			enrollItemInfo.setItem_category(item_category);
 			enrollItemInfo.setItem_price(item_price);
 			enrollItemInfo.setItem_place(item_place);
+			enrollItemInfo.setItem_placeX(addressX);
+			enrollItemInfo.setItem_placeY(addressY);
 			enrollItemInfo.setShow_thumb(thumbFileRealName);
 			if (list.get(0) != null) {
 				enrollItemInfo.setShow_img1(list.get(0).getOriginalFilename());

@@ -20,10 +20,11 @@
 		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller},
 		#{item_title},
 		#{item_content}, #{item_category}, #{item_price},
-		#{item_place},
+		#{item_place}, #{item_placeX}, #{item_placeY},
 		'onsale', sysdate, default, default, null, null)
 		INTO
-		SHOWCASE(show_index, show_item, show_thumb
+		SHOWCASE(show_index,
+		show_item, show_thumb
 		<if test="show_img1 != null">
 			, show_img1
 		</if>
