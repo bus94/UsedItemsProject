@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -56,6 +55,8 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/chat/chatRoom.css?v=${systemProperties['timestamp']}">
 
+<script defer src="${path}/resources/js/header.js"></script>
+<%-- <script defer src="${path}/resources/js/chat/chatRoom.js"></script> --%>
 <script src="${path}/resources/js/item/itemView.js"></script>
 
 <!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
@@ -71,102 +72,79 @@
 	<div id="wrapper">
 		<!-- 전체 페이지 wrapper -->
 
+
 <!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
-				 <!-- ChatRoom_List_Modal -->
+	<!-- ChatRoom_List_Modal -->
 <div class="modal fade" id="chatRoomListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">거래 중인 매물</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="unlink-chat btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-      
-			 						<button class="btn btn-primary" data-bs-target="#chatRoomModal1" data-bs-toggle="modal">채팅방1</button>
-        							<hr>
-									<button class="btn btn-primary" data-bs-target="#chatRoomModal2" data-bs-toggle="modal">채팅방2</button>
+      <div id="chatList" class="modal-body">
+      					
+      					<!-- <div class="chatRoom_box container">
+      						<p>매물 제목(임시)</p>
+      						<span>판매자(임시)</span><span>생성일자(임시)</span>
+			 				<button class="btn btn-success btn-sm" id="chatList1" data-bs-target="#chatRoomModal1" data-bs-toggle="modal">채팅방 보기</button>
+			 				<button class="btn btn-warning btn-sm" >거래 중단하기</button>
+      					</div> -->
+        				
+						
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="unlink-chat btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
 </div>
 
-				 <!-- ChatRoom_Modal -->
-<div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+
+			<!-- JS에 넘겨줄 변수 선언 -->
+			<script>
+				var serverName =  "${pageContext.request.serverName}";
+				var serverPort =  "${pageContext.request.serverPort}";
+				var project = "${pageContext.request.contextPath}";
+			
+				var loginMember_accIndex = "${loginMember.acc_index}";
+				var loginMember_accId = "${loginMember.acc_id}";
+				var loginMember_accNickname = "${loginMember.acc_nickname}";
+				var loginMember_accProfile = "${loginMember.acc_profile}";
+			</script>
+<div id="ChatRoom_Modal_reservoir">
+<!-- ChatRoom_Modal -->
+<!-- <div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">채팅방1</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">SafeChat_채팅방#1</h5>
+        <button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>
+        <button type="button" class="unlink-chat btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body">
-      
-			 		<div class="chat-container">
-	    	<div class="header">세이프챗</div>
+      <div id="chat-viewer" class="modal-body">
+			채팅글 div가 추가되는 곳
 
-    		<div class="chat-area" id="chatArea">
-   
-	    	</div>
 
-    		<div class="input-area">
-        		<input type="text" id="chatInput" placeholder="메시지입력">
-        		<button id="sendButton">전송</button>
-    		</div>
-				</div>		
-				
-			<!-- 챗룸JS에 넘겨줄 로그인멤버 변수 -->
-			<script>
-				var chat_accIndex = "${loginMember.acc_index}";
-				var chat_accId = "${loginMember.acc_id}";
-				var chat_accNickname = "${loginMember.acc_nickname}";
-				var chat_accProfile = "${loginMember.acc_profile}";
-			</script>
-			<script defer src="${path}/resources/js/chat/chatRoom.js">
-			</script>
+
+
 					
       </div>
-      <div class="modal-footer">
-      	<button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">채팅방리스트로 돌아가기</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-				 <!-- ChatRoom_Modal -->
-<div class="modal fade" id="chatRoomModal2" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">채팅방2</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      
-			 		<div class="chat-container">
-	    	<div class="header">세이프챗</div>
-
-    		<div class="chat-area" id="chatArea">
-   
-	    	</div>
-
-    		<div class="input-area">
-        		<input type="text" id="chatInput" placeholder="메시지입력">
-        		<button id="sendButton">전송</button>
+      <div id="chat-footer" class="modal-footer">
+          	<div class="input-area w-100">
+        		<input type="text" id="chat-input" class="w-75" onkeyup="keyCheck(event)" placeholder="메시지 입력">
+        		<button id="chat-sendBtn">전송</button>
     		</div>
-				</div>		 						
-			 						
-      </div>
-      <div class="modal-footer">
-      	<button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">채팅방리스트로 돌아가기</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
 </div>
+ -->
+
+</div><!-- ChatRoom_Modal_reservoir -->
+
+				 
 
 
 
@@ -249,6 +227,7 @@
 					</form>
 				</div>
 			</div>
+			
 			<c:if test="${loginMember != null}">
 				<!-- 회원페이지 -->
 				<a href="${path}/account/my_info.do" id="nav_user"
@@ -258,72 +237,17 @@
 				<a href="${path}/item/interest.do" id="nav_wish"
 					class="nav_side_icon max992off"> <i
 					class="fa-brands fa-gratipay"></i></a>
-				<!-- 챗 -->
-<%-- 				 <a href="${path}/chat/chat.do" id="nav_chat" class="nav_side_icon"> 
+				<!-- 채팅방 리스트 -->
+				<!-- Button trigger modal -->
+				<button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
 					<i class="fa-solid fa-circle-exclamation"></i>
-				 </a>  --%>
-				 
-				 
-				 <!-- Button trigger modal -->
-				 <button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="fa-solid fa-circle-exclamation"></i>
-				 </button>
-				
-
-
+				</button>
 				
 			</c:if>	<!-- 로그인되었을 때만 보일 부분 -->
 
-			
 			<!-- 위로가기 -->
 			<a href="" id="nav_toTop" class="nav_side_icon"> <i
 				class="fa-solid fa-circle-arrow-up"></i></a>
 		</nav>
 
 
-
-		<script>
-			$(document).ready(function() {
-
-				$('#logout').click(function() {
-
-					if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-						console.log("logout");
-						window.location.href = "${path}/account/logoutOK.do";
-					}
-				})
-
-			});
-
-			$('#nav_toTop').click(function() {
-				console.log('TOP 클릭');
-
-				$('html, body').animate({
-					scrollTop : 0
-				}, 50);
-				return false;
-			});
-
-			$('.navbar-toggler').click(function() {
-				console.log('Nav토글버튼 클릭');
-				$('section').toggleClass('section_toggleOn');
-				$('#nav_user').toggle();
-				$('#nav_wish').toggle();
-				$('.menu_text').toggle();
-			});
-
-			window.addEventListener('scroll', function() {
-				//console.log(window.scrollY);
-
-				// 스크롤 Y축 300 초과 시 실행
-				if (window.scrollY > '300') {
-					$('#nav_toTop').show();
-				}
-
-				// 스크롤 Y축 300 미만 시 실행
-				if (window.scrollY < '300') {
-					$('#nav_toTop').hide();
-				}
-
-			});
-		</script>

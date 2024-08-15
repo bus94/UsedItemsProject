@@ -16,6 +16,12 @@
 
 		<typeAlias type="com.ss.useditems.dto.ItemInfoDTO"
 			alias="itemInfoDTO" />
+			
+		<typeAlias type="com.ss.useditems.dto.ChatRoomDTO"
+			alias="ChatRoomDTO" />		<!-- 정일 -->
+			
+		<typeAlias type="com.ss.useditems.dto.ChatDTO"
+			alias="ChatDTO" />		<!-- 정일 -->
 
 	</typeAliases>
 </configuration>

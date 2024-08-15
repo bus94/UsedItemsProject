@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ss.useditems.mapper.ChatMapper">
+
+	<resultMap type="ChatRoomDTO" id="chatRoomMap">
+		<result property="room_index" column="room_index" />
+		<result property="room_item" column="room_item" />
+		<result property="room_reply" column="room_reply" />
+		<result property="room_openDate" column="room_openDate" />
+	</resultMap>
+
+	<resultMap type="ChatDTO" id="chatMap">
+		<result property="chat_index" column="chat_index" />
+		<result property="chat_room" column="chat_room" />
+		<result property="chat_writer" column="chat_writer" />
+		<result property="chat_content" column="chat_content" />
+		<result property="chat_enrollDate" column="chat_enrollDate" />
+	</resultMap>
+
+	<resultMap type="ChatRoomDTO" id="chatRoomDetailMap"
+		extends="chatRoomMap">
+		<result property="room_itemTitle" column="item_title" />
+		<result property="room_itemStatus" column="item_status" />
+		<result property="room_hostIndex" column="item_seller" />
+		<result property="room_hostId" column="room_hostId" />
+		<result property="room_hostNickname" column="room_hostNickname" />
+		<result property="room_hostProfile" column="room_hostProfile" />
+		<result property="room_guestIndex" column="repl_candidate" />
+		<result property="room_guestId" column="room_guestId" />
+		<result property="room_guestNickname"
+			column="room_guestNickname" />
+		<result property="room_guestProfile" column="room_guestProfile" />
+		<collection property="messages" javaType="arrayList"
+			resultMap="chatMap" />
+
+	</resultMap>
+
+
+	<select id="selectChatList" parameterType="String"
+		resultMap="chatRoomDetailMap">
+		select
+		*
+		from
+		(select
+		*
+		from
+		(select
+		room.*,
+		item_title,
+		item_status,
+		item_seller,
+		acc_id room_hostId,
+		acc_nickname
+		room_hostNickname,
+		acc_profile room_hostProfile
+		from chatroom room
+		left
+		join item on room_item = item_index
+		left join account on item_seller =
+		acc_index
+		where item_status='ondeal') host
+		join
+		(select
+		room_index
+		room_index_g,
+		repl_candidate,
+		acc_id room_guestId,
+		acc_nickname
+		room_guestNickname,
+		acc_profile room_guestProfile
+		from chatroom room
+		left join reply on room_reply = repl_index
+		left join account on
+		repl_candidate = acc_index) guest
+		on host.room_index =
+		guest.room_index_g)
+		left join chat on room_index=chat_room
+		where
+		item_seller = #{loginMember__accIndex}
+		or repl_candidate =
+		#{loginMember__accIndex}
+		order by chat_index
+	</select>
+
+	<select id="selectChatRoom" parameterType="String"
+		resultMap="chatRoomDetailMap">
+		select
+		*
+		from
+		(select
+		room.*,
+		item_title,
+		item_status,
+		item_seller,
+		acc_id room_hostId,
+		acc_nickname room_hostNickname,
+		acc_profile room_hostProfile
+		from chatroom room
+		left join item on room_item = item_index
+		left join account on item_seller = acc_index
+		where item_status='ondeal') host
+		join
+		(select
+		room_index room_index_g,
+		repl_candidate,
+		acc_id room_guestId,
+		acc_nickname room_guestNickname,
+		acc_profile room_guestProfile
+		from chatroom room
+		left join reply on room_reply = repl_index
+		left join account on repl_candidate = acc_index) guest
+		on host.room_index = guest.room_index_g
+		where room_index = #{room_index}
+	</select>
+
+
+
+</mapper>

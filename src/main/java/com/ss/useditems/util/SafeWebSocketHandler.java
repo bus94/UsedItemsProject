@@ -23,6 +23,7 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 	
 	
 	
+	
 	@Override	// 웹소켓에 특정 세션(클라이언트)이 연결되면
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
@@ -30,8 +31,6 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 		sessionSet.add(session);
 		System.out.println("입장한 클라이언트 session: " + session);
 	}
-	
-	
 	
 	
 	
@@ -45,20 +44,18 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 		//들어온거 그대로 메시지로 돌려줌
 		TextMessage messageToClients = new TextMessage(payload);
 		
-		//메시지를 보내온 클라이언트에게 확인 메시지
-		TextMessage confirmToClient = new TextMessage("니꺼 다 뿌렸다");
-		
-		
 		//접속한 모든 세션에 보내는 메시지
 		for(WebSocketSession eachSession : sessionSet) {
 			eachSession.sendMessage(messageToClients);
 		}
 		
+		
 		//메시지를 보내온 클라이언트에게 확인 메시지
-		session.sendMessage(confirmToClient);
+		//TextMessage confirmToClient = new TextMessage("너한테만 보낸다");
+		
+		//메시지를 보내온 클라이언트에게 확인 메시지
+		//session.sendMessage(confirmToClient);
 	}
-	
-	
 	
 	
 	
