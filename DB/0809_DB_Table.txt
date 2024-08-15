@@ -8,6 +8,8 @@ DROP TABLE CHATROOM;
 DROP TABLE REPLY;
 DROP TABLE ITEM;
 DROP TABLE ACCOUNT;
+drop table transaction_location;
+
 
 DROP SEQUENCE SHOWCASE_SEQ;
 DROP SEQUENCE BLACKLIST_SEQ;
@@ -19,7 +21,7 @@ DROP SEQUENCE CHATROOM_SEQ;
 DROP SEQUENCE REPLY_SEQ;
 DROP SEQUENCE ITEM_SEQ;
 DROP SEQUENCE ACCOUNT_SEQ;
-
+drop SEQUENCE location_SEQ;
 ------------------------------------------------------
 CREATE SEQUENCE ACCOUNT_SEQ;
 CREATE TABLE ACCOUNT (
@@ -349,6 +351,20 @@ CREATE TABLE BLACKLIST (
         
 COMMIT;
 
+-----------------------------------------------------------------------------------
+
+CREATE SEQUENCE location_SEQ;
+CREATE TABLE transaction_location (
+    id INT PRIMARY KEY,
+    address VARCHAR(255) NOT NULL,
+    addressx varchar(255) not null,
+    addressy varchar(255) not null
+);
+
+insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1330-3','37.4936498','127.0280287');
+insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1374','37.493587','127.0295347');
+
+commit;
 
 select * from account;
 select * from item;
@@ -360,5 +376,6 @@ select * from review;
 select * from interest;
 select * from blacklist;
 SELECT to_char(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate FROM item;
+select * from transaction_location;
 
 COMMIT;
