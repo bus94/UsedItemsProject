@@ -454,19 +454,6 @@ public class MemberController {
 
 	//////////////////////////////////// 정일/////////////////////
 
-	@RequestMapping("/map/maptest1")
-	public String mapTest(Model model) {
-		System.out.println("maptest 페이지");
-		return "map/maptest1";
-	}
-	
-	
-	
-	@RequestMapping("/map/maptest2")
-	public String mapTest2(Model model) {
-		System.out.println("maptest 페이지");
-		return "map/maptest2";
-	}
 	
 	
 	
