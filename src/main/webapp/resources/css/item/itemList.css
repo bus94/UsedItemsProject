@@ -8,6 +8,7 @@
 	align-items: center;
 	justify-content: center;
 	background-color: rgb(238, 238, 238);
+	padding-bottom: 30px;
 }
 
 .category {
@@ -166,6 +167,10 @@
 
 .item_view h3 {
 	font-size: 17px;
+		margin-bottom: 6px;
+	white-space: nowrap;         
+    overflow: hidden;         
+    text-overflow: ellipsis;
 }
 
 .item_price {
@@ -178,9 +183,14 @@
 	font-size: 14px;
 }
 
-.item_view h5 {
-	font-size: 15px;
+.item_addr h5{
+	margin-top:9px;
+	font-size: 14px;
+	color: gray;
+	font-weight: lighter;
 }
+
+
 
 .item_like {
 	display: flex;
@@ -214,4 +224,25 @@
 	height: 16px;
 	margin-top: 6px;
 	opacity: 50%;
+}
+
+.pagination{
+	margin-top:15px;
+	gap: 6px;	
+}
+
+.pagination a {
+	font-size: 16px;
+	width: 23px;
+	height: 24px;
+}
+.pagination a:hover{
+	font-weight: bold;
+}
+.pagination a.active{
+	font-weight: bold;
+    color: white;
+    background-color: #0fca2b; /* 현재 페이지 링크 배경색 변경 */
+    border-radius: 15px;
+    padding-top: 1px;
 }

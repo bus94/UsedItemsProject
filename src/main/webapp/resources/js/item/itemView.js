@@ -72,4 +72,3 @@ $('.itemView_carousel').slick({
 });
 });
 
-

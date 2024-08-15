@@ -18,10 +18,10 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide"
 			data-bs-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active" data-bs-interval="1500">
+				<div class="carousel-item active" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
 				</div>
-				<div class="carousel-item" data-bs-interval="1500">
+				<div class="carousel-item" data-bs-interval="2000">
 					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
 				</div>
 			</div>

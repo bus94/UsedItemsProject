@@ -151,8 +151,7 @@
 
 <!-- 네비게이터 (fixed-top!!!) -->
 		<nav id="navigator"
-			class="fixed-top navbar navbar-expand-lg bg-body-tertiary"
-			style="background-color: white">
+			class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
 			<div id="nav_container" class="container-fluid">
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
 					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
@@ -164,8 +163,8 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-lg-0">
-						<a class="nav-link active" aria-current="page"
+					<ul class="navbar-nav me-auto mb-lg-0" style="display:flex; gap:7px;">
+						<a class="nav-link" aria-current="page"
 							href="${path}/item/itemList.do">
 							<li class="nav-item"><img class="nav_icon" alt="매물 검색"
 								src="${path}/resources/img/shop.png"> <span

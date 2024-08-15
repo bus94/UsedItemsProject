@@ -29,6 +29,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100%;
+	position: relative;
 }
 
 header {
@@ -36,7 +37,7 @@ header {
 	position: fixed;
 	width: 100%;
 	background-color: white;
-	z-index: 1;
+	z-index: 99999;
 }
 
 footer {
@@ -46,15 +47,100 @@ footer {
 	color: black;
 }
 
-.section_toggleOn {
-	margin-top: 250px;
+
+
+
+
+/* 헤더.jsp navigator */
+
+#navigator{
+	background-color: white !important; 
+	border-bottom: 1px solid #c0c0c0; 
+	transition: all 0.3s ease; 
+	width: 100%;
+}
+
+.navbar #nav_container {
+	height: 60px;
+	
+}
+
+.navbar{
+	transition: all 0.3s ease;
+}
+
+.navbar .navbar-brand {
+	width: 240px;
+	height: 52px;
+}
+
+.navbar #brand_img {
+	width: auto;
+	height: auto;
+}
+
+
+.navbar .nav_icon {
+	width: 27px;
+	height: 27px;
+}
+
+.navbar .nav_side_icon {
+    color: black;
+    position: fixed;
+    right: 2%;
+
+    font-size: 2rem;
+}
+
+.navbar #nav_user {
+    top: 100px;
+}
+
+.navbar #nav_wish {
+    top: 150px;    
+}
+
+.navbar #nav_chat {
+    bottom: 8%;
+}
+
+.navbar #nav_toTop {
+    bottom: 2%;
+    display: none;
 }
 
 .nav-item {
 	display: flex;
 }
 
+.nav-item span {
+	margin-top:5px;
+	margin-left:3px;
+}
 
+.nav-item:hover {
+	font-weight: bolder;
+}
+
+.navbar input {
+	width: 300px;
+	height: 50px;
+}
+
+
+/* 홈에서 스크롤 200미만이면 적용 */
+#navigator_home {
+	background-color: white !important; 
+	width: 97vw !important;
+	position: fixed;
+	left:20px;
+	top: 20px;
+	border: 2px solid rgb(219, 219, 219);
+	border-radius: 10px;
+	transition: all 0.3s ease;
+	z-index: 99999;
+}
 
 
 
@@ -94,221 +180,6 @@ footer {
 	}
 
 }
-
-
-
-#navigator_home {
-	background-color: white;
-}
-.navbar {
-        transition: all 0.3s ease; /* 모든 속성 변경에 대해 0.3초 동안 부드러운 전환 */
-        
-    }
-
-
-/* 헤더.jsp navigator */
-.navbar #nav_container {
-	height: 60px;
-	
-}
-
-.navbar{
-	transition: all 0.3s ease;
-}
-
-.navbar .navbar-brand {
-	width: 240px;
-	height: 52px;
-}
-
-.navbar #brand_img {
-	width: auto;
-	height: auto;
-}
-
-
-.navbar .nav_icon {
-	width: 30px;
-	height: 30px;
-}
-
-.navbar .nav_side_icon {
-    color: black;
-    position: fixed;
-    right: 2%;
-
-    font-size: 2rem;
-}
-
-.navbar #nav_user {
-    top: 100px;
-}
-
-.navbar #nav_wish {
-    top: 150px;    
-}
-
-.navbar #nav_chat {
-    bottom: 8%;
-}
-
-.navbar #nav_toTop {
-    bottom: 2%;
-    display: none;
-}
-
-
-/* home.jsp */
-
-
-/* 홈에서 스크롤 200미만이면 적용 */
-#navigator_home {
-	width:100%;
-	position:absolute;
-	margin: 20px 20px 0 20px;
-	border: 2px solid rgb(219, 219, 219);
-	border-radius: 10px;
-	transition: all 0.3s ease;
-	z-index: 9999;
-}
-
-
-#categories {
-    margin: auto;
-    text-align: center;
-}
-
-.majors {
-    list-style-type: none;
-    padding: 0;
-
-    display: flex;
-    justify-content: space-around;
-}
-
-.major {
-    background-color: black;
-    color: white;
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 10px 10px;
-}
-
-.major_icon {
-    font-size: 15px;
-    margin: 10px;
-}
-
-.major_title {
-    font-size: 15px;
-    font-weight: bold;
-}
-
-
-.ad_banner {
-	width: 800px;
-	height: 200px;
-}
-
-
-.carsl {
-	height : 500px;
-}
-
-
-.acc_info_page .item { /* itemList.css 따옴*/
-    width: 190px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border: 1px solid rgb(219, 219, 219);
-    margin-bottom: 14px;
-}
-
-/*---------------itemList.css-----------------*/
-
-
-.item img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    margin-top: 12px;
-}
-
-.item_view {
-    width: 160px;
-    padding-top: 12px;
-}
-
-.item_view h3 {
-    font-size: 17px;
-
-}
-
-.item_price {
-    display: flex;
-    justify-content: space-between;
-}
-
-.item_view h4 {
-    font-weight: bold;
-    font-size: 14px;
-
-}
-
-.item_view h5 {
-    font-size: 15px;
-
-}
-
-.item_like {
-    display: flex;
-    font-size: 13px;
-}
-
-.item_like p:first-child {
-    margin-right: 15px;
-}
-
-.item_like p {
-    margin-bottom: 6px;
-    color: rgb(187, 187, 187);
-}
-
-.item_addr {
-    border-top: 1px solid rgb(206, 206, 206);
-    display: flex;
-    gap: 3px;
-}
-
-.item_addr p {
-    margin: 0;
-    font-size: 13px;
-    font-weight: lighter;
-    margin-top: 8px;
-}
-
-.item_addr img {
-    width: 16px;
-    height: 16px;
-    margin-top: 6px;
-    opacity: 50%;
-	border-radius: 10px;
-	z-index: 1000;
-	width: 95%;
-}
-
-
-
-
-
-
-
-
 
 
 

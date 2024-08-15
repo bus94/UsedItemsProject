@@ -77,20 +77,28 @@
 								<div class="item_view">
 									<h3>${item.item_title}</h3>
 									<div class="item_price">
-										<h4>${item.item_price}원</h4>
+										<h4>
+											<fmt:formatNumber value="${item.item_price}" type="number"
+												groupingUsed="true" />
+											원
+										</h4>
 										<br>
-										<h5>
-											<fmt:formatDate value="${item.item_enrollDate}"
-												pattern="yy/MM/dd" />
-										</h5>
 									</div>
 									<div class="item_like">
 										<p>관심 ${item.item_interest}</p>
 										<p>댓글 ${item.repl_count}</p>
 									</div>
-									<div class="item_addr">
-										<img src="${path}/resources/img/gps.png" alt="위치">
-										<p>${item.item_place}</p>
+									<div class="item_addr" style="display: flex; justify-content: space-between;">
+										<div style="display: flex">
+											<img src="${path}/resources/img/gps.png" alt="위치">
+											<p>${item.item_place}</p>
+										</div>
+										<div>
+											<h5>
+												<fmt:formatDate value="${item.item_enrollDate}"
+													pattern="yy/MM/dd" />
+											</h5>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -102,18 +110,14 @@
 	</form>
 
 	<!-- 페이징 -->
-	<div align="center"
-		class="pagination container d-flex justify-content-center">
-		<a
-			href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">|&lt;</a>
-		&nbsp; <a
-			href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&lt;</a>
+	<div align="center" class="pagination container d-flex justify-content-center">
+		<a href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">|&lt;</a>
 		&nbsp;
-		<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
-			end="${pageInfo.tillPage}" step="1">
-			<a
-				href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}"
-				${pageInfo.currentPage == currentPage} ? "style='font-weight: bold;'":""}>${currentPage}</a>
+		<a href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&lt;</a>
+		&nbsp;
+		<c:forEach var="currentPage" begin="${pageInfo.fromPage}" end="${pageInfo.tillPage}" step="1">
+			<a href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}"
+				class="${pageInfo.currentPage == currentPage ? 'active' : ''}">${currentPage}</a>
 		&nbsp;
 		</c:forEach>
 
@@ -121,8 +125,7 @@
 			href="itemList.do?currentPage=${pageInfo.nextPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&gt;</a>
 		&nbsp; <a
 			href="itemList.do?currentPage=${pageInfo.lastPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&gt;|</a>
-		&nbsp; <a href="${path}/item/itemEnroll.do" class="align-self-end"
-			target="_blank">매물 등록</a>
+		&nbsp;
 	</div>
 
 
