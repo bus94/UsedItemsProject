@@ -93,7 +93,7 @@ public class MemberController {
 
 	@RequestMapping("/account/signupOK.do")
 	public String signupOK(Model model, String id, String password, String name, String birthDate, String address,
-			String phone) throws ParseException {
+			String addressx,String addressy,String detail_address,String phone) throws ParseException {
 		System.out.println("signupOK() 회원가입 실행");
 		System.out.println("id: " + id);
 		System.out.println("password: " + password);
@@ -103,7 +103,9 @@ public class MemberController {
 		System.out.println("phone: " + phone);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-
+		System.out.println(detail_address);
+		System.out.println(addressx);
+		System.out.println(addressy);
 		java.util.Date utilDate = formatter.parse(birthDate);
 
 		Date birthDate_ = new Date(utilDate.getTime());
@@ -115,7 +117,10 @@ public class MemberController {
 		signupMember.setAcc_birthDate(birthDate_);
 		signupMember.setAcc_address(address);
 		signupMember.setAcc_phone(phone);
-
+		signupMember.setAcc_addressX(addressx);
+		signupMember.setAcc_addressY(addressy);
+		signupMember.setAcc_detailAddress(detail_address);
+		
 		System.out.println("signupMember: " + signupMember);
 
 		if (memberservice.signup(signupMember) > 0) {

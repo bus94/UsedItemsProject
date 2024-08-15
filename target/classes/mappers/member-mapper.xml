@@ -75,13 +75,15 @@
 		INSERT INTO ACCOUNT(acc_index,
 		acc_id, acc_password, acc_birthDate,
 		acc_phone, acc_name, acc_address,
+		acc_addressx,acc_addressy,acc_addressdetail,
 		acc_nickname, acc_profile,
 		acc_level, acc_count, acc_status,
 		acc_enrollDate) VALUES
 		(ACCOUNT_SEQ.NEXTVAL, #{acc_id},
 		#{acc_password}, #{acc_birthDate},
 		#{acc_phone}, #{acc_name},
-		#{acc_address}, #{acc_id}, '', default,
+		#{acc_address},#{acc_addressX},#{acc_addressY},
+		#{acc_detailAddress},#{acc_id}, '', default,
 		0, 'active', sysdate)
 	</insert>
 

@@ -48,12 +48,15 @@
 						type="text" class="form-control login_inputStyle" name="address"
 						id="address" placeholder="주소" readonly required /> <input
 						type="button" onclick="openAddressModal()" value="주소 검색">
-						<input
-						type="text" class="form-control login_inputStyle" name="detail_address"
-						id="address" placeholder="상세 주소" required />
+					<input type="text" class="form-control login_inputStyle"
+						name="detail_address" id="address" placeholder="상세 주소" required />
 					<input type="text" class="form-control login_inputStyle"
 						name="phone" id="phone"
 						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
+
+					<!-- 숨겨진 필드에 좌표 값을 저장 -->
+					<input type="hidden" name="addressx" id="addressx"> <input
+						type="hidden" name="addressy" id="addressy">
 				</div>
 
 				<div class="loginButton mt-2">
@@ -84,6 +87,8 @@
 		</div>
 		<script
 			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bcb92e8b96f5a06c65f1c0e5308b488&libraries=services"></script>
 		<script>
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;
@@ -172,20 +177,37 @@
 			});
 			
 			function openAddressModal() {
-				var modal = new bootstrap.Modal(document.getElementById('addressModal'));
-				modal.show();
-
-				new daum.Postcode({
-					oncomplete : function(data) {
-						var addr = data.address; // 최종 주소 변수
-
-						// 주소 정보를 해당 필드에 넣는다.
-						document.getElementById("address").value = addr;
-						modal.hide();
-					},
-					width: '100%',
-					height: '100%'
-				}).embed(document.getElementById('postcode'));
+				 var modal = new bootstrap.Modal(document.getElementById('addressModal'));
+				    modal.show();
+				    
+				    modal._element.addEventListener('shown.bs.modal', function () {
+				        var geocoder = new daum.maps.services.Geocoder();
+				        new daum.Postcode({
+				            oncomplete: function(data) {
+				                var addr = data.address; // 최종 주소 변수
+				                document.getElementById("address").value = addr;
+				                
+				                // 주소로 상세 정보를 검색
+				                geocoder.addressSearch(data.address, function(results, status) {
+				                    if (status === daum.maps.services.Status.OK) {
+				                        var result = results[0];
+				                        var coords = new daum.maps.LatLng(result.y, result.x);
+				                        console.log("Latitude: " + coords.getLat() + ", Longitude: " + coords.getLng());
+				                        
+				                        // 좌표 값을 hidden input 필드에 설정
+				                        document.getElementById('addressx').value = coords.getLat();
+				                        document.getElementById('addressy').value = coords.getLng();
+				                        
+				                        modal.hide();
+				                    } else {
+				                        console.error("Geocoder failed due to: " + status);
+				                    }
+				                });
+				            },
+				            width: '100%',
+				            height: '100%'
+				        }).embed(document.getElementById('postcode'));
+				    });
 			}
 
 		</script>

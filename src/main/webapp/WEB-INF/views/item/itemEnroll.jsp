@@ -53,7 +53,10 @@
 							<div id="input_box4" class="container">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 								<input type="text" class="form-control item_input d-inline"
-									name="item_place" id="item_place" placeholder="장소">
+									name="item_place" id="item_place" placeholder="장소" readonly />
+								<input type="hidden" name="addressX" id="addressX"> <input
+									type="hidden" name="addressY" id="addressY">
+								<button type="button" id="selectPlaceButton">장소 선택</button>
 							</div>
 							<div class="container input_thumbnail">
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
@@ -84,9 +87,30 @@
 					</tr>
 				</table>
 			</form>
+			<div class="modal fade" id="placeModal" tabindex="-1"
+				aria-labelledby="placeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="placeModalLabel">장소 선택</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div id="map" style="width: 100%; height: 400px;"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</c:if>
-
+	<script
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bcb92e8b96f5a06c65f1c0e5308b488&libraries=services"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			const item_thumb = document.getElementById("item_thumb");
@@ -107,7 +131,131 @@
 					preview.style.display = 'none';
 					itemEnroll_form.classList.add('hidden');
 				}
+				
 			});
+			
+			
+			
+				const placeButton = document.getElementById("selectPlaceButton"); // 장소 선택 버튼
+		    	const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
+		    	const mapContainer = document.getElementById('map');
+		    	const itemPlaceInput = document.getElementById('item_place');
+		    	const addressXInput = document.getElementById('addressX');
+		    	const addressYInput = document.getElementById('addressY');
+		    	const confirmPlaceButton = document.getElementById('confirmPlace');
+		    	let map; // 지도 객체
+		    	let marker; // 마커 객체
+		    	let selectedLatLng; // 선택된 좌표
+		   		let selectedAddress; // 선택된 주소
+		   		let markers = []; // 마커 배열
+		   	    let selectedMarker = null; // 현재 선택된 마커	
+		   		let isMarkerSelected = false;
+		   	
+
+		   	    // 클릭된 마커 이미지
+		   	    const clickedImage = new kakao.maps.MarkerImage(
+		   	        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
+		   	        new kakao.maps.Size(24, 35),
+		   	    	 { offset: new kakao.maps.Point(12, 35) }
+		   	    );
+		   	    
+			    // 장소 선택 버튼 클릭 시 모달 열기 및 지도 초기화
+			    placeButton.addEventListener('click', (e) => {
+			        e.preventDefault();
+			        placeModal.show();
+					console.log('click');
+			        placeModal._element.addEventListener('shown.bs.modal', function () {
+			            if (!map) {
+			                const addressX = ${loginMember.acc_addressX}; // 위도
+			                const addressY = ${loginMember.acc_addressY}; // 경도
+
+			                // 카카오맵 초기화
+			                const mapOption = {
+			                    center: new kakao.maps.LatLng(addressX, addressY), // 지도의 중심좌표
+			                    level: 3 // 지도의 확대 레벨
+			                };
+							
+			                map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성
+			                
+			                selectedLatLng = new kakao.maps.LatLng(addressX, addressY);
+			                console.log(selectedLatLng.getLng());
+			               
+			                
+			             	// 마커를 미리 지정된 좌표에 생성
+			                const marker1 = new kakao.maps.Marker({
+			                    position: new kakao.maps.LatLng(addressX, addressY),
+			                    map: map
+			                });
+			             	
+			             	// 두 번째 마커 생성 (임의로 근처에 추가)
+			                const marker2 = new kakao.maps.Marker({
+			                    position: new kakao.maps.LatLng(addressX + 0.001, addressY + 0.001), // 근처에 다른 위치에 추가
+			                    map: map,
+			                    
+			                });
+
+			                // 좌표로 주소 검색
+			                const geocoder = new kakao.maps.services.Geocoder();
+			                geocoder.coord2Address(selectedLatLng.getLng(), selectedLatLng.getLat(), function (result, status) {
+			                    if (status === kakao.maps.services.Status.OK) {
+			                        selectedAddress = result[0].address.address_name;
+			                    }
+			                });
+			             // 마커 배열에 추가
+			                markers.push(marker1, marker2);
+
+			             	// 마커 클릭 이벤트
+			                markers.forEach(marker => {
+			                    kakao.maps.event.addListener(marker, 'click', function () {
+			                        if (selectedMarker) {
+			                            // 이미 다른 마커가 선택되어 있다면 그 마커는 기본 이미지로 복구
+			                            selectedMarker.setImage(null);
+			                        }
+
+			                        // 선택한 마커의 이미지를 변경
+			                        marker.setImage(clickedImage);
+			                        selectedMarker = marker;
+
+			                        // 선택된 좌표와 주소를 업데이트
+			                        selectedLatLng = marker.getPosition();
+			                        const geocoder = new kakao.maps.services.Geocoder();
+			                        geocoder.coord2Address(selectedLatLng.getLng(), selectedLatLng.getLat(), function (result, status) {
+			                            if (status === kakao.maps.services.Status.OK) {
+			                                selectedAddress = result[0].address.address_name;
+			                                confirmPlaceButton.disabled = false; // 확인 버튼 활성화
+			                            }
+			                        });
+			                    });
+			                });
+			                
+			                
+			             	// 지도에 표시할 원을 생성합니다
+			                var circle = new kakao.maps.Circle({
+			                    center : new kakao.maps.LatLng(addressX, addressY),  // 원의 중심좌표 입니다 
+			                    radius: 2000, // 미터 단위의 원의 반지름입니다 
+			                    strokeWeight: 3, // 선의 두께입니다 
+			                    strokeColor: '#75B8FA', // 선의 색깔입니다
+			                    strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			                    strokeStyle: 'solid', // 선의 스타일 입니다
+			                    fillColor: '#CFE7FF', // 채우기 색깔입니다
+			                    fillOpacity: 0.3  // 채우기 불투명도 입니다   
+			                });
+			                circle.setMap(map);
+			                
+			            }
+			        });
+			    });
+			 	// 확인 버튼 클릭 시 선택된 위치 정보를 인풋 필드에 저장
+			    confirmPlaceButton.addEventListener('click', () => {
+			        if (selectedLatLng && selectedAddress) {
+			            itemPlaceInput.value = selectedAddress;
+			         
+			            addressXInput.value = selectedLatLng.getLat();
+			            addressYInput.value = selectedLatLng.getLng();
+			            placeModal.hide(); // 모달 닫기
+			        }
+			    });
+			
 		});
 	</script>
 
