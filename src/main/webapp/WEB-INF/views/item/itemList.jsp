@@ -74,6 +74,10 @@
                     event.stopPropagation();
                 });
 			});
+			
+			let filter = function () {
+				
+			}
 		</script>
 
 		<div class="item_title">
