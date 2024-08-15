@@ -63,18 +63,29 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-top:9px;
+	padding-top: 9px;
 }
 
 .dropdownBtn:hover {
 	background-color: #0d6efd;
 }
 
-.dropdown-menu li{
-	padding: 3px 0 1px 5px;
+.dropdown-menu {
+	position: absolute;
+	z-index: 1000;
 }
 
-.dropdown-menu li:hover{
+.dropdown-menu input[type="checkbox"] {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.dropdown-menu li {
+	padding: 3px 0 1px 5px;
+	cursor: pointer;
+}
+
+.dropdown-menu li:hover {
 	background-color: #0d6efd;
 	color: white;
 }
@@ -106,6 +117,7 @@
 
 .category label {
 	margin-right: 10px;
+	cursor: pointer;
 }
 
 .category button {
@@ -119,6 +131,24 @@
 
 .category button:hover {
 	background-color: #4d932b;
+}
+
+.checked_filter {
+	margin-top: 10px;
+}
+
+.checked_filter_div {
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 5px;
+	background-color: #e0e0e0;
+	border-radius: 5px;
+}
+
+.checked_filter_div .remove-btn {
+	margin-left: 5px;
+	cursor: pointer;
+	color: red;
 }
 
 .form-check label {
@@ -167,10 +197,10 @@
 
 .item_view h3 {
 	font-size: 17px;
-		margin-bottom: 6px;
-	white-space: nowrap;         
-    overflow: hidden;         
-    text-overflow: ellipsis;
+	margin-bottom: 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .item_price {
@@ -183,14 +213,12 @@
 	font-size: 14px;
 }
 
-.item_addr h5{
-	margin-top:9px;
+.item_addr h5 {
+	margin-top: 9px;
 	font-size: 14px;
 	color: gray;
 	font-weight: lighter;
 }
-
-
 
 .item_like {
 	display: flex;
@@ -226,9 +254,9 @@
 	opacity: 50%;
 }
 
-.pagination{
-	margin-top:15px;
-	gap: 6px;	
+.pagination {
+	margin-top: 15px;
+	gap: 6px;
 }
 
 .pagination a {
@@ -236,13 +264,15 @@
 	width: 23px;
 	height: 24px;
 }
-.pagination a:hover{
+
+.pagination a:hover {
 	font-weight: bold;
 }
-.pagination a.active{
+
+.pagination a.active {
 	font-weight: bold;
-    color: white;
-    background-color: #0fca2b; /* 현재 페이지 링크 배경색 변경 */
-    border-radius: 15px;
-    padding-top: 1px;
+	color: white;
+	background-color: #0fca2b; /* 현재 페이지 링크 배경색 변경 */
+	border-radius: 15px;
+	padding-top: 1px;
 }

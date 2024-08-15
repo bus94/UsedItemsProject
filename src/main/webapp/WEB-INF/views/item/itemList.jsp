@@ -9,7 +9,7 @@
 <section id="item_content_list" style="padding-top: 100px;">
 
 
-	<form action="${path}/item/itemList.do" method="post">
+	<form action="${path}/item/itemList.do" method="post" id="searchForm">
 		<div class="category">
 			<div class="selectBox">
 				<div class="selectBoxIn">
@@ -40,9 +40,9 @@
 											<c:set var="isChecked" value="true" />
 										</c:if>
 									</c:forEach> <input type="checkbox" name="categoryList"
-									id="categoryList_${value}" value="${value}"
+									id="category_${value}" value="${value}"
 									${isChecked ? 'checked':''} /> <label class="radio_type"
-									for="item_category_${value}">${value}</label></li>
+									for="category_${value}">${value}</label></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -53,8 +53,28 @@
 					<button type="reset" class="sear_category">초기화</button>
 				</div>
 			</div>
+
 		</div>
 
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// li 클릭 시 체크박스 토글
+			    document.querySelectorAll('.dropdown-menu li').forEach(li => {
+			        li.addEventListener('click', function(event) {
+			            const checkbox = li.querySelector('input[type="checkbox"]');
+			            if (checkbox) {
+			                checkbox.checked = !checkbox.checked;
+			                updateCheckedFilter();
+			            }
+			        });
+			    });
+
+                // 드롭다운 메뉴 클릭 시 자동 숨김 방지
+                document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+			});
+		</script>
 
 		<div class="item_title">
 			<h3>검색 결과 &gt;</h3>
