@@ -14,17 +14,15 @@
 			<div class="selectBox">
 				<div class="selectBoxIn">
 					<p>정렬:</p>
-					<select class="selectBox_value">
-						<option>===정렬 선택===</option>
-						<option name="searchType" id="searchTypeNearPlace"
-							value="nearPlace"
+					<select class="selectBox_value" name="searchType">
+						<option value="">===정렬 선택===</option>
+						<option id="searchTypeNearPlace" value="nearPlace"
 							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>가까운
 							순</option>
-						<option name="searchType" id="searchTypePopular" value="popular"
+						<option id="searchTypePopular" value="popular"
 							${searchType != null && searchType == 'popular' ? 'selected' : ''}>인기많은
 							순</option>
-						<option name="searchType" id="searchTypeBestSeller"
-							value="bestSeller"
+						<option id="searchTypeBestSeller" value="bestSeller"
 							${searchType != null && searchType == 'bestSeller' ? 'selected' : ''}>거래가
 							많은 판매자 순</option>
 					</select>
@@ -88,7 +86,8 @@
 										<p>관심 ${item.item_interest}</p>
 										<p>댓글 ${item.repl_count}</p>
 									</div>
-									<div class="item_addr" style="display: flex; justify-content: space-between;">
+									<div class="item_addr"
+										style="display: flex; justify-content: space-between;">
 										<div style="display: flex">
 											<img src="${path}/resources/img/gps.png" alt="위치">
 											<p>${item.item_place}</p>
@@ -110,13 +109,17 @@
 	</form>
 
 	<!-- 페이징 -->
-	<div align="center" class="pagination container d-flex justify-content-center">
-		<a href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">|&lt;</a>
+	<div align="center"
+		class="pagination container d-flex justify-content-center">
+		<a
+			href="itemList.do?currentPage=1&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">|&lt;</a>
+		&nbsp; <a
+			href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&lt;</a>
 		&nbsp;
-		<a href="itemList.do?currentPage=${pageInfo.prevPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&lt;</a>
-		&nbsp;
-		<c:forEach var="currentPage" begin="${pageInfo.fromPage}" end="${pageInfo.tillPage}" step="1">
-			<a href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}"
+		<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
+			end="${pageInfo.tillPage}" step="1">
+			<a
+				href="itemList.do?currentPage=${currentPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}"
 				class="${pageInfo.currentPage == currentPage ? 'active' : ''}">${currentPage}</a>
 		&nbsp;
 		</c:forEach>

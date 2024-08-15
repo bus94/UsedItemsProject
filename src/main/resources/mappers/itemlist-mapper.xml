@@ -112,8 +112,7 @@
 		s.show_img2,
 		s.show_img3,
 		s.show_img4,
-		s.show_img5,
-		inter.int_subject 
+		s.show_img5
 		FROM
 		(
 		SELECT
