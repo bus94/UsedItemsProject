@@ -200,8 +200,8 @@ public class ItemViewController {
 		if (accIndex == null) {
 			// acc_index가 null인 경우 로그인 페이지로 리디렉션
 			model.addAttribute("msg", "로그인 후 이용해 주세요.");
-			model.addAttribute("location", "/login"); // 로그인 페이지 URL로 설정
-			return "common/msg"; // msg.jsp로 이동
+			model.addAttribute("location", "/account/login.do"); // 로그인 페이지 URL로 설정
+			return "common/msg"; // msg.jsp로 이동	
 		}
 
 		// 관심 항목 추가 로직 수행
