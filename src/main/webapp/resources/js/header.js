@@ -142,11 +142,10 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		//채팅 목록 template
 		var chatList_template = 
 		
-		'<div class="chatRoom_box container">'
-		+ `<span>${thisRoom}</span><span>${obj.room_itemTitle}</span><span>&lt;${obj.room_hostId}&gt;</span>`
+		`<div id="chatRoom_box" class="chatRoom_box container>`
+		+ `<p>${obj.room_itemTitle}</p>`
 		+ `<p>${obj.room_openDate}</p>`
-		+ `<button class="enterChatRoom btn btn-success btn-sm" id="${obj.room_index}" onclick="enterChatRoom(this.id)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal">채팅방 보기</button>`
-		+ '<button class="btn btn-warning btn-sm" >거래 중단하기</button>'
+		+ `<button class="enterChatRoom" id="enterChatRoom${obj.room_index}" value="${obj.room_index}" onclick="enterChatRoom(this.value)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal"></button>`
 		+ '</div>';
 
 		
@@ -160,13 +159,14 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		`<div class="modal fade" id="chatRoomModal${obj.room_index}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">`
   		+ '<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">'
   		+ '<div class="modal-content">'
-		+ '<div class="modal-header">'
-		+ `<h5 class="modal-title">채팅방#${obj.room_index}_`+ other_id + `_${obj.room_itemTitle}</h5>`
+		+ '<div class="chat-header modal-header">'
+		+ '<button class="unlink-chat returnToRoomList" onclick="returnToRoomList()">_&lt;&lt;_</button>'
+		+ `<h5 class="modal-title">&nbsp;${obj.room_itemTitle}</h5>`
+		+ `<a class="dropDeal" onclick="dropDeal(${obj.room_index})">거래중단</a>`
 		//+ '<button class="unlink-chat btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>'
-		+ '<button class="unlink-chat btn btn-primary" onclick="returnToRoomList()">돌아가기</button>'
 		+ '<button type="button" class="unlink-chat btn-close" data-bs-dismiss="modal"></button>'
 		+ '</div>'
-		+ '<div id="chat-viewer" class="modal-body">'
+		+ `<div id="chat-viewer${obj.room_index}" class="chat-viewer modal-body">`
 		+ '<!-- 채팅글 div가 추가되는 곳 -->';
 		
 		
@@ -207,7 +207,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		chatRoom_modal_template +=
 		
 		 '</div>'
-		+ '<div id="chat-footer" class="modal-footer">'
+		+ '<div id="chat-footer" class="chat-footer modal-footer">'
 		+ '<div class="input-area w-100">'
 		+ '<input type="text" id="chat-input" class="w-75" onkeyup="keyCheck(event)" placeholder="메시지 입력">'
         + '<button id="chat-sendBtn">전송</button>'
@@ -221,8 +221,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 
 
 		$('#ChatRoom_Modal_reservoir').append(chatRoom_modal_template);
-
-
+		
 
 	});
 
