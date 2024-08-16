@@ -16,7 +16,13 @@
 	
 }
 
+#chatList .chatRoom_title {
+	pointer-events: none;
+}
 
+#chatList .chatRoom_date {
+	pointer-events: none;
+}
 
 #chatList .enterChatRoom {
 	display: none;
@@ -43,14 +49,14 @@
 
 
 
-.chat-header .returnToRoomList {
+.chat_header .returnToRoomList {
 	border: none;
     background-color: transparent;
 }
 
 
 
-.chat-viewer {
+.chat_viewer {
 	height: 50vh;
 	
 	flex-grow: 1;
@@ -61,7 +67,7 @@
 	gap: 10px;
 }
 
-.chat-viewer .message {
+.chat_viewer .message {
 	max-width: 70%;
 	padding: 8px 12px;
 	border: 1px solid #ddd;
@@ -73,31 +79,31 @@
 	align-self: center;
 }
 
-.chat-viewer .message.none {
+.chat_viewer .message.none {
 	background-color: yellow;
 	color: red;
 }
 
-.chat-viewer .message.server {
+.chat_viewer .message.server {
 	background-color: yellow;
 }
 
-.chat-viewer .message.mine {
+.chat_viewer .message.mine {
 	align-self: flex-end;
 	background-color: #DCF8C6;
 }
 
-.chat-viewer .message.other {
+.chat_viewer .message.other {
 	align-self: flex-start;
 	background-color: #ebebeb;
 }
 
-.chat-viewer .profile.other {
+.chat_viewer .profile.other {
 /* 뭘 줘야 아이디가 그림 뒤에 붙고 */
 }
 
 
-.chat-viewer .profile img {
+.chat_viewer .profile img {
 	
 	width: 38px;
 	height: 38px;
@@ -108,17 +114,17 @@
 
 
 
-.chat-footer {
+.chat_footer {
 	padding: 0;
 }
 
-.chat-footer .input-area {
+.chat_footer .input-area {
 	display: flex;
 	margin: 0;
 	padding: 10px;
 }
 
-.chat-footer .input-area input[type="text"] {
+.chat_footer .input-area input[type="text"] {
 	flex-grow: 1;
 	padding: 10px;
 	border: 1px solid #ddd;
@@ -127,7 +133,7 @@
 	outline: none;
 }
 
-.chat-footer #chat-sendBtn {
+.chat_footer .chat_sendBtn {
 	margin-left: 10px;
 	padding: 10px 20px;
 	background-color: #DCF8C6;
