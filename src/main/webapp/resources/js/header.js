@@ -110,13 +110,21 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		//console.log(index);
 		//console.log(obj.room_index);
-		console.log("날짜가 왜 이래: " + obj.room_openDate);
+		console.log("UTC날짜라고 합니다: " + obj.room_openDate);
 		//console.log(obj.room_itemTitle);
 		//console.log("messages: " + obj.messages);
 		
 		//console.log("loginMember.accIndex: "+ loginMember_accIndex);
 		
 		var thisRoom = obj.room_index;
+		var thisRoomOpenDate = new Date(obj.room_openDate);
+		console.log(thisRoomOpenDate);
+		var formattedDate = thisRoomOpenDate.getFullYear().toString().slice(-2) + "/" 
+						  + (thisRoomOpenDate.getMonth()+1).toString().padStart(2, '0') + "/" 
+						  + thisRoomOpenDate.getDate().toString().padStart(2, '0') + " " 
+						  + thisRoomOpenDate.getHours().toString().padStart(2, '0') + ":"
+						  + thisRoomOpenDate.getMinutes().toString().padStart(2, '0');
+		console.log(formattedDate);
 		
 		var other_index = '';
 		var other_id = '';
@@ -143,7 +151,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		`<div id="chatRoom_box${obj.room_index}" class="chatRoom_box container" onclick="selectChatRoom(${obj.room_index})">`
 		+ `<h4 class="chatRoom_title">${obj.room_itemTitle}</h4>`
-		+ `<p class="chatRoom_date">${obj.room_openDate}</p>`
+		+ `<p class="chatRoom_date">개설일시: ${formattedDate}</p>`
 		+ `<button class="enterChatRoom" id="enterChatRoom${obj.room_index}" value="${obj.room_index}" onclick="enterChatRoom(this.value)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal"></button>`
 		+ '</div>';
 

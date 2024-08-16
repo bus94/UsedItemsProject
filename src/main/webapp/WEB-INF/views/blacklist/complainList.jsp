@@ -67,7 +67,7 @@
 			<tbody>
 				<c:if test="${empty blacklist}">
 					<tr>
-						<td colspan="5" class="text-center">조회된 글이 없습니다.</td>
+						<td colspan="5" id="empty_td" class="text-center">조회된 글이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${not empty blacklist}">
@@ -93,7 +93,9 @@
 			</tbody>
 		</table>
 
+
 		<!-- 페이징 -->
+		<c:if test="${not empty blacklist}">
 		<div align="center" class="pagination_container container d-flex justify-content-center">
 			<a href="complainList.do?currentPage=1&searchType=${searchType}&searchBlack=${param.searchBlack}&subject_id=${subject_id}">|&lt;</a>
 		&nbsp;
@@ -109,6 +111,8 @@
 		&nbsp;
 			<a href="complainList.do?currentPage=${pageInfo.lastPage}&searchType=${searchType}&searchBlack=${param.searchBlack}&subject_id=${subject_id}">&gt;|</a>
 		</div>
+		</c:if>
+		
 		
 		<c:if test="${loginMember!=null}">
 			<div class="btn_container container d-flex ">
