@@ -17,21 +17,106 @@
 						src="${path}/resources/img/logo.png">
 				</div>
 				<div class="login_input">
-					<input type="text" class="form-control login_inputStyle mb-1 mt-1"
-						name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
-					<input type="password" class="form-control login_inputStyle"
-						name="acc_password" id="acc_password" placeholder="비밀번호"
-						required="required" />
+					<div class="input_css input_id">
+						<input type="text"
+							class="form-control login_inputStyle login_inputStyleId"
+							name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
+						<button type="button" class="input_btn" id="clearId"
+							style="display: block;">
+							<span class="input_btn"><img alt=".."
+								src="${path}/resources/img/삭제.png" style="filter: contrast(0%);"><span
+								class="blind">삭제</span></span>
+						</button>
+					</div>
+					<div class="input_css input_password">
+						<input type="password"
+							class="form-control login_inputStyle login_inputStylePw"
+							name="acc_password" id="acc_password" placeholder="비밀번호"
+							required="required" />
+						<button type="button" class="input_btn pwExpr"
+							style="display: block;">
+							<span class="input_btn"><img alt=".."
+								src="${path}/resources/img/비밀번호 숨기기.png" class="pwIcon"><span
+								class="blind">비밀번호 표시/숨기기</span></span>
+						</button>
+						<button type="button" class="input_btn" id="clearPw"
+							style="display: block;">
+							<span class="input_btn"><img alt=".."
+								src="${path}/resources/img/삭제.png" style="filter: contrast(0%);"><span
+								class="blind">삭제</span></span>
+						</button>
+					</div>
 				</div>
+
+				<script>
+					$(document).ready(function() {
+						function showBtn() {
+				            var idInput = $('.login_inputStyleId');
+				            var clearIdBtn = $('#clearId');
+				            var passwordInput = $('.login_inputStylePw');
+				            var pwExprBtn = $('.pwExpr');
+				            var clearPwBtn = $('#clearPw');
+
+				            if (idInput.val()) {
+				            	clearIdBtn.show();
+				            } else {
+				            	clearIdBtn.hide();
+				            }
+				            
+				            if(passwordInput.val()) {
+				            	pwExprBtn.show();
+				            	clearPwBtn.show();
+				            } else {
+				            	pwExprBtn.hide();
+				            	clearPwBtn.hide();
+				            }
+				        }
+						
+						showBtn();
+						$('.login_inputStyleId').on('input', function() {
+				        	showBtn();
+				        });
+						
+				        $('.login_inputStylePw').on('input', function() {
+				        	showBtn();
+				        });
+						
+						$('.pwExpr').on('click', function() {
+							var login_inputStylePw = $('.login_inputStylePw');
+							var pwIcon = $(this).find('.pwIcon');
+							
+							if(login_inputStylePw.attr('type') === 'password') {
+								login_inputStylePw.attr('type', 'text');
+								pwIcon.attr('src', "${path}/resources/img/비밀번호 표시.png");
+								showBtn();
+							} else {
+								login_inputStylePw.attr('type', 'password');
+								pwIcon.attr('src', "${path}/resources/img/비밀번호 숨기기.png");
+								showBtn();
+							}
+						});
+						
+						$('#clearId').on('click', function() {
+							$('.login_inputStyleId').val('');
+							showBtn();
+						});
+						
+						$('#clearPw').on('click', function() {
+							$('.login_inputStylePw').val('');
+							showBtn();
+						});
+					});
+				</script>
+
 				<div class="loginButton">
 					<input type="submit" class="btn login_btnStyle mb-1 mt-2"
 						value="로그인" /> <input type="button"
 						class="btn login_btnStyle mb-1" value="회원가입"
 						onclick="location.href='${path}/account/signup.do';" />
 					<div class="find mt-1">
-						<button type="button" class="findId findBtnW" data-bs-toggle="modal"
-							data-bs-target="#exampleModalId" data-bs-whatever="@mdo">아이디
-							찾기</button>
+						<button type="button" class="findId findBtnW"
+							data-bs-toggle="modal" data-bs-target="#exampleModalId"
+							data-bs-whatever="@mdo">아이디 찾기</button>
 						<div class="modal fade" id="exampleModalId" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
@@ -57,16 +142,16 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-success" id="findIdBtn">확인</button>
-										<button type="button" class="btn btn-secondary" id="findCancel"
-											data-bs-dismiss="modal">취소</button>
+										<button type="button" class="btn btn-secondary"
+											id="findCancel" data-bs-dismiss="modal">취소</button>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="findBorder"></div>
-						<button type="button" class="findPw findBtnW" data-bs-toggle="modal"
-							data-bs-target="#exampleModalPw" data-bs-whatever="@mdo">비밀번호
-							찾기</button>
+						<button type="button" class="findPw findBtnW"
+							data-bs-toggle="modal" data-bs-target="#exampleModalPw"
+							data-bs-whatever="@mdo">비밀번호 찾기</button>
 						<div class="modal fade" id="exampleModalPw" tabindex="-1"
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
@@ -96,8 +181,8 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-success" id="findPwBtn">확인</button>
-										<button type="button" class="btn btn-secondary" id="findCancel"
-											data-bs-dismiss="modal">취소</button>
+										<button type="button" class="btn btn-secondary"
+											id="findCancel" data-bs-dismiss="modal">취소</button>
 									</div>
 								</div>
 							</div>
@@ -106,8 +191,6 @@
 					</div>
 				</div>
 			</div>
-			<%-- <input type="hidden" class="preUrl"
-					name="preUrl" id="preUrl" value="${preUrl}"> --%>
 		</form>
 	</c:if>
 </section>

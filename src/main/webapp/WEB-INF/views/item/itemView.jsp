@@ -85,18 +85,21 @@
 		<div class="detail_right">
 			<div class="detail_top">
 				<div class="detail_info">
-					<h4>${item.item_title}</h4>
-					<form id="interestForm"
-						action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
-						method="post">
-						<input type="hidden" name="acc_index"
-							value="${loginMember.acc_index}"> <input type="hidden"
-							name="item_index" value="${item.item_index}">
-						<button type="submit"
-							class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
-							onclick="return confirmInterestAction('${isInterested}')">
-							${isInterested ? '관심 취소' : '관심'}</button>
-					</form>
+					<div style="display: flex; align-items:center; height: 30px; ">
+						<h4 style="margin-bottom:10px;">${item.item_title}</h4>
+						<form id="interestForm"
+							action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
+							method="post" style=" margin-left: 10px;">
+							<input type="hidden" name="acc_index"
+								value="${loginMember.acc_index}"> <input type="hidden"
+								name="item_index" value="${item.item_index}">
+							<button type="submit"
+								class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
+								onclick="return confirmInterestAction('${isInterested}')">
+								<span></span>
+							</button>
+						</form>
+					</div>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
@@ -145,7 +148,7 @@
 	</div>
 	<div id="comment-container">
 		<div class="comment-editor" align="center">
-			<form action="${path}/itemView/reply" method="post">
+			<form action="${path}/itemView/reply" method="post" class="commentBox">
 				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
 					type="hidden" name="writerId" value="${loginMember.acc_id}" />
 				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
@@ -184,24 +187,13 @@
 						</div>
 					</div>
 					<div class="reply_btn">
-						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
 						<button
 							onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 						<button
 							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						<button>채팅하기</button>
 					</div>
-				</div>
-				<!-- 수정 폼 -->
-				<div id="edit-form-${reply.repl_index}" style="display: none;">
-					<form action="${path}/itemView/replyEdit" method="post">
-						<input type="hidden" name="itemNo" value="${item.item_index}" />
-						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
-						<textarea name="content" rows="3">${reply.repl_content}</textarea>
-						<button type="submit">수정 완료</button>
-						<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
-					</form>
-				</div>
+				</div>				
 			</c:forEach>
 		</div>
 	</c:if>
@@ -210,6 +202,50 @@
 			<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
 		</tr>
 	</c:if>
+
+
+	<div class="reply2">
+		<c:forEach var="reply" items="${replyList}">
+			<div id="edit-form-${reply.repl_index}" style="display: none;">
+				<div class="reply_container2">
+					<c:choose>
+						<c:when test="${reply.repl_profile == null}">
+							<c:set var="repl_profile_path"
+								value="${path}/resources/img/login.png" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="repl_profile_path"
+								value="${path}/resources/img/${reply.repl_candidate}/profile/${reply.repl_profile}" />
+						</c:otherwise>
+					</c:choose>
+					<form action="${path}/itemView/replyEdit" method="post"
+						class="replyEditBox"
+						style="width:100%; display: flex; justify-content: space-between; align-items: center">
+						<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
+							type="hidden" name="replyNo" value="${reply.repl_index}" />
+						<div style="display: flex">
+							<div class="reply_img">
+								<img src="${repl_profile_path}" alt="프사">
+							</div>
+							<div class="reply_txt">
+								<h4>${reply.repl_nickname}</h4>
+								<textarea name="content" rows="3" cols="50">${reply.repl_content}</textarea>
+							</div>
+						</div>
+						<div id="edit-form-${reply.repl_index}">
+							<div class="reply_btn" style="align-items: center">
+								<button type="submit">수정 완료</button>
+								<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
+							</div>
+						</div>
+	
+					</form>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+
+
 
 
 	<div class="carousel-wrapper">
@@ -232,20 +268,29 @@
 								<div class="item_view">
 									<h3>${item.item_title}</h3>
 									<div class="item_price">
-										<h4>${item.item_price}원</h4>
+										<h4>
+											<fmt:formatNumber value="${item.item_price}" type="number"
+												groupingUsed="true" />
+											원
+										</h4>
 										<br>
-										<h5>
-											<fmt:formatDate value="${item.item_enrollDate}"
-												pattern="yy/MM/dd" />
-										</h5>
 									</div>
 									<div class="item_like">
 										<p>관심 ${item.item_interest}</p>
 										<p>댓글 ${item.repl_count}</p>
 									</div>
-									<div class="item_addr">
-										<img src="${path}/resources/img/gps.png" alt="위치">
-										<p>${item.item_place}</p>
+									<div class="item_addr"
+										style="display: flex; justify-content: space-between;">
+										<div style="display: flex">
+											<img src="${path}/resources/img/gps.png" alt="위치">
+											<p>${item.item_place}</p>
+										</div>
+										<div>
+											<h5>
+												<fmt:formatDate value="${item.item_enrollDate}"
+													pattern="yy/MM/dd" />
+											</h5>
+										</div>
 									</div>
 								</div>
 							</a>
@@ -331,6 +376,7 @@ System.out.println("item_enrollDate: " + item_enrollDate);
     }
     
 </script>
+
 <script>
 	function confirmInterestAction(isInterested) {
 	    if (isInterested === 'true') {

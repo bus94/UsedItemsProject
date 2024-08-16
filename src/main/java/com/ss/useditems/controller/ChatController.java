@@ -25,9 +25,9 @@ public class ChatController {
 	
 	
 	
-	@PostMapping("chatList.do")
+	@PostMapping("chatList.do")	//정일_채팅 리스트 불러오기
 	@ResponseBody
-	public List<ChatRoomDTO> viewChatList(Model model, @RequestParam String loginMember_accIndex) {
+	public List<ChatRoomDTO> viewChatList(@RequestParam String loginMember_accIndex) {
 		System.out.println("==chat.chatList==");
 
 		List<ChatRoomDTO> chatList = null;
@@ -52,9 +52,9 @@ public class ChatController {
 	}
 	
 	
-	@PostMapping("chatRoom.do")
+	@PostMapping("chatRoom.do")	//정일_채팅방 정보 불러오기
 	@ResponseBody
-	public ChatRoomDTO getChatRoom(Model model, @RequestParam String room_index) {
+	public ChatRoomDTO getChatRoom(@RequestParam String room_index) {
 		System.out.println("==chat.chatRoom==");
 		System.out.println("room_index: " + room_index);
 
@@ -69,6 +69,24 @@ public class ChatController {
 		}
 
 		return chatRoom;
+	}
+	
+	@PostMapping("recordChat.do")
+	@ResponseBody
+	public int insertChat(@RequestParam String chat_room, @RequestParam String chat_writer, @RequestParam String chat_content) {
+		System.out.println("==chat.recordChat==");
+		System.out.println("chat_room: " + chat_room + " chat_writer: " + chat_writer + " chat_content: " + chat_content);
+		
+		int result = -1;
+		try {
+			
+			result = chatService.recordChat(chat_room, chat_writer, chat_content);
+			System.out.println("recordChatResult: " + result);
+			
+		} catch (Exception e) {
+			result = 0;
+		}
+		return result;
 	}
 	
 	

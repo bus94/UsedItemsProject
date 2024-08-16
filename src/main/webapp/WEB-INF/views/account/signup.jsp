@@ -13,46 +13,67 @@
 	height: 400px; /* 높이 조정 */
 }
 </style>
-<section id="content" class="container login_container"
+<section id="content" class="container signup_container"
 	style="padding-top: 100px;">
 	<c:if test="${loginMember == null}">
 		<div class="login_containerIn">
 			<form id="loginForm" action="${path}/account/signupOK.do"
 				method="post">
 				<div class="loginTitle">
-					<img class="loginLogo" alt="로고"
+					<img class="loginLogo mb-1" alt="로고"
 						src="${path}/resources/img/logo.png">
 				</div>
 				<div class="login_input">
 					<div class="login_inputId">
-						<input type="text" class="form-control login_inputStyle mt-1"
-							name="id" id="id" placeholder="아이디" autocapitalize="off" required
+						<input type="text" class="form-control login_inputStyle" name="id"
+							id="id" placeholder="아이디" autocapitalize="off" required
 							onblur="validateInputId()" onkeyup="currIdCheck(this)"> <input
 							type="button" class="btn checkBtn" id="checkId" value="중복확인"
 							disabled>
 					</div>
-					<input type="password" class="form-control login_inputStyle"
-						name="password" id="password" placeholder="비밀번호"
-						onblur="validateInputPw()" required style="margin-bottom: 5px;" />
+					<div class="login_inputPw">
+						<input type="password" class="form-control login_inputStyle"
+							name="password" id="password" placeholder="비밀번호"
+							onblur="validateInputPw()" required />
+					</div>
 					<p id="validateInputId"
 						style="color: red; margin: 0; display: none; font-size: 15px;">&nbsp;아이디를
 						입력해주세요.</p>
+					<p id="validateCheckId"
+						style="color: green; margin: 0; display: none; font-size: 15px;">&nbsp;사용
+						가능한 ID입니다.</p>
+					<p id="validateId"
+						style="color: blue; margin: 0; display: none; font-size: 15px;">&nbsp;ID를
+						다시 확인 후 중복확인을 눌러주세요.</p>
 					<p id="validateInputPassword"
 						style="color: red; margin: 0; display: none; font-size: 15px;">&nbsp;비밀번호를
 						입력해주세요.</p>
-					<input type="text" class="form-control login_inputStyle"
-						name="name" id="name" placeholder="이름" required
-						style="margin-top: 5px;" /> <input type="text"
-						class="form-control login_inputStyle" name="birthDate"
-						id="birthDate" placeholder="생년월일(8자리) ex.20010203" required /> <input
-						type="text" class="form-control login_inputStyle" name="address"
-						id="address" placeholder="주소" readonly required /> <input
-						type="button" onclick="openAddressModal()" value="주소 검색">
-					<input type="text" class="form-control login_inputStyle"
-						name="detail_address" id="address" placeholder="상세 주소" required />
-					<input type="text" class="form-control login_inputStyle"
-						name="phone" id="phone"
-						placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
+					<div class="mb-1"></div>
+					<div class="login_inputName">
+						<input type="text" class="form-control login_inputStyle"
+							name="name" id="name" placeholder="이름" required
+							style="margin-top: 5px;" />
+					</div>
+					<div class="login_inputBirth">
+						<input type="text" class="form-control login_inputStyle"
+							name="birthDate" id="birthDate"
+							placeholder="생년월일(8자리) ex.20010203" required />
+					</div>
+					<div class="searchAddrDiv">
+						<input type="text" class="form-control login_inputStyle"
+							name="address" id="address" placeholder="주소" readonly required />
+						<input type="button" class="btn searchAddrBtn"
+							onclick="openAddressModal()" value="주소 검색">
+					</div>
+					<div class="login_inputAddr">
+						<input type="text" class="form-control login_inputStyle"
+							name="detail_address" id="address" placeholder="상세 주소" required />
+					</div>
+					<div class="login_inputPhone">
+						<input type="text" class="form-control login_inputStyle"
+							name="phone" id="phone"
+							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
+					</div>
 
 					<!-- 숨겨진 필드에 좌표 값을 저장 -->
 					<input type="hidden" name="addressx" id="addressx"> <input
@@ -62,9 +83,6 @@
 				<div class="loginButton mt-2">
 					<button type="submit" class="btn login_btnStyle mb-1 mt-1"
 						value="회원가입 완료">회원가입</button>
-					<%-- <button type="button" class="btn login_btnStyle" value="로그인 하러 가기"
-						onclick="location.href='${path}/account/login.do';">로그인
-						하러 가기</button> --%>
 				</div>
 			</form>
 			<!-- 주소 검색 모달 -->
@@ -117,9 +135,9 @@
 				var currId = pId.value.trim();
 				
 				if(currId != "") {
-					$('#checkId').attr('disabled', false);
+					$('#checkId').prop('disabled', false);
 				} else {
-					$('#checkId').attr('disabled', true);
+					$('#checkId').prop('disabled', true);
 				}
 			}
 			
@@ -130,7 +148,9 @@
 				
 				$("#id").on('input', function() {
 					if($("#id").val() != '') {
-						$("#checkId").attr("disabled", false);
+						$("#checkId").prop("disabled", false);
+					} else {
+						$("#checkId").prop("disabled", true);
 					}
 				});
 
@@ -141,6 +161,9 @@
 						"id" : $("#id").val()
 					}
 					console.log("전송할 id: " + checkId.id);
+					
+					var validateCheckId = document.getElementById('validateCheckId');
+					var validateId = document.getElementById('validateId');
 
 					$.ajax({
 						type : "POST",
@@ -149,10 +172,14 @@
 						success : function(data) {
 							status = data;
 							if(data === "1") {
-								$("#checkId").attr("disabled", true);
+								$("#checkId").prop("disabled", true);
 								alert("사용 가능한 ID입니다.");
+								validateId.style.display = 'none';
+								validateCheckId.style.display = 'block';
 							} else {
 								alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요.");
+								validateCheckId.style.display = 'none';
+								validateId.style.display = 'block';
 							}
 						},
 						error : function(e) {

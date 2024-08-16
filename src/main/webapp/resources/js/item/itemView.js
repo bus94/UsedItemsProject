@@ -72,3 +72,6 @@ $('.itemView_carousel').slick({
 });
 });
 
+
+
+
