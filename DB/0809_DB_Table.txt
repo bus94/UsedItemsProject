@@ -60,6 +60,7 @@ INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test13', '13', TO_DATE('1997121
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test14', '14', TO_DATE('19940414', 'YYYY-MM-DD'), '01041415678', '이름14', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명14', null, default, default, 'active', sysdate);
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test15', '15', TO_DATE('19950515', 'YYYY-MM-DD'), '01055551111', '이름15', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명15', null, default, default, 'active', sysdate);
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '1', '1', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345678', '이름16', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명16', null, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '3', '3', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345678', '이름16', '경기 남양주시 도농로 43', null, 37.6095545557145, 127.1602763, '별명16', null, default, default, 'active', sysdate);
 
 COMMIT;
 
@@ -363,6 +364,8 @@ CREATE TABLE transaction_location (
 
 insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1330-3','37.4936498','127.0280287');
 insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1374','37.493587','127.0295347');
+insert into transaction_location values(location_SEQ.nextval,'경기 남양주시 다산동 4435','37.613017','127.1602763');
+
 
 commit;
 
