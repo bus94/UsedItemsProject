@@ -187,7 +187,7 @@
 	</c:if>
 		<c:if test="${empty replyList}">
 		<tr>
-			<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+			<td colspan="3"><br><br>등록된 리플이 없습니다.<br><br></td>
 		</tr>
 	</c:if>
 
