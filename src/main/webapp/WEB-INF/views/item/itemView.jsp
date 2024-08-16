@@ -85,18 +85,21 @@
 		<div class="detail_right">
 			<div class="detail_top">
 				<div class="detail_info">
-					<h4>${item.item_title}</h4>
-					<form id="interestForm"
-						action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
-						method="post">
-						<input type="hidden" name="acc_index"
-							value="${loginMember.acc_index}"> <input type="hidden"
-							name="item_index" value="${item.item_index}">
-						<button type="submit"
-							class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
-							onclick="return confirmInterestAction('${isInterested}')">
-							${isInterested ? '관심 취소' : '관심'}</button>
-					</form>
+					<div style="display: flex; align-items:center; height: 30px; ">
+						<h4 style="margin-bottom:10px;">${item.item_title}</h4>
+						<form id="interestForm"
+							action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
+							method="post" style=" margin-left: 10px;">
+							<input type="hidden" name="acc_index"
+								value="${loginMember.acc_index}"> <input type="hidden"
+								name="item_index" value="${item.item_index}">
+							<button type="submit"
+								class="${isInterested ? 'btn-cancel-interest' : 'btn-add-interest'}"
+								onclick="return confirmInterestAction('${isInterested}')">
+								<span></span>
+							</button>
+						</form>
+					</div>
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
@@ -233,19 +236,23 @@
 									<h3>${item.item_title}</h3>
 									<div class="item_price">
 										<h4>${item.item_price}원</h4>
-										<br>
-										<h5>
-											<fmt:formatDate value="${item.item_enrollDate}"
-												pattern="yy/MM/dd" />
-										</h5>
+										<br>										
 									</div>
 									<div class="item_like">
 										<p>관심 ${item.item_interest}</p>
 										<p>댓글 ${item.repl_count}</p>
 									</div>
 									<div class="item_addr">
-										<img src="${path}/resources/img/gps.png" alt="위치">
-										<p>${item.item_place}</p>
+										<div style="display: flex; ">
+											<img src="${path}/resources/img/gps.png" alt="위치">
+											<p>${item.item_place}</p>
+										</div>
+										<div>
+											<h5>
+												<fmt:formatDate value="${item.item_enrollDate}"
+													pattern="yy/MM/dd" />
+											</h5>
+										</div>
 									</div>
 								</div>
 							</a>
