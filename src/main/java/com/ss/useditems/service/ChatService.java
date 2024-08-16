@@ -25,9 +25,8 @@ public class ChatService {
 	}
 
 	public int recordChat(String chat_room, String chat_writer, String chat_content) {
-		System.out.println("service.recordChat");
-		int result = chatMapper.insertChat(chat_room, chat_writer, chat_content);
-		return result;
+
+		return chatMapper.insertChat(chat_room, chat_writer, chat_content);
 	}
 	
 	

@@ -240,7 +240,7 @@
 				<!-- 채팅방 리스트 -->
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="fa-solid fa-circle-exclamation"></i>
+					<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
 				</button>
 				
 			</c:if>	<!-- 로그인되었을 때만 보일 부분 -->

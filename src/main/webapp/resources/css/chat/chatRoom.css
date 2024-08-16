@@ -3,8 +3,13 @@
 
 /* 채팅방리스트 모달 CSS */
 
+#brand_img_chatList {
+	width: 225px;
+	height: 45px;
+}
+
 #chatList .chatRoom_box {
-	border: 1px solid green;
+	border: 2px solid green;
 	border-radius: 5px;
 	
 	padding: 10px;
@@ -47,12 +52,40 @@
 	
 } */
 
+.chat_header {
+	
+	background-color: #ebebeb;
+	
+}
 
 
 .chat_header .returnToRoomList {
 	border: none;
     background-color: transparent;
+    
+    font-size: 1.5rem;
+    width: 32px;
+	height: 32px;	
 }
+
+.chat_header .returnToRoomList i:hover {
+	font-size: 1.6rem;
+}
+
+.chat_header .dropDeal {
+	
+	margin-left: 12px;
+	color: red;
+	cursor: pointer;
+	
+}
+.chat_header .dropDeal:hover {
+	
+	font-weight: bold;
+	
+}
+
+
 
 
 
@@ -80,12 +113,12 @@
 }
 
 .chat_viewer .message.none {
-	background-color: yellow;
+	background-color: lightyellow;
 	color: red;
 }
 
 .chat_viewer .message.server {
-	background-color: yellow;
+	background-color: lightyellow;
 }
 
 .chat_viewer .message.mine {
@@ -99,7 +132,6 @@
 }
 
 .chat_viewer .profile.other {
-/* 뭘 줘야 아이디가 그림 뒤에 붙고 */
 }
 
 
@@ -110,6 +142,9 @@
 	border: 1px solid #ddd;
 	border-radius: 20px;
 	align-self: flex-start;
+	
+	margin-right: 4px;
+	
 }
 
 
@@ -137,7 +172,7 @@
 	margin-left: 10px;
 	padding: 10px 20px;
 	background-color: #DCF8C6;
-	border: none;
+	border: 1px solid #ddd;
 	border-radius: 20px;
 	font-size: 14px;
 	cursor: pointer;

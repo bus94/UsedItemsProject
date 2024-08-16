@@ -22,32 +22,14 @@ var chatURI = "ws://" + serverName + ":" + serverPort + project + "/chat/safeCha
  	//console.log(loginMember_accProfile);
  
 	
-function selectChatRoom(param) {	//채팅방 선택
+function selectChatRoom(param) {	//채팅방 선택 -> 채팅방 보기 버튼 실행
 
-	console.log("내가고른채팅방번호: " + param);
+	//console.log("내가고른채팅방번호: " + param); //왜 두번씩 실행되나?
 	
 	var enterBtn = document.getElementById('enterChatRoom'+param);
 	enterBtn.click();
 	
 }
-
-
-
-function returnToRoomList() {	//'돌아가기' 버튼 클릭
-
-	$('#nav_chat').trigger("click");
-	//단순히 채팅룸리스트 모달으로 돌아가면 에러가 남(웹소켓 중복으로 생성??)
-	//다시 채팅룸리스트를 열어서(DB에서 불러와서) 웹소켓 리셋
-	
-}
-
-
-function dropDeal(param) {		//'거래중단' 버튼 클릭
-		
-		console.log("삭제할 채팅방번호: " + param);
-	
-}
-
 
 
 function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개변수로 가져옴)
@@ -239,7 +221,6 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		}); //ajax
 
 
-
 	});
 	
 	
@@ -262,6 +243,49 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		
 
 }//'채팅방 보기' 버튼
+	
+	
+
+function returnToRoomList() {	//'돌아가기' 버튼 클릭
+
+	$('#nav_chat').trigger("click");
+	//단순히 채팅룸리스트 모달으로 돌아가면 에러가 남(웹소켓 중복으로 생성??)
+	//다시 채팅룸리스트를 열어서(DB에서 불러와서) 웹소켓 리셋
+	
+}
+
+
+function dropDeal(param) {		//'거래중단' 버튼 클릭
+		
+	if (confirm("정말 거래를 중단하시겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
+		
+		console.log("삭제할 채팅방번호: " + param);
+				
+		const queryDropDeal = { chat_room : param };
+		
+		$.ajax({	
+			type : "POST",
+			url : project + "/chat/dropDeal.do", //project는 jsp 내부 script에서 선언해 둠
+			data : queryDropDeal,
+			success : function(result) {
+						console.log("dropDeal.do 통신 성공");
+						if(result > 0) {
+						
+						
+						} else if( result == 0 ) {
+							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+						} else {
+							alert("서버가 정상적으로 작동하지 않습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+		
+	}
+}
+	
 	
 
 

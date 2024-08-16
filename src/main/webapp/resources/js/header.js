@@ -95,7 +95,7 @@ $('#nav_chat').click(function() {
 
 function makingEmptyModal() {
 
-	var emptyList_template = '<p>현재 거래 중인 물품이 없습니다.</p>';
+	var emptyList_template = '<h4>현재 거래 중인 물품이 없습니다!</h4>';
 		
 	$('#chatList').append(emptyList_template);
 	
@@ -142,7 +142,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		var chatList_template = 
 		
 		`<div id="chatRoom_box${obj.room_index}" class="chatRoom_box container" onclick="selectChatRoom(${obj.room_index})">`
-		+ `<p class="chatRoom_title">${obj.room_itemTitle}</p>`
+		+ `<h4 class="chatRoom_title">${obj.room_itemTitle}</h4>`
 		+ `<p class="chatRoom_date">${obj.room_openDate}</p>`
 		+ `<button class="enterChatRoom" id="enterChatRoom${obj.room_index}" value="${obj.room_index}" onclick="enterChatRoom(this.value)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal"></button>`
 		+ '</div>';
@@ -159,8 +159,8 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
   		+ '<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">'
   		+ '<div class="modal-content">'
 		+ '<div class="chat_header modal-header">'
-		+ '<button class="unlink_chat returnToRoomList" onclick="returnToRoomList()">_&lt;&lt;_</button>'
-		+ `<h5 class="chatRoom_modal_title modal-title">&nbsp;${obj.room_itemTitle}</h5>`
+		+ '<button class="unlink_chat returnToRoomList" onclick="returnToRoomList()"><i class="fa-solid fa-reply returnToRoomList"></i></button>'
+		+ `<h4 class="chatRoom_modal_title modal-title">&nbsp;${obj.room_itemTitle}</h4>`
 		+ `<a class="dropDeal" onclick="dropDeal(${obj.room_index})">거래중단</a>`
 		//+ '<button class="unlink_chat btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>'
 		+ '<button type="button" class="unlink_chat btn-close" data-bs-dismiss="modal"></button>'
@@ -191,8 +191,9 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 					
 					chatRoom_modal_template += 
 					'<div class="profile other">'
+					+ `<a href="/useditems/account/acc_info.do?acc_id=${other_id}">`
 					+ profile_path 
-					//+ '<img src="/useditems/resources/img/' + other_index + '/profile/' + other_profile + '">'
+					+ '</a>'
 					+ other_nickname + '</div>'
 					+ '<div class="message other">' + item.chat_content + '</div>';
 					
