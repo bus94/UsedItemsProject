@@ -13,6 +13,7 @@
 		<div class="category">
 			<div class="selectBox">
 				<div class="selectBoxIn">
+					<button style="width: 10px;" id="mapButton">지도</button>
 					<p>정렬:</p>
 					<select class="selectBox_value" name="searchType">
 						<option value="">===정렬 선택===</option>
@@ -129,6 +130,26 @@
 					</div>
 				</c:forEach>
 			</div>
+			<div class="modal fade" id="placeModal" tabindex="-1"
+				aria-labelledby="placeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="placeModalLabel">주변 검색</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<div id="map" style="width: 100%; height: 400px;"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</c:if>
 	</form>
 
@@ -159,3 +180,42 @@
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
+
+<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			let map; // 지도 객체
+			const mapButton = document.getElementById("mapButton"); // 장소 선택 버튼
+			const mapContainer = document.getElementById('map');
+			const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
+			
+			const fullAddress="${loginMember.acc_address}";
+			
+			mapButton.addEventListener('click', (e) => {
+				e.preventDefault();
+	            placeModal.show();
+	            if (!map) {
+	                const addressX = ${loginMember.acc_addressX}; 
+	                const addressY = ${loginMember.acc_addressY};
+	                
+	                const mapOption = {
+		                    center: new kakao.maps.LatLng(addressX, addressY),
+		                    level: 3 
+		            };
+	                map = new kakao.maps.Map(mapContainer, mapOption);
+	                setTimeout(function() {
+		                if (map) {
+		                    map.relayout();
+		                    map.setCenter(new kakao.maps.LatLng(addressX, addressY));
+		                } else {
+		                    console.error("Map object is not initialized yet.");
+		                }
+		            }, 500); 
+	            }
+			});
+			
+		});
+		
+</script>

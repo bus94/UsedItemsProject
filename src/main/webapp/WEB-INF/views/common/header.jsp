@@ -37,6 +37,8 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/login/login.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
+	href="${path}/resources/css/login/signup.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
 	href="${path}/resources/css/item/itemList.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/item/interest.css?v=${systemProperties['timestamp']}">

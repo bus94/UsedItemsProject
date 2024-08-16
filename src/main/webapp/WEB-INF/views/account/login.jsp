@@ -19,7 +19,7 @@
 				<div class="login_input">
 					<div class="input_css input_id">
 						<input type="text"
-							class="form-control login_inputStyle login_inputStyleId mb-1 mt-1"
+							class="form-control login_inputStyle login_inputStyleId"
 							name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
 						<button type="button" class="input_btn" id="clearId"
 							style="display: block;">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="input_css input_password">
 						<input type="password"
-							class="form-control login_inputStyle login_inputStylePw mb-1 mt-1"
+							class="form-control login_inputStyle login_inputStylePw"
 							name="acc_password" id="acc_password" placeholder="비밀번호"
 							required="required" />
 						<button type="button" class="input_btn pwExpr"

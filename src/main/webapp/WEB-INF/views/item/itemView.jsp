@@ -175,7 +175,6 @@
 						</div>
 					</div>
 					<div class="reply_btn">
-						<%-- <c:if test="${loginMember != null && reply.repl_candidate == loginMember.acc_index}"> --%>
 						<button
 							onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 						<button
@@ -183,16 +182,6 @@
 						<button>채팅하기</button>
 					</div>
 				</div>				
-			<%-- 	<!-- 수정 폼 -->
-				<div id="edit-form-${reply.repl_index}" style="display: none;">
-					<form action="${path}/itemView/replyEdit" method="post">
-						<input type="hidden" name="itemNo" value="${item.item_index}" />
-						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
-						<textarea name="content" rows="3">${reply.repl_content}</textarea>
-						<button type="submit">수정 완료</button>
-						<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
-					</form>
-				</div> --%>
 			</c:forEach>
 		</div>
 	</c:if>
@@ -271,7 +260,7 @@
 		</c:if>
 		<c:if test="${not empty otherItemList}">
 			<div class="item_wrapper">
-				<c:forEach var="item" items="${itemList}">
+				<c:forEach var="item" items="${otherItemList}">
 					<div class="item_container">
 						<div class="item">
 							<a href="${path}/item/itemView?item_index=${item.item_index}"
