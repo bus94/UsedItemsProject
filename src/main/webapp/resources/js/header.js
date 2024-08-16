@@ -43,7 +43,7 @@ $('#nav_chat').click(function() {
 							alert("개설된 채팅방이 없습니다.");
 						}else {
 							console.log("chatList_size: " + result.length);
-							makingChatRooms(result);	//함수 정의는 아래에 result=chatList
+							makingChatRooms(result);	//함수 정의는 아래에, result=chatList를 그대로 매개변수로 넘겨줌
 						}
 						
 					},
@@ -121,26 +121,31 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		var thisRoom = obj.room_index;
 		
 		var other_index = '';
+		var other_id = '';
 		var other_profile = '';
 		
 		if(my_index == obj.room_hostIndex) {
 			other_index = obj.room_guestIndex;
+			other_id = obj.room_guestId;
+			other_nickname = obj.room_guestNickname;
 			other_profile = obj.room_guestProfile;
 		} else {
 			other_index = obj.room_hostIndex;
+			other_id = obj.room_hostId;
+			other_nickname = obj.room_hostNickname;
 			other_profile = obj.room_hostProfile;
 		}
 		
 	
 		///////////////////Modal Element/////////////////
 	
-	
+		//채팅 목록 template
 		var chatList_template = 
 		
 		'<div class="chatRoom_box container">'
-		+ `<span>${thisRoom}</span><span>${obj.room_itemTitle}</span>`
-		+ `<span>${obj.room_hostId}</span><span>${obj.room_openDate}</span>`
-		+ `<button class="enterChatRoom btn btn-success btn-sm" id="${obj.room_index}" onclick="getIndex(this.id)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal">채팅방 보기</button>`
+		+ `<span>${thisRoom}</span><span>${obj.room_itemTitle}</span><span>&lt;${obj.room_hostId}&gt;</span>`
+		+ `<p>${obj.room_openDate}</p>`
+		+ `<button class="enterChatRoom btn btn-success btn-sm" id="${obj.room_index}" onclick="enterChatRoom(this.id)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal">채팅방 보기</button>`
 		+ '<button class="btn btn-warning btn-sm" >거래 중단하기</button>'
 		+ '</div>';
 
@@ -149,15 +154,16 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 
 
 
-
+		//채팅방 template
 		var chatRoom_modal_template =
 		
 		`<div class="modal fade" id="chatRoomModal${obj.room_index}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">`
   		+ '<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">'
   		+ '<div class="modal-content">'
 		+ '<div class="modal-header">'
-		+ `<h5 class="modal-title">SafeChat_채팅방#${obj.room_index}</h5>`
-		+ '<button class="btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>'
+		+ `<h5 class="modal-title">채팅방#${obj.room_index}_`+ other_id + `_${obj.room_itemTitle}</h5>`
+		//+ '<button class="unlink-chat btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>'
+		+ '<button class="unlink-chat btn btn-primary" onclick="returnToRoomList()">돌아가기</button>'
 		+ '<button type="button" class="unlink-chat btn-close" data-bs-dismiss="modal"></button>'
 		+ '</div>'
 		+ '<div id="chat-viewer" class="modal-body">'
@@ -189,7 +195,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 					'<div class="profile other">'
 					+ profile_path 
 					//+ '<img src="/useditems/resources/img/' + other_index + '/profile/' + other_profile + '">'
-					+ '</div>'
+					+ other_nickname + '</div>'
 					+ '<div class="message other">' + item.chat_content + '</div>';
 					
 				}

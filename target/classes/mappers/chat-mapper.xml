@@ -115,5 +115,9 @@
 	</select>
 
 
+	<insert id="insertChat" parameterType="String">
+		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room}, #{chat_writer}, #{chat_content}, SYSDATE)
+	</insert>
+
 
 </mapper>

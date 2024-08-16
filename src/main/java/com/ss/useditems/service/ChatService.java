@@ -23,6 +23,11 @@ public class ChatService {
 
 		return chatMapper.selectChatRoom(room_index);
 	}
+
+	public int recordChat(String chat_room, String chat_writer, String chat_content) {
+
+		return chatMapper.insertChat(chat_room, chat_writer, chat_content);
+	}
 	
 	
 }

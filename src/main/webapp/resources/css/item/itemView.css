@@ -129,9 +129,12 @@ a {
 	width: 1000px;
 	height: 100px;
 }
+.commentBox{
+		display: flex;
+	justify-content: space-between;
+}
 
 .comment-editor{
-	display: flex;
 	padding-top:10px;
 }
 .comment-editor form{
@@ -139,12 +142,17 @@ a {
 }
 
 .comment-editor button{
-	width: 55px;
-	height: 60px;
+	width: 65px;
+	height: 100px;
 	border:none;
 	background-color: rgb(171, 236, 171);
 	
 }
+.replyEdit_container{
+	width: 1000px;
+	height: 100px;
+}
+
 
 .reply_img {
 	width: 60px;
@@ -238,6 +246,18 @@ a {
 	width: 35px;
 	font-size: 15px;
 }
+
+.reply_container2 {
+	width: 1000px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+
 
 /* 캐러셀 */
 .carousel-wrapper {
