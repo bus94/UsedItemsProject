@@ -285,17 +285,25 @@ a {
 }
 
 
-.btn-add-interest {
-    background-color: green;
-    color: white;
- 
+.btn-add-interest, .btn-cancel-interest {
+	background-color: white;
+	border: none;
+	margin-bottom:7px;
+}
+.btn-add-interest span, .btn-cancel-interest span{
+	display: inline-block;
+    width: 27px;
+    height: 27px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 100%;
+	background-image: url("../../img/interest.png");
 }
 
-.btn-cancel-interest {
-    background-color: red;
-    color: white;
-   
+.btn-add-interest span{
+	background-image: url("../../img/nointerest.png");
 }
+
 
 
 

@@ -23,7 +23,6 @@ import com.ss.useditems.service.MapService;
 public class MapController {
 	@Autowired
 	MapService service;
-	
 
 	
 	@RequestMapping("/map/maptest1")
