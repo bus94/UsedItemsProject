@@ -110,10 +110,12 @@
 
 				<div class="loginButton">
 					<input type="submit" class="btn login_btnStyle mb-1 mt-2"
-						value="로그인" /> <input type="button"
-						class="btn login_btnStyle mb-1" value="회원가입"
-						onclick="location.href='${path}/account/signup.do';" />
+						value="로그인" />
 					<div class="find mt-1">
+						<button type="button" class="signupBtn"
+							onclick="location.href='${path}/account/signup.do';">
+							회원가입</button>
+						<div class="findBorder"></div>
 						<button type="button" class="findId findBtnW"
 							data-bs-toggle="modal" data-bs-target="#exampleModalId"
 							data-bs-whatever="@mdo">아이디 찾기</button>
