@@ -34,8 +34,6 @@
 }
 
 .login_container .input_css {
-	/* border-top: 1px solid #dee2e6 !important;
-	border-bottom: 1px solid #dee2e6 !important; */
 	width: 100%;
 	height: 50px;
 	display: flex;
@@ -137,11 +135,13 @@
 .login_container .findId {
 	border: none;
 	background-color: inherit;
+	color: #888;
 }
 
 .login_container .findPw {
 	border: none;
 	background-color: inherit;
+	color: #888;
 }
 
 .login_container .findId:hover {
@@ -168,4 +168,19 @@
 
 .login_container .condition {
 	text-align: left;
+}
+
+.signupBtn {
+	border: none !important;
+	box-shadow: none !important;
+	background-color: inherit;
+	color: #888;
+}
+
+.signupBtn:hover {
+	text-decoration: underline;
+}
+
+.signupBtn:focus, .signupBtn:active{
+	outline: none !important;
 }
