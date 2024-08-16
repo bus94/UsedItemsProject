@@ -113,12 +113,15 @@
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;
 				var inputIdMessage = document.getElementById('validateInputId');
+				var checkIdMessage = document.getElementById('validateCheckId');
 
 				if (inputId.trim() === "") {
 					inputIdMessage.style.display = 'block';
+					checkIdMessage.style.display = 'none';
 					borderId.classList.add("errorId");
 				} else {
 					inputIdMessage.style.display = 'none';
+					checkIdMessage.style.display = 'none';
 					borderId.classList.remove("errorId");
 				}
 			}
@@ -181,9 +184,11 @@
 								$("#checkId").prop("disabled", true);
 								validateId.style.display = 'none';
 								validateCheckId.style.display = 'block';
+								borderId.classList.remove("errorId");
 							} else {
 								validateCheckId.style.display = 'none';
 								validateId.style.display = 'block';
+								borderId.classList.add("errorId");
 							}
 						},
 						error : function(e) {
