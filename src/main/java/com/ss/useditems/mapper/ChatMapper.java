@@ -13,6 +13,8 @@ public interface ChatMapper {
 
 	ChatRoomDTO selectChatRoom(String room_index);
 
+	int insertChat(String chat_room, String chat_writer, String chat_content);
+
 	
 	
 }
