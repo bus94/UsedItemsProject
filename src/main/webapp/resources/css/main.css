@@ -103,6 +103,10 @@ footer {
 
 .navbar #nav_chat {
     bottom: 8%;
+    
+    height: 36px;
+    border: none;
+    background-color: transparent;
 }
 
 .navbar #nav_toTop {
