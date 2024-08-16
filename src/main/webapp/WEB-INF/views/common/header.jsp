@@ -77,11 +77,12 @@
 
 <!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
 	<!-- ChatRoom_List_Modal -->
-<div class="modal fade" id="chatRoomListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="chatRoomListModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">거래 중인 매물</h5>
+        <!-- <h5 class="modal-title">거래 중인 매물</h5> -->
+        <img id="brand_img" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id="chatList" class="modal-body">

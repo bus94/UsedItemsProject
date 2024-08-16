@@ -24,6 +24,12 @@
 
 
 
+
+
+
+
+
+
 function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개변수로 가져옴)
 
 	
@@ -78,12 +84,8 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//요청 경로는 서버의 웹소켓 핸들러 제공 uri(WebSocketConfig에서 설정)
 	var ws = new WebSocket(chatURI);//웹소켓 연결;
 		
-	var chat_viewer = document.getElementById('chat-viewer');
-	
-	console.log(chat_viewer.scrollTop);
-	console.log(chat_viewer.scrollHeight);
-	
-	
+	var chat_viewer = document.getElementById('chat-viewer'+room_index);
+	//var chat_viewer = $('#chat-viewer'+room_index);
 	var chat_input = document.getElementById('chat-input');
 	var chat_sendBtn = document.getElementById('chat-sendBtn');
 	
@@ -93,6 +95,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
 		console.log("서버 웹소켓에 연결 성공");
 		ws.send(loginMember_accNickname + "님 입장하였습니다." + "^@"+serverName); // ^@ 뒤는 발신자 표시
+		
 	};
 	
 	ws.onclose = function () {
@@ -138,9 +141,6 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		if(type == 'other') {
 			var profileDiv = document.createElement('div');
 			profileDiv.className = 'profile ' + type;
-			
-			
-			
 			profileDiv.textContent = other_nickname;
 			chat_viewer.appendChild(profileDiv);
 		
@@ -171,8 +171,10 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		//메시지 요소를 추가하고 스크롤 내리기
 		//.scrollTop(#) : scroll 상단 끝을 # 위치로 이동
 		//.prop('scrollHeight') : 'scrollHeight' property 값을 불러옴
-		console.log($('#chat-viewer').prop('scrollHeight'));			
-		$('#chat-viewer').scrollTop($('#chat-viewer').prop('scrollHeight'));	
+		console.log("scrollTop: " + chat_viewer.scrollTop);
+		console.log("scrollHeight: " + chat_viewer.scrollHeight);
+		console.log("display scrollHeight: " + $('#chat-viewer'+room_index).prop('scrollHeight'));			
+		$('#chat-viewer'+room_index).scrollTop($('#chat-viewer'+room_index).prop('scrollHeight'));	
 	}
 	
 	
@@ -244,6 +246,15 @@ function returnToRoomList() {	//'돌아가기' 버튼 클릭
 	//다시 채팅룸리스트를 열어서(DB에서 불러와서) 웹소켓 리셋
 	
 }//'돌아가기' 버튼 클릭
+
+
+function dropDeal(param) {		//'거래중단' 버튼 클릭
+		console.log(param);
+	
+
+}
+
+
 	
 	
 	
@@ -265,7 +276,4 @@ function keyCheck(param) {//input태그에 onkeyup=keyCheck() 지정
 }
 
 
-	
-
-	
 	
