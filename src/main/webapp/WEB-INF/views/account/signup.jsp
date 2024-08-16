@@ -88,7 +88,7 @@
 		<script
 			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bcb92e8b96f5a06c65f1c0e5308b488&libraries=services"></script>
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
 		<script>
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;

@@ -69,8 +69,8 @@ public class MapController {
 	@ResponseBody
 	public List<Map<String, Double>> getMarkers(@RequestParam("fullAddress") String fullAddress) {
 		System.out.println("controller");
-		String[] address = parseAddress(fullAddress);
-		String add= address[0]+ " "+ address[1];
+		String add = parseAddress(fullAddress);
+		System.out.println(add);
 		List<LocationDTO> marker=service.getMarkers(add);
 		
 		  // LocationDTO 리스트를 가져옴
@@ -94,32 +94,35 @@ public class MapController {
 		
 	}
 
-	public static String[] parseAddress(String fullAddress) {
-		String[] result = new String[2]; // [0]: city, [1]: district
+	public static String parseAddress(String fullAddress) {
+		String result="";// [0]: city, [1]: district
 
 		if (fullAddress == null || fullAddress.isEmpty()) {
 			return result;
 		}
 
 		String[] addressParts = fullAddress.split(" ");
-
+		
 		if (addressParts.length > 1) {
 			if (addressParts[0].equals("서울") || addressParts[0].equals("인천")) {
 				// 서울특별시 또는 인천광역시의 경우
-				result[0] = addressParts[0]; // 서울, 인천
-				result[1] = addressParts[1]; // 서초구, 서구 등
+				result += addressParts[0]; // 서울, 인천
+				result +=" " +addressParts[1]; // 서초구, 서구 등
 			} else if (addressParts[0].equals("경기")) {
 				// 경기도의 경우
 				if (addressParts.length > 2) {
-					result[0] = addressParts[0] + " " + addressParts[1]; // 경기 수원시
-					result[1] = addressParts[2]; // 팔달구 등
+					result = addressParts[0] + " " + addressParts[1]; // 경기 수원시
+					if(addressParts[2].endsWith("구")||addressParts[2].endsWith("군")) {
+						result +=" "+ addressParts[2]; // 팔달구 등
+					}
 				}
 			} else {
 				// 그 외 다른 경우
-				result[0] = addressParts[0]; // 시
-				result[1] = addressParts[1]; // 구
+				result = addressParts[0]; // 시
+				result = addressParts[1]; // 구
 			}
 		}
+		
 
 		return result;
 	}
