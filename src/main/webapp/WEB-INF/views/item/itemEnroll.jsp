@@ -150,6 +150,7 @@
 	        let selectedAddress = null;
 	        
 	        let isMarkerSelected = false;
+	        confirmPlaceButton.disabled = true;
 
 	        // 멤버 주소
 	        const fullAddress = "${loginMember.acc_address}";
@@ -181,6 +182,7 @@
 	                    center: new kakao.maps.LatLng(addressX, addressY),
 	                    level: 3 
 	                };
+	               
 
 	                map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -226,7 +228,16 @@
 	                        });
 	                    })
 	                    .catch(error => console.error('Error:', error));
+		                setTimeout(function() {
+			                if (map) {
+			                    map.relayout();
+			                    map.setCenter(new kakao.maps.LatLng(addressX, addressY));
+			                } else {
+			                    console.error("Map object is not initialized yet.");
+			                }
+			            }, 500); 
 	            }
+	            
 	        });
 	                    
 	                    
@@ -242,12 +253,7 @@
 	                    fillOpacity: 0.3  // 채우기 불투명도 입니다   
 	                });
 	                circle.setMap(map); */
-	                setTimeout(function() {
-	               		if (map) { // map 객체가 존재하는지 확인
-	                		map.relayout(); // 맵을 강제로 리프레시
-	                	   	map.setCenter(new kakao.maps.LatLng(addressX, addressY)); // 중심 좌표를 다시 설정
-	                	}
-	                }, 500);
+	               
 	        
 
 	        // 확인 버튼 클릭 시 선택된 위치 정보를 인풋 필드에 저장
