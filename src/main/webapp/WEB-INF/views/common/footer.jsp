@@ -12,10 +12,11 @@
 		&lt;Copyright 2024. <strong>Safe Market</strong>. All rights
 		reserved.&gt;
 	</p>
-	<button onclick="location.href ='${path}/map/maptest2'">map</button> 
+	<%-- <button onclick="location.href ='${path}/map/maptest2'">map</button> --%>
 </footer>
 
-</div> <!-- 전체 페이지 wrapper -->
+</div>
+<!-- 전체 페이지 wrapper -->
 
 
 <!-- 부트스트랩 -->
@@ -23,10 +24,10 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
-	
+
 <!-- 폰트어썸 -->
 <script src="https://kit.fontawesome.com/ae370a3256.js"
-		crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>
 
 </body>
 </html>
