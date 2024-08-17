@@ -69,10 +69,6 @@
 	color: white;
 }
 
-.signup_container .login_inputId {
-	position: relative;
-}
-
 .signup_container .checkBtn {
 	position: absolute;
 	top: 0;
@@ -100,17 +96,28 @@
 }
 
 .signup_container .login_inputId {
-	border: 2px solid #e0e0e0 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	position: relative;
+	border: 2px solid #e0e0e0;
+	border-bottom: 1px solid #dee2e6;
 	border-top-left-radius: 0.375rem;
 	border-top-right-radius: 0.375rem;
 }
 
+.signup_container .errorId {
+	border: 2px solid red !important;
+	border-bottom: 1px solid red !important;
+}
+
 .signup_container .login_inputPw {
-	border: 2px solid #e0e0e0 !important;
-	border-top: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-top: 1px solid #dee2e6;
 	border-bottom-left-radius: 0.375rem;
 	border-bottom-right-radius: 0.375rem;
+}
+
+.signup_container .errorPw {
+	border: 2px solid red !important;
+	border-top: 1px solid red !important;
 }
 
 .signup_container .login_inputStyle:focus {
@@ -119,70 +126,70 @@
 }
 
 .signup_container .login_inputId:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 	border-top-left-radius: 0.375rem;
 	border-top-right-radius: 0.375rem;
 }
 
 .signup_container .login_inputPw:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 	border-bottom-left-radius: 0.375rem;
 	border-bottom-right-radius: 0.375rem;
 }
 
 .signup_container .login_inputName {
-	border: 2px solid #e0e0e0 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-bottom: 1px solid #dee2e6;
 	border-top-left-radius: 0.375rem;
 	border-top-right-radius: 0.375rem;
 }
 
 .signup_container .login_inputBirth {
-	border: 2px solid #e0e0e0 !important;
-	border-top: 1px solid #dee2e6 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-top: 1px solid #dee2e6;
+	border-bottom: 1px solid #dee2e6;
 }
 
 .signup_container .searchAddrDiv {
-	border: 2px solid #e0e0e0 !important;
-	border-top: 1px solid #dee2e6 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-top: 1px solid #dee2e6;
+	border-bottom: 1px solid #dee2e6;
 }
 
 .signup_container .login_inputAddr {
-	border: 2px solid #e0e0e0 !important;
-	border-top: 1px solid #dee2e6 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-top: 1px solid #dee2e6;
+	border-bottom: 1px solid #dee2e6;
 }
 
 .signup_container .login_inputPhone {
-	border: 2px solid #e0e0e0 !important;
-	border-top: 1px solid #dee2e6 !important;
-	border-bottom: 1px solid #dee2e6 !important;
+	border: 2px solid #e0e0e0;
+	border-top: 1px solid #dee2e6;
+	border-bottom: 1px solid #dee2e6;
 	border-bottom-left-radius: 0.375rem;
 	border-bottom-right-radius: 0.375rem;
 }
 
 .signup_container .login_inputName:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 	border-top-left-radius: 0.375rem;
 	border-top-right-radius: 0.375rem;
 }
 
 .signup_container .login_inputBirth:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 }
 
 .signup_container .searchAddrDiv:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 }
 
 .signup_container .login_inputAddr:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 }
 
 .signup_container .login_inputPhone:focus-within {
-	border: 2px solid #40a523 !important;
+	border: 2px solid #40a523;
 	border-bottom-left-radius: 0.375rem;
 	border-bottom-right-radius: 0.375rem;
 }

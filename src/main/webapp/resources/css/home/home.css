@@ -186,131 +186,7 @@
 /*--------- 인기상품--------------------- */
 
 
-.best_Container{
-  width:500px;
-  margin:0 auto;
-  position:relative;
-  top:30px;
-  left: 0;
-}
 
-.best_Items{
-  position:absolute;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-.best_Items img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.best_Items:hover .bestitem_view {
-  display: block;
-}
-
-.best_item{
-	width:100%;
-	height: 100%;
-	border-radius: 70px;
-}
-.bestitem_view{
-	width:100%;
-}
-
-.bestitem_view h3{
-	margin-top:10px;
-	text-align: center;
-}
-
-
-.best_Carousel{
-  margin: 0;
-  padding: 0;
-  transition: transform 0.5s ease;
-}
-
-.best_Carousel li{
-  list-style:none;
-  width:400px;
-  height:300px;
-  background:#333;
-  border-radius:8px;
-  border:1px solid #000;
-}
-
-.best_Carousel li:hover{
-  cursor:pointer;
-}
-
-.Front{
-	left:50px;
-  z-index:1500;
-  transform: scale(1);
-}
-
-.Left{
-  left:-200px;
-  z-index:1000;
-  opacity:0.8;
-  -webkit-transform: scale(.75);
-  -moz-transform: scale(.75);
-  transform: scale(.75);
-}
-
-
-.Left2{
-  left:-400px;
-  z-index:1000;
-  opacity:0.4;
-  -webkit-transform: scale(.50);
-  -moz-transform: scale(.50);
-  transform: scale(.50);
-}
-
-
-.Right{
-  left:300px;
-  z-index:1000;
-  opacity:0.8;
-  -webkit-transform: scale(.75);
-  -moz-transform: scale(.75);
-  transform: scale(.75);
-}
-
-
-.Right2{
-  left:500px;
-  z-index:1000;
-  opacity:0.4;
-  -webkit-transform: scale(.50);
-  -moz-transform: scale(.50);
-  transform: scale(.50);
-}
-
-
-.Scale{
-  z-index:1000;
-  -webkit-transform: scale(.75);
-  -moz-transform: scale(.75);
-  transform: scale(.75);
-}
-
-.Scale2{
-  z-index:3000;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  transform: scale(1);
-}
-
-.Left, .Left2, .Right, .Right2 {
-  z-index: 500;
-  opacity: 0.6;
-  transform: scale(0.75);
-}
 
 
 /* 구라 박스컨테이너 */
@@ -332,6 +208,7 @@
     align-items: center;
     padding: 50px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .mainbox h3 {
@@ -370,7 +247,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
     z-index: 2;
     transition: opacity 0.5s ease;
 }
@@ -379,21 +255,11 @@
     width: 100%;
 }
 
-.mainbox:hover .boxhover_img {
-    display: block;
-}
-
-.mainbox.hovered .boxhover_img {
-    display: block;
-}
 
 .mainbox:hover {
     transform: scale(0.95);
 }
 
-.mainbox.hovered {
-    color: white;
-}
 
 .overlay {
     position: absolute;
@@ -402,32 +268,12 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.5s ease;
     z-index: 3;
 }
 
-.mainbox.hovered .overlay {
-    opacity: 1;
-    /* 호버 시 오버레이가 나타남 */
-}
 
-
-.boxLeft {
-    background-color: rgb(167, 255, 159);
-}
-
-.boxRight {
-    background-color: rgb(152, 226, 255);
-}
-
-.boxUnderLeft {
-    background-color: rgb(219, 175, 255);
-}
-
-.boxUnderRight {
-    background-color: rgb(255, 206, 101);
-}
 
 /* 롤링 */
 

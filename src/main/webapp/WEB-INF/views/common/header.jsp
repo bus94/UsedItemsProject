@@ -58,7 +58,6 @@
 	href="${path}/resources/css/chat/chatRoom.css?v=${systemProperties['timestamp']}">
 
 <script defer src="${path}/resources/js/header.js"></script>
-<%-- <script defer src="${path}/resources/js/chat/chatRoom.js"></script> --%>
 <script src="${path}/resources/js/item/itemView.js"></script>
 
 <!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
@@ -71,17 +70,30 @@
 </head>
 <body>
 
-	<div id="wrapper">
-		<!-- 전체 페이지 wrapper -->
+	<div id="wrapper">		<!-- 전체 페이지 wrapper -->
+		
+
+<!-- JS에 넘겨줄 변수 선언 -->
+<script>
+	var serverName =  "${pageContext.request.serverName}";
+	var serverPort =  "${pageContext.request.serverPort}";
+	var project = "${pageContext.request.contextPath}";
+			
+	var loginMember_accIndex = "${loginMember.acc_index}";
+	var loginMember_accId = "${loginMember.acc_id}";
+	var loginMember_accNickname = "${loginMember.acc_nickname}";
+	var loginMember_accProfile = "${loginMember.acc_profile}";
+</script>
 
 
 <!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
-	<!-- ChatRoom_List_Modal -->
-<div class="modal fade" id="chatRoomListModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- ChatRoom_List_Modal -->
+<div class="modal fade" id="chatRoomListModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">거래 중인 매물</h5>
+      <div id="chatList_header" class="modal-header">
+        <!-- <h5 class="modal-title">거래 중인 매물</h5> -->
+        <img id="brand_img_chatList" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id="chatList" class="modal-body">
@@ -96,26 +108,16 @@
 						
 
       </div>
-      <div class="modal-footer">
+      <div id="chatList_footer" class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-      	<h5 class="modal-title">Safe Chat</h5>
+      	<h5 id="chatList_notice" class="modal-title">Safe Chat</h5>
       </div>
     </div>
   </div>
 </div>
 
 
-			<!-- JS에 넘겨줄 변수 선언 -->
-			<script>
-				var serverName =  "${pageContext.request.serverName}";
-				var serverPort =  "${pageContext.request.serverPort}";
-				var project = "${pageContext.request.contextPath}";
-			
-				var loginMember_accIndex = "${loginMember.acc_index}";
-				var loginMember_accId = "${loginMember.acc_id}";
-				var loginMember_accNickname = "${loginMember.acc_nickname}";
-				var loginMember_accProfile = "${loginMember.acc_profile}";
-			</script>
+
 <div id="ChatRoom_Modal_reservoir">
 <!-- ChatRoom_Modal -->
 <!-- <div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -145,7 +147,7 @@
 </div>
  -->
 
-</div><!-- ChatRoom_Modal_reservoir -->
+</div>	<!-- ChatRoom_Modal_reservoir -->
 
 				 
 
@@ -159,7 +161,7 @@
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
 					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
 				</a>
-				<button class="navbar-toggler" type="button"
+				<button id="navbar-toggler" class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
 					aria-label="Toggle navigation">
@@ -167,12 +169,8 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-lg-0" style="display:flex; gap:7px;">
-						<a class="nav-link" aria-current="page"
-							href="${path}/item/itemList.do">
-							<li class="nav-item"><img class="nav_icon" alt="매물 검색"
-								src="${path}/resources/img/shop.png"> <span
-								class="menu_text">매물검색</span></li>
-						</a>
+						<li class="nav-item"><img class="nav_icon" alt="매물 검색"
+								src="${path}/resources/img/search.png"></li>
 						<a class="nav-link" href="${path}/blacklist/complainList.do">
 							<li class="nav-item"><img class="nav_icon" alt="신고 조회"
 								src="${path}/resources/img/report.png"> <span
@@ -242,7 +240,7 @@
 				<!-- 채팅방 리스트 -->
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="fa-solid fa-circle-exclamation"></i>
+					<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
 				</button>
 				
 			</c:if>	<!-- 로그인되었을 때만 보일 부분 -->

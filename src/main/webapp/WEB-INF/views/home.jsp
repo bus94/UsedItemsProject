@@ -118,52 +118,6 @@
 		<img alt="" src="${path}/resources/img/safemarket_banner.png">
 	</div>
 
-	<h3 style="font-size: 22px; margin-left: 200px">지금 인기있는 제품을 만나보세요
-		&gt;</h3>
-	<div class="best_Container" style="height: 600px">
-		<ul class="best_Carousel">
-			<li class="best_Items Front">
-				<div class="best_item">
-					<img src="${path}/resources/img/study.jpg" alt="1">
-					<div class="bestitem_view">
-						<h3>제품명입니다1</h3>
-					</div>
-				</div>
-			</li>
-			<li class="best_Items Left">
-				<div class="best_item">
-					<img src="${path}/resources/img/redwhistle.jpg" alt="1">
-					<div class="bestitem_view">
-						<h3>제품명입니다1</h3>
-					</div>
-				</div>
-			</li>
-			<li class="best_Items Left2">
-				<div class="best_item">
-					<img src="${path}/resources/img/zz.png" alt="1">
-					<div class="bestitem_view">
-						<h3>제품명입니다1</h3>
-					</div>
-				</div>
-			</li>
-			<li class="best_Items Right">
-				<div class="best_item">
-					<img src="${path}/resources/img/clover.png" alt="1">
-					<div class="bestitem_view">
-						<h3>제품명입니다1</h3>
-					</div>
-				</div>
-			</li>
-			<li class="best_Items Right2">
-				<div class="best_item">
-					<img src="${path}/resources/img/message.png" alt="1">
-					<div class="bestitem_view">
-						<h3>제품명입니다1</h3>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
 
 	<div class="mainbox_container">
 		<div style="display:flex;width: 100%; justify-content: space-between;">
@@ -173,9 +127,6 @@
 					<h2>
 						<span class="counter" data-target="3687546">0</span>명
 					</h2>
-				</div>
-				<div class="box_img">
-					<img src="${path}/resources/img/clover.png" alt="">
 				</div>
 				<div class="boxhover_img">
 					<img src="${path}/resources/img/internet.jpg" alt="">
@@ -188,9 +139,6 @@
 					<h2>
 						<span class="counter" data-target="9999">0</span>건
 					</h2>
-				</div>
-				<div class="box_img">
-					<img src="${path}/resources/img/clover.png" alt="">
 				</div>
 				<div class="boxhover_img">
 					<img src="${path}/resources/img/trade.jpg" alt="">
@@ -206,9 +154,6 @@
 						<span class="counter" data-target="65">0</span>건
 					</h2>
 				</div>
-				<div class="box_img">
-					<img src="${path}/resources/img/clover.png" alt="">
-				</div>
 				<div class="boxhover_img">
 					<img src="${path}/resources/img/trade2.png" alt="">
 				</div>
@@ -220,9 +165,6 @@
 					<h2>
 						<span class="counter" data-target="1234">0</span>건
 					</h2>
-				</div>
-				<div class="box_img">
-					<img src="${path}/resources/img/clover.png" alt="">
 				</div>
 				<div class="boxhover_img">
 					<img src="${path}/resources/img/police.jpeg" alt="">

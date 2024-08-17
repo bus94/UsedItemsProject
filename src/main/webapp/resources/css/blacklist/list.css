@@ -66,6 +66,10 @@
  	border-radius: 0 0 10px 0 ; 
  } 
  
+ .blacklist_page #empty_td {
+  	border-radius: 0 0 10px 30px  !important;
+ }
+ 
  .blacklist_page .list_index {
  	width: 75px;
  }

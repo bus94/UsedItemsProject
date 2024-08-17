@@ -24,14 +24,14 @@
 						src="${path}/resources/img/logo.png">
 				</div>
 				<div class="login_input">
-					<div class="login_inputId">
+					<div class="login_inputId" id="login_inputId">
 						<input type="text" class="form-control login_inputStyle" name="id"
 							id="id" placeholder="아이디" autocapitalize="off" required
 							onblur="validateInputId()" onkeyup="currIdCheck(this)"> <input
 							type="button" class="btn checkBtn" id="checkId" value="중복확인"
 							disabled>
 					</div>
-					<div class="login_inputPw">
+					<div class="login_inputPw" id="login_inputPw">
 						<input type="password" class="form-control login_inputStyle"
 							name="password" id="password" placeholder="비밀번호"
 							onblur="validateInputPw()" required />
@@ -108,14 +108,21 @@
 		<script
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
 		<script>
+		var borderId = document.getElementById('login_inputId');
+		var borderPw = document.getElementById('login_inputPw');
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;
 				var inputIdMessage = document.getElementById('validateInputId');
+				var checkIdMessage = document.getElementById('validateCheckId');
 
 				if (inputId.trim() === "") {
 					inputIdMessage.style.display = 'block';
+					checkIdMessage.style.display = 'none';
+					borderId.classList.add("errorId");
 				} else {
 					inputIdMessage.style.display = 'none';
+					checkIdMessage.style.display = 'none';
+					borderId.classList.remove("errorId");
 				}
 			}
 
@@ -125,9 +132,11 @@
 						.getElementById('validateInputPassword');
 
 				if (inputPassword.trim() === "") {
-					inputPasswordMessage.style.display = 'block'
+					inputPasswordMessage.style.display = 'block';
+					borderPw.classList.add("errorPw");
 				} else {
 					inputPasswordMessage.style.display = 'none';
+					borderPw.classList.remove("errorPw");
 				}
 			}
 			
@@ -173,13 +182,21 @@
 							status = data;
 							if(data === "1") {
 								$("#checkId").prop("disabled", true);
+<<<<<<< HEAD
 								/* alert("사용 가능한 ID입니다."); */
+=======
+>>>>>>> 58373499cf035314be97fde38fca75c75628b77d
 								validateId.style.display = 'none';
 								validateCheckId.style.display = 'block';
+								borderId.classList.remove("errorId");
 							} else {
+<<<<<<< HEAD
 								/* alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요."); */
+=======
+>>>>>>> 58373499cf035314be97fde38fca75c75628b77d
 								validateCheckId.style.display = 'none';
 								validateId.style.display = 'block';
+								borderId.classList.add("errorId");
 							}
 						},
 						error : function(e) {
