@@ -369,6 +369,7 @@ CREATE TABLE transaction_location (
 insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1330-3','37.4936498','127.0280287');
 insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1374','37.493587','127.0295347');
 insert into transaction_location values(location_SEQ.nextval,'경기 남양주시 다산동 4435','37.613017','127.1602763');
+insert into transaction_location values(location_SEQ.nextval,'서울 강남구 강남대로 352','37.49437','127.0297854');
 
 
 commit;

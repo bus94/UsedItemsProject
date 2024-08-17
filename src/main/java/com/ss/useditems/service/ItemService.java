@@ -85,7 +85,7 @@ public class ItemService {
 		System.out.println("selectByDefault() 실행");
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.selectByDefault(map);
 		System.out.println("unpaged_list:" + unpaged_list);
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 20);
 		System.out.println("pageinfo:" + pageinfo);
 		
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());

@@ -173,11 +173,11 @@
 							status = data;
 							if(data === "1") {
 								$("#checkId").prop("disabled", true);
-								alert("사용 가능한 ID입니다.");
+								/* alert("사용 가능한 ID입니다."); */
 								validateId.style.display = 'none';
 								validateCheckId.style.display = 'block';
 							} else {
-								alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요.");
+								/* alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요."); */
 								validateCheckId.style.display = 'none';
 								validateId.style.display = 'block';
 							}
