@@ -146,6 +146,18 @@
 	<div class="store_content">
 		<p>${item.item_content}</p>
 	</div>
+	<div id="comment-container">
+		<div class="comment-editor" align="center">
+			<form action="${path}/itemView/reply" method="post" class="commentBox">
+				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
+					type="hidden" name="writerId" value="${loginMember.acc_id}" />
+				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
+				<button type="submit" id="btn-insert">등록</button>
+			</form>
+		</div>
+	</div>
+
+
 	<c:if test="${!empty replyList}">
 		<div class="reply">
 			<c:forEach var="reply" items="${replyList}">
@@ -175,23 +187,25 @@
 						</div>
 					</div>
 					<div class="reply_btn">
-						<button
-							onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
-						<button
-							onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
-						<button>채팅하기</button>
+						<c:if test="${reply.repl_nickname.equals(loginMember.acc_nickname)}">
+							<button
+								onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
+							<button
+								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
+						</c:if>
+						<c:if test="${item.item_seller==loginMember.acc_index}">
+							<button>채팅하기</button>
+						</c:if>
 					</div>
 				</div>				
 			</c:forEach>
 		</div>
 	</c:if>
-		<c:if test="${empty replyList}">
+	<c:if test="${empty replyList}">
 		<tr>
-			<td colspan="3"><br><br>등록된 리플이 없습니다.<br><br></td>
+			<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
 		</tr>
 	</c:if>
-
-
 
 
 	<div class="reply2">
@@ -210,9 +224,9 @@
 					</c:choose>
 					<form action="${path}/itemView/replyEdit" method="post"
 						class="replyEditBox"
-						style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-						<input type="hidden" name="itemNo" value="${item.item_index}" />
-						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
+						style="width:100%; display: flex; justify-content: space-between; align-items: center">
+						<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
+							type="hidden" name="replyNo" value="${reply.repl_index}" />
 						<div style="display: flex">
 							<div class="reply_img">
 								<img src="${repl_profile_path}" alt="프사">
@@ -225,27 +239,16 @@
 						<div id="edit-form-${reply.repl_index}">
 							<div class="reply_btn" style="align-items: center">
 								<button type="submit">수정 완료</button>
-								<button type="button"
-									onclick="hideEditForm(${reply.repl_index})">취소</button>
+								<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
 							</div>
 						</div>
-
+	
 					</form>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-	<div id="comment-container">
-		<div class="comment-editor" align="center">
-			<form action="${path}/itemView/reply" method="post"
-				class="commentBox">
-				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
-					type="hidden" name="writerId" value="${loginMember.acc_id}" />
-				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
-				<button type="submit" id="btn-insert">등록</button>
-			</form>
-		</div>
-	</div>
+
 
 
 
