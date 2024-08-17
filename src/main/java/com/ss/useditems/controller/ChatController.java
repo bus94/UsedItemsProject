@@ -73,7 +73,7 @@ public class ChatController {
 	
 	@PostMapping("recordChat.do")
 	@ResponseBody
-	public int insertChat(@RequestParam String chat_room, @RequestParam String chat_writer, @RequestParam String chat_content) {
+	public int recordChat(@RequestParam String chat_room, @RequestParam String chat_writer, @RequestParam String chat_content) {
 		System.out.println("==chat.recordChat==");
 		System.out.println("chat_room: " + chat_room + " chat_writer: " + chat_writer + " chat_content: " + chat_content);
 		
@@ -90,7 +90,22 @@ public class ChatController {
 	}
 	
 	
-	
+	@PostMapping("dropDeal.do")
+	@ResponseBody
+	public int dropDeal(@RequestParam String chat_room) {
+		System.out.println("==chat.dropDeal==");
+		System.out.println("chat_room: " + chat_room);
+		
+		int result = -1;
+		try {
+			result = 1;
+			
+		} catch(Exception e) {
+			result = 0;
+		}
+		return result;
+	}
+
 
 	
 	

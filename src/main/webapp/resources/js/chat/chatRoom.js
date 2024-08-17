@@ -1,12 +1,15 @@
 /**
  * 
  */
- $(function() {
+$(function() {
 
  	console.log('chatRoom.js 연결');
 
 });
 
+
+var chatURI = "ws://" + serverName + ":" + serverPort + project + "/chat/safeChat";
+//console.log(chatURI);
 
   	
 	//console.log(serverName);	
@@ -19,9 +22,14 @@
  	//console.log(loginMember_accProfile);
  
 	
-	var chatURI = "ws://" + serverName + ":" + serverPort + project + "/chat/safeChat";
-	//console.log(chatURI);
+function selectChatRoom(param) {	//채팅방 선택 -> 채팅방 보기 버튼 실행
 
+	//console.log("내가고른채팅방번호: " + param); //왜 두번씩 실행되나?
+	
+	var enterBtn = document.getElementById('enterChatRoom'+param);
+	enterBtn.click();
+	
+}
 
 
 function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개변수로 가져옴)
@@ -44,26 +52,22 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			success : function(result) {
 						console.log("chatRoom.do 통신 성공");
 						
-					$(result).each(function (index, obj){	//forEach 반복문 jQuery 형식
-						
-						if(loginMember_accIndex == obj.room_hostIndex) {
+						if(loginMember_accIndex == result.room_hostIndex) {
 							console.log("나는 호스트")
-							other_index = obj.room_guestIndex;
-							other_id = obj.room_guestId;
-							other_nickname = obj.room_guestNickname;
-							other_profile = obj.room_guestProfile;
+							other_index = result.room_guestIndex;
+							other_id = result.room_guestId;
+							other_nickname = result.room_guestNickname;
+							other_profile = result.room_guestProfile;
 						} else {
 							console.log("나는 게스트")
-							other_index = obj.room_hostIndex;
-							other_id = obj.room_hostId;
-							other_nickname = obj.room_hostNickname;
-							other_profile = obj.room_hostProfile;		
+							other_index = result.room_hostIndex;
+							other_id = result.room_hostId;
+							other_nickname = result.room_hostNickname;
+							other_profile = result.room_hostProfile;		
 						}
 					
 						console.log("other_id: " + other_id);
 						console.log("other_profile: " + other_profile);
-
-					});
 						
 					},
 			error : function(error) {
@@ -78,17 +82,10 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//요청 경로는 서버의 웹소켓 핸들러 제공 uri(WebSocketConfig에서 설정)
 	var ws = new WebSocket(chatURI);//웹소켓 연결;
 		
-	var chat_viewer = document.getElementById('chat-viewer');
+	var chat_viewer = document.getElementById('chat_viewer'+room_index);
+	//var chat_viewer = $('#chat_viewer'+room_index);
 	
-	console.log(chat_viewer.scrollTop);
-	console.log(chat_viewer.scrollHeight);
-	
-	
-	var chat_input = document.getElementById('chat-input');
-	var chat_sendBtn = document.getElementById('chat-sendBtn');
-	
-	chat_sendBtn.addEventListener('click', sendMessage);	//sendMessage 함수는 아래에 정의
-		
+
 		
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
 		console.log("서버 웹소켓에 연결 성공");
@@ -138,9 +135,6 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		if(type == 'other') {
 			var profileDiv = document.createElement('div');
 			profileDiv.className = 'profile ' + type;
-			
-			
-			
 			profileDiv.textContent = other_nickname;
 			chat_viewer.appendChild(profileDiv);
 		
@@ -171,22 +165,32 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		//메시지 요소를 추가하고 스크롤 내리기
 		//.scrollTop(#) : scroll 상단 끝을 # 위치로 이동
 		//.prop('scrollHeight') : 'scrollHeight' property 값을 불러옴
-		console.log($('#chat-viewer').prop('scrollHeight'));			
-		$('#chat-viewer').scrollTop($('#chat-viewer').prop('scrollHeight'));	
+		console.log("scrollTop: " + chat_viewer.scrollTop);
+		console.log("scrollHeight: " + chat_viewer.scrollHeight);
+		console.log("display scrollHeight: " + $('#chat_viewer'+room_index).prop('scrollHeight'));			
+		$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
 	}
 	
 	
+	
+	
+
+	
 	//웹소켓으로 서버에 새 메시지를 보내는 함수
-	function sendMessage() {
+	$('#chat_sendBtn'+room_index).click(function(){
 		
-		var message_input = chat_input.value.trim();
+		var chat_input = $('#chat_input'+room_index);
+		
+		var message_input = $.trim(chat_input.val());
+
+		console.log(message_input);
 
 		if(message_input != ''){
 						
 			ws.send(message_input + "^@"+loginMember_accId); // ^@ 뒤는 발신자 표시
 			
-			chat_input.value='';
-			chat_input.focus();//포커스 주기
+			chat_input.val('');
+			//chat_input.focus();//포커스 주기
 			
 		}
 		
@@ -215,15 +219,23 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
 					}
 		}); //ajax
-		
-		
+
+
+	});
+	
+	
+	
+	//chat_sendBtn.addEventListener('click', sendMessage);
+	
+	function sendMessages() {
 		
 	}//웹소켓으로 서버에 새 메시지 보내는 함수
 	
 	
 
+
 	//채팅방에서 '돌아가기' 또는 '닫기' 누를 경우
-	$('.unlink-chat').click(function(){
+	$('.unlink_chat').click(function(){
 		ws.onclose();	//웹소켓 해제
 	});
 		
@@ -232,19 +244,51 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 }//'채팅방 보기' 버튼
 	
-
-
-
-
 	
+
 function returnToRoomList() {	//'돌아가기' 버튼 클릭
 
 	$('#nav_chat').trigger("click");
 	//단순히 채팅룸리스트 모달으로 돌아가면 에러가 남(웹소켓 중복으로 생성??)
 	//다시 채팅룸리스트를 열어서(DB에서 불러와서) 웹소켓 리셋
 	
-}//'돌아가기' 버튼 클릭
+}
+
+
+function dropDeal(param) {		//'거래중단' 버튼 클릭
+		
+	if (confirm("정말 거래를 중단하시겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
+		
+		console.log("삭제할 채팅방번호: " + param);
+				
+		const queryDropDeal = { chat_room : param };
+		
+		$.ajax({	
+			type : "POST",
+			url : project + "/chat/dropDeal.do", //project는 jsp 내부 script에서 선언해 둠
+			data : queryDropDeal,
+			success : function(result) {
+						console.log("dropDeal.do 통신 성공");
+						if(result > 0) {
+						
+						
+						} else if( result == 0 ) {
+							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+						} else {
+							alert("서버가 정상적으로 작동하지 않습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+		
+	}
+}
 	
+	
+
+
 	
 	
 //채팅방에서 엔터키 누르면 '전송' 버튼 클릭하도록 하는 함수 
@@ -258,14 +302,10 @@ function keyCheck(param) {//input태그에 onkeyup=keyCheck() 지정
 	if(param.keyCode === 13) {
 		//console.log("엔터를 눌렀따");
 			
-		//chat_sendBtn.click(); //변수를 채팅방 보기 안에다가 적어둠
-		$('#chat-sendBtn').trigger("click");
+		$('.chat_sendBtn').trigger("click");
 	}
 	
 }
 
 
-	
-
-	
 	
