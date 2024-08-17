@@ -182,18 +182,12 @@
 							status = data;
 							if(data === "1") {
 								$("#checkId").prop("disabled", true);
-<<<<<<< HEAD
 								/* alert("사용 가능한 ID입니다."); */
-=======
->>>>>>> 58373499cf035314be97fde38fca75c75628b77d
 								validateId.style.display = 'none';
 								validateCheckId.style.display = 'block';
 								borderId.classList.remove("errorId");
 							} else {
-<<<<<<< HEAD
 								/* alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요."); */
-=======
->>>>>>> 58373499cf035314be97fde38fca75c75628b77d
 								validateCheckId.style.display = 'none';
 								validateId.style.display = 'block';
 								borderId.classList.add("errorId");
