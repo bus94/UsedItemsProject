@@ -13,7 +13,7 @@
 		<div class="category">
 			<div class="selectBox">
 				<div class="selectBoxIn">
-					<button style="width: 10px;" id="mapButton">지도</button>
+					<!-- <button style="width: 10px;" id="mapButton">지도</button> -->
 					<p>정렬:</p>
 					<select class="selectBox_value" name="searchType">
 						<option value="">===정렬 선택===</option>
@@ -42,8 +42,8 @@
 										</c:if>
 									</c:forEach> <input type="checkbox" name="categoryList"
 									id="category_${value}" value="${value}"
-									${isChecked ? 'checked':''} /> <label class="radio_type"
-									for="category_${value}">${value}</label></li>
+									class="category-checkbox" ${isChecked ? 'checked':''} /> <label
+									class="radio_type" for="category_${value}">${value}</label></li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -51,7 +51,7 @@
 
 				<div class="sear_categoryBtn">
 					<button type="submit" class="sear_category">상세검색</button>
-					<button type="reset" class="sear_category">초기화</button>
+					<button type="reset" class="sear_category" id="resetBtn">초기화</button>
 				</div>
 			</div>
 
@@ -65,7 +65,6 @@
 			            const checkbox = li.querySelector('input[type="checkbox"]');
 			            if (checkbox) {
 			                checkbox.checked = !checkbox.checked;
-			                updateCheckedFilter();
 			            }
 			        });
 			    });
@@ -74,11 +73,16 @@
                 document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
                     event.stopPropagation();
                 });
+                
 			});
 			
-			let filter = function () {
-				
-			}
+			  // 체크박스 상태 초기화
+		    function resetCheckBoxes() {
+		        document.querySelectorAll('input[name="categoryList"]').forEach(checkBox => {
+		            checkBox.checked = false;
+		        });
+		    }
+
 		</script>
 
 		<div class="item_title">

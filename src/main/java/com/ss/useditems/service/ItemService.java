@@ -23,7 +23,7 @@ public class ItemService {
 
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.interest(accIndex);
 
-		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 20);
 
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
@@ -46,7 +46,7 @@ public class ItemService {
 		System.out.println("selectByNearPlace() 실행");
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.selectByNearPlace(map);
 
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 20);
 
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
@@ -59,7 +59,7 @@ public class ItemService {
 		System.out.println("selectByPopular() 실행");
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.selectByPopular(map);
 
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 20);
 
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
@@ -72,7 +72,7 @@ public class ItemService {
 		System.out.println("selectByBestSeller() 실행");
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.selectByBestSeller(map);
 
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 20);
 
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
@@ -85,7 +85,7 @@ public class ItemService {
 		System.out.println("selectByDefault() 실행");
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.selectByDefault(map);
 		System.out.println("unpaged_list:" + unpaged_list);
-		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 10);
+		PageInfo pageinfo = new PageInfo(currentPage_, 5, unpaged_list.size(), 20);
 		System.out.println("pageinfo:" + pageinfo);
 		
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
