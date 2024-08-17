@@ -131,75 +131,46 @@ clone.classList.add('clone');
 
 // 인기상품
 
-$(function(){
-  var front = $('.Front'),
-      others = ['Left2', 'Left', 'Right', 'Right2'];
-      interval = 5000;
-      
-  function slideNext() {
-    var $next = front.next('.best_Items');
-    if ($next.length === 0) {
-      $next = $('.best_Items').first(); // 마지막 슬라이드 다음은 첫 번째 슬라이드로 돌아감
-    }
-    
-    $.each(others, function(i, cl) {
-      if ($next.hasClass(cl)) {
-        front.removeClass('Front').addClass(cl);
-        front = $next;
-        front.addClass('Front').removeClass(cl);
-      }
-    });
-  }    
-  
-  $('.best_Carousel').on('click', '.best_Items', function() {
-    var $this = $(this);
-    
-    $.each(others, function(i, cl) {
-      if ($this.hasClass(cl)) {
-        front.removeClass('Front').addClass(cl);
-        front = $this;
-        front.addClass('Front').removeClass(cl);
-      }
-    });
-  });
-  
-   setInterval(slideNext, interval);
-});
-
 
 
 
 // 구라박스
-document.addEventListener('DOMContentLoaded', function () {
-    const counters = document.querySelectorAll('.counter');
+  document.addEventListener('DOMContentLoaded', function () {
 
-    counters.forEach(counter => {
-        const updateCounter = () => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
+    function startCounting(element) {
+      const counters = element.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
 
-            const increment = target / 100;
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(updateCounter, 8);
-            } else {
-                counter.innerText = target;
-            }
+          const increment = target / 500; // 속도 조절
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment); 
+            setTimeout(updateCount, 1); // 1ms 후에 다시 업데이트
+          } else {
+            counter.innerText = target;
+          }
         };
+        updateCount();
+      });
+    }
 
-        counter.closest('.mainbox').addEventListener('mouseover', updateCounter);
+    // Intersection Observer 생성
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 섹션이 화면에 들어오면 카운팅 시작
+          startCounting(entry.target);
+          // 카운팅 시작 후에는 더 이상 관찰하지 않음
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 1 }); // 요소가 화면에 들어왔을 때 시작
+
+    const sections = document.querySelectorAll('.mainbox');
+    sections.forEach(section => {
+      observer.observe(section);
     });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const boxes = document.querySelectorAll('.mainbox');
-
-    boxes.forEach(box => {
-        box.addEventListener('mouseover', () => {
-            box.classList.add('hovered');
-        });
-
-        box.addEventListener('mouseout', () => {
-        });
-    });
-});
+  });
