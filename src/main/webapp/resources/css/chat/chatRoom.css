@@ -46,6 +46,7 @@
 
  #chatList .chatRoom_content {
 	width: 215px;
+	margin-top: 8px;
 	
 	gap: 12px;
  }
@@ -62,6 +63,7 @@
 }
 
 #chatList .chatRoom_date {
+	margin-top: 8px;
 	
 	gap: 30px;	
 } 
