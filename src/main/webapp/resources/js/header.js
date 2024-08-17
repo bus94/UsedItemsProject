@@ -95,7 +95,7 @@ $('#nav_chat').click(function() {
 
 function makingEmptyModal() {
 
-	var emptyList_template = '<h4>현재 거래 중인 물품이 없습니다!</h4>';
+	var emptyList_template = '<h4 id="chat_emptyList" class="text-center">현재 거래 중인 물품이 없습니다!</h4>';
 		
 	$('#chatList').append(emptyList_template);
 	
@@ -116,15 +116,15 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		//console.log("loginMember.accIndex: "+ loginMember_accIndex);
 		
+		
 		var thisRoom = obj.room_index;
+		
+		
+		//채팅방 개설일시
 		var thisRoomOpenDate = new Date(obj.room_openDate);
-		console.log(thisRoomOpenDate);
-		var formattedDate = thisRoomOpenDate.getFullYear().toString().slice(-2) + "/" 
-						  + (thisRoomOpenDate.getMonth()+1).toString().padStart(2, '0') + "/" 
-						  + thisRoomOpenDate.getDate().toString().padStart(2, '0') + " " 
-						  + thisRoomOpenDate.getHours().toString().padStart(2, '0') + ":"
-						  + thisRoomOpenDate.getMinutes().toString().padStart(2, '0');
-		console.log(formattedDate);
+		var formattedDate = formatingDate(thisRoomOpenDate);
+		console.log("채팅방 오픈: " + formattedDate);
+		
 		
 		var other_index = '';
 		var other_id = '';
@@ -146,12 +146,28 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 	
 		///////////////////Modal Element/////////////////
 	
+		//상대방 프로필 값으로 img태그 생성, 함수 정의는 아래에
+		var profile_path = otherProfile(other_profile, other_index);
+	
+	
+	
 		//채팅 목록(chatRoom list) template
 		var chatList_template = 
 		
 		`<div id="chatRoom_box${obj.room_index}" class="chatRoom_box container" onclick="selectChatRoom(${obj.room_index})">`
+		+ '<div class="chatRoom_profile d-flex flex-column">'
+		+ profile_path
+		+ `<p class="text-center">${other_id}</p>`
+		+ '</div>'
+		
+		+ `<div id="chatRoom_content${obj.room_index}" class="chatRoom_content d-flex flex-column">`
 		+ `<h4 class="chatRoom_title">${obj.room_itemTitle}</h4>`
-		+ `<p class="chatRoom_date">개설일시: ${formattedDate}</p>`
+		+ '</div>'
+		
+		+ `<div id="chatRoom_date${obj.room_index}" class="chatRoom_date d-flex flex-column">`
+		+ `<p class="align-self-end">Open: ${formattedDate}</p>`	//최근날짜는 밑에 내부반복문에서 처리
+		+ '</div>'
+		
 		+ `<button class="enterChatRoom" id="enterChatRoom${obj.room_index}" value="${obj.room_index}" onclick="enterChatRoom(this.value)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal"></button>`
 		+ '</div>';
 
@@ -176,40 +192,62 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		+ `<div id="chat_viewer${obj.room_index}" class="chat_viewer modal-body">`
 		+ '<!-- 채팅글 div가 추가되는 곳 -->';
 		
+		
+		//아래 내부 반복문에서 밖으로 가지고 나갈 변수(최근메시지)
+		var thisRoomLatestMsg ='';
+		
 		//현재 반복문 안의 반복문(각 채팅메시지가 이 방에 속하면 element 추가)
 		$(obj.messages).each(function (index, item){	//forEach 반복문 jQuery 형식
 		
 			if(item.chat_room == thisRoom) {
-				//console.log(item.chat_content);
+			
+				//현재 반복 메시지 내용
+				thisRoomLatestMsg = item.chat_content;
+				console.log(thisRoomLatestMsg);				
+				
+				//현재 반복 메시지 시간
+				var thisRoomLatestDate = new Date(item.chat_enrollDate);
+				formattedDate = formatingDate(thisRoomLatestDate);	//변수 선언은 위에 채팅방 개설일시에서
+				console.log("시간: " + formattedDate);
+			
+			
 				if(item.chat_writer == loginMember_accIndex){
 					
 					//console.log("내가 쓴 메시지");
-					chatRoom_modal_template += '<div class="message mine">' + item.chat_content + '</div>';
+					chatRoom_modal_template += `<div title="${formattedDate}" class="message mine">${thisRoomLatestMsg}</div>`;
 					
 				} else {
 					
 					//console.log("상대방이 쓴 메시지");
-					var profile_path = '';
-					
-					if(other_profile == '' || other_profile == null) {
-						profile_path = '<img src="/useditems/resources/img/login.png">';
-					} else {
-						profile_path = '<img src="/useditems/resources/img/' + other_index + '/profile/' + other_profile + '">';
-					}
-					
+										
 					chatRoom_modal_template += 
 					'<div class="profile other">'
 					+ `<a href="/useditems/account/acc_info.do?acc_id=${other_id}">`
 					+ profile_path 
 					+ '</a>'
 					+ other_nickname + '</div>'
-					+ '<div class="message other">' + item.chat_content + '</div>';
+					+ `<div title="${formattedDate}" class="message other">${thisRoomLatestMsg}</div>`;
 					
 				}
-			}
+				
+				
+
+				
+				
+			}	//if(item.chat_room == thisRoom){} 끝
 		}); //내부 반복문 종료
+				
 		
+		//내부반복 종료 후 최종 메시지와 시간을 채팅 목록(chatRoom list)에 추가
+		var chatRoom_latestMsg_template	= `<p>${thisRoomLatestMsg}</p>`;
+		$('#chatRoom_content'+thisRoom).append(chatRoom_latestMsg_template);
 		
+		var chatRoom_latestDate_template = `<p class="align-self-end">Latest: ${formattedDate}</p>`;
+		$('#chatRoom_date'+thisRoom).append(chatRoom_latestDate_template);
+		
+				
+		
+		//안끝난 채팅방 template 마무리
 		chatRoom_modal_template +=
 		
 		 '</div>'
@@ -239,7 +277,36 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 
 
 
+//상대방 프로필 사진 값이 null(또는 '')이면 기본이미지 경로 반환
+function otherProfile(param_profile, param_index) {
 
+	var profile_path = '';
+					
+	if(param_profile == '' || param_profile == null) {
+			profile_path = '<img src="/useditems/resources/img/login.png">';
+	} else {
+			profile_path = '<img src="/useditems/resources/img/' + param_index + '/profile/' + param_profile + '">';
+	}
+
+	return profile_path;
+}
+
+
+//Date -> yy/MM/dd hh:mm
+function formatingDate(param) {
+	
+	//Date type parameter를 받아서 yy/MM/dd hh:mm 으로 반환
+
+	var result = param.getFullYear().toString().slice(-2) + "/" 
+			+ (param.getMonth()+1).toString().padStart(2, '0') + "/" 
+			+ param.getDate().toString().padStart(2, '0') + " " 
+			+ param.getHours().toString().padStart(2, '0') + ":"
+			+ param.getMinutes().toString().padStart(2, '0');
+
+	return result;
+	
+	
+}
 
 
 
