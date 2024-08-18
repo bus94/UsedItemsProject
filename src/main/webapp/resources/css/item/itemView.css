@@ -35,7 +35,9 @@ a {
 	height: 400px;
 	padding-left: 50px;
 }
-
+.detail_top{
+	
+}
 .detail_info h3 {
 	font-weight: bold;
 }
@@ -87,6 +89,7 @@ a {
 }
 
 .store_profile {
+	 flex-grow: 3;
 	height: 90px;
 	display: flex;
 	align-items: center;
@@ -113,6 +116,7 @@ a {
 }
 
 .store_content {
+	position: relative;
 	height: 100%;
 	margin-top: 30px;
 	font-size: 18px;
@@ -146,6 +150,9 @@ a {
 	height: 100px;
 	border:none;
 	background-color: rgb(171, 236, 171);
+	
+	
+	
 	
 }
 .replyEdit_container{
@@ -205,7 +212,7 @@ a {
 	padding-bottom: 10px;
 }
 
-.reply_btn button {
+.reply_btn button{
 	width: 80px;
 	height: 40px;
 	border: none;
@@ -213,7 +220,7 @@ a {
 	font-weight: lighter;
 }
 
-.reply_btn button:hover {
+.reply_btn button:hover{
 	background-color: rgb(93, 199, 93);
 }
 
@@ -317,13 +324,31 @@ a {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 100% 100%;
-	background-image: url("../../img/interest.png");
+	background-image: url("../../img/nolove.png");
 }
 
 .btn-add-interest span{
-	background-image: url("../../img/nointerest.png");
+	background-image: url("../../img/love.png");
 }
 
 
+.content-button{
+	display: flex;
+    justify-content: flex-end;
+    gap: 5px; 
+}
 
+ .content-button button {
+	width: 80px;
+	height: 40px;
+	border: none;
+	background-color: rgb(171, 236, 171);
+	font-weight: lighter;
+	
+ }
 
+.content-button button:hover {
+	background-color: rgb(93, 199, 93);
+}
+
+   

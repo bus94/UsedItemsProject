@@ -1,5 +1,6 @@
 package com.ss.useditems.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -234,5 +235,39 @@ public class ItemViewController {
 
 		return map;
 	}
-
+	
+	@RequestMapping("/itemView/itemDel.do")
+	public String itemDel(Model model, int item_index) {
+		System.out.println("deleteItem() 실행");
+		System.out.println(item_index);
+		boolean check = service.deleteItem(item_index);
+		if(check) {
+			model.addAttribute("msg", "삭제가 완료됐습니다.");
+			model.addAttribute("location", "/item/itemList.do");
+		}else {
+			model.addAttribute("msg", "삭제에 실패했습니다");
+			model.addAttribute("location", "/item/itemView?item_index"+item_index);
+		}
+		return "common/msg";
+	}
+	
+	@RequestMapping("/item/itemEdit.do")
+	public String editItem(Model model,int item_index){
+		ItemInfoDTO item = service.selectByItemIndex(item_index);
+	    
+	    String filePath = item.getItem_seller() + "/item_" + item.getItem_index() + "/";
+	    item.setItem_thumbPath(filePath + item.getShow_thumb());
+		
+		List<String> itemImages = new ArrayList<>();
+		if (item.getShow_img1() != null) itemImages.add(filePath + item.getShow_img1());
+		if (item.getShow_img2() != null) itemImages.add(filePath + item.getShow_img2());
+		if (item.getShow_img3() != null) itemImages.add(filePath + item.getShow_img3());
+		if (item.getShow_img4() != null) itemImages.add(filePath + item.getShow_img4());
+		if (item.getShow_img5() != null) itemImages.add(filePath + item.getShow_img5());
+		
+		model.addAttribute("item", item);
+		model.addAttribute("itemImages", itemImages);
+		
+		return "/item/itemEdit";
+	}
 }

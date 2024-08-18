@@ -15,13 +15,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemEnrollService;
+import com.ss.useditems.service.ItemService;
 
 @Controller
 public class ItemEnrollController {
 
 	@Autowired
 	private ItemEnrollService itemEnrollService;
-
+	private ItemService itemService;
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
 			String item_category, int item_price, String item_place, String addressX, String addressY, MultipartHttpServletRequest item_image,
@@ -121,5 +122,91 @@ public class ItemEnrollController {
 
 		return "common/msg";
 	}
+	
+	
+	@RequestMapping("/item/itemUpdateOK.do")
+    public String itemUpdate(Model model, HttpSession session, int item_index,String item_title, String item_content,
+                             String item_category, int item_price, String item_place, String addressX, String addressY,
+                             MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, 
+                             boolean check) { // check 변수 사용
+        System.out.println("itemUpdate() 실행");
+
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+
+        List<MultipartFile> list = item_image.getFiles("item_image");
+
+        MultipartFile newThumb = item_thumb.getFile("item_thumb");
+
+        // 기존 Item 정보를 가져옴
+        ItemInfoDTO existingItem = itemService.getItemById(item_index);
+        
+        String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\"
+                + existingItem.getItem_seller() + "\\item_" + existingItem.getItem_index();
+        
+        try {
+            // 썸네일이 변경된 경우
+            if (!check && newThumb != null && !newThumb.isEmpty()) { // check 변수를 사용하여 썸네일 변경 여부 확인
+                // 기존 썸네일 파일 삭제
+                File oldThumbFile = new File(uploadFolder + File.separator + existingItem.getShow_thumb());
+                if (oldThumbFile.exists()) {
+                    oldThumbFile.delete();
+                }
+
+                // 새 썸네일 저장
+                String thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
+                File saveThumbFile = new File(uploadFolder + File.separator + thumbFileRealName);
+                newThumb.transferTo(saveThumbFile);
+                existingItem.setShow_thumb(thumbFileRealName);
+                System.out.println("썸네일 변경 및 저장 성공!");
+            }
+
+            // 이미지 파일 업데이트 로직 (기존 로직을 사용하면 됩니다)
+            for (int i = 0; i < list.size(); i++) {
+                String fileRealName = list.get(i).getOriginalFilename();
+                long size = list.get(i).getSize();
+                System.out.println((i + 1) + ".파일명: " + fileRealName);
+                System.out.println((i + 1) + ".파일 사이즈: " + size);
+
+                File saveFile = new File(uploadFolder + File.separator + fileRealName);
+                list.get(i).transferTo(saveFile);
+                System.out.println((i + 1) + "번 파일 저장 성공!!");
+
+                if (i == 0) existingItem.setShow_img1(fileRealName);
+                if (i == 1) existingItem.setShow_img2(fileRealName);
+                if (i == 2) existingItem.setShow_img3(fileRealName);
+                if (i == 3) existingItem.setShow_img4(fileRealName);
+                if (i == 4) existingItem.setShow_img5(fileRealName);
+            }
+
+            // 기존 아이템 정보를 업데이트
+            existingItem.setItem_title(item_title);
+            existingItem.setItem_content(item_content);
+            existingItem.setItem_category(item_category);
+            existingItem.setItem_price(item_price);
+            existingItem.setItem_place(item_place);
+            existingItem.setItem_placeX(addressX);
+            existingItem.setItem_placeY(addressY);
+
+            // 업데이트 DB 작업 수행
+            if (itemEnrollService.updateItem(existingItem) > 0) {
+                System.out.println("itemUpdate 실행 성공");
+                model.addAttribute("msg", "상품 수정이 완료되었습니다.");
+                model.addAttribute("location", "/item/itemView?item_index=" + existingItem.getItem_index());
+            } else {
+                System.out.println("itemUpdate 실행 실패");
+                model.addAttribute("msg", "상품을 다시 수정해주세요.");
+                model.addAttribute("location", "/item/itemEdit.do?item_index=" + existingItem.getItem_index());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("msg", "파일 업로드 중 오류가 발생하였습니다.");
+            model.addAttribute("location", "/item/itemEdit.do?item_index=" + existingItem.getItem_index());
+            return "common/msg";
+        }
+
+        return "common/msg";
+    }
+}
 
 }

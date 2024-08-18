@@ -11,7 +11,7 @@
 	<c:when test="${itemMember.acc_profile == null}">
 		<!-- 판매자 DB에 프로필이미지가 null인 경우 기본이미지-->
 		<c:set var="seller_profile_path"
-			value="${path}/resources/img/login.png" />
+			value="${path}/resources/img/login1.png" />
 	</c:when>
 	<c:otherwise>
 		<!-- DB에 프로필이미지가 있는 경우 -->
@@ -83,13 +83,14 @@
 			</button>
 		</div>
 		<div class="detail_right">
-			<div class="detail_top">
+			<div class="detail_top" style="padding-botton: 50px; hegight: 200px;">
 				<div class="detail_info">
-					<div style="display: flex; align-items:center; height: 30px; ">
-						<h4 style="margin-bottom:10px;">${item.item_title}</h4>
+					<div
+						style="display: flex; align-items: center; height: 30px; justify-content: space-between;">
+						<h4 style="margin-bottom: 20px;">${item.item_title}</h4>
 						<form id="interestForm"
 							action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
-							method="post" style=" margin-left: 10px;">
+							method="post" style="margin-left: 10px;">
 							<input type="hidden" name="acc_index"
 								value="${loginMember.acc_index}"> <input type="hidden"
 								name="item_index" value="${item.item_index}">
@@ -114,7 +115,7 @@
 					<c:if
 						test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
 						<div class="detail_report">
-							<img src="${path}/resources/img/report.png" alt="신고"> <a
+							<img src="${path}/resources/img/police.png" alt="신고"> <a
 								href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
 						</div>
 					</c:if>
@@ -145,10 +146,19 @@
 	</div>
 	<div class="store_content">
 		<p>${item.item_content}</p>
+		<div class="content-button">
+			<c:if test="${item.item_seller==loginMember.acc_index}">
+				<button type="button" onclick="editItem('${item.item_index}')"
+					>수정하기</button>
+				<button type="button"
+					onclick="deleteItem('${item.item_index}')">삭제하기</button>
+			</c:if>
+		</div>
 	</div>
 	<div id="comment-container">
 		<div class="comment-editor" align="center">
-			<form action="${path}/itemView/reply" method="post" class="commentBox">
+			<form action="${path}/itemView/reply" method="post"
+				class="commentBox">
 				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
 					type="hidden" name="writerId" value="${loginMember.acc_id}" />
 				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
@@ -168,7 +178,7 @@
 							<c:when test="${reply.repl_profile == null}">
 								<!-- DB에 프로필이미지가 null인 경우 기본이미지-->
 								<c:set var="repl_profile_path"
-									value="${path}/resources/img/login.png" />
+									value="${path}/resources/img/login1.png" />
 							</c:when>
 							<c:otherwise>
 								<!-- DB에 프로필이미지가 있는 경우 -->
@@ -187,7 +197,8 @@
 						</div>
 					</div>
 					<div class="reply_btn">
-						<c:if test="${reply.repl_nickname.equals(loginMember.acc_nickname)}">
+						<c:if
+							test="${reply.repl_nickname.equals(loginMember.acc_nickname)}">
 							<button
 								onclick="showEditForm(${reply.repl_index}, '${reply.repl_content}')">수정하기</button>
 							<button
@@ -197,7 +208,7 @@
 							<button>채팅하기</button>
 						</c:if>
 					</div>
-				</div>				
+				</div>
 			</c:forEach>
 		</div>
 	</c:if>
@@ -215,7 +226,7 @@
 					<c:choose>
 						<c:when test="${reply.repl_profile == null}">
 							<c:set var="repl_profile_path"
-								value="${path}/resources/img/login.png" />
+								value="${path}/resources/img/login1.png" />
 						</c:when>
 						<c:otherwise>
 							<c:set var="repl_profile_path"
@@ -224,9 +235,9 @@
 					</c:choose>
 					<form action="${path}/itemView/replyEdit" method="post"
 						class="replyEditBox"
-						style="width:100%; display: flex; justify-content: space-between; align-items: center">
-						<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
-							type="hidden" name="replyNo" value="${reply.repl_index}" />
+						style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+						<input type="hidden" name="itemNo" value="${item.item_index}" />
+						<input type="hidden" name="replyNo" value="${reply.repl_index}" />
 						<div style="display: flex">
 							<div class="reply_img">
 								<img src="${repl_profile_path}" alt="프사">
@@ -239,10 +250,11 @@
 						<div id="edit-form-${reply.repl_index}">
 							<div class="reply_btn" style="align-items: center">
 								<button type="submit">수정 완료</button>
-								<button type="button" onclick="hideEditForm(${reply.repl_index})">취소</button>
+								<button type="button"
+									onclick="hideEditForm(${reply.repl_index})">취소</button>
 							</div>
 						</div>
-	
+
 					</form>
 				</div>
 			</div>
@@ -389,7 +401,22 @@ System.out.println("item_enrollDate: " + item_enrollDate);
 	    return true;
 	}
 </script>
-
+<script>
+	function deleteItem(itemNo) {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			var url = "${path}/itemView/itemDel.do?&item_index=" + item_index;
+			console.log(url);
+			location.href = url;
+		}
+		
+	}
+</script>
+<script>
+	function editItem(item_index){
+		var url ="${path}/item/itemEdit.do?item_index="+item_index;
+		location.href=url;
+	}
+</script>
 
 
 

@@ -38,6 +38,8 @@ public interface ItemViewMapper {
 
 	void removeInterest(Map<String, Integer> map);
 
+	int deleteItem(int item_index);
+
 
 
 }

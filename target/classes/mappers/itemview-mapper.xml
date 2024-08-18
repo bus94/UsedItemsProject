@@ -191,4 +191,11 @@
 		DELETE FROM INTEREST
 		WHERE int_item = #{item_index} AND int_subject =#{acc_index}
 	</delete>
+	<update id="deleteItem" parameterType="int">
+		
+		UPDATE item
+		SET
+		item_status= 'drop'
+		WHERE item_index = #{item_index}
+	</update>
 </mapper>
