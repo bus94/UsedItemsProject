@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 
-console.log("최근수신메시지idx: " + loginMember_accLatMsg);
+console.log("Login: " + loginMember_accId + " 마지막 수신메시지 idx: " + loginMember_accLatMsg);
 
 
 window.addEventListener('scroll', function() {
