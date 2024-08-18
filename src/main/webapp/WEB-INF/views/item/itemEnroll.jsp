@@ -52,21 +52,25 @@
 							</div>
 							<div id="input_box4" class="container">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
-								<input type="text" class="form-control item_input d-inline"
-									name="item_place" id="item_place" placeholder="장소" readonly />
-								<input type="hidden" name="addressX" id="addressX"> <input
-									type="hidden" name="addressY" id="addressY">
-								<button type="button" id="selectPlaceButton">장소 선택</button>
+								<div id="input_address">
+									<input type="text" class="form-control item_input d-inline input_addressIn"
+										name="item_place" id="item_place" placeholder="장소" readonly />
+									<input type="hidden" name="addressX" id="addressX"> <input
+										type="hidden" name="addressY" id="addressY">
+									<button type="button" id="selectPlaceButton" class="btn">장소 선택</button>
+								</div>
 							</div>
 							<div class="container input_thumbnail">
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
 								<input style="width: 270px" type="file" name="item_thumb"
 									id="item_thumb">
+								<!-- <label class="btn fileBtn" for="item_thumb">파일선택</label> -->
 							</div>
 							<div id="input_box5" class="container">
 								<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
 								<input style="width: 270px" type="file" name="item_image"
 									id="item_image" multiple>
+								<!-- <label class="btn fileBtn" for="item_image">파일선택</label> -->
 							</div>
 							<div id="input_box1" class="container">
 								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
@@ -109,7 +113,7 @@
 			</div>
 		</div>
 	</c:if>
-	<script  
+	<script
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {

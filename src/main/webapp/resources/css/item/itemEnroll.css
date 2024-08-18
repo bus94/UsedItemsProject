@@ -49,12 +49,12 @@
 	height: 365px;
 	flex-direction: space-between;
 }
+
 #preview1 {
 	display: block;
 	width: 400px;
 	height: 365px;
 	flex-direction: space-between;
-	
 }
 
 .container_preview {
@@ -62,7 +62,37 @@
 }
 
 .modal-dialog {
-    margin: auto;
-    top: 10%;
-    transform: translateY(-10%);
+	margin: auto;
+	top: 10%;
+	transform: translateY(-10%);
 }
+
+#input_address {
+	position: relative;
+	width: 426px;
+}
+
+#selectPlaceButton {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 5px;
+	margin: auto 0;
+	height: 30px;
+	background-color: #3aca0b;
+	color: white;
+	font: 14px;
+}
+
+/* #item_thumb {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.fileBtn {
+	background-color: #3aca0b;
+	color: white;
+	font: 14px;
+} */
