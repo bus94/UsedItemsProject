@@ -23,6 +23,7 @@
 	padding: 0;
 }
 
+
 body {
 	font-family: "GmarketSansMedium", "Noto Sans KR", sans-serif;
 	margin:0;
@@ -30,6 +31,12 @@ body {
 	flex-direction: column;
 	min-height: 100%;
 	position: relative;
+}
+ul, li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
 }
 
 header {
@@ -70,15 +77,80 @@ footer {
 	transition: all 0.3s ease;
 }
 
+.nav_container {
+	width:100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 25px 0 25px;
+}
+
 .navbar .navbar-brand {
 	width: 240px;
 	height: 52px;
 }
 
-.navbar #brand_img {
+.navbar img {
 	width: auto;
 	height: auto;
 }
+#shopImg{
+	width: 32px;
+	height: 32px;
+}
+
+#shopImg img {
+	width: 100%;
+	height: 100%;
+}
+
+.navbar_list {
+	height:100%;
+	display: flex; 
+	gap:10px;
+	align-items: center;
+	
+}
+
+
+.nav_container > ul ul {
+	display: none;
+	position:absolute;
+	top:100%;
+	left:-68px;
+	width: 100%;
+}
+
+.nav_container > ul > li {
+	cursor: pointer;
+	position: relative;
+}
+
+.nav_container > ul > li:hover ul{
+	display: block;
+} 
+
+.nav_container > ul ul li {
+	background-color: white;
+	color: black;
+	width: 93px;
+	text-align: center;
+	padding: 10px 0px 5PX 0PX;
+}
+
+.nav_container > ul ul li:hover{
+	background-color: #e6ffe6
+}
+.nav_container > ul ul li:first-child:hover{
+	background-color: white
+}
+
+.nav_container > ul ul li a {
+	font-size: 15px;
+	font-weight: 100;
+	display: block;
+	padding:0;
+}
+
 
 
 .navbar .nav_icon {
@@ -94,13 +166,7 @@ footer {
     font-size: 2rem;
 }
 
-.navbar #nav_user {
-    top: 100px;
-}
 
-.navbar #nav_wish {
-    top: 150px;    
-}
 
 .navbar #nav_chat {
     bottom: 8%;
@@ -124,13 +190,38 @@ footer {
 	margin-left:3px;
 }
 
-.nav-item:hover {
-	font-weight: bolder;
+
+
+
+/* 검색창 */
+.navbar-collapse{
+	width: 100%;
 }
 
-.navbar input {
-	width: 300px;
-	height: 50px;
+
+.searchForm .form-control {
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+    right:33px;
+    top:-8px;
+ }
+ 
+ .searchForm.active .form-control {
+    opacity: 1;
+    width: 250px;
+    height: 45px;
+  }
+
+.searchForm .searchFormBtn{
+	width: 30px;
+	background-color: white;
+	border: none;
+}
+.searchForm .searchFormBtn img {
+	width: 100%;
 }
 
 
@@ -146,46 +237,6 @@ footer {
 	transition: all 0.3s ease;
 	z-index: 99999;
 }
-
-
-
-@media screen and (min-width: 992px) {
-	/* 992px보다 커지면 */
-
-
-}
-
-@media screen and (max-width: 992px) {
-	/* 992px보다 작아지면 */
-
-	.navbar .max992off {
-		display: none;
-	}
-
-}
-
-@media screen and (max-width: 1200px) {
-	/* 1200px보다 작아지면 */
-
-	.navbar .menu_text {
-		display: none;
-	}
-	
-	.navbar .nav-item {
-		margin-right: 20px;
-	}
-
-}
-
-@media screen and (min-width: 1200px) {
-	/* 1200px보다 커지면 */
-
-	.navbar .menu_text {
-		display: block;
-	}
-
-}
-
 
 
 
