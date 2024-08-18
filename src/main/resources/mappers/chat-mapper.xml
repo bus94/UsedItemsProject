@@ -115,10 +115,6 @@
 	</select>
 
 
-	<insert id="insertChat" parameterType="String">
-		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room}, #{chat_writer}, #{chat_content}, SYSDATE)
-	</insert>
-	
 	<insert id="insertChatRoom" parameterType="String">
 		INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, #{room_item}, #{room_reply}, SYSDATE)
 	</insert>
@@ -136,6 +132,24 @@
 		update ITEM set
 		item_status='onsale' where item_index=#{room_item}
     </update>
+
+
+	<insert id="insertChat" parameterType="ChatDTO">
+	
+		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room}, #{chat_writer}, #{chat_content}, SYSDATE)
+		<selectKey keyProperty="chat_index" resultType="int" order="AFTER">
+			select CHAT_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+		
+	</insert>
+	
+	<update id="updateLastMessage" parameterType="String">
+		update ACCOUNT set
+		acc_lastMessage=#{acc_lastMessage} where acc_index=#{acc_index}
+	</update>
+	
+	
+
 
 
 </mapper>

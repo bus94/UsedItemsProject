@@ -60,7 +60,6 @@ $('#nav_toTop').click(function() {
 
 $('#nav_chat').click(function() {
 
-	console.log("loginMember.accIndex: "+ loginMember_accIndex);
 	
 	const queryChatList = { loginMember_accIndex : loginMember_accIndex };
 	
@@ -120,7 +119,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		//채팅방 개설일시
 		var thisRoomOpenDate = new Date(obj.room_openDate);
 		var formattedDate = formatingDate(thisRoomOpenDate);
-		console.log("채팅방 오픈: " + formattedDate);
+		//console.log("채팅방 오픈: " + formattedDate);
 		
 		
 		var other_index = '';
@@ -200,12 +199,12 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 			
 				//현재 반복 메시지 내용
 				thisRoomLatestMsg = item.chat_content;
-				console.log(thisRoomLatestMsg);				
+				//console.log(thisRoomLatestMsg);				
 				
 				//현재 반복 메시지 시간
 				var thisRoomLatestDate = new Date(item.chat_enrollDate);
 				formattedDate = formatingDate(thisRoomLatestDate);	//변수 선언은 위에 채팅방 개설일시에서
-				console.log("시간: " + formattedDate);
+				//console.log("시간: " + formattedDate);
 			
 			
 				if(item.chat_writer == loginMember_accIndex){

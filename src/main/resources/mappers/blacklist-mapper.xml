@@ -28,8 +28,8 @@
 	</resultMap>
 	
 
-
-
+<!-- 홈에서 안쓰면 black5 삭제 -->
+	
 	<select id="getBlack5" resultMap="black5Map">
 		select * from
 			(select 

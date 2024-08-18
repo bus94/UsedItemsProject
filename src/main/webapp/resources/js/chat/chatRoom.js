@@ -52,24 +52,24 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			url : project + "/chat/chatRoom.do", //project는 jsp 내부 script에서 선언해 둠
 			data : queryChatRoom,
 			success : function(result) {
-						console.log("chatRoom.do 통신 성공");
+						//console.log("chatRoom.do 통신 성공");
 						
 						if(loginMember_accIndex == result.room_hostIndex) {
-							console.log("나는 호스트")
+							//console.log("나는 호스트")
 							other_index = result.room_guestIndex;
 							other_id = result.room_guestId;
 							other_nickname = result.room_guestNickname;
 							other_profile = result.room_guestProfile;
 						} else {
-							console.log("나는 게스트")
+							//console.log("나는 게스트")
 							other_index = result.room_hostIndex;
 							other_id = result.room_hostId;
 							other_nickname = result.room_hostNickname;
 							other_profile = result.room_hostProfile;		
 						}
 					
-						console.log("other_id: " + other_id);
-						console.log("other_profile: " + other_profile);
+						//console.log("other_id: " + other_id);
+						//console.log("other_profile: " + other_profile);
 						
 					},
 			error : function(error) {
@@ -91,14 +91,14 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
 		console.log("서버 웹소켓에 연결 성공");
-		ws.send(loginMember_accNickname + "님 입장하였습니다." + "^#" + room_index +  "^@" + serverName); 
-		// ^#: 채팅방 인덱스, ^@: 발신자 id
+		ws.send(loginMember_accNickname + "님 입장하였습니다." + "^$00^#" + room_index +  "^@" + serverName); 
+		// ^$: 챗 인덱스(서버메시지는 00), ^#: 채팅방 인덱스, ^@: 발신자 id
 	};
 	
 	ws.onclose = function () {
 		console.log("서버 웹소켓에서 연결 해제");
-		ws.send(loginMember_accNickname +  "님 퇴장하였습니다." + "^#" + room_index + "^@" + serverName); 
-		// ^#: 채팅방 인덱스, ^@: 발신자 id
+		ws.send(loginMember_accNickname +  "님 퇴장하였습니다." + "^$00^#" + room_index + "^@" + serverName); 
+		// ^$: 챗 인덱스(서버메시지는 00), ^#: 채팅방 인덱스, ^@: 발신자 id
 	};
 
 	ws.onerror = function(error) {
@@ -115,8 +115,11 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//채팅룸에서 새 메시지를 띄우는 함수
 	function displayMessage(payload) { //payload = event.data
 		
-		var message = payload.substring(0, payload.lastIndexOf('^#'));
+		var message = payload.substring(0, payload.lastIndexOf('^$'));
 		//console.log(message);
+		
+		var message_index = payload.substring(payload.lastIndexOf('^$')+2, payload.lastIndexOf('^#'));
+		//console.log("index: " + message_index);
 		
 		var fromWhere = payload.substring(payload.lastIndexOf('^#')+2, payload.lastIndexOf('^@'));
 		//console.log("where: " + fromWhere);
@@ -151,7 +154,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			var profile_path = '';
 			//맨 위에서 찾은 상대방 프로필
 			if(other_profile == '' || other_profile == null) {
-				console.log("상대방프로필 기본이미지 적용");
+				//console.log("상대방프로필 기본이미지 적용");
 				profile_path = project + "/resources/img/login.png";
 			} else {
 				profile_path = project + "/resources/img/" + other_index + "/profile/" + other_profile;
@@ -180,6 +183,30 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
 	
 	
+	
+		//DB에 확인한 메시지 입력(최종 확인한 메시지)
+		const queryLastChat = { acc_index : loginMember_accIndex, acc_lastMessage : message_index };
+		
+		$.ajax({	
+			type : "POST",
+			url : project + "/chat/recordLastChat.do", //project는 jsp 내부 script에서 선언해 둠
+			data : queryLastChat,
+			success : function(result) {
+			
+						if(result > 0) {
+							console.log("recordLastChat.do 통신 성공");
+						} else if( result == 0 ) {
+							console.log("recordLastChat.do 저장 실패");
+						} else {
+							console.log("recordLastChat.do 통신 실패");
+						}
+					},
+			error : function(error) {
+					console.log("recordLastChat.do 통신 실패(AJAX)");
+					}
+		}); //ajax		
+	
+
 		}//해당 채팅방의 메시지만
 	}
 	
@@ -192,46 +219,54 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		
 		var message_input = $.trim(chat_input.val());
 
-		console.log(message_input);
+		//console.log(message_input);
+
 
 		if(message_input != ''){
+					
+					
+			//DB에 새 메시지 넣고 Index값 얻어오기
+			const queryChat = { chat_room : room_index, chat_writer : loginMember_accIndex, chat_content : message_input };
+			var chat_index = '';
+		
+			$.ajax({	
+				type : "POST",
+				url : project + "/chat/recordChat.do", //project는 jsp 내부 script에서 선언해 둠
+				data : queryChat,
+				async: false,		//기본적으로 비동기식인 AJAX를 동기식으로 전환
+				success : function(result) {
+								//console.log("recordChat.do 통신 성공");
+								if(result > 0) {
 						
-			ws.send(message_input + "^#" + room_index + "^@" + loginMember_accId); 
-			// ^#: 채팅방 인덱스, ^@: 발신자 id
+								chat_index = result;	//컨트롤러에서 반환해준 값(chat_index)
+								//console.log("받아온 챗 인덱스: " + chat_index);
+						
+								} else if( result == 0 ) {
+									alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+								} else {
+									alert("서버가 정상적으로 작동하지 않습니다.");
+								}
+						},
+				error : function(error) {
+						alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+						}
+			}); //ajax
+					
+			//console.log("지금 보낼꺼다");
+			ws.send(message_input + "^$" + chat_index + "^#" + room_index + "^@" + loginMember_accId); 
+			// ^$: 챗 인덱스, ^#: 채팅방 인덱스, ^@: 발신자 id
 	
 			chat_input.val('');
 			//chat_input.focus();//포커스 주기
 			
-		}
+			
+		}	//if(message_input != ''): 빈 값이 아닐 때만 실행
 		
 		
-		//DB에 새 메시지 넣기
-		const queryChat = { chat_room : room_index, chat_writer : loginMember_accIndex, chat_content : message_input };
 		
-		$.ajax({	
-			type : "POST",
-			url : project + "/chat/recordChat.do", //project는 jsp 내부 script에서 선언해 둠
-			data : queryChat,
-			success : function(result) {
-						//console.log("recordChat.do 통신 성공");
-						if(result > 0) {
-						
-						
-						
-						
-						} else if( result == 0 ) {
-							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
-						} else {
-							alert("서버가 정상적으로 작동하지 않습니다.");
-						}
-					},
-			error : function(error) {
-					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
-					}
-		}); //ajax
 
 
-	});
+	});//웹소켓으로 서버에 새 메시지를 보내는 함수
 	
 
 
@@ -239,7 +274,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//chat_sendBtn.addEventListener('click', sendMessage);
 	function sendMessages() {
 		
-	}//웹소켓으로 서버에 새 메시지 보내는 함수 //오류나서 jQuery로 새로 정의
+	}//웹소켓으로 서버에 새 메시지 보내는 함수 //오류나서 jQuery로 바로 위에 새로 정의
 	
 
 
@@ -250,13 +285,8 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 
 
-
-
-
-
-
-
 }//'채팅방 보기' 버튼
+
 	
 	
 function returnToRoomList() {	//'돌아가기' 버튼 클릭
@@ -282,7 +312,7 @@ function dropDeal(room_index, room_item) {		//'거래중단' 버튼 클릭
 			url : project + "/chat/dropDeal.do", //project는 jsp 내부 script에서 선언해 둠
 			data : queryDropDeal,
 			success : function(result) {
-						console.log("dropDeal.do 통신 성공");
+						//console.log("dropDeal.do 통신 성공");
 						if(result > 0) {
 						
 							$('#nav_chat').trigger("click");

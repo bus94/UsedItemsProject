@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ss.useditems.dto.ChatDTO;
 import com.ss.useditems.dto.ChatRoomDTO;
 import com.ss.useditems.mapper.ChatMapper;
 
@@ -25,9 +26,9 @@ public class ChatService {
 		return chatMapper.selectChatRoom(room_index);
 	}
 
-	public int recordChat(String chat_room, String chat_writer, String chat_content) {
+	public int recordChat(ChatDTO chatDTO) {
 	
-		return chatMapper.insertChat(chat_room, chat_writer, chat_content);
+		return chatMapper.insertChat(chatDTO);
 	}
 
 	public int openChat(String room_item, String room_reply) {
@@ -42,6 +43,10 @@ public class ChatService {
 		result = chatMapper.deleteChatRoom(room_index);
 		result += chatMapper.updateItemOnsale(room_item);
 		return result;
+	}
+
+	public int recordLastChat(String acc_index, String acc_lastMessage) {
+		return chatMapper.updateLastMessage(acc_index, acc_lastMessage);
 	}
 
 	
