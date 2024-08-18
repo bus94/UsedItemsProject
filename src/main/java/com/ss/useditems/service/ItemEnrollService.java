@@ -22,5 +22,10 @@ public class ItemEnrollService {
 		System.out.println("ItemEnrollService의 selectItemIndex() 실행");
 		return mapper.selectItemIndex();
 	}
+
+	public int updateItem(ItemInfoDTO existingItem) {
+		System.out.println("ItemEnrollService의 updateItem() 실행");
+		return mapper.updateItem(existingItem);
+	}
 	
 }

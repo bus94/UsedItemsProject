@@ -17,7 +17,7 @@
 			</div>
 			<hr>
 			<form id="itemEnrollForm" method="POST"
-				action="${path}/item/itemUpdateOK.do?item_index="+item_index enctype="multipart/form-data">
+				action="${path}/item/itemUpdateOK.do" enctype="multipart/form-data">
 				<input type="hidden" name="item_index" value="${item.item_index}">
 				<table>
 					<colgroup>

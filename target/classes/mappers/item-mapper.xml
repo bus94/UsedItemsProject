@@ -61,5 +61,18 @@
 		)
 		SELECT * FROM DUAL
 	</insert>
-
+	<update id="updateItem" parameterType="itemInfoDTO">
+    <!-- ITEM 테이블 업데이트 -->
+    	UPDATE ITEM
+    	SET 
+	        item_title = #{item_title},
+	        item_content = #{item_content},
+	        item_category = #{item_category},
+	        item_price = #{item_price},
+	        item_place = #{item_place},
+	        item_placeX = #{item_placeX},
+	        item_placeY = #{item_placeY},
+	        item_status = #{item_status},
+    	WHERE item_index = #{item_index};
+    </update>
 </mapper>

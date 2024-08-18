@@ -16,13 +16,16 @@ import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemEnrollService;
 import com.ss.useditems.service.ItemService;
+import com.ss.useditems.service.ItemViewService;
 
 @Controller
 public class ItemEnrollController {
 
 	@Autowired
 	private ItemEnrollService itemEnrollService;
-	private ItemService itemService;
+	@Autowired
+	private ItemViewService itemService;
+	
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
 			String item_category, int item_price, String item_place, String addressX, String addressY, MultipartHttpServletRequest item_image,
@@ -130,7 +133,7 @@ public class ItemEnrollController {
                              MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, 
                              boolean check) { // check 변수 사용
         System.out.println("itemUpdate() 실행");
-
+        System.out.println(item_index);
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 
         List<MultipartFile> list = item_image.getFiles("item_image");
@@ -138,7 +141,7 @@ public class ItemEnrollController {
         MultipartFile newThumb = item_thumb.getFile("item_thumb");
 
         // 기존 Item 정보를 가져옴
-        ItemInfoDTO existingItem = itemService.getItemById(item_index);
+        ItemInfoDTO existingItem = itemService.selectByItemIndex(item_index);
         
         String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\"
                 + existingItem.getItem_seller() + "\\item_" + existingItem.getItem_index();
@@ -160,23 +163,7 @@ public class ItemEnrollController {
                 System.out.println("썸네일 변경 및 저장 성공!");
             }
 
-            // 이미지 파일 업데이트 로직 (기존 로직을 사용하면 됩니다)
-            for (int i = 0; i < list.size(); i++) {
-                String fileRealName = list.get(i).getOriginalFilename();
-                long size = list.get(i).getSize();
-                System.out.println((i + 1) + ".파일명: " + fileRealName);
-                System.out.println((i + 1) + ".파일 사이즈: " + size);
-
-                File saveFile = new File(uploadFolder + File.separator + fileRealName);
-                list.get(i).transferTo(saveFile);
-                System.out.println((i + 1) + "번 파일 저장 성공!!");
-
-                if (i == 0) existingItem.setShow_img1(fileRealName);
-                if (i == 1) existingItem.setShow_img2(fileRealName);
-                if (i == 2) existingItem.setShow_img3(fileRealName);
-                if (i == 3) existingItem.setShow_img4(fileRealName);
-                if (i == 4) existingItem.setShow_img5(fileRealName);
-            }
+           
 
             // 기존 아이템 정보를 업데이트
             existingItem.setItem_title(item_title);
@@ -209,4 +196,3 @@ public class ItemEnrollController {
     }
 }
 
-}

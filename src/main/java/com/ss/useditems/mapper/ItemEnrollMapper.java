@@ -13,5 +13,7 @@ public interface ItemEnrollMapper {
 	int enrollItem(ItemInfoDTO enrollItemInfo);
 
 	int selectItemIndex();
+
+	int updateItem(ItemInfoDTO existingItem);
 	
 }
