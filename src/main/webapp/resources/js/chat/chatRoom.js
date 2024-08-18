@@ -34,8 +34,10 @@ function selectChatRoom(param) {	//채팅방 선택 -> 채팅방 보기 버튼 �
 
 function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개변수로 가져옴)
 
-	
 	var room_index = param;
+	
+	//$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
+	
 	
 	const queryChatRoom = { room_index : room_index };
 	
@@ -89,12 +91,14 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
 		console.log("서버 웹소켓에 연결 성공");
-		ws.send(loginMember_accNickname + "님 입장하였습니다." + "^@"+serverName); // ^@ 뒤는 발신자 표시
+		ws.send(loginMember_accNickname + "님 입장하였습니다." + "^#" + room_index +  "^@" + serverName); 
+		// ^#: 채팅방 인덱스, ^@: 발신자 id
 	};
 	
 	ws.onclose = function () {
 		console.log("서버 웹소켓에서 연결 해제");
-		ws.send(loginMember_accNickname +  "님 퇴장하였습니다." + "^@"+serverName); // ^@ 뒤는 발신자 표시
+		ws.send(loginMember_accNickname +  "님 퇴장하였습니다." + "^#" + room_index + "^@" + serverName); 
+		// ^#: 채팅방 인덱스, ^@: 발신자 id
 	};
 
 	ws.onerror = function(error) {
@@ -111,19 +115,24 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//채팅룸에서 새 메시지를 띄우는 함수
 	function displayMessage(payload) { //payload = event.data
 		
-		var message = payload.substring(0, payload.lastIndexOf('^@'));
+		var message = payload.substring(0, payload.lastIndexOf('^#'));
 		//console.log(message);
 		
-		var whose = payload.substring(payload.lastIndexOf('^@')+2);
-		//console.log(whose);
+		var fromWhere = payload.substring(payload.lastIndexOf('^#')+2, payload.lastIndexOf('^@'));
+		//console.log("where: " + fromWhere);
 		
+		var fromWhose = payload.substring(payload.lastIndexOf('^@')+2);
+		//console.log("whose: " + fromWhose);
+		
+		
+		if(fromWhere == room_index) {	//해당 채팅방의 메시지만
 		
 		var type = 'none';
 		
-		if(whose == serverName) {
+		if(fromWhose == serverName) {
 			//console.log("서버의 알림메시지");
 			type = 'server';
-		} else if(whose == loginMember_accId) { 
+		} else if(fromWhose == loginMember_accId) { 
 			//console.log("내가 쓴 거넹");
 			type = 'mine';
 		} else {
@@ -166,9 +175,12 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		//.scrollTop(#) : scroll 상단 끝을 # 위치로 이동
 		//.prop('scrollHeight') : 'scrollHeight' property 값을 불러옴
 		console.log("scrollTop: " + chat_viewer.scrollTop);
-		console.log("scrollHeight: " + chat_viewer.scrollHeight);
-		console.log("display scrollHeight: " + $('#chat_viewer'+room_index).prop('scrollHeight'));			
+		//console.log("scrollHeight: " + chat_viewer.scrollHeight);
+		console.log("modal scrollHeight: " + $('#chat_viewer'+room_index).prop('scrollHeight'));			
 		$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
+	
+	
+		}//해당 채팅방의 메시지만
 	}
 	
 	
@@ -187,8 +199,9 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 		if(message_input != ''){
 						
-			ws.send(message_input + "^@"+loginMember_accId); // ^@ 뒤는 발신자 표시
-			
+			ws.send(message_input + "^#" + room_index + "^@" + loginMember_accId); 
+			// ^#: 채팅방 인덱스, ^@: 발신자 id
+	
 			chat_input.val('');
 			//chat_input.focus();//포커스 주기
 			
@@ -223,14 +236,16 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 	});
 	
+
+
 	
 	
 	//chat_sendBtn.addEventListener('click', sendMessage);
-	
 	function sendMessages() {
 		
 	}//웹소켓으로 서버에 새 메시지 보내는 함수
-	
+
+
 	
 
 
@@ -238,8 +253,6 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	$('.unlink_chat').click(function(){
 		ws.onclose();	//웹소켓 해제
 	});
-		
-
 		
 
 }//'채팅방 보기' 버튼
@@ -271,6 +284,7 @@ function dropDeal(param) {		//'거래중단' 버튼 클릭
 						console.log("dropDeal.do 통신 성공");
 						if(result > 0) {
 						
+							$('#nav_chat').trigger("click");
 						
 						} else if( result == 0 ) {
 							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");

@@ -22,6 +22,11 @@
 	height: 150px;
 }
 
+.acc_alt_page #file_box {
+	padding: 0;
+}
+
+
 .acc_alt_page button {
 	margin: 0;
 	padding: auto;

@@ -110,16 +110,10 @@
 }
 
 
-.acc_info_page .item_container_acc { /* itemList.css 따옴*/
-    width: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-	gap: 10px;
-    /* justify-content: space-between; */
 
-    margin-bottom: 20px;
+.acc_info_page .notice_empty {
+
 }
-
 
 .acc_info_page .item { /* itemList.css 따옴*/
     width: 190px;
@@ -134,8 +128,8 @@
 
 /*---------------itemList.css-----------------*/
 
-.item_wrapper {
-	 width: 1000px;
+.acc_info_page .item_wrapper {
+	width: 1000px;
 	display: flex;
     flex-wrap: wrap;
    	margin-bottom:20px;

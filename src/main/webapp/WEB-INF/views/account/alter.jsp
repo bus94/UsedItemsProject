@@ -32,9 +32,13 @@
 				<div id="profile_box" class="container d-flex flex-column align-items-center">
 					<label id="acc_id" for="profile">${loginMember.acc_id}</label>
 						<img id="profile" src="${profile_path}" alt="프로필이미지">
-						<input type="file" name="profile" required>
-						<button type="submit" id="alt_profile"
-							class="btn btn-success btn-sm">프로필 사진 변경</button>
+						
+						<div id="file_box" class="container">
+							<p class="subtitle fs-5">이&nbsp;&nbsp;&nbsp;미&nbsp;&nbsp;&nbsp;지</p>
+							<input type="file" name="profile" class="info_box form-control d-inline" required>
+							<button type="submit" id="alt_profile"
+								class="btn btn-success btn-sm">수정</button>
+						</div>
 				</div>
 			</form>	
 

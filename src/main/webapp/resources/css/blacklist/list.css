@@ -37,7 +37,7 @@
 }
 
 
- .blacklist_page #search_btn {
+.blacklist_page #search_btn {
  	width: 50px;
  	height: 40px;
  	padding: auto;
@@ -95,12 +95,6 @@
  .blacklist_page .list_date {
  	width: 175px;
  }
- 
-/*  .blacklist_page .pagination_container a{
- 	display: block;
- 	text-decoration: none;
- } */
- 
  
  .blacklist_page .btn_container{
  	width: 250px;

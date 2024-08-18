@@ -47,6 +47,7 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 		//접속한 모든 세션에 보내는 메시지
 		for(WebSocketSession eachSession : sessionSet) {
 			eachSession.sendMessage(messageToClients);
+			//모든 세션에 모든 메시지를 다 뿌려주는건 비효율적인듯..
 		}
 		
 		

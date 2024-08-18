@@ -109,7 +109,8 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${other_info == null}">
+		<!-- 수입지출내역 -->
+		<%-- <c:if test="${other_info == null}">
 			<div id="acc_profit" class="container inform">
 				<h3 class="text-center">수입 지출 내역</h3>
 				<div class="d-flex align-items-end flex-column">
@@ -140,65 +141,9 @@
 					<p>65,000원</p>
 				</div>
 			</div>
-		</c:if>
+		</c:if> --%>
+		
 	</div>
-
-	<c:if test="${other_info == null}">
-		<div id="acc_interest" class="container items_domain">
-			<div class="d-flex">
-				<div class="subtitle d-flex">
-					<div class="vr align-self-center"></div>
-					<h4 class="container">
-						<span>관</span><span>심</span><span>상</span><span>품</span>
-					</h4>
-					<div class="vr align-self-center"></div>
-				</div>
-				<button type="button" id="btn_item_interest"
-					class="btn_item btn btn-success btn-sm align-self-center"
-					onclick="location.href='${path}/item/interest.do'">자세히</button>
-			</div>
-			
-			<c:if test="${empty my_interests}">
-				<p>등록된 관심상품이 없습니다.</p>
-			</c:if>
-			
-			<c:if test="${not empty my_interests}">
-			<!-- <div class="item_wrapper"> -->
-			<c:forEach var="my_interests" items="${my_interests}">
-				<div class="item_container_acc d-flex">
-					<div class="item">
-						<a
-							href="${path}/item/itemView?item_index=${my_interests.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${my_interests.item_thumbPath}"
-							alt="매물사진">
-							<div class="item_view">
-								<h3>${my_interests.item_title}</h3>
-								<div class="item_price">
-									<h4>${my_interests.item_price}원</h4>
-									<br>
-									<h5>
-										<fmt:formatDate value="${my_interests.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
-								</div>
-								<div class="item_like">
-									<p>관심 ${my_interests.item_interest}</p>
-									<p>댓글 ${my_interests.repl_count}</p>
-								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${my_interests.item_place}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			<!-- </div> -->
-			</c:if>
-		</div>
-	</c:if>
 
 	<!-- ondeal인지 onsale인지 확인 -->
 	<div id="acc_ondeal" class="container items_domain">
@@ -210,9 +155,14 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty onsaleItem}">
-			<p>거래 중인 상품이 없습니다.</p>
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">거래중인 물품이 없습니다.</p>
+				</div>
+			</div>
 		</c:if>
 		<c:if test="${not empty onsaleItem}">
+		<div class="item_wrapper">
 			<c:forEach var="onsaleItem" items="${onsaleItem}">
 				<div class="item_container_acc d-flex">
 					<div class="item">
@@ -244,6 +194,7 @@
 					</div>
 				</div>
 			</c:forEach>
+			</div>
 		</c:if>
 	</div>
 
@@ -263,9 +214,14 @@
 			</c:if>
 		</div>
 		<c:if test="${empty dropItem}">
-			<p>등록한 매물이 없습니다.</p>
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">등록한 물품이 없습니다.</p>
+				</div>
+			</div>
 		</c:if>
 		<c:if test="${not empty dropItem}">
+		<div class="item_wrapper">
 			<c:forEach var="dropItem" items="${dropItem}">
 				<div class="item_container_acc d-flex">
 					<div class="item">
@@ -295,52 +251,124 @@
 					</div>
 				</div>
 			</c:forEach>
+			</div>
 		</c:if>
 	</div>
 
-	<div id="acc_buying" class="container items_domain">
-		<div class="subtitle d-flex">
-			<div class="vr align-self-center"></div>
-			<h4 class="container">
+
+	<c:if test="${other_info == null}">
+		<div id="acc_buying" class="container items_domain">
+			<div class="subtitle d-flex">
+				<div class="vr align-self-center"></div>
+				<h4 class="container">
 				<span>구</span><span>매</span><span>내</span><span>역</span>
-			</h4>
-			<div class="vr align-self-center"></div>
+				</h4>
+				<div class="vr align-self-center"></div>
+			</div>
+			<c:if test="${empty buyItem}">
+				<div class="item_wrapper">
+					<div class="item justify-content-center">
+						<p class="notice_empty">구매한 물품이 없습니다.</p>
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${not empty buyItem}">
+			<div class="item_wrapper">
+				<c:forEach var="buyItem" items="${buyItem}">
+					<div class="item_container_acc d-flex">
+						<div class="item">
+							<a href="${path}/item/itemView?item_index=${buyItem.item_index}"
+								style="text-decoration: none; color: black"> <img
+								src="${path}/resources/img/${buyItem.item_thumbPath}" alt="매물사진">
+								<div class="item_view">
+									<h3>${buyItem.item_title}</h3>
+									<div class="item_price">
+										<h4>${buyItem.item_price}원</h4>
+										<br>
+										<h5>
+											<fmt:formatDate value="${buyItem.item_enrollDate}" pattern="yy/MM/dd" />
+										</h5>
+									</div>
+									<div class="item_like">
+										<p>관심 ${buyItem.item_interest}</p>
+										<p>댓글 ${buyItem.repl_count}</p>
+									</div>
+									<div class="item_addr">
+										<img src="${path}/resources/img/gps.png" alt="위치">
+										<p>${buyItem.item_place}</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				</div>
+			</c:if>
 		</div>
-		<c:if test="${empty buyItem}">
-			<p>구매한 상품이 없습니다.</p>
-		</c:if>
-		<c:if test="${not empty buyItem}">
-			<c:forEach var="buyItem" items="${buyItem}">
+	</c:if>
+	
+	<c:if test="${other_info == null}">
+		<div id="acc_interest" class="container items_domain">
+			<div class="d-flex">
+				<div class="subtitle d-flex">
+					<div class="vr align-self-center"></div>
+					<h4 class="container">
+						<span>관</span><span>심</span><span>물</span><span>품</span>
+					</h4>
+					<div class="vr align-self-center"></div>
+				</div>
+				<button type="button" id="btn_item_interest"
+					class="btn_item btn btn-success btn-sm align-self-center"
+					onclick="location.href='${path}/item/interest.do'">자세히</button>
+			</div>
+			
+			<c:if test="${empty my_interests}">
+				<div class="item_wrapper">
+					<div class="item justify-content-center">
+						<p class="notice_empty">관심물품이 없습니다.</p>
+					</div>
+				</div>
+			</c:if>
+			
+			<c:if test="${not empty my_interests}">
+			<div class="item_wrapper">
+			<c:forEach var="my_interests" items="${my_interests}">
 				<div class="item_container_acc d-flex">
 					<div class="item">
-						<a href="${path}/item/itemView?item_index=${buyItem.item_index}"
+						<a
+							href="${path}/item/itemView?item_index=${my_interests.item_index}"
 							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${buyItem.item_thumbPath}" alt="매물사진">
+							src="${path}/resources/img/${my_interests.item_thumbPath}"
+							alt="매물사진">
 							<div class="item_view">
-								<h3>${buyItem.item_title}</h3>
+								<h3>${my_interests.item_title}</h3>
 								<div class="item_price">
-									<h4>${buyItem.item_price}원</h4>
+									<h4>${my_interests.item_price}원</h4>
 									<br>
 									<h5>
-										<fmt:formatDate value="${buyItem.item_enrollDate}"
+										<fmt:formatDate value="${my_interests.item_enrollDate}"
 											pattern="yy/MM/dd" />
 									</h5>
 								</div>
 								<div class="item_like">
-									<p>관심 ${buyItem.item_interest}</p>
-									<p>댓글 ${buyItem.repl_count}</p>
+									<p>관심 ${my_interests.item_interest}</p>
+									<p>댓글 ${my_interests.repl_count}</p>
 								</div>
 								<div class="item_addr">
 									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${buyItem.item_place}</p>
+									<p>${my_interests.item_place}</p>
 								</div>
 							</div>
 						</a>
 					</div>
 				</div>
 			</c:forEach>
-		</c:if>
-	</div>
+			</div>
+			</c:if>
+		</div>
+	</c:if>
+	
+	
 </section>
 
 <script></script>
