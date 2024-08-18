@@ -17,6 +17,7 @@
 		<result property="acc_profile" column="acc_profile" />
 		<result property="acc_level" column="acc_level" />
 		<result property="acc_count" column="acc_count" />
+		<result property="acc_lastMessage" column="acc_lastMessage" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
