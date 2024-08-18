@@ -65,6 +65,9 @@
 	font-weight: lighter;
 }
 
+
+/* newItem */
+
 .newItem_wrap{
 	width: 100%;
 	margin:auto;
@@ -72,9 +75,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	overflow: hidden;
 	padding-top:130px;
-	padding-bottom:160px;
 }
 
 .newItem_container{
@@ -83,7 +84,7 @@
 	display: flex;
 	flex-direction: column;
 	margin:auto;
-	overflow: hidden;
+	overflow: visible;
 }
 
 .newItem_container h3{
@@ -93,20 +94,16 @@
 .newItem_container2{
 	display: flex;
 	justify-content: space-between;
-	gap:20px;
+	gap:9px;
 	transition: transform 0.5s ease;
 }
 
 .item2 {
     height: 300px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border: 1px solid rgb(219, 219, 219);
     margin-bottom: 14px;
-	flex: 0 0 16%; /* 6개 아이템이 100% 폭에 맞게 보이도록 설정 (100% / 6 ≈ 16.66%) */
-  	box-sizing: border-box; /* padding과 border가 너비에 포함되도록 설정 */
 }
 
 .item2 img {
@@ -114,11 +111,13 @@
     height: 160px;
     object-fit: cover;
     margin-top: 12px;
+    margin-left:13px;
 }
 
 .item_view2 {
     width: 160px;
     padding-top: 12px;
+    margin-left:13px;
 }
 
 .item_view2 h3{
@@ -140,30 +139,29 @@
 	font-weight: lighter;
 }
 
-.new_arrow{
-	width: 35px;
-	height:35px;
-	border-radius: 70%;
+
+.slick-track{
+	display: flex;
+	gap:10px;
+}
+
+.slick-slide{
+	    border: 1px solid rgb(219, 219, 219);
+}
+
+/* arrows */
+
+.newItem_container2 .slick-next {
 	position: absolute;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 8px;
-	padding: 7px;
-	cursor: pointer;
+	top: 50%;
+	right: -40px;
 }
-
-.new_arrow:hover {
-	background: #EAEAEA; 
-}
-
-.new_arrow img{
-	width: 100%;
-}
-.prev {
-	left: 100px;
-	
-}
-
-.next {
-	right: 100px;
+.newItem_container2 .slick-prev{
+	width:50px;
+	height:50px;
+	position: absolute;
+	top: 50%;
+	left: -50px;
 }
 
 
@@ -172,6 +170,7 @@
 .ad_banner {
 	width: 100%;
 	height: 200px;
+	margin-top:150px;
 	margin-bottom: 180px;
 }
 
