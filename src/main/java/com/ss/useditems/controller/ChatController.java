@@ -90,6 +90,29 @@ public class ChatController {
 	}
 	
 	
+	
+	@PostMapping("openChat.do")
+	@ResponseBody
+	public int openChat(@RequestParam String room_item, @RequestParam String room_reply) {
+		System.out.println("==chat.openChat==");
+		
+		int result = -1;
+		try {
+			System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
+			result = 1;
+			
+		} catch(Exception e) {
+			result = 0;
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping("dropDeal.do")
 	@ResponseBody
 	public int dropDeal(@RequestParam String chat_room) {

@@ -20,6 +20,8 @@
 .acc_alt_page #profile { /* alter 프로필 사진*/
 	width: 150px;
 	height: 150px;
+	border-radius: 100%;
+	margin-bottom: 10px;
 }
 
 .acc_alt_page #file_box {

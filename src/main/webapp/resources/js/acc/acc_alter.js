@@ -10,10 +10,8 @@ $(function() {
 
 	console.log('acc_alter.js 연결');
 
-
-	
-
 });
+
 
 $('#alt_pw').click(function(){
 	// 비밀번호 '변경하기' 누르면
@@ -34,7 +32,6 @@ $('#setPWcancel').click(function(){
 });
 
 
-var path = "/useditems";
 
 var currPW_input = null;
 var neoPW_input = null;
@@ -58,7 +55,6 @@ function filledAll(){ //비밀번호 필드 전체(현재+새+확인) 체크
 }
 
 
-
 function currPWcheck(param1){ //현재 비밀번호 입력 시
 	//console.log(param1);
 	//console.log(param1.value);
@@ -75,6 +71,7 @@ function currPWcheck(param1){ //현재 비밀번호 입력 시
 	filledAll();
 }
 
+
 function neoPWcheck(param2){ //새 비밀번호 입력 시
 	neoPW_input = param2.value.trim();
 	//console.log(neoPW_input);
@@ -87,6 +84,7 @@ function neoPWcheck(param2){ //새 비밀번호 입력 시
 	
 	filledAll();
 }
+
 
 function neoPW2check(param3){ //새 비밀번호 확인 입력 시
 	neoPWconf_input = param3.value.trim();
@@ -118,7 +116,7 @@ $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 		
 		$.ajax({
 			type : "POST",
-			url : path + "/account/setPW.do", //path는 전역변수
+			url : project + "/account/setPW.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryPW,
 			success : function(data) {
 						console.log("AJAXresponse : " + data);
@@ -137,8 +135,6 @@ $('#setPW').click(function(){ // 비밀번호 '수정' 누르면
 					}
 		}); //ajax
 		
-		
-		//location.href = path + "/account/alter.do";
 	}
 
 });
@@ -158,7 +154,7 @@ $('#setNickname').click(function(){ // 별명 '수정' 누르면
 		
 		$.ajax({
 			type : "POST",
-			url : path + "/account/setNickname.do", //path는 전역변수
+			url : project + "/account/setNickname.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryNickname,
 			success : function(data) {
 						console.log("AJAXresponse : " + data);
@@ -179,6 +175,7 @@ $('#setNickname').click(function(){ // 별명 '수정' 누르면
 });
 
 
+
 $('#setPhone').click(function(){ // 전화번호 '수정' 누르면
 	
 	var phone_input = $.trim($('#phone').val());
@@ -192,7 +189,7 @@ $('#setPhone').click(function(){ // 전화번호 '수정' 누르면
 		
 		$.ajax({
 			type : "POST",
-			url : path + "/account/setPhone.do", //path는 전역변수
+			url : project + "/account/setPhone.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryPhone,
 			success : function(data) {
 						console.log("AJAXresponse : " + data);
@@ -237,7 +234,7 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 		
 		$.ajax({
 			type : "POST",
-			url : path + "/account/setRedunds.do", //path는 전역변수
+			url : project + "/account/setRedunds.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryRedunds,
 			success : function(data) {
 						console.log("AJAXresponse : " + data);
@@ -263,14 +260,6 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 
 
 
-
-
-
-
-
-
-
-
 $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 
 	if (confirm("탈퇴하시겠습니까? 탈퇴 시 회원정보를 복구할 수 없습니다.")) {
@@ -279,22 +268,3 @@ $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 

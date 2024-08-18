@@ -20,7 +20,10 @@
 	</c:otherwise>
 </c:choose>
 
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+
+
 <div id="hiddenData" data-item-id="${item.item_index}"
 	data-context-path="${path}" style="display: none;"></div>
 <section id="item_detail" style="padding-top: 90px;">
@@ -204,8 +207,8 @@
 							<button
 								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						</c:if>
-						<c:if test="${item.item_seller==loginMember.acc_index}">
-							<button>채팅하기</button>
+						<c:if test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale')}">
+							<button onclick="openChat(${item.item_index}, ${reply.repl_index})">채팅하기</button>
 						</c:if>
 					</div>
 				</div>
@@ -418,6 +421,6 @@ System.out.println("item_enrollDate: " + item_enrollDate);
 	}
 </script>
 
-
+<script src="${path}/resources/js/item/itemView.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

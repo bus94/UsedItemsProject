@@ -7,10 +7,8 @@ $().ready(function(){
 });
  
  
- 
 $('input:radio[name=searchType]').click(function(){
 
 	console.log("searchType: " + $(this).val());
-	
 	
 });

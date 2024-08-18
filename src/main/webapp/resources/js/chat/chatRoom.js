@@ -12,7 +12,7 @@ var chatURI = "ws://" + serverName + ":" + serverPort + project + "/chat/safeCha
 //console.log(chatURI);
 
   	
-	//console.log(serverName);	
+	//console.log(serverName);	//각 변수들은 header.jsp 내부 script에서 선언해 둠
   	//console.log(serverPort);
   	//console.log(project);
  
@@ -185,9 +185,6 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	
 	
 	
-	
-
-	
 	//웹소켓으로 서버에 새 메시지를 보내는 함수
 	$('#chat_sendBtn'+room_index).click(function(){
 		
@@ -239,13 +236,10 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 
 	
-	
 	//chat_sendBtn.addEventListener('click', sendMessage);
 	function sendMessages() {
 		
-	}//웹소켓으로 서버에 새 메시지 보내는 함수
-
-
+	}//웹소켓으로 서버에 새 메시지 보내는 함수 //오류나서 jQuery로 새로 정의
 	
 
 
@@ -301,11 +295,8 @@ function dropDeal(param) {		//'거래중단' 버튼 클릭
 }
 	
 	
-
-
 	
-	
-//채팅방에서 엔터키 누르면 '전송' 버튼 클릭하도록 하는 함수 
+//채팅방에서 키보드 엔터키 누르면 '전송' 버튼 클릭하도록 하는 함수 
 function keyCheck(param) {//input태그에 onkeyup=keyCheck() 지정
 	//html에서 넘겨주는 변수가 this일 때와 event일 때의  결과가 서로 다르다!!
 		
@@ -319,7 +310,4 @@ function keyCheck(param) {//input태그에 onkeyup=keyCheck() 지정
 		$('.chat_sendBtn').trigger("click");
 	}
 	
-}
-
-
-	
+}	
