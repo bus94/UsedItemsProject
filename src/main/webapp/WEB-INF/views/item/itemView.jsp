@@ -107,9 +107,10 @@
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
-					
-					<div id="miniMapContainer"></div>
-					<p id="mapPreviewText">${item.item_place_address}</p>
+					<div>
+						<div id="miniMapContainer"></div>
+						<p id="mapPreviewText">${item.item_place_address}</p>
+					</div>
 				</div>
 				<div class="detail_like">
 					<div class="like_txt">
@@ -447,35 +448,40 @@ console.log(placeY);
 	    // 미니맵 초기화
 	    const miniMapOption = {
 	        center: new kakao.maps.LatLng(placeX, placeY),
+	        draggable: false,
+	         
 	        level: 3
 	    };
+	    
+	  
+	    
 	    const miniMap = new kakao.maps.Map(miniMapContainer, miniMapOption);
 	    const miniMarker = new kakao.maps.Marker({
 	        position: new kakao.maps.LatLng(placeX, placeY),
 	        map: miniMap
 	    });
-	   
-	    // 마우스를 텍스트에 올렸을 때 미니맵 표시
-	    mapPreviewText.addEventListener('mouseenter', (event) => {
-
-	        miniMapContainer.style.display = 'block';
-
 	
-	     
+	    mapPreviewText.addEventListener('mousemove', (event) => {
+	        const rect = mapPreviewText.getBoundingClientRect();
+	        const mouseX = event.clientX;
+	        const mouseY = event.clientY;
+	
+	        // 마우스가 텍스트 영역 내에 있는지 확인
+	        if (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom) {
+	            miniMapContainer.style.display = 'block';
+	            miniMapContainer.style.top = (mouseY + 10) + 'px';
+	            miniMapContainer.style.left = (mouseX + 10) + 'px';
+	
+	            // 지도가 올바르게 표시되도록 relayout 호출
+	            setTimeout(() => {
+	                miniMap.relayout();
+	                miniMap.setCenter(new kakao.maps.LatLng(placeX, placeY));
+	            }, 0);
+	        } else {
+	            miniMapContainer.style.display = 'none';
+	        }
 	    });
 	    
-	    mapPreviewText.addEventListener('mousemove', (event) => {
-	        miniMapContainer.style.top = (event.clientY + 10) + 'px';
-	        miniMapContainer.style.left = (event.clientX + 10) + 'px';
-	        
-	        // 지도가 올바르게 표시되도록 relayout 호출
-	        setTimeout(() => {
-	            miniMap.relayout();
-	            miniMap.setCenter(new kakao.maps.LatLng(placeX, placeY));
-	        }, 0);
-	    });
-	
-	    // 마우스를 텍스트에서 벗어났을 때 미니맵 숨김
 	    mapPreviewText.addEventListener('mouseleave', () => {
 	        miniMapContainer.style.display = 'none';
 	    });
