@@ -79,6 +79,11 @@
 		            document.querySelectorAll('.dropdown-menu input[type="checkbox"]').forEach(checkbox => {
 		                checkbox.checked = false;
 		            });
+		            
+		            // select 요소의 모든 옵션 선택 해제
+		            document.querySelectorAll('.selectBox_value option').forEach(option => {
+		                option.selected = false;
+		            });
 		        });
 		    });
 		</script>
