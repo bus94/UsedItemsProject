@@ -51,38 +51,36 @@
 
 				<div class="sear_categoryBtn">
 					<button type="submit" class="sear_category">상세검색</button>
-					<button type="reset" class="sear_category" id="resetBtn">초기화</button>
+					<button type="button" class="sear_category" id="resetBtn">초기화</button>
 				</div>
 			</div>
 
 		</div>
 
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				// li 클릭 시 체크박스 토글
-			    document.querySelectorAll('.dropdown-menu li').forEach(li => {
-			        li.addEventListener('click', function(event) {
-			            const checkbox = li.querySelector('input[type="checkbox"]');
-			            if (checkbox) {
-			                checkbox.checked = !checkbox.checked;
-			            }
-			        });
-			    });
-
-                // 드롭다운 메뉴 클릭 시 자동 숨김 방지
-                document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
-                    event.stopPropagation();
-                });
-                
-			});
-			
-			  // 체크박스 상태 초기화
-		    function resetCheckBoxes() {
-		        document.querySelectorAll('input[name="categoryList"]').forEach(checkBox => {
-		            checkBox.checked = false;
+		 document.addEventListener('DOMContentLoaded', function() {
+		        // li 클릭 시 체크박스 토글
+		        document.querySelectorAll('.dropdown-menu li').forEach(li => {
+		            li.addEventListener('click', function(event) {
+		                const checkbox = li.querySelector('input[type="checkbox"]');
+		                if (checkbox) {
+		                    checkbox.checked = !checkbox.checked;
+		                }
+		            });
 		        });
-		    }
 
+		        // 드롭다운 메뉴 클릭 시 자동 숨김 방지
+		        document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
+		            event.stopPropagation();
+		        });
+
+		        // 초기화 버튼 클릭 시 체크박스 모두 체크 해제
+		        document.querySelector('#resetBtn').addEventListener('click', function(event) {
+		            document.querySelectorAll('.dropdown-menu input[type="checkbox"]').forEach(checkbox => {
+		                checkbox.checked = false;
+		            });
+		        });
+		    });
 		</script>
 
 		<div class="item_title">
