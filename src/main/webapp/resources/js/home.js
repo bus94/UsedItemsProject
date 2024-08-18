@@ -176,6 +176,9 @@ clone.classList.add('clone');
 
 
 
+
+
+
 // 구라박스
   document.addEventListener('DOMContentLoaded', function () {
 

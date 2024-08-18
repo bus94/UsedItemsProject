@@ -167,7 +167,6 @@ footer {
 }
 
 
-
 .navbar #nav_chat {
     bottom: 8%;
     
@@ -175,6 +174,11 @@ footer {
     border: none;
     background-color: transparent;
 }
+
+.navbar .chat_arrived {
+	color: green;
+}
+
 
 .navbar #nav_toTop {
     bottom: 2%;

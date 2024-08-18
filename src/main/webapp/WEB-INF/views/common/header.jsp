@@ -82,6 +82,7 @@
 	var loginMember_accId = "${loginMember.acc_id}";
 	var loginMember_accNickname = "${loginMember.acc_nickname}";
 	var loginMember_accProfile = "${loginMember.acc_profile}";
+	var loginMember_accLatMsg = "${loginMember.acc_lastMessage}";
 </script>
 
 
@@ -190,8 +191,7 @@
 								<li>
 									<a href="${path}/account/login.do">로그인</a>
 								</li>
-							</c:if>
-							<c:if test="${loginMember != null}">
+							< id="logout"			<c:if test="${loginMember != null}">
 								<li id="logout">
 									<a href="">로그아웃</a>
 								</li>
@@ -247,7 +247,7 @@
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon"
 					data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
+					<i class="fa-solid fa-comment-dots fa-flip-horizontal chat_arrived"></i>
 				</button>
 
 			</c:if>

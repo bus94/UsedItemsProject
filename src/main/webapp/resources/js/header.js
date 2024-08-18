@@ -8,9 +8,7 @@ $(document).ready(function() {
 });
 
 
-
-const path = "/useditems";	//contextPath(project) 변수 선언
-
+console.log("Login: " + loginMember_accId + " 마지막 수신메시지 idx: " + loginMember_accLatMsg);
 
 
 window.addEventListener('scroll', function() {
@@ -43,7 +41,7 @@ $('#navbar-toggler').click(function() {
 $('#logout').click(function() {
 
 	if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-		window.location.href = path + "/account/logoutOK.do";
+		window.location.href = project + "/account/logoutOK.do";	//project는 header.jsp 내부 script에서 선언해 둠
 	}
 	
 });
@@ -68,7 +66,7 @@ $('#nav_chat').click(function() {
 	
 	$.ajax({
 			type : "POST",
-			url : path + "/chat/chatList.do", //path는 전역변수
+			url : project + "/chat/chatList.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryChatList,
 			success : function(result) {
 			
