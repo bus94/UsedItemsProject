@@ -156,7 +156,7 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE 1 = 1
+		WHERE 1 = 1 
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("

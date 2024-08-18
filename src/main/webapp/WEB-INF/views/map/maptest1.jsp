@@ -21,19 +21,19 @@
 </style>
 </head>
 <body>
-	<!-- 주소 입력 필드와 버튼 -->
+	<!--주소 입력 필드와 버튼 
 	<input type="text" id="sample5_address" placeholder="주소" readonly>
 	<input type="button" onclick="openAddressModal()" value="주소 검색">
 
-	<!-- 지도 표시 영역 -->
+	지도 표시 영역
 	<div id="map"
 		style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 
-	<!-- 주소 검색 모달 -->
+	주소 검색 모달
 	<div class="modal fade" id="addressModal" tabindex="-1"
 		aria-labelledby="addressModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<!-- 모달 크기를 키움 -->
+			모달 크기를 키움
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="addressModalLabel">주소 검색</h5>
@@ -42,11 +42,15 @@
 				</div>
 				<div class="modal-body">
 					<div id="postcode"></div>
-					<!-- 여기에 Daum Postcode API가 삽입됨 -->
+					여기에 Daum Postcode API가 삽입됨
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	<div id="map" style="width:100%;height:350px;"></div>
+	<p><em>마커에 마우스 커서를 올려주세요!</em></p>
+	
+	
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -54,7 +58,7 @@
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8bcb92e8b96f5a06c65f1c0e5308b488&libraries=services"></script>
-	<script>
+	<!-- <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center : new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -111,6 +115,51 @@
 				height: '100%'
 			}).embed(document.getElementById('postcode'));
 		}
+	</script> -->
+	<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+		
+		var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커를 표시할 위치입니다
+		var position =  new daum.maps.LatLng(33.450701, 126.570667);
+		
+		// 마커를 생성합니다
+		var marker = new daum.maps.Marker({
+		  position: position
+		});
+		
+		// 마커를 지도에 표시합니다.
+		marker.setMap(map);
+		
+		// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+		var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new daum.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+		
+		// 인포윈도우를 생성합니다
+		var infowindow = new daum.maps.InfoWindow({
+		    position : iwPosition,
+		    content : iwContent
+		});
+		
+		// 마커에 마우스오버 이벤트를 등록합니다
+		daum.maps.event.addListener(marker, 'mouseover', function() {
+		  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+		    infowindow.open(map, marker);
+		});
+		
+		// 마커에 마우스아웃 이벤트를 등록합니다
+		daum.maps.event.addListener(marker, 'mouseout', function() {
+		    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+		    infowindow.close();
+		});
 	</script>
 </body>
 </html>
+
+
+

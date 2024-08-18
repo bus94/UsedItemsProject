@@ -17,6 +17,7 @@ public class ItemInfoDTO {
 	private String item_category;
 	private int item_price;
 	private String item_place;
+	private String item_place_address;
 	private String item_placeX;
 	private String item_placeY;
 	private String item_status;

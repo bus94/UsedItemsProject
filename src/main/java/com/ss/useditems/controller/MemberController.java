@@ -166,6 +166,8 @@ public class MemberController {
 				List<ItemInfoDTO> my_interests = new ArrayList<ItemInfoDTO>();
 				my_interests = memberservice.getMyInterests(acc_index);
 				
+				
+				
 				model.addAttribute("my_interests", my_interests);
 
 				

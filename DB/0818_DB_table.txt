@@ -75,6 +75,7 @@ CREATE TABLE ITEM (
 	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('상의', '하의', '신발', '기타의류', '지갑', '피규어', '전자기기', '가구', '식품', '기타')),
 	item_price  NUMBER        NOT NULL,
 	item_place	VARCHAR2(100)	NULL,
+	item_place_address VARCHAR2(100) NULL,	
 	item_placeX VARCHAR2(100)	NULL,
 	item_placeY VARCHAR2(100)	NULL,
 	item_status	VARCHAR2(100)	NOT NULL CHECK (item_status IN('onsale', 'ondeal', 'drop')),

@@ -20,7 +20,7 @@
 		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller},
 		#{item_title},
 		#{item_content}, #{item_category}, #{item_price},
-		#{item_place}, #{item_placeX}, #{item_placeY},
+		#{item_place},#{item_place_address}, #{item_placeX}, #{item_placeY},
 		'onsale', sysdate,
 		default, default, null, null)
 		INTO
@@ -72,6 +72,7 @@
 		item_category = #{item_category},
 		item_price = #{item_price},
 		item_place = #{item_place},
+		item_place_address=#{item_place_address},
 		item_placeX = #{item_placeX},
 		item_placeY = #{item_placeY}
 		WHERE item_index = #{item_index}

@@ -149,13 +149,13 @@
 						preview.src = e.target.result;
 						
 						check= false;
-						alert(check);
+				
 					}
 					reader.readAsDataURL(file);
 				} else {
 					preview.src = existingThumb;
 					check= true;
-					alert(check);
+					
 				}
 				
 			});

@@ -351,4 +351,12 @@ a {
 	background-color: rgb(93, 199, 93);
 }
 
-   
+ 
+#miniMapContainer {
+    position: absolute;
+    display: none; /* 기본적으로 숨김 */
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+} 
