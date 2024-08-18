@@ -54,7 +54,7 @@
 					<button type="button" class="sear_category" id="resetBtn">초기화</button>
 				</div>
 			</div>
-
+			<div id="divContainer"></div>
 		</div>
 
 		<script>
@@ -66,6 +66,66 @@
 		                if (checkbox) {
 		                    checkbox.checked = !checkbox.checked;
 		                }
+		                
+		                const value = checkbox.value;
+                        const divContainer = document.querySelector('#divContainer');
+                        
+                        console.log("value: " + value);
+
+                        // 기존 div를 찾기
+                        let existingDiv = Array.from(document.querySelectorAll('.addDiv')).find(div => div.getAttribute('data-value') === value);
+                        console.log('클릭하자마자 existingDiv:', existingDiv);
+                        
+                        if (checkbox.checked) {
+                            if (!existingDiv) {
+                            	console.log("생성해보자");
+                                // 새로운 div 생성
+                                const newDiv = document.createElement('div');
+                                newDiv.className = 'addDiv';
+                                newDiv.setAttribute('data-value', value);
+
+                                console.log("p태그 생성");
+                                // 새로운 p 태그 생성 및 추가
+                                const newParagraph = document.createElement('p');
+                                newParagraph.textContent = value;
+                                newDiv.appendChild(newParagraph);
+                                
+                                console.log("x버튼 생성");
+                                // 새로운 x 버튼 생성 및 추가
+                                const removeBtn = document.createElement('button');
+                                removeBtn.textContent = 'x';
+                                removeBtn.className = 'removeBtn';
+                                removeBtn.type = 'button';
+                                newDiv.appendChild(removeBtn);
+
+                                // divContainer에 추가
+                                divContainer.appendChild(newDiv);
+                                
+                                // removeBtn 클릭 시
+                                removeBtn.addEventListener('click', function() {
+                                	let existingDiv = Array.from(document.querySelectorAll('.addDiv')).find(div => div.getAttribute('data-value') === value);
+                                	console.log("removeBtn 클릭했을 때 existingDiv: " + existingDiv);
+                                	console.log("removeBtn 클릭했을 때 checkbox: " + checkbox);
+                                	// 체크박스 선택 해제
+            		                if (checkbox) {
+            		                    checkbox.checked = false;
+            		                }
+                                	
+                                	// div 제거
+                                	divContainer.removeChild(existingDiv);
+                                });
+                            }
+                        } else {
+                        	console.log("제거 시작해보자");
+                        	console.log("existingDiv: " + existingDiv);
+                            if (existingDiv) {
+                            	console.log("제거해보자");
+                                // 기존 div 제거
+                                divContainer.removeChild(existingDiv);
+                            } else {
+                                console.warn("제거할 div가 없다.");
+                            }
+                        }
 		            });
 		        });
 
@@ -84,6 +144,14 @@
 		            document.querySelectorAll('.selectBox_value option').forEach(option => {
 		                option.selected = false;
 		            });
+		            
+		         	// 생성된 div 요소 모두 삭제
+		            const divContainer = document.querySelector('#divContainer');
+		            if (divContainer) {
+		                while (divContainer.firstChild) {
+		                    divContainer.removeChild(divContainer.firstChild);
+		                }
+		            }
 		        });
 		    });
 		</script>
