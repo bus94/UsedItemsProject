@@ -155,99 +155,128 @@
 
 
 <!-- 네비게이터 (fixed-top!!!) -->
-		<nav id="navigator"
-			class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
-			<div id="nav_container" class="container-fluid">
+		<nav id="navigator" class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
+			<div id="nav_container" class="nav_container">
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
 					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
 				</a>
-				<button id="navbar-toggler" class="navbar-toggler" type="button"
+<!-- 				<button id="navbar-toggler" class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-lg-0" style="display:flex; gap:7px;">
-						<li class="nav-item"><img class="nav_icon" alt="매물 검색"
-								src="${path}/resources/img/search.png"></li>
-						<a class="nav-link" href="${path}/blacklist/complainList.do">
-							<li class="nav-item"><img class="nav_icon" alt="신고 조회"
-								src="${path}/resources/img/report.png"> <span
-								class="menu_text">신고조회</span></li>
-						</a>
+				</button> -->
+				<ul class="navbar_list">
+					<li>
+						<form class="searchForm d-flex" role="search"
+							action="${path}/item/itemList.do" method="get">
+							<input
+								class="form-control me-2 focus-ring focus-ring-success border border-success"
+								type="search" placeholder="매물을 검색해보세요!" aria-label="Search"
+								id="searchValue" name="searchValue" value="${searchValue}">
+							<button class="searchFormBtn" type="submit" style="cursor: pointer; z-index: 10;">
+								<img alt="" src="${path}/resources/img/search.png">
+							</button>
+						</form>
+					</li>
+					
+					<li class="nav-item">
+						<a><img class="nav_icon" alt="마이페이지"
+						src="${path}/resources/img/user.png"></a>
+						<ul>
+							<li style="height: 22px;">
+								<a></a>
+							</li>
+							<c:if test="${loginMember == null}">
+								<li>
+									<a href="${path}/account/login.do">로그인</a>
+								</li>
+							</c:if>
+							<c:if test="${loginMember != null}">
+								<li id="logout">
+									<a href="">로그아웃</a>
+								</li>
+							</c:if>
+							<li>
+								<a href="${path}/item/interest.do">찜목록</a>
+							</li>
+							<li>
+								<a href="${path}/account/my_info.do">마이페이지</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item" id="shopImg"><a>
+						<img class="nav_icon" alt="메뉴"
+						src="${path}/resources/img/shop.png"></a>
+						<ul>
+							<li style="height: 22px;">
+								<a></a>
+							</li>
+							<li>
+								<a href="${path}/item/itemList.do">물품보기</a>
+							</li>
+							<li>
+								<a href="${path}/item/itemEnroll.do">물품등록</a>
+							</li>
+							<li>
+								<a href="${path}/blacklist/complainList.do">신고조회</a>
+							</li>
+						</ul>
+						
+					</li>
 
-						<c:if test="${loginMember == null}">
-							<a class="nav-link" href="${path}/account/login.do">
-								<li class="nav-item"><img class="nav_icon" alt="로그인"
-									src="${path}/resources/img/login.png"> <span
-									class="menu_text">로그인</span></li>
-							</a>
-							<a class="nav-link" href="${path}/account/signup.do">
-								<li class="nav-item"><img class="nav_icon" alt="회원가입"
-									src="${path}/resources/img/login2.png"> <span
-									class="menu_text">회원가입</span></li>
-							</a>
-						</c:if>
-
-
-						<c:if test="${loginMember != null}">
-							<a class="nav-link" id="logout" href="">
-								<li class="nav-item"><img class="nav_icon" alt="로그아웃"
-									src="${path}/resources/img/logout.png"> <span
-									class="menu_text">로그아웃</span></li>
-							</a>
-							<a class="nav-link" href="${path}/item/itemEnroll.do">
-								<li class="nav-item"><img class="nav_icon" alt="매물 등록"
-									src="${path}/resources/img/sale.png"> <span
-									class="menu_text">매물등록</span></li>
-							</a>
-						</c:if>
-						<c:if test="${loginMember.acc_status == 'admin'}">
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="${path}">뭐 넣지?</a></li>
-									<li>
-										<hr class="dropdown-divider">
-									</li>
-									<li><a class="dropdown-item" href="#">Something else
-											here</a></li>
-								</ul></li>
-						</c:if>
-					</ul>
-					<form class="d-flex" role="search"
-						action="${path}/item/itemList.do" method="get">
-						<input
-							class="form-control me-2 focus-ring focus-ring-success border border-success"
-							type="search" placeholder="매물을 검색해보세요!" aria-label="Search"
-							id="searchValue" name="searchValue" value="${searchValue}">
-						<button class="btn btn-outline-success" type="submit">검색</button>
-					</form>
-				</div>
+					<c:if test="${loginMember.acc_status == 'admin'}">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> 더보기 </a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${path}">뭐 넣지?</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="#">Something else
+										here</a></li>
+							</ul></li>
+					</c:if>
+				</ul>
 			</div>
-			
+
+
+			<!-- 로그인되었을 때만 보일 부분 -->
 			<c:if test="${loginMember != null}">
-				<!-- 회원페이지 -->
-				<a href="${path}/account/my_info.do" id="nav_user"
-					class="nav_side_icon max992off"> <i
-					class="fa-solid fa-circle-user"></i></a>
-				<!-- 즐겨찾기 -->
-				<a href="${path}/item/interest.do" id="nav_wish"
-					class="nav_side_icon max992off"> <i
-					class="fa-brands fa-gratipay"></i></a>
 				<!-- 채팅방 리스트 -->
 				<!-- Button trigger modal -->
-				<button type="button" id="nav_chat" class="nav_side_icon" data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
+				<button type="button" id="nav_chat" class="nav_side_icon"
+					data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
 					<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
 				</button>
-				
-			</c:if>	<!-- 로그인되었을 때만 보일 부분 -->
+
+			</c:if>
 
 			<!-- 위로가기 -->
 			<a href="" id="nav_toTop" class="nav_side_icon"> <i
 				class="fa-solid fa-circle-arrow-up"></i></a>
 		</nav>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.searchForm');
+    const input = document.querySelector('#searchValue');
+    const button = document.querySelector('.searchFormBtn');
+    
+    let isSearchActive = false;
 
+    button.addEventListener('click', function(event) {
+    	// 버튼 클릭하면 폼이 제출되는거 방지
+      event.preventDefault();
+      
+      if (!isSearchActive) {
+        form.classList.add('active');
+        input.focus();
+        isSearchActive = true;
+      } else {
+        form.submit();
+      }
+    });
+  });
+</script>
