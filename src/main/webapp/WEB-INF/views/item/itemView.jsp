@@ -151,10 +151,8 @@
 		<p>${item.item_content}</p>
 		<div class="content-button">
 			<c:if test="${item.item_seller==loginMember.acc_index}">
-				<button type="button" onclick="editItem('${item.item_index}')"
-					>수정하기</button>
-				<button type="button"
-					onclick="deleteItem('${item.item_index}')">삭제하기</button>
+				<button type="button" onclick="editItem('${item.item_index}')">수정하기</button>
+				<button type="button" onclick="deleteItem('${item.item_index}')">삭제하기</button>
 			</c:if>
 		</div>
 	</div>
@@ -207,8 +205,10 @@
 							<button
 								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						</c:if>
-						<c:if test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale')}">
-							<button onclick="openChat(${item.item_index}, ${reply.repl_index})">채팅하기</button>
+						<c:if
+							test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale')}">
+							<button
+								onclick="openChat(${item.item_index}, ${reply.repl_index})">채팅하기</button>
 						</c:if>
 					</div>
 				</div>
@@ -321,54 +321,60 @@
 	</div>
 </section>
 
-<%
-ItemInfoDTO item = (ItemInfoDTO) request.getAttribute("item");
-String item_enrollDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(item.getItem_enrollDate());
-System.out.println("item_enrollDate: " + item_enrollDate);
-%>
 <script>
+	const item_enrollDateStr = "${item.item_enrollDate}"; 
+	const item_enrollDate = new Date(item_enrollDateStr);
+
 	function date(enrollDate) {
+		console.log("날짜 계산 시작");
+		console.log("item_enrollDateStr: " + item_enrollDateStr); // Fri Jul 26 11:10:30 KST 2024
+		console.log("item_enrollDate: " + item_enrollDate); // Invalid Date
+		console.log("new Date: " + new Date()); // Mon Aug 19 2024 03:06:29 GMT+0900 (한국 표준시)
 		const milliSeconds = new Date() - enrollDate;
+		console.log("milliSeconds: " + milliSeconds);
 		const seconds = milliSeconds / 1000;
+		console.log("seconds: " + seconds);
 
 		if (seconds < 60) {
 			return document.getElementById('enrollDate').textContent = `방금 전`;
 		}
 
-		const minutes = seconds / 60
+		const minutes = seconds / 60;
+		console.log("minutes: " + minutes);
 		if (minutes < 60) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(minutes)}분 전`
+			return document.getElementById('enrollDate').textContent = `${Math.floor(minutes)}분 전`;
 		}
 
-		const hours = minutes / 60
+		const hours = minutes / 60;
+		console.log("hours: " + hours);
 		if (hours < 24) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(hours)}시간 전`
+			return document.getElementById('enrollDate').textContent = `${Math.floor(hours)}시간 전`;
 		}
 
-		const days = hours / 24
+		const days = hours / 24;
+		console.log("days: " + days);
 		if (days < 7) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(days)}일 전`
+			return document.getElementById('enrollDate').textContent = `${Math.floor(days)}일 전`;
 		}
 
-		const weeks = days / 7
+		const weeks = days / 7;
+		console.log("weeks: " + weeks)
 		if (weeks < 5) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(weeks)}주 전`
+			return document.getElementById('enrollDate').textContent = `${Math.floor(weeks)}주 전`;
 		}
 
-		const months = days / 30
+		const months = days / 30;
+		console.log("months: " + months);
 		if (months < 12) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(months)}개월 전`
+			return document.getElementById('enrollDate').textContent = `${Math.floor(months)}개월 전`;
 		}
 
-		const years = days / 365
-		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`
+		const years = days / 365;
+		console.log("years: " + years);
+		console.log("Math.floor(years): " + Math.floor(years));
+		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`;
 	}
 	
-	const item_enrollDate = new Date('${item_enrollDate}');
-	
-	console.log("item_enrollDate: " + item_enrollDate);
-	
-	// 함수 호출
 	date(item_enrollDate);
 </script>
 
