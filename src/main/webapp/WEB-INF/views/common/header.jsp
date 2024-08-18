@@ -193,8 +193,8 @@
 								</li>
 							</c:if>
 							<c:if test="${loginMember != null}">
-								<li>
-									<a href="${path}/account/logoutOK.do">로그아웃</a>
+								<li id="logout">
+									<a href="">로그아웃</a>
 								</li>
 							</c:if>
 							<li>
@@ -267,6 +267,7 @@
     let isSearchActive = false;
 
     button.addEventListener('click', function(event) {
+    	// 버튼 클릭하면 폼이 제출되는거 방지
       event.preventDefault();
       
       if (!isSearchActive) {
@@ -274,7 +275,6 @@
         input.focus();
         isSearchActive = true;
       } else {
-        // Perform search
         form.submit();
       }
     });
