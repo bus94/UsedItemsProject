@@ -13,7 +13,6 @@
 		<div class="category">
 			<div class="selectBox">
 				<div class="selectBoxIn">
-					<!-- <button style="width: 10px;" id="mapButton">지도</button> -->
 					<p>정렬:</p>
 					<select class="selectBox_value" name="searchType">
 						<option value="">===정렬 선택===</option>
@@ -157,7 +156,7 @@
 		</script>
 
 		<div class="item_title">
-			<h3>검색 결과 &gt;</h3>
+			<h3>검색 결과</h3>
 		</div>
 		<c:if test="${empty itemList}">
 			<tr>
