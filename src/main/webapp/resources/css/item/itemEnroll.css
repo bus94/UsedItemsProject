@@ -49,7 +49,20 @@
 	height: 365px;
 	flex-direction: space-between;
 }
+#preview1 {
+	display: block;
+	width: 400px;
+	height: 365px;
+	flex-direction: space-between;
+	
+}
 
 .container_preview {
 	display: flex;
+}
+
+.modal-dialog {
+    margin: auto;
+    top: 10%;
+    transform: translateY(-10%);
 }

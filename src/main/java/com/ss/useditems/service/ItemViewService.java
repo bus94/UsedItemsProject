@@ -71,5 +71,8 @@ public class ItemViewService {
 		mapper.removeInterest(map);
 		
 	}
+	public boolean deleteItem(int item_index) {
+		return mapper.deleteItem(item_index)>0 ? true :false;
+	}
 
 }
