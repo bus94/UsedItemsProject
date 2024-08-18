@@ -71,11 +71,7 @@ public class MemberController {
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
-<<<<<<< HEAD
-		model.addAttribute("location", "/");
-=======
-		model.addAttribute("location", "/home");
->>>>>>> moong
+		model.addAttribute("location", "");
 		return "common/msg";
 	}
 
