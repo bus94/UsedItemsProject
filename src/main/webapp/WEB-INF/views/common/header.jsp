@@ -58,7 +58,6 @@
 	href="${path}/resources/css/chat/chatRoom.css?v=${systemProperties['timestamp']}">
 
 <script defer src="${path}/resources/js/header.js"></script>
-<script src="${path}/resources/js/item/itemView.js"></script>
 
 <!-- 아래의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다. -->
 <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
