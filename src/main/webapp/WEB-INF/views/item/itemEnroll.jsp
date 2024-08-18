@@ -53,11 +53,13 @@
 							<div id="input_box4" class="container">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 								<div id="input_address">
-									<input type="text" class="form-control item_input d-inline input_addressIn"
+									<input type="text"
+										class="form-control item_input d-inline input_addressIn"
 										name="item_place" id="item_place" placeholder="장소" readonly />
 									<input type="hidden" name="addressX" id="addressX"> <input
 										type="hidden" name="addressY" id="addressY">
-									<button type="button" id="selectPlaceButton" class="btn">장소 선택</button>
+									<button type="button" id="selectPlaceButton"
+										class="btn input_addressBtn">장소 선택</button>
 								</div>
 							</div>
 							<div class="container input_thumbnail">
@@ -85,7 +87,11 @@
 						</td>
 						<td>
 							<div class="container_preview">
-								<img id="preview" alt="첨부된 썸네일 파일이 없습니다.">
+								<img id="preview" alt="썸네일 이미지 미리보기"> <img
+									id="defaultview" alt="미리보기 파일 없음"
+									src="${path}/resources/img/zz.png">
+								<p class="defaultP">썸네일 미리보기</p>
+								<p class="defaultP">첨부된 파일이 없습니다.</p>
 							</div>
 						</td>
 					</tr>
@@ -120,6 +126,8 @@
 			const item_thumb = document.getElementById("item_thumb");
 			const preview = document.getElementById("preview");
 			const itemEnroll_form = document.getElementById("itemEnroll_form");
+			const defaultview = document.getElementById("defaultview");
+			const defaultP = document.getElementsByClassName('defaultP');
 			
 			item_thumb.addEventListener('change', () => {
 				const file = item_thumb.files[0];
@@ -128,11 +136,19 @@
 					reader.onload = function(e) {
 						preview.src = e.target.result;
 						preview.style.display = 'block';
+						defaultview.style.display = 'none';
+						for (let i = 0; i < defaultP.length; i++) {
+							defaultP[i].classList.add('defaultPcss');
+						}
 						itemEnroll_form.classList.remove('hidden');
 					}
 					reader.readAsDataURL(file);
 				} else {
 					preview.style.display = 'none';
+					defaultview.style.display = "block";
+					for (let i = 0; i < defaultP.length; i++) {
+						defaultP[i].classList.remove('defaultPcss');
+					}
 					itemEnroll_form.classList.add('hidden');
 				}
 				
