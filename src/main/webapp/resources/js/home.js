@@ -117,6 +117,8 @@ $('.newItem_container2').slick({
   speed: 300,
   slidesToShow: 6,
   slidesToScroll: 1,
+  autoplay:true,
+  autoplaySpeed:1700,
   responsive: [
     {
       breakpoint: 1024,
