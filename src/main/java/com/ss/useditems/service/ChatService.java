@@ -16,6 +16,13 @@ public class ChatService {
 	private ChatMapper chatMapper;
 
 	
+	
+	public ChatDTO checkLastChat(String acc_index) {
+
+		return chatMapper.selectLastChat(acc_index);
+	}
+	
+	
 	public List<ChatRoomDTO> getChatList(String loginMember_accIndex) {
 
 		return chatMapper.selectChatList(loginMember_accIndex);
@@ -48,6 +55,8 @@ public class ChatService {
 	public int recordLastChat(String acc_index, String acc_lastMessage) {
 		return chatMapper.updateLastMessage(acc_index, acc_lastMessage);
 	}
+
+
 
 	
 }

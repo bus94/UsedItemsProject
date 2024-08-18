@@ -144,3 +144,72 @@ left join reply on room_reply = repl_index
 left join account on repl_candidate = acc_index) guest
 on host.room_index = guest.room_index_g
 where room_index = 3;
+
+
+
+
+
+--------------------------------최근메시지 조회(수시)
+--서브쿼리1 판매자 정보--(host)
+select 
+room.*,
+item_seller
+from chatroom room
+left join item on room_item = item_index
+order by room_index;
+
+
+
+--서브쿼리2 구매자 정보--(guest)
+select 
+room_index room_index_g,
+repl_candidate
+from chatroom room
+left join reply on room_reply = repl_index
+order by room_index;
+
+
+--서브쿼리3 판매자 정보 + 구매자 정보--
+select
+*
+from
+(select 
+room.*,
+item_seller
+from chatroom room
+left join item on room_item = item_index) host
+join
+(select 
+room_index room_index_g,
+repl_candidate
+from chatroom room
+left join reply on room_reply = repl_index) guest
+on host.room_index = guest.room_index_g
+left join chat on room_index=chat_room
+where item_seller = 2 or repl_candidate = 2
+order by chat_index desc;
+
+
+--최종 판매자 정보 + 구매자 정보 최근 1개--
+select
+*
+from
+(select
+*
+from
+(select 
+room.*,
+item_seller
+from chatroom room
+left join item on room_item = item_index) host
+join
+(select 
+room_index room_index_g,
+repl_candidate
+from chatroom room
+left join reply on room_reply = repl_index) guest
+on host.room_index = guest.room_index_g
+left join chat on room_index=chat_room
+where item_seller = 2 or repl_candidate = 2
+order by chat_index desc)
+where rownum = 1;
