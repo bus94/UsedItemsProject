@@ -25,7 +25,8 @@ public class ItemEnrollService {
 
 	public int updateItem(ItemInfoDTO existingItem) {
 		System.out.println("ItemEnrollService의 updateItem() 실행");
-		return mapper.updateItem(existingItem);
+		
+		return mapper.updateItem(existingItem)+mapper.updateShowcaseThumbnail(existingItem);
 	}
 	
 }

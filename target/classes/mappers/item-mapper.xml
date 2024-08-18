@@ -21,10 +21,12 @@
 		#{item_title},
 		#{item_content}, #{item_category}, #{item_price},
 		#{item_place}, #{item_placeX}, #{item_placeY},
-		'onsale', sysdate, default, default, null, null)
+		'onsale', sysdate,
+		default, default, null, null)
 		INTO
 		SHOWCASE(show_index,
-		show_item, show_thumb
+		show_item,
+		show_thumb
 		<if test="show_img1 != null">
 			, show_img1
 		</if>
@@ -62,16 +64,23 @@
 		SELECT * FROM DUAL
 	</insert>
 	<update id="updateItem" parameterType="itemInfoDTO">
-    <!-- ITEM 테이블 업데이트 -->
-    	UPDATE ITEM
-    	SET 
-	        item_title = #{item_title},
-	        item_content = #{item_content},
-	        item_category = #{item_category},
-	        item_price = #{item_price},
-	        item_place = #{item_place},
-	        item_placeX = #{item_placeX},
-	        item_placeY = #{item_placeY}
-    	WHERE item_index = #{item_index}
-    </update>
+		<!-- ITEM 테이블 업데이트 -->
+		UPDATE ITEM
+		SET
+		item_title = #{item_title},
+		item_content = #{item_content},
+		item_category = #{item_category},
+		item_price = #{item_price},
+		item_place = #{item_place},
+		item_placeX = #{item_placeX},
+		item_placeY = #{item_placeY}
+		WHERE item_index = #{item_index}
+
+	</update>
+	<update id="updateShowcaseThumbnail" parameterType="itemInfoDTO">
+		UPDATE SHOWCASE
+		SET
+		show_thumb = #{show_thumb}
+		WHERE show_item = #{item_index}
+	</update>
 </mapper>

@@ -38,6 +38,7 @@ public class ItemEnrollController {
 
 		MultipartFile show_thumb = item_thumb.getFile("item_thumb");
 
+		ItemInfoDTO enrollItemInfo = new ItemInfoDTO();
 		// 파일 업로드 처리 로직
 		if (list.isEmpty() || show_thumb.isEmpty()) {
 			model.addAttribute("msg", "파일이 존재하지 않거나 업로드에 실패하였습니다.");
@@ -49,7 +50,7 @@ public class ItemEnrollController {
 			int loginMemberIndex = loginMember.getAcc_index();
 			System.out.println("selectItemSeq_curr(): " + (itemEnrollService.selectItemIndex() +1));
 			String itemFolderName = loginMemberIndex + "\\item_" + (itemEnrollService.selectItemIndex() + 1);
-			
+			System.out.println(itemFolderName);
 			// 업로드 위치 지정
 			String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\"
 					+ itemFolderName;
@@ -81,7 +82,7 @@ public class ItemEnrollController {
 			show_thumb.transferTo(saveThumbFile);
 			System.out.println("썸네일 저장 성공!!");
 
-			ItemInfoDTO enrollItemInfo = new ItemInfoDTO();
+			
 			enrollItemInfo.setItem_seller(loginMemberIndex);
 			enrollItemInfo.setItem_title(item_title);
 			enrollItemInfo.setItem_content(item_content);
@@ -135,7 +136,9 @@ public class ItemEnrollController {
         System.out.println("itemUpdate() 실행");
         System.out.println(item_index);
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-
+        
+        String thumbFileRealName="";
+        
         List<MultipartFile> list = item_image.getFiles("item_image");
 
         MultipartFile newThumb = item_thumb.getFile("item_thumb");
@@ -151,12 +154,13 @@ public class ItemEnrollController {
             if (!check && newThumb != null && !newThumb.isEmpty()) { // check 변수를 사용하여 썸네일 변경 여부 확인
                 // 기존 썸네일 파일 삭제
                 File oldThumbFile = new File(uploadFolder + File.separator + existingItem.getShow_thumb());
+                System.out.println("Deleting file at path: " + oldThumbFile.getAbsolutePath());
                 if (oldThumbFile.exists()) {
                     oldThumbFile.delete();
                 }
 
                 // 새 썸네일 저장
-                String thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
+                thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
                 File saveThumbFile = new File(uploadFolder + File.separator + thumbFileRealName);
                 newThumb.transferTo(saveThumbFile);
                 existingItem.setShow_thumb(thumbFileRealName);
@@ -173,7 +177,8 @@ public class ItemEnrollController {
             existingItem.setItem_place(item_place);
             existingItem.setItem_placeX(addressX);
             existingItem.setItem_placeY(addressY);
-
+            existingItem.setShow_thumb(thumbFileRealName);
+            
             // 업데이트 DB 작업 수행
             if (itemEnrollService.updateItem(existingItem) > 0) {
                 System.out.println("itemUpdate 실행 성공");

@@ -16,4 +16,6 @@ public interface ItemEnrollMapper {
 
 	int updateItem(ItemInfoDTO existingItem);
 	
+	int updateShowcaseThumbnail(ItemInfoDTO existingItem);
+	
 }
