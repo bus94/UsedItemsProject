@@ -71,7 +71,7 @@ public class ChatController {
 		return chatRoom;
 	}
 	
-	@PostMapping("recordChat.do")
+	@PostMapping("recordChat.do")	//정일_채팅 메시지 DB에 저장
 	@ResponseBody
 	public int recordChat(@RequestParam String chat_room, @RequestParam String chat_writer, @RequestParam String chat_content) {
 		System.out.println("==chat.recordChat==");
@@ -91,15 +91,17 @@ public class ChatController {
 	
 	
 	
-	@PostMapping("openChat.do")
+	@PostMapping("openChat.do")		//정일_채팅방 개설(item_status: onsale -> ondeal)
 	@ResponseBody
 	public int openChat(@RequestParam String room_item, @RequestParam String room_reply) {
 		System.out.println("==chat.openChat==");
+		System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
 		
 		int result = -1;
 		try {
-			System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
-			result = 1;
+			
+			result = chatService.openChat(room_item, room_reply);
+			System.out.println("openChatResult: " + result);
 			
 		} catch(Exception e) {
 			result = 0;
@@ -108,23 +110,20 @@ public class ChatController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	@PostMapping("dropDeal.do")
+	@PostMapping("dropDeal.do")		//정일_채팅방 삭제(item_status: ondeal -> onsale)
 	@ResponseBody
-	public int dropDeal(@RequestParam String chat_room) {
+	public int dropDeal(@RequestParam String room_index, @RequestParam String room_item) {
 		System.out.println("==chat.dropDeal==");
-		System.out.println("chat_room: " + chat_room);
+		System.out.println("Drop chat_room: " + room_index + " room_item: " + room_item);
 		
 		int result = -1;
 		try {
-			result = 1;
-			
+			result = chatService.dropDeal(room_index, room_item);
+			System.out.println("dropDealResult: " + result);
+
 		} catch(Exception e) {
 			result = 0;
+			e.printStackTrace();
 		}
 		return result;
 	}

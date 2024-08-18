@@ -206,7 +206,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 		
 		
 		//DB에 새 메시지 넣기
-		const queryChat = { chat_room : room_index, chat_writer : loginMember_accId, chat_content : message_input };
+		const queryChat = { chat_room : room_index, chat_writer : loginMember_accIndex, chat_content : message_input };
 		
 		$.ajax({	
 			type : "POST",
@@ -247,12 +247,18 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	$('.unlink_chat').click(function(){
 		ws.onclose();	//웹소켓 해제
 	});
-		
+
+
+
+
+
+
+
+
 
 }//'채팅방 보기' 버튼
 	
 	
-
 function returnToRoomList() {	//'돌아가기' 버튼 클릭
 
 	$('#nav_chat').trigger("click");
@@ -262,13 +268,14 @@ function returnToRoomList() {	//'돌아가기' 버튼 클릭
 }
 
 
-function dropDeal(param) {		//'거래중단' 버튼 클릭
+
+function dropDeal(room_index, room_item) {		//'거래중단' 버튼 클릭
 		
 	if (confirm("정말 거래를 중단하시겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
 		
-		console.log("삭제할 채팅방번호: " + param);
+		console.log("삭제할 채팅방번호: " + room_index);
 				
-		const queryDropDeal = { chat_room : param };
+		const queryDropDeal = { room_index : room_index, room_item : room_item };
 		
 		$.ajax({	
 			type : "POST",

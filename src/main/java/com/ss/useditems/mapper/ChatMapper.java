@@ -15,6 +15,14 @@ public interface ChatMapper {
 
 	int insertChat(String chat_room, String chat_writer, String chat_content);
 
+	int insertChatRoom(String room_item, String room_reply);
+
+	int updateItemOndeal(String room_item);
+
+	int deleteChatRoom(String room_index);
+
+	int updateItemOnsale(String room_item);
+
 	
 	
 }

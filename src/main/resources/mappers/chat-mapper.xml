@@ -118,6 +118,24 @@
 	<insert id="insertChat" parameterType="String">
 		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room}, #{chat_writer}, #{chat_content}, SYSDATE)
 	</insert>
+	
+	<insert id="insertChatRoom" parameterType="String">
+		INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, #{room_item}, #{room_reply}, SYSDATE)
+	</insert>
+	
+	<update id="updateItemOndeal" parameterType="String">
+		update ITEM set
+		item_status='ondeal' where item_index=#{room_item}
+    </update>
+    
+    <delete id="deleteChatRoom" parameterType="String">
+		DELETE FROM CHATROOM WHERE room_index=#{room_index}
+	</delete>
+    
+	<update id="updateItemOnsale" parameterType="String">
+		update ITEM set
+		item_status='onsale' where item_index=#{room_item}
+    </update>
 
 
 </mapper>
