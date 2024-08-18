@@ -69,58 +69,63 @@
 </head>
 <body>
 
-	<div id="wrapper">		<!-- 전체 페이지 wrapper -->
-		
-
-<!-- JS에 넘겨줄 변수 선언 -->
-<script>
-	var serverName =  "${pageContext.request.serverName}";
-	var serverPort =  "${pageContext.request.serverPort}";
-	var project = "${pageContext.request.contextPath}";
-			
-	var loginMember_accIndex = "${loginMember.acc_index}";
-	var loginMember_accId = "${loginMember.acc_id}";
-	var loginMember_accNickname = "${loginMember.acc_nickname}";
-	var loginMember_accProfile = "${loginMember.acc_profile}";
-	var loginMember_accLatMsg = "${loginMember.acc_lastMessage}";
-</script>
+	<div id="wrapper">
+		<!-- 전체 페이지 wrapper -->
 
 
-<!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
-<!-- ChatRoom_List_Modal -->
-<div class="modal fade" id="chatRoomListModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div id="chatList_header" class="modal-header">
-        <!-- <h5 class="modal-title">거래 중인 매물</h5> -->
-        <img id="brand_img_chatList" alt="SAFE MARKET" src="${path}/resources/img/logo.png">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div id="chatList" class="modal-body">
-      					
-      					<!-- <div class="chatRoom_box container">
+		<!-- JS에 넘겨줄 변수 선언 -->
+		<script>
+			var serverName = "${pageContext.request.serverName}";
+			var serverPort = "${pageContext.request.serverPort}";
+			var project = "${pageContext.request.contextPath}";
+
+			var loginMember_accIndex = "${loginMember.acc_index}";
+			var loginMember_accId = "${loginMember.acc_id}";
+			var loginMember_accNickname = "${loginMember.acc_nickname}";
+			var loginMember_accProfile = "${loginMember.acc_profile}";
+			var loginMember_accLatMsg = "${loginMember.acc_lastMessage}";
+		</script>
+
+
+		<!-- 챗 관련 모달, special position(navigator: fixed-top) 내부에 두면 문제가 생김!! -->
+		<!-- ChatRoom_List_Modal -->
+		<div class="modal fade" id="chatRoomListModal" tabindex="-1"
+			data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				<div class="modal-content">
+					<div id="chatList_header" class="modal-header">
+						<!-- <h5 class="modal-title">거래 중인 매물</h5> -->
+						<img id="brand_img_chatList" alt="SAFE MARKET"
+							src="${path}/resources/img/logo.png">
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div id="chatList" class="modal-body">
+
+						<!-- <div class="chatRoom_box container">
       						<p>매물 제목(임시)</p>
       						<span>판매자(임시)</span><span>생성일자(임시)</span>
 			 				<button class="btn btn-success btn-sm" id="chatList1" data-bs-target="#chatRoomModal1" data-bs-toggle="modal">채팅방 보기</button>
 			 				<button class="btn btn-warning btn-sm" >거래 중단하기</button>
       					</div> -->
-        				
-						
-
-      </div>
-      <div id="chatList_footer" class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-      	<h5 id="chatList_notice" class="modal-title">Safe Chat</h5>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
-<div id="ChatRoom_Modal_reservoir">
-<!-- ChatRoom_Modal -->
-<!-- <div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+					</div>
+					<div id="chatList_footer" class="modal-footer">
+						<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
+						<h5 id="chatList_notice" class="modal-title">Safe Chat</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div id="ChatRoom_Modal_reservoir">
+			<!-- ChatRoom_Modal -->
+			<!-- <div class="modal fade" id="chatRoomModal1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -147,20 +152,22 @@
 </div>
  -->
 
-</div>	<!-- ChatRoom_Modal_reservoir -->
-
-				 
-
+		</div>
+		<!-- ChatRoom_Modal_reservoir -->
 
 
 
-<!-- 네비게이터 (fixed-top!!!) -->
-		<nav id="navigator" class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
+
+
+
+		<!-- 네비게이터 (fixed-top!!!) -->
+		<nav id="navigator"
+			class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
 			<div id="nav_container" class="nav_container">
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
 					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
 				</a>
-<!-- 				<button id="navbar-toggler" class="navbar-toggler" type="button"
+				<!-- 				<button id="navbar-toggler" class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
 					aria-label="Toggle navigation">
@@ -174,55 +181,34 @@
 								class="form-control me-2 focus-ring focus-ring-success border border-success"
 								type="search" placeholder="매물을 검색해보세요!" aria-label="Search"
 								id="searchValue" name="searchValue" value="${searchValue}">
-							<button class="searchFormBtn" type="submit" style="cursor: pointer; z-index: 10;">
+							<button class="searchFormBtn" type="submit"
+								style="cursor: pointer; z-index: 10;">
 								<img alt="" src="${path}/resources/img/search.png">
 							</button>
 						</form>
 					</li>
-					
-					<li class="nav-item">
-						<a><img class="nav_icon" alt="마이페이지"
-						src="${path}/resources/img/user.png"></a>
+
+					<li class="nav-item"><a><img class="nav_icon" alt="마이페이지"
+							src="${path}/resources/img/user.png"></a>
 						<ul>
-							<li style="height: 22px;">
-								<a></a>
-							</li>
+							<li style="height: 22px;"><a></a></li>
 							<c:if test="${loginMember == null}">
-								<li>
-									<a href="${path}/account/login.do">로그인</a>
-								</li>
-							< id="logout"			<c:if test="${loginMember != null}">
-								<li id="logout">
-									<a href="">로그아웃</a>
-								</li>
+								<li><a href="${path}/account/login.do">로그인</a></li>
 							</c:if>
-							<li>
-								<a href="${path}/item/interest.do">찜목록</a>
-							</li>
-							<li>
-								<a href="${path}/account/my_info.do">마이페이지</a>
-							</li>
-						</ul>
-					</li>
-					<li class="nav-item" id="shopImg"><a>
-						<img class="nav_icon" alt="메뉴"
-						src="${path}/resources/img/shop.png"></a>
+							<c:if test="${loginMember != null}">
+								<li id="logout"><a href="">로그아웃</a></li>
+							</c:if>
+							<li><a href="${path}/item/interest.do">찜목록</a></li>
+							<li><a href="${path}/account/my_info.do">마이페이지</a></li>
+						</ul></li>
+					<li class="nav-item" id="shopImg"><a> <img
+							class="nav_icon" alt="메뉴" src="${path}/resources/img/shop.png"></a>
 						<ul>
-							<li style="height: 22px;">
-								<a></a>
-							</li>
-							<li>
-								<a href="${path}/item/itemList.do">물품보기</a>
-							</li>
-							<li>
-								<a href="${path}/item/itemEnroll.do">물품등록</a>
-							</li>
-							<li>
-								<a href="${path}/blacklist/complainList.do">신고조회</a>
-							</li>
-						</ul>
-						
-					</li>
+							<li style="height: 22px;"><a></a></li>
+							<li><a href="${path}/item/itemList.do">물품보기</a></li>
+							<li><a href="${path}/item/itemEnroll.do">물품등록</a></li>
+							<li><a href="${path}/blacklist/complainList.do">신고조회</a></li>
+						</ul></li>
 
 					<c:if test="${loginMember.acc_status == 'admin'}">
 						<li class="nav-item dropdown"><a
@@ -257,25 +243,25 @@
 				class="fa-solid fa-circle-arrow-up"></i></a>
 		</nav>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.searchForm');
-    const input = document.querySelector('#searchValue');
-    const button = document.querySelector('.searchFormBtn');
-    
-    let isSearchActive = false;
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const form = document.querySelector('.searchForm');
+				const input = document.querySelector('#searchValue');
+				const button = document.querySelector('.searchFormBtn');
 
-    button.addEventListener('click', function(event) {
-    	// 버튼 클릭하면 폼이 제출되는거 방지
-      event.preventDefault();
-      
-      if (!isSearchActive) {
-        form.classList.add('active');
-        input.focus();
-        isSearchActive = true;
-      } else {
-        form.submit();
-      }
-    });
-  });
-</script>
+				let isSearchActive = false;
+
+				button.addEventListener('click', function(event) {
+					// 버튼 클릭하면 폼이 제출되는거 방지
+					event.preventDefault();
+
+					if (!isSearchActive) {
+						form.classList.add('active');
+						input.focus();
+						isSearchActive = true;
+					} else {
+						form.submit();
+					}
+				});
+			});
+		</script>
