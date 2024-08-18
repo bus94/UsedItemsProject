@@ -272,7 +272,7 @@
 
 	<div class="carousel-wrapper">
 		<div>
-			<h3 style="font-size: 22px;">판매자의 다른 상품 &gt;</h3>
+			<h3 style="font-size: 22px;">판매자의 다른 상품</h3>
 		</div>
 		<c:if test="${empty otherItemList}">
 			<tr>
