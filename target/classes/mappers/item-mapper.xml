@@ -71,8 +71,7 @@
 	        item_price = #{item_price},
 	        item_place = #{item_place},
 	        item_placeX = #{item_placeX},
-	        item_placeY = #{item_placeY},
-	        item_status = #{item_status},
-    	WHERE item_index = #{item_index};
+	        item_placeY = #{item_placeY}
+    	WHERE item_index = #{item_index}
     </update>
 </mapper>
