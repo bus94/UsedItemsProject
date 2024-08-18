@@ -8,7 +8,40 @@ $(document).ready(function() {
 });
 
 
-console.log("Login: " + loginMember_accId + " 마지막 수신메시지 idx: " + loginMember_accLatMsg);
+console.log("Login: " + loginMember_accId + " 마지막 수신메시지(DB): " + loginMember_accLatMsg);
+console.log("checkedLastMessage: " + checkedLastMessage);
+
+
+	
+//DB에 저장된 최종 확인 메시지(최종 확인한 메시지)
+const queryLastChat_check = { acc_index : loginMember_accIndex};
+		
+$.ajax({	
+	type : "POST",
+	url : project + "/chat/checkLastChat.do", //project는 jsp 내부 script에서 선언해 둠
+	data : queryLastChat_check,
+	success : function(result) {
+			
+				if(result != null ) {
+					console.log("checkLastChat.do 통신 성공");
+					console.log("DB 최종 메시지 index: " + result.chat_index)
+					console.log("checkedLastMessage: " + checkedLastMessage);
+					if(result.chat_index > checkedLastMessage) {
+						console.log("초록색");
+						$('#chat_icon').addClass('chat_arrived');
+					} else {
+						console.log("까만색");
+						
+					}
+				} else {
+					console.log("checkLastChat.do 결과 없음");
+				}
+			},
+	error : function(error) {
+			console.log("checkLastChat.do 통신 실패(AJAX)");
+			}
+}); //ajax		
+
 
 
 window.addEventListener('scroll', function() {

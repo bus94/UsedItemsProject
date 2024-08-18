@@ -37,6 +37,34 @@
 	</resultMap>
 
 
+	<select id="selectLastChat" parameterType="String"
+		resultType="ChatDTO">
+		select
+		*
+		from
+		(select
+		*
+		from
+		(select
+		room.*,
+		item_seller
+		from chatroom room
+		left join item on room_item = item_index) host
+		join
+		(select
+		room_index room_index_g,
+		repl_candidate
+		from chatroom room
+		left join reply on room_reply = repl_index) guest
+		on host.room_index = guest.room_index_g
+		left join chat on room_index=chat_room
+		where item_seller = #{acc_index} or repl_candidate = #{acc_index}
+		order by chat_index desc)
+		where rownum = 1
+
+	</select>
+
+
 	<select id="selectChatList" parameterType="String"
 		resultMap="chatRoomDetailMap">
 		select
@@ -97,7 +125,8 @@
 		acc_nickname room_hostNickname,
 		acc_profile room_hostProfile
 		from chatroom room
-		left join item on room_item = item_index
+		left join item on
+		room_item = item_index
 		left join account on item_seller = acc_index
 		where item_status='ondeal') host
 		join
@@ -108,47 +137,54 @@
 		acc_nickname room_guestNickname,
 		acc_profile room_guestProfile
 		from chatroom room
-		left join reply on room_reply = repl_index
-		left join account on repl_candidate = acc_index) guest
+		left join reply on
+		room_reply = repl_index
+		left join account on repl_candidate =
+		acc_index) guest
 		on host.room_index = guest.room_index_g
-		where room_index = #{room_index}
+		where
+		room_index = #{room_index}
 	</select>
 
 
 	<insert id="insertChatRoom" parameterType="String">
-		INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, #{room_item}, #{room_reply}, SYSDATE)
+		INSERT INTO CHATROOM
+		VALUES (CHATROOM_SEQ.NEXTVAL, #{room_item}, #{room_reply}, SYSDATE)
 	</insert>
-	
+
 	<update id="updateItemOndeal" parameterType="String">
 		update ITEM set
 		item_status='ondeal' where item_index=#{room_item}
-    </update>
-    
-    <delete id="deleteChatRoom" parameterType="String">
-		DELETE FROM CHATROOM WHERE room_index=#{room_index}
+	</update>
+
+	<delete id="deleteChatRoom" parameterType="String">
+		DELETE FROM CHATROOM
+		WHERE room_index=#{room_index}
 	</delete>
-    
+
 	<update id="updateItemOnsale" parameterType="String">
 		update ITEM set
 		item_status='onsale' where item_index=#{room_item}
-    </update>
+	</update>
 
 
 	<insert id="insertChat" parameterType="ChatDTO">
-	
-		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room}, #{chat_writer}, #{chat_content}, SYSDATE)
-		<selectKey keyProperty="chat_index" resultType="int" order="AFTER">
+
+		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room},
+		#{chat_writer}, #{chat_content}, SYSDATE)
+		<selectKey keyProperty="chat_index" resultType="int"
+			order="AFTER">
 			select CHAT_SEQ.CURRVAL FROM DUAL
 		</selectKey>
-		
+
 	</insert>
-	
+
 	<update id="updateLastMessage" parameterType="String">
 		update ACCOUNT set
 		acc_lastMessage=#{acc_lastMessage} where acc_index=#{acc_index}
 	</update>
-	
-	
+
+
 
 
 

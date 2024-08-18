@@ -10,6 +10,8 @@ import com.ss.useditems.dto.ChatRoomDTO;
 @Mapper
 public interface ChatMapper {
 
+	ChatDTO selectLastChat(String acc_index);
+	
 	ArrayList<ChatRoomDTO> selectChatList(String loginMember_accIndex);
 
 	ChatRoomDTO selectChatRoom(String room_index);
@@ -25,6 +27,8 @@ public interface ChatMapper {
 	int updateItemOnsale(String room_item);
 
 	int updateLastMessage(String acc_index, String acc_lastMessage);
+
+	
 
 	
 	

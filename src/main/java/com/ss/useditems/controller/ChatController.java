@@ -26,6 +26,30 @@ public class ChatController {
 	private ChatService chatService;
 	
 	
+	
+	
+	@PostMapping("checkLastChat.do")	//정일_마지막 챗 수시 체크(헤더 열릴때마다)
+	@ResponseBody
+	public ChatDTO checkLastChat(@RequestParam String acc_index) {
+		System.out.println("==chat.checkLastChat==");
+		System.out.println("acc_index: " + acc_index);
+
+		ChatDTO result = null;
+		try {
+			
+			result = chatService.checkLastChat(acc_index);
+			
+			System.out.println("checkLastChat: " + result);
+				
+		} catch(Exception e) {
+				
+		}
+
+		return result;
+	}
+	
+	
+	
 	@PostMapping("chatList.do")	//정일_채팅 리스트 불러오기
 	@ResponseBody
 	public List<ChatRoomDTO> viewChatList(@RequestParam String loginMember_accIndex) {

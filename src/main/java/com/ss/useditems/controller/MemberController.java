@@ -52,8 +52,9 @@ public class MemberController {
 		loginMember = memberservice.selectByMember(loginMember);
 		if (loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
-			//0818ji추가 로그인 시 DB에 있는 최종메시지 인덱스를 세션에 저장
-			session.setAttribute("lastMessage", loginMember.getAcc_lastMessage());
+			
+			//0818ji추가 ACCOUNT DB에 저장된 마지막 수신 메시지
+			session.setAttribute("checkedLastMessage", loginMember.getAcc_lastMessage());
 			return "redirect:/";
 		} else {
 			loginMember = null;

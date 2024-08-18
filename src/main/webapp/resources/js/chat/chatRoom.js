@@ -184,17 +184,18 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	
 	
 	
-		//DB에 확인한 메시지 입력(최종 확인한 메시지)
-		const queryLastChat = { acc_index : loginMember_accIndex, acc_lastMessage : message_index };
+		//DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
+		const queryLastChat_record = { acc_index : loginMember_accIndex, acc_lastMessage : message_index };
 		
 		$.ajax({	
 			type : "POST",
 			url : project + "/chat/recordLastChat.do", //project는 jsp 내부 script에서 선언해 둠
-			data : queryLastChat,
+			data : queryLastChat_record,
 			success : function(result) {
 			
 						if(result > 0) {
 							console.log("recordLastChat.do 통신 성공");
+							console.log("checkedLastMessage: " + checkedLastMessage);
 						} else if( result == 0 ) {
 							console.log("recordLastChat.do 저장 실패");
 						} else {

@@ -84,6 +84,7 @@
 			var loginMember_accNickname = "${loginMember.acc_nickname}";
 			var loginMember_accProfile = "${loginMember.acc_profile}";
 			var loginMember_accLatMsg = "${loginMember.acc_lastMessage}";
+			var checkedLastMessage = "${checkedLastMessage}"
 		</script>
 
 
@@ -233,7 +234,7 @@
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon"
 					data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="fa-solid fa-comment-dots fa-flip-horizontal chat_arrived"></i>
+					<i id="chat_icon" class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
 				</button>
 
 			</c:if>
