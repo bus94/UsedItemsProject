@@ -52,6 +52,8 @@ public class MemberController {
 		loginMember = memberservice.selectByMember(loginMember);
 		if (loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
+			//0818ji추가 로그인 시 DB에 있는 최종메시지 인덱스를 세션에 저장
+			session.setAttribute("lastMessage", loginMember.getAcc_lastMessage());
 			return "redirect:/";
 		} else {
 			loginMember = null;
@@ -69,7 +71,7 @@ public class MemberController {
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
-		model.addAttribute("location", "");
+		model.addAttribute("location", "/");
 		return "common/msg";
 	}
 

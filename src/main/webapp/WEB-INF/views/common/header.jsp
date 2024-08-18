@@ -82,6 +82,7 @@
 	var loginMember_accId = "${loginMember.acc_id}";
 	var loginMember_accNickname = "${loginMember.acc_nickname}";
 	var loginMember_accProfile = "${loginMember.acc_profile}";
+	var loginMember_accLatMsg = "${loginMember.acc_lastMessage}";
 </script>
 
 
