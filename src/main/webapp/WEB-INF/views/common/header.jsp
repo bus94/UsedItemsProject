@@ -191,8 +191,7 @@
 								<li>
 									<a href="${path}/account/login.do">로그인</a>
 								</li>
-							</c:if>
-							<c:if test="${loginMember != null}">
+							< id="logout"			<c:if test="${loginMember != null}">
 								<li id="logout">
 									<a href="">로그아웃</a>
 								</li>
