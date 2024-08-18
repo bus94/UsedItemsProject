@@ -23,45 +23,8 @@ public class BlacklistService {
 	private BlacklistMapper blacklistMapper;
 
 	@Autowired
-	private MemberMapper memberMapper;// 이거는 실제로 사용 중!!
+	private MemberMapper memberMapper;
 
-	//////////////////////////////////////////////////// 임시
-	@Autowired
-	private ItemMapper2 itemMapper; // 임시로 ItemMapper2 생성, 안겹치려고
-
-	public ArrayList<ItemInfoDTO> getNew5() { // 정일_home.jsp-HomeController
-		System.out.println("BlacklistService.getNew5()");
-
-		ArrayList<ItemInfoDTO> result = itemMapper.getNew5();
-		System.out.println("bService.getNew5 result: " + result);
-
-		return result;
-	}
-
-	public ArrayList<ItemInfoDTO> getHot5() { // 정일_home.jsp-HomeController
-
-		return itemMapper.getHot5();
-	}
-
-	public MemberDTO getPowerSeller() { // 정일_home.jsp-HomeController
-		System.out.println("BlacklistService.getPowerSeller()");
-
-		MemberDTO powerSeller = memberMapper.getPowerSeller();
-
-		return powerSeller;
-	}
-
-	public ArrayList<MemberDTO> getBlack5() { // 정일_home.jsp-HomeController
-		System.out.println("BlacklistService.getBlack5()");
-
-		ArrayList<MemberDTO> result = blacklistMapper.getBlack5();
-		System.out.println("bService.getBlack5 result: " + result);
-
-		return result;
-
-	}
-
-	//////////////////////////////////////////////////////////////////// 임시
 
 	public PageInfo getBlacklist(int currentPage, Map<String, String> queryMap) { // 정일_신고등록
 		System.out.println("BlacklistService.getBlacklist()");
@@ -103,7 +66,11 @@ public class BlacklistService {
 		return blacklistMapper.delet(black_index);
 	}
 
-	/////////// arraylist 받아서 map으로 sql 집어넣기
+	
+	
+	
+	
+	/////////// arraylist 받아서 map으로 sql 집어넣기 test
 
 	public int testNull(ArrayList<String> strlist) {
 
