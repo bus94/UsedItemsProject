@@ -20,6 +20,9 @@
 
 	<resultMap type="itemInfoDTO" id="itemInfoMap"
 		extends="itemMap">
+		<result property="item_place_address" column="item_place_address" />
+		<result property="item_placeX" column="item_placeX" />
+		<result property="item_placeY" column="item_placeY" />
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_level" column="acc_level" />
@@ -57,6 +60,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -77,6 +81,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -90,7 +95,7 @@
 		s ON s.show_item = i.item_index
         JOIN interest inter ON i.item_index = inter.int_item
 		)
-		WHERE INT_SUBJECT = #{accIndex} and
+		WHERE INT_SUBJECT = #{accIndex}
 	</select>
 
 	<delete id="deleteInterestItem" parameterType="Map">
@@ -123,6 +128,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -144,6 +150,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -201,6 +208,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -222,6 +230,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -278,6 +287,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -298,6 +308,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -356,6 +367,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -376,6 +388,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
