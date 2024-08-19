@@ -78,7 +78,7 @@
 		WHERE item_index = #{item_index}
 
 	</update>
-	<update id="updateShowcaseThumbnail" parameterType="itemInfoDTO">
+	<update id="updateShowcaseThumbnail" parameterType="Map">
 		UPDATE SHOWCASE
 		SET
 		show_thumb = #{show_thumb}
