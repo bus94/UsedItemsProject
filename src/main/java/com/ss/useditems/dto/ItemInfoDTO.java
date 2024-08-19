@@ -28,7 +28,7 @@ public class ItemInfoDTO {
 	private int item_buyer;
 	private String acc_nickname;
 	private String acc_address;
-	private String acc_level;
+	private int acc_score;
 	private String repl_count;
 	private String show_thumb;
 	private String show_img1;

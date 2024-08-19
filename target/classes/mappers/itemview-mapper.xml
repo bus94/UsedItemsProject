@@ -32,7 +32,7 @@
 		<result property="acc_address" column="acc_address" />
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_profile" column="acc_profile" />
-		<result property="acc_level" column="acc_level" />
+		<result property="acc_score" column="acc_score" />
 		<result property="acc_count" column="acc_count" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
@@ -58,7 +58,7 @@
 		extends="itemMap">
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_address" column="acc_address" />
-		<result property="acc_level" column="acc_level" />
+		<result property="acc_score" column="acc_score" />
 		<result property="show_thumb" column="show_thumb" />
 		<result property="show_img1" column="show_img1" />
 		<result property="show_img2" column="show_img2" />
