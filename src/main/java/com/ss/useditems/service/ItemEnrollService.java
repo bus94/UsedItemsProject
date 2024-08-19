@@ -26,8 +26,12 @@ public class ItemEnrollService {
 	public int updateItem(ItemInfoDTO existingItem,boolean check) {
 		System.out.println("ItemEnrollService의 updateItem() 실행");
 		System.out.println(check);
-		if(check) {
-			mapper.updateShowcaseThumbnail(existingItem);
+		int i=1;
+		if(!check) {
+			 i=mapper.updateShowcaseThumbnail(existingItem);
+		}
+		if(i<=0) {
+			return i;
 		}
 		return mapper.updateItem(existingItem);
 	}
