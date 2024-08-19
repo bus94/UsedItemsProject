@@ -1,16 +1,30 @@
 $(document).ready(function(){
-	console.log('itemView.js 연결');
+    console.log('itemView.js 연결');
 
-	$('.newItem_container2').slick({
-  dots: false,
-  infinite: true,
-  arrows:true,
-  speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  autoplay:false,
-});
+    var itemCount = $('.newItem_container2 .item3').length;
 
+    if (itemCount > 5) {
+        $('.newItem_container2').slick({
+            dots: false,
+            infinite: true,
+            arrows: true,
+            speed: 500,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: false
+        });
+    } else {
+        $('.newItem_container2').css({
+            'display': 'flex', 
+            'overflow': 'hidden',
+            'width' : '190px',
+            'margin-top' : '-40px'
+            
+        }),
+        $('.item3').css({
+        	'border' : '1px solid lightgray'    	
+        })
+    }
 });
 
 

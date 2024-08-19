@@ -283,36 +283,36 @@
 			</tr>
 		</c:if>
 		<c:if test="${not empty otherItemList}">
-	<div class="newItem_wrap">
-		<div class="otherItem_container">
-			<div class="newItem_container2">
-				<c:forEach var="each" items="${otherItemList}">
-					<div class="item3">
-						<a href="${path}/item/itemView?item_index=${each.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${each.item_thumbPath}" alt="..">
-							<div class="item_view2">
-								<h3>${each.item_title}</h3>
-								<div class="item_price">
-									<h4>
-										<fmt:formatNumber value="${each.item_price}" type="number"
-											groupingUsed="true" />
-										원
-									</h4>
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="each" items="${otherItemList}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${each.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${each.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${each.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${each.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
 
-								</div>
-								<div class="item_like">
-									<p>관심 ${each.item_interest}</p>
-									<p>댓글 ${each.repl_count}</p>
-								</div>
+										</div>
+										<div class="item_like">
+											<p>관심 ${each.item_interest}</p>
+											<p>댓글 ${each.repl_count}</p>
+										</div>
+									</div>
+								</a>
 							</div>
-						</a>
+						</c:forEach>
 					</div>
-				</c:forEach>
+				</div>
 			</div>
-		</div>
-	</div>
-		
+
 			<!-- 지도 모달 -->
 			<div class="modal fade" id="mapModal" tabindex="-1"
 				aria-labelledby="mapModalLabel" aria-hidden="true">
