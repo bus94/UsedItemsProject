@@ -170,9 +170,10 @@ public class MemberController {
 
 				
 				//model.addAttribute("itemList", itemInfo.get("itemList"));
+				model.addAttribute("ondealItem", itemInfo.get("ondealItem"));
 				model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
-				model.addAttribute("dropItem", itemInfo.get("dropItem"));
-				model.addAttribute("buyItem", itemInfo.get("buyItem"));
+				model.addAttribute("soldItem", itemInfo.get("soldItem"));
+				model.addAttribute("boughtItem", itemInfo.get("boughtItem"));
 				
 				
 				//찜 목록 불러오기

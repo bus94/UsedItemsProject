@@ -105,7 +105,67 @@ public class MemberService {
 //		return mapper.selectItemByAcc_index(acc_index);
 //	}
 
-	
+	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { 
+		//정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정
+		//0819 추가 수정
+		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
+		String filePath;
+		for (int i = 0; i < itemList.size(); i++) {
+			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
+			itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
+			itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
+			itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
+			itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
+			itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
+			itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
+		}
+
+		List<ItemInfoDTO> ondealItem = new ArrayList<ItemInfoDTO>();	//거래중
+		List<ItemInfoDTO> onsaleItem = new ArrayList<ItemInfoDTO>();	//판매중
+		List<ItemInfoDTO> soldItem = new ArrayList<ItemInfoDTO>();	//판매내역
+		List<ItemInfoDTO> boughtItem = new ArrayList<ItemInfoDTO>();	//구매내역
+
+		for (int i = 0; i < itemList.size(); i++) {
+			String checkStatus = itemList.get(i).getItem_status();
+			int checkSeller = itemList.get(i).getItem_seller();
+			int checkBuyer = itemList.get(i).getItem_buyer();
+			// 불러온 itemList 분류 (거래 중/판매내역/구매내역)
+//			if(checkStatus.equals("onsale") && checkBuyer != acc_index) { // 거래 중
+//				onsaleItem.add(itemList.get(i));
+//			} else if (checkStatus.equals("drop") && checkBuyer != acc_index) { // 판매 내역
+//				dropItem.add(itemList.get(i));
+//			} else if (checkBuyer == acc_index) { // 구매 내역
+//				buyItem.add(itemList.get(i));
+//			}
+			
+			//0819 ji 수정
+			if(checkStatus.equals("ondeal")) { // 거래 중
+				ondealItem.add(itemList.get(i));
+			} else if(checkStatus.equals("onsale") && checkSeller == acc_index) { //판매 중
+				onsaleItem.add(itemList.get(i));
+			} else if (checkStatus.equals("donedeal") && checkSeller == acc_index) { // 판매 내역
+				soldItem.add(itemList.get(i));
+			} else if (checkBuyer == acc_index) { // 구매 내역
+				boughtItem.add(itemList.get(i));
+			}
+		}
+		//System.out.println("response item_info: " + itemList.size());
+		System.out.println("ondealItem: " + ondealItem.size());
+		System.out.println("onsaleItem: " + onsaleItem.size());
+		System.out.println("soldItem: " + soldItem.size());
+		System.out.println("boughtItem: " + boughtItem.size());
+		
+		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
+		//result.put("itemList", itemList);
+		result.put("ondealItem", ondealItem);
+		result.put("onsaleItem", onsaleItem);
+		result.put("soldItem", soldItem);
+		result.put("boughtItem", boughtItem);
+		
+		return result;
+	}
+
+
 	public List<ItemInfoDTO> getMyInterests(int acc_index) {	//정일_인포페이지 관심상품 띄우기
 
 		List<ItemInfoDTO> my_Interests = mapper.selectInterestsByAcc_index(acc_index);
@@ -122,60 +182,6 @@ public class MemberService {
 
 		return my_Interests;
 	}
-	
-
-	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { //정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정
-
-		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
-		String filePath;
-		for (int i = 0; i < itemList.size(); i++) {
-			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
-			itemList.get(i).setItem_thumbPath(filePath + itemList.get(i).getShow_thumb());
-			itemList.get(i).setItem_img1Path(filePath + itemList.get(i).getShow_img1());
-			itemList.get(i).setItem_img2Path(filePath + itemList.get(i).getShow_img2());
-			itemList.get(i).setItem_img3Path(filePath + itemList.get(i).getShow_img3());
-			itemList.get(i).setItem_img4Path(filePath + itemList.get(i).getShow_img4());
-			itemList.get(i).setItem_img5Path(filePath + itemList.get(i).getShow_img5());
-		}
-
-		
-		List<ItemInfoDTO> onsaleItem = new ArrayList<ItemInfoDTO>();
-		List<ItemInfoDTO> dropItem = new ArrayList<ItemInfoDTO>();
-		List<ItemInfoDTO> buyItem = new ArrayList<ItemInfoDTO>();
-
-		for (int i = 0; i < itemList.size(); i++) {
-			String checkStatus = itemList.get(i).getItem_status();
-			int checkBuyer = itemList.get(i).getItem_buyer();
-			
-			// 불러온 itemList 분류 (거래 중/판매내역/구매내역)
-			if(checkStatus.equals("onsale") && checkBuyer != acc_index) { // 거래 중
-				onsaleItem.add(itemList.get(i));
-			} else if (checkStatus.equals("drop") && checkBuyer != acc_index) { // 판매 내역
-				dropItem.add(itemList.get(i));
-			} else if (checkBuyer == acc_index) { // 구매 내역
-				buyItem.add(itemList.get(i));
-			}
-		}
-		
-		System.out.println("response item_info: " + itemList);
-		
-		System.out.println("onsaleItem: " + onsaleItem);
-		System.out.println("dropItem: " + dropItem);
-		System.out.println("buyItem: " + buyItem);
-		
-		
-		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
-		//result.put("itemList", itemList);
-		result.put("onsaleItem", onsaleItem);
-		result.put("dropItem", dropItem);
-		result.put("buyItem", buyItem);
-
-		
-		return result;
-	}
-
-
-
 
 
 
