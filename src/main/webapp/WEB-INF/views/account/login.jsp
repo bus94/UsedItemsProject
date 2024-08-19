@@ -14,8 +14,10 @@
 			<div class="login_containerIn">
 				<div class="loginDiv">
 					<div class="loginTitle">
-						<img class="loginLogo" alt="로고"
-							src="${path}/resources/img/logo.png">
+						<%-- <img class="loginLogo" alt="로고"
+							src="${path}/resources/img/logo.png"> --%>
+						<!-- <h1 class="login-title">로&nbsp;그&nbsp;인</h1> -->
+						<h1 class="login-title mb-2">LOGIN</h1>
 					</div>
 					<div class="login_input">
 						<div class="input_css input_id">

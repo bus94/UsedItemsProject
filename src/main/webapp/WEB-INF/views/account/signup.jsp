@@ -20,8 +20,10 @@
 			<form id="loginForm" action="${path}/account/signupOK.do"
 				method="post">
 				<div class="loginTitle">
-					<img class="loginLogo mb-1" alt="로고"
-						src="${path}/resources/img/logo.png">
+					<%-- <img class="loginLogo mb-1" alt="로고"
+						src="${path}/resources/img/logo.png"> --%>
+					<!-- <h2 class="signup-title">회&nbsp;원&nbsp;가&nbsp;입</h2> -->
+					<h1 class="signup-title mb-2">JOIN</h1>
 				</div>
 				<div class="login_input">
 					<div class="login_inputId" id="login_inputId">

@@ -20,6 +20,14 @@
 	justify-content: center;
 }
 
+.signup_container .signup-title {
+	display: flex;
+	justify-content: center;
+	color: #60c62f;
+	font-weight: bold;
+	letter-spacing: 5px;
+}
+
 .signup_container .loginLogo {
 	width: 250px;
 	height: 70px;
