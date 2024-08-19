@@ -32,7 +32,7 @@
 									name="item_title" id="item_title" value="${item.item_title}"
 									placeholder="제목">
 							</div>
-							<div id="input_box2" class="container box3">
+							<div id="input_box2" class="container box">
 								<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 								<select id="item_category" name="item_category"
 									class="form-select item_input">
@@ -65,15 +65,19 @@
 									name="item_price" id="item_price" value="${item.item_price}"
 									placeholder="가격">
 							</div>
-							<div id="input_box4" class="container">
+							<div id="input_box4" class="container box">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
-								<input type="text" class="form-control item_input d-inline"
-									name="item_place" id="item_place" value="${item.item_place}"
-									placeholder="장소" readonly /> <input type="hidden"
-									name="addressX" id="addressX" value="${item.item_placeX}">
-								<input type="hidden" name="addressY" id="addressY"
-									value="${item.item_placeY}">
-								<button type="button" id="selectPlaceButton">장소 선택</button>
+								<div id="input_address">
+									<input type="text"
+										class="form-control item_input d-inline input_addressIn"
+										value="${item.item_place}" name="item_place" id="item_place"
+										placeholder="장소" readonly /> <input type="hidden"
+										name="addressX" id="addressX" value="${item.item_placeX}">
+									<input type="hidden" name="addressY" id="addressY"
+										value="${item.item_placeY}">
+									<button type="button" id="selectPlaceButton"
+										class="btn input_addressBtn">장소 선택</button>
+								</div>
 							</div>
 							<div class="container input_thumbnail">
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
@@ -293,7 +297,7 @@
 			location.href = "${path}/account/login.do";
 		</script>
 	</c:if>
-	
+
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -90,7 +90,7 @@
 		s ON s.show_item = i.item_index
         JOIN interest inter ON i.item_index = inter.int_item
 		)
-		WHERE INT_SUBJECT = #{accIndex}
+		WHERE INT_SUBJECT = #{accIndex} and
 	</select>
 
 	<delete id="deleteInterestItem" parameterType="Map">

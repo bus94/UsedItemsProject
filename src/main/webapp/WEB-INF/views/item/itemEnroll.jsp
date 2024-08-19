@@ -23,12 +23,12 @@
 					</colgroup>
 					<tr>
 						<td>
-							<div id="input_box" class="container">
+							<div id="input_box" class="container box">
 								<p class="itemEnroll_subtitle fs-5">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</p>
 								<input type="text" class="form-control item_input d-inline"
 									name="item_title" id="item_title" placeholder="제목">
 							</div>
-							<div id="input_box2" class="container box3">
+							<div id="input_box2" class="container box">
 								<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 								<select id="item_category" name="item_category"
 									class="form-select item_input">
@@ -45,12 +45,12 @@
 									<option value="기타">기타</option>
 								</select>
 							</div>
-							<div id="input_box3" class="container">
+							<div id="input_box3" class="container box">
 								<p class="itemEnroll_subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
 								<input type="text" class="form-control item_input d-inline"
 									name="item_price" id="item_price" placeholder="가격">
 							</div>
-							<div id="input_box4" class="container">
+							<div id="input_box4" class="container box">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 								<div id="input_address">
 									<input type="text"
@@ -62,7 +62,7 @@
 										class="btn input_addressBtn">장소 선택</button>
 								</div>
 							</div>
-							<div class="container input_thumbnail">
+							<div class="container input_thumbnail box">
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
 								<input style="width: 270px" type="file" name="item_thumb"
 									id="item_thumb">
@@ -74,7 +74,7 @@
 									id="item_image" multiple>
 								<!-- <label class="btn fileBtn" for="item_image">파일선택</label> -->
 							</div>
-							<div id="input_box1" class="container">
+							<div id="input_box1" class="container box">
 								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
 								<textarea class="form-control item_input d-inline input_text"
 									name="item_content" id="item_content" placeholder="내용을 입력해주세요"></textarea>
@@ -89,9 +89,9 @@
 							<div class="container_preview">
 								<img id="preview" alt="썸네일 이미지 미리보기"> <img
 									id="defaultview" alt="미리보기 파일 없음"
-									src="${path}/resources/img/zz.png">
-								<p class="defaultP">썸네일 미리보기</p>
-								<p class="defaultP">첨부된 파일이 없습니다.</p>
+									src="${path}/resources/img/noimage.png">
+								<!-- <p class="defaultP">썸네일 미리보기</p>
+								<p class="defaultP">첨부된 파일이 없습니다.</p> -->
 							</div>
 						</td>
 					</tr>
@@ -102,7 +102,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="placeModalLabel">장소 선택</h5>
+							<h5 class="modal-title" id="placeModalLabel">희망 거래 장소 선택</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close"></button>
 						</div>
@@ -110,6 +110,7 @@
 							<div id="map" style="width: 100%; height: 400px;"></div>
 						</div>
 						<div class="modal-footer">
+							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희 세이프존에서 추천하는 희망거래장소입니다. 구체한 거래장소는 채팅을 통해 상의 바랍니다.</p>
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
 							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>

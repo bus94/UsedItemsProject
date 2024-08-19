@@ -149,7 +149,7 @@ public class ItemEnrollController {
         
         String uploadFolder = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img\\"
                 + existingItem.getItem_seller() + "\\item_" + existingItem.getItem_index();
-        
+        System.out.println(uploadFolder);
         try {
             // 썸네일이 변경된 경우
             if (!check && newThumb != null && !newThumb.isEmpty()) { // check 변수를 사용하여 썸네일 변경 여부 확인
@@ -159,13 +159,15 @@ public class ItemEnrollController {
                 if (oldThumbFile.exists()) {
                     oldThumbFile.delete();
                 }
-
+                
                 // 새 썸네일 저장
                 thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
+                System.out.println(thumbFileRealName);
                 File saveThumbFile = new File(uploadFolder + File.separator + thumbFileRealName);
                 newThumb.transferTo(saveThumbFile);
                 existingItem.setShow_thumb(thumbFileRealName);
                 System.out.println("썸네일 변경 및 저장 성공!");
+                
             }
 
            
@@ -176,6 +178,7 @@ public class ItemEnrollController {
             existingItem.setItem_category(item_category);
             existingItem.setItem_price(item_price);
             existingItem.setItem_place(item_place);
+            existingItem.setItem_place_address(parseAddress(item_place));
             existingItem.setItem_placeX(addressX);
             existingItem.setItem_placeY(addressY);
             existingItem.setShow_thumb(thumbFileRealName);

@@ -107,9 +107,12 @@
 					<h3>
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
-					<div>
+					<div class="item_like">
 						<div id="miniMapContainer"></div>
-						<p id="mapPreviewText">${item.item_place_address}</p>
+						<p>
+							희망거래장소: <span id="mapPreviewText"
+								style="text-decoration: underline;">${item.item_place_address}</span>
+						</p>
 					</div>
 				</div>
 				<div class="detail_like">
@@ -320,12 +323,33 @@
 					</div>
 				</c:forEach>
 			</div>
+			<!-- 지도 모달 -->
+			<div class="modal fade" id="mapModal" tabindex="-1"
+				aria-labelledby="mapModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="mapModalLabel">위치 보기</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body" id="mapModalBody"
+							style="width: 100%; height: 500px;">
+							<!-- 큰 지도가 여기에 렌더링됩니다 -->
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</c:if>
 	</div>
 </section>
-	<script
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
-		
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
+
 <script>
 const placeX = ${item.item_placeX};
 const placeY = ${item.item_placeY};
@@ -484,6 +508,28 @@ console.log(placeY);
 	    
 	    mapPreviewText.addEventListener('mouseleave', () => {
 	        miniMapContainer.style.display = 'none';
+	    });
+	    
+	    // 텍스트를 클릭했을 때 모달에 큰 지도 표시
+	    mapPreviewText.addEventListener('click', () => {
+	        const modal = new bootstrap.Modal(document.getElementById('mapModal'));
+	        modal.show();
+
+	        const mapContainer = document.getElementById('mapModalBody');
+	        const mapOption = {
+	            center: new kakao.maps.LatLng(placeX, placeY),
+	            level: 3
+	        };
+	        const map = new kakao.maps.Map(mapContainer, mapOption);
+	        const marker = new kakao.maps.Marker({
+	            position: new kakao.maps.LatLng(placeX, placeY),
+	            map: map
+	        });
+	    
+	        setTimeout(() => {
+	            map.relayout();
+	            map.setCenter(new kakao.maps.LatLng(placeX, placeY));
+	        }, 500);
 	    });
 	});
 </script>

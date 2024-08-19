@@ -168,9 +168,13 @@
 				<c:forEach var="item" items="${itemList}">
 					<div class="item_container">
 						<div class="item">
+
 							<a href="${path}/item/itemView?item_index=${item.item_index}"
-								style="text-decoration: none; color: black"> <img
-								src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진">
+								style="text-decoration: none; color: black">
+								<div class="imgDiv">
+									<img src="${path}/resources/img/${item.item_thumbPath}"
+										alt="물품사진">
+								</div>
 								<div class="item_view">
 									<h3>${item.item_title}</h3>
 									<div class="item_price">
