@@ -70,7 +70,7 @@
 								<div id="input_address">
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
-										value="${item.item_place}" name="item_place" id="item_place"
+										value="${item.item_place_address}" name="item_place" id="item_place"
 										placeholder="장소" readonly /> <input type="hidden"
 										name="addressX" id="addressX" value="${item.item_placeX}">
 									<input type="hidden" name="addressY" id="addressY"
@@ -140,7 +140,7 @@
 		document.addEventListener('DOMContentLoaded', () => {
 			const item_thumb = document.getElementById("item_thumb");
 			const preview = document.getElementById("preview1");
-			const itemEnroll_form = document.getElementById("itemEnroll_form");
+			const itemEnroll_form = document.getElementById("itemEnrollForm");
 			const existingThumb = preview.src;
 			let check= true;
 			
@@ -159,6 +159,7 @@
 				} else {
 					preview.src = existingThumb;
 					check= true;
+					console.log(check);
 					
 				}
 				
@@ -170,6 +171,7 @@
 		        checkInput.name = 'check';
 		        checkInput.value = check;
 		        itemEnroll_form.appendChild(checkInput);
+		        console.log("폼이 제출됩니다. Check 값:", checkInput.value);
 		    });
 			
 			

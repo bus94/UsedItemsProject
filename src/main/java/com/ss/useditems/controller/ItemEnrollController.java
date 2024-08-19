@@ -133,7 +133,7 @@ public class ItemEnrollController {
     public String itemUpdate(Model model, HttpSession session, int item_index,String item_title, String item_content,
                              String item_category, int item_price, String item_place, String addressX, String addressY,
                              MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, 
-                             boolean check) { // check 변수 사용
+                             boolean check) {
         System.out.println("itemUpdate() 실행");
         System.out.println(item_index);
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
@@ -177,8 +177,8 @@ public class ItemEnrollController {
             existingItem.setItem_content(item_content);
             existingItem.setItem_category(item_category);
             existingItem.setItem_price(item_price);
-            existingItem.setItem_place(item_place);
-            existingItem.setItem_place_address(parseAddress(item_place));
+            existingItem.setItem_place(parseAddress(item_place));
+            existingItem.setItem_place_address(item_place);
             existingItem.setItem_placeX(addressX);
             existingItem.setItem_placeY(addressY);
             existingItem.setShow_thumb(thumbFileRealName);
