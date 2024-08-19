@@ -69,6 +69,7 @@ public class MemberController {
 		System.out.println("logoutOK");
 		try {
 			session.removeAttribute("loginMember");
+			session.removeAttribute("checkedLastMessage");
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
