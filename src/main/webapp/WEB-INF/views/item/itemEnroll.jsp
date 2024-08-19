@@ -89,9 +89,9 @@
 							<div class="container_preview">
 								<img id="preview" alt="썸네일 이미지 미리보기"> <img
 									id="defaultview" alt="미리보기 파일 없음"
-									src="${path}/resources/img/zz.png">
-								<p class="defaultP">썸네일 미리보기</p>
-								<p class="defaultP">첨부된 파일이 없습니다.</p>
+									src="${path}/resources/img/noimage.png">
+								<!-- <p class="defaultP">썸네일 미리보기</p>
+								<p class="defaultP">첨부된 파일이 없습니다.</p> -->
 							</div>
 						</td>
 					</tr>

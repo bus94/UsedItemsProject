@@ -182,11 +182,16 @@
 	margin-bottom: 14px;
 }
 
+.imgDiv {
+	width: 160px;
+	height: 160px;
+	margin-top: 12px;
+}
+
 .item img {
 	width: 160px;
 	height: 160px;
 	object-fit: cover;
-	margin-top: 12px;
 }
 
 .item_view {
