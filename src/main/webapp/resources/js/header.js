@@ -26,7 +26,8 @@ $.ajax({
 					console.log("현재 DB 최종 메시지 index: " + result.chat_index)
 					console.log("(header) checkedLastMessage: " + checkedLastMessage);
 					if(result.chat_index > checkedLastMessage) {
-						$('.chat_icon').toggleClass('chat_icon_hidden');
+						$('#chat_icon_null').addClass('chat_icon_hidden');
+						$('#chat_icon_fill').removeClass('chat_icon_hidden');
 					} else {
 						
 					}
@@ -312,7 +313,8 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 							//console.log("recordLastChat.do 통신 성공");
 							checkedLastMessage = thisAccLatestMsgIdx;
 							console.log("(DB) checkedLastMessage: " + checkedLastMessage);
-							$('.chat_icon').toggleClass('chat_icon_hidden');
+							$('#chat_icon_null').removeClass('chat_icon_hidden');
+							$('#chat_icon_fill').addClass('chat_icon_hidden');
 							
 						} else if( result == 0 ) {
 							console.log("recordLastChat.do 저장 실패");

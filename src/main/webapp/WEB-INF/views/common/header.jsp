@@ -102,7 +102,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<div id="chatList" class="modal-body">
+					<div id="chatList" class="modal-body d-flex flex-column">
 
 						<!-- <div class="chatRoom_box container">
       						<p>매물 제목(임시)</p>
@@ -116,7 +116,7 @@
 					</div>
 					<div id="chatList_footer" class="modal-footer">
 						<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-						<h5 id="chatList_notice" class="modal-title">Safe Chat</h5>
+						<h5 id="chatList_notice" class="modal-title">안전한 거래!</h5>
 					</div>
 				</div>
 			</div>
@@ -234,8 +234,8 @@
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon"
 					data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i class="chat_icon fa-solid fa-envelope-open"></i>
-					<i class="chat_icon chat_icon_hidden fa-solid fa-envelope-open-text"></i>
+					<i id="chat_icon_null" class="fa-solid fa-envelope-open"></i>
+					<i id="chat_icon_fill" class="chat_icon_hidden fa-solid fa-envelope-open-text"></i>
 				</button>
 
 			</c:if>

@@ -46,9 +46,21 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 		
 		//접속한 모든 세션에 보내는 메시지
 		for(WebSocketSession eachSession : sessionSet) {
-			eachSession.sendMessage(messageToClients);
+			//eachSession.sendMessage(messageToClients);
 			//모든 세션에 모든 메시지를 다 뿌려주는건 비효율적인듯..
-		}
+			
+			if(eachSession.isOpen()) {	//소켓이 열려있는(?) 세션에게 메시지 발송
+				
+				try {
+					eachSession.sendMessage(messageToClients);
+					System.out.println("열린소켓: " + eachSession.getId());
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}//for()반복
 		
 		
 		//메시지를 보내온 클라이언트에게 확인 메시지

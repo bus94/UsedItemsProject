@@ -282,7 +282,8 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 	//채팅방에서 '돌아가기' 또는 '닫기' 누를 경우
 	$('.unlink_chat').click(function(){
-		ws.onclose();	//웹소켓 해제
+		ws.onclose();//웹소켓 닫힐 때 실행(작별인사)
+		ws.close();	//웹소켓 해제
 		ws=null;
 		console.log("afterClose ws: " + ws);
 	});
