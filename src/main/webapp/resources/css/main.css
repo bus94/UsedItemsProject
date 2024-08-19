@@ -175,8 +175,8 @@ footer {
     background-color: transparent;
 }
 
-.navbar .chat_arrived {
-	color: green;
+.navbar .chat_icon_hidden {
+	display: none;
 }
 
 

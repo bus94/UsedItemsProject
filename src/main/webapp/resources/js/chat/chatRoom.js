@@ -194,8 +194,9 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			success : function(result) {
 			
 						if(result > 0) {
-							console.log("recordLastChat.do 통신 성공");
-							console.log("checkedLastMessage: " + checkedLastMessage);
+							//console.log("recordLastChat.do 통신 성공");
+							checkedLastMessage = message_index;
+							console.log("(WS) checkedLastMessage: " + checkedLastMessage);
 						} else if( result == 0 ) {
 							console.log("recordLastChat.do 저장 실패");
 						} else {
@@ -282,6 +283,8 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//채팅방에서 '돌아가기' 또는 '닫기' 누를 경우
 	$('.unlink_chat').click(function(){
 		ws.onclose();	//웹소켓 해제
+		ws=null;
+		console.log("afterClose ws: " + ws);
 	});
 
 

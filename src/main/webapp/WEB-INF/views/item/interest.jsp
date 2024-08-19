@@ -12,37 +12,26 @@
 
 
 	<h1>찜한상품</h1>
-	<div class="interest_item_container" style="padding-top: 100px">
+	<div class="interest_item_container" style="padding:30px 0">
 		<c:forEach var="item" items="${interestitemList}">
-			<div class="interest_item">
-			
+			<div class="interest_item">			
 				<img src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진" OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer;">
 				<div class="interest_item_info" OnClick="location.href ='${path}/item/itemView?item_index=${item.item_index}'" style="cursor:pointer; text-decoration: none; color: black" >
 					<h3>${item.item_title}</h3>
 					<div class="interest_item_price">
-						<p>${item.item_price}원</p>
-						<p>${item.item_enrollDate}</p>
+						<h4><fmt:formatNumber value="${item.item_price}" type="number"
+												groupingUsed="true" />
+											원</h4>
+						<p><fmt:formatDate value="${item.item_enrollDate}"
+													pattern="yy/MM/dd" /></p>
 					</div>
 					<div class="interest_item_addr">
 						<img src="${path}/resources/img/gps.png" alt="위치">
 						<p>${item.item_place}</p>
 					</div>
-				</div>
-				
-				<div class="partition">
-					<div class="vr"></div>
-				</div>
-				<div class="interest_item_detail">
-					<div class="interest_item_detail_info">
-						<p>거래형태 ex)택배, 직거래, 스팟(세잎존)직거래</p>
-						<p>분류</p>
-						<p>흥정여부</p>
-					</div>
-				</div>
-				
+				</div>		
 				<div class="app">
-					<img src="${path}/resources/img/message.png" alt="채팅"> <img
-						src="${path}/resources/img/delete.png" alt="삭제"
+					<img src="${path}/resources/img/delete.png" alt="삭제"
 						onclick="deleteInterestItem(${item.item_index})">
 				</div>
 
@@ -58,8 +47,8 @@
 			class="pagination container d-flex justify-content-center">
 			<a
 				href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
-			&nbsp; <a
-				href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
+			&nbsp;
+			<a href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
 			&nbsp;
 			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
 				end="${pageInfo.tillPage}" step="1">

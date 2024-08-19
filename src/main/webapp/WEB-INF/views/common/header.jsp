@@ -234,7 +234,8 @@
 				<!-- Button trigger modal -->
 				<button type="button" id="nav_chat" class="nav_side_icon"
 					data-bs-toggle="modal" data-bs-target="#chatRoomListModal">
-					<i id="chat_icon" class="fa-solid fa-comment-dots fa-flip-horizontal"></i>
+					<i class="chat_icon fa-solid fa-envelope-open"></i>
+					<i class="chat_icon chat_icon_hidden fa-solid fa-envelope-open-text"></i>
 				</button>
 
 			</c:if>

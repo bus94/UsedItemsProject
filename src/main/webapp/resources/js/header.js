@@ -9,7 +9,6 @@ $(document).ready(function() {
 
 
 console.log("Login: " + loginMember_accId + " 마지막 수신메시지(DB): " + loginMember_accLatMsg);
-console.log("checkedLastMessage: " + checkedLastMessage);
 
 
 	
@@ -23,14 +22,12 @@ $.ajax({
 	success : function(result) {
 			
 				if(result != null ) {
-					console.log("checkLastChat.do 통신 성공");
-					console.log("DB 최종 메시지 index: " + result.chat_index)
-					console.log("checkedLastMessage: " + checkedLastMessage);
+					//console.log("checkLastChat.do 통신 성공");
+					console.log("현재 DB 최종 메시지 index: " + result.chat_index)
+					console.log("(header) checkedLastMessage: " + checkedLastMessage);
 					if(result.chat_index > checkedLastMessage) {
-						console.log("초록색");
-						$('#chat_icon').addClass('chat_arrived');
+						$('.chat_icon').toggleClass('chat_icon_hidden');
 					} else {
-						console.log("까만색");
 						
 					}
 				} else {
@@ -223,10 +220,16 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		
 		//아래 내부 반복문에서 밖으로 가지고 나갈 변수(최근메시지)
+		var thisAccLatestMsgIdx = '0';
 		var thisRoomLatestMsg ='';
 		
 		//현재 반복문 안의 반복문(각 채팅메시지가 이 방에 속하면 element 추가)
 		$(obj.messages).each(function (index, item){	//forEach 반복문 jQuery 형식
+		
+			if(thisAccLatestMsgIdx < item.chat_index){
+				thisAccLatestMsgIdx = item.chat_index;
+			}
+		
 		
 			if(item.chat_room == thisRoom) {
 			
@@ -259,11 +262,10 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 					
 				}
 				
-				
-
-				
-				
+			
 			}	//if(item.chat_room == thisRoom){} 끝
+			
+			
 		}); //내부 반복문 종료
 				
 		
@@ -291,9 +293,40 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
         + '</div>';
 
 
-
 		$('#ChatRoom_Modal_reservoir').append(chatRoom_modal_template);
 		
+		
+		
+		console.log("요소로 만들어진 메시지 인덱스의 최대값: " + thisAccLatestMsgIdx);
+		
+		//DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
+		const queryLastChat_record = { acc_index : loginMember_accIndex, acc_lastMessage : thisAccLatestMsgIdx };
+		
+		$.ajax({	
+			type : "POST",
+			url : project + "/chat/recordLastChat.do", //project는 jsp 내부 script에서 선언해 둠
+			data : queryLastChat_record,
+			success : function(result) {
+			
+						if(result > 0) {
+							//console.log("recordLastChat.do 통신 성공");
+							checkedLastMessage = thisAccLatestMsgIdx;
+							console.log("(DB) checkedLastMessage: " + checkedLastMessage);
+							$('.chat_icon').toggleClass('chat_icon_hidden');
+							
+						} else if( result == 0 ) {
+							console.log("recordLastChat.do 저장 실패");
+						} else {
+							console.log("recordLastChat.do 통신 실패");
+						}
+					},
+			error : function(error) {
+					console.log("recordLastChat.do 통신 실패(AJAX)");
+					}
+		}); //ajax		
+		
+		
+
 	}); //외부 반복문 종료
 	
 	
