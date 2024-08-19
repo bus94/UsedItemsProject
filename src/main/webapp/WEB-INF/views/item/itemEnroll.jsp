@@ -23,12 +23,12 @@
 					</colgroup>
 					<tr>
 						<td>
-							<div id="input_box" class="container">
+							<div id="input_box" class="container box">
 								<p class="itemEnroll_subtitle fs-5">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</p>
 								<input type="text" class="form-control item_input d-inline"
 									name="item_title" id="item_title" placeholder="제목">
 							</div>
-							<div id="input_box2" class="container box3">
+							<div id="input_box2" class="container box">
 								<p class="itemEnroll_subtitle fs-5">카 테 고 리</p>
 								<select id="item_category" name="item_category"
 									class="form-select item_input">
@@ -45,12 +45,12 @@
 									<option value="기타">기타</option>
 								</select>
 							</div>
-							<div id="input_box3" class="container">
+							<div id="input_box3" class="container box">
 								<p class="itemEnroll_subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
 								<input type="text" class="form-control item_input d-inline"
 									name="item_price" id="item_price" placeholder="가격">
 							</div>
-							<div id="input_box4" class="container">
+							<div id="input_box4" class="container box">
 								<p class="itemEnroll_subtitle fs-5">장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 								<div id="input_address">
 									<input type="text"
@@ -62,7 +62,7 @@
 										class="btn input_addressBtn">장소 선택</button>
 								</div>
 							</div>
-							<div class="container input_thumbnail">
+							<div class="container input_thumbnail box">
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
 								<input style="width: 270px" type="file" name="item_thumb"
 									id="item_thumb">
@@ -74,7 +74,7 @@
 									id="item_image" multiple>
 								<!-- <label class="btn fileBtn" for="item_image">파일선택</label> -->
 							</div>
-							<div id="input_box1" class="container">
+							<div id="input_box1" class="container box">
 								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
 								<textarea class="form-control item_input d-inline input_text"
 									name="item_content" id="item_content" placeholder="내용을 입력해주세요"></textarea>
