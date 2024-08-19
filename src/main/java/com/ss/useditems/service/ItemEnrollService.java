@@ -23,7 +23,7 @@ public class ItemEnrollService {
 		return mapper.selectItemIndex();
 	}
 
-	public int updateItem(ItemInfoDTO existingItem,boolean check) {
+	public int updateItem(ItemInfoDTO existingItem,boolean check,int listsize) {
 		System.out.println("ItemEnrollService의 updateItem() 실행");
 		System.out.println(check);
 		int i=1;
@@ -32,6 +32,9 @@ public class ItemEnrollService {
 		}
 		if(i<=0) {
 			return i;
+		}
+		if(listsize >0) {
+			mapper.updateShowcaseImg(existingItem);
 		}
 		return mapper.updateItem(existingItem);
 	}
