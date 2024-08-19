@@ -46,7 +46,7 @@
 		LEFT JOIN showcase s ON s.show_item =
 		i.item_index
 		WHERE
-		i.item_status = 'onsale'
+		item_status IN ('onsale', 'ondeal')
 		ORDER BY
 		item_index DESC,
 		item_enrolldate DESC
@@ -96,7 +96,7 @@
 		) i
 		LEFT JOIN showcase s ON s.show_item = i.item_index
 		WHERE
-		i.item_status = 'onsale'
+		item_status IN ('onsale', 'ondeal')
 		ORDER BY
 		item_interest DESC
 		)

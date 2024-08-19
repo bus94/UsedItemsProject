@@ -147,7 +147,7 @@
 	</update>	<!--정일 -->
 
 
-	<select id="getPowerSeller" resultType="memberDTO">
+	<!-- <select id="getPowerSeller" resultType="memberDTO">
 		select * from ACCOUNT acc
 		join
 		(select
@@ -161,7 +161,7 @@
 		order by count(item_index) desc)
 		where
 		rownum = 1) power on (acc.acc_index=power.item_seller)
-	</select>	<!--정일_home.jsp_파워셀러 -->
+	</select>	정일_home.jsp_파워셀러 -->
 
 	<select id="selectItemByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">

@@ -163,7 +163,7 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE 1 = 1 
+		WHERE item_status IN ('onsale', 'ondeal')
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -243,7 +243,7 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE 1 = 1
+		WHERE item_status IN ('onsale', 'ondeal')
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -321,7 +321,7 @@
 		JOIN account a ON i.item_seller =
 		a.acc_index
 		JOIN showcase s ON i.item_index = s.show_item
-		WHERE 1 = 1
+		WHERE item_status IN ('onsale', 'ondeal')
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -401,8 +401,7 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE
-		1 = 1
+		WHERE item_status IN ('onsale', 'ondeal')
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
