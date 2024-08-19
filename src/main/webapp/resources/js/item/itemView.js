@@ -18,7 +18,6 @@ $(document).ready(function(){
             'display': 'flex', 
             'overflow': 'hidden',
             'width' : '190px',
-            'margin-top' : '-40px'
             
         }),
         $('.item3').css({
