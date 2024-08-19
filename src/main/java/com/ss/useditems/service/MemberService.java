@@ -91,8 +91,8 @@ public class MemberService {
 		return mapper.updatePhone(acc_id, phone_input);
 	}
 
-	public int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input) {
-		return mapper.updateRedunds(acc_id, name_input, birthDate_input, address_input);
+	public int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input, String addressDetail_input) {
+		return mapper.updateRedunds(acc_id, name_input, birthDate_input, address_input, addressDetail_input);
 	}	//정일_계정정보수정_[이름,생년월일,주소]
 	
 	public int withdraw(String acc_id) {	//정일_회원탈퇴
@@ -180,6 +180,7 @@ public class MemberService {
 			my_Interests.get(i).setItem_img5Path(filePath + my_Interests.get(i).getShow_img5());
 		}
 
+		System.out.println("my_Interests: " + my_Interests.size());
 		return my_Interests;
 	}
 

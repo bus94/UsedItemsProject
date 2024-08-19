@@ -11,6 +11,7 @@
 		<result property="acc_phone" column="acc_phone" />
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
+		<result property="acc_addressDetail" column="acc_addressDetail" />
 		<result property="acc_addressX" column="acc_addressX" />
 		<result property="acc_addressY" column="acc_addressY" />
 		<result property="acc_nickname" column="acc_nickname" />
@@ -137,7 +138,8 @@
 		acc_name=#{name_input},
 		acc_birthDate=TO_DATE(#{birthDate_input},
 		'YYYY-MM-DD'),
-		acc_address=#{address_input}
+		acc_address=#{address_input},
+		acc_addressDetail=#{addressDetail_input}
 		where acc_id=#{acc_id}
 	</update>	<!--정일 -->
 
@@ -168,25 +170,27 @@
 		SELECT
 		*
 		FROM
-		item
-		LEFT JOIN account ON item_seller = acc_index
-		LEFT JOIN showcase ON show_item = item_index
+		ITEM
+		LEFT JOIN ACCOUNT ON item_seller = acc_index
+		LEFT JOIN CHATROOM ON room_item = item_index
+        LEFT JOIN REPLY ON room_reply = repl_index
+		LEFT JOIN SHOWCASE ON show_item = item_index
 		WHERE
-		acc_index =
-		#{acc_index}
+		item_seller = #{acc_index}
+		OR repl_candidate = #{acc_index}
 		OR item_buyer = #{acc_index}
+		ORDER BY item_index DESC
 	</select>
 
 
 	<select id="selectInterestsByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT *
-		FROM item
-		LEFT JOIN interest ON item_index = int_item
-		LEFT JOIN showcase on show_item = item_index
-		WHERE int_subject =
-		#{acc_index}
-		order by int_index desc
+		FROM ITEM
+		LEFT JOIN INTEREST ON item_index = int_item
+		LEFT JOIN SHOWCASE ON show_item = item_index
+		WHERE int_subject =	#{acc_index}
+		ORDER BY int_index DESC
 	</select>
 	
 

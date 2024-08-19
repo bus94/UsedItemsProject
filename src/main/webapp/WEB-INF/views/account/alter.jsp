@@ -17,7 +17,7 @@
 	<c:choose>
 		<c:when test="${loginMember.acc_profile == null}">
 			<!-- DB에 프로필이미지가 null인 경우 기본이미지 -->
-			<c:set var="profile_path" value="${path}/resources/img/login.png" />
+			<c:set var="profile_path" value="${path}/resources/img/login1.png" />
 		</c:when>
 		<c:otherwise>
 			<!-- DB에 프로필이미지가 있는 경우 -->
@@ -104,7 +104,7 @@
 						<div>
 							<p class="subtitle fs-5">상&nbsp;세&nbsp;주&nbsp;소</p>
 							<input type="text" class="info_box form-control d-inline"
-								name="addressDetail" id="addressDetail" value="${loginMember.acc_address}">
+								name="addressDetail" id="addressDetail" value="${loginMember.acc_addressDetail}">
 						</div>
 						<div class="btn_container container">
 							<button type="button" id="setRedunds"

@@ -217,6 +217,12 @@ var name = $.trim($('#name').val());
 var birthDate = $.trim($('#birthDate').val());
 var address = $.trim($('#address').val());
 
+var addressDetail = $.trim($('#addressDetail').val());
+if($('#addressDetail').val() == null) {
+	addressDetail ='';
+}
+	console.log("상세주소:" + addressDetail);
+
 
 $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누르면
 	
@@ -224,13 +230,23 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 	var birthDate_input = $.trim($('#birthDate').val());
 	var address_input = $.trim($('#address').val());
 	
+	var addressDetail_input = $.trim($('#addressDetail').val());
 	
-	if(name == name_input && birthDate == birthDate_input && address == address_input) {
+	if($('#addressDetail').val() == null) {
+		addressDetail_input ='';
+	}
+	
+	console.log("상세주소:" + addressDetail_input);
+	
+	if(name == name_input && birthDate == birthDate_input 
+		&& address == address_input && addressDetail == addressDetail_input) {
+		
 		alert("변경된 값이 없습니다.");
 		return;
 	} else {
 		
-		const queryRedunds = { name_input : name_input, birthDate_input : birthDate_input, address_input : address_input };
+		const queryRedunds = { name_input : name_input, birthDate_input : birthDate_input, 
+			address_input : address_input, addressDetail_input : addressDetail_input };
 		
 		$.ajax({
 			type : "POST",
@@ -245,6 +261,7 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 							name = $.trim($('#name').val());
 							birthDate = $.trim($('#birthDate').val());
 							address = $.trim($('#address').val());
+							addressDetail = $.trim($('#addressDetail').val());
 							
 						} else {
 							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");

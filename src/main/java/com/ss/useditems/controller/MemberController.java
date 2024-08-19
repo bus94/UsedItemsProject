@@ -123,7 +123,7 @@ public class MemberController {
 		signupMember.setAcc_phone(phone);
 		signupMember.setAcc_addressX(addressx);
 		signupMember.setAcc_addressY(addressy);
-		signupMember.setAcc_detailAddress(detail_address);
+		signupMember.setAcc_addressDetail(detail_address);
 		
 		System.out.println("signupMember: " + signupMember);
 
@@ -159,8 +159,6 @@ public class MemberController {
 //				System.out.println("마이인포 후: " + my_info);
 
 				model.addAttribute("loginMember", my_info);
-				
-				
 				int acc_index = my_info.getAcc_index();
 				
 				//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
@@ -196,28 +194,27 @@ public class MemberController {
 		// 다른사람의 계정을 눌렀을 때 실행!!!
 		System.out.println("==account.acc_info==");
 
-		System.out.println("request.acc_id: " + acc_id);
+		//System.out.println("request.acc_id: " + acc_id);
 		try {
 			
 			MemberDTO account_info = new MemberDTO();
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
+			System.out.println("response acc_info: " + account_info);
+			
+			
 			model.addAttribute("other_info", account_info);
-			
-			
 			int acc_index = account_info.getAcc_index();
 			//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
 			//Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
 			//거래중, 판매내역, 구매내역 불러오기: 서비스에서 전처리
 			Map<String, List<ItemInfoDTO>> itemInfo = memberservice.getItemInfo(acc_index);
-
+			
 			
 			//model.addAttribute("itemList", itemInfo.get("itemList"));
+			model.addAttribute("ondealItem", itemInfo.get("ondealItem"));
 			model.addAttribute("onsaleItem", itemInfo.get("onsaleItem"));
-			model.addAttribute("dropItem", itemInfo.get("dropItem"));
-			model.addAttribute("buyItem", itemInfo.get("buyItem"));
-
-			
-			System.out.println("response acc_info: " + account_info);
+			model.addAttribute("soldItem", itemInfo.get("soldItem"));
+			//model.addAttribute("boughtItem", itemInfo.get("boughtItem"));
 			
 			
 		} catch (Exception e) {
@@ -225,7 +222,6 @@ public class MemberController {
 			model.addAttribute("location", "/");
 		}
 		
-
 		return "account/info";
 	}
 
@@ -389,7 +385,8 @@ public class MemberController {
 	
 	@RequestMapping("/account/setRedunds.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
-	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, @RequestParam String address_input) {
+	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, 
+			@RequestParam String address_input, @RequestParam String addressDetail_input) {
 		System.out.println("==account.setRedunds==");
 		
 		int result = -1;
@@ -405,11 +402,13 @@ public class MemberController {
 			
 			
 			String acc_id = loginMember.getAcc_id();
-			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input); //result == 처리된 행의 개수
+			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input, addressDetail_input); //result == 처리된 행의 개수
 				
 			loginMember.setAcc_name(name_input);
 			loginMember.setAcc_birthDate(birthDate_);//날짜 포맷
 			loginMember.setAcc_address(address_input);
+			loginMember.setAcc_addressDetail(addressDetail_input);
+
 			System.out.println("수정 후: " + loginMember);
 			
 			session.setAttribute("loginMember", loginMember);
