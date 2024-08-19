@@ -13,20 +13,16 @@
 
 <section id="main_content" class="home_page">
 
-	<div id="carouselExampleAutoplaying"
-		class="carousel slide carousel-fade" data-bs-ride="carousel">
-		<div id="carouselExampleAutoplaying" class="carousel slide"
-			data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active" data-bs-interval="2000">
-					<img src="${path}/resources/img/slide1.jpg" class="w-100" alt="...">
-				</div>
-				<div class="carousel-item" data-bs-interval="2000">
-					<img src="${path}/resources/img/slide2.jpg" class="w-100" alt="...">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2200">
+            <img src="${path}/resources/img/slide1.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="${path}/resources/img/slide2.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
 
 
 	<div id="categories" class="categories">

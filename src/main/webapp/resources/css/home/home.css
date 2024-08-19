@@ -27,6 +27,9 @@
     object-fit: cover;
 }
 
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+  transition: transform 0.6s ease;
+}
 
 
 /*---카테고리--- */
