@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.ItemInfoDTO;
 
 @Mapper
@@ -23,11 +22,5 @@ public interface ItemMapper {
 	ArrayList<ItemInfoDTO> selectByBestSeller(Map<String, Object> map);
 
 	ArrayList<ItemInfoDTO> selectByDefault(Map<String, Object> map);
-
-
-
-	
-
-
 
 }
