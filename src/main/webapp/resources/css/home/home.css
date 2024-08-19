@@ -36,6 +36,7 @@
     margin: auto;
     text-align: center;
     padding-top: 130px;
+    padding-bottom: 70px;
 }
 
 .majors {
@@ -75,7 +76,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-top:130px;
+	padding-top: 80px;
 }
 
 .newItem_container{
@@ -170,7 +171,7 @@
 .ad_banner {
 	width: 100%;
 	height: 200px;
-	margin-top:150px;
+	margin-top:180px;
 	margin-bottom: 180px;
 }
 
