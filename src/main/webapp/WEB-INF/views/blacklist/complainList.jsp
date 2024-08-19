@@ -52,16 +52,16 @@
 			</div>
 		</form>
 
-		<table id="blacklist_container" class="table table-warning table-borderless table-striped table-hover">
-			<thead class="table-dark">
+		<table id="blacklist_container" class="table table-bordered">
+			<thead class="table-warning">
 				<tr class="text-center">
-					<th class="list_index text-end" scope="col">#</th>
-					<th class="list_id" scope="col">누구를</th>
-					<th class="list_content" scope="col">내용</th>
+					<th class="list_index text-center" scope="col">No</th>
+					<th class="list_id" scope="col">ID</th>
+					<th class="list_content" scope="col">CONTENT</th>
 					<c:if test="${loginMember.acc_status=='admin'}">
-					<th class="list_id" scope="col">누가</th>
+					<th class="list_id" scope="col">whistler</th>
 					</c:if>
-					<th class="list_date" scope="col">언제</th>
+					<th class="list_date" scope="col">DATE</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,11 +73,11 @@
 				<c:if test="${not empty blacklist}">
 					<c:forEach var="each" items="${blacklist}">
 						<tr class="text-center">
-							<th class="list_index text-end" scope="row">${each.black_index}</th>
+							<th class="list_index text-center" scope="row">${each.black_index}</th>
 							<td class="list_id">${each.object_id}</td>
-							<td class="list_content text-start ps-3">
+							<td class="list_content text-start ps-5">
 								<c:if test="${loginMember.acc_id==each.subject_id||loginMember.acc_status=='admin'}">
-									<a href="complainDel.do?black_index=${each.black_index}" id="del_black">&lt;삭제&gt;</a>
+									<a href="complainDel.do?black_index=${each.black_index}" id="del_black">&lt;삭제&gt;&nbsp;</a>
 								</c:if>
 								<span>${each.black_content}</span>
 							</td>

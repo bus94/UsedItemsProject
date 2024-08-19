@@ -16,16 +16,18 @@
 	width: 200px;
 }
 
+.complain_page .subtitle {
+	margin-bottom: 3px;
+}
+
+
+
 .complain_page .btn_container {
 	display: flex;
 	justify-content: center;
 	gap: 10px;
 }
 
-.complain_page #content_box {
-	
+.complain_page .btn-sm {
+	padding-top: 6px;
 }
-
-
-
-
