@@ -207,7 +207,7 @@
 					</h2>
 				</div>
 				<div class="boxhover_img">
-					<img src="${path}/resources/img/police.jpeg" alt="">
+					<img src="${path}/resources/img/box.jpeg" alt="">
 				</div>
 				<div class="overlay"></div>
 			</div>
