@@ -166,7 +166,7 @@
 			class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
 			<div id="nav_container" class="nav_container">
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
-					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
+					alt="SAFE MARKET" src="${path}/resources/img/logo2.png">
 				</a>
 				<!-- 				<button id="navbar-toggler" class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
