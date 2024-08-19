@@ -163,17 +163,6 @@ public class MemberController {
 				
 				int acc_index = my_info.getAcc_index();
 				
-				
-				//찜 목록 불러오기
-				List<ItemInfoDTO> my_interests = new ArrayList<ItemInfoDTO>();
-				my_interests = memberservice.getMyInterests(acc_index);
-				
-				
-				
-				model.addAttribute("my_interests", my_interests);
-
-				
-				
 				//거래중, 판매내역, 구매내역 불러오기: 길어서 하단에 별도로 함수 정의
 				//Map<String, List<ItemInfoDTO>> itemInfo = getItemInfo(acc_index);
 				//거래중, 판매내역, 구매내역 불러오기: 서비스에서 전처리
@@ -185,6 +174,12 @@ public class MemberController {
 				model.addAttribute("dropItem", itemInfo.get("dropItem"));
 				model.addAttribute("buyItem", itemInfo.get("buyItem"));
 				
+				
+				//찜 목록 불러오기
+				List<ItemInfoDTO> my_interests = new ArrayList<ItemInfoDTO>();
+				my_interests = memberservice.getMyInterests(acc_index);
+				
+				model.addAttribute("my_interests", my_interests);
 				
 			}
 		} catch (Exception e) {
