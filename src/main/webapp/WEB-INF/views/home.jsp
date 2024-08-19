@@ -109,48 +109,48 @@
 	</div>
 	
 		<div class="newItem_wrap">
-		<div class="newItem_container">
-			<h3 style="font-size: 22px; margin-left:10px;">인기있는 상품</h3>
-			<div class="newItem_container2">
-				 <c:forEach var="each" items="${hot5}">
-					<div class="item2">
-						<a href="${path}/item/itemView?item_index=${each.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${each.item_thumbPath}" alt="..">
-							<div class="item_view2">
-								<h3>${each.item_title}</h3>
-								<div class="item_price">
-									<h4>
-										<fmt:formatNumber value="${each.item_price}" type="number"
-											groupingUsed="true" />
-										원
-									</h4>
-
-								</div>
-								<div class="item_like">
-									<p>관심 ${each.item_interest}</p>
-									<p>댓글 ${each.repl_count}</p>
-								</div>
-								<div class="item_addr"
-									style="display: flex; justify-content: space-between;">
-									<div style="display: flex; margin-left:-14px;">
-										<img src="${path}/resources/img/gps.png" alt="위치">
-										<p>${each.item_place}</p>
+			<div class="newItem_container">
+				<h3 style="font-size: 22px; margin-left:10px;">인기있는 상품</h3>
+				<div class="newItem_container2">
+					 <c:forEach var="each" items="${hot5}">
+						<div class="item2">
+							<a href="${path}/item/itemView?item_index=${each.item_index}"
+								style="text-decoration: none; color: black"> <img
+								src="${path}/resources/img/${each.item_thumbPath}" alt="..">
+								<div class="item_view2">
+									<h3>${each.item_title}</h3>
+									<div class="item_price">
+										<h4>
+											<fmt:formatNumber value="${each.item_price}" type="number"
+												groupingUsed="true" />
+											원
+										</h4>
+	
 									</div>
-									<div>
-										<h5>
-											<fmt:formatDate value="${each.item_enrollDate}"
-												pattern="MM/dd" />
-										</h5>
+									<div class="item_like">
+										<p>관심 ${each.item_interest}</p>
+										<p>댓글 ${each.repl_count}</p>
+									</div>
+									<div class="item_addr"
+										style="display: flex; justify-content: space-between;">
+										<div style="display: flex; margin-left:-14px;">
+											<img src="${path}/resources/img/gps.png" alt="위치">
+											<p>${each.item_place}</p>
+										</div>
+										<div>
+											<h5>
+												<fmt:formatDate value="${each.item_enrollDate}"
+													pattern="MM/dd" />
+											</h5>
+										</div>
 									</div>
 								</div>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-	</div>
 	
 	<div class="ad_banner">
 		<img alt="" src="${path}/resources/img/safemarket_banner.png">
