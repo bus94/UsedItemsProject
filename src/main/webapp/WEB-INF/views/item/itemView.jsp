@@ -456,7 +456,7 @@ console.log(placeY);
 	}
 </script>
 <script>
-	function editItem(item_index){F
+	function editItem(item_index){
 		var url ="${path}/item/itemEdit.do?item_index="+item_index;
 		location.href=url;
 	}
