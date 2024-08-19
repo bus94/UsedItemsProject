@@ -75,7 +75,7 @@
 						<p class="public_title container mt-3">
 							<span>등</span><span>급</span>
 						</p>
-						<p class="public_text ms-3 mt-3">${account_info.acc_level}</p>
+						<p class="public_text ms-3 mt-3">${account_info.acc_score}</p>
 					</div>
 					<div class="d-flex">
 						<p class="public_title container">

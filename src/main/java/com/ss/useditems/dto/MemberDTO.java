@@ -23,7 +23,7 @@ public class MemberDTO {
 	private String acc_addressY;
 	private String acc_nickname;
 	private String acc_profile;
-	private String acc_level;
+	private int acc_score;
 	private int acc_count; //거래횟수
 	private int acc_lastMessage;//0818추가, 확인한 최종 메시지 인덱스
 	private String acc_status;

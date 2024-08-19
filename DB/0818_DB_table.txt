@@ -37,16 +37,16 @@ CREATE TABLE ACCOUNT (
 	acc_addressY	VARCHAR2(100)		NULL,
 	acc_nickname	VARCHAR2(100)		NOT NULL UNIQUE,
 	acc_profile	VARCHAR2(500)		NULL,
-	acc_level	VARCHAR2(100)	DEFAULT '1'	NOT NULL, 
+	acc_score	NUMBER	DEFAULT 50	NOT NULL, 
 	acc_count	NUMBER	DEFAULT 0	NOT NULL,
 	acc_lastMessage     NUMBER	DEFAULT 0	NOT NULL,
 	acc_status	VARCHAR2(100)		NOT NULL CHECK (acc_status IN('admin', 'active', 'inactive')),
     acc_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
 );
 
-INSERT INTO ACCOUNT VALUES(0, 'admin', '1234', TO_DATE('19990131', 'YYYY-MM-DD'), '01051050000', '관리자', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '스탶입니다', null, '4', 1, default, 'admin', TO_DATE('20240724', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test1', 'pw_test', TO_DATE('19980808', 'YYYY-MM-DD'), '01051056051', '테스터1', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명1', null, '2', 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', '테스터2', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명2', null, '2', 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(0, 'admin', '1234', TO_DATE('19990131', 'YYYY-MM-DD'), '01051050000', '관리자', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '스탶입니다', null, default, 1, default, 'admin', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test1', 'pw_test', TO_DATE('19980808', 'YYYY-MM-DD'), '01051056051', '테스터1', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명1', null, default, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', '테스터2', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명2', null, default, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명3', null, default, default, default, 'inactive', TO_DATE('20240724', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명4', null, default, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056055', '테스터5', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명5', null, default, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));

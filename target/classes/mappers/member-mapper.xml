@@ -15,7 +15,7 @@
 		<result property="acc_addressY" column="acc_addressY" />
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_profile" column="acc_profile" />
-		<result property="acc_level" column="acc_level" />
+		<result property="acc_score" column="acc_score" />
 		<result property="acc_count" column="acc_count" />
 		<result property="acc_lastMessage" column="acc_lastMessage" />
 		<result property="acc_status" column="acc_status" />
@@ -44,7 +44,7 @@
 		extends="itemMap">
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_address" column="acc_address" />
-		<result property="acc_level" column="acc_level" />
+		<result property="acc_score" column="acc_score" />
 		<result property="repl_count" column="repl_count" />
 		<result property="show_thumb" column="show_thumb" />
 		<result property="show_img1" column="show_img1" />
@@ -78,7 +78,7 @@
 		acc_phone, acc_name, acc_address,
 		acc_addressx,acc_addressy,acc_addressdetail,
 		acc_nickname, acc_profile,
-		acc_level, acc_count, acc_status,
+		acc_score, acc_count, acc_status,
 		acc_enrollDate) VALUES
 		(ACCOUNT_SEQ.NEXTVAL, #{acc_id},
 		#{acc_password}, #{acc_birthDate},
