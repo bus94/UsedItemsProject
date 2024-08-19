@@ -189,8 +189,15 @@
 						</form>
 					</li>
 
-					<li class="nav-item"><a><img class="nav_icon" alt="마이페이지"
+					<li class="nav-item">
+					<c:if test="${loginMember == null}">
+						<a><img class="nav_icon" alt="마이페이지"
 							src="${path}/resources/img/user.png"></a>
+					</c:if>
+					<c:if test="${loginMember != null}">
+						<a><img class="nav_icon" alt="마이페이지"
+							src="${path}/resources/img/loginok.png"></a>
+					</c:if>
 						<ul>
 							<li style="height: 22px;"><a></a></li>
 							<c:if test="${loginMember == null}">
