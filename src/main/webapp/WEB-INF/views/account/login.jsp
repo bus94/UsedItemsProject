@@ -12,43 +12,44 @@
 	<c:if test="${loginMember == null}">
 		<form id="loginForm" action="${path}/account/loginOK.do" method="post">
 			<div class="login_containerIn">
-				<div class="loginTitle">
-					<img class="loginLogo" alt="로고"
-						src="${path}/resources/img/logo.png">
-				</div>
-				<div class="login_input">
-					<div class="input_css input_id">
-						<input type="text"
-							class="form-control login_inputStyle login_inputStyleId"
-							name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
-						<button type="button" class="input_btn" id="clearId"
-							style="display: block;">
-							<span class="input_btn"><img alt=".."
-								src="${path}/resources/img/삭제.png" style="filter: contrast(0%);"><span
-								class="blind">삭제</span></span>
-						</button>
+				<div class="loginDiv">
+					<div class="loginTitle">
+						<img class="loginLogo" alt="로고"
+							src="${path}/resources/img/logo.png">
 					</div>
-					<div class="input_css input_password">
-						<input type="password"
-							class="form-control login_inputStyle login_inputStylePw"
-							name="acc_password" id="acc_password" placeholder="비밀번호"
-							required="required" />
-						<button type="button" class="input_btn pwExpr"
-							style="display: block;">
-							<span class="input_btn"><img alt=".."
-								src="${path}/resources/img/비밀번호 숨기기.png" class="pwIcon"><span
-								class="blind">비밀번호 표시/숨기기</span></span>
-						</button>
-						<button type="button" class="input_btn" id="clearPw"
-							style="display: block;">
-							<span class="input_btn"><img alt=".."
-								src="${path}/resources/img/삭제.png" style="filter: contrast(0%);"><span
-								class="blind">삭제</span></span>
-						</button>
+					<div class="login_input">
+						<div class="input_css input_id">
+							<input type="text"
+								class="form-control login_inputStyle login_inputStyleId"
+								name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
+							<button type="button" class="input_btn" id="clearId"
+								style="display: block;">
+								<span class="input_btn"><img alt=".."
+									src="${path}/resources/img/삭제.png"
+									style="filter: contrast(0%);"><span class="blind">삭제</span></span>
+							</button>
+						</div>
+						<div class="input_css input_password">
+							<input type="password"
+								class="form-control login_inputStyle login_inputStylePw"
+								name="acc_password" id="acc_password" placeholder="비밀번호"
+								required="required" />
+							<button type="button" class="input_btn pwExpr"
+								style="display: block;">
+								<span class="input_btn"><img alt=".."
+									src="${path}/resources/img/비밀번호 숨기기.png" class="pwIcon"><span
+									class="blind">비밀번호 표시/숨기기</span></span>
+							</button>
+							<button type="button" class="input_btn" id="clearPw"
+								style="display: block;">
+								<span class="input_btn"><img alt=".."
+									src="${path}/resources/img/삭제.png"
+									style="filter: contrast(0%);"><span class="blind">삭제</span></span>
+							</button>
+						</div>
 					</div>
-				</div>
 
-				<script>
+					<script>
 					$(document).ready(function() {
 						function showBtn() {
 				            var idInput = $('.login_inputStyleId');
@@ -108,88 +109,90 @@
 					});
 				</script>
 
-				<div class="loginButton">
-					<input type="submit" class="btn login_btnStyle mb-1 mt-2"
-						value="로그인" />
-					<div class="find mt-1">
-						<button type="button" class="signupBtn"
-							onclick="location.href='${path}/account/signup.do';">
-							회원가입</button>
-						<div class="findBorder"></div>
-						<button type="button" class="findId findBtnW"
-							data-bs-toggle="modal" data-bs-target="#exampleModalId"
-							data-bs-whatever="@mdo">아이디 찾기</button>
-						<div class="modal fade" id="exampleModalId" tabindex="-1"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h1 class="modal-title fs-5" id="exampleModalLabel">아이디
-											찾기</h1>
-										<button type="button" class="btn-close"
-											data-bs-dismiss="modal" aria-label="Close"></button>
+					<div class="loginButton">
+						<input type="submit" class="btn login_btnStyle mb-1 mt-2"
+							value="로그인" />
+						<div class="find mt-1">
+							<button type="button" class="signupBtn"
+								onclick="location.href='${path}/account/signup.do';">
+								회원가입</button>
+							<div class="findBorder"></div>
+							<button type="button" class="findId findBtnW"
+								data-bs-toggle="modal" data-bs-target="#exampleModalId"
+								data-bs-whatever="@mdo">아이디 찾기</button>
+							<div class="modal fade" id="exampleModalId" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">아이디
+												찾기</h1>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="mb-3">
+													<label for="recipient-name"
+														class="col-form-label condition">이름:</label> <input
+														type="text" class="form-control" id="findId_name">
+												</div>
+												<div class="mb-3">
+													<label for="message-text" class="col-form-label condition">핸드폰
+														번호:</label> <input type="text" class="form-control"
+														id="findId_phone">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success" id="findIdBtn">확인</button>
+											<button type="button" class="btn btn-secondary"
+												id="findCancel" data-bs-dismiss="modal">취소</button>
+										</div>
 									</div>
-									<div class="modal-body">
-										<form>
-											<div class="mb-3">
-												<label for="recipient-name" class="col-form-label condition">이름:</label>
-												<input type="text" class="form-control" id="findId_name">
-											</div>
-											<div class="mb-3">
-												<label for="message-text" class="col-form-label condition">핸드폰
-													번호:</label> <input type="text" class="form-control"
-													id="findId_phone">
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-success" id="findIdBtn">확인</button>
-										<button type="button" class="btn btn-secondary"
-											id="findCancel" data-bs-dismiss="modal">취소</button>
+								</div>
+							</div>
+							<div class="findBorder"></div>
+							<button type="button" class="findPw findBtnW"
+								data-bs-toggle="modal" data-bs-target="#exampleModalPw"
+								data-bs-whatever="@mdo">비밀번호 찾기</button>
+							<div class="modal fade" id="exampleModalPw" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호
+												찾기</h1>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="mb-3">
+													<label for="recipient-name"
+														class="col-form-label condition">아이디:</label> <input
+														type="text" class="form-control" id="findPw_id">
+												</div>
+												<div class="mb-3">
+													<label for="message-text" class="col-form-label condition">이름:</label>
+													<input type="text" class="form-control" id="findPw_name">
+												</div>
+												<div class="mb-3">
+													<label for="message-text" class="col-form-label condition">핸드폰
+														번호:</label> <input type="text" class="form-control"
+														id="findPw_phone">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success" id="findPwBtn">확인</button>
+											<button type="button" class="btn btn-secondary"
+												id="findCancel" data-bs-dismiss="modal">취소</button>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="findBorder"></div>
-						<button type="button" class="findPw findBtnW"
-							data-bs-toggle="modal" data-bs-target="#exampleModalPw"
-							data-bs-whatever="@mdo">비밀번호 찾기</button>
-						<div class="modal fade" id="exampleModalPw" tabindex="-1"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호
-											찾기</h1>
-										<button type="button" class="btn-close"
-											data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<form>
-											<div class="mb-3">
-												<label for="recipient-name" class="col-form-label condition">아이디:</label>
-												<input type="text" class="form-control" id="findPw_id">
-											</div>
-											<div class="mb-3">
-												<label for="message-text" class="col-form-label condition">이름:</label>
-												<input type="text" class="form-control" id="findPw_name">
-											</div>
-											<div class="mb-3">
-												<label for="message-text" class="col-form-label condition">핸드폰
-													번호:</label> <input type="text" class="form-control"
-													id="findPw_phone">
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-success" id="findPwBtn">확인</button>
-										<button type="button" class="btn btn-secondary"
-											id="findCancel" data-bs-dismiss="modal">취소</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
 					</div>
 				</div>
 			</div>

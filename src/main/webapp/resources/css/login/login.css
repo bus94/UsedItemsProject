@@ -6,12 +6,16 @@
 }
 
 .login_container .login_containerIn {
-	margin: 0px auto;
-	display: table;
+	display: flex;
 	width: 460px;
 	height: 500px;
 	background-color: white;
+	justify-content: center;
 	align-items: center;
+}
+
+.loginDiv {
+	width: 100%;
 }
 
 .login_container .loginTitle {
