@@ -119,7 +119,6 @@
 					<div class="like_txt">
 						<p>관심 ${item.item_interest}</p>
 						<p>조회 ${item.item_click}</p>
-						<p id="enrollDate"></p>
 					</div>
 					<c:if
 						test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
@@ -345,62 +344,6 @@ const placeX = ${item.item_placeX};
 const placeY = ${item.item_placeY};
 console.log(placeX);
 console.log(placeY);
-</script>
-<script>
-	const item_enrollDateStr = "${item.item_enrollDate}"; 
-	const item_enrollDate = new Date(item_enrollDateStr);
-
-	function date(enrollDate) {
-		console.log("날짜 계산 시작");
-		console.log("item_enrollDateStr: " + item_enrollDateStr); // Fri Jul 26 11:10:30 KST 2024
-		console.log("item_enrollDate: " + item_enrollDate); // Invalid Date
-		console.log("new Date: " + new Date()); // Mon Aug 19 2024 03:06:29 GMT+0900 (한국 표준시)
-		const milliSeconds = new Date() - enrollDate;
-		console.log("milliSeconds: " + milliSeconds);
-		const seconds = milliSeconds / 1000;
-		console.log("seconds: " + seconds);
-
-		if (seconds < 60) {
-			return document.getElementById('enrollDate').textContent = `방금 전`;
-		}
-
-		const minutes = seconds / 60;
-		console.log("minutes: " + minutes);
-		if (minutes < 60) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(minutes)}분 전`;
-		}
-
-		const hours = minutes / 60;
-		console.log("hours: " + hours);
-		if (hours < 24) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(hours)}시간 전`;
-		}
-
-		const days = hours / 24;
-		console.log("days: " + days);
-		if (days < 7) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(days)}일 전`;
-		}
-
-		const weeks = days / 7;
-		console.log("weeks: " + weeks)
-		if (weeks < 5) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(weeks)}주 전`;
-		}
-
-		const months = days / 30;
-		console.log("months: " + months);
-		if (months < 12) {
-			return document.getElementById('enrollDate').textContent = `${Math.floor(months)}개월 전`;
-		}
-
-		const years = days / 365;
-		console.log("years: " + years);
-		console.log("Math.floor(years): " + Math.floor(years));
-		return document.getElementById('enrollDate').textContent = `${Math.floor(years)}년 전`;
-	}
-	
-	date(item_enrollDate);
 </script>
 
 <script>
