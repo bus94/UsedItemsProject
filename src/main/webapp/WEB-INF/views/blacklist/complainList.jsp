@@ -18,7 +18,7 @@
 	<div class="whole-container container d-flex flex-column align-items-center">
 		
 		<div id="blacklist_title_container" class="container d-flex flex-column align-items-center">
-			<p id="main_title" class="fs-1"><span id="safeMarket">Safe Market</span>에 신고가 등록되었어요</p>
+			<p id="main_title" class="fs-1"><span id="safeMarket">Safe Market</span>에 <span id="singo">신고</span>가 등록되었어요</p>
 			<p id="sub_title" class="fs-5">다음 사용자와 거래할 때는 주의가 필요해요</p>
 			<p id="sub_title" class="fs-5">안전한 거래를 위해 빈번한 신고 내역을 미리 확인하세요!</p>
 		</div>
@@ -53,15 +53,15 @@
 		</form>
 
 		<table id="blacklist_container" class="table table-bordered">
-			<thead class="table-warning">
+			<thead id="" class="">
 				<tr class="text-center">
-					<th class="list_index text-center" scope="col">No</th>
-					<th class="list_id" scope="col">ID</th>
-					<th class="list_content" scope="col">CONTENT</th>
+					<th class="black_header list_index text-center" scope="col">No</th>
+					<th class="black_header list_id" scope="col">ID</th>
+					<th class="black_header list_content" scope="col">CONTENT</th>
 					<c:if test="${loginMember.acc_status=='admin'}">
-					<th class="list_id" scope="col">whistler</th>
+					<th class="black_header list_id" scope="col">whistler</th>
 					</c:if>
-					<th class="list_date" scope="col">DATE</th>
+					<th class="black_header list_date" scope="col">DATE</th>
 				</tr>
 			</thead>
 			<tbody>

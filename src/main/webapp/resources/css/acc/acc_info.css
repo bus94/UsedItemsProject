@@ -7,14 +7,13 @@
 
 .acc_info_page .inform {
     width: 600px;
-    height: 350px;
+    height: 370px;
     border: 2px solid rgb(219, 219, 219);
     border-radius: 10px;
     margin-bottom: 10px;
     
     padding: 20px;
 }
-
 
 .acc_info_page .public_title {
 	width: 100px;
@@ -23,7 +22,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 
 .acc_info_page .btn_box  {
 	margin: 0;
@@ -35,20 +33,30 @@
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.acc_info_page #acc_hr {
+	margin: 8px;
+}
+
+.acc_info_page .acc_level {
+	height: 40px;
+}
+
+.acc_info_page .acc_level img {
+	height: 22px;
 }
 
 .acc_info_page #acc_mock { /*mock*/
 	margin: 0;
     width: 120px;
-    height: 90px;
+    height: 95px;
 }
-
 
 .acc_info_page .black_report {
-	height: 17px;
+	height: 25px;
 }
-
 
 .acc_info_page .black_report a {
 	color: rgb(161, 161, 161);
@@ -57,16 +65,21 @@
 	font-size: 15px;	
 }
 
-.acc_info_page .black_report img {
-	width: 25px;
-	height: 25px;
-	opacity: 50%;
+.acc_info_page .black_report a:hover {
+	font-weight: bolder;
 }
 
+.acc_info_page .black_report img {
+	margin-top: -4px;
+	width: 25px;
+	height: 25px;
+}
 
 .acc_info_page .btn_acc {
 	margin: 0;
 	padding: auto;
+	padding-top: 5px;
+	height: 30px;
 }
 
 #acc_profit h3 {
@@ -76,7 +89,6 @@
 #acc_profit p {
     margin: 12px;
 }
-
 
 .acc_info_page #period {
     height: 20px;
@@ -97,21 +109,20 @@
     justify-content: space-between;
 }
 
-
 .acc_info_page .vr {
     height: 22px;
 }
 
 .acc_info_page .btn_item {
     margin-left: 15px;
+    margin-bottom: 4px;
+    width: 77px;
+    height: 30px;
 }
-
 
 .acc_info_page .items_domain {
 	width: 1000px;
 }
-
-
 
 .acc_info_page .notice_empty {
 
@@ -164,12 +175,10 @@
 .acc_info_page .item_view h4 {
     font-weight: bold;
     font-size: 14px;
-
 }
 
 .acc_info_page .item_view h5 {
     font-size: 15px;
-
 }
 
 .acc_info_page .item_like {
