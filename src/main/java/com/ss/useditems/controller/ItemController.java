@@ -28,7 +28,6 @@ public class ItemController {
 
 	private PageInfo pageInfo;
 
-	@CacheEvict
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String searchType, String[] categoryList,
 			String currentPage, HttpSession session) {
