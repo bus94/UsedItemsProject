@@ -86,11 +86,11 @@
 			</button>
 		</div>
 		<div class="detail_right">
-			<div class="detail_top" style="padding-botton: 50px; hegight: 200px;">
+			<div class="detail_top" style="hegight: 200px;">
 				<div class="detail_info">
 					<div
-						style="display: flex; align-items: center; height: 30px; justify-content: space-between;">
-						<h4 style="margin-bottom: 20px;">${item.item_title}</h4>
+						style="display: flex; align-items: center;justify-content: space-between;">
+						<h4 style="font-size:25px;">${item.item_title}</h4>
 						<form id="interestForm"
 							action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
 							method="post" style="margin-left: 10px;">
@@ -104,12 +104,12 @@
 							</button>
 						</form>
 					</div>
-					<h3>
+					<h3 style="font-size:30px;">
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
 					<div class="item_like">
 						<div id="miniMapContainer"></div>
-						<p>
+						<p class="address_txt">
 							희망거래장소: <span id="mapPreviewText"
 								style="text-decoration: underline;">${item.item_place_address}</span>
 						</p>
@@ -140,7 +140,7 @@
 							<div style="display: flex;">
 								<h4>${itemMember.acc_nickname}</h4>
 								<img src="${path}/resources/img/shop.png" alt="스토어"
-									style="width: 20px; height: 22px; opacity: 40%; margin-left: 5px;">
+									style="width: 22px; height: 22px; opacity: 40%; margin-left: 5px;">
 							</div>
 							<p>${itemMember.acc_address}</p>
 						</div>
@@ -223,7 +223,7 @@
 	</c:if>
 	<c:if test="${empty replyList}">
 		<tr>
-			<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+			<td colspan="3" style="text-align: center; ">등록된 리플이 없습니다.</td>
 		</tr>
 	</c:if>
 
@@ -283,46 +283,36 @@
 			</tr>
 		</c:if>
 		<c:if test="${not empty otherItemList}">
-			<div class="item_wrapper">
-				<c:forEach var="item" items="${otherItemList}">
-					<div class="item_container">
-						<div class="item">
-							<a href="${path}/item/itemView?item_index=${item.item_index}"
-								style="text-decoration: none; color: black"> <img
-								src="${path}/resources/img/${item.item_thumbPath}" alt="매물사진">
-								<div class="item_view">
-									<h3>${item.item_title}</h3>
-									<div class="item_price">
-										<h4>
-											<fmt:formatNumber value="${item.item_price}" type="number"
-												groupingUsed="true" />
-											원
-										</h4>
-										<br>
-									</div>
-									<div class="item_like">
-										<p>관심 ${item.item_interest}</p>
-										<p>댓글 ${item.repl_count}</p>
-									</div>
-									<div class="item_addr"
-										style="display: flex; justify-content: space-between;">
-										<div style="display: flex">
-											<img src="${path}/resources/img/gps.png" alt="위치">
-											<p>${item.item_place}</p>
-										</div>
-										<div>
-											<h5>
-												<fmt:formatDate value="${item.item_enrollDate}"
-													pattern="yy/MM/dd" />
-											</h5>
-										</div>
-									</div>
+	<div class="newItem_wrap">
+		<div class="otherItem_container">
+			<div class="newItem_container2">
+				<c:forEach var="each" items="${otherItemList}">
+					<div class="item3">
+						<a href="${path}/item/itemView?item_index=${each.item_index}"
+							style="text-decoration: none; color: black"> <img
+							src="${path}/resources/img/${each.item_thumbPath}" alt="..">
+							<div class="item_view2">
+								<h3>${each.item_title}</h3>
+								<div class="item_price">
+									<h4>
+										<fmt:formatNumber value="${each.item_price}" type="number"
+											groupingUsed="true" />
+										원
+									</h4>
+
 								</div>
-							</a>
-						</div>
+								<div class="item_like">
+									<p>관심 ${each.item_interest}</p>
+									<p>댓글 ${each.repl_count}</p>
+								</div>
+							</div>
+						</a>
 					</div>
 				</c:forEach>
 			</div>
+		</div>
+	</div>
+		
 			<!-- 지도 모달 -->
 			<div class="modal fade" id="mapModal" tabindex="-1"
 				aria-labelledby="mapModalLabel" aria-hidden="true">

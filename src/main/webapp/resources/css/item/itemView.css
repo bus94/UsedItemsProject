@@ -21,6 +21,10 @@ a {
 	width: 400px;
 }
 
+.carousel-indicators button {
+	display: none;
+}
+
 .carousel-item img {
 	width: 400px;
 	height: 400px;
@@ -46,6 +50,8 @@ a {
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid rgb(190, 190, 190);
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .like_txt {
@@ -75,10 +81,11 @@ a {
 }
 
 .profile_img {
-	width: 75px;
-	height: 75px;
+	width: 60px;
+	height: 60px;
 	border-radius: 70%;
 	overflow: hidden;
+	opacity: 50%
 }
 
 .profile_img img {
@@ -88,8 +95,8 @@ a {
 }
 
 .store_profile {
-	 flex-grow: 3;
-	height: 90px;
+	flex-grow: 3;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	margin-top: 20px;
@@ -99,14 +106,19 @@ a {
 .store_profile p {
 	color: gray;
 	font-weight: lighter;
+	margin-bottom: 0;
 }
 
 .profile_txt {
-	padding-left: 20px;
-	margin-top: 20px;
+	padding-left: 13px;
+	margin-top: 6px;
 	width: 500px;
 	display: flex;
 	justify-content: space-between;
+}
+
+.profile_txt h4 {
+	font-size: 20px;
 }
 
 .profile_txt img {
@@ -127,6 +139,8 @@ a {
 .store_content p {
 	font-family: 'Pretendard-Regular';
 }
+
+.address_txt{ font-size: 16px;}
 
 .comment-container{
 	width: 1000px;
@@ -228,35 +242,6 @@ textarea:focus {
 	background-color: rgb(93, 199, 93);
 }
 
-.delete_box {
-	width: 100px;
-	height: 100px;
-	background-color: rgb(233, 233, 233);
-	border: 1px solid black;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: absolute;
-	right: 380px;
-	visibility: hidden;
-}
-
-.delete_box a {
-	text-decoration: none;
-	color: black;
-}
-
-.delete_btn {
-	display: flex;
-	gap: 2px;
-	margin-top: 2px;
-}
-
-.delete_btn button {
-	border: 1px solid black;
-	width: 35px;
-	font-size: 15px;
-}
 
 .reply_container2 {
 	width: 1000px;
@@ -292,6 +277,32 @@ textarea:focus {
 	border-radius: 10%;
 	margin-right: 7px;
 }
+
+
+
+
+.otherItem_container{
+	width: 1000px;
+}
+
+
+.item3 {
+	width:200px !important;
+    height: 240px;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 14px;
+}
+
+.item3 img {
+    width: 160px;
+    height: 130px;
+    object-fit: cover;
+    margin-top: 12px;
+    margin-left:13px;
+}
+
 
 .slick-next, .slick-prev {
 	position: absolute;
@@ -364,3 +375,4 @@ textarea:focus {
     border: 1px solid #ccc;
     z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
 } 
+
