@@ -23,13 +23,4 @@ public interface ItemMapper {
 
 	ArrayList<ItemInfoDTO> selectByDefault(Map<String, Object> map);
 
-<<<<<<< HEAD
-=======
-	
-
-	
-
-
-
->>>>>>> ocy
 }
