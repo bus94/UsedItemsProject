@@ -32,5 +32,6 @@ public class MemberDTO {
 	//위까지 테이블 컬럼 정보
 	
 	private int acc_blackCount; //피신고회수
+	private int acc_level; // 등급 (총 5개의 등급)
 	
 }

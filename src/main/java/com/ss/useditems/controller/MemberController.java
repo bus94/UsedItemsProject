@@ -157,6 +157,19 @@ public class MemberController {
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
+				
+				// 매너등급
+				if (my_info.getAcc_score() >= 80) {
+					my_info.setAcc_level(5);
+				} else if (my_info.getAcc_score() >= 60) {
+					my_info.setAcc_level(4);
+				} else if (my_info.getAcc_score() >= 40) {
+					my_info.setAcc_level(3);
+				} else if (my_info.getAcc_score() >= 20) {
+					my_info.setAcc_level(2);
+				} else {
+					my_info.setAcc_level(1);
+				}
 
 				model.addAttribute("loginMember", my_info);
 				int acc_index = my_info.getAcc_index();
@@ -201,6 +214,18 @@ public class MemberController {
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
 			System.out.println("response acc_info: " + account_info);
 			
+			// 매너등급
+			if (account_info.getAcc_score() >= 80) {
+				account_info.setAcc_level(5);
+			} else if (account_info.getAcc_score() >= 60) {
+				account_info.setAcc_level(4);
+			} else if (account_info.getAcc_score() >= 40) {
+				account_info.setAcc_level(3);
+			} else if (account_info.getAcc_score() >= 20) {
+				account_info.setAcc_level(2);
+			} else {
+				account_info.setAcc_level(1);
+			}
 			
 			model.addAttribute("other_info", account_info);
 			int acc_index = account_info.getAcc_index();

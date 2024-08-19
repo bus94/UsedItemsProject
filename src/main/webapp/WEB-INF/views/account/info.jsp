@@ -76,7 +76,7 @@
 							<p class="public_title container">
 								<span>매</span><span>너</span><span>등</span><span>급</span>
 							</p>
-							<p class="public_text ms-3">${account_info.acc_score}</p>
+							<p class="public_text ms-3">${account_info.acc_level}</p>
 						</div>
 						<img class="ms-4" src="${path}/resources/img/clover.png" alt="등급">	
 					</div>
