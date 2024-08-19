@@ -17,7 +17,7 @@ public class MemberDTO {
 	private Date acc_birthDate;
 	private String acc_phone;
 	private String acc_name;
-	private String acc_detailAddress;
+	private String acc_addressDetail;
 	private String acc_address;
 	private String acc_addressX;
 	private String acc_addressY;
@@ -32,8 +32,5 @@ public class MemberDTO {
 	//위까지 테이블 컬럼 정보
 	
 	private int acc_blackCount; //피신고회수
-	private List<ItemDTO> acc_interest;
-	
-	
 	
 }
