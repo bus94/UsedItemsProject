@@ -34,7 +34,7 @@
 	</c:choose>
 
 
-	<div class="container acc_summary d-flex">
+	<div class="container acc_summary d-flex mb-4">
 		<div id="acc_public" class="container inform">
 			<div class="container d-flex">
 				<div class="container info_box">
@@ -56,6 +56,12 @@
 						</p>
 						<p class="public_text ms-3">${account_info.acc_address}</p>
 					</div>
+					<div class="d-flex">
+						<p class="public_title container">
+							<span>상</span><span>세</span><span>주</span><span>소</span>
+						</p>
+						<p class="public_text ms-3">${account_info.acc_address}</p>
+					</div>
 				</div>
 				<div class="btn_box container d-flex flex-column align-items-center">
 					<img id="acc_profile" class="s120"
@@ -68,14 +74,17 @@
 					</c:if>
 				</div>
 			</div>
-			<hr>
+			<hr id="acc_hr">
 			<div class="container d-flex">
 				<div class="container info_box">
-					<div class="d-flex">
-						<p class="public_title container mt-3">
-							<span>등</span><span>급</span>
-						</p>
-						<p class="public_text ms-3 mt-3">${account_info.acc_score}</p>
+					<div class="acc_level d-flex mt-3">
+						<div class="d-flex">
+							<p class="public_title container">
+								<span>매</span><span>너</span><span>등</span><span>급</span>
+							</p>
+							<p class="public_text ms-3">${account_info.acc_score}</p>
+						</div>
+						<img class="ms-4" src="${path}/resources/img/clover.png" alt="등급">	
 					</div>
 					<div class="d-flex">
 						<p class="public_title container">
@@ -93,7 +102,7 @@
 
 						<c:if test="${account_info.acc_id != loginMember.acc_id}">
 							<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
-							<img class="ms-3" src="${path}/resources/img/report.png" alt="신고">
+							<img class="ms-3" src="${path}/resources/img/police.png" alt="신고">
 							<a
 								href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
 						</c:if>
@@ -145,19 +154,72 @@
 		
 	</div>
 
-	<!-- ondeal인지 onsale인지 확인 -->
+	<!-- ONDEAL 거래중 -->
 	<div id="acc_ondeal" class="container items_domain">
-		<div class="subtitle d-flex">
+		<div class="subtitle d-flex mb-1">
 			<div class="vr align-self-center"></div>
 			<h4 class="container">
 				<span>거</span><span>래</span><span>중</span>
 			</h4>
 			<div class="vr align-self-center"></div>
 		</div>
-		<c:if test="${empty onsaleItem}">
+		<c:if test="${empty ondealItem}">
 			<div class="item_wrapper">
 				<div class="item justify-content-center">
 					<p class="notice_empty">거래중인 물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty ondealItem}">
+		<div class="item_wrapper">
+			<c:forEach var="ondealItem" items="${ondealItem}">
+				<div class="item_container_acc d-flex">
+					<div class="item">
+						<a
+							href="${path}/item/itemView?item_index=${ondealItem.item_index}"
+							style="text-decoration: none; color: black"> <img
+							src="${path}/resources/img/${ondealItem.item_thumbPath}"
+							alt="매물사진">
+							<div class="item_view">
+								<h3>${ondealItem.item_title}</h3>
+								<div class="item_price">
+									<h4>${ondealItem.item_price}원</h4>
+									<br>
+									<h5>
+										<fmt:formatDate value="${ondealItem.item_enrollDate}"
+											pattern="yy/MM/dd" />
+									</h5>
+								</div>
+								<div class="item_like">
+									<p>관심 ${ondealItem.item_interest}</p>
+									<p>댓글 ${ondealItem.repl_count}</p>
+								</div>
+								<div class="item_addr">
+									<img src="${path}/resources/img/gps.png" alt="위치">
+									<p>${ondealItem.item_place}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</c:forEach>
+			</div>
+		</c:if>
+	</div>
+	
+	<!-- ONSALE 판매중 -->
+	<div id="acc_sale" class="container items_domain">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>판</span><span>매</span><span>중</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty onsaleItem}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">판매중인 물품이 없습니다.</p>
 				</div>
 			</div>
 		</c:if>
@@ -197,10 +259,12 @@
 			</div>
 		</c:if>
 	</div>
+	
 
-	<div id="acc_selling" class="container items_domain">
+
+	<div id="acc_sold" class="container items_domain">
 		<div class="d-flex">
-			<div class="subtitle d-flex">
+			<div class="subtitle d-flex mb-1">
 				<div class="vr align-self-center"></div>
 				<h4 class="container">
 					<span>판</span><span>매</span><span>내</span><span>역</span>
@@ -257,8 +321,8 @@
 
 
 	<c:if test="${other_info == null}">
-		<div id="acc_buying" class="container items_domain">
-			<div class="subtitle d-flex">
+		<div id="acc_bought" class="container items_domain">
+			<div class="subtitle d-flex mb-1">
 				<div class="vr align-self-center"></div>
 				<h4 class="container">
 				<span>구</span><span>매</span><span>내</span><span>역</span>
@@ -310,7 +374,7 @@
 	<c:if test="${other_info == null}">
 		<div id="acc_interest" class="container items_domain">
 			<div class="d-flex">
-				<div class="subtitle d-flex">
+				<div class="subtitle d-flex mb-1">
 					<div class="vr align-self-center"></div>
 					<h4 class="container">
 						<span>관</span><span>심</span><span>물</span><span>품</span>
@@ -319,7 +383,7 @@
 				</div>
 				<button type="button" id="btn_item_interest"
 					class="btn_item btn btn-success btn-sm align-self-center"
-					onclick="location.href='${path}/item/interest.do'">자세히</button>
+					onclick="location.href='${path}/item/interest.do'">자&nbsp;&nbsp;세&nbsp;&nbsp;히</button>
 			</div>
 			
 			<c:if test="${empty my_interests}">
@@ -371,6 +435,8 @@
 	
 </section>
 
-<script></script>
+<script>
+
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

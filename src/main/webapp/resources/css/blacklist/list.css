@@ -13,12 +13,20 @@
 .blacklist_page #blacklist_title_container {
 	padding-top: 16px;
 	margin-bottom: 20px;
-	background-color: salmon;
 	border-radius: 10px 30px;
 }
 
 .blacklist_page #safeMarket {
-	color: rgb(153, 234, 153);
+	/* color: rgb(153, 234, 153); */
+	color: forestgreen;
+	font-weight: bold;
+}
+
+.blacklist_page #singo {
+	/* color: rgb(153, 234, 153); */
+	color: red;
+	font-weight: bold;
+	
 }
 
 .blacklist_page .search_box {
@@ -49,7 +57,6 @@
  	margin: 0;
  }
  
- 
 /* .blacklist_page #blacklist_container thead th:first-child{
  	border-radius: 10px 0 0 0 ; 
  }
@@ -69,6 +76,10 @@
  .blacklist_page #empty_td {
   	border-radius: 0 0 10px 30px  !important;
  } */
+ 
+ .blacklist_page .black_header {
+ 	background-color: #e6ffe6 !important;
+ }
  
  .blacklist_page .list_index {
  	width: 100px;
