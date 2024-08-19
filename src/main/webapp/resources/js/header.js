@@ -212,7 +212,8 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		+ '<div class="chat_header modal-header">'
 		+ '<button class="unlink_chat returnToRoomList" onclick="returnToRoomList()"><i class="fa-solid fa-reply returnToRoomList"></i></button>'
 		+ `<h4 class="chatRoom_modal_title modal-title">&nbsp;${obj.room_itemTitle}</h4>`
-		+ `<a class="dropDeal" onclick="dropDeal(${thisRoom}, ${obj.room_item})">거래중단</a>`
+		+ `<a id="dropDeal" class="action_deal" onclick="dropDeal(${thisRoom}, ${obj.room_item})">거래중단</a>`
+		+ `<a id="signDeal" class="action_deal" onclick="signDeal(${thisRoom}, ${obj.room_item})">거래완료</a>`
 		//+ '<button class="unlink_chat btn btn-primary" data-bs-target="#chatRoomListModal" data-bs-toggle="modal">돌아가기</button>'
 		+ '<button type="button" class="unlink_chat btn-close" data-bs-dismiss="modal"></button>'
 		+ '</div>'
@@ -347,7 +348,7 @@ function otherProfile(param_profile, param_index) {
 	var profile_path = '';
 					
 	if(param_profile == '' || param_profile == null) {
-			profile_path = '<img src="/useditems/resources/img/login.png">';
+			profile_path = '<img src="/useditems/resources/img/login1.png">';
 	} else {
 			profile_path = '<img src="/useditems/resources/img/' + param_index + '/profile/' + param_profile + '">';
 	}
