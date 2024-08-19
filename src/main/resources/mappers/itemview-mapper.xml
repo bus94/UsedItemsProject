@@ -152,6 +152,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_address,
 		item_placeX,
 		item_placeY,
 		item_status,
@@ -173,7 +174,7 @@
 		LEFT JOIN showcase ON ( show_item = item_index )
 		WHERE
 		item_seller = #{item_seller}
-		AND item_status = 'onsale'
+		AND item_status IN ('onsale', 'ondeal')
 		AND NOT
 		item_index = #{item_index}
 	</select>
@@ -193,8 +194,8 @@
 		DELETE FROM INTEREST
 		WHERE int_item = #{item_index} AND int_subject =#{acc_index}
 	</delete>
+	
 	<update id="deleteItem" parameterType="int">
-		
 		UPDATE item
 		SET
 		item_status= 'drop'

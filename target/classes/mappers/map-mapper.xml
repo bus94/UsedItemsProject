@@ -9,7 +9,6 @@
 
 	<select id="getMarkers" parameterType="String"
 		resultMap="Location">
-		
 		select addressx,addressy
 		from transaction_location
 		where address like '${add}%'
