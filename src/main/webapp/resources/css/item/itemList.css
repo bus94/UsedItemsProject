@@ -290,7 +290,7 @@
 }
 
 .addDiv {
-	width: 100px;
+	width: auto;
 	height: 30px;
 	background-color: #63bd37;
 	color: white;

@@ -58,6 +58,7 @@
 
 		<script>
 		 document.addEventListener('DOMContentLoaded', function() {
+                const divContainer = document.querySelector('#divContainer');
 		        // li 클릭 시 체크박스 토글
 		        document.querySelectorAll('.dropdown-menu li').forEach(li => {
 		            li.addEventListener('click', function(event) {
@@ -67,8 +68,6 @@
 		                }
 		                
 		                const value = checkbox.value;
-                        const divContainer = document.querySelector('#divContainer');
-                        
                         console.log("value: " + value);
 
                         // 기존 div를 찾기
@@ -102,16 +101,12 @@
                                 
                                 // removeBtn 클릭 시
                                 removeBtn.addEventListener('click', function() {
-                                	let existingDiv = Array.from(document.querySelectorAll('.addDiv')).find(div => div.getAttribute('data-value') === value);
-                                	console.log("removeBtn 클릭했을 때 existingDiv: " + existingDiv);
-                                	console.log("removeBtn 클릭했을 때 checkbox: " + checkbox);
                                 	// 체크박스 선택 해제
             		                if (checkbox) {
             		                    checkbox.checked = false;
             		                }
-                                	
                                 	// div 제거
-                                	divContainer.removeChild(existingDiv);
+                                	divContainer.removeChild(newDiv);
                                 });
                             }
                         } else {
@@ -127,6 +122,42 @@
                         }
 		            });
 		        });
+		        
+		     // 페이지 로드 시 체크박스 상태에 따라 div 생성
+		        function initializeDivs() {
+		            document.querySelectorAll('.dropdown-menu input[type="checkbox"]').forEach(checkbox => {
+		                if (checkbox.checked) {
+		                    const value = checkbox.value;
+		                    let existingDiv = document.querySelector(`.addDiv[data-value="${value}"]`);
+
+		                    if (!existingDiv) {
+		                        const newDiv = document.createElement('div');
+		                        newDiv.className = 'addDiv';
+		                        newDiv.setAttribute('data-value', value);
+
+		                        const newParagraph = document.createElement('p');
+		                        newParagraph.textContent = value;
+		                        newDiv.appendChild(newParagraph);
+
+		                        const removeBtn = document.createElement('button');
+		                        removeBtn.textContent = 'x';
+		                        removeBtn.className = 'removeBtn';
+		                        removeBtn.type = 'button';
+		                        newDiv.appendChild(removeBtn);
+
+		                        divContainer.appendChild(newDiv);
+
+		                        removeBtn.addEventListener('click', function() {
+		                            checkbox.checked = false;
+		                            divContainer.removeChild(newDiv);
+		                        });
+		                    }
+		                }
+		            });
+		        }
+
+		        // 호출하여 초기화
+		        initializeDivs();
 
 		        // 드롭다운 메뉴 클릭 시 자동 숨김 방지
 		        document.querySelector('.dropdown-menu').addEventListener('click', function(event) {
@@ -145,11 +176,8 @@
 		            });
 		            
 		         	// 생성된 div 요소 모두 삭제
-		            const divContainer = document.querySelector('#divContainer');
-		            if (divContainer) {
-		                while (divContainer.firstChild) {
+		            while (divContainer.firstChild) {
 		                    divContainer.removeChild(divContainer.firstChild);
-		                }
 		            }
 		        });
 		    });
