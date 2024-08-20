@@ -78,9 +78,7 @@
 							</p>
 							<p class="public_text ms-3">${account_info.acc_level}</p>
 						</div>
-						<c:forEach var="i" begin="1" end="${account_info.acc_level}">
-							<img class="ms-4" src="${path}/resources/img/clover.png" alt="등급">	
-						</c:forEach>
+						<img class="ms-4" src="${path}/resources/img/level${account_info.acc_level}.png" alt="등급">
 					</div>
 					<div class="d-flex">
 						<p class="public_title container">
@@ -149,7 +147,260 @@
 		</c:if> --%>
 		
 	</div>
+	
+	
+	<!-- 새거 -->
+	<!-- ONDEAL 거래중 -->
+	<div id="acc_ondeal" class="carousel-wrapper">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>거</span><span>래</span><span>중</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty ondealItem}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">거래중인 물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty ondealItem}">
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="ondealItem" items="${ondealItem}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${ondealItem.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${ondealItem.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${ondealItem.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${ondealItem.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
 
+										</div>
+										<div class="item_like">
+											<p>관심 ${ondealItem.item_interest}</p>
+											<p>댓글 ${ondealItem.repl_count}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</div>
+	
+	<!-- ONSALE 판매중 -->
+	<div id="acc_onsale" class="carousel-wrapper">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>판</span><span>매</span><span>중</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty onsaleItem}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">판매중인 물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty onsaleItem}">
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="onsaleItem" items="${onsaleItem}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${onsaleItem.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${onsaleItem.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${onsaleItem.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
+
+										</div>
+										<div class="item_like">
+											<p>관심 ${onsaleItem.item_interest}</p>
+											<p>댓글 ${onsaleItem.repl_count}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</div>
+	
+	<!-- SOLD 판매내역 -->
+	<div id="acc_sold" class="carousel-wrapper">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>판</span><span>매</span><span>내</span><span>역</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty soldItem}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">등록한 물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty soldItem}">
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="soldItem" items="${soldItem}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${soldItem.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${soldItem.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${soldItem.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
+
+										</div>
+										<div class="item_like">
+											<p>관심 ${soldItem.item_interest}</p>
+											<p>댓글 ${soldItem.repl_count}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</div>
+	
+	<!-- BOUGHT 구매내역 -->
+	<c:if test="${other_info == null}">
+	<div id="acc_bought" class="carousel-wrapper">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>구</span><span>매</span><span>내</span><span>역</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty boughtItem}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">구매한 물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty boughtItem}">
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="boughtItem" items="${boughtItem}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${boughtItem.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${boughtItem.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${boughtItem.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
+
+										</div>
+										<div class="item_like">
+											<p>관심 ${boughtItem.item_interest}</p>
+											<p>댓글 ${boughtItem.repl_count}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</div>
+	</c:if>
+	
+	
+	<!-- INTERESTS 관심물품 -->
+	<c:if test="${other_info == null}">
+	<div id="acc_interest" class="carousel-wrapper">
+		<div class="subtitle d-flex mb-1">
+			<div class="vr align-self-center"></div>
+			<h4 class="container">
+				<span>관</span><span>심</span><span>물</span><span>품</span>
+			</h4>
+			<div class="vr align-self-center"></div>
+		</div>
+		<c:if test="${empty my_interests}">
+			<div class="item_wrapper">
+				<div class="item justify-content-center">
+					<p class="notice_empty">관심물품이 없습니다.</p>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty my_interests}">
+			<div class="newItem_wrap">
+				<div class="otherItem_container">
+					<div class="newItem_container2">
+						<c:forEach var="my_interests" items="${my_interests}">
+							<div class="item3">
+								<a href="${path}/item/itemView?item_index=${my_interests.item_index}"
+									style="text-decoration: none; color: black"> <img
+									src="${path}/resources/img/${my_interests.item_thumbPath}" alt="..">
+									<div class="item_view2">
+										<h3>${my_interests.item_title}</h3>
+										<div class="item_price">
+											<h4>
+												<fmt:formatNumber value="${my_interests.item_price}" type="number"
+													groupingUsed="true" />
+												원
+											</h4>
+
+										</div>
+										<div class="item_like">
+											<p>관심 ${my_interests.item_interest}</p>
+											<p>댓글 ${my_interests.repl_count}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</div>
+	</c:if>
+	
+<%-- <!-- 이전꺼 -->
 	<!-- ONDEAL 거래중 -->
 	<div id="acc_ondeal" class="container items_domain">
 		<div class="subtitle d-flex mb-1">
@@ -426,13 +677,35 @@
 			</div>
 			</c:if>
 		</div>
-	</c:if>
+	</c:if> --%>
 	
 	
 </section>
 
 <script>
+var itemCount = $('.newItem_container2 .item3').length;
 
+if (itemCount > 5) {
+    $('.newItem_container2').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+    $('.newItem_container2').css({
+        'display': 'flex', 
+        'overflow': 'hidden',
+        'width' : '190px',
+        
+    }),
+    $('.item3').css({
+    	'border' : '1px solid lightgray'    	
+    })
+}
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
