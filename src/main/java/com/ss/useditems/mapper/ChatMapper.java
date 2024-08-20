@@ -30,6 +30,8 @@ public interface ChatMapper {
 
 	int updateItemDonedeal(int item_index, int item_buyer);
 
+	int updateAccountCount(int acc_index);
+
 
 
 	
