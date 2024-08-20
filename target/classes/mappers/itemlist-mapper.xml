@@ -164,6 +164,9 @@
 		s ON s.show_item = i.item_index
 		)
 		WHERE item_status IN ('onsale', 'ondeal')
+		<if test="address != null and address.length > 0">
+			AND item_place LIKE '%${address}%'
+		</if>
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -260,7 +263,7 @@
 			item_place LIKE '%${searchValue}%')
 		</if>
 		<if test="popular != null">
-			ORDER BY item_click, item_interest
+			ORDER BY item_click DESC, item_interest DECS, item_place
 		</if>
 	</select>
 
