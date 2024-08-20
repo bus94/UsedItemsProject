@@ -123,8 +123,8 @@
 					<c:if
 						test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
 						<div class="detail_report">
-							<img src="${path}/resources/img/police.png" alt="신고"> <a
-								href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">신고하기</a>
+							 <a href="${path}/blacklist/complain.do?object_id=${itemMember.acc_id}">
+							 <img src="${path}/resources/img/police.png" alt="신고" style="margin-bottom: 7px; margin-right: 3px">신고하기</a>
 						</div>
 					</c:if>
 				</div>
@@ -210,7 +210,7 @@
 								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						</c:if>
 						<c:if
-							test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale')}">
+							test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale') && loginMember.acc_index != item.item_seller}">
 							<button
 								onclick="openChat(${item.item_index}, ${reply.repl_index})">채팅하기</button>
 						</c:if>

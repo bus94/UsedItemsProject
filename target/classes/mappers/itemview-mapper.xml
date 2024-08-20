@@ -145,6 +145,27 @@
 	<select id="selectByItemSeller" parameterType="HashMap"
 		resultMap="itemInfoMap">
 		SELECT
+		*
+		FROM
+		(
+		SELECT
+		i.*,
+		s.show_thumb,
+		s.show_img1,
+		s.show_img2,
+		s.show_img3,
+		s.show_img4,
+		s.show_img5
+		FROM
+		(
+		SELECT
+		item.*,
+		COUNT(repl_index) repl_count
+		FROM
+		item
+		LEFT
+		JOIN reply ON repl_item = item_index
+		GROUP BY
 		item_index,
 		item_seller,
 		item_title,
@@ -156,22 +177,20 @@
 		item_placeX,
 		item_placeY,
 		item_status,
-		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		item_enrolldate,
 		item_click,
 		item_interest,
 		item_offdate,
-		item_buyer,
-        show_thumb,
-		show_img1,
-		show_img2,
-		show_img3,
-		show_img4,
-		show_img5
-		FROM
-		item
-		LEFT JOIN account ON ( item_seller =
-		acc_index )
-		LEFT JOIN showcase ON ( show_item = item_index )
+		item_buyer
+		) i
+		LEFT JOIN showcase s ON s.show_item =
+		i.item_index
+		WHERE
+		item_status IN ('onsale', 'ondeal')
+		ORDER BY
+		item_index DESC,
+		item_enrolldate DESC
+		)
 		WHERE
 		item_seller = #{item_seller}
 		AND item_status IN ('onsale', 'ondeal')
