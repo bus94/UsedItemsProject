@@ -83,6 +83,7 @@ public class MemberService {
 	}
 
 	public int updateNickname(String acc_id, String nickname_input) {	//정일_계정정보수정_별명
+		System.out.println("servece.nick");
 		return mapper.updateNickname(acc_id, nickname_input);
 	}
 
