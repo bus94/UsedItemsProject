@@ -170,6 +170,8 @@ public class MemberController {
 				} else {
 					my_info.setAcc_level(1);
 				}
+				System.out.println("my_info.getAcc_score: " + my_info.getAcc_score());
+				System.out.println("my_info.getAcc_level: " + my_info.getAcc_level());
 
 				model.addAttribute("loginMember", my_info);
 				int acc_index = my_info.getAcc_index();
@@ -226,6 +228,9 @@ public class MemberController {
 			} else {
 				account_info.setAcc_level(1);
 			}
+			
+			System.out.println("account_info.getAcc_score: " + account_info.getAcc_score());
+			System.out.println("account_info.getAcc_level: " + account_info.getAcc_level());
 			
 			model.addAttribute("other_info", account_info);
 			int acc_index = account_info.getAcc_index();
