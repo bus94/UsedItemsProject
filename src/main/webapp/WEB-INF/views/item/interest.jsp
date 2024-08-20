@@ -45,7 +45,8 @@
 			<!-- 데이터가 없는 경우 -->
 		</c:if>
 		<!-- 페이징 -->
-		<c:if test="${pageInfo.dtoTotal > 1}">
+		
+		<c:if test="${pageInfo.dtoTotal > 10}">
 			<div align="center"
 				class="pagination container d-flex justify-content-center">
 				<a
