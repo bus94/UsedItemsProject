@@ -147,53 +147,92 @@
 	</update>	<!--정일 -->
 
 
-	<!-- <select id="getPowerSeller" resultType="memberDTO">
-		select * from ACCOUNT acc
-		join
-		(select
-		*
-		from
-		(select
-		count(item_index) selling_count,
-		item_seller
-		from ITEM
-		group by item_seller
-		order by count(item_index) desc)
-		where
-		rownum = 1) power on (acc.acc_index=power.item_seller)
-	</select>	정일_home.jsp_파워셀러 -->
+	<!-- <select id="getPowerSeller" resultType="memberDTO"> select * from ACCOUNT 
+		acc join (select * from (select count(item_index) selling_count, item_seller 
+		from ITEM group by item_seller order by count(item_index) desc) where rownum 
+		= 1) power on (acc.acc_index=power.item_seller) </select> 정일_home.jsp_파워셀러 -->
 
 	<select id="selectItemByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT
 		*
 		FROM
-		ITEM
-		LEFT JOIN ACCOUNT ON item_seller = acc_index
-		LEFT JOIN CHATROOM ON room_item = item_index
-        LEFT JOIN REPLY ON room_reply = repl_index
-		LEFT JOIN SHOWCASE ON show_item = item_index
+		(select
+		item.*,
+		count(repl_index) repl_count
+		from
+		item
+		left join reply on item_index=repl_item
+		group by
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_place_address,
+		item_placeX,
+		item_placeY,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer)
+		LEFT
+		JOIN ACCOUNT ON item_seller = acc_index
+		LEFT JOIN CHATROOM ON room_item
+		= item_index
+		LEFT JOIN REPLY ON room_reply = repl_index
+		LEFT JOIN
+		SHOWCASE ON show_item
+		= item_index
 		WHERE
 		item_seller = #{acc_index}
-		OR repl_candidate = #{acc_index}
+		OR
+		repl_candidate =
+		#{acc_index}
 		OR item_buyer = #{acc_index}
-		ORDER BY item_index DESC
+		ORDER BY
+		item_index DESC
 	</select>
 
 
 	<select id="selectInterestsByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT *
-		FROM ITEM
-		LEFT JOIN INTEREST ON item_index = int_item
-		LEFT JOIN SHOWCASE ON show_item = item_index
-		WHERE int_subject =	#{acc_index}
+		FROM
+		(select
+		item.*,
+		count(repl_index) repl_count
+		from item
+		left join reply on item_index=repl_item
+		group by
+		item_index,
+		item_seller,
+		item_title,
+		item_content,
+		item_category,
+		item_price,
+		item_place,
+		item_place_address,
+		item_placeX,
+		item_placeY,
+		item_status,
+		item_enrolldate,
+		item_click,
+		item_interest,
+		item_offdate,
+		item_buyer)
+		LEFT
+		JOIN INTEREST ON item_index = int_item
+		LEFT JOIN SHOWCASE ON show_item
+		= item_index
+		WHERE int_subject =
+		#{acc_index}
 		ORDER BY int_index DESC
 	</select>
-	
-
-
-
 
 
 </mapper>
