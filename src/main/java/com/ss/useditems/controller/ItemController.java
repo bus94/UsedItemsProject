@@ -54,13 +54,16 @@ public class ItemController {
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 			System.out.println("loginMember: " + loginMember);
 			String loginMemberAddr = null;
+			String[] searchAddress = null;
 			if (loginMember != null) {
 				System.out.println("loginMember.getAcc_address(): " + loginMember.getAcc_address());
 
 				loginMemberAddr = parseAddress(loginMember.getAcc_address());
+				searchAddress = searchAddress(loginMember.getAcc_addressX(), loginMember.getAcc_addressY());
 				System.out.println("loginMemberAddr: " + loginMemberAddr);
 			}
 			map.put("address", loginMemberAddr);
+			map.put("searchAddressList", searchAddress);
 
 			System.out.println("map: " + map);
 			System.out.println("searchValue: " + searchValue);
@@ -75,11 +78,10 @@ public class ItemController {
 				// searchType에 따른 switch문
 				switch (searchType) {
 				// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
-				// 우리 동네
-				case "nearPlace":
-					System.out.println("searchType = nearPlace 일 때");
-					pageInfo = service.selectByNearPlace(currentPage_, map);
-					break;
+				/*
+				 * // 우리 동네 case "nearPlace": System.out.println("searchType = nearPlace 일 때");
+				 * pageInfo = service.selectByNearPlace(currentPage_, map); break;
+				 */
 
 				// 조회순
 				case "popular":
@@ -134,6 +136,11 @@ public class ItemController {
 		}
 
 		return "item/itemList";
+	}
+
+	// 근처 지역 주소 반환 리스트 메서드
+	private String[] searchAddress(String acc_addressX, String acc_addressY) {
+		return null;
 	}
 
 	@RequestMapping("/item/itemEnroll.do")
