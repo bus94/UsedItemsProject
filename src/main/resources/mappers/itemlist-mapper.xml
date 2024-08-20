@@ -421,4 +421,22 @@
 			item_place LIKE '%${searchValue}%')
 		</if>
 	</select>
+	
+	
+	
+	
+	<select id="nearDistrict" parameterType="Map"
+		resultType="String">
+
+		SELECT item_place
+		FROM item
+		WHERE (
+		6371 * ACOS(
+		COS(RADIANS(#{acc_addressX})) * COS(RADIANS(item_placex))
+		* COS(RADIANS(item_placey) - RADIANS(#{acc_addressY}))
+		+ SIN(RADIANS(#{acc_addressX})) * SIN(RADIANS(item_placex))
+		)
+		) &lt;= 0.5
+
+	</select>
 </mapper>

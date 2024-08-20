@@ -94,5 +94,9 @@ public class ItemService {
 		System.out.println("set 후 pageinfo:" + pageinfo);
 		return pageinfo;
 	}
-
+	
+	
+	public ArrayList<String> nearDistrict(Map<String,String> params){
+		return mapper.nearDistrict(params);
+	}
 }
