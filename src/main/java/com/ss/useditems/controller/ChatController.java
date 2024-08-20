@@ -27,7 +27,6 @@ public class ChatController {
 	
 	
 	
-	
 	@PostMapping("checkLastChat.do")	//정일_마지막 챗 수시 체크(헤더 열릴때마다)
 	@ResponseBody
 	public ChatDTO checkLastChat(@RequestParam String acc_index) {
@@ -198,10 +197,6 @@ public class ChatController {
 		}
 		return result;
 	}
-	
-	
-	
-	
 	
 	
 }
