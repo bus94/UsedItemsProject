@@ -100,3 +100,17 @@
     height: 25px;
     cursor: pointer;
 }
+
+
+
+.pagination a:hover {
+	font-weight: bold;
+}
+
+.pagination a.active {
+	font-weight: bold;
+	color: white;
+	background-color: #0fca2b; /* 현재 페이지 링크 배경색 변경 */
+	border-radius: 15px;
+	padding-top: 1px;
+}

@@ -23,7 +23,7 @@ public class ItemService {
 
 		ArrayList<ItemInfoDTO> unpaged_list = mapper.interest(accIndex);
 
-		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 20);
+		PageInfo pageinfo = new PageInfo(currentPage, 5, unpaged_list.size(), 10);
 
 		List<ItemInfoDTO> paged_list = unpaged_list.subList(pageinfo.getFromIndex(), pageinfo.getTillIndex());
 
