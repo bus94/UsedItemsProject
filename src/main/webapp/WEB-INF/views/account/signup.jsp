@@ -55,8 +55,8 @@
 					</div>
 					<div class="login_inputBirth">
 						<input type="text" class="form-control login_inputStyle"
-							name="birthDate" id="birthDate" pattern="[0-9]+"
-							placeholder="생년월일(8자리) ex.20010203" required />
+							name="birthDate" id="birthDate" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							placeholder="생년월일(8자리) ex.20010203" maxlength='8' required />
 					</div>
 					<div class="searchAddrDiv">
 						<input type="text" class="form-control login_inputStyle"
@@ -70,8 +70,8 @@
 					</div>
 					<div class="login_inputPhone">
 						<input type="text" class="form-control login_inputStyle"
-							name="phone" id="phone" pattern="[0-9]+"
-							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
+							name="phone" id="phone" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" maxlength='11' required />
 					</div>
 
 					<!-- 숨겨진 필드에 좌표 값을 저장 -->
