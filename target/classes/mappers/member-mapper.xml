@@ -85,7 +85,7 @@
 		#{acc_password}, #{acc_birthDate},
 		#{acc_phone}, #{acc_name},
 		#{acc_address},#{acc_addressX},#{acc_addressY},
-		#{acc_detailAddress},#{acc_id}, '', default,
+		#{acc_addressDetail},#{acc_id}, '', default,
 		0, 'active', sysdate)
 	</insert>
 
