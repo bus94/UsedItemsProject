@@ -25,7 +25,7 @@ public class MapController {
 	MapService service;
 
 	
-	@RequestMapping("/map/maptest1")
+	@RequestMapping("/maptest1")
 	public String mapTest(Model model) {
 		System.out.println("maptest 페이지");
 		return "map/maptest1";
