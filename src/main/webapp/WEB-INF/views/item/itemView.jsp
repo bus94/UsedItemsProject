@@ -161,18 +161,17 @@
 			</c:if>
 		</div>
 	</div>
-	<div id="comment-container">
-		<div class="comment-editor" align="center">
-			<form action="${path}/itemView/reply" method="post"
-				class="commentBox">
-				<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
-					type="hidden" name="writerId" value="${loginMember.acc_id}" />
-				<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
-				<button type="submit" id="btn-insert">등록</button>
-			</form>
+		<div id="comment-container">
+			<div class="comment-editor" align="center">
+				<form action="${path}/itemView/reply" method="post"
+					class="commentBox">
+					<input type="hidden" name="itemNo" value="${item.item_index}" /> <input
+						type="hidden" name="writerId" value="${loginMember.acc_id}" />
+					<textarea name="content" id="replyContent" cols="90" rows="3"></textarea>
+					<button type="submit" id="btn-insert">등록</button>
+				</form>
+			</div>
 		</div>
-	</div>
-
 
 	<c:if test="${!empty replyList}">
 		<div class="reply">
