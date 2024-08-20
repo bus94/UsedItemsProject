@@ -3,13 +3,12 @@ package com.ss.useditems.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.mapper.ItemEnrollMapper;
 
 @Service
 public class ItemEnrollService {
-	
+
 	@Autowired
 	private ItemEnrollMapper mapper;
 
@@ -23,20 +22,20 @@ public class ItemEnrollService {
 		return mapper.selectItemIndex();
 	}
 
-	public int updateItem(ItemInfoDTO existingItem,boolean check,int listsize) {
+	public int updateItem(ItemInfoDTO existingItem, boolean check, int listsize) {
 		System.out.println("ItemEnrollService의 updateItem() 실행");
 		System.out.println(check);
-		int i=1;
-		if(!check) {
-			 i=mapper.updateShowcaseThumbnail(existingItem);
+		int i = 1;
+		if (!check) {
+			i = mapper.updateShowcaseThumbnail(existingItem);
 		}
-		if(i<=0) {
+		if (i <= 0) {
 			return i;
 		}
-		if(listsize >0) {
+		if (listsize > 0) {
 			mapper.updateShowcaseImg(existingItem);
 		}
 		return mapper.updateItem(existingItem);
 	}
-	
+
 }

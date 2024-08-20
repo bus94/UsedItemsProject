@@ -19,7 +19,7 @@ public class ItemViewService {
 	private ItemViewMapper mapper;
 
 	public ItemInfoDTO selectByItemIndex(int item_index) {
-		System.out.println("service selectByItemIndex"+item_index);
+		System.out.println("service selectByItemIndex" + item_index);
 		return mapper.selectByItemIndex(item_index);
 	}
 
