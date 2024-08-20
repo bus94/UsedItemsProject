@@ -28,6 +28,10 @@ public interface ChatMapper {
 
 	int updateLastMessage(String acc_index, String acc_lastMessage);
 
+	int updateItemDonedeal(int item_index, int item_buyer);
+
+
+
 	
 
 	

@@ -168,6 +168,13 @@
 	</update>
 
 
+	<update id="updateItemDonedeal" parameterType="int">
+		update ITEM set
+		item_status='donedeal',
+		item_buyer=#{item_buyer}
+		where item_index=#{item_index}
+	</update>
+
 	<insert id="insertChat" parameterType="ChatDTO">
 
 		INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, #{chat_room},
