@@ -129,7 +129,7 @@ public class ItemEnrollController {
 	@RequestMapping("/item/itemUpdateOK.do")
 	public String itemUpdate(Model model, HttpSession session, int item_index, String item_title, String item_content,
 			String item_category, int item_price, String item_place, String addressX, String addressY,
-			MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, boolean check) {
+			MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, boolean thumb_check,boolean img_check) {
 		System.out.println("itemUpdate() 실행");
 		System.out.println("item_index: " + item_index);
 
@@ -149,21 +149,18 @@ public class ItemEnrollController {
 		System.out.println(uploadFolder);
 		try {
 			// 썸네일이 변경되면 check: false, 변경되지않으면 check: true
-			System.out.println("check: " + check);
+			System.out.println("check: " + thumb_check);
 
 			File directory = new File(uploadFolder);
 			// 썸네일이 변경된 경우 (check: false → !check: true)
-			if (!check) {
+			if (thumb_check) {
 				System.out.println("썸네일 변경되는 경우 실행!");
 
-				// 기존 이미지 파일 삭제
-				if (directory.exists()) {
-					for (File file : directory.listFiles()) {
-						System.out.println("if문의 file: " + file);
-						if (!file.isDirectory()) {
-							file.delete();
-						}
-					}
+				// 기존 썸네일 이미지 파일 삭제
+				File oldThumbFile = new File(uploadFolder + File.separator + existingItem.getShow_thumb());
+				System.out.println("Deleting file at path: " + oldThumbFile.getAbsolutePath());
+				if (oldThumbFile.exists()) {
+					oldThumbFile.delete();
 				}
 
 				// 변경된 썸네일 파일 추가
@@ -173,27 +170,23 @@ public class ItemEnrollController {
 				newThumb.transferTo(saveThumbFile);
 				existingItem.setShow_thumb(thumbFileRealName);
 				System.out.println("썸네일 변경 및 저장 성공!");
-			} else {
-				System.out.println("썸네일 변경되지 않은 경우 실행!");
-
-				String str = "thumbnail_";
-				// 기존 thumbnail 파일 제외한 이미지 파일 삭제
-				if (directory.exists()) {
-					for (File file : directory.listFiles()) {
-						System.out.println("else문의 file: " + file);
-						System.out.println("file에 thumbnail 포함 되면 true 아니면 false: " + file.toString().contains(str));
-						// file이 디렉토리가 아니고, 썸네일파일(thumbnail_ 문자를 포함하는 파일)이 아닌 경우에만 file을 삭제
-						if (!file.isDirectory() && !file.toString().contains(str)) {
-							file.delete();
-						}
-					}
-				}
-			}
+			} 
+			
 
 			System.out.println("기존 이미지 파일 추가 내용 실행!");
 
 			// 새로 저장하는 사진 파일
-			if (list != null && !list.isEmpty()) {
+			if (img_check) {
+				for (File file : directory.listFiles()) {
+					System.out.println("else문의 file: " + file);
+					// file이 디렉토리가 아니고, 썸네일파일(thumbnail_ 문자를 포함하는 파일)이 아닌 경우에만 file을 삭제
+					if (!file.isDirectory() && !file.getName().equals(existingItem.getShow_thumb())) {            
+						file.delete();        
+					}
+				}
+				
+				
+				
 				for (int i = 0; i < 5; i++) {
 					if (i < list.size() && list.get(i) != null) {
 						String fileRealName = list.get(i).getOriginalFilename();
@@ -253,7 +246,7 @@ public class ItemEnrollController {
 			existingItem.setShow_thumb(thumbFileRealName);
 
 			// 업데이트 DB 작업 수행
-			if (itemEnrollService.updateItem(existingItem, check, listsize) > 0) {
+			if (itemEnrollService.updateItem(existingItem, thumb_check, img_check) > 0) {
 				System.out.println("itemUpdate 실행 성공");
 				model.addAttribute("msg", "상품 수정이 완료되었습니다.");
 				model.addAttribute("location", "/item/itemView?item_index=" + existingItem.getItem_index());

@@ -70,11 +70,11 @@
 								<div id="input_address">
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
-										value="${item.item_place_address}" name="item_place" id="item_place"
-										placeholder="장소" readonly /> <input type="hidden"
-										name="addressX" id="addressX" value="${item.item_placeX}">
-									<input type="hidden" name="addressY" id="addressY"
-										value="${item.item_placeY}">
+										value="${item.item_place_address}" name="item_place"
+										id="item_place" placeholder="장소" readonly /> <input
+										type="hidden" name="addressX" id="addressX"
+										value="${item.item_placeX}"> <input type="hidden"
+										name="addressY" id="addressY" value="${item.item_placeY}">
 									<button type="button" id="selectPlaceButton"
 										class="btn input_addressBtn">장소 선택</button>
 								</div>
@@ -122,7 +122,8 @@
 							<div id="map" style="width: 100%; height: 400px;"></div>
 						</div>
 						<div class="modal-footer">
-							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희 세이프존에서 추천하는 희망거래장소입니다. 구체한 거래장소는 채팅을 통해 상의 바랍니다.</p>
+							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희
+								세이프존에서 추천하는 희망거래장소입니다. 구체한 거래장소는 채팅을 통해 상의 바랍니다.</p>
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
 							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>
@@ -140,10 +141,14 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			const item_thumb = document.getElementById("item_thumb");
+			const item_img = document.getElementById("item_image");
+			
 			const preview = document.getElementById("preview1");
 			const itemEnroll_form = document.getElementById("itemEnrollForm");
 			const existingThumb = preview.src;
-			let check= true;
+			
+			let thumb_check= false;
+			let img_check=false;
 			
 			item_thumb.addEventListener('change', () => {
 				console.log("파일");
@@ -152,24 +157,48 @@
 					const reader = new FileReader();
 					reader.onload = function(e) {
 						preview.src = e.target.result;
+						thumb_check= true;
 						
-						check= false;
 					}
 					reader.readAsDataURL(file);
 				} else {
 					preview.src = existingThumb;
-					check= true;
-					console.log(check);
+					thumb_check= false;
 				}
 			});
 			
+			
+			 if (item_img) {
+			        item_img.addEventListener('change', () => {
+			         
+			            if (item_img.files.length > 0) {
+			                img_check = true;  
+			            } else {
+			   
+			                img_check = false;  
+			            }
+			        });
+			    } 
+			
+			
+			
 		    itemEnroll_form.addEventListener('submit', (e) => {
-		        const checkInput = document.createElement('input');
-		        checkInput.type = 'hidden';
-		        checkInput.name = 'check';
-		        checkInput.value = check;
-		        itemEnroll_form.appendChild(checkInput);
-		        console.log("폼이 제출됩니다. Check 값:", checkInput.value);
+		        const thumb_checkInput = document.createElement('input');
+		        const img_checkInput = document.createElement('input');
+		        thumb_checkInput.type = 'hidden';
+		        img_checkInput.type = 'hidden';
+		        
+		        thumb_checkInput.name = 'thumb_check';
+		        img_checkInput.name = 'img_check';
+		        
+		        thumb_checkInput.value = thumb_check;
+		        img_checkInput.value = img_check;
+		        
+		        itemEnroll_form.appendChild(thumb_checkInput);
+		        itemEnroll_form.appendChild(img_checkInput);
+		        console.log("폼이 제출됩니다. thumb_Check 값:", tuhmb_checkInput.value);
+		        console.log("폼이 제출됩니다. img_Check 값:", img_checkInput.value);
+		        
 		    });
 			
 			
