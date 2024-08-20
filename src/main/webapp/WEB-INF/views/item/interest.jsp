@@ -53,10 +53,15 @@
 			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
 				end="${pageInfo.tillPage}" step="1">
 				<a
-					href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}"
-					${pageInfo.currentPage == currentPage ? "style='font-weight:bold;'":""}>${currentPage}</a>
+					href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}" 
+					class="${pageInfo.currentPage == currentPage ? 'active' : ''}">${currentPage}</a>
 		&nbsp;
 		</c:forEach>
+			<a
+				href="interest.do?currentPage=${pageInfo.nextPage}&memberIndex=${loginMember.acc_index}">&gt;</a>
+			&nbsp;
+			<a href="interest.do?currentPage=${pageInfo.lastPage}&memberIndex=${loginMember.acc_index}">&gt;|</a>
+			&nbsp;
 		</div>
 	</div>
 </section>
