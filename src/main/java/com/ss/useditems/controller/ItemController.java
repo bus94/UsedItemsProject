@@ -63,6 +63,9 @@ public class ItemController {
 				loginMemberAddr = parseAddress(loginMember.getAcc_address());
 				searchAddress = searchAddress(loginMember.getAcc_addressX(), loginMember.getAcc_addressY());
 				System.out.println("loginMemberAddr: " + loginMemberAddr);
+				for (int i = 0; i < searchAddress.length; i++) {
+					System.out.println("searchAddress[" +i + "]: " + searchAddress[i]);
+				}
 			}
 			map.put("address", loginMemberAddr);
 			map.put("searchAddressList", searchAddress);
@@ -143,21 +146,21 @@ public class ItemController {
 	// 근처 지역 주소 반환 리스트 메서드
 	private String[] searchAddress(String acc_addressX, String acc_addressY) {
 		System.out.println("근처 지역 주소 반환 리스트 메서드");
-		Map<String,String> params=new HashMap<String, String>();
+		Map<String, String> params = new HashMap<String, String>();
 		params.put("acc_addressX", acc_addressX);
 		params.put("acc_addressY", acc_addressY);
-		
-		List<String> itemPlace=service.nearDistrict(params);
-		
+
+		List<String> itemPlace = service.nearDistrict(params);
+
 		Set<String> addresses = new HashSet<>();
-		for(String place:itemPlace) {
+		for (String place : itemPlace) {
 			addresses.add(place);
 		}
 		String[] result = addresses.toArray(new String[0]);
-		for(String s:result) {
-			System.out.println("인접구: "+s);
+		for (String s : result) {
+			System.out.println("인접구: " + s);
 		}
-		
+
 		return result;
 	}
 

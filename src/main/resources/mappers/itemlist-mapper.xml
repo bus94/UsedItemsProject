@@ -164,8 +164,12 @@
 		s ON s.show_item = i.item_index
 		)
 		WHERE item_status IN ('onsale', 'ondeal')
-		<if test="address != null and address.length > 0">
-			AND item_place LIKE '%${address}%'
+		<if test="searchAddressList != null and searchAddressList.length > 0">
+			AND item_place IN
+			<foreach item="searchAddress" collection="searchAddressList" open="("
+				separator="," close=")">
+				#{searchAddress}
+			</foreach>
 		</if>
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
@@ -247,6 +251,13 @@
 		s ON s.show_item = i.item_index
 		)
 		WHERE item_status IN ('onsale', 'ondeal')
+		<if test="searchAddressList != null and searchAddressList.length > 0">
+			AND item_place IN
+			<foreach item="searchAddress" collection="searchAddressList" open="("
+				separator="," close=")">
+				#{searchAddress}
+			</foreach>
+		</if>
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -325,6 +336,13 @@
 		a.acc_index
 		JOIN showcase s ON i.item_index = s.show_item
 		WHERE item_status IN ('onsale', 'ondeal')
+		<if test="searchAddressList != null and searchAddressList.length > 0">
+			AND item_place IN
+			<foreach item="searchAddress" collection="searchAddressList" open="("
+				separator="," close=")">
+				#{searchAddress}
+			</foreach>
+		</if>
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -405,6 +423,13 @@
 		s ON s.show_item = i.item_index
 		)
 		WHERE item_status IN ('onsale', 'ondeal')
+		<if test="searchAddressList != null and searchAddressList.length > 0">
+			AND item_place IN
+			<foreach item="searchAddress" collection="searchAddressList" open="("
+				separator="," close=")">
+				#{searchAddress}
+			</foreach>
+		</if>
 		<if test="categoryList != null and categoryList.length > 0">
 			AND item_category IN
 			<foreach item="category" collection="categoryList" open="("
@@ -422,12 +447,8 @@
 		</if>
 	</select>
 	
-	
-	
-	
 	<select id="nearDistrict" parameterType="Map"
 		resultType="String">
-
 		SELECT item_place
 		FROM item
 		WHERE (
@@ -437,6 +458,5 @@
 		+ SIN(RADIANS(#{acc_addressX})) * SIN(RADIANS(item_placex))
 		)
 		) &lt;= 0.5
-
 	</select>
 </mapper>
