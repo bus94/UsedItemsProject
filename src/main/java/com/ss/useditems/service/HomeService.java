@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.ItemInfoDTO;
-import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.mapper.ItemMapper2;
-import com.ss.useditems.mapper.MemberMapper;
 
 @Service
 public class HomeService {

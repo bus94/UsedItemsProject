@@ -154,16 +154,13 @@
 						preview.src = e.target.result;
 						
 						check= false;
-				
 					}
 					reader.readAsDataURL(file);
 				} else {
 					preview.src = existingThumb;
 					check= true;
 					console.log(check);
-					
 				}
-				
 			});
 			
 		    itemEnroll_form.addEventListener('submit', (e) => {
