@@ -43,7 +43,6 @@
 
 #chatList .chatRoom_profile {
 	margin: 0;
-	padding-top: 10px;
 	width: 80px;
 	
 	justify-content: center;
@@ -71,12 +70,20 @@
 	/* pointer-events: none; */
 	margin-bottom: 0;
 	font-size: 12px;
-	
 }
+
+ #chatList .latest_message {
+ 	width: 200px;
+ 	
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ 	display: -webkit-box;
+ 	-webkit-line-clamp: 2;
+ 	-webkit-box-orient: vertical;
+ }
 
 #chatList .chatRoom_date {
 	margin-top: 8px;
-	
 	gap: 30px;	
 } 
 
@@ -90,24 +97,7 @@
 	font-weight: bold;
 }
 
-
-
-/* 채팅방 모달 CSS */
-/*  .chat-container {
-	font-family: Arial, sans-serif;
-	background-color: #f7f7f7;
-	
-	display: flex;
-	flex-direction: column;
-	max-width: 400px;
-	height: 75vh;
-	margin: 0 auto;
-	border: 1px solid #ddd;
-	background-color: #fff;
-	overflow: hidden;
-	
-	
-} */
+/*-----------------------------------------------  */
 
 .chat_header {
 	
@@ -157,10 +147,6 @@
 	font-weight: bold;
 }
 
-
-
-
-
 .chat_viewer {
 	height: 50vh;
 	
@@ -172,13 +158,15 @@
 	gap: 10px;
 }
 
-.chat_viewer .message.none {
-	background-color: lightyellow;
-	color: red;
-}
-
-.chat_viewer .message.server {
-	background-color: lightyellow;
+.chat_viewer .profile_other img {
+	
+	width: 38px;
+	height: 38px;
+	border: 1px solid #ddd;
+	border-radius: 100%;
+	align-self: flex-start;
+	
+	margin-right: 4px;
 }
 
 .chat_viewer .message {
@@ -190,8 +178,8 @@
 
 .chat_viewer .message_server {
 	align-self: center;
-	min-width: 80px;
-	display: block;
+	min-width: 50%;
+	justify-content: center;
 }
 
 .chat_viewer .message_server .message_txt{
@@ -202,6 +190,9 @@
 	display: none;
 }
 
+.chat_viewer .message_none .message_txt{
+	color: red;
+}
 
 .chat_viewer .message_mine {
 	align-self: flex-end;
@@ -221,15 +212,13 @@
 }
 
 .chat_viewer .message_txt {
-	max-width: 90%;
+	max-width: 100%;
 	padding: 8px 12px;
 	border: 1px solid #ddd;
 	border-radius: 20px;
 	font-size: 14px;
-	word-wrap: break-word;
 	color: black;
-	
-	align-self: center;
+	word-wrap: break-word;
 }
 
 .chat_viewer .message_time {
@@ -240,21 +229,6 @@
 	/* font-weight: lighter; */
 }
 
-
-
-
-
-.chat_viewer .profile_other img {
-	
-	width: 38px;
-	height: 38px;
-	border: 1px solid #ddd;
-	border-radius: 100%;
-	align-self: flex-start;
-	
-	margin-right: 4px;
-	
-}
 
 .chat_footer {
 	padding: 0;

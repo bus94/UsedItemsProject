@@ -23,8 +23,8 @@ $.ajax({
 			
 				if(result != null ) {
 					//console.log("checkLastChat.do 통신 성공");
-					console.log("현재 DB 최종 메시지 index: " + result.chat_index)
-					console.log("(header) checkedLastMessage: " + checkedLastMessage);
+					//console.log("현재 DB 최종 메시지 index: " + result.chat_index)
+					//console.log("(header) checkedLastMessage: " + checkedLastMessage);
 					if(result.chat_index > checkedLastMessage) {
 						$('#chat_icon_null').addClass('chat_icon_hidden');
 						$('#chat_icon_fill').removeClass('chat_icon_hidden');
@@ -32,11 +32,11 @@ $.ajax({
 						
 					}
 				} else {
-					console.log("checkLastChat.do 결과 없음");
+					//console.log("checkLastChat.do 결과 없음");
 				}
 			},
 	error : function(error) {
-			console.log("checkLastChat.do 통신 실패(AJAX)");
+			//console.log("checkLastChat.do 통신 실패(AJAX)");
 			}
 }); //ajax		
 
@@ -137,12 +137,10 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		//console.log(index);
 		//console.log(obj.room_index);
-		console.log("UTC날짜라고 합니다: " + obj.room_openDate);
+		//console.log("UTC날짜라고 합니다: " + obj.room_openDate);
 		//console.log(obj.room_itemTitle);
 		//console.log("messages: " + obj.messages);
-		
-		//console.log("loginMember.accIndex: "+ loginMember_accIndex);
-		
+				
 		
 		var thisRoom = obj.room_index;
 		
@@ -278,7 +276,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 				
 		
 		//내부반복 종료 후 최종 메시지와 시간을 채팅 목록(chatRoom list)에 추가
-		var chatRoom_latestMsg_template	= `<p>${thisRoomLatestMsg}</p>`;
+		var chatRoom_latestMsg_template	= `<p class="latest_message">${thisRoomLatestMsg}</p>`;
 		$('#chatRoom_content'+thisRoom).append(chatRoom_latestMsg_template);
 		
 		var chatRoom_latestDate_template = `<p class="align-self-end">Latest: ${formattedDate}</p>`;
@@ -305,7 +303,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		
 		
 		
-		console.log("요소로 만들어진 메시지 인덱스의 최대값: " + thisAccLatestMsgIdx);
+		//console.log("요소로 만들어진 메시지 인덱스의 최대값: " + thisAccLatestMsgIdx);
 		
 		//DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
 		const queryLastChat_record = { acc_index : loginMember_accIndex, acc_lastMessage : thisAccLatestMsgIdx };
@@ -319,18 +317,18 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 						if(result > 0) {
 							//console.log("recordLastChat.do 통신 성공");
 							checkedLastMessage = thisAccLatestMsgIdx;
-							console.log("(DB) checkedLastMessage: " + checkedLastMessage);
+							//console.log("(DB) checkedLastMessage: " + checkedLastMessage);
 							$('#chat_icon_null').removeClass('chat_icon_hidden');
 							$('#chat_icon_fill').addClass('chat_icon_hidden');
 							
 						} else if( result == 0 ) {
-							console.log("recordLastChat.do 저장 실패");
+							//console.log("recordLastChat.do 저장 실패");
 						} else {
-							console.log("recordLastChat.do 통신 실패");
+							//console.log("recordLastChat.do 통신 실패");
 						}
 					},
 			error : function(error) {
-					console.log("recordLastChat.do 통신 실패(AJAX)");
+					//console.log("recordLastChat.do 통신 실패(AJAX)");
 					}
 		}); //ajax		
 		
@@ -376,8 +374,4 @@ function formatingDate(param) {
 
 	return result;
 	
-	
 }
-
-
-

@@ -26,19 +26,17 @@ public class ChatController {
 	private ChatService chatService;
 	
 	
-	
 	@PostMapping("checkLastChat.do")	//정일_마지막 챗 수시 체크(헤더 열릴때마다)
 	@ResponseBody
 	public ChatDTO checkLastChat(@RequestParam String acc_index) {
-		System.out.println("==chat.checkLastChat==");
-		System.out.println("acc_index: " + acc_index);
+		//System.out.println("==chat.checkLastChat==");
+		//System.out.println("acc_index: " + acc_index);
 
 		ChatDTO result = null;
 		try {
 			
 			result = chatService.checkLastChat(acc_index);
-			
-			System.out.println("checkLastChat: " + result);
+			//System.out.println("checkLastChat: " + result);
 				
 		} catch(Exception e) {
 				
@@ -52,19 +50,15 @@ public class ChatController {
 	@PostMapping("chatList.do")	//정일_채팅 리스트 불러오기
 	@ResponseBody
 	public List<ChatRoomDTO> viewChatList(@RequestParam String loginMember_accIndex) {
-		System.out.println("==chat.chatList==");
+		//System.out.println("==chat.chatList==");
 
 		List<ChatRoomDTO> chatList = null;
 		try {
-			
 
 			if(loginMember_accIndex != null) {
-				chatList = chatService.getChatList(loginMember_accIndex);
-					
-				System.out.println("chatList: " + chatList);
-				System.out.println("chatListSize: " + chatList.size());
-			
-
+				chatList = chatService.getChatList(loginMember_accIndex);	
+				//System.out.println("chatList: " + chatList);
+				//System.out.println("chatListSize: " + chatList.size());
 			}else {
 			}
 
@@ -79,14 +73,14 @@ public class ChatController {
 	@PostMapping("chatRoom.do")	//정일_채팅방 정보 불러오기
 	@ResponseBody
 	public ChatRoomDTO getChatRoom(@RequestParam String room_index) {
-		System.out.println("==chat.chatRoom==");
-		System.out.println("room_index: " + room_index);
+		//System.out.println("==chat.chatRoom==");
+		//System.out.println("room_index: " + room_index);
 
 		ChatRoomDTO chatRoom = null;
 		try {
 				
 				chatRoom = chatService.getChatRoom(room_index);
-				System.out.println("chatRoom: " + chatRoom);
+				//System.out.println("chatRoom: " + chatRoom);
 			
 		} catch(Exception e) {
 			
@@ -127,8 +121,8 @@ public class ChatController {
 	@PostMapping("recordLastChat.do")	//정일_최종 확인 메시지 DB에 저장(ACCOUNT)
 	@ResponseBody
 	public int recordLastChat(HttpSession session, @RequestParam String acc_index, @RequestParam String acc_lastMessage) {
-		System.out.println("==chat.recordLastChat==");
-		System.out.println("acc_index: " + acc_index + " acc_lastMessage: " + acc_lastMessage);
+		//System.out.println("==chat.recordLastChat==");
+		//System.out.println("acc_index: " + acc_index + " acc_lastMessage: " + acc_lastMessage);
 			
 		int result = -1;
 		try {
@@ -147,14 +141,14 @@ public class ChatController {
 	@PostMapping("openChat.do")		//정일_채팅방 개설(item_status: onsale -> ondeal)
 	@ResponseBody
 	public int openChat(@RequestParam String room_item, @RequestParam String room_reply) {
-		System.out.println("==chat.openChat==");
-		System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
+		//System.out.println("==chat.openChat==");
+		//System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
 		
 		int result = -1;
 		try {
 			
 			result = chatService.openChat(room_item, room_reply);
-			System.out.println("openChatResult: " + result);
+			//System.out.println("openChatResult: " + result);
 			
 		} catch(Exception e) {
 			result = 0;
@@ -166,13 +160,13 @@ public class ChatController {
 	@PostMapping("dropDeal.do")		//정일_거래 중단(item_status: ondeal -> onsale)
 	@ResponseBody
 	public int dropDeal(@RequestParam String room_index, @RequestParam String room_item) {
-		System.out.println("==chat.dropDeal==");
-		System.out.println("Drop chat_room: " + room_index + " sale room_item: " + room_item);
+		//System.out.println("==chat.dropDeal==");
+		//System.out.println("Drop chat_room: " + room_index + " sale room_item: " + room_item);
 		
 		int result = -1;
 		try {
 			result = chatService.dropDeal(room_index, room_item);
-			System.out.println("dropDealResult: " + result);
+			//System.out.println("dropDealResult: " + result);
 
 		} catch(Exception e) {
 			result = 0;
@@ -184,19 +178,18 @@ public class ChatController {
 	@PostMapping("signDeal.do")		//정일_거래 완료(item_status: ondeal -> donedeal)
 	@ResponseBody
 	public int signDeal(@RequestParam String room_index, @RequestParam String room_item) {
-		System.out.println("==chat.signDeal==");
-		System.out.println("Sign chat_room: " + room_index + " sign room_item: " + room_item);
+		//System.out.println("==chat.signDeal==");
+		//System.out.println("Sign chat_room: " + room_index + " sign room_item: " + room_item);
 		
 		int result = -1;
 		try {
 			result = chatService.signDeal(room_index, room_item);
-			System.out.println("signDealResult: " + result);
+			//System.out.println("signDealResult: " + result);
 
 		} catch(Exception e) {
 			result = 0;
 		}
 		return result;
 	}
-	
 	
 }
