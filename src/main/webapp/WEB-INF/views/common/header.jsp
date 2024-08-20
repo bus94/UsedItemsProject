@@ -98,7 +98,7 @@
 					<div id="chatList_header" class="modal-header">
 						<!-- <h5 class="modal-title">거래 중인 매물</h5> -->
 						<img id="brand_img_chatList" alt="SAFE MARKET"
-							src="${path}/resources/img/logo.png">
+							src="${path}/resources/img/newsafechat.png">
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
@@ -116,7 +116,7 @@
 					</div>
 					<div id="chatList_footer" class="modal-footer">
 						<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-						<h5 id="chatList_notice" class="modal-title">안전한 거래!</h5>
+						<h5 id="chatList_notice" class="modal-title">안전한 중고거래!</h5>
 					</div>
 				</div>
 			</div>
@@ -166,7 +166,7 @@
 			class="fixed-top navbar navbar-expand-lg bg-body-tertiary">
 			<div id="nav_container" class="nav_container">
 				<a class="navbar-brand" href="${path}/"> <img id="brand_img"
-					alt="SAFE MARKET" src="${path}/resources/img/logo.png">
+					alt="SAFE MARKET" src="${path}/resources/img/logo2.png">
 				</a>
 				<!-- 				<button id="navbar-toggler" class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -164,11 +164,11 @@ public class ChatController {
 	}
 	
 	
-	@PostMapping("dropDeal.do")		//정일_채팅방 삭제(item_status: ondeal -> onsale)
+	@PostMapping("dropDeal.do")		//정일_거래 중단(item_status: ondeal -> onsale)
 	@ResponseBody
 	public int dropDeal(@RequestParam String room_index, @RequestParam String room_item) {
 		System.out.println("==chat.dropDeal==");
-		System.out.println("Drop chat_room: " + room_index + " room_item: " + room_item);
+		System.out.println("Drop chat_room: " + room_index + " sale room_item: " + room_item);
 		
 		int result = -1;
 		try {
@@ -182,7 +182,23 @@ public class ChatController {
 		return result;
 	}
 
+	@PostMapping("signDeal.do")		//정일_거래 완료(item_status: ondeal -> donedeal)
+	@ResponseBody
+	public int signDeal(@RequestParam String room_index, @RequestParam String room_item) {
+		System.out.println("==chat.signDeal==");
+		System.out.println("Drop chat_room: " + room_index + " sign room_item: " + room_item);
+		
+		int result = -1;
+		try {
+			//result = 
+			System.out.println("signDealResult: " + result);
 
+		} catch(Exception e) {
+			result = 0;
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	

@@ -3,10 +3,15 @@
 
 /* 채팅방리스트 모달 CSS */
 
+#chatList_header {
+	padding: 10px 16px;
+}
+
 #brand_img_chatList {
 	width: 225px;
-	height: 45px;
+	height: 60px;
 }
+
 
 #chatList {
 	gap: 10px;
@@ -78,6 +83,12 @@
 }
 
 
+#chatList_notice {
+	color: forestgreen;
+	font-weight: bold;
+}
+
+
 
 /* 채팅방 모달 CSS */
 /*  .chat-container {
@@ -118,21 +129,35 @@
 	padding-top: 5px;
 }
 
-.chat_header .dropDeal {
+.chat_header .action_deal {
 	
 	padding: 3px 10px 0;
 	border: 1px solid #ddd;
 	border-radius: 20px;
 	
-	background-color: lightsalmon;
-	
-	margin-left: 12px;
+	margin-left: 6px;
 	cursor: pointer;
 }
 
-.chat_header .dropDeal:hover {
+.chat_header #dropDeal {
+	background-color: lightsalmon;
+}
+
+.chat_header #dropDeal:hover {
 	font-weight: bold;
 }
+
+.chat_header #signDeal {
+	background-color: lightblue;
+}
+
+.chat_header #signDeal:hover {
+	font-weight: bold;
+}
+
+
+
+
 
 .chat_viewer {
 	height: 50vh;

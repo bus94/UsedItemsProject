@@ -17,7 +17,7 @@
 	<c:choose>
 		<c:when test="${loginMember.acc_profile == null}">
 			<!-- DB에 프로필이미지가 null인 경우 기본이미지 -->
-			<c:set var="profile_path" value="${path}/resources/img/login.png" />
+			<c:set var="profile_path" value="${path}/resources/img/login1.png" />
 		</c:when>
 		<c:otherwise>
 			<!-- DB에 프로필이미지가 있는 경우 -->
@@ -37,7 +37,7 @@
 							<p class="subtitle fs-5">이&nbsp;&nbsp;&nbsp;미&nbsp;&nbsp;&nbsp;지</p>
 							<input type="file" name="profile" class="info_box form-control d-inline" required>
 							<button type="submit" id="alt_profile"
-								class="btn btn-success btn-sm">수정</button>
+								class="btn btn-success btn-sm">수&nbsp;&nbsp;&nbsp;정</button>
 						</div>
 				</div>
 			</form>	
@@ -60,9 +60,9 @@
 						</div>
 						<div class="btn_container container">
 							<button type="button" id="setPW" class="btn btn-success btn-sm"
-								disabled>수정</button>
+								disabled>수&nbsp;&nbsp;&nbsp;정</button>
 							<button type="reset" id="setPWcancel"
-								class="btn btn-success btn-sm ">취소</button>
+								class="btn btn-success btn-sm ">취&nbsp;&nbsp;&nbsp;소</button>
 						</div>
 					</form>
 				</div>
@@ -73,13 +73,13 @@
 					<input type="text" class="info_box form-control d-inline"
 						name="nickname" id="nickname" value="${loginMember.acc_nickname}">
 					<button type="button" id="setNickname"
-						class="btn btn-success btn-sm">수정</button>
+						class="btn btn-success btn-sm">수&nbsp;&nbsp;&nbsp;정</button>
 				</div>
 				<div id="phone_box" class="container">
 					<p class="subtitle fs-5">전&nbsp;화&nbsp;번&nbsp;호</p>
 					<input type="text" class="info_box form-control d-inline"
 						name="phone" id="phone" value="${loginMember.acc_phone}">
-					<button type="button" id="setPhone" class="btn btn-success btn-sm">수정</button>
+					<button type="button" id="setPhone" class="btn btn-success btn-sm">수&nbsp;&nbsp;&nbsp;정</button>
 				</div>
 
 			<hr>
@@ -101,10 +101,15 @@
 							<input type="text" class="info_box form-control d-inline"
 								name="address" id="address" value="${loginMember.acc_address}">
 						</div>
+						<div>
+							<p class="subtitle fs-5">상&nbsp;세&nbsp;주&nbsp;소</p>
+							<input type="text" class="info_box form-control d-inline"
+								name="addressDetail" id="addressDetail" value="${loginMember.acc_addressDetail}">
+						</div>
 						<div class="btn_container container">
 							<button type="button" id="setRedunds"
-								class="btn btn-success btn-sm">수정</button>
-							<button type="reset" class="btn btn-success btn-sm">취소</button>
+								class="btn btn-success btn-sm">수&nbsp;&nbsp;&nbsp;정</button>
+							<button type="reset" class="btn btn-success btn-sm">취&nbsp;&nbsp;&nbsp;소</button>
 						</div>
 					</form>
 				</div>
@@ -119,7 +124,7 @@
 						<p class="subtitle fs-5 ">회&nbsp;원&nbsp;탈&nbsp;퇴</p>
 						<input type="password" class="info_box form-control d-inline mb-2"
 								name="wd_currPW" id="wd_currPW" placeholder="현재 비밀번호" required>
-						<button type="submit" id="setStatus" class="btn btn-danger btn-sm">탈퇴</button>
+						<button type="submit" id="setStatus" class="btn btn-danger btn-sm">탈&nbsp;&nbsp;&nbsp;퇴</button>
 					</div>
 				</form>
 		</div>

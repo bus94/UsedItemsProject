@@ -85,13 +85,16 @@ footer {
 }
 
 .navbar .navbar-brand {
-	width: 240px;
-	height: 52px;
+	width: 500px;
+	height: 90px;
+	margin-top: -17px;
+	margin-left: -20px;
 }
 
 .navbar img {
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 #shopImg{
 	width: 32px;
@@ -178,7 +181,6 @@ footer {
 .navbar .chat_icon_hidden {
 	display: none;
 }
-
 
 .navbar #nav_toTop {
     bottom: 2%;

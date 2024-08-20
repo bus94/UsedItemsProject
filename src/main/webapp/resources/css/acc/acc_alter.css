@@ -68,6 +68,12 @@
 	gap: 10px;
 }
 
+.acc_alt_page .btn-sm {
+	padding: 6px 2px 4px;
+	width: 70px;
+	height: 32px;
+}
+
 .acc_alt_page #wd_hide1 {
  	 display: none; 
  }

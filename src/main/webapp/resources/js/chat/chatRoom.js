@@ -155,7 +155,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			//맨 위에서 찾은 상대방 프로필
 			if(other_profile == '' || other_profile == null) {
 				//console.log("상대방프로필 기본이미지 적용");
-				profile_path = project + "/resources/img/login.png";
+				profile_path = project + "/resources/img/login1.png";
 			} else {
 				profile_path = project + "/resources/img/" + other_index + "/profile/" + other_profile;
 			}
@@ -335,6 +335,40 @@ function dropDeal(room_index, room_item) {		//'거래중단' 버튼 클릭
 		
 	}
 }
+
+
+function signDeal(room_index, room_item) {		//'거래완료' 버튼 클릭
+		
+	if (confirm("이 거래를 성사시키겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
+		
+		console.log("삭제할 채팅방번호: " + room_index);
+				
+		const querySignDeal = { room_index : room_index, room_item : room_item };
+		
+		$.ajax({	
+			type : "POST",
+			url : project + "/chat/signDeal.do", //project는 jsp 내부 script에서 선언해 둠
+			data : querySignDeal,
+			success : function(result) {
+						//console.log("signDeal.do 통신 성공");
+						if(result > 0) {
+						
+							$('#nav_chat').trigger("click");
+						
+						} else if( result == 0 ) {
+							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
+						} else {
+							alert("서버가 정상적으로 작동하지 않습니다.");
+						}
+					},
+			error : function(error) {
+					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
+					}
+		}); //ajax
+		
+	}
+}
+
 	
 	
 	
