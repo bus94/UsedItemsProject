@@ -264,25 +264,6 @@ textarea:focus {
 	position: relative;
 }
 
-.carousel-wrapper .itemView_carousel {
-	display: flex;
-	align-items: center;
-	margin-top: 15px;
-	overflow: visible;
-	height: 230px;
-}
-
-.carousel-wrapper .itemView_carousel img {
-	width: 190px;
-	height: 230px;
-	object-fit: cover;
-	border-radius: 10%;
-	margin-right: 7px;
-}
-
-
-
-
 .otherItem_container{
 	width: 1000px;
 	margin-top:-40px;
