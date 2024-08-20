@@ -110,7 +110,7 @@
 							<div id="map" style="width: 100%; height: 400px;"></div>
 						</div>
 						<div class="modal-footer">
-							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희 세이프존에서 추천하는 희망거래장소입니다. 구체한 거래장소는 채팅을 통해 상의 바랍니다.</p>
+							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희 세이프존에서 추천하는 희망거래장소입니다. 구체적인 거래장소는 채팅을 통해 상의 바랍니다.</p>
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
 							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>
