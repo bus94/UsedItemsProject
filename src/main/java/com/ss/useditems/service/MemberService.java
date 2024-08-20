@@ -108,7 +108,10 @@ public class MemberService {
 	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { 
 		//정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정
 		//0819 추가 수정
+		System.out.println("service.itemList: " + acc_index);
+
 		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
+		System.out.println("service.itemList: " + itemList.size());
 		String filePath;
 		for (int i = 0; i < itemList.size(); i++) {
 			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
