@@ -140,7 +140,8 @@ public class ItemEnrollController {
 		List<MultipartFile> list = item_image.getFiles("item_image");
 		
 		int listsize=list.size();
-		
+		System.out.println("listsize: "+ listsize);
+		System.out.println(list);
 		MultipartFile newThumb = item_thumb.getFile("item_thumb");
 
 		// 기존 Item 정보를 가져옴
@@ -169,67 +170,67 @@ public class ItemEnrollController {
 
 			}
 
-			if (list != null && !list.isEmpty()) {
+//			if (list.size()>0) {
 				// 기존 이미지 파일들 삭제
-				File directory = new File(uploadFolder);
-				if (directory.exists()) {
-					for (File file : directory.listFiles()) {
-						if (!file.isDirectory()) {
-							file.delete();
-						}
-					}
-				}
-
-				for (int i = 0; i < 5; i++) {
-					if (i < list.size() && list.get(i) != null) {
-						String fileRealName = list.get(i).getOriginalFilename();
-						
-						System.out.println((i + 1) + ".파일명: " + fileRealName);
-						
-
-						File saveFile = new File(uploadFolder + File.separator + fileRealName);
-						list.get(i).transferTo(saveFile);
-						System.out.println((i + 1) + "번 파일 저장 성공!!");
-
-						switch (i) {
-						case 0:
-							existingItem.setShow_img1(fileRealName);
-							break;
-						case 1:
-							existingItem.setShow_img2(fileRealName);
-							break;
-						case 2:
-							existingItem.setShow_img3(fileRealName);
-							break;
-						case 3:
-							existingItem.setShow_img4(fileRealName);
-							break;
-						case 4:
-							existingItem.setShow_img5(fileRealName);
-							break;
-						}
-					} else {
-						switch (i) {
-						case 0:
-							existingItem.setShow_img1(null);
-							break;
-						case 1:
-							existingItem.setShow_img2(null);
-							break;
-						case 2:
-							existingItem.setShow_img3(null);
-							break;
-						case 3:
-							existingItem.setShow_img4(null);
-							break;
-						case 4:
-							existingItem.setShow_img5(null);
-							break;
-						}
-					}
-
-				}
-			}
+//				File directory = new File(uploadFolder);
+//				if (directory.exists()) {
+//					for (File file : directory.listFiles()) {
+//						if (!file.isDirectory()) {
+//							file.delete();
+//						}
+//					}
+//				}
+				
+//				for (int i = 0; i < 5; i++) {
+//					if (i < list.size() && list.get(i) != null) {
+//						String fileRealName = list.get(i).getOriginalFilename();
+//						
+//						System.out.println((i + 1) + ".파일명: " + fileRealName);
+//						
+//
+//						File saveFile = new File(uploadFolder + File.separator + fileRealName);
+//						list.get(i).transferTo(saveFile);
+//						System.out.println((i + 1) + "번 파일 저장 성공!!");
+//
+//						switch (i) {
+//						case 0:
+//							existingItem.setShow_img1(fileRealName);
+//							break;
+//						case 1:
+//							existingItem.setShow_img2(fileRealName);
+//							break;
+//						case 2:
+//							existingItem.setShow_img3(fileRealName);
+//							break;
+//						case 3:
+//							existingItem.setShow_img4(fileRealName);
+//							break;
+//						case 4:
+//							existingItem.setShow_img5(fileRealName);
+//							break;
+//						}
+//					} else {
+//						switch (i) {
+//						case 0:
+//							existingItem.setShow_img1(null);
+//							break;
+//						case 1:
+//							existingItem.setShow_img2(null);
+//							break;
+//						case 2:
+//							existingItem.setShow_img3(null);
+//							break;
+//						case 3:
+//							existingItem.setShow_img4(null);
+//							break;
+//						case 4:
+//							existingItem.setShow_img5(null);
+//							break;
+//						}
+//					}
+//
+//				}
+//			}
 			// 기존 아이템 정보를 업데이트
 			existingItem.setItem_title(item_title);
 			existingItem.setItem_content(item_content);
