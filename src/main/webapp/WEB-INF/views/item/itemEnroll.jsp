@@ -55,7 +55,7 @@
 								<div id="input_address">
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
-										name="item_place" id="place_name" placeholder="장소" readonly />
+										name="place_name" id="place_name" placeholder="장소" readonly />
 									<input type="hidden" name="item_place" id="item_place"> 
 									<input type="hidden" name="addressX" id="addressX"> <input
 										type="hidden" name="addressY" id="addressY">

@@ -140,7 +140,10 @@ a {
 	font-family: 'Pretendard-Regular';
 }
 
-.address_txt{ font-size: 16px;}
+.address_txt{     
+	font-size: 14px;
+    padding-bottom: 5px;
+    }
 
 .comment-container{
 	width: 1000px;
