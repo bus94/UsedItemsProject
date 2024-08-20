@@ -136,16 +136,9 @@ public class ItemEnrollController {
 		String thumbFileRealName = "";
 
 		List<MultipartFile> list = item_image.getFiles("item_image");
-<<<<<<< HEAD
-		
-		int listsize=list.size();
-		System.out.println("listsize: "+ listsize);
-		System.out.println(list);
-=======
 
 		int listsize = list.size();
 
->>>>>>> bcb5c17aa4d46b0684ec46c7fb0be82e17de668b
 		MultipartFile newThumb = item_thumb.getFile("item_thumb");
 
 		// 기존 Item 정보를 가져옴
@@ -158,24 +151,11 @@ public class ItemEnrollController {
 			// 썸네일이 변경되면 check: false, 변경되지않으면 check: true
 			System.out.println("check: " + check);
 
-<<<<<<< HEAD
-			// 썸네일이 변경된 경우
-			if (!check && newThumb != null && !newThumb.isEmpty()) {
-				// 기존 썸네일 파일 삭제
-				File oldThumbFile = new File(uploadFolder + File.separator + existingItem.getShow_thumb());
-				System.out.println("Deleting file at path: " + oldThumbFile.getAbsolutePath());
-				if (oldThumbFile.exists()) {
-					oldThumbFile.delete();
-				}
-
-				thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
-				System.out.println(thumbFileRealName);
-=======
 			File directory = new File(uploadFolder);
 			// 썸네일이 변경된 경우 (check: false → !check: true)
 			if (!check) {
 				System.out.println("썸네일 변경되는 경우 실행!");
-				
+
 				// 기존 이미지 파일 삭제
 				if (directory.exists()) {
 					for (File file : directory.listFiles()) {
@@ -185,84 +165,17 @@ public class ItemEnrollController {
 						}
 					}
 				}
-				
+
 				// 변경된 썸네일 파일 추가
 				thumbFileRealName = "thumbnail_" + newThumb.getOriginalFilename();
 				System.out.println("thumbFileRealName: " + thumbFileRealName);
->>>>>>> bcb5c17aa4d46b0684ec46c7fb0be82e17de668b
 				File saveThumbFile = new File(uploadFolder + File.separator + thumbFileRealName);
 				newThumb.transferTo(saveThumbFile);
 				existingItem.setShow_thumb(thumbFileRealName);
 				System.out.println("썸네일 변경 및 저장 성공!");
-<<<<<<< HEAD
-
-			}
-
-//			if (list.size()>0) {
-				// 기존 이미지 파일들 삭제
-//				File directory = new File(uploadFolder);
-//				if (directory.exists()) {
-//					for (File file : directory.listFiles()) {
-//						if (!file.isDirectory()) {
-//							file.delete();
-//						}
-//					}
-//				}
-				
-//				for (int i = 0; i < 5; i++) {
-//					if (i < list.size() && list.get(i) != null) {
-//						String fileRealName = list.get(i).getOriginalFilename();
-//						
-//						System.out.println((i + 1) + ".파일명: " + fileRealName);
-//						
-//
-//						File saveFile = new File(uploadFolder + File.separator + fileRealName);
-//						list.get(i).transferTo(saveFile);
-//						System.out.println((i + 1) + "번 파일 저장 성공!!");
-//
-//						switch (i) {
-//						case 0:
-//							existingItem.setShow_img1(fileRealName);
-//							break;
-//						case 1:
-//							existingItem.setShow_img2(fileRealName);
-//							break;
-//						case 2:
-//							existingItem.setShow_img3(fileRealName);
-//							break;
-//						case 3:
-//							existingItem.setShow_img4(fileRealName);
-//							break;
-//						case 4:
-//							existingItem.setShow_img5(fileRealName);
-//							break;
-//						}
-//					} else {
-//						switch (i) {
-//						case 0:
-//							existingItem.setShow_img1(null);
-//							break;
-//						case 1:
-//							existingItem.setShow_img2(null);
-//							break;
-//						case 2:
-//							existingItem.setShow_img3(null);
-//							break;
-//						case 3:
-//							existingItem.setShow_img4(null);
-//							break;
-//						case 4:
-//							existingItem.setShow_img5(null);
-//							break;
-//						}
-//					}
-//
-//				}
-//			}
-=======
 			} else {
 				System.out.println("썸네일 변경되지 않은 경우 실행!");
-				
+
 				String str = "thumbnail_";
 				// 기존 thumbnail 파일 제외한 이미지 파일 삭제
 				if (directory.exists()) {
@@ -328,7 +241,6 @@ public class ItemEnrollController {
 					}
 				}
 			}
->>>>>>> bcb5c17aa4d46b0684ec46c7fb0be82e17de668b
 			// 기존 아이템 정보를 업데이트
 			existingItem.setItem_title(item_title);
 			existingItem.setItem_content(item_content);
