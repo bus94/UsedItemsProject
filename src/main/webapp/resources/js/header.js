@@ -248,20 +248,26 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 				if(item.chat_writer == loginMember_accIndex){
 					
 					//console.log("내가 쓴 메시지");
-					chatRoom_modal_template += `<div title="${formattedDate}" class="message mine">${thisRoomLatestMsg}</div>`;
+					chatRoom_modal_template += 
+					  '<div class="message message_mine">'
+					+ `<div class="message_txt">${thisRoomLatestMsg}</div>`
+					+ `<div class="message_time">${formattedDate}</div>`
+					+ '</div>';
 					
 				} else {
 					
 					//console.log("상대방이 쓴 메시지");
 										
 					chatRoom_modal_template += 
-					'<div class="profile other">'
+					'<div class="profile_other">'
 					+ `<a href="/useditems/account/acc_info.do?acc_id=${other_id}">`
 					+ profile_path 
 					+ '</a>'
 					+ other_nickname + '</div>'
-					+ `<div title="${formattedDate}" class="message other">${thisRoomLatestMsg}</div>`;
-					
+					+ '<div class="message message_other">'
+					+ `<div class="message_txt">${thisRoomLatestMsg}</div>`
+					+ `<div class="message_time">${formattedDate}</div>`
+					+ '</div>';
 				}
 				
 			

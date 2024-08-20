@@ -31,6 +31,8 @@
 	padding: 10px;
 	
 	display: flex;
+	justify-content: space-between;
+	
 }
 
 #chatList .chatRoom_box:hover {
@@ -55,7 +57,7 @@
 }
 
  #chatList .chatRoom_content {
-	width: 215px;
+	width: 210px;
 	margin-top: 8px;
 	
 	gap: 12px;
@@ -170,8 +172,56 @@
 	gap: 10px;
 }
 
+.chat_viewer .message.none {
+	background-color: lightyellow;
+	color: red;
+}
+
+.chat_viewer .message.server {
+	background-color: lightyellow;
+}
+
 .chat_viewer .message {
-	max-width: 70%;
+	max-width: 80%;
+	
+	display: flex;
+	gap: 8px;
+}
+
+.chat_viewer .message_server {
+	align-self: center;
+	min-width: 80px;
+	display: block;
+}
+
+.chat_viewer .message_server .message_txt{
+	background-color: lightyellow;
+}
+
+.chat_viewer .message_server .message_time{
+	display: none;
+}
+
+
+.chat_viewer .message_mine {
+	align-self: flex-end;
+	flex-direction: row-reverse;
+}
+
+.chat_viewer .message_mine .message_txt{
+	background-color: #DCF8C6;
+}
+
+.chat_viewer .message_other {
+	align-self: flex-start;
+}
+
+.chat_viewer .message_other .message_txt{
+	background-color: #ebebeb;
+}
+
+.chat_viewer .message_txt {
+	max-width: 90%;
 	padding: 8px 12px;
 	border: 1px solid #ddd;
 	border-radius: 20px;
@@ -182,27 +232,19 @@
 	align-self: center;
 }
 
-.chat_viewer .message.none {
-	background-color: lightyellow;
-	color: red;
-}
-
-.chat_viewer .message.server {
-	background-color: lightyellow;
-}
-
-.chat_viewer .message.mine {
-	align-self: flex-end;
-	background-color: #DCF8C6;
-}
-
-.chat_viewer .message.other {
-	align-self: flex-start;
-	background-color: #ebebeb;
+.chat_viewer .message_time {
+	display: flex;
+	color: #ddd;
+	font-size: 10px;
+	flex-direction: column-reverse;
+	/* font-weight: lighter; */
 }
 
 
-.chat_viewer .profile img {
+
+
+
+.chat_viewer .profile_other img {
 	
 	width: 38px;
 	height: 38px;

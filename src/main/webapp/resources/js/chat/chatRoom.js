@@ -115,8 +115,10 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 	//채팅룸에서 새 메시지를 띄우는 함수
 	function displayMessage(payload) { //payload = event.data
 		
-		var message = payload.substring(0, payload.lastIndexOf('^$'));
-		//console.log(message);
+		var message_txt = payload.substring(0, payload.lastIndexOf('^$'));
+		//console.log(message_txt);
+		
+		var message_time = '1';
 		
 		var message_index = payload.substring(payload.lastIndexOf('^$')+2, payload.lastIndexOf('^#'));
 		//console.log("index: " + message_index);
@@ -146,7 +148,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 
 		if(type == 'other') {
 			var profileDiv = document.createElement('div');
-			profileDiv.className = 'profile ' + type;
+			profileDiv.className = 'profile_' + type;
 			profileDiv.textContent = other_nickname;
 			chat_viewer.appendChild(profileDiv);
 		
@@ -168,10 +170,20 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			//$('div').prepend('<img src="../../img/img01.jpg">');
 		}
 
-		var messageDiv = document.createElement('div');
-		messageDiv.className = 'message ' + type;
-		messageDiv.textContent = message;
+		var messageDiv = document.createElement('div');	//컨테이너(message_txt + message_time)
+		messageDiv.className = 'message message_' + type;
 		chat_viewer.appendChild(messageDiv);
+		
+		var messageTxtDiv = document.createElement('div');
+		messageTxtDiv.className = 'message_txt';
+		messageTxtDiv.textContent = message_txt;
+		messageDiv.appendChild(messageTxtDiv);
+		
+		var messageTimeDiv = document.createElement('div');
+		messageTimeDiv.className = 'message_time';
+		messageTimeDiv.textContent = message_time;
+		messageDiv.appendChild(messageTimeDiv);
+		
 
 
 		//메시지 요소를 추가하고 스크롤 내리기
