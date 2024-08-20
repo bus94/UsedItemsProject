@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class LocationDTO {
-	private String addressX;
-	private String addressY;
+	private String name;
+	private Double addressX;
+	private Double addressY;
 }

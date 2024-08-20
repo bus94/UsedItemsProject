@@ -66,30 +66,19 @@ public class MapController {
 
 	@GetMapping("/locations")
 	@ResponseBody
-	public List<Map<String, Double>> getMarkers(@RequestParam("fullAddress") String fullAddress) {
+	public List<LocationDTO> getMarkers(@RequestParam("fullAddress") String fullAddress) {
 		System.out.println("controller");
 		String add = parseAddress(fullAddress);
 		System.out.println(add);
 		List<LocationDTO> marker=service.getMarkers(add);
 		
-		  // LocationDTO 리스트를 가져옴
-	    List<LocationDTO> locations = service.getMarkers(add);
-	    
-	    // LocationDTO 리스트를 좌표로 변환
-	    List<Map<String, Double>> markerCoordinates = locations.stream()
-	        .map(location -> Map.of(
-	            "addressX", Double.parseDouble(location.getAddressX()),
-	            "addressY", Double.parseDouble(location.getAddressY())
-	        ))
-	        .collect(Collectors.toList());
-	    
-	    // 좌표를 출력
-	    markerCoordinates.forEach(coord -> {
-	        System.out.println("Latitude: " + coord.get("addressX") + ", Longitude: " + coord.get("addressY"));
-	    });
+	
+		for(LocationDTO l:marker) {
+			System.out.println(l);
+		}
 	    
 	    // JSON 형태로 반환
-	    return markerCoordinates;
+	    return marker;
 		
 	}
 

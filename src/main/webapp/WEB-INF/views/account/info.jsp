@@ -169,9 +169,9 @@
 		<c:if test="${not empty ondealItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container2">
+					<div class="newItem_container4">
 						<c:forEach var="ondealItem" items="${ondealItem}">
-							<div class="item3">
+							<div class="item4">
 								<a href="${path}/item/itemView?item_index=${ondealItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${ondealItem.item_thumbPath}" alt="..">
@@ -209,16 +209,14 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty onsaleItem}">
-			<div class="item_wrapper">
 				<div class="item justify-content-center">
 					<p class="notice_empty">판매중인 물품이 없습니다.</p>
 				</div>
-			</div>
 		</c:if>
 		<c:if test="${not empty onsaleItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container2">
+					<div class="newItem_container3">
 						<c:forEach var="onsaleItem" items="${onsaleItem}">
 							<div class="item3">
 								<a href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
@@ -267,9 +265,9 @@
 		<c:if test="${not empty soldItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container2">
+					<div class="newItem_container5">
 						<c:forEach var="soldItem" items="${soldItem}">
-							<div class="item3">
+							<div class="item5">
 								<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${soldItem.item_thumbPath}" alt="..">
@@ -317,7 +315,7 @@
 		<c:if test="${not empty boughtItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container2">
+					<div class="newItem_container3">
 						<c:forEach var="boughtItem" items="${boughtItem}">
 							<div class="item3">
 								<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
@@ -369,7 +367,7 @@
 		<c:if test="${not empty my_interests}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container2">
+					<div class="newItem_container3">
 						<c:forEach var="my_interests" items="${my_interests}">
 							<div class="item3">
 								<a href="${path}/item/itemView?item_index=${my_interests.item_index}"
@@ -683,10 +681,13 @@
 </section>
 
 <script>
-var itemCount = $('.newItem_container2 .item3').length;
+var itemCount = $('.newItem_container3 .item3').length;
+var itemCount2 = $('.newItem_container4 .item4').length;
+var itemCount3 = $('.newItem_container5 .item5').length;
 
 if (itemCount > 5) {
-    $('.newItem_container2').slick({
+	console.log("5 초과 itemCount: " + itemCount);
+    $('.newItem_container3').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -696,13 +697,59 @@ if (itemCount > 5) {
         autoplay: false
     });
 } else {
-    $('.newItem_container2').css({
-        'display': 'flex', 
+	console.log("5 이하 itemCount: " + itemCount);
+    $('.newItem_container3').css({
         'overflow': 'hidden',
-        'width' : '190px',
-        
+        'width': 'auto',
+        'justify-content': 'flex-start'
     }),
     $('.item3').css({
+    	'border' : '1px solid lightgray'    	
+    })
+}
+
+if (itemCount2 > 5) {
+	console.log("5 초과 itemCount: " + itemCount2);
+    $('.newItem_container4').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + itemCount2);
+    $('.newItem_container4').css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $('.item4').css({
+    	'border' : '1px solid lightgray'    	
+    })
+}
+
+if (itemCount3 > 5) {
+	console.log("5 초과 itemCount: " + itemCount3);
+    $('.newItem_container5').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + itemCount3);
+    $('.newItem_container5').css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $('.item5').css({
     	'border' : '1px solid lightgray'    	
     })
 }

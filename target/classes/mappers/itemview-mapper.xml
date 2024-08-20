@@ -11,6 +11,7 @@
 		<result property="item_category" column="item_category" />
 		<result property="item_price" column="item_price" />
 		<result property="item_place" column="item_place" />
+		<result property="item_place_name" column="item_place_name" />
 		<result property="item_place_address" column="item_place_address" />
 		<result property="item_placeX" column="item_placeX" />
 		<result property="item_placeY" column="item_placeY" />
@@ -75,6 +76,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_name,
 		item_place_address,
 		item_placeX,
 		item_placeY,
@@ -186,6 +188,7 @@
 		item_category,
 		item_price,
 		item_place,
+		item_place_name,
 		item_place_address,
 		item_placeX,
 		item_placeY,

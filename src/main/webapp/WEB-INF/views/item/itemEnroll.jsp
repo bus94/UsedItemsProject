@@ -55,7 +55,8 @@
 								<div id="input_address">
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
-										name="item_place" id="item_place" placeholder="장소" readonly />
+										name="place_name" id="place_name" placeholder="장소" readonly />
+									<input type="hidden" name="item_place" id="item_place"> 
 									<input type="hidden" name="addressX" id="addressX"> <input
 										type="hidden" name="addressY" id="addressY">
 									<button type="button" id="selectPlaceButton"
@@ -164,6 +165,7 @@
 	        const addressXInput = document.getElementById('addressX');
 	        const addressYInput = document.getElementById('addressY');
 	        const confirmPlaceButton = document.getElementById('confirmPlace');
+	        const place_nameInput=document.getElementById('place_name');
 	        let map; // 지도 객체
 	        let markers = []; // 마커 배열
 	        let selectedMarker = null;
@@ -227,6 +229,7 @@
 	                                    selectedMarker = null;
 	                                    selectedLatLng = null;
 	                                    selectedAddress = null;
+	                                    selectedName = null;
 	                                    confirmPlaceButton.disabled = true;
 	                                } else {
 	                                    // 새로운 마커를 선택한 경우
@@ -238,6 +241,7 @@
 	                                    selectedMarker = marker;
 
 	                                    selectedLatLng = marker.getPosition();
+	                                    selectedName = location.name;
 	                                    geocoder.coord2Address(selectedLatLng.getLng(), selectedLatLng.getLat(), function (result, status) {
 	                                        if (status === kakao.maps.services.Status.OK) {
 	                                            selectedAddress = result[0].address.address_name;
@@ -281,6 +285,7 @@
 	        confirmPlaceButton.addEventListener('click', () => {
 	            if (selectedLatLng && selectedAddress) {
 	                itemPlaceInput.value = selectedAddress;
+	                place_nameInput.value=selectedName;
 	                addressXInput.value = selectedLatLng.getLat();
 	                addressYInput.value = selectedLatLng.getLng();
 	                placeModal.hide(); // 모달 닫기

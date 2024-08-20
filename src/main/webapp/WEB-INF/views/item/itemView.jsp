@@ -111,7 +111,7 @@
 						<div id="miniMapContainer"></div>
 						<p class="address_txt">
 							희망거래장소: <span id="mapPreviewText"
-								style="text-decoration: underline;">${item.item_place_address}</span>
+								style="text-decoration: underline;">${item.item_place_name}</span>
 						</p>
 					</div>
 				</div>

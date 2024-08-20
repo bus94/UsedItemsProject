@@ -27,7 +27,7 @@ public class ItemEnrollController {
 
 	@RequestMapping("/item/itemEnrollOK.do")
 	public String itemEnroll(Model model, HttpSession session, String item_title, String item_content,
-			String item_category, int item_price, String item_place, String addressX, String addressY,
+			String item_category, int item_price, String item_place, String addressX, String addressY, String place_name,
 			MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb) {
 		System.out.println("itemEnroll() 실행");
 
@@ -87,6 +87,7 @@ public class ItemEnrollController {
 			enrollItemInfo.setItem_category(item_category);
 			enrollItemInfo.setItem_price(item_price);
 			enrollItemInfo.setItem_place(parseAddress(item_place));
+			enrollItemInfo.setItem_place_name(place_name);
 			enrollItemInfo.setItem_place_address(item_place);
 			enrollItemInfo.setItem_placeX(addressX);
 			enrollItemInfo.setItem_placeY(addressY);
