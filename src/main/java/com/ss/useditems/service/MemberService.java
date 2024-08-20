@@ -154,6 +154,8 @@ public class MemberService {
 		System.out.println("soldItem: " + soldItem.size());
 		System.out.println("boughtItem: " + boughtItem.size());
 		
+		System.out.println("soldItem 내용: " + soldItem);
+		
 		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
 		//result.put("itemList", itemList);
 		result.put("ondealItem", ondealItem);
