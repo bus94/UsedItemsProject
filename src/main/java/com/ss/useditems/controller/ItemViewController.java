@@ -141,8 +141,10 @@ public class ItemViewController {
 		ReplyDTO dto = new ReplyDTO();
 		dto.setRepl_item(itemNo);
 		dto.setRepl_content(content);
+		dto.setRepl_candidate(loginMember.getAcc_index());
 		dto.setRepl_nickname(loginMember.getAcc_nickname());
-
+		//System.out.println("댓글 입력 전 dto:" + dto);
+		
 		int result = service.saveReply(dto);
 		if (result > 0) {
 			model.addAttribute("msg", "리플이 등록되었습니다.");
@@ -162,10 +164,12 @@ public class ItemViewController {
 	@RequestMapping("/itemView/replyDel")
 	public String deleteReply(Model model, int replyNo, int itemNo) {
 		System.out.println("deleteReply() 실행");
-		System.out.println(replyNo + "+" + itemNo);
+		System.out.println("reply_index: " + replyNo + " item_index: " + itemNo);
 		Map<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("replyNo", replyNo);
+		hmap.put("itemNo", itemNo);
 		int result = service.deleteReply(hmap);
+		System.out.println("deleteReply() 결과 " + result);
 		if (result > 0) {
 			model.addAttribute("msg", "댓글이 삭제되었습니다");
 		} else {

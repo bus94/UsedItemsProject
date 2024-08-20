@@ -28,6 +28,10 @@ public interface ItemViewMapper {
 
 	int deleteReply(Map<String, Integer> hmap);
 
+	int checkChatRoom(Map<String, Integer> hmap);
+	
+	int updateItemOnsale(Map<String, Integer> hmap);
+	
 	int updateReply(ReplyDTO dto);
 
 	List<ItemInfoDTO> selectByItemSeller(HashMap<String, Integer> map);
@@ -39,6 +43,8 @@ public interface ItemViewMapper {
 	void removeInterest(Map<String, Integer> map);
 
 	int deleteItem(int item_index);
+
+
 
 
 
