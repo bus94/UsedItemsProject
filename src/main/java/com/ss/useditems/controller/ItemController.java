@@ -8,13 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.ItemService;
@@ -53,6 +51,19 @@ public class ItemController {
 			map.put("searchValue", searchValue);
 			map.put("searchType", searchType);
 			map.put("categoryList", categoryList);
+			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+			System.out.println("loginMember: " + loginMember);
+			String loginMemberAddr = null;
+			String[] searchAddress = null;
+			if (loginMember != null) {
+				System.out.println("loginMember.getAcc_address(): " + loginMember.getAcc_address());
+
+				loginMemberAddr = parseAddress(loginMember.getAcc_address());
+				searchAddress = searchAddress(loginMember.getAcc_addressX(), loginMember.getAcc_addressY());
+				System.out.println("loginMemberAddr: " + loginMemberAddr);
+			}
+			map.put("address", loginMemberAddr);
+			map.put("searchAddressList", searchAddress);
 
 			System.out.println("map: " + map);
 			System.out.println("searchValue: " + searchValue);
@@ -67,16 +78,18 @@ public class ItemController {
 				// searchType에 따른 switch문
 				switch (searchType) {
 				// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
-				case "nearPlace":
-					System.out.println("searchType = nearPlace 일 때");
-					pageInfo = service.selectByNearPlace(currentPage_, map);
-					break;
+				/*
+				 * // 우리 동네 case "nearPlace": System.out.println("searchType = nearPlace 일 때");
+				 * pageInfo = service.selectByNearPlace(currentPage_, map); break;
+				 */
 
+				// 조회순
 				case "popular":
 					System.out.println("searchType = popular 일 때");
 					pageInfo = service.selectByPopular(currentPage_, map);
 					break;
 
+				// 매너등급순
 				case "bestSeller":
 					System.out.println("searchType = bestSeller 일 때");
 					pageInfo = service.selectByBestSeller(currentPage_, map);
@@ -125,6 +138,11 @@ public class ItemController {
 		return "item/itemList";
 	}
 
+	// 근처 지역 주소 반환 리스트 메서드
+	private String[] searchAddress(String acc_addressX, String acc_addressY) {
+		return null;
+	}
+
 	@RequestMapping("/item/itemEnroll.do")
 	public String itemEnroll(Model model) {
 		System.out.println("itemEnroll 페이지");
@@ -142,15 +160,16 @@ public class ItemController {
 			}
 			int accIndex = loginMember.getAcc_index();
 			int currentPage_ = Integer.parseInt(currentPage);
-			
+
 			PageInfo pageInfo = service.interestItem(currentPage_, accIndex);
 			List<ItemInfoDTO> interestitemList = pageInfo.getDtoContainerInfo();
 			String filePath;
 			for (int i = 0; i < interestitemList.size(); i++) {
-				filePath = interestitemList.get(i).getItem_seller() + "/item_" + interestitemList.get(i).getItem_index() + "/";
+				filePath = interestitemList.get(i).getItem_seller() + "/item_" + interestitemList.get(i).getItem_index()
+						+ "/";
 				interestitemList.get(i).setItem_thumbPath(filePath + interestitemList.get(i).getShow_thumb());
 			}
-			
+
 			System.out.println("controller  : " + interestitemList);
 			model.addAttribute("interestitemList", interestitemList);
 			model.addAttribute("pageInfo", pageInfo);
@@ -186,5 +205,38 @@ public class ItemController {
 
 		return "common/test";
 
+	}
+
+	public static String parseAddress(String fullAddress) {
+		String result = "";// [0]: city, [1]: district
+
+		if (fullAddress == null || fullAddress.isEmpty()) {
+			return result;
+		}
+
+		String[] addressParts = fullAddress.split(" ");
+
+		if (addressParts.length > 1) {
+			if (addressParts[0].equals("서울") || addressParts[0].equals("인천")) {
+				// 서울특별시 또는 인천광역시의 경우
+				result += addressParts[0]; // 서울, 인천
+				result += " " + addressParts[1]; // 서초구, 서구 등
+			} else if (addressParts[0].equals("경기")) {
+				// 경기도의 경우
+				if (addressParts.length > 2) {
+					result = addressParts[0] + " " + addressParts[1]; // 경기 수원시
+					if (addressParts[2].endsWith("구") || addressParts[2].endsWith("군")) {
+						result += " " + addressParts[2]; // 팔달구 등
+					}
+				}
+			} else {
+				// 그 외 다른 경우
+				result = addressParts[0]; // 시
+				result = addressParts[1]; // 구
+			}
+		}
+		System.out.println("주소변환 result: " + result);
+
+		return result;
 	}
 }

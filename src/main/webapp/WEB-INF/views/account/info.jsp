@@ -74,7 +74,7 @@
 					<div class="acc_level d-flex mt-3">
 						<div class="d-flex">
 							<p class="public_title container">
-								<span>매</span><span>너</span><span>단</span><span>계</span>
+								<span>매</span><span>너</span><span>등</span><span>급</span>
 							</p>
 							<p class="public_text ms-3">${account_info.acc_level}</p>
 						</div>
