@@ -20,9 +20,6 @@
 			<form id="loginForm" action="${path}/account/signupOK.do"
 				method="post">
 				<div class="loginTitle">
-					<%-- <img class="loginLogo mb-1" alt="로고"
-						src="${path}/resources/img/logo.png"> --%>
-					<!-- <h2 class="signup-title">회&nbsp;원&nbsp;가&nbsp;입</h2> -->
 					<h1 class="signup-title mb-2">JOIN</h1>
 				</div>
 				<div class="login_input">
@@ -58,7 +55,7 @@
 					</div>
 					<div class="login_inputBirth">
 						<input type="text" class="form-control login_inputStyle"
-							name="birthDate" id="birthDate"
+							name="birthDate" id="birthDate" pattern="[0-9]+"
 							placeholder="생년월일(8자리) ex.20010203" required />
 					</div>
 					<div class="searchAddrDiv">
@@ -73,7 +70,7 @@
 					</div>
 					<div class="login_inputPhone">
 						<input type="text" class="form-control login_inputStyle"
-							name="phone" id="phone"
+							name="phone" id="phone" pattern="[0-9]+"
 							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" required />
 					</div>
 
@@ -249,7 +246,6 @@
 				        }).embed(document.getElementById('postcode'));
 				    });
 			}
-
 		</script>
 	</c:if>
 </section>
