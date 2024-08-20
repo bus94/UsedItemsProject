@@ -16,8 +16,8 @@
 					<p>정렬:</p>
 					<select class="selectBox_value" name="searchType">
 						<option value="">===정렬 선택===</option>
-						<option id="searchTypeNearPlace" value="nearPlace"
-							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>우리 동네</option>
+						<%-- <option id="searchTypeNearPlace" value="nearPlace"
+							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>우리 동네</option> --%>
 						<option id="searchTypePopular" value="popular"
 							${searchType != null && searchType == 'popular' ? 'selected' : ''}>조회순</option>
 						<option id="searchTypeBestSeller" value="bestSeller"
