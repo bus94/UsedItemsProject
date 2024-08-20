@@ -186,16 +186,15 @@ public class ChatController {
 	@ResponseBody
 	public int signDeal(@RequestParam String room_index, @RequestParam String room_item) {
 		System.out.println("==chat.signDeal==");
-		System.out.println("Drop chat_room: " + room_index + " sign room_item: " + room_item);
+		System.out.println("Sign chat_room: " + room_index + " sign room_item: " + room_item);
 		
 		int result = -1;
 		try {
-			//result = 
+			result = chatService.signDeal(room_index, room_item);
 			System.out.println("signDealResult: " + result);
 
 		} catch(Exception e) {
 			result = 0;
-			e.printStackTrace();
 		}
 		return result;
 	}
