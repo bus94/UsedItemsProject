@@ -1,0 +1,379 @@
+DROP TABLE SHOWCASE;
+DROP TABLE BLACKLIST;
+DROP TABLE SEARCH;
+DROP TABLE INTEREST;
+DROP TABLE REVIEW;
+DROP TABLE CHAT;
+DROP TABLE CHATROOM;
+DROP TABLE REPLY;
+DROP TABLE ITEM;
+DROP TABLE ACCOUNT;
+drop table transaction_location;
+
+
+DROP SEQUENCE SHOWCASE_SEQ;
+DROP SEQUENCE BLACKLIST_SEQ;
+DROP SEQUENCE SEARCH_SEQ;
+DROP SEQUENCE INTEREST_SEQ;
+DROP SEQUENCE REVIEW_SEQ;
+DROP SEQUENCE CHAT_SEQ;
+DROP SEQUENCE CHATROOM_SEQ;
+DROP SEQUENCE REPLY_SEQ;
+DROP SEQUENCE ITEM_SEQ;
+DROP SEQUENCE ACCOUNT_SEQ;
+drop SEQUENCE location_SEQ;
+------------------------------------------------------
+CREATE SEQUENCE ACCOUNT_SEQ;
+CREATE TABLE ACCOUNT (
+	acc_index	NUMBER		PRIMARY KEY,
+	acc_id	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_password	VARCHAR2(100)		NOT NULL,
+	acc_birthDate	DATE		NOT NULL,
+	acc_phone	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_name	VARCHAR2(100)		NOT NULL,
+	acc_address	VARCHAR2(300)		NOT NULL,
+	acc_addressDetail VARCHAR2(300)		NULL,
+	acc_addressX	VARCHAR2(100)		NULL,
+	acc_addressY	VARCHAR2(100)		NULL,
+	acc_nickname	VARCHAR2(100)		NOT NULL UNIQUE,
+	acc_profile	VARCHAR2(500)		NULL,
+	acc_score	NUMBER	DEFAULT 50	NOT NULL, 
+	acc_count	NUMBER	DEFAULT 0	NOT NULL,
+	acc_lastMessage     NUMBER	DEFAULT 0	NOT NULL,
+	acc_status	VARCHAR2(100)		NOT NULL CHECK (acc_status IN('admin', 'active', 'inactive')),
+    acc_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+INSERT INTO ACCOUNT VALUES(0, 'admin', '1234', TO_DATE('19990131', 'YYYY-MM-DD'), '01051050000', '관리자', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '스탶입니다', null, 100, 1, default, 'admin', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test1', 'pw_test', TO_DATE('19980808', 'YYYY-MM-DD'), '01051056051', '테스터1', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명1', null, 8, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', '테스터2', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명2', null, 4, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명3', null, 54, default, default, 'inactive', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명4', null, default, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056055', '테스터5', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명5', null, 52, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test6', '6', TO_DATE('19960606', 'YYYY-MM-DD'), '01012346666', '이름6', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명6', null, default, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test7', '7', TO_DATE('19970707', 'YYYY-MM-DD'), '01012347777', '이름7', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명7', null, 30, default, default, 'active', TO_DATE('20240727', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test8', '8', TO_DATE('19980808', 'YYYY-MM-DD'), '01012348888', '이름8', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명8', null, 38, default, default, 'active', TO_DATE('20240728', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test9', '9', TO_DATE('19990919', 'YYYY-MM-DD'), '01012349999', '이름9', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명9', null, default, default, default, 'active', TO_DATE('20240728', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test10', '10', TO_DATE('20001010', 'YYYY-MM-DD'), '01010101111', '이름10', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명10', null, default, default, default, 'active', TO_DATE('20240728', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test11', '11', TO_DATE('20001111', 'YYYY-MM-DD'), '01011119999', '이름11', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명11', null, default, default, default, 'active', TO_DATE('20240728', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test12', '12', TO_DATE('19971212', 'YYYY-MM-DD'), '01012125432', '이름12', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명12', null, default, default, default, 'active', TO_DATE('20240729', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test13', '13', TO_DATE('19971212', 'YYYY-MM-DD'), '01013138888', '이름13', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명13', null, default, default, default, 'active', TO_DATE('20240729', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test14', '14', TO_DATE('19940414', 'YYYY-MM-DD'), '01041415678', '이름14', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명14', null, default, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test15', '15', TO_DATE('19950515', 'YYYY-MM-DD'), '01055551111', '이름15', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명15', null, default, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '1', '1', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345678', '이름16', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명16', null, default, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '3', '3', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345656', '이름16', '경기 남양주시 도농로 43', null, 37.6095545557145, 127.1602763, '별명1616', null, default, default, default, 'active', sysdate);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE ITEM_SEQ;
+CREATE TABLE ITEM (
+	item_index	NUMBER		PRIMARY KEY,
+	item_seller	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	item_title	VARCHAR2(300)		NOT NULL,
+	item_content	VARCHAR2(500)		NOT NULL,
+	item_category	VARCHAR2(100)	NOT NULL CHECK (item_category IN('상의', '하의', '신발', '기타의류', '지갑', '피규어', '전자기기', '가구', '식품', '기타')),
+	item_price  NUMBER        NOT NULL,
+	item_place	VARCHAR2(100)	NULL,
+	item_place_address VARCHAR2(100) NULL,	
+	item_placeX VARCHAR2(100)	NULL,
+	item_placeY VARCHAR2(100)	NULL,
+	item_status	VARCHAR2(100)	NOT NULL CHECK (item_status IN('onsale', 'ondeal', 'donedeal', 'drop')),
+	item_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL,
+	item_click	NUMBER	DEFAULT 0	NOT NULL,
+	item_interest	NUMBER	DEFAULT 0	NOT NULL,
+	item_offDate	DATE		NULL,
+	item_buyer	NUMBER		REFERENCES ACCOUNT(acc_index)
+);
+
+------------------------------------------------------
+CREATE SEQUENCE SHOWCASE_SEQ;
+CREATE TABLE SHOWCASE (
+	show_index	    NUMBER		PRIMARY KEY,
+	show_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	show_thumb	VARCHAR2(500)	NOT	NULL,
+	show_img1	VARCHAR2(500)		NULL,
+    show_img2	VARCHAR2(500)		NULL,
+	show_img3	VARCHAR2(500)		NULL,
+	show_img4	VARCHAR2(500)		NULL,
+	show_img5	VARCHAR2(500)		NULL,
+	show_latDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '식품', 1000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 11:10:30', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', '전자기기', 100, '인천광역시', null, null, null, 'onsale',TO_DATE('2024-07-26 11:13:50', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item2.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여3', '내용_테스트2', '상의', 2000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 12:09:45', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item3.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 1000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 12:10:50', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item4.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '식품', 2000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 13:00:55', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item5.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여6', '내용_테스트5', '하의', 100, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 13:43:20', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item2.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '아이스크림팔아여', '내용_테스트', '식품', 1000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 13:55:55', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여7', '내용_테스트6', '신발', 1000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 14:05:30', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '안뜯은과자팝니다', '과자과자', '상의', 100, '송파구', null, null, null, 'drop',TO_DATE('2024-07-26 14:30:26', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('20240726', 'YYYY-MM-DD'),1);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '안뜯은과자팝니다 엄청 많아요', '과자과자과자', '식품', 100, '송파구', null, null, null, 'donedeal',TO_DATE('2024-07-26 14:58:10', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-07-26 20:45:10', 'YYYY-MM-DD HH24:MI:SS'),1);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item2.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '안뜯은과자팝니다2222', '과자과자과자', '기타의류', 100, '송파구', null, null, null, 'donedeal',TO_DATE('2024-07-26 15:01:20', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-07-26 21:23:20', 'YYYY-MM-DD HH24:MI:SS'),2);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item3.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 3, '뜯다만과자팝니다', '쪼금뜯었어요', '식품', 100, '송파구', null, null, null, 'ondeal',TO_DATE('2024-07-26 15:06:18', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item4.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '피규어', 2200, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 15:18:06', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item5.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여', '내용_테스트', '식품', 3100, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 15:41:25', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item2.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 5, '플스 새거 팝니다', '1999년산', '전자기기', 2000, '강남구', null, null, null, 'donedeal',TO_DATE('2024-07-26 16:02:50', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-07-27 20:58:10', 'YYYY-MM-DD HH24:MI:SS'),9);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 1, '아이스크림팔아여2', '내용_테스트1', '전자기기', 1000000, '인천 미주홀구', null, null, null, 'onsale',TO_DATE('2024-07-26 16:53:16', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item1.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 4, '아이스크림팔아여3', '내용_테스트2', '기타의류', 100, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 17:26:26', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item3.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '아이스크림팔아여4', '내용_테스트3', '식품', 1400, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 19:15:50', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item5.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 0, '아이스크림팔아여5', '내용_테스트4', '전자기기', 1500, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 19:35:45', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item4.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '과자팔아여6', '내용_테스트5', '식품', 210000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 19:45:15', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item5.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '팀장님팔아여7', '내용_테스트6', '기타', 100000000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-26 19:47:13', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item2.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '전자기기', 320000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-27 09:49:52', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item3.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '닌텐도 동물의숲', '내용_테스트6', '기타', 220000, '강남구', null, null, null, 'onsale',TO_DATE('2024-07-27 10:39:22', 'YYYY-MM-DD HH24:MI:SS'),default,default,null,null);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item5.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 7, '감자팔아요', '감자감자', '식품', 1000, '용산구', null, null, null, 'donedeal',TO_DATE('2024-07-27 10:56:42', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-07-27 16:58:48', 'YYYY-MM-DD HH24:MI:SS'),8);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_item4.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 7, '깨끗한감자팔아요', '호박감자', '식품', 100, '용산구', null, null, null, 'donedeal',TO_DATE('2024-07-27 11:23:28', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-07-28 14:55:10', 'YYYY-MM-DD HH24:MI:SS'),5);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_study.jpg', '7.jpg', null, null, null, null);
+INSERT INTO ITEM VALUES(ITEM_SEQ.NEXTVAL, 2, '문고리팔아요', '문고리', '가구', 3000, '인천 남동구', null, null, null, 'donedeal',TO_DATE('2024-08-12 12:45:58', 'YYYY-MM-DD HH24:MI:SS'),default,default,TO_DATE('2024-08-16 13:16:10', 'YYYY-MM-DD HH24:MI:SS'),3);
+INSERT INTO SHOWCASE(show_index, show_item, show_thumb, show_img1, show_img2, show_img3, show_img4, show_img5) VALUES (SHOWCASE_SEQ.NEXTVAL, ITEM_SEQ.CURRVAL, 'thumbnail_16.jpg', '7.jpg', '14.jpg', '17.jpg', null, null);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE REPLY_SEQ;
+CREATE TABLE REPLY (
+	repl_index	NUMBER		PRIMARY KEY,
+	repl_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	repl_candidate	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+    repl_nickName VARCHAR2(100) REFERENCES ACCOUNT(acc_nickname) NOT NULL,
+	repl_content	VARCHAR2(300)		NOT NULL,
+	repl_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+		
+);
+
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 3, 0,'스탶입니다', '댓글_테스트',TO_DATE('2024-07-26 09:49:52', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 4, 0,'스탶입니다', '댓글_테스트',TO_DATE('2024-07-26 11:32:23', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 1, 1, '별명1','제가 살래요',TO_DATE('2024-07-26 12:35:46', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 2, 3, '별명3','제가 살래요',TO_DATE('2024-07-26 13:15:26', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO REPLY VALUES (REPLY_SEQ.NEXTVAL, 12, 16, '별명16','채팅룸테스트', sysdate);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE CHATROOM_SEQ;
+CREATE TABLE CHATROOM (
+	room_index	NUMBER		PRIMARY KEY,
+	room_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	room_reply	NUMBER		NOT NULL,
+	room_openDate	DATE	DEFAULT SYSDATE	NOT NULL
+	
+	constraint CONS_DEL_CASCASDE_REPLY FOREIGN KEY(room_reply) REFERENCES CHATROOM(repl_index) ON DELETE CASCADE
+	
+);
+
+INSERT INTO CHATROOM VALUES (CHATROOM_SEQ.NEXTVAL, 12, 5, sysdate);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE CHAT_SEQ;
+CREATE TABLE CHAT (
+	chat_index	NUMBER		PRIMARY KEY,
+	chat_room	NUMBER		NOT NULL,
+	chat_writer	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	chat_content	VARCHAR2(300)		NOT NULL,
+	chat_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL,
+    
+    constraint CONS_DEL_CASCASDE_CHATROOM FOREIGN KEY(chat_room) REFERENCES CHATROOM(room_index) ON DELETE CASCADE
+);
+
+INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, 1, 3,'팝니다!!', sysdate);
+INSERT INTO CHAT VALUES (CHAT_SEQ.NEXTVAL, 1, 16,'언제 만나요?', sysdate);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE REVIEW_SEQ;
+CREATE TABLE REVIEW (
+	review_index	NUMBER		PRIMARY KEY,
+	review_item	    NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	review_writer	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	review_score	NUMBER		NOT NULL ,--제약조건 0~5?
+	review_content	VARCHAR2(300)		NOT NULL,
+	review_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+INSERT INTO REVIEW VALUES (0, 3, 0, 5,'리뷰_테스트', TO_DATE('2024-07-26 11:11:11', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO REVIEW VALUES (REVIEW_SEQ.NEXTVAL, 3, 1, 1,'감사', TO_DATE('2024-07-26 12:12:12', 'YYYY-MM-DD HH24:MI:SS'));
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE INTEREST_SEQ;
+CREATE TABLE INTEREST (
+	int_index	NUMBER		PRIMARY KEY,
+	int_item	NUMBER		REFERENCES ITEM(item_index) NOT NULL,
+	int_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL
+);
+
+--CREATE OR REPLACE TRIGGER update_item_interest_after_insert
+--AFTER INSERT ON interest
+--FOR EACH ROW
+--BEGIN
+--    UPDATE item
+--    SET item_interest = item_interest + 1
+--    WHERE item_index = :NEW.int_item;
+--END;
+
+
+--CREATE OR REPLACE TRIGGER update_item_interest_after_delete
+--AFTER DELETE ON interest
+--FOR EACH ROW
+--BEGIN
+--    UPDATE item
+--    SET item_interest = item_interest - 1
+--    WHERE item_index = :OLD.int_item;
+--END;
+
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 3, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 2);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 5);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 6);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 7);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 8);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 10);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 4, 13);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 7, 4);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 8, 4);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 10, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 10, 4);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 10, 6);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 10, 8);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 10, 10);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 11, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 2);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 5);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 6);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 8);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 10);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 13, 11);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 5);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 6);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 8);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 9);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 12);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 15, 14);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 24, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 24, 2);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 24, 5);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 0);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 1);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 6);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 8);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 11);
+INSERT INTO INTEREST VALUES (INTEREST_SEQ.NEXTVAL, 25, 12);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE SEARCH_SEQ;
+CREATE TABLE SEARCH (
+	sear_index	NUMBER		PRIMARY KEY,
+	sear_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	sear_word	VARCHAR2(100)		NOT NULL,
+	sear_date	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+COMMIT;
+
+------------------------------------------------------
+CREATE SEQUENCE BLACKLIST_SEQ;
+CREATE TABLE BLACKLIST (
+	black_index	    NUMBER		PRIMARY KEY,
+	black_subject	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+	black_object	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+    black_content   VARCHAR2(300)   NOT NULL,
+	black_enrollDate	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼', TO_DATE('2024-07-26 08:12:08', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼2', TO_DATE('2024-07-26 08:43:21', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼22', TO_DATE('2024-07-26 09:02:02', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼4', TO_DATE('2024-07-26 10:31:15', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼5', TO_DATE('2024-07-26 10:58:48', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼6', TO_DATE('2024-07-26 11:01:15', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼7', TO_DATE('2024-07-26 11:04:16', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 1, 2, 'id_test3는 사기꾼8', TO_DATE('2024-07-26 12:45:55', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, '맞고소', TO_DATE('2024-07-26 16:19:45', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, '맞고소222', TO_DATE('2024-07-26 16:45:12', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, '맞고소222222', TO_DATE('2024-07-26 17:12:08', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, '별명2 나쁜넘', TO_DATE('2024-07-26 17:42:23', 'YYYY-MM-DD HH24:MI:SS'));
+	INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 2, 1, '별명2 사기꾼', TO_DATE('2024-07-26 18:26:59', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 4, 8, '주소8 신고합니다', TO_DATE('2024-07-27 20:42:19', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 10, 5, '신고신고신고', TO_DATE('2024-07-27 21:08:08', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 7, 5, '신고2신고2신고2', TO_DATE('2024-07-27 21:14:14', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 8, 4, 'ㅇㅇㅇㅇㅇ', TO_DATE('2024-07-27 21:26:59', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 10, 6, '으아아ㅇㅇㅁㅇ', TO_DATE('2024-07-27 21:46:29', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 9, 1, '내 양말 내놔', TO_DATE('2024-07-28 08:15:01', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 11, 1, '다 녹은 아이스크림', TO_DATE('2024-07-28 08:29:16', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 6, 7, 'ㅎㅎㅎㅎ신고', TO_DATE('2024-07-28 08:49:57', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 5, 7, '싹이 난 감자', TO_DATE('2024-07-28 09:11:11', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 10, 7, '썩은 무', TO_DATE('2024-07-28 09:42:19', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 9, 8, '없는 주소 8', TO_DATE('2024-07-28 10:00:00', 'YYYY-MM-DD HH24:MI:SS'));
+    INSERT INTO BLACKLIST VALUES (BLACKLIST_SEQ.NEXTVAL, 8, 7, '감자가 아니라 고구마?', TO_DATE('2024-07-28 10:12:56', 'YYYY-MM-DD HH24:MI:SS'));
+
+        
+COMMIT;
+
+-----------------------------------------------------------------------------------
+
+CREATE SEQUENCE location_SEQ;
+CREATE TABLE transaction_location (
+    id INT PRIMARY KEY,
+    address VARCHAR(255) NOT NULL,
+    addressx varchar(255) not null,
+    addressy varchar(255) not null
+);
+
+insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1330-3','37.4936498','127.0280287');
+insert into transaction_location values(location_SEQ.nextval,'서울 서초구 서초동 1374','37.493587','127.0295347');
+insert into transaction_location values(location_SEQ.nextval,'경기 남양주시 다산동 4435','37.613017','127.1602763');
+insert into transaction_location values(location_SEQ.nextval,'서울 강남구 강남대로 352','37.49437','127.0297854');
+
+
+commit;
+
+select * from account;
+select * from item;
+select * from showcase;
+select * from reply;
+select * from chatroom;
+select * from chat;
+select * from review;
+select * from interest;
+select * from blacklist;
+SELECT to_char(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate FROM item;
+select * from transaction_location;
+
+COMMIT;

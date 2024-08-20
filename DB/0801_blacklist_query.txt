@@ -54,3 +54,31 @@ where branch.black_index >= 1
 order by black_index desc;
 
 --------------------------------------------------
+
+--서브쿼리 신고자 별명 (subj)
+select 
+sblack.black_index,
+acc.acc_nickname subject_nickname
+from BLACKLIST sblack 
+join ACCOUNT acc on (sblack.black_subject = acc.acc_index);
+
+--서브쿼리 피신고자 별명(obj)
+select 
+oblack.black_index,
+acc.acc_nickname object_nickname
+from BLACKLIST oblack 
+join ACCOUNT acc on (oblack.black_object = acc.acc_index);
+
+--서브쿼리 신고자별명까지 합침(joinsub)
+select 
+*
+from BLACKLIST base
+join 
+(select 
+sblack.black_index,
+acc.acc_nickname subject_nickname
+from BLACKLIST sblack 
+join ACCOUNT acc on (sblack.black_subject = acc.acc_index)) subj 
+on (base.black_index = subj.black_index);
+
+--서브쿼리 신고자별명+피신고자별명까지 합침

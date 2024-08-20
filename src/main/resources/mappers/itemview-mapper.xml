@@ -115,6 +115,7 @@
 		SELECT * FROM reply 
 		left join account on repl_candidate=acc_index	<!-- 정일 추가 0813 프로필 사진 -->
 		WHERE repl_item = #{item_index}
+		order by repl_index desc
 	</select>
 
 	<update id="incrementViews">
@@ -130,10 +131,23 @@
 		interest where int_item = #{item_index}
 	</select>
 
+	<select id="checkChatRoom" parameterType="map" resultType="int">
+		select count(*) from reply
+		join chatroom on repl_index = room_reply
+		where repl_index = ${replyNo}
+	</select>
+
 	<delete id="deleteReply" parameterType="map">
-		<if test="replyNo != null">delete from reply where repl_index = ${replyNo}</if>
-		<if test="itemNo != null">delete from reply where item_index = ${itemNo}</if>
+		delete from reply 
+		where repl_index = ${replyNo}
+		<!-- <if test="itemNo != null">delete from reply where item_index = ${itemNo}</if> -->
 	</delete>
+	
+	<update id="updateItemOnsale" parameterType="map">
+		update ITEM set
+		item_status='onsale' where item_index=#{itemNo}
+	</update>
+
 
 	<update id="updateReply" parameterType="ReplyDTO">
 		UPDATE reply
