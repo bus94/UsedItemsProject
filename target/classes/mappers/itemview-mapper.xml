@@ -47,7 +47,7 @@
 		<result property="repl_index" column="repl_index" />
 		<result property="repl_item" column="repl_item" />
 		<result property="repl_candidate" column="repl_candidate" />
-		<result property="repl_nickname" column="repl_nickname" />
+		<result property="repl_nickname" column="acc_nickname" />
 		<result property="repl_profile" column="acc_profile" />	<!-- 정일 추가 0813 프로필 사진 -->
 		<result property="repl_content" column="repl_content" />
 		<result property="repl_enrolldate" column="repl_enrolldate" />
@@ -102,10 +102,10 @@
 
 	<insert id="insertReply" parameterType="ReplyDTO">
 		insert into
-		reply(repl_index, repl_item, repl_candidate,repl_nickname,
+		reply(repl_index, repl_item, repl_candidate,
 		repl_content, repl_enrolldate)
 		values(REPLY_SEQ.NEXTVAL, #{repl_item},
-		#{repl_candidate},#{repl_nickname,jdbcType=VARCHAR},
+		#{repl_candidate},
 		#{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
 

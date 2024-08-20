@@ -9,8 +9,8 @@
 
 <footer>
 	<p class="footer_p" align="center">
-		&lt;Copyright 2024. <strong>Safe Market</strong>. All rights
-		reserved.&gt;
+		Copyright 2024. <strong>Safe Market</strong>. All rights
+		reserved.
 	</p>
 	<%-- <button onclick="location.href ='${path}/map/maptest2'">map</button> --%>
 </footer>

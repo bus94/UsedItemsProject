@@ -366,10 +366,11 @@ public class MemberController {
 			} else {
 				
 				String acc_id = loginMember.getAcc_id();
+				
 				result = memberservice.updateNickname(acc_id, nickname_input); //result == 처리된 행의 개수
 					
 				loginMember.setAcc_nickname(nickname_input);
-				System.out.println("수정 후: " + loginMember);
+				//System.out.println("수정 후: " + loginMember);
 				
 				session.setAttribute("loginMember", loginMember);
 			}
