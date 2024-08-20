@@ -17,14 +17,11 @@
 					<select class="selectBox_value" name="searchType">
 						<option value="">===정렬 선택===</option>
 						<option id="searchTypeNearPlace" value="nearPlace"
-							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>가까운
-							순</option>
+							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>우리 동네</option>
 						<option id="searchTypePopular" value="popular"
-							${searchType != null && searchType == 'popular' ? 'selected' : ''}>인기많은
-							순</option>
+							${searchType != null && searchType == 'popular' ? 'selected' : ''}>조회순</option>
 						<option id="searchTypeBestSeller" value="bestSeller"
-							${searchType != null && searchType == 'bestSeller' ? 'selected' : ''}>거래가
-							많은 판매자 순</option>
+							${searchType != null && searchType == 'bestSeller' ? 'selected' : ''}>매너등급순</option>
 					</select>
 					<p>필터:</p>
 					<div class="dropdown dropdown_checkBox">
