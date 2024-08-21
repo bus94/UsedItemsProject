@@ -25,7 +25,7 @@
     <script
         src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2acf57d0e13428d5da0dbad0cf9d2061&libraries=services"></script>
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
