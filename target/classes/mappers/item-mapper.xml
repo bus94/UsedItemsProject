@@ -19,10 +19,12 @@
 		INTO ITEM
 		VALUES(ITEM_SEQ.NEXTVAL, #{item_seller},
 		#{item_title},
-		#{item_content}, #{item_category}, #{item_price},#{item_place_name},
-		#{item_place},#{item_place_address}, #{item_placeX}, #{item_placeY},
+		#{item_content}, #{item_category}, #{item_price},
+		#{item_place}, #{item_place_name}, #{item_place_address},
+		#{item_placeX}, #{item_placeY},
 		'onsale', sysdate,
-		default, default, null, null)
+		default, default,
+		null, null)
 		INTO
 		SHOWCASE(show_index,
 		show_item,
@@ -63,6 +65,7 @@
 		)
 		SELECT * FROM DUAL
 	</insert>
+	
 	<update id="updateItem" parameterType="itemInfoDTO">
 		<!-- ITEM 테이블 업데이트 -->
 		UPDATE ITEM
@@ -74,21 +77,23 @@
 		item_price =
 		#{item_price},
 		item_place = #{item_place},
-		item_place_name = #{item_place_name},
+		item_place_name =
+		#{item_place_name},
 		item_place_address=#{item_place_address},
 		item_placeX = #{item_placeX},
 		item_placeY = #{item_placeY}
-		WHERE item_index = #{item_index}
-
+		WHERE
+		item_index = #{item_index}
 	</update>
+	
 	<update id="updateShowcaseThumbnail" parameterType="itemInfoDTO">
 		UPDATE
 		SHOWCASE
 		SET
 		show_thumb = #{show_thumb}
-
 		WHERE show_item = #{item_index}
 	</update>
+	
 	<update id="updateShowcaseImg" parameterType="itemInfoDTO">
 		update showcase
 		set
@@ -102,6 +107,4 @@
 		where show_item=#{item_index}
 	</update>
 
-
-	
 </mapper>
