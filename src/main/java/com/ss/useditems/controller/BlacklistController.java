@@ -25,7 +25,7 @@ public class BlacklistController {
 
 	@GetMapping("/complainList.do") // 신고목록 조회
 	public String complainList(Model model, @RequestParam Map<String, String> param) {
-		System.out.println("==blacklist.complainList==");
+		//System.out.println("==blacklist.complainList==");
 //		System.out.println("param: " + param); 7/22수업내용
 
 //----------------------------쿼리 맵 만드는 작업----------------------------		
@@ -56,8 +56,8 @@ public class BlacklistController {
 		} catch (Exception e) {
 		}
 
-		System.out.println("queryMap: " + queryMap);
-		System.out.println("currentpage: " + currentPage);
+		//System.out.println("queryMap: " + queryMap);
+		//System.out.println("currentpage: " + currentPage);
 
 		// pagination 처리는 서비스에서!
 		PageInfo pageInfo = new PageInfo();
@@ -72,7 +72,7 @@ public class BlacklistController {
 
 	@GetMapping("/complain.do") // 신고 등록페이지
 	public String complain(Model model, @RequestParam Map<String, String> param) {
-		System.out.println("==blacklist.complain==");
+		//System.out.println("==blacklist.complain==");
 
 		try {
 			// url에 get타입 parameter로 "object_id"가 넘어오면 맵에 넣어주겠다.
@@ -89,7 +89,7 @@ public class BlacklistController {
 
 	@PostMapping("/complainPro.do") // 신고 등록 처리
 	public String complainPro(Model model, @RequestParam Map<String, String> param) {
-		System.out.println("==blacklist.complainPro==");
+		//System.out.println("==blacklist.complainPro==");
 
 		String subject_id = param.get("subject_id");
 		String object_id = param.get("object_id");
@@ -120,8 +120,8 @@ public class BlacklistController {
 
 	@GetMapping("/complainDel.do") // 신고 삭제 처리
 	public String complainDel(Model model, @RequestParam String black_index) {
-		System.out.println("==blacklist.complainDel==");
-		System.out.println("삭제 요청: " + black_index);
+		//System.out.println("==blacklist.complainDel==");
+		//System.out.println("삭제 요청: " + black_index);
 
 		try {
 			int result = service.delet(black_index);
