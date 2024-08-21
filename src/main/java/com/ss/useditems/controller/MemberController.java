@@ -39,16 +39,16 @@ public class MemberController {
 
 	@RequestMapping("/account/loginOK.do")
 	public String loginOK(Model model, String acc_id, String acc_password, HttpSession session) {
-		System.out.println("loginOK 로그인 확인");
+		//System.out.println("loginOK 로그인 확인");
 
-		System.out.println("입력한 acc_id: " + acc_id);
-		System.out.println("입력한 acc_password: " + acc_password);
+		//System.out.println("입력한 acc_id: " + acc_id);
+		//System.out.println("입력한 acc_password: " + acc_password);
 
 		MemberDTO loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 
-		loginMember = memberservice.selectByMember(loginMember);
+		loginMember = memberservice.loginOK(loginMember);
 		if (loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
 			
@@ -65,14 +65,14 @@ public class MemberController {
 
 	@RequestMapping("/account/logoutOK.do")
 	public String logoutOK(Model model, HttpSession session) {
-		System.out.println("logoutOK");
+		//System.out.println("logoutOK");
 		try {
 			session.removeAttribute("loginMember");
 			session.removeAttribute("checkedLastMessage");
 		} catch (Exception e) {
 		}
 		model.addAttribute("msg", "정상적으로 로그아웃 되었습니다.");
-		model.addAttribute("location", "");
+		model.addAttribute("location", "/");
 		return "common/msg";
 	}
 
@@ -80,8 +80,8 @@ public class MemberController {
 	@RequestMapping("/account/duplicateCheckId.do")
 	@ResponseBody
 	public String duplicateCheckId(Model model, String id) {
-		System.out.println("MemberController의 duplicateCheckId()");
-		System.out.println("입력한 id: " + id);
+		//System.out.println("MemberController의 duplicateCheckId()");
+		//System.out.println("입력한 id: " + id);
 		String result = "";
 		if (memberservice.selectById(id) > 0) {
 			// 사용불가
@@ -90,25 +90,25 @@ public class MemberController {
 			// 사용가능
 			result = "1";
 		}
-		System.out.println("result: " + result);
+		//System.out.println("result: " + result);
 		return result;
 	}
 
 	@RequestMapping("/account/signupOK.do")
 	public String signupOK(Model model, String id, String password, String name, String birthDate, String address,
 			String addressx,String addressy,String detail_address,String phone) throws ParseException {
-		System.out.println("signupOK() 회원가입 실행");
-		System.out.println("id: " + id);
-		System.out.println("password: " + password);
-		System.out.println("name: " + name);
-		System.out.println("birthDate: " + birthDate);
-		System.out.println("address: " + address);
-		System.out.println("phone: " + phone);
+		//System.out.println("signupOK() 회원가입 실행");
+		//System.out.println("id: " + id);
+		//System.out.println("password: " + password);
+		//System.out.println("name: " + name);
+		//System.out.println("birthDate: " + birthDate);
+		//System.out.println("address: " + address);
+		//System.out.println("phone: " + phone);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		System.out.println(detail_address);
-		System.out.println(addressx);
-		System.out.println(addressy);
+		//System.out.println(detail_address);
+		//System.out.println(addressx);
+		//System.out.println(addressy);
 		java.util.Date utilDate = formatter.parse(birthDate);
 
 		Date birthDate_ = new Date(utilDate.getTime());
@@ -124,7 +124,7 @@ public class MemberController {
 		signupMember.setAcc_addressY(addressy);
 		signupMember.setAcc_addressDetail(detail_address);
 		
-		System.out.println("signupMember: " + signupMember);
+		//System.out.println("signupMember: " + signupMember);
 
 		if (memberservice.signup(signupMember) > 0) {
 			model.addAttribute("msg", "회원가입이 완료되었습니다. 로그인 해주세요.");
@@ -133,7 +133,7 @@ public class MemberController {
 			model.addAttribute("msg", "회원가입에 실패하였습니다. 다시 입력해주세요.");
 			model.addAttribute("location", "/account/sign.do");
 		}
-		System.out.println("signupOK() 회원가입 실행 완료");
+		//System.out.println("signupOK() 회원가입 실행 완료");
 
 		return "common/msg";
 	}
@@ -142,7 +142,7 @@ public class MemberController {
 
 	@RequestMapping("/account/my_info.do")
 	public String my_info(Model model, HttpSession session) {
-		System.out.println("==account.my_info==");
+		//System.out.println("==account.my_info==");
 		// 마이페이지 눌렀을 때 실행!!!
 
 		try {
@@ -157,11 +157,11 @@ public class MemberController {
 				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
 				
-				System.out.println("my_info.getAcc_count(): " + my_info.getAcc_count());
-				System.out.println("my_info.getAcc_blackCount(): " + my_info.getAcc_blackCount());
+				//System.out.println("my_info.getAcc_count(): " + my_info.getAcc_count());
+				//System.out.println("my_info.getAcc_blackCount(): " + my_info.getAcc_blackCount());
 				
 				my_info.setAcc_score(my_info.acc_score(my_info.getAcc_count(), my_info.getAcc_blackCount()));
-				System.out.println("my_info.getAcc_score(): " + my_info.getAcc_score());
+				//System.out.println("my_info.getAcc_score(): " + my_info.getAcc_score());
 				
 				// 매너등급
 				if (my_info.getAcc_score() >= 80) {
@@ -175,8 +175,8 @@ public class MemberController {
 				} else {
 					my_info.setAcc_level(1);
 				}
-				System.out.println("my_info.getAcc_score: " + my_info.getAcc_score());
-				System.out.println("my_info.getAcc_level: " + my_info.getAcc_level());
+				//System.out.println("my_info.getAcc_score: " + my_info.getAcc_score());
+				//System.out.println("my_info.getAcc_level: " + my_info.getAcc_level());
 
 				model.addAttribute("loginMember", my_info);
 				int acc_index = my_info.getAcc_index();
@@ -212,14 +212,14 @@ public class MemberController {
 	@RequestMapping("/account/acc_info.do")
 	public String acc_info(Model model, @RequestParam String acc_id) {
 		// 다른사람의 계정을 눌렀을 때 실행!!!
-		System.out.println("==account.acc_info==");
+		//System.out.println("==account.acc_info==");
 
 		//System.out.println("request.acc_id: " + acc_id);
 		try {
 			
 			MemberDTO account_info = new MemberDTO();
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
-			System.out.println("response acc_info: " + account_info);
+			//System.out.println("response acc_info: " + account_info);
 			
 			account_info.setAcc_score(account_info.acc_score(account_info.getAcc_count(), account_info.getAcc_blackCount()));
 			// 매너등급
@@ -235,8 +235,8 @@ public class MemberController {
 				account_info.setAcc_level(1);
 			}
 			
-			System.out.println("account_info.getAcc_score: " + account_info.getAcc_score());
-			System.out.println("account_info.getAcc_level: " + account_info.getAcc_level());
+			//System.out.println("account_info.getAcc_score: " + account_info.getAcc_score());
+			//System.out.println("account_info.getAcc_level: " + account_info.getAcc_level());
 			
 			model.addAttribute("other_info", account_info);
 			int acc_index = account_info.getAcc_index();
@@ -263,7 +263,7 @@ public class MemberController {
 
 	@RequestMapping("/account/alter.do")
 	public String alter(Model model, HttpSession session) { // 정보수정 페이지
-		System.out.println("==account.alter==");
+		//System.out.println("==account.alter==");
 
 		try {
 			if (session.getAttribute("loginMember") == null) {
@@ -283,7 +283,7 @@ public class MemberController {
 	
 	@RequestMapping("/account/setProfile.do")	//프로필이미지 수정
 	public String setProfile(Model model, HttpSession session, @RequestParam MultipartFile profile) { 
-		System.out.println("==account.setProfile==");
+		//System.out.println("==account.setProfile==");
 		
 		try {
 			//넘어온 파일 정보 확인
@@ -322,7 +322,7 @@ public class MemberController {
 	@RequestMapping("/account/setPW.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setPW(Model model, HttpSession session, @RequestParam String currPW_input, @RequestParam String neoPWconf_input) {
-		System.out.println("==account.setPW==");
+		//System.out.println("==account.setPW==");
 		
 		//System.out.println(currPW_input + "////" + neoPWconf_input); //넘어온 값 확인
 		
@@ -338,7 +338,7 @@ public class MemberController {
 				result = memberservice.updatePW(acc_id, neoPWconf_input); //result == 처리된 행의 개수
 				
 				loginMember.setAcc_password(neoPWconf_input);
-				System.out.println("수정 후: " + loginMember);
+				//System.out.println("수정 후: " + loginMember);
 				
 				session.setAttribute("loginMember", loginMember);
 				
@@ -358,7 +358,7 @@ public class MemberController {
 	@RequestMapping("/account/setNickname.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setNickname(Model model, HttpSession session, @RequestParam String nickname_input) {
-		System.out.println("==account.setNickname==");
+		//System.out.println("==account.setNickname==");
 		
 		int result = -1;
 		try {
@@ -391,7 +391,7 @@ public class MemberController {
 	@RequestMapping("/account/setPhone.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setPhone(Model model, HttpSession session, @RequestParam String phone_input) {
-		System.out.println("==account.setPhone==");
+		//System.out.println("==account.setPhone==");
 		
 		int result = -1;
 		try {
@@ -408,7 +408,7 @@ public class MemberController {
 				result = memberservice.updatePhone(acc_id, phone_input); //result == 처리된 행의 개수
 					
 				loginMember.setAcc_phone(phone_input);
-				System.out.println("수정 후: " + loginMember);
+				//System.out.println("수정 후: " + loginMember);
 				
 				session.setAttribute("loginMember", loginMember);
 			}
@@ -424,15 +424,15 @@ public class MemberController {
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, 
 			@RequestParam String address_input, @RequestParam String addressDetail_input,@RequestParam String addressX_input,@RequestParam String addressY_input) {
-		System.out.println("==account.setRedunds==");
+		//System.out.println("==account.setRedunds==");
 		
 		int result = -1;
 		try {
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 //			System.out.println("수정 전: " + loginMember);
 //			System.out.println(birthDate_input);
-			System.out.println(addressX_input);
-			System.out.println(addressY_input);
+			//System.out.println(addressX_input);
+			//System.out.println(addressY_input);
 			//formatter.format(date) : Date -> String
 			//formatter.parse(string) : String -> Date 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -447,7 +447,7 @@ public class MemberController {
 			loginMember.setAcc_address(address_input);
 			loginMember.setAcc_addressDetail(addressDetail_input);
 
-			System.out.println("수정 후: " + loginMember);
+			//System.out.println("수정 후: " + loginMember);
 			
 			session.setAttribute("loginMember", loginMember);
 			
@@ -461,7 +461,7 @@ public class MemberController {
 	
 	@RequestMapping("/withdraw.do")
 	public String withdraw(Model model, HttpSession session, @RequestParam String wd_currPW) {
-		System.out.println("==account.withdraw==");
+		//System.out.println("==account.withdraw==");
 		try {
 			MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
 			String acc_id = my_info.getAcc_id().trim();
@@ -493,15 +493,5 @@ public class MemberController {
 
 	//////////////////////////////////// 정일/////////////////////
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

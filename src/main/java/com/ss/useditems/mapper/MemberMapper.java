@@ -10,7 +10,7 @@ import com.ss.useditems.dto.MemberDTO;
 @Mapper
 public interface MemberMapper {
 
-	MemberDTO selectByMember(MemberDTO loginMember);
+	MemberDTO loginOK(MemberDTO loginMember);
 	
 	MemberDTO selectInfoByAcc_id(String acc_id); //정일_계정 정보(테이블정보 + 피신고)
 

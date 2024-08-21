@@ -19,24 +19,24 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	
-	public MemberDTO selectByMember(MemberDTO loginMember) {
-		System.out.println("MemberService의 selectByMember()");
-		return mapper.selectByMember(loginMember);
+	public MemberDTO loginOK(MemberDTO loginMember) {
+		//System.out.println("MemberService의 selectByMember()");
+		return mapper.loginOK(loginMember);
 	}
 	
 	public int selectById(String id) {
-		System.out.println("MemberService의 selectById()");
+		//System.out.println("MemberService의 selectById()");
 		return mapper.selectById(id);
 	}
 
 	public int signup(MemberDTO signupMember) {
-		System.out.println("MemberService의 signup()");
+		//System.out.println("MemberService의 signup()");
 		return mapper.signup(signupMember);
 	}
 	
 	
 	public MemberDTO selectInfoByAcc_id(String acc_id) {     //정일_계정정보
-		System.out.println("MemberService의 selectInfoByAcc_id()");
+		//System.out.println("MemberService의 selectInfoByAcc_id()");
 		
 		MemberDTO account_info = new MemberDTO();
 		account_info = mapper.selectInfoByAcc_id(acc_id);
@@ -83,7 +83,7 @@ public class MemberService {
 	}
 
 	public int updateNickname(String acc_id, String nickname_input) {	//정일_계정정보수정_별명
-		System.out.println("servece.nick");
+		//System.out.println("service.nick");
 		return mapper.updateNickname(acc_id, nickname_input);
 	}
 
@@ -96,7 +96,7 @@ public class MemberService {
 	}	//정일_계정정보수정_[이름,생년월일,주소]
 	
 	public int withdraw(String acc_id) {	//정일_회원탈퇴
-		System.out.println("service.withdraw: " + acc_id);
+		//System.out.println("service.withdraw: " + acc_id);
 		return mapper.withdraw(acc_id);
 	}
 
@@ -108,10 +108,10 @@ public class MemberService {
 	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { 
 		//정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정
 		//0819 추가 수정
-		System.out.println("service.itemList: " + acc_index);
+		//System.out.println("service.itemList: " + acc_index);
 
 		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
-		System.out.println("service.itemList: " + itemList.size());
+		//System.out.println("service.itemList: " + itemList.size());
 		String filePath;
 		for (int i = 0; i < itemList.size(); i++) {
 			filePath = itemList.get(i).getItem_seller() + "/item_" + itemList.get(i).getItem_index() + "/";
@@ -153,12 +153,11 @@ public class MemberService {
 			}
 		}
 		//System.out.println("response item_info: " + itemList.size());
-		System.out.println("ondealItem: " + ondealItem.size());
-		System.out.println("onsaleItem: " + onsaleItem.size());
-		System.out.println("soldItem: " + soldItem.size());
-		System.out.println("boughtItem: " + boughtItem.size());
+		//System.out.println("ondealItem: " + ondealItem.size());
+		//System.out.println("onsaleItem: " + onsaleItem.size());
+		//System.out.println("soldItem: " + soldItem.size());
+		//System.out.println("boughtItem: " + boughtItem.size());
 		
-		System.out.println("soldItem 내용: " + soldItem);
 		
 		Map<String, List<ItemInfoDTO>> result = new HashMap<String, List<ItemInfoDTO>>();
 		//result.put("itemList", itemList);
@@ -185,11 +184,9 @@ public class MemberService {
 			my_Interests.get(i).setItem_img5Path(filePath + my_Interests.get(i).getShow_img5());
 		}
 
-		System.out.println("my_Interests: " + my_Interests.size());
+		//System.out.println("my_Interests: " + my_Interests.size());
 		return my_Interests;
 	}
-
-
 
 	
 }
