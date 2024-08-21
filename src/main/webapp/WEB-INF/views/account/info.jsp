@@ -34,7 +34,7 @@
 	</c:choose>
 
 
-	<div class="container acc_summary">
+	<div id="acc_summary" class="container">
 		<div id="acc_public" class="acc_inform">
 			<div class="top_container">
 				<div class="container info_box">
@@ -160,17 +160,17 @@
 		</div>
 		<c:if test="${empty ondealItem}">
 			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty">거래중인 물품이 없습니다.</p>
+				<div class="item_info_empty">
+					<p class="notice_empty txt_long text-center">거래중인 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty ondealItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container4">
+					<div id="newItem_container4" class="newItem_container2">
 						<c:forEach var="ondealItem" items="${ondealItem}">
-							<div class="item4">
+							<div id="item4" class="item4 item_info">
 								<a href="${path}/item/itemView?item_index=${ondealItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${ondealItem.item_thumbPath}" alt="..">
@@ -208,16 +208,16 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty onsaleItem}">
-				<div class="item justify-content-center">
-					<p class="notice_empty">판매중인 물품이 없습니다.</p>
+				<div class="item_info_empty">
+					<p class="notice_empty txt_long text-center">판매중인 물품이 없습니다</p>
 				</div>
 		</c:if>
 		<c:if test="${not empty onsaleItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container3">
+					<div id="newItem_container5" class="newItem_container2">
 						<c:forEach var="onsaleItem" items="${onsaleItem}">
-							<div class="item3">
+							<div id="item5" class="item5 item_info">
 								<a href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${onsaleItem.item_thumbPath}" alt="..">
@@ -256,17 +256,17 @@
 		</div>
 		<c:if test="${empty soldItem}">
 			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty">등록한 물품이 없습니다.</p>
+				<div class="item_info_empty">
+					<p class="notice_empty text-center">등록한 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty soldItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container5">
+					<div id="newItem_container6" class="newItem_container2">
 						<c:forEach var="soldItem" items="${soldItem}">
-							<div class="item5">
+							<div id="item6" class="item6 item_info">
 								<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${soldItem.item_thumbPath}" alt="..">
@@ -306,17 +306,17 @@
 		</div>
 		<c:if test="${empty boughtItem}">
 			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty">구매한 물품이 없습니다.</p>
+				<div class="item_info_empty">
+					<p class="notice_empty text-center">구매한 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty boughtItem}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container3">
+					<div id="newItem_container7" class="newItem_container2">
 						<c:forEach var="boughtItem" items="${boughtItem}">
-							<div class="item3">
+							<div id="item7" class="item7 item_info">
 								<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${boughtItem.item_thumbPath}" alt="..">
@@ -358,17 +358,17 @@
 		</div>
 		<c:if test="${empty my_interests}">
 			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty">관심물품이 없습니다.</p>
+				<div class="item_info_empty">
+					<p class="notice_empty text-center">관심물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty my_interests}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
-					<div class="newItem_container3">
+					<div id="newItem_container8" class="newItem_container2">
 						<c:forEach var="my_interests" items="${my_interests}">
-							<div class="item3">
+							<div id="item8" class="item8 item_info">
 								<a href="${path}/item/itemView?item_index=${my_interests.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${my_interests.item_thumbPath}" alt="..">
@@ -410,7 +410,7 @@
 		<c:if test="${empty ondealItem}">
 			<div class="item_wrapper">
 				<div class="item justify-content-center">
-					<p class="notice_empty">거래중인 물품이 없습니다.</p>
+					<p class="notice_empty text-center">거래중인 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
@@ -463,7 +463,7 @@
 		<c:if test="${empty onsaleItem}">
 			<div class="item_wrapper">
 				<div class="item justify-content-center">
-					<p class="notice_empty">판매중인 물품이 없습니다.</p>
+					<p class="notice_empty text-center">판매중인 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
@@ -524,7 +524,7 @@
 		<c:if test="${empty soldItem}">
 			<div class="item_wrapper">
 				<div class="item justify-content-center">
-					<p class="notice_empty">등록한 물품이 없습니다.</p>
+					<p class="notice_empty text-center">등록한 물품이 없습니다</p>
 				</div>
 			</div>
 		</c:if>
@@ -576,7 +576,7 @@
 			<c:if test="${empty boughtItem}">
 				<div class="item_wrapper">
 					<div class="item justify-content-center">
-						<p class="notice_empty">구매한 물품이 없습니다.</p>
+						<p class="notice_empty text-center">구매한 물품이 없습니다</p>
 					</div>
 				</div>
 			</c:if>
@@ -633,7 +633,7 @@
 			<c:if test="${empty my_interests}">
 				<div class="item_wrapper">
 					<div class="item justify-content-center">
-						<p class="notice_empty">관심물품이 없습니다.</p>
+						<p class="notice_empty text-center">관심물품이 없습니다</p>
 					</div>
 				</div>
 			</c:if>
@@ -680,13 +680,18 @@
 </section>
 
 <script>
-var itemCount = $('.newItem_container3 .item3').length;
-var itemCount2 = $('.newItem_container4 .item4').length;
-var itemCount3 = $('.newItem_container5 .item5').length;
+var itemCount4 = $('#newItem_container4 #item4').length;
+var itemCount5 = $('#newItem_container5 #item5').length;
+var itemCount6 = $('#newItem_container6 #item6').length;
+var itemCount7 = $('#newItem_container7 #item7').length;
+var itemCount8 = $('#newItem_container8 #item8').length;
 
-if (itemCount > 5) {
-	console.log("5 초과 itemCount: " + itemCount);
-    $('.newItem_container3').slick({
+
+
+
+ if (itemCount4 > 5) {
+	console.log("5 초과 itemCount: " + itemCount4);
+    $('#newItem_container4').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -696,43 +701,24 @@ if (itemCount > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount);
-    $('.newItem_container3').css({
-        'overflow': 'hidden',
-        'width': 'auto',
-        'justify-content': 'flex-start'
-    }),
-    $('.item3').css({
-    	'border' : '1px solid lightgray'    	
-    })
-}
-
-if (itemCount2 > 5) {
-	console.log("5 초과 itemCount: " + itemCount2);
-    $('.newItem_container4').slick({
-        dots: false,
-        infinite: true,
-        arrows: true,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: false
-    });
-} else {
-	console.log("5 이하 itemCount: " + itemCount2);
-    $('.newItem_container4').css({
+	console.log("5 이하 itemCount: " + itemCount4);
+    $('#newItem_container4').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
     $('.item4').css({
-    	'border' : '1px solid lightgray'    	
+    	'border' : '1px solid lightgray',
+    	'width' : '190px' 
+    }),
+    $('#newItem_container4:first-child').css({
+    	'margin-left' : '8px' 
     })
 }
 
-if (itemCount3 > 5) {
-	console.log("5 초과 itemCount: " + itemCount3);
-    $('.newItem_container5').slick({
+if (itemCount5 > 5) {
+	console.log("5 초과 itemCount: " + itemCount5);
+    $('#newItem_container5').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -742,16 +728,132 @@ if (itemCount3 > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount3);
-    $('.newItem_container5').css({
+	console.log("5 이하 itemCount: " + itemCount5);
+    $('#newItem_container5').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
     $('.item5').css({
+    	'border' : '1px solid lightgray',
+    	'width' : '190px'
+    }),
+    $('#newItem_container5:first-child').css({
+    	'margin-left' : '8px' 
+    })
+}
+
+if (itemCount6 > 5) {
+	console.log("5 초과 itemCount: " + itemCount6);
+    $('#newItem_container6').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + itemCount6);
+    $('#newItem_container6').css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $('.item6').css({
+    	'border' : '1px solid lightgray',
+    	'width' : '190px'
+    }),
+    $('#newItem_container6:first-child').css({
+    	'margin-left' : '8px' 
+    })
+} 
+
+if (itemCount7 > 5) {
+	console.log("5 초과 itemCount: " + itemCount7);
+    $('#newItem_container7').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + itemCount7);
+    $('#newItem_container7').css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $('.item7').css({
+    	'border' : '1px solid lightgray',
+    	'width' : '190px'
+    }),
+    $('#newItem_container7:first-child').css({
+    	'margin-left' : '8px' 
+    })
+} 
+
+if (itemCount8 > 5) {
+	console.log("5 초과 itemCount: " + itemCount8);
+    $('#newItem_container8').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + itemCount8);
+    $('#newItem_container8').css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $('.item8').css({
+    	'border' : '1px solid lightgray',
+    	'width' : '190px'
+    }),
+    $('#newItem_container8:first-child').css({
+    	'margin-left' : '8px' 
+    })
+} 
+
+/* for (i = 3; i <= 7; i++) {
+
+if(`itemCount${i}` > 5) {
+	console.log("5 초과 itemCount: " + `itemCount${i}`);
+    $(`#newItem_container${i}`).slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false
+    });
+} else {
+	console.log("5 이하 itemCount: " + `itemCount${i}`);
+    $(`#newItem_container${i}`).css({
+        'overflow': 'hidden',
+        'width': 'auto',
+        'justify-content': 'flex-start'
+    }),
+    $(`#item${i}`).css({
     	'border' : '1px solid lightgray'    	
     })
 }
+
+} */
+
+
+
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

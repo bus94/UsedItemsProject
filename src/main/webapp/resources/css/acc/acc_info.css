@@ -5,6 +5,10 @@
     width: 1000px;
 }
 
+.acc_info_page #acc_summary {
+	margin-bottom: 40px;
+}
+
 .acc_info_page .acc_inform {
     width: 600px;
     height: 330px;
@@ -25,7 +29,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 
 .acc_info_page #acc_profile { /*info 프로필 사진*/
     width: 90px;
@@ -113,78 +116,78 @@
 }
 
 
-
-
-
-
-
-
-#acc_public{
+.acc_info_page #acc_public{
 	width: 600px;
 }
 
 
-.top_container {
+.acc_info_page .top_container {
 	width:520px;
 	display: flex;
 	justify-content: space-between;
 }
 
-.btn_boxContainer {
+.acc_info_page .btn_boxContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.bottom_container{
+.acc_info_page .bottom_container{
 	width:520px;
 }
 
-.bottom_info_box {
+.acc_info_page .bottom_info_box {
 	display: flex;
 	justify-content:center;
 	gap:70px;
 	text-align: center;
 }
 
-.bottom_info_box p {
+.acc_info_page .bottom_info_box p {
 	font-size: 18px;
 }
 
 
-
-
-
 /* item carousel CSS는 itemView.jsp와 같음 */
 
-.item4 {
-	width:200px !important;
-    height: 230px;
+.acc_info_page .carousel-wrapper {
+	padding-top: 0;
+	margin-bottom: 20px;
+}
+
+.acc_info_page .notice_empty {
+	margin-bottom: 0;
+}
+
+.acc_info_page .txt_long {
+	font-size: 15px;
+}
+
+.acc_info_page .item_info_empty {
+	width:189px;
+    height: 240px;
+    margin-left: 8px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 14px;
+    
+    border: 1px solid lightgray;
+}
+
+.acc_info_page .item_info {
+	width:200px;
+    height: 240px;
     flex-direction: column;
     align-items: center;
     background-color: white;
     margin-bottom: 14px;
 }
 
-.item4 img {
-    width: 160px;
-    height: 130px;
-    object-fit: cover;
-    margin-top: 12px;
-    margin-left:13px;
-}
-
-
-.item5 {
-	width:200px !important;
-    height: 230px;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    margin-bottom: 14px;
-}
-
-.item5 img {
+.acc_info_page .item_info img {
     width: 160px;
     height: 130px;
     object-fit: cover;
