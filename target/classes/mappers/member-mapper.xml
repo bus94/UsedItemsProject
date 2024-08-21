@@ -62,10 +62,10 @@
 		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
 	</resultMap>	<!--정일 -->
 
-	<select id="selectByMember" parameterType="memberDTO"
+	<select id="loginOK" parameterType="memberDTO"
 		resultMap="memberMap">
 		SELECT * FROM account WHERE acc_id = #{acc_id} AND
-		acc_password = #{acc_password}
+		acc_password = #{acc_password} and acc_status != 'inactive'
 	</select>
 
 	<select id="selectById" parameterType="String" resultType="int">
@@ -78,14 +78,14 @@
 		acc_phone, acc_name, acc_address,
 		acc_addressx,acc_addressy,acc_addressdetail,
 		acc_nickname, acc_profile,
-		acc_score, acc_count, acc_status,
+		acc_count, acc_lastMessage, acc_status,
 		acc_enrollDate) VALUES
 		(ACCOUNT_SEQ.NEXTVAL, #{acc_id},
 		#{acc_password}, #{acc_birthDate},
 		#{acc_phone}, #{acc_name},
 		#{acc_address},#{acc_addressX},#{acc_addressY},
-		#{acc_addressDetail},#{acc_id}, '', default,
-		0, 'active', sysdate)
+		#{acc_addressDetail},#{acc_id}, NULL, DEFAULT,
+		DEFAULT, 'active', SYSDATE)
 	</insert>
 
 	<select id="selectIdIndex" parameterType="String"

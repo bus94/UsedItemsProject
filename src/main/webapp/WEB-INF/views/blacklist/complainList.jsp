@@ -15,8 +15,7 @@
 <section id="content" class="container blacklist_page">
 
 
-	<div
-		class="whole-container container d-flex flex-column align-items-center">
+	<div class="whole-container container d-flex flex-column align-items-center">
 
 		<div id="blacklist_title_container"
 			class="container d-flex flex-column align-items-center">
@@ -28,14 +27,7 @@
 			<p id="sub_title" class="fs-5">안전한 거래를 위해 빈번한 신고 내역을 미리 확인하세요!</p>
 		</div>
 
-		<form action="${path}/blacklist/complainList.do" method="get">
-
-			<input type="hidden" name="currentPage" value="1">
-
-			<div
-				class="search_box container d-flex flex-column align-items-center ">
-
-				<c:if test="${loginMember!=null}">
+		<c:if test="${loginMember!=null}">
 					<div class="btn_container container d-flex mb-1">
 						<form action="${path}/blacklist/complainList.do" method="get">
 							<input type="hidden" name="currentPage" value="1"> <input
@@ -49,6 +41,11 @@
 					</div>
 				</c:if>
 
+		<form action="${path}/blacklist/complainList.do" method="get">
+
+			<input type="hidden" name="currentPage" value="1">
+
+			<div class="search_box container d-flex flex-column align-items-center ">
 				<div class="input-group">
 					<input type="text"
 						class="form-control border border-warning focus-ring focus-ring-warning"
@@ -64,7 +61,8 @@
 				<div class="container d-flex justify-content-center mt-2 mb-2">
 					<input type="radio" name="searchType" id="acc_id" value="acc_id"
 						${searchType==null || searchType=='' || searchType=='acc_id' ? 'checked':''}
-						required /> <label class="radio_type" for="acc_id">아이디</label> <input
+						required /> <label class="radio_type" for="acc_id">아이디</label>
+						<input
 						type="radio" name="searchType" id="acc_nickname"
 						value="acc_nickname" ${searchType=='acc_nickname' ? 'checked':''}
 						required /> <label class="radio_type" for="acc_nickname">별명</label>
@@ -72,7 +70,6 @@
 						${searchType=='content' ? 'checked':''} required /> <label
 						class="radio_type" for="내용">내용</label>
 				</div>
-
 			</div>
 		</form>
 
