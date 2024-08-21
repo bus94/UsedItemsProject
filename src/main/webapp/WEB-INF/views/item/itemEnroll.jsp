@@ -48,6 +48,8 @@
 							<div id="input_box3" class="container box">
 								<p class="itemEnroll_subtitle fs-5">가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;격</p>
 								<input type="text" class="form-control item_input d-inline"
+									pattern="[0-9]+"
+									oninput="this.value = this.value.replace(/[^0-9]/g, '')"
 									name="item_price" id="item_price" placeholder="가격">
 							</div>
 							<div id="input_box4" class="container box">
@@ -56,7 +58,7 @@
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
 										name="place_name" id="place_name" placeholder="장소" readonly />
-									<input type="hidden" name="item_place" id="item_place"> 
+									<input type="hidden" name="item_place" id="item_place">
 									<input type="hidden" name="addressX" id="addressX"> <input
 										type="hidden" name="addressY" id="addressY">
 									<button type="button" id="selectPlaceButton"
@@ -111,7 +113,8 @@
 							<div id="map" style="width: 100%; height: 400px;"></div>
 						</div>
 						<div class="modal-footer">
-							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희 세이프존에서 추천하는 희망거래장소입니다. 구체적인 거래장소는 채팅을 통해 상의 바랍니다.</p>
+							<p style="font-size: 13px; color: rgb(187, 187, 187);">저희
+								세이프존에서 추천하는 희망거래장소입니다. 구체적인 거래장소는 채팅을 통해 상의 바랍니다.</p>
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
 							<button type="button" class="btn btn-primary" id="confirmPlace">확인</button>
@@ -121,7 +124,7 @@
 			</div>
 		</div>
 	</c:if>
-	
+
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			const item_thumb = document.getElementById("item_thumb");
