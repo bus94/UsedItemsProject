@@ -145,7 +145,7 @@
 						</div>
 						<div style="display: flex;">
 							<p>매너등급</p>
-							<img src="${path}/resources/img/clover.png" alt="등급">
+							<img src="${path}/resources/img/level${itemMember.acc_level}.png" alt="등급">
 						</div>
 					</div>
 				</div>

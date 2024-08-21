@@ -155,7 +155,6 @@ public class MemberController {
 //				System.out.println("마이인포 전: " + my_info);
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectInfoByAcc_id(my_id);
-//				System.out.println("마이인포 후: " + my_info);
 				
 				//System.out.println("my_info.getAcc_count(): " + my_info.getAcc_count());
 				//System.out.println("my_info.getAcc_blackCount(): " + my_info.getAcc_blackCount());
@@ -177,6 +176,7 @@ public class MemberController {
 				}
 				//System.out.println("my_info.getAcc_score: " + my_info.getAcc_score());
 				//System.out.println("my_info.getAcc_level: " + my_info.getAcc_level());
+				System.out.println("my_info : " + my_info);
 
 				model.addAttribute("loginMember", my_info);
 				int acc_index = my_info.getAcc_index();
@@ -219,7 +219,6 @@ public class MemberController {
 			
 			MemberDTO account_info = new MemberDTO();
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
-			//System.out.println("response acc_info: " + account_info);
 			
 			account_info.setAcc_score(account_info.acc_score(account_info.getAcc_count(), account_info.getAcc_blackCount()));
 			// 매너등급
@@ -234,6 +233,8 @@ public class MemberController {
 			} else {
 				account_info.setAcc_level(1);
 			}
+			System.out.println("response acc_info: " + account_info);
+
 			
 			//System.out.println("account_info.getAcc_score: " + account_info.getAcc_score());
 			//System.out.println("account_info.getAcc_level: " + account_info.getAcc_level());
@@ -302,7 +303,7 @@ public class MemberController {
 				memberservice.updateProfile(loginMember, profile);
 				
 				loginMember.setAcc_profile(originalFileName);
-				System.out.println("수정 후: " + loginMember);
+				//System.out.println("수정 후: " + loginMember);
 				
 				session.setAttribute("loginMember", loginMember);
 				
@@ -359,25 +360,21 @@ public class MemberController {
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setNickname(Model model, HttpSession session, @RequestParam String nickname_input) {
 		//System.out.println("==account.setNickname==");
-		
 		int result = -1;
 		try {
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 			//System.out.println("수정 전: " + loginMember);
 			
-			
 			if(loginMember.getAcc_nickname().equals(nickname_input)) {
-				//기존과 같다
+				
 				result = 0;
 			} else {
 				
 				String acc_id = loginMember.getAcc_id();
-				
 				result = memberservice.updateNickname(acc_id, nickname_input); //result == 처리된 행의 개수
 					
 				loginMember.setAcc_nickname(nickname_input);
 				//System.out.println("수정 후: " + loginMember);
-				
 				session.setAttribute("loginMember", loginMember);
 			}
 			
@@ -452,7 +449,7 @@ public class MemberController {
 
 			loginMember.setAcc_addressX(addressX_input);
 			loginMember.setAcc_addressY(addressY_input);
-			System.out.println("수정 후: " + loginMember);
+			//System.out.println("수정 후: " + loginMember);
 
 			
 			session.setAttribute("loginMember", loginMember);

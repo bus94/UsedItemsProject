@@ -243,7 +243,8 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 			//DB에 새 메시지 넣고 Index값 얻어오기
 			const queryChat = { chat_room : room_index, chat_writer : loginMember_accIndex, chat_content : message_input };
 			var chat_index = '';
-		
+			
+			//console.log("지금 곧 AJAX 실행");
 			$.ajax({	
 				type : "POST",
 				url : project + "/chat/recordChat.do", //project는 jsp 내부 script에서 선언해 둠
@@ -254,7 +255,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 								if(result > 0) {
 						
 								chat_index = result;	//컨트롤러에서 반환해준 값(chat_index)
-								//console.log("받아온 챗 인덱스: " + chat_index);
+								//console.log("AJAX로 받아온 챗 인덱스: " + chat_index);
 						
 								} else if( result == 0 ) {
 									alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
@@ -267,7 +268,7 @@ function enterChatRoom(param) { //'채팅방 보기' 버튼(room_index를 매개
 						}
 			}); //ajax
 					
-			//console.log("지금 보낼꺼다");
+			//console.log("지금 곧 메시지 전송됨!! " + message_input);
 			ws.send(message_input + "^$" + chat_index + "^#" + room_index + "^@" + loginMember_accId + "^!" + thisTime()); 
 			// ^$: 챗 인덱스, ^#: 채팅방 인덱스, ^@: 발신자 id, ^!: 발송시간
 	

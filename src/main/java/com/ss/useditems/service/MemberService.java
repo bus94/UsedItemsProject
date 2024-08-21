@@ -42,10 +42,10 @@ public class MemberService {
 		account_info = mapper.selectInfoByAcc_id(acc_id);
 		
 		//개인 비공개정보는 메모리에서 삭제
-		account_info.setAcc_password(null);
-		account_info.setAcc_birthDate(null);
-		account_info.setAcc_status(null);
-		account_info.setAcc_enrollDate(null);
+		//account_info.setAcc_password(null);
+		//account_info.setAcc_birthDate(null);
+		//account_info.setAcc_status(null);
+		//account_info.setAcc_enrollDate(null);
 		
 		return account_info;
 	}

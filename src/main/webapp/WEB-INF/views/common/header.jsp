@@ -182,7 +182,7 @@
 							action="${path}/item/itemList.do" method="get">
 							<input
 								class="form-control me-2 focus-ring focus-ring-success border border-success"
-								type="search" placeholder="매물을 검색해보세요!" aria-label="Search"
+								type="search" placeholder="물품을 검색해보세요!" aria-label="Search"
 								id="searchValue" name="searchValue" value="${searchValue}">
 							<button class="searchFormBtn" type="submit"
 								style="cursor: pointer; z-index: 10;">

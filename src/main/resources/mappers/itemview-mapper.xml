@@ -31,9 +31,14 @@
 		<result property="acc_phone" column="acc_phone" />
 		<result property="acc_name" column="acc_name" />
 		<result property="acc_address" column="acc_address" />
+		<result property="acc_addressDetail" column="acc_addressDetail" />
+		<result property="acc_addressX" column="acc_addressX" />
+		<result property="acc_addressY" column="acc_addressY" />
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_profile" column="acc_profile" />
 		<result property="acc_count" column="acc_count" />
+		<result property="acc_blackCount" column="acc_blackCount" />
+		<result property="acc_lastMessage" column="acc_lastMessage" />
 		<result property="acc_status" column="acc_status" />
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
@@ -99,7 +104,16 @@
 
 	<select id="selectByIndex" parameterType="int"
 		resultMap="memberMap">
-		SELECT * FROM ACCOUNT WHERE acc_index = #{item_seller}
+		select
+		*
+		from ACCOUNT acc
+		left join (select
+		black_object,
+		count(black_index) acc_blackCount
+		from BLACKLIST group by black_object)
+		black
+		on (acc.acc_index = black.black_object)
+		WHERE acc_index = #{item_seller}
 	</select>
 
 	<insert id="insertReply" parameterType="ReplyDTO">
