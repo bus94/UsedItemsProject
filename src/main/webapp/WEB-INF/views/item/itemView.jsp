@@ -209,8 +209,10 @@
 							<button
 								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						</c:if>
+						
+						
 						<c:if
-							test="${item.item_seller==loginMember.acc_index && item.item_status.equals('onsale') && loginMember.acc_index != item.item_seller}">
+							test="${item.item_seller==loginMember.acc_index && reply.repl_candidate!=item.item_seller && item.item_status.equals('onsale')}">
 							<button
 								onclick="openChat(${item.item_index}, ${reply.repl_index})">채팅하기</button>
 						</c:if>
