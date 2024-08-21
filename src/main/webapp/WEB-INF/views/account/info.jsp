@@ -34,9 +34,9 @@
 	</c:choose>
 
 
-	<div class="container acc_summary d-flex mb-4">
-		<div id="acc_public" class="container inform">
-			<div class="container d-flex">
+	<div class="container acc_summary">
+		<div id="acc_public" class="acc_inform">
+			<div class="top_container">
 				<div class="container info_box">
 					<div class="d-flex">
 						<p class="public_title container mt-3">
@@ -57,59 +57,58 @@
 						<p class="public_text ms-3">${account_info.acc_address}</p>
 					</div>
 				</div>
-				<div class="btn_box container d-flex flex-column align-items-center">
+				<div class="btn_boxContainer">
 					<img id="acc_profile" class="s120"
 						src="${profile_path}" alt="프로필사진">
 					<c:if test="${other_info == null}">
 						<button type="button" id="btn_acc_mod"
-							class="btn_acc btn btn-success btn-sm"
+							class="btn_acc btn btn-success btn-sm" style="margin-top:5px;"
 							onclick="location.href='${path}/account/alter.do'">내 정보
 							수정</button>
 					</c:if>
 				</div>
 			</div>
 			<hr id="acc_hr">
-			<div class="container d-flex">
-				<div class="container info_box">
-					<div class="acc_level d-flex mt-3">
-						<div class="d-flex">
+			<div class="bottom_container">
+				<div class="bottom_info_box">
+					<div class="acc_level">
+						<div>
 							<p class="public_title container">
 								<span>매</span><span>너</span><span>등</span><span>급</span>
 							</p>
-							<p class="public_text ms-3">${account_info.acc_level}</p>
+						<img src="${path}/resources/img/level${account_info.acc_level}.png" alt="등급">
 						</div>
-						<img class="ms-4" src="${path}/resources/img/level${account_info.acc_level}.png" alt="등급">
 					</div>
-					<div class="d-flex">
+					<div>
 						<p class="public_title container">
 							<span>거</span><span>래</span><span>횟</span><span>수</span>
 						</p>
-						<p class="public_text ms-3">${account_info.acc_count}</p>
+						<p class="public_text">${account_info.acc_count}</p>
 					</div>
-					<div class="black_report d-flex mb-3">
-						<div class="d-flex">
+					<div class="black_report">
+						<div>
 							<p class="public_title container">
-								<span>피</span><span>신</span><span>고</span><span>횟</span><span>수</span>
+								<span>누</span><span>적</span><span>신</span><span>고</span>
 							</p>
-							<p class="public_text ms-3">${account_info.acc_blackCount}</p>
+							<p class="public_text">${account_info.acc_blackCount}</p>
 						</div>
 
-						<c:if test="${account_info.acc_id != loginMember.acc_id}">
+						<%-- <c:if test="${account_info.acc_id != loginMember.acc_id}">
 							<!-- 보고 있는 계정정보가 내가 로그인한 아이디가 아니라면 -->
 							<img class="ms-3" src="${path}/resources/img/police.png" alt="신고">
 							<a
 								href="${path}/blacklist/complain.do?object_id=${account_info.acc_id}">신고하기</a>
-						</c:if>
+						</c:if> --%>
 
 					</div>
 				</div>
-				<div class="btn_box container d-flex flex-column align-items-center">
+				<%-- <div class="btn_box container d-flex flex-column align-items-center">
 					<p id="acc_mock" class="">&nbsp;</p>
 					<button type="button" id="btn_acc_blacklist"
 						class="btn_acc btn btn-warning btn-sm"
 						onclick="location.href='${path}/blacklist/complainList.do?currentPage=1&searchBlack=${account_info.acc_id}&searchType=acc_id'">신고내역
 						조회</button>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 		<!-- 수입지출내역 -->

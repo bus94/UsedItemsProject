@@ -188,16 +188,18 @@
 							</button>
 						</form>
 					</li>
-
-					<li class="nav-item">
 					<c:if test="${loginMember == null}">
-						<a><img class="nav_icon" alt="마이페이지"
+					<li class="nav-item">
+					
+						<a href="${path}/account/login.do"><img class="nav_icon" alt="마이페이지"
 							src="${path}/resources/img/user.png"></a>
+					</li>
 					</c:if>
 					<c:if test="${loginMember != null}">
-						<a><img class="nav_icon" alt="마이페이지"
+					<li class="nav-item">
+						<a href="${path}/account/my_info.do"><img class="nav_icon" alt="마이페이지"
 							src="${path}/resources/img/loginok.png"></a>
-					</c:if>
+					
 						<ul>
 							<li style="height: 22px;"><a></a></li>
 							<c:if test="${loginMember == null}">
@@ -209,7 +211,8 @@
 							<li><a href="${path}/item/interest.do">찜목록</a></li>
 							<li><a href="${path}/account/my_info.do">마이페이지</a></li>
 						</ul></li>
-					<li class="nav-item" id="shopImg"><a> <img
+					</c:if>
+					<li class="nav-item" id="shopImg"><a href="${path}/item/itemList.do"> <img
 							class="nav_icon" alt="메뉴" src="${path}/resources/img/shop.png"></a>
 						<ul>
 							<li style="height: 22px;"><a></a></li>

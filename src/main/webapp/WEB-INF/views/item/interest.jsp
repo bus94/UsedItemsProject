@@ -39,30 +39,34 @@
 
 		</c:forEach>
 		<c:if test="${empty interestitemList}">
-			<p>찜한 상품이 없습니다.</p>
+			<div style="height:450px; padding-top:100px;">
+				<p>찜한 상품이 없습니다.</p>
+			</div>
 			<!-- 데이터가 없는 경우 -->
 		</c:if>
 		<!-- 페이징 -->
-		<div align="center"
-			class="pagination container d-flex justify-content-center">
-			<a
-				href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
-			&nbsp;
-			<a href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
-			&nbsp;
-			<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
-				end="${pageInfo.tillPage}" step="1">
+		
+		<c:if test="${pageInfo.dtoTotal > 10}">
+			<div align="center"
+				class="pagination container d-flex justify-content-center">
 				<a
-					href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}" 
-					class="${pageInfo.currentPage == currentPage ? 'active' : ''}">${currentPage}</a>
-		&nbsp;
-		</c:forEach>
-			<a
-				href="interest.do?currentPage=${pageInfo.nextPage}&memberIndex=${loginMember.acc_index}">&gt;</a>
-			&nbsp;
-			<a href="interest.do?currentPage=${pageInfo.lastPage}&memberIndex=${loginMember.acc_index}">&gt;|</a>
-			&nbsp;
-		</div>
+					href="interest.do?currentPage=1&memberIndex=${loginMember.acc_index}">|&lt;</a>
+				&nbsp;
+				<a href="interest.do?currentPage=${pageInfo.prevPage}&memberIndex=${loginMember.acc_index}">&lt;</a>
+				&nbsp;
+				<c:forEach var="currentPage" begin="${pageInfo.fromPage}"
+					end="${pageInfo.tillPage}" step="1">
+					<a
+						href="interest.do?currentPage=${currentPage}&memberIndex=${loginMember.acc_index}" 
+						class="${pageInfo.currentPage == currentPage ? 'active' : ''}">${currentPage}</a>
+					&nbsp;
+				</c:forEach>
+				<a
+					href="interest.do?currentPage=${pageInfo.nextPage}&memberIndex=${loginMember.acc_index}">&gt;</a>
+				&nbsp;
+				<a href="interest.do?currentPage=${pageInfo.lastPage}&memberIndex=${loginMember.acc_index}">&gt;|</a>
+			</div>
+		</c:if>
 	</div>
 </section>
 

@@ -369,17 +369,17 @@ insert into transaction_location values(location_SEQ.nextval,'SAFE존 서초3','
 
 commit;
 
-select * from account;
-select * from item;
-select * from showcase;
-select * from reply;
-select * from chatroom;
-select * from chat;
-select * from review;
-select * from interest;
-select * from blacklist;
-SELECT to_char(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate FROM item;
-select * from transaction_location;
+-- select * from account;
+-- select * from item;
+-- select * from showcase;
+-- select * from reply;
+-- select * from chatroom;
+-- select * from chat;
+-- select * from review;
+-- select * from interest;
+-- select * from blacklist;
+-- SELECT to_char(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate FROM item;
+-- select * from transaction_location;
 CREATE OR REPLACE FUNCTION RADIANS (deg NUMBER) RETURN NUMBER IS BEGIN RETURN deg * (3.141592653589793 / 180); END;
 /
 COMMIT;

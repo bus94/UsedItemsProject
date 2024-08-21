@@ -223,7 +223,7 @@
 										<div>
 											<h5>
 												<fmt:formatDate value="${item.item_enrollDate}"
-													pattern="yy/MM/dd" />
+													pattern="MM/dd" />
 											</h5>
 										</div>
 									</div>
