@@ -11,7 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>세잎마켓</title>
-
+<!--지도api-->
+<script
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3b0ceda5c81c21983ca87b57b595c100&libraries=services"></script>
 <!-- JQuery -->
 <script src="${path}/resources/js/jquery-3.7.1.min.js"></script>
 <!-- 슬릭 css-->

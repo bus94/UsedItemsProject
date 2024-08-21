@@ -337,8 +337,6 @@
 		</c:if>
 	</div>
 </section>
-<script
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
 
 <script>
 const placeX = ${item.item_placeX};
