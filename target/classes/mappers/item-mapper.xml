@@ -77,8 +77,7 @@
 		item_price =
 		#{item_price},
 		item_place = #{item_place},
-		item_place_name =
-		#{item_place_name},
+		item_place_name =#{item_place_name},
 		item_place_address=#{item_place_address},
 		item_placeX = #{item_placeX},
 		item_placeY = #{item_placeY}

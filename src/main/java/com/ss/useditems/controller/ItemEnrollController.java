@@ -89,6 +89,7 @@ public class ItemEnrollController {
 			enrollItemInfo.setItem_place(parseAddress(item_place));
 			enrollItemInfo.setItem_place_name(place_name);
 			enrollItemInfo.setItem_place_address(item_place);
+			
 			enrollItemInfo.setItem_placeX(addressX);
 			enrollItemInfo.setItem_placeY(addressY);
 			enrollItemInfo.setShow_thumb(thumbFileRealName);
@@ -129,7 +130,7 @@ public class ItemEnrollController {
 
 	@RequestMapping("/item/itemUpdateOK.do")
 	public String itemUpdate(Model model, HttpSession session, int item_index, String item_title, String item_content,
-			String item_category, int item_price, String item_place, String addressX, String addressY,
+			String item_category, int item_price, String item_place, String addressX, String addressY,String place_name,
 			MultipartHttpServletRequest item_image, MultipartHttpServletRequest item_thumb, boolean thumb_check,boolean img_check) {
 		System.out.println("itemUpdate() 실행");
 		System.out.println("item_index: " + item_index);
@@ -242,6 +243,7 @@ public class ItemEnrollController {
 			existingItem.setItem_price(item_price);
 			existingItem.setItem_place(parseAddress(item_place));
 			existingItem.setItem_place_address(item_place);
+			existingItem.setItem_place_name(place_name);
 			existingItem.setItem_placeX(addressX);
 			existingItem.setItem_placeY(addressY);
 			existingItem.setShow_thumb(thumbFileRealName);
