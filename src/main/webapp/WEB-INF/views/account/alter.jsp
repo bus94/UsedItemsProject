@@ -103,7 +103,8 @@
 					<div>
 						<p class="subtitle fs-5">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
 						<input type="hidden" name="addressX" id="addressX"
-							value="${loginMember.acc_addressX}"> <input type="hidden"
+							value="${loginMember.acc_addressX}"> 
+						<input type="hidden"
 							name="addressY" id="addressY" value="${loginMember.acc_addressY}">
 						<input type="text" class="info_box form-control d-inline"
 							name="address" id="address" value="${loginMember.acc_address}"
@@ -196,8 +197,14 @@
 	                    const geocoder = new kakao.maps.services.Geocoder();
 	                    geocoder.addressSearch(data.address, function(result, status) {
 	                        if (status === kakao.maps.services.Status.OK) {
-	                            addressXInput.value = result[0].x;
-	                            addressYInput.value = result[0].y;
+	                            var result = result[0];
+		                        var coords = new daum.maps.LatLng(result.y, result.x);
+		                        console.log("LatitudeX: " + coords.getLat() + ", LongitudeY: " + coords.getLng());
+		                     
+	                        
+	                            
+	                            addressXInput.value = coords.getLat();
+	                            addressYInput.value = coords.getLng();
 	                            modal.hide();
 	                        }
 	                    });

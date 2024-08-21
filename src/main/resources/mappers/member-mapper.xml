@@ -138,7 +138,9 @@
 		acc_birthDate=TO_DATE(#{birthDate_input},
 		'YYYY-MM-DD'),
 		acc_address=#{address_input},
-		acc_addressDetail=#{addressDetail_input}
+		acc_addressDetail=#{addressDetail_input},
+		acc_addressX=#{addressX_input},
+		acc_addressY=#{addressY_input}
 		where acc_id=#{acc_id}
 	</update>	<!--정일 -->
 
