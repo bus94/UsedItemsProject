@@ -221,6 +221,7 @@ public class MemberController {
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
 			System.out.println("response acc_info: " + account_info);
 			
+			account_info.setAcc_score(account_info.acc_score(account_info.getAcc_count(), account_info.getAcc_blackCount()));
 			// 매너등급
 			if (account_info.getAcc_score() >= 80) {
 				account_info.setAcc_level(5);
