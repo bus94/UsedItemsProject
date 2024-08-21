@@ -171,6 +171,7 @@
 	        let selectedMarker = null;
 	        let selectedLatLng = null;
 	        let selectedAddress = null;
+	        let selectedName = null; 
 	        
 	        let isMarkerSelected = false;
 	        confirmPlaceButton.disabled = true;

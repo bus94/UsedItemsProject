@@ -70,8 +70,10 @@
 								<div id="input_address">
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
-										value="${item.item_place_address}" name="item_place"
-										id="item_place" placeholder="장소" readonly /> <input
+										value="${item.item_place_name}" name="place_name"
+										id="item_place_name" placeholder="장소" readonly /> 
+										<input type="hidden" name="item_place" id="item_place" value="${item_place_address }"> 
+										<input
 										type="hidden" name="addressX" id="addressX"
 										value="${item.item_placeX}"> <input type="hidden"
 										name="addressY" id="addressY" value="${item.item_placeY}">
@@ -210,11 +212,13 @@
 	        const addressXInput = document.getElementById('addressX');
 	        const addressYInput = document.getElementById('addressY');
 	        const confirmPlaceButton = document.getElementById('confirmPlace');
+	        const place_nameInput=document.getElementById('item_place_name');
 	        let map; // 지도 객체
 	        let markers = []; // 마커 배열
 	        let selectedMarker = null;
 	        let selectedLatLng = null;
 	        let selectedAddress = null;
+	        let selectedName=null;
 	        
 	        let isMarkerSelected = false;
 	        confirmPlaceButton.disabled = true;
@@ -273,6 +277,7 @@
 	                                    selectedMarker = null;
 	                                    selectedLatLng = null;
 	                                    selectedAddress = null;
+	                                    selectedName = null;
 	                                    confirmPlaceButton.disabled = true;
 	                                } else {
 	                                    // 새로운 마커를 선택한 경우
@@ -284,6 +289,8 @@
 	                                    selectedMarker = marker;
 
 	                                    selectedLatLng = marker.getPosition();
+	                                    selectedName = location.name;
+	                                    console.log(selectedName);
 	                                    geocoder.coord2Address(selectedLatLng.getLng(), selectedLatLng.getLat(), function (result, status) {
 	                                        if (status === kakao.maps.services.Status.OK) {
 	                                            selectedAddress = result[0].address.address_name;
@@ -309,8 +316,13 @@
 	                    
 	        // 확인 버튼 클릭 시 선택된 위치 정보를 인풋 필드에 저장
 	        confirmPlaceButton.addEventListener('click', () => {
+	        	console.log(selectedName);
+	        	console.log(place_nameInput);
+	        	console.log(place_nameInput.value);
+
 	            if (selectedLatLng && selectedAddress) {
 	                itemPlaceInput.value = selectedAddress;
+	                place_nameInput.value=selectedName;
 	                addressXInput.value = selectedLatLng.getLat();
 	                addressYInput.value = selectedLatLng.getLng();
 	                placeModal.hide(); // 모달 닫기
