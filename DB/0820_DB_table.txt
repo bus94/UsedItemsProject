@@ -46,8 +46,8 @@ CREATE TABLE ACCOUNT (
 INSERT INTO ACCOUNT VALUES(0, 'admin', '1234', TO_DATE('19990131', 'YYYY-MM-DD'), '01051050000', '관리자', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '스탶입니다', null, 1, default, 'admin', TO_DATE('20240724', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test1', 'pw_test', TO_DATE('19980808', 'YYYY-MM-DD'), '01051056051', '테스터1', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명1', null, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test2', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056052', '테스터2', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명2', null, 1, default, 'active', TO_DATE('20240724', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명3', null, default, default, 'inactive', TO_DATE('20240724', 'YYYY-MM-DD'));
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', '테스터', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명4', null, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test3', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056053', '테스터3', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명3', null, default, default, 'inactive', TO_DATE('20240724', 'YYYY-MM-DD'));
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test4', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056054', '테스터4', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명4', null, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'id_test5', 'pw_test', TO_DATE('19990131', 'YYYY-MM-DD'), '01051056055', '테스터5', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명5', null, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test6', '6', TO_DATE('19960606', 'YYYY-MM-DD'), '01012346666', '이름6', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명6', null, default, default, 'active', TO_DATE('20240726', 'YYYY-MM-DD'));
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test7', '7', TO_DATE('19970707', 'YYYY-MM-DD'), '01012347777', '이름7', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명7', null, default, default, 'active', TO_DATE('20240727', 'YYYY-MM-DD'));
@@ -60,7 +60,8 @@ INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test13', '13', TO_DATE('1997121
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test14', '14', TO_DATE('19940414', 'YYYY-MM-DD'), '01041415678', '이름14', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명14', null, default, default, 'active', sysdate);
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test15', '15', TO_DATE('19950515', 'YYYY-MM-DD'), '01055551111', '이름15', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명15', null, default, default, 'active', sysdate);
 INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '1', '1', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345678', '이름16', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명16', null, default, default, 'active', sysdate);
-INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '3', '3', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345656', '이름16', '경기 남양주시 도농로 43', null, 37.6095545557145, 127.1602763, '별명1616', null, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, '3', '3', TO_DATE('19950515', 'YYYY-MM-DD'), '01012345656', '이름17', '경기 남양주시 도농로 43', null, 37.6095545557145, 127.1602763, '별명17', null, default, default, 'active', sysdate);
+INSERT INTO ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, 'test', 'test', TO_DATE('19900101', 'YYYY-MM-DD'), '01012345679', '이름test', '서울 서초구 서초대로74길 45', null, 37.4936730902703, 127.028107523882, '별명test', null, 30, default, 'active', sysdate);
 
 COMMIT;
 

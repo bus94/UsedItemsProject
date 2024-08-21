@@ -27,7 +27,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 	
-
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
 		return "account/login";
@@ -157,6 +156,12 @@ public class MemberController {
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectInfoByAcc_id(my_id);
 //				System.out.println("마이인포 후: " + my_info);
+				
+				System.out.println("my_info.getAcc_count(): " + my_info.getAcc_count());
+				System.out.println("my_info.getAcc_blackCount(): " + my_info.getAcc_blackCount());
+				
+				my_info.setAcc_score(my_info.acc_score(my_info.getAcc_count(), my_info.getAcc_blackCount()));
+				System.out.println("my_info.getAcc_score(): " + my_info.getAcc_score());
 				
 				// 매너등급
 				if (my_info.getAcc_score() >= 80) {
