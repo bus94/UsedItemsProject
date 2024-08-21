@@ -83,7 +83,7 @@
 					<th class="black_header list_id" scope="col">ID</th>
 					<th class="black_header list_content" scope="col">내용</th>
 					<c:if test="${loginMember.acc_status=='admin'}">
-						<th class="black_header list_id" scope="col">whistler</th>
+						<th class="black_header list_id" scope="col">신고자</th>
 					</c:if>
 					<th class="black_header list_date" scope="col">신고일자</th>
 				</tr>
