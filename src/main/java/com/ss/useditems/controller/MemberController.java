@@ -417,7 +417,7 @@ public class MemberController {
 	@RequestMapping("/account/setRedunds.do")
 	@ResponseBody	//return 값을 자동으로 JSON타입으로 변환하여 AJAX 통신 결과로 송신, 대신 jsp로 연결할 수 없음
 	public int setRedunds(Model model, HttpSession session, @RequestParam String name_input, @RequestParam String birthDate_input, 
-			@RequestParam String address_input, @RequestParam String addressDetail_input) {
+			@RequestParam String address_input, @RequestParam String addressDetail_input,@RequestParam String addressX_input,@RequestParam String addressY_input) {
 		System.out.println("==account.setRedunds==");
 		
 		int result = -1;
@@ -425,7 +425,8 @@ public class MemberController {
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 //			System.out.println("수정 전: " + loginMember);
 //			System.out.println(birthDate_input);
-			
+			System.out.println(addressX_input);
+			System.out.println(addressY_input);
 			//formatter.format(date) : Date -> String
 			//formatter.parse(string) : String -> Date 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

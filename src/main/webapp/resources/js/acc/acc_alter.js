@@ -216,12 +216,16 @@ $('#setPhone').click(function(){ // 전화번호 '수정' 누르면
 var name = $.trim($('#name').val());
 var birthDate = $.trim($('#birthDate').val());
 var address = $.trim($('#address').val());
+var addressX = $.trim($('#addressX').val());
+var addressY = $.trim($('#addressY').val());
 
 var addressDetail = $.trim($('#addressDetail').val());
 if($('#addressDetail').val() == null) {
 	addressDetail ='';
 }
 	console.log("상세주소:" + addressDetail);
+	console.log(addressX);
+	console.log(addressY);
 
 
 $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누르면
@@ -229,6 +233,9 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 	var name_input = $.trim($('#name').val());
 	var birthDate_input = $.trim($('#birthDate').val());
 	var address_input = $.trim($('#address').val());
+	var addressX_input= $.trim($('#addressX').val());
+	var addressY_input= $.trim($('#addressY').val());
+	
 	
 	var addressDetail_input = $.trim($('#addressDetail').val());
 	
@@ -246,7 +253,8 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 	} else {
 		
 		const queryRedunds = { name_input : name_input, birthDate_input : birthDate_input, 
-			address_input : address_input, addressDetail_input : addressDetail_input };
+			address_input : address_input, addressDetail_input : addressDetail_input, 
+			addressX_input: addressX_input,addressY_input: addressY_input  };
 		
 		$.ajax({
 			type : "POST",
@@ -262,6 +270,8 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 							birthDate = $.trim($('#birthDate').val());
 							address = $.trim($('#address').val());
 							addressDetail = $.trim($('#addressDetail').val());
+							addressX = $.trim($('#addressX').val());
+							addressY = $.trim($('#addressY').val());
 							
 						} else {
 							alert("오류로 인하여 정상적으로 처리되지 않았습니다.");
@@ -284,4 +294,6 @@ $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 		$('#wd_hide2').hide();
 	}
 });
+
+
 
