@@ -440,14 +440,20 @@ public class MemberController {
 			
 			
 			String acc_id = loginMember.getAcc_id();
-			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input, addressDetail_input); //result == 처리된 행의 개수
+			result = memberservice.updateRedunds(acc_id, name_input, birthDate_input, address_input, addressDetail_input,addressX_input,addressY_input); //result == 처리된 행의 개수
 				
 			loginMember.setAcc_name(name_input);
 			loginMember.setAcc_birthDate(birthDate_);//날짜 포맷
 			loginMember.setAcc_address(address_input);
 			loginMember.setAcc_addressDetail(addressDetail_input);
+<<<<<<< HEAD
 
 			//System.out.println("수정 후: " + loginMember);
+=======
+			loginMember.setAcc_addressX(addressX_input);
+			loginMember.setAcc_addressY(addressY_input);
+			System.out.println("수정 후: " + loginMember);
+>>>>>>> ocy
 			
 			session.setAttribute("loginMember", loginMember);
 			

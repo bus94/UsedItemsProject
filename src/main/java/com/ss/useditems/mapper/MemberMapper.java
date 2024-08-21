@@ -30,7 +30,7 @@ public interface MemberMapper {
 	
 	int updatePhone(String acc_id, String phone_input); //정일_전화번호 변경
 	
-	int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input, String addressDetail_input); //정일_[이름,생년월일,주소] 변경
+	int updateRedunds(String acc_id, String name_input, String birthDate_input, String address_input, String addressDetail_input,String addressX_input,String addressY_input); //정일_[이름,생년월일,주소] 변경
 	
 	int withdraw(String acc_id); //정일_회원탈퇴
 
