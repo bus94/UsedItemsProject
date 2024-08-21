@@ -33,13 +33,13 @@ public class ItemViewController {
 	public String itemView(Model model, int item_index,
 			@SessionAttribute(name = "loginMember", required = false) MemberDTO loginMember, HttpServletRequest request,
 			HttpServletResponse response) {
-		System.out.println("itemView 페이지");
-		System.out.println("item_index controlloer: " + loginMember);
+		//System.out.println("itemView 페이지");
+		//System.out.println("item_index controller: " + loginMember);
 
 		boolean isInterested=false;
 		if(loginMember!=null){
 			isInterested=service.isInterest(acc_item_index(loginMember.getAcc_index(),item_index));
-			System.out.println(isInterested);
+			//System.out.println(isInterested);
 			acc_item_index(loginMember.getAcc_index(),item_index);
 		}
 
@@ -75,13 +75,31 @@ public class ItemViewController {
 		item.setItem_img4Path(filePath + item.getShow_img4());
 		item.setItem_img5Path(filePath + item.getShow_img5());
 
-		System.out.println("조회수 증가" + item.getItem_click());
-		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
-		System.out.println("replyList: " + replyList); // []
+		//System.out.println("item: " + item); // item
 
+		System.out.println("조회수 증가" + item.getItem_click());
+		
+		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
+		//System.out.println("replyList: " + replyList); // []
+
+		
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
-		System.out.println("item: " + item); // item
+		
+		itemMember.setAcc_score(itemMember.acc_score(itemMember.getAcc_count(), itemMember.getAcc_blackCount()));
+		// 매너등급
+		if (itemMember.getAcc_score() >= 80) {
+			itemMember.setAcc_level(5);
+		} else if (itemMember.getAcc_score() >= 60) {
+			itemMember.setAcc_level(4);
+		} else if (itemMember.getAcc_score() >= 40) {
+			itemMember.setAcc_level(3);
+		} else if (itemMember.getAcc_score() >= 20) {
+			itemMember.setAcc_level(2);
+		} else {
+			itemMember.setAcc_level(1);
+		}
 		System.out.println("itemMember: " + itemMember); // itemMember
+
 
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("item_seller", item.getItem_seller());
@@ -101,12 +119,10 @@ public class ItemViewController {
 			otherItemList.get(i).setItem_img5Path(filePathOther + otherItemList.get(i).getShow_img5());
 		}
 
-		System.out.println();
-		System.out.println("otherItemList: " + otherItemList.size() + "개");
+		//System.out.println("otherItemList: " + otherItemList.size() + "개");
 		for (int i = 0; i < otherItemList.size(); i++) {
-			System.out.println("otherItemList: " + otherItemList.get(i));
+			//System.out.println("otherItemList: " + otherItemList.get(i));
 		}
-		System.out.println();
 
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
@@ -122,9 +138,9 @@ public class ItemViewController {
 	@RequestMapping("/itemView/reply")
 	public String writeReply(Model model, String content, int itemNo,
 			@SessionAttribute(name = "loginMember", required = false) MemberDTO loginMember) {
-		System.out.println("writeReply() 실행");
-		System.out.println("itemNo: " + itemNo);
-		System.out.println("content: " + content);
+		//System.out.println("writeReply() 실행");
+		//System.out.println("itemNo: " + itemNo);
+		//System.out.println("content: " + content);
 
 		if (loginMember == null) {
 			model.addAttribute("msg", "로그인 후 이용 바랍니다.");
@@ -163,13 +179,13 @@ public class ItemViewController {
 
 	@RequestMapping("/itemView/replyDel")
 	public String deleteReply(Model model, int replyNo, int itemNo) {
-		System.out.println("deleteReply() 실행");
-		System.out.println("reply_index: " + replyNo + " item_index: " + itemNo);
+		//System.out.println("deleteReply() 실행");
+		//System.out.println("reply_index: " + replyNo + " item_index: " + itemNo);
 		Map<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("replyNo", replyNo);
 		hmap.put("itemNo", itemNo);
 		int result = service.deleteReply(hmap);
-		System.out.println("deleteReply() 결과 " + result);
+		//System.out.println("deleteReply() 결과 " + result);
 		if (result > 0) {
 			model.addAttribute("msg", "댓글이 삭제되었습니다");
 		} else {
@@ -210,7 +226,7 @@ public class ItemViewController {
 		}
 
 		// 관심 항목 추가 로직 수행
-		System.out.println("acc_index: " + accIndex + "\nitem_index: " + itemIndex);
+		//System.out.println("acc_index: " + accIndex + "\nitem_index: " + itemIndex);
 
 		service.addInterest(acc_item_index(accIndex, itemIndex));
 
@@ -242,8 +258,8 @@ public class ItemViewController {
 	
 	@RequestMapping("/itemView/itemDel.do")
 	public String itemDel(Model model, int item_index) {
-		System.out.println("deleteItem() 실행");
-		System.out.println(item_index);
+		//System.out.println("deleteItem() 실행");
+		//System.out.println(item_index);
 		boolean check = service.deleteItem(item_index);
 		if(check) {
 			model.addAttribute("msg", "삭제가 완료됐습니다.");

@@ -8,8 +8,8 @@ $(document).ready(function() {
 });
 
 
-console.log("Login: " + loginMember_accId + " 마지막 수신메시지(DB): " + loginMember_accLatMsg);
-
+console.log("Login: " + loginMember_accId);
+console.log("로그인 시 마지막 확인 메시지(accDB): " + loginMember_accLatMsg);
 
 	
 //DB에 저장된 최종 확인 메시지(최종 확인한 메시지)
@@ -23,8 +23,8 @@ $.ajax({
 			
 				if(result != null ) {
 					//console.log("checkLastChat.do 통신 성공");
-					//console.log("현재 DB 최종 메시지 index: " + result.chat_index)
-					//console.log("(header) checkedLastMessage: " + checkedLastMessage);
+					console.log("최종 도착 메시지(chatDB): " + result.chat_index)
+					console.log("최종 확인 메시지(현재): " + checkedLastMessage);
 					if(result.chat_index > checkedLastMessage) {
 						$('#chat_icon_null').addClass('chat_icon_hidden');
 						$('#chat_icon_fill').removeClass('chat_icon_hidden');

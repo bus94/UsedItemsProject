@@ -31,8 +31,8 @@ public class ItemController {
 	@RequestMapping("/item/itemList.do")
 	public String itemList(Model model, String searchValue, String searchType, String[] categoryList,
 			String currentPage, HttpSession session) {
-		System.out.println("itemList 페이지");
-		System.out.println("currentPage: " + currentPage);
+		//System.out.println("itemList 페이지");
+		//System.out.println("currentPage: " + currentPage);
 
 		// 기본 카테고리 셋팅
 		List<String> categoryAllList = Arrays.asList("상의", "하의", "신발", "기타의류", "지갑", "피규어", "전자기기", "가구", "식품", "기타");
@@ -44,9 +44,9 @@ public class ItemController {
 				currentPage = "1";
 			}
 
-			System.out.println("불러온 searchValue: " + searchValue);
-			System.out.println("불러온 searchType: " + searchType);
-			System.out.println("불러온 categoryList: " + categoryList);
+			//System.out.println("불러온 searchValue: " + searchValue);
+			//System.out.println("불러온 searchType: " + searchType);
+			//System.out.println("불러온 categoryList: " + categoryList);
 
 			// 불러온 searchType과 categoryList를 매핑
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -54,11 +54,11 @@ public class ItemController {
 			map.put("searchType", searchType);
 			map.put("categoryList", categoryList);
 			MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-			System.out.println("loginMember: " + loginMember);
+			//System.out.println("loginMember: " + loginMember);
 			String loginMemberAddr = null;
 			String[] searchAddress = null;
 			if (loginMember != null) {
-				System.out.println("loginMember.getAcc_address(): " + loginMember.getAcc_address());
+				//System.out.println("loginMember.getAcc_address(): " + loginMember.getAcc_address());
 
 				loginMemberAddr = parseAddress(loginMember.getAcc_address());
 				searchAddress = searchAddress(loginMember.getAcc_addressX(), loginMember.getAcc_addressY());
@@ -70,16 +70,16 @@ public class ItemController {
 			map.put("address", loginMemberAddr);
 			map.put("searchAddressList", searchAddress);
 
-			System.out.println("map: " + map);
-			System.out.println("searchValue: " + searchValue);
-			System.out.println("searchType: " + searchType);
-			System.out.println("categoryList: " + Arrays.toString(categoryList));
+			//System.out.println("map: " + map);
+			//System.out.println("searchValue: " + searchValue);
+			//System.out.println("searchType: " + searchType);
+			//System.out.println("categoryList: " + Arrays.toString(categoryList));
 
 			// String으로 불러온 현재 페이지를 int 타입으로 형변환
 			int currentPage_ = Integer.parseInt(currentPage);
 
 			if (searchType != null) {
-				System.out.println("=====switch 시작=====");
+				//System.out.println("=====switch 시작=====");
 				// searchType에 따른 switch문
 				switch (searchType) {
 				// 각각의 searchType에 따라 현재 페이지와 map을 매개변수로 넘긴다
@@ -110,7 +110,7 @@ public class ItemController {
 				pageInfo = service.selectByDefault(currentPage_, map);
 			}
 
-			System.out.println("=====switch 끝=====");
+			//System.out.println("=====switch 끝=====");
 
 			List<ItemInfoDTO> itemList = pageInfo.getDtoContainerInfo();
 			String filePath;
@@ -166,14 +166,14 @@ public class ItemController {
 
 	@RequestMapping("/item/itemEnroll.do")
 	public String itemEnroll(Model model) {
-		System.out.println("itemEnroll 페이지");
+		//System.out.println("itemEnroll 페이지");
 		return "item/itemEnroll";
 	}
 
 	@RequestMapping("/item/interest.do")
 	public String interest(Model model, HttpSession session, String currentPage) {
-		System.out.println("insert 페이지");
-		System.out.println("currentPage: " + currentPage);
+		//System.out.println("insert 페이지");
+		//System.out.println("currentPage: " + currentPage);
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		if (loginMember != null) {
 			if (currentPage == null) {
@@ -191,7 +191,7 @@ public class ItemController {
 				interestitemList.get(i).setItem_thumbPath(filePath + interestitemList.get(i).getShow_thumb());
 			}
 
-			System.out.println("controller  : " + interestitemList);
+			//System.out.println("controller  : " + interestitemList);
 			model.addAttribute("interestitemList", interestitemList);
 			model.addAttribute("pageInfo", pageInfo);
 

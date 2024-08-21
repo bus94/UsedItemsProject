@@ -29,7 +29,7 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 
 		//	접속한 세션을 세션집합에 추가
 		sessionSet.add(session);
-		System.out.println("입장한 클라이언트 session: " + session);
+		//System.out.println("입장한 클라이언트 session: " + session);
 	}
 	
 	
@@ -53,7 +53,7 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 				
 				try {
 					eachSession.sendMessage(messageToClients);
-					System.out.println("열린소켓: " + eachSession.getId());
+					//System.out.println("열린소켓: " + eachSession.getId());
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -76,7 +76,7 @@ public class SafeWebSocketHandler extends TextWebSocketHandler{
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 
 		sessionSet.remove(session);
-		System.out.println("퇴장한 클라이언트 session: " + session.getId());
+		//System.out.println("퇴장한 클라이언트 session: " + session.getId());
 		
 	}
 	

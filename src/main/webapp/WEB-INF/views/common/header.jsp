@@ -182,7 +182,7 @@
 							action="${path}/item/itemList.do" method="get">
 							<input
 								class="form-control me-2 focus-ring focus-ring-success border border-success"
-								type="search" placeholder="매물을 검색해보세요!" aria-label="Search"
+								type="search" placeholder="물품을 검색해보세요!" aria-label="Search"
 								id="searchValue" name="searchValue" value="${searchValue}">
 							<button class="searchFormBtn" type="submit"
 								style="cursor: pointer; z-index: 10;">
@@ -208,7 +208,7 @@
 								<li><a href="${path}/account/login.do">로그인</a></li>
 							</c:if>
 							<c:if test="${loginMember != null}">
-								<li id="logout"><a href="">로그아웃</a></li>
+								<li id="logout"><a>로그아웃</a></li>
 							</c:if>
 							<li><a href="${path}/item/interest.do">찜목록</a></li>
 							<li><a href="${path}/account/my_info.do">마이페이지</a></li>

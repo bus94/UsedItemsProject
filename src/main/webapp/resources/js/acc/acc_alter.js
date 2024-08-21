@@ -157,7 +157,7 @@ $('#setNickname').click(function(){ // 별명 '수정' 누르면
 			url : project + "/account/setNickname.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryNickname,
 			success : function(data) {
-						console.log("AJAXresponse : " + data);
+						//console.log("AJAXresponse : " + data);
 						if(data > 0) {
 							alert("별명이 변경되었습니다.");
 						} else if(data == 0) {
@@ -192,7 +192,7 @@ $('#setPhone').click(function(){ // 전화번호 '수정' 누르면
 			url : project + "/account/setPhone.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryPhone,
 			success : function(data) {
-						console.log("AJAXresponse : " + data);
+						//console.log("AJAXresponse : " + data);
 						if(data > 0) {
 							alert("전화번호가 변경되었습니다.");
 						} else if(data == 0) {
@@ -223,9 +223,9 @@ var addressDetail = $.trim($('#addressDetail').val());
 if($('#addressDetail').val() == null) {
 	addressDetail ='';
 }
-	console.log("상세주소:" + addressDetail);
-	console.log(addressX);
-	console.log(addressY);
+	//console.log("상세주소:" + addressDetail);
+	//console.log(addressX);
+	//console.log(addressY);
 
 
 $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누르면
@@ -243,7 +243,7 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 		addressDetail_input ='';
 	}
 	
-	console.log("상세주소:" + addressDetail_input);
+	//console.log("상세주소:" + addressDetail_input);
 	
 	if(name == name_input && birthDate == birthDate_input 
 		&& address == address_input && addressDetail == addressDetail_input) {
@@ -261,7 +261,7 @@ $('#setRedunds').click(function(){ // [이름,생년월일,주소] '수정' 누�
 			url : project + "/account/setRedunds.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryRedunds,
 			success : function(data) {
-						console.log("AJAXresponse : " + data);
+						//console.log("AJAXresponse : " + data);
 						if(data > 0) {
 							alert("정보가 변경되었습니다.");
 							
