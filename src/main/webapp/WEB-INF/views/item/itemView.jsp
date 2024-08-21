@@ -378,7 +378,7 @@ console.log(placeY);
 	}
 </script>
 <script>
-	function deleteItem(itemNo) {
+	function deleteItem(item_index) {
 		if (confirm("정말 삭제하시겠습니까?")) {
 			var url = "${path}/itemView/itemDel.do?&item_index=" + item_index;
 			console.log(url);
