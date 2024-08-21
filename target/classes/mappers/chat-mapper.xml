@@ -57,7 +57,7 @@
 		from chatroom room
 		left join reply on room_reply = repl_index) guest
 		on host.room_index = guest.room_index_g
-		left join chat on room_index=chat_room
+		join chat on room_index=chat_room
 		where item_seller = #{acc_index} or repl_candidate = #{acc_index}
 		order by chat_index desc)
 		where rownum = 1
