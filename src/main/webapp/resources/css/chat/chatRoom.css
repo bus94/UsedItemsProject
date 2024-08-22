@@ -119,6 +119,14 @@
 
 .chat_header .chatRoom_modal_title {
 	padding-top: 5px;
+	width: 220px;
+	
+	font-size: 1.3rem;
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ 	display: -webkit-box;
+ 	-webkit-line-clamp: 1;
+ 	-webkit-box-orient: vertical;
 }
 
 .chat_header .action_deal {
