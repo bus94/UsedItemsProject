@@ -153,7 +153,7 @@
 		</div>
 	</div>
 	<div class="store_content">
-		<p>${item.item_content}</p>
+		<p style="white-space: pre-wrap;">${item.item_content}</p>
 		<div class="content-button">
 			<c:if test="${item.item_seller==loginMember.acc_index}">
 				<button type="button" onclick="editItem('${item.item_index}')">수정하기</button>
