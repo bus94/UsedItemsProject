@@ -22,7 +22,7 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
-	<resultMap type="itemDTO" id="itemMap">
+	<resultMap type="itemInfoDTO" id="itemInfoMap">
 		<result property="item_index" column="item_index" />
 		<result property="item_seller" column="item_seller" />
 		<result property="item_title" column="item_title" />
@@ -39,10 +39,6 @@
 		<result property="item_interest" column="item_interest" />
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
-	</resultMap>
-
-	<resultMap type="itemInfoDTO" id="itemInfoMap"
-		extends="itemMap">
 		<result property="acc_nickname" column="acc_nickname" />
 		<result property="acc_address" column="acc_address" />
 		<result property="repl_count" column="repl_count" />
@@ -53,8 +49,6 @@
 		<result property="show_img4" column="show_img4" />
 		<result property="show_img5" column="show_img5" />
 	</resultMap>
-
-	<!-- <resultMap type="itemDTO" id="itemMap"> </resultMap> 정일 -->
 
 	<resultMap type="memberDTO" id="memberInfoMap"
 		extends="memberMap">
@@ -76,7 +70,7 @@
 		INSERT INTO ACCOUNT(acc_index,
 		acc_id, acc_password, acc_birthDate,
 		acc_phone, acc_name, acc_address,
-		acc_addressx,acc_addressy,acc_addressdetail,
+		acc_addressx, acc_addressy, acc_addressdetail,
 		acc_nickname, acc_profile,
 		acc_count, acc_lastMessage, acc_status,
 		acc_enrollDate) VALUES
@@ -148,12 +142,6 @@
 		update ACCOUNT set
 		acc_status='inactive' where acc_id=#{acc_id}
 	</update>	<!--정일 -->
-
-
-	<!-- <select id="getPowerSeller" resultType="memberDTO"> select * from ACCOUNT 
-		acc join (select * from (select count(item_index) selling_count, item_seller 
-		from ITEM group by item_seller order by count(item_index) desc) where rownum 
-		= 1) power on (acc.acc_index=power.item_seller) </select> 정일_home.jsp_파워셀러 -->
 
 	<select id="selectItemByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">

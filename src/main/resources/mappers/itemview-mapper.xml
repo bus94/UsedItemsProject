@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ss.useditems.mapper.ItemViewMapper">
-	<resultMap type="itemDTO" id="itemMap">
+	<resultMap type="itemInfoDTO" id="itemInfoMap">
 		<result property="item_index" column="item_index" />
 		<result property="item_seller" column="item_seller" />
 		<result property="item_title" column="item_title" />
@@ -21,6 +21,15 @@
 		<result property="item_interest" column="item_interest" />
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
+		<result property="acc_nickname" column="acc_nickname" />
+		<result property="acc_address" column="acc_address" />
+		<result property="acc_score" column="acc_score" />
+		<result property="show_thumb" column="show_thumb" />
+		<result property="show_img1" column="show_img1" />
+		<result property="show_img2" column="show_img2" />
+		<result property="show_img3" column="show_img3" />
+		<result property="show_img4" column="show_img4" />
+		<result property="show_img5" column="show_img5" />
 	</resultMap>
 
 	<resultMap type="memberDTO" id="memberMap">
@@ -43,12 +52,6 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
-	<resultMap type="memberDTO" id="itemDetailMap"
-		extends="itemMap">
-		<collection property="acc_index" resultMap="memberMap"
-			columnPrefix="a._" />
-	</resultMap>
-
 	<resultMap type="replyDTO" id="replyMap">
 		<result property="repl_index" column="repl_index" />
 		<result property="repl_item" column="repl_item" />
@@ -57,19 +60,6 @@
 		<result property="repl_profile" column="acc_profile" />	<!-- 정일 추가 0813 프로필 사진 -->
 		<result property="repl_content" column="repl_content" />
 		<result property="repl_enrolldate" column="repl_enrolldate" />
-	</resultMap>
-
-	<resultMap type="itemInfoDTO" id="itemInfoMap"
-		extends="itemMap">
-		<result property="acc_nickname" column="acc_nickname" />
-		<result property="acc_address" column="acc_address" />
-		<result property="acc_score" column="acc_score" />
-		<result property="show_thumb" column="show_thumb" />
-		<result property="show_img1" column="show_img1" />
-		<result property="show_img2" column="show_img2" />
-		<result property="show_img3" column="show_img3" />
-		<result property="show_img4" column="show_img4" />
-		<result property="show_img5" column="show_img5" />
 	</resultMap>
 
 	<select id="selectByItemIndex" parameterType="int"

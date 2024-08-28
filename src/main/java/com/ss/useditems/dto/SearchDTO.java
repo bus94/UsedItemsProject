@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+// 검색어 정보 DTO
 public class SearchDTO {
 
 	private int sear_index;

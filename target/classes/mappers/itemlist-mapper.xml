@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ss.useditems.mapper.ItemMapper">
-	<resultMap type="itemDTO" id="itemMap">
+	<resultMap type="itemInfoDTO" id="itemInfoMap">
 		<result property="item_index" column="item_index" />
 		<result property="item_seller" column="item_seller" />
 		<result property="item_title" column="item_title" />
@@ -16,10 +16,6 @@
 		<result property="item_interest" column="item_interest" />
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
-	</resultMap>
-
-	<resultMap type="itemInfoDTO" id="itemInfoMap"
-		extends="itemMap">
 		<result property="item_place_name" column="item_place_name" />
 		<result property="item_place_address" column="item_place_address" />
 		<result property="item_placeX" column="item_placeX" />

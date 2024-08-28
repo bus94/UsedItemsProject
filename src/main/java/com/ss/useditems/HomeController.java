@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ss.useditems.dto.ItemInfoDTO;
-import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.HomeService;
 
 @Controller

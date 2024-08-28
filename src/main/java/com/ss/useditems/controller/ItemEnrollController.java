@@ -139,8 +139,6 @@ public class ItemEnrollController {
 
 		List<MultipartFile> list = item_image.getFiles("item_image");
 
-		int listsize = list.size();
-
 		MultipartFile newThumb = item_thumb.getFile("item_thumb");
 
 		// 기존 Item 정보를 가져옴

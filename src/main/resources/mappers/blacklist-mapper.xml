@@ -3,6 +3,7 @@
 
 <mapper namespace="com.ss.useditems.mapper.BlacklistMapper">
 
+	<!-- 신고 -->
 	<resultMap type="BlacklistDTO" id="blacklistMap">
 		<result property="black_index" column="black_index" />
 		<result property="black_subject" column="black_subject" />
@@ -18,8 +19,7 @@
 		<result property="object_nickname" column="object_nickname" />
 		<result property="object_id" column="object_id" />
 	</resultMap>
-	
-	
+		
 	<resultMap type="memberDTO" id="black5Map">
 		<result property="acc_index" column="black_object" />
 		<result property="acc_nickname" column="object_nickname" />
