@@ -1,9 +1,10 @@
 $(document).ready(function(){
     console.log('itemView.js 연결');
 
-    var itemCount = $('.newItem_container2 .item3').length;
+    var itemCount2 = $('.newItem_container2 .item3').length;
 
-    if (itemCount > 5) {
+    if (itemCount2 > 5) {
+    	console.log("5 초과 itemCount: " + itemCount2);
         $('.newItem_container2').slick({
             dots: false,
             infinite: true,
@@ -14,14 +15,16 @@ $(document).ready(function(){
             autoplay: false
         });
     } else {
+    	console.log("5 이하 itemCount: " + itemCount2);
         $('.newItem_container2').css({
-            'display': 'flex', 
             'overflow': 'hidden',
-            'width' : '190px',
-            
+        	'width': 'auto',
+        	'justify-content': 'flex-start'
         }),
         $('.item3').css({
-        	'border' : '1px solid lightgray'    	
+        	'border' : '1px solid lightgray',
+    		'width' : '190px',
+    		'padding-left' : '7px'	
         })
     }
 });
