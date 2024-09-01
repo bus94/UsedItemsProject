@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ss.useditems.mapper.BlacklistMapper">
-
 	<!-- 신고 -->
 	<resultMap type="BlacklistDTO" id="blacklistMap">
 		<result property="black_index" column="black_index" />
@@ -19,33 +18,33 @@
 		<result property="object_nickname" column="object_nickname" />
 		<result property="object_id" column="object_id" />
 	</resultMap>
-		
+
 	<resultMap type="memberDTO" id="black5Map">
 		<result property="acc_index" column="black_object" />
 		<result property="acc_nickname" column="object_nickname" />
 		<result property="acc_id" column="object_id" />
 		<result property="acc_blackCount" column="black_count" />
 	</resultMap>
-	
 
-<!-- 홈에서 안쓰면 black5 삭제 -->
-	
+	<!-- 홈에서 안쓰면 black5 삭제 -->
 	<select id="getBlack5" resultMap="black5Map">
 		select * from
-			(select 
-			black_object,
-			acc_nickname object_nickname,
-			acc_id object_id,
-			count(black_index) black_count
-				from
-					(select *
-						from BLACKLIST blk
-						join ACCOUNT acc on (blk.black_object = acc.acc_index))
-						group by black_object, acc_nickname, acc_id
-						order by black_count desc)
-		where rownum &lt;= 5
+		(select
+		black_object,
+		acc_nickname object_nickname,
+		acc_id object_id,
+		count(black_index) black_count
+		from
+		(select *
+		from BLACKLIST blk
+		join
+		ACCOUNT acc on (blk.black_object = acc.acc_index))
+		group by
+		black_object, acc_nickname, acc_id
+		order by black_count desc)
+		where
+		rownum &lt;= 5
 	</select>
-
 
 	<select id="getBlacklist" parameterType="map"
 		resultMap="blacklistDetailMap">
@@ -69,26 +68,27 @@
 		stem.black_content,
 		stem.black_enrolldate
 		from BLACKLIST stem
-		join ACCOUNT acc on (stem.black_subject = acc.acc_index)) branch
+		join ACCOUNT acc on
+		(stem.black_subject = acc.acc_index)) branch
 		join
 		(select
 		stem.black_index,
 		acc.acc_nickname,
 		acc.acc_id
 		from BLACKLIST stem
-		join ACCOUNT acc on (stem.black_object = acc.acc_index)) obj
-		on (branch.black_index = obj.black_index)
+		join
+		ACCOUNT acc on (stem.black_object = acc.acc_index)) obj
+		on
+		(branch.black_index = obj.black_index)
 		where branch.black_index >= 1
- 		<if test="subject_id != null">
+		<if test="subject_id != null">
 			and subject_id='${subject_id}'
 		</if>
 		<if test="acc_nickname != null">
 			and obj.acc_nickname like '%${acc_nickname}%'
-			<!-- or subject_nickname like '%${acc_nickname}%' 0807 신고자 정보는 조회하지 않음-->
 		</if>
 		<if test="acc_id != null">
 			and obj.acc_id like '%${acc_id}%'
-			<!-- or subject_id like'%${acc_id}%' 0807 신고자 정보는 조회하지 않음-->
 		</if>
 		<if test="content != null">
 			and black_content like '%${content}%'
@@ -96,72 +96,63 @@
 		order by black_index desc
 	</select>
 
-	
 	<insert id="enroll" parameterType="BlacklistDTO">
-		 insert into BLACKLIST values (BLACKLIST_seq.nextval, #{black_subject}, #{black_object}, #{black_content}, sysdate)
+		insert into BLACKLIST values
+		(BLACKLIST_seq.nextval, #{black_subject},
+		#{black_object},
+		#{black_content}, sysdate)
 	</insert>
 
 	<delete id="delet" parameterType="String">
 		delete from BLACKLIST
-		where black_index = #{black_index}
+		where
+		black_index = #{black_index}
 	</delete>
-
-
-
-
-
 
 	<!-- arraylist 받아서 map으로 sql 집어넣기 -->
 	<insert id="testarr" parameterType="map">
-		INSERT INTO SHOWCASE VALUES (SHOWCASE_SEQ.NEXTVAL, 1, 'thumb', 
-		 		<choose>
-		 			<when test="img1 != null">
-		 				'${img1}',
-		 			</when>
-					<otherwise>
-						null,
-					</otherwise>
-				</choose>
-				<choose>
-		 			<when test="img2 != null">
-		 				'${img2}',
-		 			</when>
-					<otherwise>
-						null,
-					</otherwise>
-				</choose>
-				<choose>
-		 			<when test="img3 != null">
-		 				'${img3}',
-		 			</when>
-					<otherwise>
-						null,
-					</otherwise>
-				</choose>				
-				<choose>
-		 			<when test="img4 != null">
-		 				'${img4}',
-		 			</when>
-					<otherwise>
-						null,
-					</otherwise>
-				</choose>				
-				<choose>
-		 			<when test="img5 != null">
-		 				'${img5}',
-		 			</when>
-					<otherwise>
-						null,
-					</otherwise>
-				</choose>				
-		  sysdate)
-		
+		INSERT INTO SHOWCASE VALUES (SHOWCASE_SEQ.NEXTVAL, 1, 'thumb',
+		<choose>
+			<when test="img1 != null">
+				'${img1}',
+			</when>
+			<otherwise>
+				null,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="img2 != null">
+				'${img2}',
+			</when>
+			<otherwise>
+				null,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="img3 != null">
+				'${img3}',
+			</when>
+			<otherwise>
+				null,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="img4 != null">
+				'${img4}',
+			</when>
+			<otherwise>
+				null,
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="img5 != null">
+				'${img5}',
+			</when>
+			<otherwise>
+				null,
+			</otherwise>
+		</choose>
+		sysdate)
 	</insert>
-
-
-
-
-
-
 
 </mapper>

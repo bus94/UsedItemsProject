@@ -23,10 +23,9 @@ public class BlacklistController {
 	@Autowired
 	private BlacklistService service;
 
-	@GetMapping("/complainList.do") // 신고목록 조회
+	// 신고 목록 조회
+	@GetMapping("/complainList.do")
 	public String complainList(Model model, @RequestParam Map<String, String> param) {
-		//System.out.println("==blacklist.complainList==");
-//		System.out.println("param: " + param); 7/22수업내용
 
 //----------------------------쿼리 맵 만드는 작업----------------------------		
 		Map<String, String> queryMap = new HashMap<String, String>();
@@ -48,53 +47,41 @@ public class BlacklistController {
 		} catch (Exception e) {
 		}
 
-//---------------------------------------------------------------------
-//----------------------------현재 페이지와 쿼리맵 넘김----------------------------		
+//----------------------------현재 페이지와 쿼리맵 넘김----------------------------
 		int currentPage = 1;
 		try {
 			currentPage = Integer.parseInt(param.get("currentPage"));
 		} catch (Exception e) {
 		}
 
-		//System.out.println("queryMap: " + queryMap);
-		//System.out.println("currentpage: " + currentPage);
-
 		// pagination 처리는 서비스에서!
 		PageInfo pageInfo = new PageInfo();
 		pageInfo = service.getBlacklist(currentPage, queryMap);
 
-//---------------------------------------------------------------------
 		model.addAttribute("blacklist", pageInfo.getDtoContainer());
 		model.addAttribute("pageInfo", pageInfo);
 
 		return "blacklist/complainList";
 	}
 
-	@GetMapping("/complain.do") // 신고 등록페이지
+	// 신고 등록 페이지
+	@GetMapping("/complain.do")
 	public String complain(Model model, @RequestParam Map<String, String> param) {
-		//System.out.println("==blacklist.complain==");
-
+		// URL을 통해 object_id의 넘어올 값이 없는 경우에 대한 예외처리
 		try {
-			// url에 get타입 parameter로 "object_id"가 넘어오면 맵에 넣어주겠다.
-			// String object_id을 직접 받도록 해두면,
-			// url에서 안 넘어올 시 받을게 없어서 에러가 남
-
 			String object_id = param.get("object_id");
 			model.addAttribute("object_id", object_id);
-
 		} catch (Exception e) {
 		}
 		return "blacklist/complain";
 	}
 
-	@PostMapping("/complainPro.do") // 신고 등록 처리
+	// 신고 등록
+	@PostMapping("/complainPro.do") 
 	public String complainPro(Model model, @RequestParam Map<String, String> param) {
-		//System.out.println("==blacklist.complainPro==");
-
 		String subject_id = param.get("subject_id");
 		String object_id = param.get("object_id");
 		String black_content = param.get("black_content");
-//		System.out.println(subject_id+"가 "+object_id+"를 신고함 "+black_content);
 
 		BlacklistDTO complain = new BlacklistDTO();
 		complain.setSubject_id(subject_id);
@@ -102,27 +89,20 @@ public class BlacklistController {
 		complain.setBlack_content(black_content);
 
 		try {
-
-//		int result = service.enroll(complain);
-//		System.out.println("result: "+result);
 			service.enroll(complain);
 			model.addAttribute("msg", "신고글이 게시되었습니다");
 			model.addAttribute("location", "/blacklist/complainList.do");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "오류로 인하여 신고가 정상적으로 처리되지 않았습니다." + "\\r\\n" + "아이디를 확인하여 주시기 바랍니다.");
 			model.addAttribute("location", "/blacklist/complainList.do");
 		}
 		return "common/msg";
-
 	}
 
-	@GetMapping("/complainDel.do") // 신고 삭제 처리
+	// 신고 삭제
+	@GetMapping("/complainDel.do") 
 	public String complainDel(Model model, @RequestParam String black_index) {
-		//System.out.println("==blacklist.complainDel==");
-		//System.out.println("삭제 요청: " + black_index);
-
 		try {
 			int result = service.delet(black_index);
 			if (result > 0) {
@@ -133,46 +113,26 @@ public class BlacklistController {
 				model.addAttribute("msg", "오류로 인하여 삭제가 정상적으로 처리되지 않았습니다.");
 				model.addAttribute("location", "/blacklist/complainList.do");
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "오류로 인하여 삭제가 정상적으로 처리되지 않았습니다.");
 			model.addAttribute("location", "/blacklist/complainList.do");
 		}
-
 		return "common/msg";
 	}
 
-	
-	
-	
-	
-	
-	
-	///////////arraylist 받아서 map으로 sql 집어넣기
-	
-	
 	@GetMapping("/testNull.do")
 	public String testNull() {
-		System.out.println("testNull");
-		
 		ArrayList<String> strlist = new ArrayList<String>();
-			service.testNull(strlist);
-			
+		service.testNull(strlist);
+
 		return "blacklist/complain";
 	}
 
 	@GetMapping("/testarr1.do")
 	public String testarr1() {
-		System.out.println("testarr1");
-		
 		ArrayList<String> strlist = new ArrayList<String>();
-
 		strlist.add("testerSingle");
-		
-		
-
-		
 		service.testarr1(strlist);
 
 		return "blacklist/complain";
@@ -180,14 +140,11 @@ public class BlacklistController {
 
 	@GetMapping("/testarr4.do")
 	public String testarr4() {
-		
 		ArrayList<String> strlist = new ArrayList<String>();
-
 		strlist.add("tester1");
 		strlist.add("tester2");
 		strlist.add("tester3");
 		strlist.add("tester4");
-		
 		service.testarr4(strlist);
 
 		return "blacklist/complain";
