@@ -19,18 +19,16 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	
+	// 로그인 확인
 	public MemberDTO loginOK(MemberDTO loginMember) {
-		//System.out.println("MemberService의 selectByMember()");
 		return mapper.loginOK(loginMember);
 	}
 	
 	public int selectById(String id) {
-		//System.out.println("MemberService의 selectById()");
 		return mapper.selectById(id);
 	}
 
 	public int signup(MemberDTO signupMember) {
-		//System.out.println("MemberService의 signup()");
 		return mapper.signup(signupMember);
 	}
 	
@@ -55,11 +53,8 @@ public class MemberService {
 	}
 
 	public int updateProfile(MemberDTO loginMember, MultipartFile profile) throws Exception {
-		//정일_계정정보수정_프로필이미지
-		
 		String fileDirPath = "C:\\UsedItemsProject\\UsedItems\\src\\main\\webapp\\resources\\img";
 		fileDirPath += "\\" + loginMember.getAcc_index() + "\\profile";//저장폴더 경로
-		//System.out.println(fileDirPath);
 		
 		File fileDir = new File(fileDirPath);//저장폴더 객체 생성
 		
@@ -99,11 +94,6 @@ public class MemberService {
 		//System.out.println("service.withdraw: " + acc_id);
 		return mapper.withdraw(acc_id);
 	}
-
-//	public List<ItemInfoDTO> selectItemByAcc_index(int acc_index) { //범상_인포페이지 내역띄우기
-//		System.out.println("MemberService의 selectItemByAcc_index()");
-//		return mapper.selectItemByAcc_index(acc_index);
-//	}
 
 	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { 
 		//정일_(범상_인포페이지 [거래중 ,판매내역,구매내역]내역띄우기)_0812_수정

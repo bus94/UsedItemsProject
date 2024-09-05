@@ -27,23 +27,21 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 	
+	// 로그인 페이지
 	@RequestMapping("/account/login.do")
 	public String login(Model model) {
 		return "account/login";
 	}
 
+	// 회원가입 페이지
 	@RequestMapping("/account/signup.do")
 	public String signup(Model model) {
 		return "account/signup";
 	}
 
+	// 로그인 확인
 	@RequestMapping("/account/loginOK.do")
 	public String loginOK(Model model, String acc_id, String acc_password, HttpSession session) {
-		//System.out.println("loginOK 로그인 확인");
-
-		//System.out.println("입력한 acc_id: " + acc_id);
-		//System.out.println("입력한 acc_password: " + acc_password);
-
 		MemberDTO loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
@@ -63,6 +61,7 @@ public class MemberController {
 		return "common/msg";
 	}
 
+	// 로그아웃 확인
 	@RequestMapping("/account/logoutOK.do")
 	public String logoutOK(Model model, HttpSession session) {
 		//System.out.println("logoutOK");
@@ -80,8 +79,6 @@ public class MemberController {
 	@RequestMapping("/account/duplicateCheckId.do")
 	@ResponseBody
 	public String duplicateCheckId(Model model, String id) {
-		//System.out.println("MemberController의 duplicateCheckId()");
-		//System.out.println("입력한 id: " + id);
 		String result = "";
 		if (memberservice.selectById(id) > 0) {
 			// 사용불가

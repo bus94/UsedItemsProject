@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+// 채팅 메세지 DTO
 public class ChatDTO {
 
-	private int chat_index;	//테이블 값
-	private int chat_room;	//테이블 값
-	private int chat_writer;	//테이블 값
-	private String chat_content;	//테이블 값
-	private Date chat_enrollDate;	//테이블 값
-	
-	
+	private int chat_index;			// DB. 채팅메세지 일련번호
+	private int chat_room;			// DB. 채팅방 일련번호
+	private int chat_writer;		// DB. 채팅메세지 작성자
+	private String chat_content;	// DB. 채팅메세지 내용
+	private Date chat_enrollDate;	// DB. 채팅메세지 보낸 시간
 	
 }
