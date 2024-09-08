@@ -159,7 +159,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty ondealItem}">
-			<div class="item_wrapper">
+			<div class="item_empty_wrapper">
 				<div class="item_info_empty">
 					<p class="notice_empty txt_long text-center">거래중인 물품이 없습니다</p>
 				</div>
@@ -167,10 +167,10 @@
 		</c:if>
 		<c:if test="${not empty ondealItem}">
 			<div class="newItem_wrap">
-				<div class="otherItem_container">
-					<div id="newItem_container4" class="newItem_container2">
+				<div class="item_slick_container">
+					<div id="slick_carousel_ondeal" class="slick_carousel">
 						<c:forEach var="ondealItem" items="${ondealItem}">
-							<div id="item4" class="item4 item_info">
+							<div class="item_ondeal item_info">
 								<a href="${path}/item/itemView?item_index=${ondealItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${ondealItem.item_thumbPath}" alt="..">
@@ -214,10 +214,10 @@
 		</c:if>
 		<c:if test="${not empty onsaleItem}">
 			<div class="newItem_wrap">
-				<div class="otherItem_container">
-					<div id="newItem_container5" class="newItem_container2">
+				<div class="item_slick_container">
+					<div id="slick_carousel_onsale" class="slick_carousel">
 						<c:forEach var="onsaleItem" items="${onsaleItem}">
-							<div id="item5" class="item5 item_info">
+							<div class="item_onsale item_info">
 								<a href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${onsaleItem.item_thumbPath}" alt="..">
@@ -255,7 +255,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty soldItem}">
-			<div class="item_wrapper">
+			<div class="item_empty_wrapper">
 				<div class="item_info_empty">
 					<p class="notice_empty text-center">등록한 물품이 없습니다</p>
 				</div>
@@ -263,10 +263,10 @@
 		</c:if>
 		<c:if test="${not empty soldItem}">
 			<div class="newItem_wrap">
-				<div class="otherItem_container">
-					<div id="newItem_container6" class="newItem_container2">
+				<div class="item_slick_container">
+					<div id="slick_carousel_sold" class="slick_carousel">
 						<c:forEach var="soldItem" items="${soldItem}">
-							<div id="item6" class="item6 item_info">
+							<div class="item_sold item_info">
 								<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${soldItem.item_thumbPath}" alt="..">
@@ -305,7 +305,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty boughtItem}">
-			<div class="item_wrapper">
+			<div class="item_empty_wrapper">
 				<div class="item_info_empty">
 					<p class="notice_empty text-center">구매한 물품이 없습니다</p>
 				</div>
@@ -313,10 +313,10 @@
 		</c:if>
 		<c:if test="${not empty boughtItem}">
 			<div class="newItem_wrap">
-				<div class="otherItem_container">
-					<div id="newItem_container7" class="newItem_container2">
+				<div class="item_slick_container">
+					<div id="slick_carousel_bought" class="slick_carousel">
 						<c:forEach var="boughtItem" items="${boughtItem}">
-							<div id="item7" class="item7 item_info">
+							<div class="item_bought item_info">
 								<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${boughtItem.item_thumbPath}" alt="..">
@@ -357,7 +357,7 @@
 			<div class="vr align-self-center"></div>
 		</div>
 		<c:if test="${empty my_interests}">
-			<div class="item_wrapper">
+			<div class="item_empty_wrapper">
 				<div class="item_info_empty">
 					<p class="notice_empty text-center">관심물품이 없습니다</p>
 				</div>
@@ -365,10 +365,10 @@
 		</c:if>
 		<c:if test="${not empty my_interests}">
 			<div class="newItem_wrap">
-				<div class="otherItem_container">
-					<div id="newItem_container8" class="newItem_container2">
+				<div class="item_slick_container">
+					<div id="slick_carousel_interests" class="slick_carousel">
 						<c:forEach var="my_interests" items="${my_interests}">
-							<div id="item8" class="item8 item_info">
+							<div class="item_interests item_info">
 								<a href="${path}/item/itemView?item_index=${my_interests.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${my_interests.item_thumbPath}" alt="..">
@@ -397,301 +397,20 @@
 	</div>
 	</c:if>
 	
-<%-- <!-- 이전꺼 -->
-	<!-- ONDEAL 거래중 -->
-	<div id="acc_ondeal" class="container items_domain">
-		<div class="subtitle d-flex mb-1">
-			<div class="vr align-self-center"></div>
-			<h4 class="container">
-				<span>거</span><span>래</span><span>중</span>
-			</h4>
-			<div class="vr align-self-center"></div>
-		</div>
-		<c:if test="${empty ondealItem}">
-			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty text-center">거래중인 물품이 없습니다</p>
-				</div>
-			</div>
-		</c:if>
-		<c:if test="${not empty ondealItem}">
-		<div class="item_wrapper">
-			<c:forEach var="ondealItem" items="${ondealItem}">
-				<div class="item_container_acc d-flex">
-					<div class="item">
-						<a
-							href="${path}/item/itemView?item_index=${ondealItem.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${ondealItem.item_thumbPath}"
-							alt="매물사진">
-							<div class="item_view">
-								<h3>${ondealItem.item_title}</h3>
-								<div class="item_price">
-									<h4>${ondealItem.item_price}원</h4>
-									<br>
-									<h5>
-										<fmt:formatDate value="${ondealItem.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
-								</div>
-								<div class="item_like">
-									<p>관심 ${ondealItem.item_interest}</p>
-									<p>댓글 ${ondealItem.repl_count}</p>
-								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${ondealItem.item_place}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			</div>
-		</c:if>
-	</div>
-	
-	<!-- ONSALE 판매중 -->
-	<div id="acc_onsale" class="container items_domain">
-		<div class="subtitle d-flex mb-1">
-			<div class="vr align-self-center"></div>
-			<h4 class="container">
-				<span>판</span><span>매</span><span>중</span>
-			</h4>
-			<div class="vr align-self-center"></div>
-		</div>
-		<c:if test="${empty onsaleItem}">
-			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty text-center">판매중인 물품이 없습니다</p>
-				</div>
-			</div>
-		</c:if>
-		<c:if test="${not empty onsaleItem}">
-		<div class="item_wrapper">
-			<c:forEach var="onsaleItem" items="${onsaleItem}">
-				<div class="item_container_acc d-flex">
-					<div class="item">
-						<a
-							href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${onsaleItem.item_thumbPath}"
-							alt="매물사진">
-							<div class="item_view">
-								<h3>${onsaleItem.item_title}</h3>
-								<div class="item_price">
-									<h4>${onsaleItem.item_price}원</h4>
-									<br>
-									<h5>
-										<fmt:formatDate value="${onsaleItem.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
-								</div>
-								<div class="item_like">
-									<p>관심 ${onsaleItem.item_interest}</p>
-									<p>댓글 ${onsaleItem.repl_count}</p>
-								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${onsaleItem.item_place}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			</div>
-		</c:if>
-	</div>
-	
-
-
-	<div id="acc_sold" class="container items_domain">
-		<div class="d-flex">
-			<div class="subtitle d-flex mb-1">
-				<div class="vr align-self-center"></div>
-				<h4 class="container">
-					<span>판</span><span>매</span><span>내</span><span>역</span>
-				</h4>
-				<div class="vr align-self-center"></div>
-			</div>
-			<c:if test="${other_info == null}">
-				<button type="button" id="btn_item_enroll"
-					class="btn_item btn btn-success btn-sm align-self-center"
-					onclick="location.href='${path}/item/itemEnroll.do'">매물 등록</button>
-			</c:if>
-		</div>
-		<c:if test="${empty soldItem}">
-			<div class="item_wrapper">
-				<div class="item justify-content-center">
-					<p class="notice_empty text-center">등록한 물품이 없습니다</p>
-				</div>
-			</div>
-		</c:if>
-		<c:if test="${not empty soldItem}">
-		<div class="item_wrapper">
-			<c:forEach var="soldItem" items="${soldItem}">
-				<div class="item_container_acc d-flex">
-					<div class="item">
-						<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${soldItem.item_thumbPath}" alt="매물사진">
-							<div class="item_view">
-								<h3>${soldItem.item_title}</h3>
-								<div class="item_price">
-									<h4>${soldItem.item_price}원</h4>
-									<br>
-									<h5>
-										<fmt:formatDate value="${soldItem.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
-								</div>
-								<div class="item_like">
-									<p>관심 ${soldItem.item_interest}</p>
-									<p>댓글 ${soldItem.repl_count}</p>
-								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${soldItem.item_place}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			</div>
-		</c:if>
-	</div>
-
-
-	<c:if test="${other_info == null}">
-		<div id="acc_bought" class="container items_domain">
-			<div class="subtitle d-flex mb-1">
-				<div class="vr align-self-center"></div>
-				<h4 class="container">
-				<span>구</span><span>매</span><span>내</span><span>역</span>
-				</h4>
-				<div class="vr align-self-center"></div>
-			</div>
-			<c:if test="${empty boughtItem}">
-				<div class="item_wrapper">
-					<div class="item justify-content-center">
-						<p class="notice_empty text-center">구매한 물품이 없습니다</p>
-					</div>
-				</div>
-			</c:if>
-			<c:if test="${not empty boughtItem}">
-			<div class="item_wrapper">
-				<c:forEach var="boughtItem" items="${boughtItem}">
-					<div class="item_container_acc d-flex">
-						<div class="item">
-							<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
-								style="text-decoration: none; color: black"> <img
-								src="${path}/resources/img/${boughtItem.item_thumbPath}" alt="매물사진">
-								<div class="item_view">
-									<h3>${boughtItem.item_title}</h3>
-									<div class="item_price">
-										<h4>${boughtItem.item_price}원</h4>
-										<br>
-										<h5>
-											<fmt:formatDate value="${boughtItem.item_enrollDate}" pattern="yy/MM/dd" />
-										</h5>
-									</div>
-									<div class="item_like">
-										<p>관심 ${boughtItem.item_interest}</p>
-										<p>댓글 ${boughtItem.repl_count}</p>
-									</div>
-									<div class="item_addr">
-										<img src="${path}/resources/img/gps.png" alt="위치">
-										<p>${boughtItem.item_place}</p>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</c:forEach>
-				</div>
-			</c:if>
-		</div>
-	</c:if>
-	
-	<c:if test="${other_info == null}">
-		<div id="acc_interest" class="container items_domain">
-			<div class="d-flex">
-				<div class="subtitle d-flex mb-1">
-					<div class="vr align-self-center"></div>
-					<h4 class="container">
-						<span>관</span><span>심</span><span>물</span><span>품</span>
-					</h4>
-					<div class="vr align-self-center"></div>
-				</div>
-				<button type="button" id="btn_item_interest"
-					class="btn_item btn btn-success btn-sm align-self-center"
-					onclick="location.href='${path}/item/interest.do'">자&nbsp;&nbsp;세&nbsp;&nbsp;히</button>
-			</div>
-			
-			<c:if test="${empty my_interests}">
-				<div class="item_wrapper">
-					<div class="item justify-content-center">
-						<p class="notice_empty text-center">관심물품이 없습니다</p>
-					</div>
-				</div>
-			</c:if>
-			
-			<c:if test="${not empty my_interests}">
-			<div class="item_wrapper">
-			<c:forEach var="my_interests" items="${my_interests}">
-				<div class="item_container_acc d-flex">
-					<div class="item">
-						<a
-							href="${path}/item/itemView?item_index=${my_interests.item_index}"
-							style="text-decoration: none; color: black"> <img
-							src="${path}/resources/img/${my_interests.item_thumbPath}"
-							alt="매물사진">
-							<div class="item_view">
-								<h3>${my_interests.item_title}</h3>
-								<div class="item_price">
-									<h4>${my_interests.item_price}원</h4>
-									<br>
-									<h5>
-										<fmt:formatDate value="${my_interests.item_enrollDate}"
-											pattern="yy/MM/dd" />
-									</h5>
-								</div>
-								<div class="item_like">
-									<p>관심 ${my_interests.item_interest}</p>
-									<p>댓글 ${my_interests.repl_count}</p>
-								</div>
-								<div class="item_addr">
-									<img src="${path}/resources/img/gps.png" alt="위치">
-									<p>${my_interests.item_place}</p>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</c:forEach>
-			</div>
-			</c:if>
-		</div>
-	</c:if> --%>
-	
-	
 </section>
 
 <script>
-var itemCount4 = $('#newItem_container4 #item4').length;
-var itemCount5 = $('#newItem_container5 #item5').length;
-var itemCount6 = $('#newItem_container6 #item6').length;
-var itemCount7 = $('#newItem_container7 #item7').length;
-var itemCount8 = $('#newItem_container8 #item8').length;
-
+var itemCount4 = $('#slick_carousel_ondeal .item_ondeal').length;
+var itemCount5 = $('#slick_carousel_onsale .item_onsale').length;
+var itemCount6 = $('#slick_carousel_sold .item_sold').length;
+var itemCount7 = $('#slick_carousel_bought .item_bought').length;
+var itemCount8 = $('#slick_carousel_interests .item_interests').length;
 
 
 
  if (itemCount4 > 5) {
 	console.log("5 초과 itemCount: " + itemCount4);
-    $('#newItem_container4').slick({
+    $('#slick_carousel_ondeal').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -702,23 +421,23 @@ var itemCount8 = $('#newItem_container8 #item8').length;
     });
 } else {
 	console.log("5 이하 itemCount: " + itemCount4);
-    $('#newItem_container4').css({
+    $('#slick_carousel_ondeal').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item4').css({
+    $('.item_ondeal').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px' 
     }),
-    $('#newItem_container4:first-child').css({
+    $('#slick_carousel_ondeal:first-child').css({
     	'margin-left' : '8px' 
     })
 }
 
 if (itemCount5 > 5) {
 	console.log("5 초과 itemCount: " + itemCount5);
-    $('#newItem_container5').slick({
+    $('#slick_carousel_onsale').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -729,23 +448,23 @@ if (itemCount5 > 5) {
     });
 } else {
 	console.log("5 이하 itemCount: " + itemCount5);
-    $('#newItem_container5').css({
+    $('#slick_carousel_onsale').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item5').css({
+    $('.item_onsale').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#newItem_container5:first-child').css({
+    $('#slick_carousel_onsale:first-child').css({
     	'margin-left' : '8px' 
     })
 }
 
 if (itemCount6 > 5) {
 	console.log("5 초과 itemCount: " + itemCount6);
-    $('#newItem_container6').slick({
+    $('#slick_carousel_sold').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -756,23 +475,23 @@ if (itemCount6 > 5) {
     });
 } else {
 	console.log("5 이하 itemCount: " + itemCount6);
-    $('#newItem_container6').css({
+    $('#slick_carousel_sold').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item6').css({
+    $('.item_sold').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#newItem_container6:first-child').css({
+    $('#slick_carousel_sold:first-child').css({
     	'margin-left' : '8px' 
     })
 } 
 
 if (itemCount7 > 5) {
 	console.log("5 초과 itemCount: " + itemCount7);
-    $('#newItem_container7').slick({
+    $('#slick_carousel_bought').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -783,23 +502,23 @@ if (itemCount7 > 5) {
     });
 } else {
 	console.log("5 이하 itemCount: " + itemCount7);
-    $('#newItem_container7').css({
+    $('#slick_carousel_bought').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item7').css({
+    $('.item_bought').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#newItem_container7:first-child').css({
+    $('#slick_carousel_bought:first-child').css({
     	'margin-left' : '8px' 
     })
 } 
 
 if (itemCount8 > 5) {
 	console.log("5 초과 itemCount: " + itemCount8);
-    $('#newItem_container8').slick({
+    $('#slick_carousel_interests').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -810,16 +529,16 @@ if (itemCount8 > 5) {
     });
 } else {
 	console.log("5 이하 itemCount: " + itemCount8);
-    $('#newItem_container8').css({
+    $('#slick_carousel_interests').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item8').css({
+    $('.item_interests').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#newItem_container8:first-child').css({
+    $('#slick_carousel_interests:first-child').css({
     	'margin-left' : '8px' 
     })
 } 
