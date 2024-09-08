@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ss.useditems.mapper.MemberMapper">
-
+	<!-- 회원 정보 -->
 	<resultMap type="memberDTO" id="memberMap">
 		<result property="acc_index" column="acc_index" />
 		<result property="acc_id" column="acc_id" />
@@ -22,6 +22,7 @@
 		<result property="acc_enrollDate" column="acc_enrollDate" />
 	</resultMap>
 
+	<!-- 물품 정보 -->
 	<resultMap type="itemInfoDTO" id="itemInfoMap">
 		<result property="item_index" column="item_index" />
 		<result property="item_seller" column="item_seller" />
@@ -50,48 +51,58 @@
 		<result property="show_img5" column="show_img5" />
 	</resultMap>
 
+	<!-- 회원 정보 + 피신고횟수 -->
 	<resultMap type="memberDTO" id="memberInfoMap"
 		extends="memberMap">
 		<result property="acc_blackCount" column="acc_blackCount" />
-		<!-- <collection property="acc_interest" javaType="arrayList" resultMap="itemMap"/> -->
-	</resultMap>	<!--정일 -->
+	</resultMap>
 
+	<!-- 로그인 확인 -->
 	<select id="loginOK" parameterType="memberDTO"
 		resultMap="memberMap">
 		SELECT * FROM account WHERE acc_id = #{acc_id} AND
 		acc_password = #{acc_password} and acc_status != 'inactive'
 	</select>
 
+	<!-- 중복확인 -->
 	<select id="selectById" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM ACCOUNT WHERE ACC_ID = #{id}
 	</select>
 
+	<!-- 회원가입 -->
 	<insert id="signup" parameterType="memberDTO">
 		INSERT INTO ACCOUNT(acc_index,
 		acc_id, acc_password, acc_birthDate,
 		acc_phone, acc_name, acc_address,
 		acc_addressx, acc_addressy, acc_addressdetail,
-		acc_nickname, acc_profile,
+		acc_nickname,
+		acc_profile,
 		acc_count, acc_lastMessage, acc_status,
-		acc_enrollDate) VALUES
+		acc_enrollDate)
+		VALUES
 		(ACCOUNT_SEQ.NEXTVAL, #{acc_id},
-		#{acc_password}, #{acc_birthDate},
+		#{acc_password},
+		#{acc_birthDate},
 		#{acc_phone}, #{acc_name},
 		#{acc_address},#{acc_addressX},#{acc_addressY},
 		#{acc_addressDetail},#{acc_id}, NULL, DEFAULT,
-		DEFAULT, 'active', SYSDATE)
+		DEFAULT, 'active',
+		SYSDATE)
 	</insert>
 
+	<!-- acc_id로 acc_index 조회 -->
 	<select id="selectIdIndex" parameterType="String"
 		resultType="int">
 		SELECT acc_index FROM account WHERE acc_id = #{acc_id}
 	</select>
 
+	<!-- 타 이용자 정보 조회 -->
 	<select id="selectAccountByAcc_id" parameterType="String"
 		resultType="memberDTO">
 		select * from ACCOUNT where acc_id = #{acc_id}
-	</select>	<!--정일 -->
+	</select>
 
+	<!-- 타 이용자 정보 조회 (acc_id) + 피신고 -->
 	<select id="selectInfoByAcc_id" parameterType="String"
 		resultMap="memberInfoMap">
 		select
@@ -104,28 +115,33 @@
 		black
 		on (acc.acc_index = black.black_object)
 		where acc_id = #{acc_id}
-	</select>	<!--정일 -->
+	</select>
 
+	<!-- 프로필 이미지 수정 -->
 	<update id="updateProfile" parameterType="String">
 		update ACCOUNT set
 		acc_profile=#{originalFileName} where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+	</update>
 
+	<!-- 비밀번호 수정 -->
 	<update id="updatePW" parameterType="String">
 		update ACCOUNT set
 		acc_password=#{neoPWconf_input} where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+	</update>
 
+	<!-- 닉네임 수정 -->
 	<update id="updateNickname" parameterType="String">
 		update ACCOUNT set
 		acc_nickname=#{nickname_input} where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+	</update>
 
+	<!-- 핸드폰 번호 수정 -->
 	<update id="updatePhone" parameterType="String">
 		update ACCOUNT set
 		acc_phone=#{phone_input} where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+	</update>
 
+	<!-- 이름, 생년월일, 주소 수정 -->
 	<update id="updateRedunds" parameterType="String">
 		update ACCOUNT set
 		acc_name=#{name_input},
@@ -135,14 +151,17 @@
 		acc_addressDetail=#{addressDetail_input},
 		acc_addressX=#{addressX_input},
 		acc_addressY=#{addressY_input}
-		where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+		where
+		acc_id=#{acc_id}
+	</update>
 
+	<!-- 회원탈퇴 -->
 	<update id="withdraw" parameterType="String">
 		update ACCOUNT set
 		acc_status='inactive' where acc_id=#{acc_id}
-	</update>	<!--정일 -->
+	</update>
 
+	<!-- 마이페이지 물품 조회 리스트 불러오기 (거래중, 판매내역, 구매내역) -->
 	<select id="selectItemByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT
@@ -176,7 +195,8 @@
 		JOIN ACCOUNT ON item_seller = acc_index
 		LEFT JOIN CHATROOM ON room_item
 		= item_index
-		LEFT JOIN REPLY ON room_reply = repl_index
+		LEFT JOIN REPLY ON
+		room_reply = repl_index
 		LEFT JOIN
 		SHOWCASE ON show_item
 		= item_index
@@ -185,12 +205,13 @@
 		OR
 		repl_candidate =
 		#{acc_index}
-		OR item_buyer = #{acc_index}
+		OR
+		item_buyer = #{acc_index}
 		ORDER BY
 		item_index DESC
 	</select>
 
-
+	<!-- 관심 물품 (찜 목록) 리스트 불러오기 -->
 	<select id="selectInterestsByAcc_index" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT *
@@ -198,7 +219,8 @@
 		(select
 		item.*,
 		count(repl_index) repl_count
-		from item
+		from
+		item
 		left join reply on item_index=repl_item
 		group by
 		item_index,
@@ -226,6 +248,4 @@
 		#{acc_index}
 		ORDER BY int_index DESC
 	</select>
-
-
 </mapper>

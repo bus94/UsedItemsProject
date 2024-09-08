@@ -10,11 +10,12 @@
 /* 모달 내 Daum Postcode API의 크기 조정 */
 #postcode {
 	width: 100%;
-	height: 400px; /* 높이 조정 */
+	height: 400px;
 }
 </style>
 <section id="content" class="container signup_container"
 	style="padding-top: 100px;">
+	<!-- 로그인이 안되어있을 때 로그인 확인 -->
 	<c:if test="${loginMember == null}">
 		<div class="login_containerIn">
 			<form id="loginForm" action="${path}/account/signupOK.do"
@@ -23,6 +24,7 @@
 					<h1 class="signup-title mb-2">JOIN</h1>
 				</div>
 				<div class="login_input">
+					<!-- ID 중복확인 버튼 -->
 					<div class="login_inputId" id="login_inputId">
 						<input type="text" class="form-control login_inputStyle" name="id"
 							id="id" placeholder="아이디" autocapitalize="off" required
@@ -55,7 +57,8 @@
 					</div>
 					<div class="login_inputBirth">
 						<input type="text" class="form-control login_inputStyle"
-							name="birthDate" id="birthDate" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							name="birthDate" id="birthDate" pattern="[0-9]+"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
 							placeholder="생년월일(8자리) ex.20010203" maxlength='8' required />
 					</div>
 					<div class="searchAddrDiv">
@@ -70,8 +73,10 @@
 					</div>
 					<div class="login_inputPhone">
 						<input type="text" class="form-control login_inputStyle"
-							name="phone" id="phone" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" maxlength='11' required />
+							name="phone" id="phone" pattern="[0-9]+"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							placeholder="핸드폰번호('-' 없이 11자리) ex.01012345678" maxlength='11'
+							required />
 					</div>
 
 					<!-- 숨겨진 필드에 좌표 값을 저장 -->
@@ -104,10 +109,11 @@
 		</div>
 		<script
 			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		
+
 		<script>
 		var borderId = document.getElementById('login_inputId');
 		var borderPw = document.getElementById('login_inputPw');
+			// ID를 입력했을 때
 			function validateInputId() {
 				var inputId = document.getElementById('id').value;
 				var inputIdMessage = document.getElementById('validateInputId');
@@ -124,6 +130,7 @@
 				}
 			}
 
+			// PW를 입력했을 때
 			function validateInputPw() {
 				var inputPassword = document.getElementById('password').value;
 				var inputPasswordMessage = document
@@ -138,6 +145,7 @@
 				}
 			}
 			
+			// ID 입력에 따른 중복확인 버튼 활성화/비활성화
 			function currIdCheck(pId) {
 				var currId = pId.value.trim();
 				
@@ -151,8 +159,6 @@
 			var status = "0";
 
 			$(document).ready(function() {
-				console.log("제이쿼리 시작");
-				
 				$("#id").on('input', function() {
 					if($("#id").val() != '') {
 						$("#checkId").prop("disabled", false);
@@ -162,12 +168,9 @@
 				});
 
 				$("#checkId").click(function() {
-					console.log("checkId 시작");
-
 					var checkId = {
 						"id" : $("#id").val()
 					}
-					console.log("전송할 id: " + checkId.id);
 					
 					var validateCheckId = document.getElementById('validateCheckId');
 					var validateId = document.getElementById('validateId');
@@ -180,12 +183,10 @@
 							status = data;
 							if(data === "1") {
 								$("#checkId").prop("disabled", true);
-								/* alert("사용 가능한 ID입니다."); */
 								validateId.style.display = 'none';
 								validateCheckId.style.display = 'block';
 								borderId.classList.remove("errorId");
 							} else {
-								/* alert("중복되거나 사용 불가능한 ID입니다. 다시 입력해주세요."); */
 								validateCheckId.style.display = 'none';
 								validateId.style.display = 'block';
 								borderId.classList.add("errorId");
@@ -196,6 +197,7 @@
 					});
 				});
 				
+				// 중복확인을 하지 않고 로그인 버튼을 누른 경우
 				$("#loginForm").submit(function(event) {
 					event.preventDefault();
 					
@@ -212,6 +214,7 @@
 				});
 			});
 			
+			// 주소 검색 모달창
 			function openAddressModal() {
 				 var modal = new bootstrap.Modal(document.getElementById('addressModal'));
 				    modal.show();
@@ -220,7 +223,8 @@
 				        var geocoder = new daum.maps.services.Geocoder();
 				        new daum.Postcode({
 				            oncomplete: function(data) {
-				                var addr = data.address; // 최종 주소 변수
+				            	// 최종 주소 변수
+				                var addr = data.address;
 				                document.getElementById("address").value = addr;
 				                
 				                // 주소로 상세 정보를 검색
@@ -228,7 +232,6 @@
 				                    if (status === daum.maps.services.Status.OK) {
 				                        var result = results[0];
 				                        var coords = new daum.maps.LatLng(result.y, result.x);
-				                        console.log("Latitude: " + coords.getLat() + ", Longitude: " + coords.getLng());
 				                        
 				                        // 좌표 값을 hidden input 필드에 설정
 				                        document.getElementById('addressx').value = coords.getLat();
