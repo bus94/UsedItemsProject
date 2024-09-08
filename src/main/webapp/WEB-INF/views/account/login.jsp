@@ -9,7 +9,9 @@
 
 <section id="content" class="container login_container"
 	style="padding-top: 100px;">
+	<!-- 로그인이 안되어있을 때 로그인 확인 -->
 	<c:if test="${loginMember == null}">
+		<!-- 로그인 확인 정보 입력 -->
 		<form id="loginForm" action="${path}/account/loginOK.do" method="post">
 			<div class="login_containerIn">
 				<div class="loginDiv">
@@ -17,10 +19,12 @@
 						<h1 class="login-title mb-2">LOGIN</h1>
 					</div>
 					<div class="login_input">
+						<!-- ID 입력 div -->
 						<div class="input_css input_id">
 							<input type="text"
 								class="form-control login_inputStyle login_inputStyleId"
-								name="acc_id" id="acc_id" placeholder="아이디" required="requeired" />
+								name="acc_id" id="acc_id" placeholder="아이디" required />
+							<!-- ID 입력 초기화 -->
 							<button type="button" class="input_btn" id="clearId"
 								style="display: block;">
 								<span class="input_btn"><img alt=".."
@@ -28,17 +32,20 @@
 									style="filter: contrast(0%);"><span class="blind">삭제</span></span>
 							</button>
 						</div>
+						<!-- PW 입력 div -->
 						<div class="input_css input_password">
 							<input type="password"
 								class="form-control login_inputStyle login_inputStylePw"
 								name="acc_password" id="acc_password" placeholder="비밀번호"
 								required="required" />
+							<!-- PW 표시 및 숨기기 버튼 -->
 							<button type="button" class="input_btn pwExpr"
 								style="display: block;">
 								<span class="input_btn"><img alt=".."
 									src="${path}/resources/img/비밀번호 숨기기.png" class="pwIcon"><span
 									class="blind">비밀번호 표시/숨기기</span></span>
 							</button>
+							<!-- PW 입력 초기화 -->
 							<button type="button" class="input_btn" id="clearPw"
 								style="display: block;">
 								<span class="input_btn"><img alt=".."
@@ -50,6 +57,7 @@
 
 					<script>
 					$(document).ready(function() {
+						// ID, PW 값에 따른 초기화 x버튼 활성화 관련 메서드
 						function showBtn() {
 				            var idInput = $('.login_inputStyleId');
 				            var clearIdBtn = $('#clearId');
@@ -73,6 +81,7 @@
 				        }
 						
 						showBtn();
+						// ID, PW 입력 → x버튼 활성화
 						$('.login_inputStyleId').on('input', function() {
 				        	showBtn();
 				        });
@@ -81,6 +90,7 @@
 				        	showBtn();
 				        });
 						
+				        // PW 비밀번호 표시 및 숨기기 버튼 관련 메서드
 						$('.pwExpr').on('click', function() {
 							var login_inputStylePw = $('.login_inputStylePw');
 							var pwIcon = $(this).find('.pwIcon');
@@ -119,6 +129,7 @@
 							<button type="button" class="findId findBtnW"
 								data-bs-toggle="modal" data-bs-target="#exampleModalId"
 								data-bs-whatever="@mdo">아이디 찾기</button>
+							<!-- ID 찾기 모달창 (script로 입력값 전송) -->
 							<div class="modal fade" id="exampleModalId" tabindex="-1"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -155,6 +166,7 @@
 							<button type="button" class="findPw findBtnW"
 								data-bs-toggle="modal" data-bs-target="#exampleModalPw"
 								data-bs-whatever="@mdo">비밀번호 찾기</button>
+							<!-- PW 찾기 모달창 (script로 입력값 전송) -->
 							<div class="modal fade" id="exampleModalPw" tabindex="-1"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -201,6 +213,7 @@
 
 <script>
 	$(document).ready(function() {
+		// ID 찾기
 		$('#findIdBtn').click(function() {
 			let name = $('#findId_name').val();
 			let phone = $('#findId_phone').val();
@@ -221,7 +234,9 @@
 					console.log("msg: " + msg);
 					if(checkId !== null && checkId !== undefined && checkId !== "") {
 						alert('아이디 찾기 성공!\n아이디: ' + checkId);
+						// 찾은 ID를 로그인 입력 태그에 넣기
 						$('#acc_id').val(checkId);
+						// 모달창 입력칸 초기화
 						$('#findId_name').val('');
 						$('#findId_phone').val('');
 						$('#exampleModalId').modal('hide');
@@ -236,6 +251,7 @@
 			});
 		});
 		
+		// PW 찾기
 		$('#findPwBtn').click(function() {
 			let id = $('#findPw_id').val();
 			let name = $('#findPw_name').val();
