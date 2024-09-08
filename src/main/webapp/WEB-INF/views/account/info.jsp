@@ -168,9 +168,9 @@
 		<c:if test="${not empty ondealItem}">
 			<div class="newItem_wrap">
 				<div class="item_slick_container">
-					<div id="slick_carousel_ondeal" class="slick_carousel">
+					<div id="slick_carousel_1" class="slick_carousel">
 						<c:forEach var="ondealItem" items="${ondealItem}">
-							<div class="item_ondeal item_info">
+							<div class="carousel_1_item item_info">
 								<a href="${path}/item/itemView?item_index=${ondealItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${ondealItem.item_thumbPath}" alt="..">
@@ -215,9 +215,9 @@
 		<c:if test="${not empty onsaleItem}">
 			<div class="newItem_wrap">
 				<div class="item_slick_container">
-					<div id="slick_carousel_onsale" class="slick_carousel">
+					<div id="slick_carousel_2" class="slick_carousel">
 						<c:forEach var="onsaleItem" items="${onsaleItem}">
-							<div class="item_onsale item_info">
+							<div class="carousel_2_item item_info">
 								<a href="${path}/item/itemView?item_index=${onsaleItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${onsaleItem.item_thumbPath}" alt="..">
@@ -264,9 +264,9 @@
 		<c:if test="${not empty soldItem}">
 			<div class="newItem_wrap">
 				<div class="item_slick_container">
-					<div id="slick_carousel_sold" class="slick_carousel">
+					<div id="slick_carousel_3" class="slick_carousel">
 						<c:forEach var="soldItem" items="${soldItem}">
-							<div class="item_sold item_info">
+							<div class="carousel_3_item item_info">
 								<a href="${path}/item/itemView?item_index=${soldItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${soldItem.item_thumbPath}" alt="..">
@@ -314,9 +314,9 @@
 		<c:if test="${not empty boughtItem}">
 			<div class="newItem_wrap">
 				<div class="item_slick_container">
-					<div id="slick_carousel_bought" class="slick_carousel">
+					<div id="slick_carousel_4" class="slick_carousel">
 						<c:forEach var="boughtItem" items="${boughtItem}">
-							<div class="item_bought item_info">
+							<div class="carousel_4_item item_info">
 								<a href="${path}/item/itemView?item_index=${boughtItem.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${boughtItem.item_thumbPath}" alt="..">
@@ -366,9 +366,9 @@
 		<c:if test="${not empty my_interests}">
 			<div class="newItem_wrap">
 				<div class="item_slick_container">
-					<div id="slick_carousel_interests" class="slick_carousel">
+					<div id="slick_carousel_5" class="slick_carousel">
 						<c:forEach var="my_interests" items="${my_interests}">
-							<div class="item_interests item_info">
+							<div class="carousel_5_item item_info">
 								<a href="${path}/item/itemView?item_index=${my_interests.item_index}"
 									style="text-decoration: none; color: black"> <img
 									src="${path}/resources/img/${my_interests.item_thumbPath}" alt="..">
@@ -399,18 +399,20 @@
 	
 </section>
 
+<script src="${path}/resources/js/acc/acc_info.js"></script>
+
 <script>
-var itemCount4 = $('#slick_carousel_ondeal .item_ondeal').length;
-var itemCount5 = $('#slick_carousel_onsale .item_onsale').length;
-var itemCount6 = $('#slick_carousel_sold .item_sold').length;
-var itemCount7 = $('#slick_carousel_bought .item_bought').length;
-var itemCount8 = $('#slick_carousel_interests .item_interests').length;
+/* 
+var item_count_crs1 = $('#slick_carousel_1 .carousel_1_item').length;
+var item_count_crs2 = $('#slick_carousel_2 .carousel_2_item').length;
+var item_count_crs3 = $('#slick_carousel_3 .carousel_3_item').length;
+var item_count_crs4 = $('#slick_carousel_4 .carousel_4_item').length;
+var item_count_crs5 = $('#slick_carousel_5 .carousel_5_item').length; 
 
 
-
- if (itemCount4 > 5) {
-	console.log("5 초과 itemCount: " + itemCount4);
-    $('#slick_carousel_ondeal').slick({
+ if (item_count_crs1 > 5) {
+	console.log("5 초과 itemCount: " + item_count_crs1);
+    $('#slick_carousel_1').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -420,24 +422,24 @@ var itemCount8 = $('#slick_carousel_interests .item_interests').length;
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount4);
-    $('#slick_carousel_ondeal').css({
+	console.log("5 이하 itemCount: " + item_count_crs1);
+    $('#slick_carousel_1').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item_ondeal').css({
+    $('.carousel_1_item').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px' 
     }),
-    $('#slick_carousel_ondeal:first-child').css({
+    $('#slick_carousel_1:first-child').css({
     	'margin-left' : '8px' 
     })
 }
 
-if (itemCount5 > 5) {
-	console.log("5 초과 itemCount: " + itemCount5);
-    $('#slick_carousel_onsale').slick({
+if (item_count_crs2 > 5) {
+	console.log("5 초과 itemCount: " + item_count_crs2);
+    $('#slick_carousel_2').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -447,24 +449,24 @@ if (itemCount5 > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount5);
-    $('#slick_carousel_onsale').css({
+	console.log("5 이하 itemCount: " + item_count_crs2);
+    $('#slick_carousel_2').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item_onsale').css({
+    $('.carousel_2_item').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#slick_carousel_onsale:first-child').css({
+    $('#slick_carousel_2:first-child').css({
     	'margin-left' : '8px' 
     })
 }
 
-if (itemCount6 > 5) {
-	console.log("5 초과 itemCount: " + itemCount6);
-    $('#slick_carousel_sold').slick({
+if (item_count_crs3 > 5) {
+	console.log("5 초과 itemCount: " + item_count_crs3);
+    $('#slick_carousel_3').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -474,24 +476,24 @@ if (itemCount6 > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount6);
-    $('#slick_carousel_sold').css({
+	console.log("5 이하 itemCount: " + item_count_crs3);
+    $('#slick_carousel_3').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item_sold').css({
+    $('.carousel_3_item').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#slick_carousel_sold:first-child').css({
+    $('#slick_carousel_3:first-child').css({
     	'margin-left' : '8px' 
     })
 } 
 
-if (itemCount7 > 5) {
-	console.log("5 초과 itemCount: " + itemCount7);
-    $('#slick_carousel_bought').slick({
+if (item_count_crs4 > 5) {
+	console.log("5 초과 itemCount: " + item_count_crs4);
+    $('#slick_carousel_4').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -501,24 +503,24 @@ if (itemCount7 > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount7);
-    $('#slick_carousel_bought').css({
+	console.log("5 이하 itemCount: " + item_count_crs4);
+    $('#slick_carousel_4').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item_bought').css({
+    $('.carousel_4_item').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#slick_carousel_bought:first-child').css({
+    $('#slick_carousel_4:first-child').css({
     	'margin-left' : '8px' 
     })
 } 
 
-if (itemCount8 > 5) {
-	console.log("5 초과 itemCount: " + itemCount8);
-    $('#slick_carousel_interests').slick({
+if (item_count_crs5 > 5) {
+	console.log("5 초과 itemCount: " + item_count_crs5);
+    $('#slick_carousel_5').slick({
         dots: false,
         infinite: true,
         arrows: true,
@@ -528,51 +530,22 @@ if (itemCount8 > 5) {
         autoplay: false
     });
 } else {
-	console.log("5 이하 itemCount: " + itemCount8);
-    $('#slick_carousel_interests').css({
+	console.log("5 이하 itemCount: " + item_count_crs5);
+    $('#slick_carousel_5').css({
         'overflow': 'hidden',
         'width': 'auto',
         'justify-content': 'flex-start'
     }),
-    $('.item_interests').css({
+    $('.carousel_5_item').css({
     	'border' : '1px solid lightgray',
     	'width' : '190px'
     }),
-    $('#slick_carousel_interests:first-child').css({
+    $('#slick_carousel_5:first-child').css({
     	'margin-left' : '8px' 
     })
-} 
+}  
 
-/* for (i = 3; i <= 7; i++) {
-
-if(`itemCount${i}` > 5) {
-	console.log("5 초과 itemCount: " + `itemCount${i}`);
-    $(`#newItem_container${i}`).slick({
-        dots: false,
-        infinite: true,
-        arrows: true,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: false
-    });
-} else {
-	console.log("5 이하 itemCount: " + `itemCount${i}`);
-    $(`#newItem_container${i}`).css({
-        'overflow': 'hidden',
-        'width': 'auto',
-        'justify-content': 'flex-start'
-    }),
-    $(`#item${i}`).css({
-    	'border' : '1px solid lightgray'    	
-    })
-}
-
-} */
-
-
-
-
+*/
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
