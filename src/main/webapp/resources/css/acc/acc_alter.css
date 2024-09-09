@@ -22,12 +22,15 @@
 	height: 150px;
 	border-radius: 100%;
 	margin-bottom: 10px;
+	
+	cursor: pointer;
 }
 
 .acc_alt_page #file_box {
 	padding: 0;
+	
+	display: none;
 }
-
 
 .acc_alt_page button {
 	margin: 0;

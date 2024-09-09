@@ -7,9 +7,14 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
+<!-- CSS: acc_info.css -->
+<!-- JS: acc_info.js, 섹션 하단에서 import -->
 <section id="content" class="container acc_info_page" style="padding-top: 100px;">
 
 
+	<!-- 하나의 jsp(info.jsp)에서 요청에 따라 페이지를 선택적으로 보여줌 -->
+	<!-- Request: account/my_info.do(나의정보), account_info == loginMember -->
+	<!-- Request: account/acc_info.do(타인정보), account_info == other_info-->
 	<c:choose>
 		<c:when test="${other_info == null}">
 			<!-- 마이페이지를 누른 경우 -->
@@ -33,7 +38,8 @@
 		</c:otherwise>
 	</c:choose>
 
-
+	<!-- 계정정보 개요(공개정보) -->
+	<!-- '상세'주소는 비공개 -->
 	<div id="acc_summary" class="container">
 		<div id="acc_public" class="acc_inform">
 			<div class="top_container">
@@ -68,7 +74,9 @@
 					</c:if>
 				</div>
 			</div>
+			
 			<hr id="acc_hr">
+			
 			<div class="bottom_container">
 				<div class="bottom_info_box">
 					<div class="acc_level">
@@ -111,7 +119,10 @@
 				</div> --%>
 			</div>
 		</div>
-		<!-- 수입지출내역 -->
+		
+		
+		<!-- 수입지출내역: 보류 -->
+		
 		<%-- <c:if test="${other_info == null}">
 			<div id="acc_profit" class="container inform">
 				<h3 class="text-center">수입 지출 내역</h3>
@@ -148,8 +159,7 @@
 	</div>
 	
 	
-	<!-- 새거 -->
-	<!-- ONDEAL 거래중 -->
+	<!-- ONDEAL 거래중인 물품(==채팅 중) -->
 	<div id="acc_ondeal" class="carousel-wrapper">
 		<div class="subtitle d-flex mb-1">
 			<div class="vr align-self-center"></div>
@@ -245,7 +255,7 @@
 		</c:if>
 	</div>
 	
-	<!-- SOLD 판매내역 -->
+	<!-- SOLD 판매내역(== donedeal 중 내가 판매한 물품) -->
 	<div id="acc_sold" class="carousel-wrapper">
 		<div class="subtitle d-flex mb-1">
 			<div class="vr align-self-center"></div>
@@ -294,7 +304,7 @@
 		</c:if>
 	</div>
 	
-	<!-- BOUGHT 구매내역 -->
+	<!-- BOUGHT 구매내역(== donedeal 중 내가 구매한 물품) -->
 	<c:if test="${other_info == null}">
 	<div id="acc_bought" class="carousel-wrapper">
 		<div class="subtitle d-flex mb-1">
