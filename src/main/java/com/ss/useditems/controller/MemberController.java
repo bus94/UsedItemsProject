@@ -42,15 +42,16 @@ public class MemberController {
 	// 로그인 확인
 	@RequestMapping("/account/loginOK.do")
 	public String loginOK(Model model, String acc_id, String acc_password, HttpSession session) {
+		// 로그인할 객체 저장
 		MemberDTO loginMember = new MemberDTO();
 		loginMember.setAcc_id(acc_id);
 		loginMember.setAcc_password(acc_password);
 
+		// 로그인 확인 실행
 		loginMember = memberservice.loginOK(loginMember);
 		if (loginMember != null) {
 			session.setAttribute("loginMember", loginMember);
-			
-			//0818ji추가 ACCOUNT DB에 저장된 마지막 수신 메시지
+			// 마지막 수신 메세지 저장
 			session.setAttribute("checkedLastMessage", loginMember.getAcc_lastMessage());
 			return "redirect:/";
 		} else {
