@@ -145,7 +145,6 @@
 	<delete id="deleteReply" parameterType="map">
 		delete from reply 
 		where repl_index = ${replyNo}
-		<!-- <if test="itemNo != null">delete from reply where item_index = ${itemNo}</if> -->
 	</delete>
 	
 	<update id="updateItemOnsale" parameterType="map">

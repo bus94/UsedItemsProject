@@ -13,6 +13,14 @@ $(function() {
 });
 
 
+
+$('#profile').click(function(){
+	//프로필사진 누르면 file_input 보이도록
+	$('#file_box').css('display','block');
+});
+
+
+
 $('#alt_pw').click(function(){
 	// 비밀번호 '변경하기' 누르면
 	// $('#password_reset').toggle();
@@ -33,9 +41,9 @@ $('#setPWcancel').click(function(){
 
 
 
-var currPW_input = null;
-var neoPW_input = null;
-var neoPWconf_input = null;
+var currPW_input = null;	//'현재' 비밀번호
+var neoPW_input = null;		//'새' 비밀번호
+var neoPWconf_input = null;	//새 비밀번호 '확인'
 
 var currPW_isNull = null;
 var neoPW_isNull = null;
@@ -294,6 +302,4 @@ $('#btn_withdraw').click(function(){ //'탈퇴하기' 누르면
 		$('#wd_hide2').hide();
 	}
 });
-
-
 

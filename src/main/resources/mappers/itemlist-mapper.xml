@@ -17,7 +17,8 @@
 		<result property="item_offDate" column="item_offDate" />
 		<result property="item_buyer" column="item_buyer" />
 		<result property="item_place_name" column="item_place_name" />
-		<result property="item_place_address" column="item_place_address" />
+		<result property="item_place_address"
+			column="item_place_address" />
 		<result property="item_placeX" column="item_placeX" />
 		<result property="item_placeY" column="item_placeY" />
 		<result property="acc_nickname" column="acc_nickname" />
@@ -32,9 +33,10 @@
 		<result property="show_img5" column="show_img5" />
 	</resultMap>
 
+	<!-- 관심 물품 (찜 목록) -->
 	<select id="interest" parameterType="Integer"
 		resultMap="itemInfoMap">
-	SELECT
+		SELECT
 		*
 		FROM
 		(
@@ -46,7 +48,7 @@
 		s.show_img3,
 		s.show_img4,
 		s.show_img5,
-        inter.int_subject
+		inter.int_subject
 		FROM
 		(
 		SELECT
@@ -67,7 +69,8 @@
 		item_interest,
 		item_offdate,
 		item_buyer,
-		COUNT(repl_index) repl_count
+		COUNT(repl_index)
+		repl_count
 		FROM
 		item
 		LEFT JOIN reply ON repl_item = item_index
@@ -91,107 +94,22 @@
 		item_buyer
 		) i
 		LEFT JOIN showcase
-		s ON s.show_item = i.item_index
-        JOIN interest inter ON i.item_index = inter.int_item
+		s ON s.show_item =
+		i.item_index
+		JOIN interest inter ON i.item_index = inter.int_item
 		)
-		WHERE INT_SUBJECT = #{accIndex}
+		WHERE INT_SUBJECT =
+		#{accIndex}
 	</select>
 
+	<!-- 관심 물품 (찜 목록) 삭제 -->
 	<delete id="deleteInterestItem" parameterType="Map">
 		DELETE FROM
 		INTEREST
 		WHERE int_subject = #{accIndex} AND int_item = #{itemId}
 	</delete>
 
-	<select id="selectByNearPlace" parameterType="java.util.Map"
-		resultMap="itemInfoMap">
-		SELECT
-		*
-		FROM
-		(
-		SELECT
-		i.*,
-		s.show_thumb,
-		s.show_img1,
-		s.show_img2,
-		s.show_img3,
-		s.show_img4,
-		s.show_img5
-		FROM
-		(
-		SELECT
-		item_index,
-		item_seller,
-		item_title,
-		item_content,
-		item_category,
-		item_price,
-		item_place,
-		item_place_name,
-		item_place_address,
-		item_placeX,
-		item_placeY,
-		item_status,
-		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
-		item_click,
-		item_interest,
-		item_offdate,
-		item_buyer,
-		COUNT(repl_index) repl_count
-		FROM
-		item
-		LEFT JOIN reply ON repl_item =
-		item_index
-		GROUP BY
-		item_index,
-		item_seller,
-		item_title,
-		item_content,
-		item_category,
-		item_price,
-		item_place,
-		item_place_name,
-		item_place_address,
-		item_placeX,
-		item_placeY,
-		item_status,
-		item_enrolldate,
-		item_click,
-		item_interest,
-		item_offdate,
-		item_buyer
-		) i
-		LEFT JOIN showcase
-		s ON s.show_item = i.item_index
-		)
-		WHERE item_status IN ('onsale', 'ondeal')
-		<if test="searchAddressList != null and searchAddressList.length > 0">
-			AND item_place IN
-			<foreach item="searchAddress" collection="searchAddressList" open="("
-				separator="," close=")">
-				#{searchAddress}
-			</foreach>
-		</if>
-		<if test="categoryList != null and categoryList.length > 0">
-			AND item_category IN
-			<foreach item="category" collection="categoryList" open="("
-				separator="," close=")">
-				#{category}
-			</foreach>
-		</if>
-		<if test="searchValue != null">
-			AND (item_title LIKE '%${searchValue}%'
-			OR item_content
-			LIKE '%${searchValue}%'
-			OR item_category LIKE '%${searchValue}%'
-			OR
-			item_place LIKE '%${searchValue}%')
-		</if>
-		<if test="nearPlace != null">
-			ORDER BY item_place
-		</if>
-	</select>
-
+	<!-- 조회순 검색 -->
 	<select id="selectByPopular" parameterType="java.util.Map"
 		resultMap="itemInfoMap">
 		SELECT
@@ -221,7 +139,8 @@
 		item_placeX,
 		item_placeY,
 		item_status,
-		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS
+		item_enrolldate,
 		item_click,
 		item_interest,
 		item_offdate,
@@ -253,11 +172,13 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE item_status IN ('onsale', 'ondeal')
-		<if test="searchAddressList != null and searchAddressList.length > 0">
+		WHERE item_status IN
+		('onsale', 'ondeal')
+		<if
+			test="searchAddressList != null and searchAddressList.length > 0">
 			AND item_place IN
-			<foreach item="searchAddress" collection="searchAddressList" open="("
-				separator="," close=")">
+			<foreach item="searchAddress" collection="searchAddressList"
+				open="(" separator="," close=")">
 				#{searchAddress}
 			</foreach>
 		</if>
@@ -281,6 +202,7 @@
 		</if>
 	</select>
 
+	<!-- 매너등급순 검색 -->
 	<select id="selectByBestSeller" parameterType="java.util.Map"
 		resultMap="itemInfoMap">
 		SELECT
@@ -314,7 +236,8 @@
 		item_interest,
 		item_offdate,
 		item_buyer,
-		COUNT(repl_index) repl_count
+		COUNT(repl_index)
+		repl_count
 		FROM
 		item
 		LEFT JOIN reply ON repl_item = item_index
@@ -340,11 +263,13 @@
 		JOIN account a ON i.item_seller =
 		a.acc_index
 		JOIN showcase s ON i.item_index = s.show_item
-		WHERE item_status IN ('onsale', 'ondeal')
-		<if test="searchAddressList != null and searchAddressList.length > 0">
+		WHERE
+		item_status IN ('onsale', 'ondeal')
+		<if
+			test="searchAddressList != null and searchAddressList.length > 0">
 			AND item_place IN
-			<foreach item="searchAddress" collection="searchAddressList" open="("
-				separator="," close=")">
+			<foreach item="searchAddress" collection="searchAddressList"
+				open="(" separator="," close=")">
 				#{searchAddress}
 			</foreach>
 		</if>
@@ -369,6 +294,7 @@
 		</if>
 	</select>
 
+	<!-- 기본 검색 -->
 	<select id="selectByDefault" parameterType="java.util.Map"
 		resultMap="itemInfoMap">
 		SELECT
@@ -398,7 +324,8 @@
 		item_placeX,
 		item_placeY,
 		item_status,
-		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS item_enrolldate,
+		TO_CHAR(item_enrolldate, 'YYYY-MM-DD HH24:MI:SS') AS
+		item_enrolldate,
 		item_click,
 		item_interest,
 		item_offdate,
@@ -406,7 +333,8 @@
 		COUNT(repl_index) repl_count
 		FROM
 		item
-		LEFT JOIN reply ON repl_item = item_index
+		LEFT JOIN reply ON repl_item =
+		item_index
 		GROUP BY
 		item_index,
 		item_seller,
@@ -429,11 +357,13 @@
 		LEFT JOIN showcase
 		s ON s.show_item = i.item_index
 		)
-		WHERE item_status IN ('onsale', 'ondeal')
-		<if test="searchAddressList != null and searchAddressList.length > 0">
+		WHERE item_status IN
+		('onsale', 'ondeal')
+		<if
+			test="searchAddressList != null and searchAddressList.length > 0">
 			AND item_place IN
-			<foreach item="searchAddress" collection="searchAddressList" open="("
-				separator="," close=")">
+			<foreach item="searchAddress" collection="searchAddressList"
+				open="(" separator="," close=")">
 				#{searchAddress}
 			</foreach>
 		</if>
@@ -453,7 +383,8 @@
 			item_place LIKE '%${searchValue}%')
 		</if>
 	</select>
-	
+
+	<!-- 반경 700m 지역 검색 -->
 	<select id="nearDistrict" parameterType="Map"
 		resultType="String">
 		SELECT item_place
@@ -461,8 +392,10 @@
 		WHERE (
 		6371 * ACOS(
 		COS(RADIANS(#{acc_addressX})) * COS(RADIANS(item_placex))
-		* COS(RADIANS(item_placey) - RADIANS(#{acc_addressY}))
-		+ SIN(RADIANS(#{acc_addressX})) * SIN(RADIANS(item_placex))
+		*
+		COS(RADIANS(item_placey) - RADIANS(#{acc_addressY}))
+		+
+		SIN(RADIANS(#{acc_addressX})) * SIN(RADIANS(item_placex))
 		)
 		) &lt;= 0.7
 	</select>

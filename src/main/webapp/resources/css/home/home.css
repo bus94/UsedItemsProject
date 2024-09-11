@@ -1,18 +1,9 @@
 @charset "UTF-8";
 
-
-
-.home_page{
-	    transition: background-color 0.5s ease;
-	
-}
-
 #main_content {
 	width: 100%;
 	margin:0;
 	padding: 0;
-	overflow: auto;
-	
 }
 
 /* 메인슬라이드 */
@@ -65,9 +56,6 @@
 	 background: linear-gradient(to bottom, #E0FFD9,#AAFFA3, #86E57F);
 }
 
-.major p {
-	font-weight: lighter;
-}
 
 
 /* newItem */
@@ -96,26 +84,6 @@
 }
 
 .newItem_container2{
-	display: flex;
-	justify-content: space-between;
-	gap:9px;
-	transition: transform 0.5s ease;
-}
-
-.newItem_container3{
-	display: flex;
-	justify-content: space-between;
-	gap:9px;
-	transition: transform 0.5s ease;
-}
-.newItem_container4{
-	display: flex;
-	justify-content: space-between;
-	gap:9px;
-	transition: transform 0.5s ease;
-}
-
-.newItem_container5{
 	display: flex;
 	justify-content: space-between;
 	gap:9px;
@@ -188,17 +156,9 @@
 	left: -50px;
 }
 
-.newItem_container3 .slick-next {
-	position: absolute;
-	top: 50%;
-	right: -40px;
-}
-.newItem_container3 .slick-prev{
-	width:50px;
-	height:50px;
-	position: absolute;
-	top: 50%;
-	left: -50px;
+.slick-next:before, .slick-prev:before {
+	font-size: 30px;
+	color: green;
 }
 
 

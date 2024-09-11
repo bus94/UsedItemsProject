@@ -66,6 +66,7 @@ public class ItemViewController {
 			response.addCookie(newCookie);
 		}
 
+		// 물품 상세페이지 사진 불러오기
 		ItemInfoDTO item = service.selectByItemIndex(item_index);
 		String filePath = item.getItem_seller() + "/item_" + item.getItem_index() + "/";
 		item.setItem_thumbPath(filePath + item.getShow_thumb());
@@ -75,14 +76,12 @@ public class ItemViewController {
 		item.setItem_img4Path(filePath + item.getShow_img4());
 		item.setItem_img5Path(filePath + item.getShow_img5());
 
-		//System.out.println("item: " + item); // item
 
 		System.out.println("조회수 증가" + item.getItem_click());
 		
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
-		//System.out.println("replyList: " + replyList); // []
-
 		
+		// 셀러 정보
 		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
 		
 		itemMember.setAcc_score(itemMember.acc_score(itemMember.getAcc_count(), itemMember.getAcc_blackCount()));
@@ -98,8 +97,7 @@ public class ItemViewController {
 		} else {
 			itemMember.setAcc_level(1);
 		}
-		System.out.println("itemMember: " + itemMember); // itemMember
-
+		System.out.println("itemMember: " + itemMember);
 
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("item_seller", item.getItem_seller());
@@ -119,17 +117,11 @@ public class ItemViewController {
 			otherItemList.get(i).setItem_img5Path(filePathOther + otherItemList.get(i).getShow_img5());
 		}
 
-		//System.out.println("otherItemList: " + otherItemList.size() + "개");
-		for (int i = 0; i < otherItemList.size(); i++) {
-			//System.out.println("otherItemList: " + otherItemList.get(i));
-		}
-
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("otherItemList", otherItemList);
 		model.addAttribute("isInterested", isInterested);
-		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);
 
 		return "item/itemView";
@@ -159,7 +151,6 @@ public class ItemViewController {
 		dto.setRepl_content(content);
 		dto.setRepl_candidate(loginMember.getAcc_index());
 		dto.setRepl_nickname(loginMember.getAcc_nickname());
-		//System.out.println("댓글 입력 전 dto:" + dto);
 		
 		int result = service.saveReply(dto);
 		if (result > 0) {
@@ -168,10 +159,9 @@ public class ItemViewController {
 			model.addAttribute("msg", "리플 등록에 실패했습니다.");
 		}
 
-		// 댓글 목록 다시 조회
+		// 댓글목록 조회
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(itemNo);
 		model.addAttribute("replyList", replyList);
-
 		model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 
 		return "common/msg";

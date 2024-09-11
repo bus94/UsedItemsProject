@@ -4,42 +4,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="item_content_list" style="padding-top: 100px;">
-
-
+	<!-- 물품 전체 목록 검색 조회 -->
 	<form action="${path}/item/itemList.do" method="post" id="searchForm">
 		<div class="category">
 			<div class="selectBox">
 				<div class="selectBoxIn">
+					<!-- 정렬 (조회순, 매너등급순) -->
 					<p>정렬:</p>
 					<select class="selectBox_value" name="searchType">
+						<!-- 정렬 선택 -->
 						<option value="">===정렬 선택===</option>
-						<%-- <option id="searchTypeNearPlace" value="nearPlace"
-							${searchType != null && searchType == 'nearPlace' ? 'selected' : ''}>우리 동네</option> --%>
 						<option id="searchTypePopular" value="popular"
 							${searchType != null && searchType == 'popular' ? 'selected' : ''}>조회순</option>
 						<option id="searchTypeBestSeller" value="bestSeller"
 							${searchType != null && searchType == 'bestSeller' ? 'selected' : ''}>매너등급순</option>
 					</select>
+					<!-- 카테고리 필터 ("상의", "하의", "신발", "기타의류", "지갑", "피규어", "전자기기", "가구", "식품", "기타") -->
 					<p>필터:</p>
 					<div class="dropdown dropdown_checkBox">
+						<!-- 필터 선택 -->
 						<button class="btn dropdown-toggle dropdownBtn" type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">===필터
 							선택===</button>
+						<!-- 드롭다운 메뉴 -->
 						<ul class="dropdown-menu">
+							<!-- categoryAllList 리스트를 변수 value에 저장 -->
 							<c:forEach var="value" items="${categoryAllList}">
-								<li><c:set var="isChecked"
+								<li>
+									<!-- categoryList가 비어있는지 확인하고, categoryList에 value가 포함되어있는지 확인한 후 true면 isChecked에 저장 -->
+									<c:set var="isChecked"
 										value="${categoryList != null && fn:contains(categoryList, value)}" />
-									<c:forEach var="category" items="${categoryList}">
+									<!-- categoryList 리스트를 변수 category에 저장 --> 
+									<c:forEach
+										var="category" items="${categoryList}">
+										<!-- categoryList의 category값과 categoryAllList의 value값이 같다면 isChecked는 true -->
 										<c:if test="${category == value}">
 											<c:set var="isChecked" value="true" />
 										</c:if>
-									</c:forEach> <input type="checkbox" name="categoryList"
-									id="category_${value}" value="${value}"
-									class="category-checkbox" ${isChecked ? 'checked':''} /> <label
-									class="radio_type" for="category_${value}">${value}</label></li>
+									</c:forEach> 
+									<!-- isChecked가 true라면 체크박스에 체크된 상태로 표현 --> 
+									<input type="checkbox" name="categoryList" id="category_${value}"
+									value="${value}" class="category-checkbox" ${isChecked ? 'checked':''} /> 
+									<label class="radio_type" for="category_${value}">${value}</label>
+								</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -55,7 +66,8 @@
 
 		<script>
 		 document.addEventListener('DOMContentLoaded', function() {
-                const divContainer = document.querySelector('#divContainer');
+             // 카테고리 필터의 체크박스에서 선택한 경우 체크된 값에 대해 작은 div로 표현   
+			 const divContainer = document.querySelector('#divContainer');
 		        // li 클릭 시 체크박스 토글
 		        document.querySelectorAll('.dropdown-menu li').forEach(li => {
 		            li.addEventListener('click', function(event) {
@@ -69,23 +81,19 @@
 
                         // 기존 div를 찾기
                         let existingDiv = Array.from(document.querySelectorAll('.addDiv')).find(div => div.getAttribute('data-value') === value);
-                        console.log('클릭하자마자 existingDiv:', existingDiv);
                         
                         if (checkbox.checked) {
                             if (!existingDiv) {
-                            	console.log("생성해보자");
                                 // 새로운 div 생성
                                 const newDiv = document.createElement('div');
                                 newDiv.className = 'addDiv';
                                 newDiv.setAttribute('data-value', value);
 
-                                console.log("p태그 생성");
                                 // 새로운 p 태그 생성 및 추가
                                 const newParagraph = document.createElement('p');
                                 newParagraph.textContent = value;
                                 newDiv.appendChild(newParagraph);
                                 
-                                console.log("x버튼 생성");
                                 // 새로운 x 버튼 생성 및 추가
                                 const removeBtn = document.createElement('button');
                                 removeBtn.textContent = 'x';
@@ -107,10 +115,7 @@
                                 });
                             }
                         } else {
-                        	console.log("제거 시작해보자");
-                        	console.log("existingDiv: " + existingDiv);
                             if (existingDiv) {
-                            	console.log("제거해보자");
                                 // 기존 div 제거
                                 divContainer.removeChild(existingDiv);
                             } else {
@@ -183,17 +188,19 @@
 		<div class="item_title">
 			<h3>검색 결과</h3>
 		</div>
+		<!-- itemList가 비어있는 경우 -->
 		<c:if test="${empty itemList}">
 			<tr>
 				<td colspan="6">조회된 글이 없습니다.</td>
 			</tr>
 		</c:if>
+		<!-- itemList가 있는 경우 -->
 		<c:if test="${not empty itemList}">
+			<!-- 물품 정보 -->
 			<div class="item_wrapper">
 				<c:forEach var="item" items="${itemList}">
 					<div class="item_container">
 						<div class="item">
-
 							<a href="${path}/item/itemView?item_index=${item.item_index}"
 								style="text-decoration: none; color: black">
 								<div class="imgDiv">
@@ -204,6 +211,7 @@
 									<h3>${item.item_title}</h3>
 									<div class="item_price">
 										<h4>
+											<!-- 가격 formatter -->
 											<fmt:formatNumber value="${item.item_price}" type="number"
 												groupingUsed="true" />
 											원
@@ -214,6 +222,7 @@
 										<p>관심 ${item.item_interest}</p>
 										<p>댓글 ${item.repl_count}</p>
 									</div>
+									<!-- 물품 판매 장소 -->
 									<div class="item_addr"
 										style="display: flex; justify-content: space-between;">
 										<div style="display: flex">
@@ -222,6 +231,7 @@
 										</div>
 										<div>
 											<h5>
+												<!-- 물품 등록 날짜 formatter -->
 												<fmt:formatDate value="${item.item_enrollDate}"
 													pattern="MM/dd" />
 											</h5>
@@ -233,7 +243,7 @@
 					</div>
 				</c:forEach>
 			</div>
-			<div class="modal fade" id="placeModal" tabindex="-1"
+			<!-- <div class="modal fade" id="placeModal" tabindex="-1"
 				aria-labelledby="placeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
@@ -252,11 +262,11 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</c:if>
 	</form>
 
-	<!-- 페이징 -->
+	<!-- 페이지네이션 -->
 	<div align="center"
 		class="pagination container d-flex justify-content-center">
 		<a
@@ -278,8 +288,6 @@
 			href="itemList.do?currentPage=${pageInfo.lastPage}&searchValue=${searchValue}&searchType=${searchType}&categoryList=${fn:join(categoryList, ',')}">&gt;|</a>
 		&nbsp;
 	</div>
-
-
 </section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
@@ -287,13 +295,14 @@
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a41a4466a946b1b4af605da49e598032&libraries=services"></script>
 
-<script>
+<!-- <script>
 		document.addEventListener('DOMContentLoaded', () => {
-			let map; // 지도 객체
-			const mapButton = document.getElementById("mapButton"); // 장소 선택 버튼
+			// 지도 객체
+			let map; 
+			// 장소 선택 버튼
+			const mapButton = document.getElementById("mapButton"); 
 			const mapContainer = document.getElementById('map');
 			const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
-			
 			const fullAddress="${loginMember.acc_address}";
 			
 			mapButton.addEventListener('click', (e) => {
@@ -302,7 +311,6 @@
 	            if (!map) {
 	                const addressX = ${loginMember.acc_addressX}; 
 	                const addressY = ${loginMember.acc_addressY};
-	                
 	                const mapOption = {
 		                    center: new kakao.maps.LatLng(addressX, addressY),
 		                    level: 3 
@@ -318,7 +326,5 @@
 		            }, 500); 
 	            }
 			});
-			
 		});
-		
-</script>
+</script> -->

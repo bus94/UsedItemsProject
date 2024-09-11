@@ -39,9 +39,7 @@ a {
 	height: 400px;
 	padding-left: 50px;
 }
-.detail_top{
-	
-}
+
 .detail_info h3 {
 	font-weight: bold;
 }
@@ -145,6 +143,9 @@ a {
     padding-bottom: 5px;
     }
 
+
+
+
 .comment-container{
 	width: 1000px;
 	height: 100px;
@@ -171,10 +172,8 @@ textarea:focus {
 	border:none;
 	background-color: rgb(171, 236, 171);
 	
-	
-	
-	
 }
+
 .replyEdit_container{
 	width: 1000px;
 	height: 100px;
@@ -288,27 +287,7 @@ textarea:focus {
 }
 
 
-.slick-next, .slick-prev {
-	position: absolute;
-	/* 절대 위치 설정 */
-	top: 50%;
-	/* 수직 중앙 정렬 */
-}
 
-.slick-prev {
-	left: -40px;
-	/* 왼쪽 위치 조정 */
-}
-
-.slick-next {
-	right: -40px;
-	/* 오른쪽 위치 조정 */
-}
-
-.slick-next:before, .slick-prev:before {
-	font-size: 30px;
-	color: green;
-}
 
 
 .btn-add-interest, .btn-cancel-interest {
@@ -357,7 +336,7 @@ textarea:focus {
     width: 200px;
     height: 200px;
     border: 1px solid #ccc;
-    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+    z-index: 1000;
 } 
 
 .item_like span{
