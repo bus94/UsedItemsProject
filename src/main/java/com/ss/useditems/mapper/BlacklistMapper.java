@@ -15,9 +15,10 @@ public interface BlacklistMapper {
 
 	int enroll(BlacklistDTO complain);
 
+	int delete(String black_index);
+	
+	//안씀
 	ArrayList<MemberDTO> getBlack5();
-
-	int delet(String black_index);
 
 	///////////arraylist 받아서 map으로 sql 집어넣기
 	int testarr(Map<String, String> testMap);

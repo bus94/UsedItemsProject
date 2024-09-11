@@ -34,16 +34,25 @@ public class MemberService {
 		return mapper.signup(signupMember);
 	}
 	
-	// acc_id로 조회 (타 이용자 정보 조회할 때)
+	// acc_id로 조회 (info.jsp에서 계정정보 개요 조회할 때)
 	public MemberDTO selectInfoByAcc_id(String acc_id) {
 		MemberDTO account_info = new MemberDTO();
 		account_info = mapper.selectInfoByAcc_id(acc_id);
 		
-		// 개인 비공개정보는 메모리에서 삭제
-		//account_info.setAcc_password(null);
-		//account_info.setAcc_birthDate(null);
-		//account_info.setAcc_status(null);
-		//account_info.setAcc_enrollDate(null);
+		// 매너등급 계산하는 메서드
+		account_info.setAcc_score(account_info.acc_score(account_info.getAcc_count(), account_info.getAcc_blackCount()));
+		// 매너등급 (총 5개의 등급)
+		if (account_info.getAcc_score() >= 80) {
+			account_info.setAcc_level(5);
+		} else if (account_info.getAcc_score() >= 60) {
+			account_info.setAcc_level(4);
+		} else if (account_info.getAcc_score() >= 40) {
+			account_info.setAcc_level(3);
+		} else if (account_info.getAcc_score() >= 20) {
+			account_info.setAcc_level(2);
+		} else {
+			account_info.setAcc_level(1);
+		}
 		
 		return account_info;
 	}
@@ -104,7 +113,7 @@ public class MemberService {
 		return mapper.withdraw(acc_id);
 	}
 
-	// 마이페이지 물품 조회 리스트 불러오기 (거래중, 판매내역, 구매내역)
+	// info.jsp에서 물품 조회 리스트 불러오기 (거래중, 판매내역, 구매내역)
 	public Map<String, List<ItemInfoDTO>> getItemInfo(int acc_index) { 
 		List<ItemInfoDTO> itemList = mapper.selectItemByAcc_index(acc_index);
 		// 이미지 경로 불러오기

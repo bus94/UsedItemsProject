@@ -141,24 +141,9 @@ public class MemberController {
 				MemberDTO my_info = (MemberDTO) session.getAttribute("loginMember");
 				String my_id = my_info.getAcc_id();
 				my_info = memberservice.selectInfoByAcc_id(my_id);
-				my_info.setAcc_score(my_info.acc_score(my_info.getAcc_count(), my_info.getAcc_blackCount()));
-
-				// 매너등급 (총 5개의 등급)
-				if (my_info.getAcc_score() >= 80) {
-					my_info.setAcc_level(5);
-				} else if (my_info.getAcc_score() >= 60) {
-					my_info.setAcc_level(4);
-				} else if (my_info.getAcc_score() >= 40) {
-					my_info.setAcc_level(3);
-				} else if (my_info.getAcc_score() >= 20) {
-					my_info.setAcc_level(2);
-				} else {
-					my_info.setAcc_level(1);
-				}
-
 				model.addAttribute("loginMember", my_info);
+				
 				int acc_index = my_info.getAcc_index();
-
 				// 거래중, 판매내역, 구매내역 불러오기 (MemberService getItemInfo 메서드 통해 전처리)
 				Map<String, List<ItemInfoDTO>> itemInfo = memberservice.getItemInfo(acc_index);
 
@@ -193,25 +178,9 @@ public class MemberController {
 			// 다른 이용자의 정보를 불러오기
 			MemberDTO account_info = new MemberDTO();
 			account_info = memberservice.selectInfoByAcc_id(acc_id);
-
-			// 매너등급 계산하는 메서드
-			account_info.setAcc_score(
-					account_info.acc_score(account_info.getAcc_count(), account_info.getAcc_blackCount()));
-			// 매너등급 (총 5개의 등급)
-			if (account_info.getAcc_score() >= 80) {
-				account_info.setAcc_level(5);
-			} else if (account_info.getAcc_score() >= 60) {
-				account_info.setAcc_level(4);
-			} else if (account_info.getAcc_score() >= 40) {
-				account_info.setAcc_level(3);
-			} else if (account_info.getAcc_score() >= 20) {
-				account_info.setAcc_level(2);
-			} else {
-				account_info.setAcc_level(1);
-			}
 			model.addAttribute("other_info", account_info);
+			
 			int acc_index = account_info.getAcc_index();
-
 			// 거래중, 판매내역, 구매내역 불러오기 (MemberService getItemInfo 메서드 통해 전처리)
 			Map<String, List<ItemInfoDTO>> itemInfo = memberservice.getItemInfo(acc_index);
 

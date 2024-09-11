@@ -14,11 +14,11 @@ $(function() {
 
 
 
-// [ (거래중)[carosel],[carousel에 속한 item],
-//   (판매중)[carosel],[carousel에 속한 item],
-//  (판매내역)[carosel],[carousel에 속한 item],
-//  (구매내역)[carosel],[carousel에 속한 item],
-//  (관심물품)[carosel],[carousel에 속한 item] ]
+// [ (거래중)[carousel],[carousel에 속한 item],
+//   (판매중)[carousel],[carousel에 속한 item],
+//  (판매내역)[carousel],[carousel에 속한 item],
+//  (구매내역)[carousel],[carousel에 속한 item],
+//  (관심물품)[carousel],[carousel에 속한 item] ]
 
 var arr_carousel_slide = [ 	[$('#slick_carousel_1'), $('.carousel_1_item')],
 						[$('#slick_carousel_2'), $('.carousel_2_item')],
@@ -27,9 +27,9 @@ var arr_carousel_slide = [ 	[$('#slick_carousel_1'), $('.carousel_1_item')],
 						[$('#slick_carousel_5'), $('.carousel_5_item')]  ]
 
 
-for (i = 0; i < 5; i++) {
+for (i=0; i<5; i++) {
 	 
-	if(arr_carousel_slide[i][1].length > 5) {
+	if(arr_carousel_slide[i][1].length>5) {
 		//item 수 > 5이면 carousel 돌리기
 		//console.log("5 초과 itemCount: " + arr_carousel_slide[i][1].length);
 		arr_carousel_slide[i][0].slick({
@@ -48,14 +48,14 @@ for (i = 0; i < 5; i++) {
 	        'overflow': 'hidden',
 	        'width': 'auto',
 	        'justify-content': 'flex-start'
-	    }),
+	    });
 	    arr_carousel_slide[i][0].children(':first').css({
 	        'margin-left': '8px'
-	    }),
+	    });
 	    arr_carousel_slide[i][1].css({
 	    	'border' : '1px solid lightgray',
 	    	'width' : '190px'
-	    })
+	    });
 	}
 	
 } 
