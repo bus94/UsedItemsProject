@@ -130,12 +130,6 @@ public class ItemController {
 		return result;
 	}
 
-	// 물품 등록 페이지
-	@RequestMapping("/item/itemEnroll.do")
-	public String itemEnroll(Model model) {
-		return "item/itemEnroll";
-	}
-
 	// 관심 물품 페이지 (찜 목록)
 	@RequestMapping("/item/interest.do")
 	public String interest(Model model, HttpSession session, String currentPage) {

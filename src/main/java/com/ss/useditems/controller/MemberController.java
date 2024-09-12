@@ -53,12 +53,8 @@ public class MemberController {
 		if (loginMember != null) { 
 			// 로그인 성공한 경우
 			session.setAttribute("loginMember", loginMember);
-<<<<<<< HEAD
-			// 마지막 수신 메세지 저장
-=======
 
 			// Account Table에 저장된 마지막 수신 메시지
->>>>>>> 1344827fcf62e32c81270f4efed390a977163e55
 			session.setAttribute("checkedLastMessage", loginMember.getAcc_lastMessage());
 			return "redirect:/";
 		} else { 
