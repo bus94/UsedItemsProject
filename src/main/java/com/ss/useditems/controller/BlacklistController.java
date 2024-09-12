@@ -68,6 +68,12 @@ public class BlacklistController {
 	@GetMapping("/complain.do")
 	public String complain(Model model, @RequestParam Map<String, String> param) {
 		// URL을 통해 object_id의 넘어올 값이 없는 경우에 대한 예외처리
+		// ->
+		
+		// try 실행하여 param Map에 "object_id"가 넘어오는 경우 신고대상자 ID 자동 입력
+		// 매개변수가 넘어오지 않는 경우 신고대상자 ID 공란(직접 입력)
+		
+		// 매개변수로 String object_id를 직접 받는 경우, 매개변수가 넘어오지 않을 경우 에러 발생
 		try {
 			String object_id = param.get("object_id");
 			model.addAttribute("object_id", object_id);
@@ -79,14 +85,11 @@ public class BlacklistController {
 	// 신고 등록
 	@PostMapping("/complainPro.do") 
 	public String complainPro(Model model, @RequestParam Map<String, String> param) {
-		String subject_id = param.get("subject_id");
-		String object_id = param.get("object_id");
-		String black_content = param.get("black_content");
 
 		BlacklistDTO complain = new BlacklistDTO();
-		complain.setSubject_id(subject_id);
-		complain.setObject_id(object_id);
-		complain.setBlack_content(black_content);
+		complain.setSubject_id(param.get("subject_id"));
+		complain.setObject_id(param.get("object_id"));
+		complain.setBlack_content(param.get("black_content"));
 
 		try {
 			service.enroll(complain);
@@ -104,12 +107,12 @@ public class BlacklistController {
 	@GetMapping("/complainDel.do") 
 	public String complainDel(Model model, @RequestParam String black_index) {
 		try {
-			int result = service.delet(black_index);
+			int result = service.delete(black_index);
 			if (result > 0) {
 				model.addAttribute("msg", "게시글이 삭제되었습니다.");
 				model.addAttribute("location", "/blacklist/complainList.do");
 			} else {
-				System.out.println("blacklist.complainDel_result <= 0");
+				//System.out.println("blacklist.complainDel_result <= 0");
 				model.addAttribute("msg", "오류로 인하여 삭제가 정상적으로 처리되지 않았습니다.");
 				model.addAttribute("location", "/blacklist/complainList.do");
 			}
@@ -121,6 +124,9 @@ public class BlacklistController {
 		return "common/msg";
 	}
 
+
+	
+	/////////// arraylist 받아서 map으로 sql 집어넣기 test
 	@GetMapping("/testNull.do")
 	public String testNull() {
 		ArrayList<String> strlist = new ArrayList<String>();

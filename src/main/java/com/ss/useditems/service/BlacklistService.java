@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ss.useditems.dto.BlacklistDTO;
-import com.ss.useditems.dto.ItemInfoDTO;
 import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.mapper.BlacklistMapper;
-import com.ss.useditems.mapper.ItemMapper2;
 import com.ss.useditems.mapper.MemberMapper;
 import com.ss.useditems.util.PageInfo;
 
@@ -27,7 +25,7 @@ public class BlacklistService {
 
 	// 신고 리스트 및 페이징 처리
 	public PageInfo getBlacklist(int currentPage, Map<String, String> queryMap) { // 정일_신고등록
-		System.out.println("BlacklistService.getBlacklist()");
+		
 		// 일단 쿼리맵 검색으로 전체리스트 받아옴
 		ArrayList<BlacklistDTO> unpaged_list = blacklistMapper.getBlacklist(queryMap);
 
@@ -45,11 +43,11 @@ public class BlacklistService {
 
 	// 신고 등록
 	public int enroll(BlacklistDTO complain) {
-		System.out.println("BlacklistService.enroll()");
+		
 		// 신고자 id로 계정정보 조회(index)
 		MemberDTO subject = memberMapper.selectAccountByAcc_id(complain.getSubject_id());
 		MemberDTO object = memberMapper.selectAccountByAcc_id(complain.getObject_id());
-		// 개인 비공개정보 제거??
+
 		complain.setBlack_subject(subject.getAcc_index());
 		complain.setBlack_object(object.getAcc_index());
 
@@ -57,13 +55,13 @@ public class BlacklistService {
 	}
 
 	// 신고 삭제 (본인 또는 관리자 권한)
-	public int delet(String black_index) {
-		System.out.println("BlacklistService.delet()");
-		return blacklistMapper.delet(black_index);
+	public int delete(String black_index) {
+		return blacklistMapper.delete(black_index);
 	}
 
+	
+	
 	/////////// arraylist 받아서 map으로 sql 집어넣기 test
-
 	public int testNull(ArrayList<String> strlist) {
 
 		System.out.println("atService.param(null): " + strlist.toString());

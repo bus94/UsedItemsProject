@@ -26,26 +26,6 @@
 		<result property="acc_blackCount" column="black_count" />
 	</resultMap>
 
-	<!-- 홈에서 안쓰면 black5 삭제 -->
-	<select id="getBlack5" resultMap="black5Map">
-		select * from
-		(select
-		black_object,
-		acc_nickname object_nickname,
-		acc_id object_id,
-		count(black_index) black_count
-		from
-		(select *
-		from BLACKLIST blk
-		join
-		ACCOUNT acc on (blk.black_object = acc.acc_index))
-		group by
-		black_object, acc_nickname, acc_id
-		order by black_count desc)
-		where
-		rownum &lt;= 5
-	</select>
-
 	<select id="getBlacklist" parameterType="map"
 		resultMap="blacklistDetailMap">
 		select
@@ -103,11 +83,31 @@
 		#{black_content}, sysdate)
 	</insert>
 
-	<delete id="delet" parameterType="String">
+	<delete id="delete" parameterType="String">
 		delete from BLACKLIST
 		where
 		black_index = #{black_index}
 	</delete>
+
+	<!-- blacklist high 5 -->
+	<select id="getBlack5" resultMap="black5Map">
+		select * from
+		(select
+		black_object,
+		acc_nickname object_nickname,
+		acc_id object_id,
+		count(black_index) black_count
+		from
+		(select *
+		from BLACKLIST blk
+		join
+		ACCOUNT acc on (blk.black_object = acc.acc_index))
+		group by
+		black_object, acc_nickname, acc_id
+		order by black_count desc)
+		where
+		rownum &lt;= 5
+	</select>
 
 	<!-- arraylist 받아서 map으로 sql 집어넣기 -->
 	<insert id="testarr" parameterType="map">
