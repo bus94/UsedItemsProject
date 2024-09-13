@@ -102,8 +102,11 @@
 			<div class="modal fade" id="placeModal" tabindex="-1"
 				aria-labelledby="placeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
+					<!-- 모달창 내용 -->
 					<div class="modal-content">
+						<!-- 모달창 헤더 -->
 						<div class="modal-header">
+							<!-- 모달창 제목 -->
 							<h5 class="modal-title" id="placeModalLabel">희망 거래 장소 선택</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close"></button>
@@ -169,7 +172,9 @@
 				}
 			});
 			
-			const placeButton = document.getElementById("selectPlaceButton"); // 장소 선택 버튼
+			// 장소 선택 버튼
+			const placeButton = document.getElementById("selectPlaceButton");
+			// 모달창
 	        const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
 	        const mapContainer = document.getElementById('map');
 	        const itemPlaceInput = document.getElementById('item_place');
@@ -177,8 +182,10 @@
 	        const addressYInput = document.getElementById('addressY');
 	        const confirmPlaceButton = document.getElementById('confirmPlace');
 	        const place_nameInput=document.getElementById('place_name');
-	        let map; // 지도 객체
-	        let markers = []; // 마커 배열
+	    	// 지도 객체
+	        let map;
+	     	// 마커 배열
+	        let markers = [];
 	        let selectedMarker = null;
 	        let selectedLatLng = null;
 	        let selectedAddress = null;
@@ -194,7 +201,7 @@
 	        fetch('${path}/map/locations?fullAddress=' + encodeURIComponent(fullAddress))
 	            .then(response => response.text())
 	            .then(data => {
-	                console.log('Server response:', data); // 서버에서 받은 응답을 콘솔에 출력
+	                console.log('Server response:', data);
 	            })
 	            .catch(error => console.error('Error:', error));
 
@@ -300,13 +307,15 @@
 	                place_nameInput.value=selectedName;
 	                addressXInput.value = selectedLatLng.getLat();
 	                addressYInput.value = selectedLatLng.getLng();
-	                placeModal.hide(); // 모달 닫기
+	             	// 모달 닫기
+	                placeModal.hide(); 
 	            }
 	        });
 	        confirmPlaceButton.disabled = true;
 	    });
 	</script>
 
+	<!-- 로그인이 안되어있을 때 -->
 	<c:if test="${loginMember == null}">
 		<script>
 			alert("로그인 먼저 해주세요.");
