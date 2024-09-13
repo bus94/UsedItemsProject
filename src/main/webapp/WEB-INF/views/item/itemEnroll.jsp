@@ -149,7 +149,7 @@
 						preview.style.display = 'block';
 						// 기본 view를 숨김
 						defaultview.style.display = 'none';
-						// defaultPcss 클래스 제거 (css)
+						// defaultPcss 클래스 추가 (css)
 						for (let i = 0; i < defaultP.length; i++) {
 							defaultP[i].classList.add('defaultPcss');
 						}
@@ -157,8 +157,11 @@
 					}
 					reader.readAsDataURL(file);
 				} else {
+					// 미리보기 숨기기
 					preview.style.display = 'none';
+					// 기본 view 표시
 					defaultview.style.display = "block";
+					// defaultPcss 클래스 제거 (css)
 					for (let i = 0; i < defaultP.length; i++) {
 						defaultP[i].classList.remove('defaultPcss');
 					}
