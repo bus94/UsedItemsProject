@@ -62,6 +62,7 @@
 		<result property="repl_enrolldate" column="repl_enrolldate" />
 	</resultMap>
 
+	<!-- 물품번호로 물품정보 가져오기 -->
 	<select id="selectByItemIndex" parameterType="int"
 		resultMap="itemInfoMap">
 		SELECT item_index,
@@ -92,6 +93,7 @@
 		#{item_index}
 	</select>
 
+	<!-- 셀러정보 가져오기 -->
 	<select id="selectByIndex" parameterType="int"
 		resultMap="memberMap">
 		select
@@ -106,6 +108,7 @@
 		WHERE acc_index = #{item_seller}
 	</select>
 
+	<!-- 댓글 달기 -->
 	<insert id="insertReply" parameterType="ReplyDTO">
 		insert into
 		reply(repl_index, repl_item, repl_candidate,
@@ -115,14 +118,16 @@
 		#{repl_content,jdbcType=VARCHAR}, DEFAULT)
 	</insert>
 
+	<!-- 물품번호에 해당하는 댓글들 가져오기 -->
 	<select id="selectReplyByItemIndex" parameterType="int"
 		resultMap="replyMap">
 		SELECT * FROM reply 
-		left join account on repl_candidate=acc_index	<!-- 정일 추가 0813 프로필 사진 -->
+		left join account on repl_candidate=acc_index
 		WHERE repl_item = #{item_index}
 		order by repl_index desc
 	</select>
 
+	<!-- 조회수 증가 -->
 	<update id="incrementViews">
 		UPDATE item
 		SET item_click = item_click + 1
@@ -131,28 +136,32 @@
 	</update>
 
 
-	<select id="interestnum" parameterType="int">
+<!-- 	<select id="interestnum" parameterType="int">
 		select count(*) from
 		interest where int_item = #{item_index}
-	</select>
+	</select> -->
 
+	<!-- 채팅방생성 여부 확인 -->
 	<select id="checkChatRoom" parameterType="map" resultType="int">
 		select count(*) from reply
 		join chatroom on repl_index = room_reply
 		where repl_index = ${replyNo}
 	</select>
 
+	<!-- 댓글 지우기 -->
 	<delete id="deleteReply" parameterType="map">
 		delete from reply 
 		where repl_index = ${replyNo}
 	</delete>
 	
+	<!-- 물품 상태를 onsale로 수정하기 -->
 	<update id="updateItemOnsale" parameterType="map">
 		update ITEM set
 		item_status='onsale' where item_index=#{itemNo}
 	</update>
 
 
+	<!-- 댓글 수정 -->
 	<update id="updateReply" parameterType="ReplyDTO">
 		UPDATE reply
 		SET
@@ -160,6 +169,8 @@
 		WHERE repl_index = #{repl_index}
 	</update>
 
+	<!-- 셀러의 현재 물품번호와 다른 번호를 가진 
+		onsale, ondeal 아이템 정보들을 가져옴 -->
 	<select id="selectByItemSeller" parameterType="HashMap"
 		resultMap="itemInfoMap">
 		SELECT
@@ -217,22 +228,26 @@
 		item_index = #{item_index}
 	</select>
 
+	<!-- 관심 등록 -->
 	<insert id="addInterest" parameterType="Map">
 		INSERT INTO INTEREST
 		VALUES (INTEREST_SEQ.NEXTVAL,#{item_index} ,#{acc_index} )
 	</insert>
 
+	<!-- 관심등록 여부 체크 -->
 	<select id="checkInterest" parameterType="Map" resultType="int">
 		SELECT COUNT(*) FROM INTEREST
 		WHERE int_item = #{item_index} AND
 		int_subject = #{acc_index}
 	</select>
 
+	<!-- 관심등록 해제 -->
 	<delete id="removeInterest" parameterType="Map">
 		DELETE FROM INTEREST
 		WHERE int_item = #{item_index} AND int_subject =#{acc_index}
 	</delete>
 	
+	<!-- 물품 상태를 drop으로 변경해서 삭제 -->
 	<update id="deleteItem" parameterType="int">
 		UPDATE item
 		SET
