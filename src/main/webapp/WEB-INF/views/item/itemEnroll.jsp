@@ -60,9 +60,7 @@
 									<input type="text"
 										class="form-control item_input d-inline input_addressIn"
 										name="place_name" id="place_name" placeholder="장소" readonly />
-									<input type="hidden" name="item_place" id="item_place">
-									<input type="hidden" name="addressX" id="addressX"> <input
-										type="hidden" name="addressY" id="addressY">
+									<input type="hidden" name="item_place_id" id="item_place_id">
 									<button type="button" id="selectPlaceButton"
 										class="btn input_addressBtn">장소 선택</button>
 								</div>
@@ -177,9 +175,7 @@
 			// 모달창
 	        const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
 	        const mapContainer = document.getElementById('map');
-	        const itemPlaceInput = document.getElementById('item_place');
-	        const addressXInput = document.getElementById('addressX');
-	        const addressYInput = document.getElementById('addressY');
+	        const itemPlaceidInput = document.getElementById('item_place_id');
 	        const confirmPlaceButton = document.getElementById('confirmPlace');
 	        const place_nameInput=document.getElementById('place_name');
 	    	// 지도 객체
@@ -187,8 +183,7 @@
 	     	// 마커 배열
 	        let markers = [];
 	        let selectedMarker = null;
-	        let selectedLatLng = null;
-	        let selectedAddress = null;
+	        let selectedId = null;
 	        let selectedName = null; 
 	        
 	        let isMarkerSelected = false;
@@ -246,8 +241,7 @@
 	                                    // 이미 선택된 마커를 다시 클릭한 경우, 선택 취소
 	                                    marker.setImage(null);
 	                                    selectedMarker = null;
-	                                    selectedLatLng = null;
-	                                    selectedAddress = null;
+	                                    selectedId = null;
 	                                    selectedName = null;
 	                                    confirmPlaceButton.disabled = true;
 	                                } else {
@@ -259,14 +253,9 @@
 	                                    marker.setImage(clickedImage);
 	                                    selectedMarker = marker;
 
-	                                    selectedLatLng = marker.getPosition();
+	                                    
 	                                    selectedName = location.name;
-	                                    geocoder.coord2Address(selectedLatLng.getLng(), selectedLatLng.getLat(), function (result, status) {
-	                                        if (status === kakao.maps.services.Status.OK) {
-	                                            selectedAddress = result[0].address.address_name;
-	                                            confirmPlaceButton.disabled = false;
-	                                        }
-	                                    });
+	                                  	selectedId=location.id;
 	                                }
 	                            });
 	                        });
@@ -303,10 +292,8 @@
 	        // 확인 버튼 클릭 시 선택된 위치 정보를 인풋 필드에 저장
 	        confirmPlaceButton.addEventListener('click', () => {
 	            if (selectedLatLng && selectedAddress) {
-	                itemPlaceInput.value = selectedAddress;
+	                itemPlaceidInput.value = selectedId;
 	                place_nameInput.value=selectedName;
-	                addressXInput.value = selectedLatLng.getLat();
-	                addressYInput.value = selectedLatLng.getLng();
 	             	// 모달 닫기
 	                placeModal.hide(); 
 	            }
