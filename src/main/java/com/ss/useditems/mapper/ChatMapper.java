@@ -12,30 +12,24 @@ public interface ChatMapper {
 
 	ChatDTO selectLastChat(String acc_index);
 	
-	ArrayList<ChatRoomDTO> selectChatList(String loginMember_accIndex);
+	ArrayList<ChatRoomDTO> selectChatList(String acc_index);
 
 	ChatRoomDTO selectChatRoom(String room_index);
 
 	int insertChat(ChatDTO chatDTO);
 
+	int updateLastMessage(String acc_index, String acc_lastMessage);
+	
 	int insertChatRoom(String room_item, String room_reply);
 
-	int updateItemOndeal(String room_item);
-
 	int deleteChatRoom(String room_index);
-
+	
+	int updateItemOndeal(String room_item);
+	
 	int updateItemOnsale(String room_item);
-
-	int updateLastMessage(String acc_index, String acc_lastMessage);
-
+	
 	int updateItemDonedeal(int item_index, int item_buyer);
-
+	
 	int updateAccountCount(int acc_index);
 
-
-
-	
-
-	
-	
 }

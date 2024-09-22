@@ -22,9 +22,9 @@ public class ChatService {
 		return chatMapper.selectLastChat(acc_index);
 	}
 	
-	public List<ChatRoomDTO> getChatList(String loginMember_accIndex) {
+	public List<ChatRoomDTO> getChatList(String acc_index) {
 
-		return chatMapper.selectChatList(loginMember_accIndex);
+		return chatMapper.selectChatList(acc_index);
 	}
 
 	public ChatRoomDTO getChatRoom(String room_index) {
@@ -37,6 +37,11 @@ public class ChatService {
 		return chatMapper.insertChat(chatDTO);
 	}
 
+	public int recordLastChat(String acc_index, String acc_lastMessage) {
+		
+		return chatMapper.updateLastMessage(acc_index, acc_lastMessage);
+	}
+	
 	public int openChat(String room_item, String room_reply) {
 		int result = 0;
 		result = chatMapper.insertChatRoom(room_item, room_reply);
@@ -51,9 +56,6 @@ public class ChatService {
 		return result;
 	}
 
-	public int recordLastChat(String acc_index, String acc_lastMessage) {
-		return chatMapper.updateLastMessage(acc_index, acc_lastMessage);
-	}
 
 	public int signDeal(String room_index, String room_item) {
 		

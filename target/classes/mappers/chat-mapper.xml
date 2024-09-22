@@ -61,7 +61,6 @@
 		where item_seller = #{acc_index} or repl_candidate = #{acc_index}
 		order by chat_index desc)
 		where rownum = 1
-
 	</select>
 
 
@@ -105,9 +104,9 @@
 		guest.room_index_g)
 		left join chat on room_index=chat_room
 		where
-		item_seller = #{loginMember__accIndex}
+		item_seller = #{acc_index}
 		or repl_candidate =
-		#{loginMember__accIndex}
+		#{acc_index}
 		order by chat_index
 	</select>
 
@@ -151,34 +150,12 @@
 		INSERT INTO CHATROOM
 		VALUES (CHATROOM_SEQ.NEXTVAL, #{room_item}, #{room_reply}, SYSDATE)
 	</insert>
-
+	
 	<update id="updateItemOndeal" parameterType="String">
 		update ITEM set
 		item_status='ondeal' where item_index=#{room_item}
 	</update>
 
-	<delete id="deleteChatRoom" parameterType="String">
-		DELETE FROM CHATROOM
-		WHERE room_index=#{room_index}
-	</delete>
-
-	<update id="updateItemOnsale" parameterType="String">
-		update ITEM set
-		item_status='onsale' where item_index=#{room_item}
-	</update>
-
-
-	<update id="updateItemDonedeal" parameterType="int">
-		update ITEM set
-		item_status='donedeal',
-		item_buyer=#{item_buyer}
-		where item_index=#{item_index}
-	</update>
-	
-	<update id="updateAccountCount" parameterType="int">
-		update ACCOUNT set acc_count=(select acc_count from account where acc_index=#{acc_index})+1
-		where acc_index=#{acc_index}
-	</update>
 
 	<insert id="insertChat" parameterType="ChatDTO">
 
@@ -196,6 +173,28 @@
 		acc_lastMessage=#{acc_lastMessage} where acc_index=#{acc_index}
 	</update>
 
+
+	<delete id="deleteChatRoom" parameterType="String">
+		DELETE FROM CHATROOM
+		WHERE room_index=#{room_index}
+	</delete>
+
+	<update id="updateItemOnsale" parameterType="String">
+		update ITEM set
+		item_status='onsale' where item_index=#{room_item}
+	</update>
+
+	<update id="updateItemDonedeal" parameterType="int">
+		update ITEM set
+		item_status='donedeal',
+		item_buyer=#{item_buyer}
+		where item_index=#{item_index}
+	</update>
+	
+	<update id="updateAccountCount" parameterType="int">
+		update ACCOUNT set acc_count=(select acc_count from account where acc_index=#{acc_index})+1
+		where acc_index=#{acc_index}
+	</update>
 
 
 

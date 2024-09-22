@@ -11,32 +11,34 @@ $(document).ready(function() {
 console.log("Login: " + loginMember_accId);
 console.log("로그인 시 마지막 확인 메시지(accDB): " + loginMember_accLatMsg);
 
-	
-//DB에 저장된 최종 확인 메시지(최종 확인한 메시지)
-const queryLastChat_check = { acc_index : loginMember_accIndex};
+// checkLastChat.do
+//목적: 미확인 메시지가 있는지 확인
+//방법: chatDB에 저장된 마지막 메시지와 accDB에 저장된 마지막 메시지의 index를 비교
+//요청: chatDB에 저장된 최종 메시지 확인을 위해 acc_index를 서버에 전달
+//결과: 미확인 메시지가 있을 경우 아이콘을 바꿈 
+//확인: checkLastChat.do 결과로 얻어온 마지막 챗인덱스: chat_index(chatDB) (최종 도착 메시지)
+//     recordLastChat.do 결과로 얻어온 마지막 챗인덱스: acc_lastMessage(accDB) = checkedLastMessage (최종 확인 메시지)
+//ex) chat_index(chatDB) > acc_lastMessage(accDB) : 사용자가 미확인한 메시지가 들어옴
+//    chat_index(chatDB) = acc_lastMessage(accDB) : 사용자가 확인한 메시지가 최종 메시지
+
+
+const queryLastChat_check = { loginMember_accIndex : loginMember_accIndex };
 		
 $.ajax({	
-	type : "POST",
-	url : project + "/chat/checkLastChat.do", //project는 jsp 내부 script에서 선언해 둠
+	type : "GET",
+	url : project + "/chat/checkLastChat.do", //project는 header.jsp 내부 script에서 선언해 둠
 	data : queryLastChat_check,
 	success : function(result) {
-			
-				if(result != null ) {
-					//console.log("checkLastChat.do 통신 성공");
-					console.log("최종 도착 메시지(chatDB): " + result.chat_index)
-					console.log("최종 확인 메시지(현재): " + checkedLastMessage);
-					if(result.chat_index > checkedLastMessage) {
-						$('#chat_icon_null').addClass('chat_icon_hidden');
-						$('#chat_icon_fill').removeClass('chat_icon_hidden');
-					} else {
-						
-					}
-				} else {
-					//console.log("checkLastChat.do 결과 없음");
+				//console.log("checkLastChat.do 통신 성공");
+				console.log("최종 도착 메시지(chatDB): " + result.chat_index); //checkLastChat.do 결과
+				console.log("최종 확인 메시지(accDB): " + checkedLastMessage); //recordLastChat.do 결과
+				if(result.chat_index > checkedLastMessage) {
+					$('#chat_icon_null').addClass('chat_icon_hidden');
+					$('#chat_icon_fill').removeClass('chat_icon_hidden');
 				}
 			},
 	error : function(error) {
-			//console.log("checkLastChat.do 통신 실패(AJAX)");
+				console.log("checkLastChat.do 통신 실패(AJAX)");
 			}
 }); //ajax		
 
@@ -59,10 +61,9 @@ window.addEventListener('scroll', function() {
 
 
 $('#navbar-toggler').click(function() {
-	//console.log('Nav토글버튼 클릭');
 	
 	$('section').toggleClass('section_toggleOn');	
-	//모든페이지 섹션에 클래스(section_toggleOn) 토글 //상단 마진 생성용
+	//모든페이지 섹션에 클래스(section_toggleOn) 토글, 상단 마진 생성용
 	$('#nav_user').toggle();
 	$('#nav_wish').toggle();
 	$('.menu_text').toggle();
@@ -72,14 +73,13 @@ $('#navbar-toggler').click(function() {
 $('#logout').click(function() {
 
 	if (confirm("정말 정말 로그아웃 하시겠습니까?ㅠ_ㅠ")) {
-		window.location.href = project + "/account/logoutOK.do";	//project는 header.jsp 내부 script에서 선언해 둠
+		window.location.href = project + "/account/logoutOK.do"; //project는 header.jsp 내부 script에서 선언해 둠
 	}
 	
 });
 
 
 $('#nav_toTop').click(function() {
-	//console.log('TOP 클릭');
 
 	$('html, body').animate({
 		scrollTop : 0
@@ -89,66 +89,62 @@ $('#nav_toTop').click(function() {
 });
 
 
+//헤더 채팅 아이콘 클릭 시 실행
 $('#nav_chat').click(function() {
 
-	
 	const queryChatList = { loginMember_accIndex : loginMember_accIndex };
 	
 	$.ajax({
-			type : "POST",
+			type : "GET",
 			url : project + "/chat/chatList.do", //project는 header.jsp 내부 script에서 선언해 둠
 			data : queryChatList,
 			success : function(result) {
-			
+						//열릴 때마다 modal container 초기화(누적 생성 방지)
 						$('#chatList').empty(); //채팅룸리스트 모달 컨테이너 리셋
 						$('#ChatRoom_Modal_reservoir').empty();	//채팅룸 모달 컨테이너 리셋
 						
 						if(result.length == 0){
-							makingEmptyModal();
+							makingEmptyModal(); //빈 채팅리스트 모달 생성, 메서드 정의는 아래에
 						}else {
 							console.log("chatList_size: " + result.length);
-							makingChatRooms(result);	//함수 정의는 아래에, result=chatList를 그대로 매개변수로 넘겨줌
-						}
-						
+							makingChatRooms(result); //채팅리스트 모달 생성, result=chatList를 그대로 매개변수로 넘겨줌
+						}						
 					},
 			error : function(error) {
 					alert("오류로 인하여 정상적으로 처리되지 않았습니다.(AJAX)");
 					}
 		}); //ajax
 				
-				
-				
 });
 
-function makingEmptyModal() {
+
+function makingEmptyModal() {	// 빈 채팅리스트 모달 생성
 
 	var emptyList_template = '<h4 id="chat_emptyList" class="text-center">현재 거래 중인 물품이 없습니다!</h4>';
-		
 	$('#chatList').append(emptyList_template);
 	
 }
 
 
-
-function makingChatRooms(chatList) {	//채팅리스트 모달 생성
-	
+function makingChatRooms(chatList) {	// 채팅리스트 모달 생성
 	
 	$(chatList).each(function (index, obj){	//forEach 반복문 jQuery 형식
 		
 		//console.log(index);
 		//console.log(obj.room_index);
-		//console.log("UTC날짜라고 합니다: " + obj.room_openDate);
+		//console.log("UTC 날짜 형식: " + obj.room_openDate);
 		//console.log(obj.room_itemTitle);
 		//console.log("messages: " + obj.messages);
-				
+		
 		
 		var thisRoom = obj.room_index;
+		//chatRoom_index를 고유번호로 활용하기 위해 변수 지정
 		
 		
-		//채팅방 개설일시
-		var thisRoomOpenDate = new Date(obj.room_openDate);
-		var formattedDate = formatingDate(thisRoomOpenDate);
-		//console.log("채팅방 오픈: " + formattedDate);
+		var formattedDate = formattingDate(new Date(obj.room_openDate));
+		// formattedDate: (재사용 변수) 채팅방 개설 일시, 메시지 등록 일시 반복
+		// formattingDate(): Date type formatter 메서드, 정의는 아래에
+		//console.log("채팅방 개설 일시: " + formattedDate);
 		
 		
 		var other_index = '';
@@ -156,6 +152,8 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		var other_nickname = '';
 		var other_profile = '';
 		
+		// 로그인한 사용자가 채팅방 호스트(판매자)인지 게스트(구매후보자)인지 구분:
+		// 상대방의 사진 표시, 상대방과 채팅 css 구별
 		if(loginMember_accIndex == obj.room_hostIndex) {
 			other_index = obj.room_guestIndex;
 			other_id = obj.room_guestId;
@@ -168,18 +166,18 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 			other_profile = obj.room_hostProfile;
 		}
 		
-	
-		///////////////////Modal Element/////////////////
-	
-		//상대방 프로필 값으로 img태그 생성, 함수 정의는 아래에
+		// otherProfile(): 상대방 프로필 정보로 img태그 경로 생성, 메서드 정의는 아래에
 		var profile_path = otherProfile(other_profile, other_index);
-	
-	
+		
+			
+		///////////////////Modal Element/////////////////
 	
 		//채팅 목록(chatRoom list) template
 		var chatList_template = 
 		
+		// selectChatRoom(): chatRoom.js에서 메서드 정의
 		`<div id="chatRoom_box${obj.room_index}" class="chatRoom_box container" onclick="selectChatRoom(${obj.room_index})">`
+		
 		+ '<div class="chatRoom_profile d-flex flex-column">'
 		+ profile_path
 		+ `<p class="text-center">${other_id}</p>`
@@ -190,9 +188,10 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		+ '</div>'
 		
 		+ `<div id="chatRoom_date${obj.room_index}" class="chatRoom_date d-flex flex-column">`
-		+ `<p class="align-self-end">Open: ${formattedDate}</p>`	//최근날짜는 밑에 내부반복문에서 처리
+		+ `<p class="align-self-end">Open: ${formattedDate}</p>`	//formattedDate: 채팅방 개설 일시
 		+ '</div>'
 		
+		// enterChatRoom(): chatRoom.js에서 메서드 정의
 		+ `<button class="enterChatRoom" id="enterChatRoom${obj.room_index}" value="${obj.room_index}" onclick="enterChatRoom(this.value)" data-bs-target="#chatRoomModal${obj.room_index}" data-bs-toggle="modal"></button>`
 		+ '</div>';
 
@@ -219,13 +218,14 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		+ '<!-- 채팅글 div가 추가되는 곳 -->';
 		
 		
-		//아래 내부 반복문에서 밖으로 가지고 나갈 변수(최근메시지)
+		//아래 내부 반복문에서 밖으로 가지고 나갈 변수(최종 확인 메시지)
 		var thisAccLatestMsgIdx = '0';
 		var thisRoomLatestMsg ='';
 		
 		//현재 반복문 안의 반복문(각 채팅메시지가 이 방에 속하면 element 추가)
 		$(obj.messages).each(function (index, item){	//forEach 반복문 jQuery 형식
 		
+			// 반복하며 가장 큰(최근) chat_index를 변수에 저장
 			if(thisAccLatestMsgIdx < item.chat_index){
 				thisAccLatestMsgIdx = item.chat_index;
 			}
@@ -237,10 +237,9 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 				thisRoomLatestMsg = item.chat_content;
 				//console.log(thisRoomLatestMsg);				
 				
-				//현재 반복 메시지 시간
-				var thisRoomLatestDate = new Date(item.chat_enrollDate);
-				formattedDate = formatingDate(thisRoomLatestDate);	//변수 선언은 위에 채팅방 개설일시에서
-				//console.log("시간: " + formattedDate);
+				//현재 반복 메시지 등록 일시
+				formattedDate = formattingDate(new Date(item.chat_enrollDate));	//변수 선언은 위에 채팅방 개설일시에서
+				//console.log("메시지 등록 일시: " + formattedDate);
 			
 			
 				if(item.chat_writer == loginMember_accIndex){
@@ -249,7 +248,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 					chatRoom_modal_template += 
 					  '<div class="message message_mine">'
 					+ `<div class="message_txt">${thisRoomLatestMsg}</div>`
-					+ `<div class="message_time">${formattedDate}</div>`
+					+ `<div class="message_time">${formattedDate}</div>`	//formattedDate: 메시지 등록 일시
 					+ '</div>';
 					
 				} else {
@@ -264,7 +263,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 					+ other_nickname + '</div>'
 					+ '<div class="message message_other">'
 					+ `<div class="message_txt">${thisRoomLatestMsg}</div>`
-					+ `<div class="message_time">${formattedDate}</div>`
+					+ `<div class="message_time">${formattedDate}</div>`	//formattedDate: 메시지 등록 일시
 					+ '</div>';
 				}
 				
@@ -279,7 +278,7 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		var chatRoom_latestMsg_template	= `<p class="latest_message">${thisRoomLatestMsg}</p>`;
 		$('#chatRoom_content'+thisRoom).append(chatRoom_latestMsg_template);
 		
-		var chatRoom_latestDate_template = `<p class="align-self-end">Latest: ${formattedDate}</p>`;
+		var chatRoom_latestDate_template = `<p class="align-self-end">Latest: ${formattedDate}</p>`;	//formattedDate: 메시지 등록 일시
 		$('#chatRoom_date'+thisRoom).append(chatRoom_latestDate_template);
 		
 				
@@ -302,10 +301,12 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		$('#ChatRoom_Modal_reservoir').append(chatRoom_modal_template);
 		
 		
-		
 		//console.log("요소로 만들어진 메시지 인덱스의 최대값: " + thisAccLatestMsgIdx);
+		// 채팅방 요소가 만들어졌다? 헤더 채팅 아이콘을 눌렀다는 것 == 각 채팅방 최종 메시지를 확인했다는 것!
 		
-		//DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
+		// recordLastChat.do: DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
+		//요청: accDB에 최종 확인 메시지를 저장하기 위해 acc_index와 chat_index를 서버에 전달
+		
 		const queryLastChat_record = { acc_index : loginMember_accIndex, acc_lastMessage : thisAccLatestMsgIdx };
 		
 		$.ajax({	
@@ -316,8 +317,8 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 			
 						if(result > 0) {
 							//console.log("recordLastChat.do 통신 성공");
-							checkedLastMessage = thisAccLatestMsgIdx;
-							//console.log("(DB) checkedLastMessage: " + checkedLastMessage);
+							checkedLastMessage = thisAccLatestMsgIdx;	// HttpSession에 저장된 변수와 일치시킴
+							//console.log("(accDB) checkedLastMessage: " + checkedLastMessage);
 							$('#chat_icon_null').removeClass('chat_icon_hidden');
 							$('#chat_icon_fill').addClass('chat_icon_hidden');
 							
@@ -333,13 +334,11 @@ function makingChatRooms(chatList) {	//채팅리스트 모달 생성
 		}); //ajax		
 		
 		
-
 	}); //외부 반복문 종료
 	
 	
-	//chatRoom.js 불러오기
+	//chatRoom.js 불러오기: 헤더 채팅 아이콘을 눌렀을 때만
 	var chatRoom_js_template = '<script defer src="/useditems/resources/js/chat/chatRoom.js"></script>';
-	
 	$('#ChatRoom_Modal_reservoir').append(chatRoom_js_template);
 	
 }
@@ -362,16 +361,14 @@ function otherProfile(param_profile, param_index) {
 
 
 //Date -> yy/MM/dd hh:mm
-function formatingDate(param) {
+function formattingDate(param) {
 	
-	//Date type parameter를 받아서 yy/MM/dd hh:mm 으로 반환
-
+	//Date type parameter를 받아서 yy/MM/dd hh:mm 형식으로 반환
 	var result = param.getFullYear().toString().slice(-2) + "/" 
 			+ (param.getMonth()+1).toString().padStart(2, '0') + "/" 
 			+ param.getDate().toString().padStart(2, '0') + " " 
 			+ param.getHours().toString().padStart(2, '0') + ":"
 			+ param.getMinutes().toString().padStart(2, '0');
 
-	return result;
-	
+	return result;	
 }

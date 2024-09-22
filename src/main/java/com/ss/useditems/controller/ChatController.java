@@ -25,75 +25,57 @@ public class ChatController {
 	private ChatService chatService;
 	
 	
-	@PostMapping("checkLastChat.do")	//마지막 챗 수시 체크(헤더 열릴때마다)
+	//마지막 챗 인덱스(chatDB) 수시 체크(헤더 열릴때마다, header.js)
+	//미확인 메시지가 있는지 확인하기 위해
+	@GetMapping("/checkLastChat.do")
 	@ResponseBody
-	public ChatDTO checkLastChat(@RequestParam String acc_index) {
-		//System.out.println("==chat.checkLastChat==");
-		//System.out.println("acc_index: " + acc_index);
+	public ChatDTO checkLastChat(@RequestParam String loginMember_accIndex) {
 
 		ChatDTO result = null;
 		try {
-			
-			result = chatService.checkLastChat(acc_index);
-			//System.out.println("checkLastChat: " + result);
-				
-		} catch(Exception e) {
-				
-		}
+			result = chatService.checkLastChat(loginMember_accIndex);
+		} catch(Exception e) {}
 
 		return result;
 	}
 	
 	
-	
-	@PostMapping("chatList.do")	//정일_채팅 리스트 불러오기
+	//헤더 채팅아이콘 클릭 시 채팅리스트 넘겨주기(chatRoom)
+	@GetMapping("/chatList.do")
 	@ResponseBody
 	public List<ChatRoomDTO> viewChatList(@RequestParam String loginMember_accIndex) {
-		//System.out.println("==chat.chatList==");
 
 		List<ChatRoomDTO> chatList = null;
 		try {
-
 			if(loginMember_accIndex != null) {
 				chatList = chatService.getChatList(loginMember_accIndex);	
 				//System.out.println("chatList: " + chatList);
 				//System.out.println("chatListSize: " + chatList.size());
-			}else {
 			}
-
-		} catch(Exception e) {
-			
-		}
+		} catch(Exception e) {}
 
 		return chatList;
 	}
 	
 	
-	@PostMapping("chatRoom.do")	//정일_채팅방 정보 불러오기
+	//각 채팅방 클릭 시(chatRoom.js) 해당 채팅방 정보 넘겨주기
+	@GetMapping("/chatRoom.do")
 	@ResponseBody
 	public ChatRoomDTO getChatRoom(@RequestParam String room_index) {
-		//System.out.println("==chat.chatRoom==");
-		//System.out.println("room_index: " + room_index);
 
 		ChatRoomDTO chatRoom = null;
 		try {
-				
-				chatRoom = chatService.getChatRoom(room_index);
-				//System.out.println("chatRoom: " + chatRoom);
-			
-		} catch(Exception e) {
-			
-		}
+			chatRoom = chatService.getChatRoom(room_index);
+			//System.out.println("chatRoom: " + chatRoom);
+		} catch(Exception e) {}
 
 		return chatRoom;
 	}
 	
-	
-	@PostMapping("recordChat.do")	//정일_채팅 메시지 DB에 저장
+	//채팅방에서 전송 버튼 클릭 시(chatRoom.js) chatDB에 저장하고 chat_index 반환
+	@PostMapping("/recordChat.do")
 	@ResponseBody
 	public int recordChat(@RequestParam String chat_room, @RequestParam String chat_writer, @RequestParam String chat_content) {
-		//System.out.println("==chat.recordChat==");
-		//System.out.println("chat_room: " + chat_room + " chat_writer: " + chat_writer + " chat_content: " + chat_content);
 		
 		int result = -1;
 		try {
@@ -104,12 +86,12 @@ public class ChatController {
 			
 			chatService.recordChat(chatDTO);	
 			//chatService.reocordChat()의 반환값(0 or 1)은 DB 입력 성공 여부
-			//chatDTO를 mapper에 넘기고 selectKey 사용(DB에 입력 후 index 받아서 DTO에 자동 저장)
+			
+			//동기화 통신
+			//chatDTO를 mapper에 넘기고 selectKey 사용(DB에 입력 후 index 받아서 DTO에 저장)
 			result = chatDTO.getChat_index();
 			//DB에 저장된 INDEX값을 반환
-			
 			//System.out.println("recordChatIndex: " + result); 
-			
 		} catch (Exception e) {
 			result = 0;
 		}
@@ -117,56 +99,50 @@ public class ChatController {
 	}
 	
 	
-	@PostMapping("recordLastChat.do")	//정일_최종 확인 메시지 DB에 저장(ACCOUNT)
+	//사용자가 확인한 최종 메시지를 ACCOUNT DB에 저장
+	//실행 시점 1. 헤더 채팅아이콘을 눌렀을 때(header.js)
+	//실행 시점 2. 채팅방에서 실시간 확인 했을 때(chatRoom.js)
+	@PostMapping("/recordLastChat.do")
 	@ResponseBody
 	public int recordLastChat(HttpSession session, @RequestParam String acc_index, @RequestParam String acc_lastMessage) {
-		//System.out.println("==chat.recordLastChat==");
-		//System.out.println("acc_index: " + acc_index + " acc_lastMessage: " + acc_lastMessage);
 			
 		int result = -1;
 		try {
-			result = 1;
 			if(!acc_lastMessage.equals("00")) {	//서버 발신메시지(00)이 아니면 인덱스 저장
 				result = chatService.recordLastChat(acc_index, acc_lastMessage);
 				session.setAttribute("checkedLastMessage", acc_lastMessage);
 			}
+			result = 1;
 		} catch (Exception e) {
 			result = 0;
 		}
 		return result;
 	}
 	
-	
-	@PostMapping("openChat.do")		//정일_채팅방 개설(item_status: onsale -> ondeal)
+	//댓글에서 채팅하기 버튼 클릭 시(itemView.js) 채팅방 개설(item_status: onsale -> ondeal)
+	@PostMapping("/openChat.do")
 	@ResponseBody
 	public int openChat(@RequestParam String room_item, @RequestParam String room_reply) {
-		//System.out.println("==chat.openChat==");
-		//System.out.println("OpenChat room_item: " + room_item + " room_reply: " + room_reply);
 		
 		int result = -1;
 		try {
-			
 			result = chatService.openChat(room_item, room_reply);
 			//System.out.println("openChatResult: " + result);
-			
 		} catch(Exception e) {
 			result = 0;
 		}
 		return result;
 	}
 	
-	
-	@PostMapping("dropDeal.do")		//정일_거래 중단(item_status: ondeal -> onsale)
+	//채팅방에서 '거래중단' 클릭 시 채팅방+채팅 삭제(item_status: ondeal -> onsale)
+	@PostMapping("/dropDeal.do")
 	@ResponseBody
 	public int dropDeal(@RequestParam String room_index, @RequestParam String room_item) {
-		//System.out.println("==chat.dropDeal==");
-		//System.out.println("Drop chat_room: " + room_index + " sale room_item: " + room_item);
 		
 		int result = -1;
 		try {
 			result = chatService.dropDeal(room_index, room_item);
 			//System.out.println("dropDealResult: " + result);
-
 		} catch(Exception e) {
 			result = 0;
 			e.printStackTrace();
@@ -174,17 +150,15 @@ public class ChatController {
 		return result;
 	}
 
-	@PostMapping("signDeal.do")		//정일_거래 완료(item_status: ondeal -> donedeal)
+	//채팅방에서 '거래완료' 클릭 시 채팅방+채팅 삭제(item_status: ondeal -> donedeal)
+	@PostMapping("/signDeal.do")
 	@ResponseBody
 	public int signDeal(@RequestParam String room_index, @RequestParam String room_item) {
-		//System.out.println("==chat.signDeal==");
-		//System.out.println("Sign chat_room: " + room_index + " sign room_item: " + room_item);
 		
 		int result = -1;
 		try {
 			result = chatService.signDeal(room_index, room_item);
 			//System.out.println("signDealResult: " + result);
-
 		} catch(Exception e) {
 			result = 0;
 		}
