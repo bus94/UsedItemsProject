@@ -24,10 +24,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 
-<div id="hiddenData" data-item-id="${item.item_index}"
-	data-context-path="${path}" style="display: none;"></div>
 <section id="item_detail" style="padding-top: 90px;">
 	<div class="detail_content">
+	<!-- 물품 사진 슬라이드 -->
 		<div id="carouselExampleIndicators" class="carousel slide">
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleIndicators"
@@ -38,6 +37,7 @@
 				<button type="button" data-bs-target="#carouselExampleIndicators"
 					data-bs-slide-to="2" aria-label="Slide 3"></button>
 			</div>
+			<!-- 5장까지 가능 -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src="${path}/resources/img/${item.item_thumbPath}"
@@ -88,9 +88,10 @@
 		<div class="detail_right">
 			<div class="detail_top" style="hegight: 200px;">
 				<div class="detail_info">
-					<div
-						style="display: flex; align-items: center;justify-content: space-between;">
+					<div style="display: flex; align-items: center;justify-content: space-between;">
+						<!-- 물품 제목 -->
 						<h4 style="font-size:25px;">${item.item_title}</h4>
+						<!-- 관심등록 -->
 						<form id="interestForm"
 							action="${path}/item/itemView/${isInterested ? 'removeInterest' : 'addInterest'}"
 							method="post" style="margin-left: 10px;">
@@ -104,9 +105,11 @@
 							</button>
 						</form>
 					</div>
+					<!-- 물품 가격 -->
 					<h3 style="font-size:30px;">
 						<fmt:formatNumber value="${item.item_price}" pattern="#,###,###원" />
 					</h3>
+					<!-- 희망 거래 장소 보기 -->
 					<div class="item_like">
 						<div id="miniMapContainer"></div>
 						<p class="address_txt">
@@ -115,11 +118,13 @@
 						</p>
 					</div>
 				</div>
+				<!-- 관심&조회 버튼 -->
 				<div class="detail_like">
 					<div class="like_txt">
 						<p>관심 ${item.item_interest}</p>
 						<p>조회 ${item.item_click}</p>
 					</div>
+					<!-- 로그인한 사람의 아이디와 물품을 등록한 사람의 아이디가 같지 않으면 신고버튼이 보임 -->
 					<c:if
 						test="${loginMember != null && itemMember.acc_id != loginMember.acc_id}">
 						<div class="detail_report">
@@ -129,6 +134,7 @@
 					</c:if>
 				</div>
 			</div>
+			<!-- 판매자 정보 -->
 			<a href="${path}/account/acc_info.do?acc_id=${itemMember.acc_id}">
 				<div class="store_profile">
 					<div class="profile_img">
@@ -153,14 +159,18 @@
 		</div>
 	</div>
 	<div class="store_content">
+		<!-- 물품 설명란 -->
 		<p style="white-space: pre-wrap;">${item.item_content}</p>
+		<!-- 게시글 수정&삭제 버튼 -->
 		<div class="content-button">
+			<!-- 물품 판매자와 로그인 아이디가 같으면 보임 -->
 			<c:if test="${item.item_seller==loginMember.acc_index}">
 				<button type="button" onclick="editItem('${item.item_index}')">수정하기</button>
 				<button type="button" onclick="deleteItem('${item.item_index}')">삭제하기</button>
 			</c:if>
 		</div>
 	</div>
+	<!-- 댓글창 -->
 		<div id="comment-container">
 			<div class="comment-editor" align="center">
 				<form action="${path}/itemView/reply" method="post"
@@ -173,6 +183,7 @@
 			</div>
 		</div>
 
+	<!-- 댓글이 있으면 댓글목록 출력 -->
 	<c:if test="${!empty replyList}">
 		<div class="reply">
 			<c:forEach var="reply" items="${replyList}">
@@ -191,16 +202,18 @@
 									value="${path}/resources/img/${reply.repl_candidate}/profile/${reply.repl_profile}" />
 							</c:otherwise>
 						</c:choose>
-
+		
+						<!-- 댓글쓴이 프사 -->
 						<div class="reply_img">
 							<img src="${repl_profile_path}" alt="프사">
 						</div>
-
+						<!-- 댓글쓴이 닉네임 & 내용 -->
 						<div class="reply_txt">
 							<h4>${reply.repl_nickname}</h4>
 							<p>${reply.repl_content}</p>
 						</div>
 					</div>
+					<!-- 댓글 수정 & 삭제 -->
 					<div class="reply_btn">
 						<c:if
 							test="${reply.repl_nickname.equals(loginMember.acc_nickname)}">
@@ -210,7 +223,7 @@
 								onclick="deleteReply('${reply.repl_index}','${item.item_index}')">삭제하기</button>
 						</c:if>
 						
-						
+						<!-- 물품 판매자와 로그인아이디가 같고, 댓글쓴이와 물품 판매자가 같지 않으면 채팅하기 버튼이 보임 -->
 						<c:if
 							test="${item.item_seller==loginMember.acc_index && reply.repl_candidate!=item.item_seller && item.item_status.equals('onsale')}">
 							<button
@@ -221,13 +234,14 @@
 			</c:forEach>
 		</div>
 	</c:if>
+	<!-- 댓글이 없으면 띄움 -->
 	<c:if test="${empty replyList}">
 		<tr>
 			<td colspan="3" style="text-align: center; ">등록된 리플이 없습니다.</td>
 		</tr>
 	</c:if>
 
-
+	<!-- 댓글 수정 폼 -->
 	<div class="reply2">
 		<c:forEach var="reply" items="${replyList}">
 			<div id="edit-form-${reply.repl_index}" style="display: none;">
@@ -271,17 +285,18 @@
 	</div>
 
 
-
-
+<!-- 판매자의 다른상품 슬라이드 -->
 	<div class="carousel-wrapper">
 		<div>
 			<h3 style="font-size: 22px;">판매자의 다른 상품</h3>
 		</div>
+		<!-- 판매자의 다른 상품이 없다면 띄움 -->
 		<c:if test="${empty otherItemList}">
 			<tr>
 				<td colspan="6">현재 판매하는 다른 상품이 없습니다.</td>
 			</tr>
 		</c:if>
+		<!-- 판매자의 다른 상품이 있다면 띄움 -->
 		<c:if test="${not empty otherItemList}">
 			<div class="newItem_wrap">
 				<div class="otherItem_container">
@@ -289,8 +304,8 @@
 						<c:forEach var="each" items="${otherItemList}">
 							<div class="item3">
 								<a href="${path}/item/itemView?item_index=${each.item_index}"
-									style="text-decoration: none; color: black"> <img
-									src="${path}/resources/img/${each.item_thumbPath}" alt="..">
+									style="text-decoration: none; color: black">
+									<img src="${path}/resources/img/${each.item_thumbPath}" alt="..">
 									<div class="item_view2">
 										<h3>${each.item_title}</h3>
 										<div class="item_price">
@@ -299,7 +314,6 @@
 													groupingUsed="true" />
 												원
 											</h4>
-
 										</div>
 										<div class="item_like">
 											<p>관심 ${each.item_interest}</p>
@@ -338,7 +352,9 @@
 	</div>
 </section>
 
+
 <script>
+<!-- 지도 좌표 -->
 const placeX = ${item.item_placeX};
 const placeY = ${item.item_placeY};
 console.log(placeX);
@@ -346,7 +362,7 @@ console.log(placeY);
 </script>
 
 <script>
-
+	/* 댓글 삭제 */
 	function deleteReply(replyNo, itemNo) {
 		var url = "${path}/itemView/replyDel?replyNo=";
 		var requestURL = url + replyNo + "&itemNo=" + itemNo;
@@ -357,11 +373,13 @@ console.log(placeY);
 </script>
 
 <script>
+	/* 댓글 수정폼을 보여줌 */
     function showEditForm(replyIndex, currentContent) {
         document.getElementById('edit-form-' + replyIndex).style.display = 'block';
         document.getElementById('reply-content-' + replyIndex).style.display = 'none';
     }
-
+	
+    /* 댓글 수정폼을 숨김 */
     function hideEditForm(replyIndex) {
         document.getElementById('edit-form-' + replyIndex).style.display = 'none';
         document.getElementById('reply-content-' + replyIndex).style.display = 'block';
@@ -370,6 +388,7 @@ console.log(placeY);
 </script>
 
 <script>
+	/* 관심등록 해제 */
 	function confirmInterestAction(isInterested) {
 	    if (isInterested === 'true') {
 	        return confirm("관심 상품에서 삭제하시겠습니까?");
@@ -378,6 +397,7 @@ console.log(placeY);
 	}
 </script>
 <script>
+	/* 물품 삭제 */
 	function deleteItem(item_index) {
 		if (confirm("정말 삭제하시겠습니까?")) {
 			var url = "${path}/itemView/itemDel.do?&item_index=" + item_index;
@@ -388,6 +408,7 @@ console.log(placeY);
 	}
 </script>
 <script>
+	/* 물품 수정 */
 	function editItem(item_index){
 		var url ="${path}/item/itemEdit.do?item_index="+item_index;
 		location.href=url;
@@ -395,6 +416,7 @@ console.log(placeY);
 </script>
 
 <script>
+	
 	document.addEventListener('DOMContentLoaded', () => {
 	    const mapPreviewText = document.getElementById('mapPreviewText');
 	    const miniMapContainer = document.getElementById('miniMapContainer');
@@ -438,6 +460,7 @@ console.log(placeY);
 	        }
 	    });
 	    
+	    // 마우스 사라지면 안보임
 	    mapPreviewText.addEventListener('mouseleave', () => {
 	        miniMapContainer.style.display = 'none';
 	    });

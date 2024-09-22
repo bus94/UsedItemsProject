@@ -8,12 +8,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <section id="content" class="container" style="padding-top: 100px;">
+	<!-- 로그인 되어있을 때 -->
 	<c:if test="${loginMember != null}">
 		<div id="container_inner" class="container d-flex flex-column">
 			<div class="itemEnroll_title">
 				<h2>물품 등록하기</h2>
 			</div>
 			<hr>
+			<!-- 물품 등록 확인 폼 -->
 			<form id="itemEnrollForm" method="POST"
 				action="${path}/item/itemEnrollOK.do" enctype="multipart/form-data">
 				<table>
@@ -69,13 +71,11 @@
 								<p class="itemEnroll_subtitle fs-5">썸&nbsp;&nbsp;&nbsp;네&nbsp;&nbsp;&nbsp;일</p>
 								<input style="width: 270px" type="file" name="item_thumb"
 									id="item_thumb">
-								<!-- <label class="btn fileBtn" for="item_thumb">파일선택</label> -->
 							</div>
 							<div id="input_box5" class="container">
 								<p class="itemEnroll_subtitle fs-5">첨 부 파 일</p>
 								<input style="width: 270px" type="file" name="item_image"
 									id="item_image" multiple>
-								<!-- <label class="btn fileBtn" for="item_image">파일선택</label> -->
 							</div>
 							<div id="input_box1" class="container box">
 								<p class="itemEnroll_subtitle fs-5">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</p>
@@ -93,18 +93,20 @@
 								<img id="preview" alt="썸네일 이미지 미리보기"> <img
 									id="defaultview" alt="미리보기 파일 없음"
 									src="${path}/resources/img/noimage.png">
-								<!-- <p class="defaultP">썸네일 미리보기</p>
-								<p class="defaultP">첨부된 파일이 없습니다.</p> -->
 							</div>
 						</td>
 					</tr>
 				</table>
 			</form>
+			<!-- 모달창 통해 물품 거래 장소 선택 (SafeZone 추천 기능 포함) -->
 			<div class="modal fade" id="placeModal" tabindex="-1"
 				aria-labelledby="placeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
+					<!-- 모달창 내용 -->
 					<div class="modal-content">
+						<!-- 모달창 헤더 -->
 						<div class="modal-header">
+							<!-- 모달창 제목 -->
 							<h5 class="modal-title" id="placeModalLabel">희망 거래 장소 선택</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal"
 								aria-label="Close"></button>
@@ -133,14 +135,24 @@
 			const defaultview = document.getElementById("defaultview");
 			const defaultP = document.getElementsByClassName('defaultP');
 			
+			// 썸네일 변경할 때 미리보기
 			item_thumb.addEventListener('change', () => {
+				// 선택한 썸네일 파일
 				const file = item_thumb.files[0];
 				if(file) {
+					// 파일을 선택했을 때
+					// FileReader : 파일을 읽어 데이터 URL 형태로 변환
 					const reader = new FileReader();
+					// 파일 읽기
 					reader.onload = function(e) {
+						// preview : 이미지 태그
+						// e.target.result : 읽어들인 파일의 데이터 URL을 포함
+						// → 이미지 태그의 src 속성에 읽어들인 파일의 데이터 URL을 포함하여 미리보기 이미지 표시
 						preview.src = e.target.result;
 						preview.style.display = 'block';
+						// 기본 view를 숨김
 						defaultview.style.display = 'none';
+						// defaultPcss 클래스 추가 (css)
 						for (let i = 0; i < defaultP.length; i++) {
 							defaultP[i].classList.add('defaultPcss');
 						}
@@ -148,19 +160,21 @@
 					}
 					reader.readAsDataURL(file);
 				} else {
+					// 미리보기 숨기기
 					preview.style.display = 'none';
+					// 기본 view 표시
 					defaultview.style.display = "block";
+					// defaultPcss 클래스 제거 (css)
 					for (let i = 0; i < defaultP.length; i++) {
 						defaultP[i].classList.remove('defaultPcss');
 					}
 					itemEnroll_form.classList.add('hidden');
 				}
-				
 			});
 			
-			
-			
-			const placeButton = document.getElementById("selectPlaceButton"); // 장소 선택 버튼
+			// 장소 선택 버튼
+			const placeButton = document.getElementById("selectPlaceButton");
+			// 모달창
 	        const placeModal = new bootstrap.Modal(document.getElementById('placeModal'));
 	        const mapContainer = document.getElementById('map');
 	        const itemPlaceInput = document.getElementById('item_place');
@@ -168,8 +182,10 @@
 	        const addressYInput = document.getElementById('addressY');
 	        const confirmPlaceButton = document.getElementById('confirmPlace');
 	        const place_nameInput=document.getElementById('place_name');
-	        let map; // 지도 객체
-	        let markers = []; // 마커 배열
+	    	// 지도 객체
+	        let map;
+	     	// 마커 배열
+	        let markers = [];
 	        let selectedMarker = null;
 	        let selectedLatLng = null;
 	        let selectedAddress = null;
@@ -185,7 +201,7 @@
 	        fetch('${path}/map/locations?fullAddress=' + encodeURIComponent(fullAddress))
 	            .then(response => response.text())
 	            .then(data => {
-	                console.log('Server response:', data); // 서버에서 받은 응답을 콘솔에 출력
+	                console.log('Server response:', data);
 	            })
 	            .catch(error => console.error('Error:', error));
 
@@ -291,13 +307,15 @@
 	                place_nameInput.value=selectedName;
 	                addressXInput.value = selectedLatLng.getLat();
 	                addressYInput.value = selectedLatLng.getLng();
-	                placeModal.hide(); // 모달 닫기
+	             	// 모달 닫기
+	                placeModal.hide(); 
 	            }
 	        });
 	        confirmPlaceButton.disabled = true;
 	    });
 	</script>
 
+	<!-- 로그인이 안되어있을 때 -->
 	<c:if test="${loginMember == null}">
 		<script>
 			alert("로그인 먼저 해주세요.");

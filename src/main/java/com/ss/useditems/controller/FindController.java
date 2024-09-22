@@ -47,13 +47,6 @@ public class FindController {
 	@PostMapping("/account/findPw.do")
 	public ResponseEntity<Map<String, String>> findPw(@RequestBody Map<String, String> request) {
 		//System.out.println("findPw() 실행");
-		String id = request.get("id");
-		String name = request.get("name");
-		String phone = request.get("phone");
-
-		//System.out.println("전송 받은 id: " + id);
-		//System.out.println("전송 받은 name: " + name);
-		//System.out.println("전송 받은 phone: " + phone);
 
 		String checkPw = service.findPw(request);
 		Map<String, String> response = new HashMap<String, String>();

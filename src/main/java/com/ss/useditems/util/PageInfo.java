@@ -3,10 +3,8 @@ package com.ss.useditems.util;
 import java.util.List;
 
 import com.ss.useditems.dto.BlacklistDTO;
-import com.ss.useditems.dto.ItemDTO;
 import com.ss.useditems.dto.ItemInfoDTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +14,6 @@ public class PageInfo {
 	
 	//DTO 컨테이너
 	private List<BlacklistDTO> dtoContainer;
-	
-	private List<ItemDTO> dtoContainer2;
 	
 	private List<ItemInfoDTO> dtoContainerInfo;
 	

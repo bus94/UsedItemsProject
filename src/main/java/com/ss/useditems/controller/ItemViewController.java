@@ -1,6 +1,5 @@
 package com.ss.useditems.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,28 +28,31 @@ public class ItemViewController {
 	@Autowired
 	private ItemViewService service;
 
+	// 아이템 상세페이지
 	@RequestMapping("/item/itemView")
 	public String itemView(Model model, int item_index,
 			@SessionAttribute(name = "loginMember", required = false) MemberDTO loginMember, HttpServletRequest request,
 			HttpServletResponse response) {
-		//System.out.println("itemView 페이지");
-		//System.out.println("item_index controller: " + loginMember);
 
+		// 관심 등록 전
 		boolean isInterested=false;
+		// 로그인 되어있으면
 		if(loginMember!=null){
 			isInterested=service.isInterest(acc_item_index(loginMember.getAcc_index(),item_index));
-			//System.out.println(isInterested);
 			acc_item_index(loginMember.getAcc_index(),item_index);
 		}
-
 		
 		// 조회수 증가 로직
 		String cookieName = "itemView_" + item_index;
+		// 서버의 쿠키를 가져옴
 		Cookie[] cookies = request.getCookies();
+		// 조회수 증가 변수
 		boolean viewed = false;
 
+		// 쿠키가 비어있지 않다면
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
+				// 쿠키 이름으로 같은지 비교
 				if (cookie.getName().equals(cookieName)) {
 					viewed = true;
 					break;
@@ -58,48 +60,22 @@ public class ItemViewController {
 			}
 		}
 
-		if (!viewed) {
+		if (!viewed) { // 쿠키가 비어있다면
 			service.incrementViews(item_index);
+			// 새로운 쿠키 생성
 			Cookie newCookie = new Cookie(cookieName, "true");
 			newCookie.setMaxAge(3600); // 1시간 동안 유효
 			newCookie.setPath("/");
+			// 새로운 쿠키 전송
 			response.addCookie(newCookie);
 		}
 
 		ItemInfoDTO item = service.selectByItemIndex(item_index);
-		String filePath = item.getItem_seller() + "/item_" + item.getItem_index() + "/";
-		item.setItem_thumbPath(filePath + item.getShow_thumb());
-		item.setItem_img1Path(filePath + item.getShow_img1());
-		item.setItem_img2Path(filePath + item.getShow_img2());
-		item.setItem_img3Path(filePath + item.getShow_img3());
-		item.setItem_img4Path(filePath + item.getShow_img4());
-		item.setItem_img5Path(filePath + item.getShow_img5());
-
-		//System.out.println("item: " + item); // item
-
-		System.out.println("조회수 증가" + item.getItem_click());
 		
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(item_index);
-		//System.out.println("replyList: " + replyList); // []
-
 		
-		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());
-		
-		itemMember.setAcc_score(itemMember.acc_score(itemMember.getAcc_count(), itemMember.getAcc_blackCount()));
-		// 매너등급
-		if (itemMember.getAcc_score() >= 80) {
-			itemMember.setAcc_level(5);
-		} else if (itemMember.getAcc_score() >= 60) {
-			itemMember.setAcc_level(4);
-		} else if (itemMember.getAcc_score() >= 40) {
-			itemMember.setAcc_level(3);
-		} else if (itemMember.getAcc_score() >= 20) {
-			itemMember.setAcc_level(2);
-		} else {
-			itemMember.setAcc_level(1);
-		}
-		System.out.println("itemMember: " + itemMember); // itemMember
-
+		// 셀러 정보
+		MemberDTO itemMember = service.selectByIndex(item.getItem_seller());		
 
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("item_seller", item.getItem_seller());
@@ -107,47 +83,30 @@ public class ItemViewController {
 
 		// 해당 매물에 대한 판매자의 다른 상품
 		List<ItemInfoDTO> otherItemList = service.selectByItemSeller(map);
-		String filePathOther;
-		for (int i = 0; i < otherItemList.size(); i++) {
-			filePathOther = otherItemList.get(i).getItem_seller() + "/item_" + otherItemList.get(i).getItem_index()
-					+ "/";
-			otherItemList.get(i).setItem_thumbPath(filePathOther + otherItemList.get(i).getShow_thumb());
-			otherItemList.get(i).setItem_img1Path(filePathOther + otherItemList.get(i).getShow_img1());
-			otherItemList.get(i).setItem_img2Path(filePathOther + otherItemList.get(i).getShow_img2());
-			otherItemList.get(i).setItem_img3Path(filePathOther + otherItemList.get(i).getShow_img3());
-			otherItemList.get(i).setItem_img4Path(filePathOther + otherItemList.get(i).getShow_img4());
-			otherItemList.get(i).setItem_img5Path(filePathOther + otherItemList.get(i).getShow_img5());
-		}
-
-		//System.out.println("otherItemList: " + otherItemList.size() + "개");
-		for (int i = 0; i < otherItemList.size(); i++) {
-			//System.out.println("otherItemList: " + otherItemList.get(i));
-		}
 
 		model.addAttribute("item", item);
 		model.addAttribute("itemMember", itemMember);
 		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("otherItemList", otherItemList);
 		model.addAttribute("isInterested", isInterested);
-		// 댓글 목록을 모델에 추가
 		model.addAttribute("replyList", replyList);
 
 		return "item/itemView";
 	}
 
+	// 댓글 달기
 	@RequestMapping("/itemView/reply")
 	public String writeReply(Model model, String content, int itemNo,
 			@SessionAttribute(name = "loginMember", required = false) MemberDTO loginMember) {
-		//System.out.println("writeReply() 실행");
-		//System.out.println("itemNo: " + itemNo);
-		//System.out.println("content: " + content);
 
+		// 로그인 안되었으면
 		if (loginMember == null) {
 			model.addAttribute("msg", "로그인 후 이용 바랍니다.");
 			model.addAttribute("location", "/account/login.do");
 			return "common/msg";
 		}
 
+		// 댓글내용에 아무것도 입력하지 않으면
 		if (content == null || content.trim().isEmpty()) {
 			model.addAttribute("msg", "댓글을 입력하세요.");
 			model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
@@ -159,8 +118,8 @@ public class ItemViewController {
 		dto.setRepl_content(content);
 		dto.setRepl_candidate(loginMember.getAcc_index());
 		dto.setRepl_nickname(loginMember.getAcc_nickname());
-		//System.out.println("댓글 입력 전 dto:" + dto);
 		
+		// 댓글 저장 변수
 		int result = service.saveReply(dto);
 		if (result > 0) {
 			model.addAttribute("msg", "리플이 등록되었습니다.");
@@ -168,24 +127,22 @@ public class ItemViewController {
 			model.addAttribute("msg", "리플 등록에 실패했습니다.");
 		}
 
-		// 댓글 목록 다시 조회
+		// 댓글목록 조회
 		List<ReplyDTO> replyList = service.selectReplyByItemIndex(itemNo);
 		model.addAttribute("replyList", replyList);
-
 		model.addAttribute("location", "/item/itemView?item_index=" + itemNo);
 
 		return "common/msg";
 	}
 
+	// 댓글 지우기
 	@RequestMapping("/itemView/replyDel")
 	public String deleteReply(Model model, int replyNo, int itemNo) {
-		//System.out.println("deleteReply() 실행");
-		//System.out.println("reply_index: " + replyNo + " item_index: " + itemNo);
 		Map<String, Integer> hmap = new HashMap<String, Integer>();
 		hmap.put("replyNo", replyNo);
 		hmap.put("itemNo", itemNo);
+		
 		int result = service.deleteReply(hmap);
-		//System.out.println("deleteReply() 결과 " + result);
 		if (result > 0) {
 			model.addAttribute("msg", "댓글이 삭제되었습니다");
 		} else {
@@ -196,6 +153,7 @@ public class ItemViewController {
 		return "common/msg";
 	}
 
+	// 댓글 수정
 	@RequestMapping("/itemView/replyEdit")
 	public String editReply(Model model, String content, int replyNo, int itemNo) {
 
@@ -214,6 +172,7 @@ public class ItemViewController {
 		return "common/msg";
 	}
 
+	// 관심 등록
 	@RequestMapping(value = "/item/itemView/addInterest", method = RequestMethod.POST)
 	public String addInterest(@RequestParam(value = "acc_index", required = false) Integer accIndex,
 			@RequestParam("item_index") int itemIndex, Model model) {
@@ -225,9 +184,6 @@ public class ItemViewController {
 			return "common/msg"; // msg.jsp로 이동	
 		}
 
-		// 관심 항목 추가 로직 수행
-		//System.out.println("acc_index: " + accIndex + "\nitem_index: " + itemIndex);
-
 		service.addInterest(acc_item_index(accIndex, itemIndex));
 
 		// 성공 메시지와 함께 현재 페이지로 리디렉션
@@ -236,6 +192,7 @@ public class ItemViewController {
 		return "common/msg"; // msg.jsp로 이동
 	}
 
+	// 관심등록 해제
 	@PostMapping("/item/itemView/removeInterest")
 	public String removeInterest(@RequestParam("acc_index") int accIndex, @RequestParam("item_index") int itemIndex,
 			Model model) {
@@ -248,6 +205,7 @@ public class ItemViewController {
 		return "common/msg";
 	}
 
+	// 계정 정보 저장
 	public Map<String, Integer> acc_item_index(int acc_index, int item_index) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("acc_index", acc_index);
@@ -256,10 +214,9 @@ public class ItemViewController {
 		return map;
 	}
 	
+	// 물품 삭제
 	@RequestMapping("/itemView/itemDel.do")
 	public String itemDel(Model model, int item_index) {
-		//System.out.println("deleteItem() 실행");
-		//System.out.println(item_index);
 		boolean check = service.deleteItem(item_index);
 		if(check) {
 			model.addAttribute("msg", "삭제가 완료됐습니다.");
@@ -271,22 +228,13 @@ public class ItemViewController {
 		return "common/msg";
 	}
 	
+	// 물품 수정
 	@RequestMapping("/item/itemEdit.do")
 	public String editItem(Model model,int item_index){
+		// 물품 정보 가져오기
 		ItemInfoDTO item = service.selectByItemIndex(item_index);
 	    
-	    String filePath = item.getItem_seller() + "/item_" + item.getItem_index() + "/";
-	    item.setItem_thumbPath(filePath + item.getShow_thumb());
-		
-		List<String> itemImages = new ArrayList<>();
-		if (item.getShow_img1() != null) itemImages.add(filePath + item.getShow_img1());
-		if (item.getShow_img2() != null) itemImages.add(filePath + item.getShow_img2());
-		if (item.getShow_img3() != null) itemImages.add(filePath + item.getShow_img3());
-		if (item.getShow_img4() != null) itemImages.add(filePath + item.getShow_img4());
-		if (item.getShow_img5() != null) itemImages.add(filePath + item.getShow_img5());
-		
 		model.addAttribute("item", item);
-		model.addAttribute("itemImages", itemImages);
 		
 		return "/item/itemEdit";
 	}

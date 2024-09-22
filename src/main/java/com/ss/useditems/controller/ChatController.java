@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +25,7 @@ public class ChatController {
 	private ChatService chatService;
 	
 	
-	@PostMapping("checkLastChat.do")	//정일_마지막 챗 수시 체크(헤더 열릴때마다)
+	@PostMapping("checkLastChat.do")	//마지막 챗 수시 체크(헤더 열릴때마다)
 	@ResponseBody
 	public ChatDTO checkLastChat(@RequestParam String acc_index) {
 		//System.out.println("==chat.checkLastChat==");

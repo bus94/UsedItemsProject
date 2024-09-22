@@ -149,11 +149,13 @@
 }
 
 
-/* item carousel CSS는 itemView.jsp와 같음 */
+/* 이하 물품리스트: slick carousel */
 
 .acc_info_page .carousel-wrapper {
 	padding-top: 0;
 	margin-bottom: 20px;
+	width: 1000px;
+	/* position: relative; */
 }
 
 .acc_info_page .notice_empty {
@@ -176,6 +178,52 @@
     margin-bottom: 14px;
     
     border: 1px solid lightgray;
+}
+
+.acc_info_page .newItem_wrap {
+	width: 100%;
+	margin:auto;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-top: 50px;
+}
+
+.acc_info_page .item_slick_container { /* before: otherItem_container */
+	width: 1000px;
+	margin-top:-40px;
+}
+
+.acc_info_page .slick_carousel { /* before: newItem_container2 */
+	display: flex;
+	justify-content: space-between;
+	gap:9px;
+	transition: transform 0.5s ease;
+}
+
+.acc_info_page .slick-track {
+	display: flex;
+	gap:10px;
+}
+
+.acc_info_page .slick-slide {	/* slick_carousel에 포함 개별 item */
+	border: 1px solid rgb(219, 219, 219);
+}
+
+.acc_info_page .slick-arrow {
+	width:50px;
+	height:50px;
+	position: absolute;
+	top: 50%;
+}
+
+.acc_info_page .slick-next {
+	right: -50px;
+}
+
+.acc_info_page .slick-prev {
+	left: -50px;
 }
 
 .acc_info_page .item_info {

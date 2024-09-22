@@ -3,6 +3,7 @@
 
 <mapper namespace="com.ss.useditems.mapper.ItemEnrollMapper">
 
+	<!-- 물품 개수 조회 -->
 	<select id="selectItemIndex" resultType="int">
 		SELECT
 		item_index
@@ -14,6 +15,8 @@
 		item_index DESC
 	</select>
 
+	<!-- 물품 등록 -->
+	<!-- 등록하는 물품에 대한 정보를 ITEM, SHOWCASE 테이블에 각각 저장 -->
 	<insert id="enrollItem" parameterType="itemInfoDTO">
 		INSERT ALL
 		INTO ITEM
@@ -66,8 +69,8 @@
 		SELECT * FROM DUAL
 	</insert>
 	
+	<!-- 물품 제목, 내용, 카테고리, 가격, 장소 등의 수정 -->
 	<update id="updateItem" parameterType="itemInfoDTO">
-		<!-- ITEM 테이블 업데이트 -->
 		UPDATE ITEM
 		SET
 		item_title = #{item_title},
@@ -85,6 +88,7 @@
 		item_index = #{item_index}
 	</update>
 	
+	<!-- 물품 썸네일 파일명 수정 -->
 	<update id="updateShowcaseThumbnail" parameterType="itemInfoDTO">
 		UPDATE
 		SHOWCASE
@@ -93,6 +97,7 @@
 		WHERE show_item = #{item_index}
 	</update>
 	
+	<!-- 물품 이미지 파일명 수정 -->
 	<update id="updateShowcaseImg" parameterType="itemInfoDTO">
 		update showcase
 		set

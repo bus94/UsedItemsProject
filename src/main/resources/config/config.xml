@@ -6,11 +6,8 @@
 			alias="memberDTO" />
 
 		<typeAlias type="com.ss.useditems.dto.BlacklistDTO"
-			alias="BlacklistDTO" />		<!-- 정일 -->
+			alias="BlacklistDTO" />		
 
-		<typeAlias type="com.ss.useditems.dto.ItemDTO"
-			alias="itemDTO" />
-			
 		<typeAlias type="com.ss.useditems.dto.ReplyDTO"
 			alias="ReplyDTO" />
 
@@ -18,10 +15,9 @@
 			alias="itemInfoDTO" />
 			
 		<typeAlias type="com.ss.useditems.dto.ChatRoomDTO"
-			alias="ChatRoomDTO" />		<!-- 정일 -->
+			alias="ChatRoomDTO" />		
 			
 		<typeAlias type="com.ss.useditems.dto.ChatDTO"
-			alias="ChatDTO" />		<!-- 정일 -->
-
+			alias="ChatDTO" />		
 	</typeAliases>
 </configuration>

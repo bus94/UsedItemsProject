@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ss.useditems.dto.ItemInfoDTO;
-import com.ss.useditems.dto.MemberDTO;
 import com.ss.useditems.service.HomeService;
 
 @Controller
@@ -30,7 +29,7 @@ public class HomeController {
 		// 아이템 new5
 		ArrayList<ItemInfoDTO> new5;
 
-		new5 = homeService.getNew5();// 임시로 블랙서비스에서 실행, 안겹치려고
+		new5 = homeService.getNew5();
 		System.out.println("HomeCont new5 result: " + new5.size() + "개" + new5);
 		System.out.println();
 
@@ -50,7 +49,7 @@ public class HomeController {
 
 		// 아이템 hot5
 		ArrayList<ItemInfoDTO> hot5;
-		hot5 = homeService.getHot5();// 임시로 블랙서비스에서 실행, 안겹치려고
+		hot5 = homeService.getHot5();
 		
 		for (int i = 0; i < hot5.size(); i++) {
 			filePath = hot5.get(i).getItem_seller() + "/item_" + hot5.get(i).getItem_index() + "/";
@@ -66,7 +65,6 @@ public class HomeController {
 
 		// 파워셀러의 last3
 		//MemberDTO powerSeller = new MemberDTO();
-		// 임시로 블랙서비스에서 실행, 안겹치려고
 		//powerSeller = homeService.getPowerSeller();
 		//model.addAttribute("powerSeller", powerSeller);// DB에 거래성사 건이 별로 없어서 매물 등록 최다 계정으로...
 
