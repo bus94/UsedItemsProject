@@ -57,6 +57,8 @@
 	href="${path}/resources/css/blacklist/complain.css?v=${systemProperties['timestamp']}">
 <link rel="stylesheet"
 	href="${path}/resources/css/chat/chatRoom.css?v=${systemProperties['timestamp']}">
+<link rel="stylesheet"
+	href="${path}/resources/css/acc/timeline.css?v=${systemProperties['timestamp']}">
 
 <script defer src="${path}/resources/js/header.js"></script>
 

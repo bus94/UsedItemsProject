@@ -7,6 +7,10 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
+<!-- aside태그: 타임라인 -->
+<jsp:include page="/WEB-INF/views/account/timeline.jsp"></jsp:include>
+
+
 <!-- CSS: acc_info.css -->
 <!-- JS: acc_info.js, 섹션 하단에서 import -->
 <section id="content" class="container acc_info_page" style="padding-top: 100px;">
@@ -49,6 +53,11 @@
 							<span>아</span><span>이</span><span>디</span>
 						</p>
 						<p class="public_text ms-3 mt-3">${account_info.acc_id}</p>
+						<!-- 타임라인 offcanvas -->
+						<button type="button" id="btn_timeline" 
+							class="btn_acc btn btn-outline-info btn-sm ms-3 align-self-center" 
+							data-bs-toggle="offcanvas" data-bs-target="#offcanvas_timeline"	
+							aria-controls="offcanvas_timeline">나의 타임라인</button>
 					</div>
 					<div class="d-flex">
 						<p class="public_title container">
@@ -119,7 +128,7 @@
 				</div> --%>
 			</div>
 		</div>
-		
+
 		
 		<!-- 수입지출내역: 보류 -->
 		
@@ -412,7 +421,7 @@
 <script src="${path}/resources/js/acc/acc_info.js"></script>
 
 <script>
-/* 
+/*
 var item_count_crs1 = $('#slick_carousel_1 .carousel_1_item').length;
 var item_count_crs2 = $('#slick_carousel_2 .carousel_2_item').length;
 var item_count_crs3 = $('#slick_carousel_3 .carousel_3_item').length;

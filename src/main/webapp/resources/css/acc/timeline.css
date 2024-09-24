@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#timeline .offcanvas-start {
+	top: 75px;
+}
+
+.acc_info_page .carousel-wrapper_withTimeline {
+	padding-left: 400px;
+	transition: all 0.3s ease;
+}

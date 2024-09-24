@@ -59,3 +59,15 @@ for (i=0; i<5; i++) {
 	}
 	
 } 
+
+
+
+$('#btn_timeline').click(function(){
+
+	//console.log('timeline toggle');
+	$('.carousel-wrapper').toggleClass('carousel-wrapper_withTimeline');
+
+});
+
+
+
