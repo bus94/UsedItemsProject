@@ -53,11 +53,14 @@
 							<span>아</span><span>이</span><span>디</span>
 						</p>
 						<p class="public_text ms-3 mt-3">${account_info.acc_id}</p>
-						<!-- 타임라인 offcanvas -->
-						<button type="button" id="btn_timeline" 
-							class="btn_acc btn btn-outline-info btn-sm ms-3 align-self-center" 
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvas_timeline"	
-							aria-controls="offcanvas_timeline">나의 타임라인</button>
+						
+						<!-- 타임라인(offcanvas) 토글 버튼 -->
+						<c:if test="${other_info == null}">
+							<button type="button" id="btn_timeline" 
+								class="btn_acc btn btn-outline-success btn-sm ms-3 align-self-center" 
+								data-bs-toggle="offcanvas" data-bs-target="#offcanvas_timeline"	
+								aria-controls="offcanvas_timeline">나의 타임라인</button>
+						</c:if>
 					</div>
 					<div class="d-flex">
 						<p class="public_title container">

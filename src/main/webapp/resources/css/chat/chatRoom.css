@@ -12,11 +12,9 @@
 	height: 60px;
 }
 
-
 #chatList {
 	gap: 10px;
 }
-
 
 #chatList #chat_emptyList {
 	margin: 0;
@@ -59,11 +57,18 @@
 	width: 210px;
 	margin-top: 8px;
 	
-	gap: 12px;
+	gap: 2px;
  }
  
- #chatList .chatRoom_title h4{
- 	margin-bottom: 16px;
+ #chatList .chatRoom_title { 	
+ 	margin: 0;
+ 
+ 	font-size: 1.2rem;
+ 	overflow: hidden;
+ 	text-overflow: ellipsis;
+ 	display: -webkit-box;
+ 	-webkit-line-clamp: 2;
+ 	-webkit-box-orient: vertical;
  }
 
  #chatList .chatRoom_box p {
@@ -91,7 +96,6 @@
 	display: none;
 }
 
-
 #chatList_notice {
 	color: forestgreen;
 	font-weight: bold;
@@ -100,7 +104,6 @@
 /*-----------------------------------------------  */
 
 .chat_header {
-	
 	background-color: #DCF8C6;
 }
 

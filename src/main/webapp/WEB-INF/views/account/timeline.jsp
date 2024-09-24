@@ -6,16 +6,17 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
-
+<!-- CSS: timeline.css -->
+<!-- JS: acc_info.js -->
 <aside id="timeline">
 	
 	<div id="offcanvas_timeline" class="offcanvas offcanvas-start" 
-		data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" 
-		aria-labelledby="offcanvas_timeline_label">
+			data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" 
+			aria-labelledby="offcanvas_timeline_label">
 		<div class="offcanvas-header">
 			<h5 class="offcanvas-title" id="offcanvas_timeline_label">나의 타임라인</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-				aria-label="Close"></button>
+			<button type="button" id="btn_close_timeline" class="btn-close" 
+				data-bs-dismiss="offcanvas"	aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
 			<p>Try scrolling the rest of the page to see this option in
@@ -48,7 +49,5 @@
 				action.</p>
 		</div>
 	</div>
-
-
 
 </aside>

@@ -301,6 +301,7 @@ function makingChatRooms(chatList) {	// 채팅리스트 모달 생성
 		$('#ChatRoom_Modal_reservoir').append(chatRoom_modal_template);
 		
 		
+		
 		//console.log("요소로 만들어진 메시지 인덱스의 최대값: " + thisAccLatestMsgIdx);
 		// 채팅방 요소가 만들어졌다? 헤더 채팅 아이콘을 눌렀다는 것 == 각 채팅방 최종 메시지를 확인했다는 것!
 		

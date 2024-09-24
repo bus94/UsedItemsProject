@@ -36,11 +36,7 @@ function selectChatRoom(param) {
 function enterChatRoom(param) { 
 
 	var room_index = param;
-	
-	//채팅방 스크롤을 항상 최신(아래쪽)으로 하고 싶다!,, header.js에서?
-	//$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
-	
-	
+		
 	//상대방의 프사를 불러오고 싶다
 	var other_index = '';
 	var other_id = '';
@@ -80,7 +76,6 @@ function enterChatRoom(param) {
 		}); //ajax
 		
 
-		
 	//클라이언트의 jsp에서 웹소켓 객체 생성
 	//요청 경로는 서버의 웹소켓 핸들러 제공 uri(WebSocketConfig에서 설정)
 	var ws = new WebSocket(chatURI);//웹소켓 연결;
@@ -90,7 +85,7 @@ function enterChatRoom(param) {
 	
 		
 	ws.onopen = function() {	//클라이언트에서 웹소켓 연결되면 실행
-		//console.log("서버 웹소켓에 연결 성공");
+		//console.log("서버 웹소켓에 연결 성공 room_index: " + room_index);
 		ws.send(loginMember_accNickname + "님 입장하였습니다" + "^$00^#" + room_index +  "^@" + serverName + "^!" + thisTime()); 
 		// ^$: 챗 인덱스(서버메시지는 00), ^#: 채팅방 인덱스, ^@: 발신자 id, ^!: 발송시간
 		//thisTime(): 현재 시간 Date formatter, 정의는 하단에
@@ -108,8 +103,21 @@ function enterChatRoom(param) {
 	};
 	
 	ws.onmessage = function(event) {	//서버로부터 메시지가 오면 실행
-		//console.log(event.data);
+		//console.log("paylod: " + event.data);
 		displayMessage(event.data);	//들어온 메시지 가공 및 출력 메서드 호출
+		
+		//메시지 요소를 추가하고 스크롤 내리기: 채팅방 들어올 때, 나갈 때 모두 서버에서 알림 메시지가 날아옴
+		//.scrollTop(#) : scroll 상단 끝을 # 위치로 이동
+		//.prop('scrollHeight') : 'scrollHeight' property 값을 불러옴
+				
+		//크롬은 안되는데 엣지는 된다 => 크롬이 엣지보다 빠르다... 
+		//처음 채팅방을 열 때 요소를 만들어내는 시간차때문에 scrollHeight 값을 못불러와서(?)
+		setTimeout(function(){
+			//console.log('timeout150');
+			//console.log("scrollHeight: " + $('#chat_viewer'+room_index).prop('scrollHeight'));
+			//console.log("scrollTop: " + $('#chat_viewer'+room_index).prop('scrollTop'));
+			$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));
+		}, 150);
 	};
 
 
@@ -187,15 +195,10 @@ function enterChatRoom(param) {
 			messageTimeDiv.className = 'message_time';
 			messageTimeDiv.textContent = message_time;
 			messageDiv.appendChild(messageTimeDiv);
-		
-
-			//메시지 요소를 추가하고 스크롤 내리기
-			//.scrollTop(#) : scroll 상단 끝을 # 위치로 이동
-			//.prop('scrollHeight') : 'scrollHeight' property 값을 불러옴
+			///메시지 요소 추가 끝
 			//console.log("scrollTop: " + chat_viewer.scrollTop);
-			//console.log("scrollHeight: " + chat_viewer.scrollHeight);
-			//console.log("modal scrollHeight: " + $('#chat_viewer'+room_index).prop('scrollHeight'));			
-			$('#chat_viewer'+room_index).scrollTop($('#chat_viewer'+room_index).prop('scrollHeight'));	
+			//console.log("scrollHeight: " + chat_viewer.scrollHeight);		
+	
 	
 	
 			// recordLastChat.do: DB(ACCOUNT)에 확인한 메시지 입력(최종 확인한 메시지)
@@ -285,8 +288,11 @@ function enterChatRoom(param) {
 
 	//채팅방에서 '돌아가기' 또는 '닫기' 누를 경우
 	$('.unlink_chat').click(function(){
-		ws.close();	//웹소켓 해제
-		ws=null;
+		ws.onclose();	//작별인사
+		
+		//ws.close();	//웹소켓 강제 종료
+		//ws=null;
+		//console.log(ws);
 	});
 
 }//'채팅방 보기' 버튼
