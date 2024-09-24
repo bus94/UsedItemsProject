@@ -13,6 +13,7 @@ $(function() {
 });
 
 
+// 회원정보_매물 목록
 
 // [ (거래중)[carousel],[carousel에 속한 item],
 //   (판매중)[carousel],[carousel에 속한 item],
@@ -62,12 +63,15 @@ for (i=0; i<5; i++) {
 
 
 
+// 타임라인 토글
 $('#btn_timeline').click(function(){
 
-	//console.log('timeline toggle');
+	$('#acc_summary').toggleClass('acc_summary_withTimeline');
 	$('.carousel-wrapper').toggleClass('carousel-wrapper_withTimeline');
 
 });
 
-
-
+$('#btn_close_timeline').click(function(){
+	$('#acc_summary').removeClass('acc_summary_withTimeline');
+	$('.carousel-wrapper').removeClass('carousel-wrapper_withTimeline');
+});

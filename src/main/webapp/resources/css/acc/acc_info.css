@@ -7,6 +7,13 @@
 
 .acc_info_page #acc_summary {
 	margin-bottom: 40px;
+	
+	/* 
+	 * 타임라인 토글cf. timeline.css 
+	 * cf. timeline.css  (.acc_summary_withTimeline)
+	*/
+	transition: all 0.3s ease;
+	
 }
 
 .acc_info_page .acc_inform {
@@ -155,7 +162,12 @@
 	padding-top: 0;
 	margin-bottom: 20px;
 	width: 1000px;
-	/* position: relative; */
+	
+	/* 
+	 * 타임라인 토글cf. timeline.css 
+	 * cf. timeline.css  (.carousel-wrapper_withTimeline)
+	*/
+	transition: all 0.3s ease; 
 }
 
 .acc_info_page .notice_empty {
