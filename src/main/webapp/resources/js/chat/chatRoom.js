@@ -288,11 +288,10 @@ function enterChatRoom(param) {
 
 	//채팅방에서 '돌아가기' 또는 '닫기' 누를 경우
 	$('.unlink_chat').click(function(){
-		ws.onclose();	//작별인사
-		
-		//ws.close();	//웹소켓 강제 종료
+		ws.onclose();	//작별인사(퇴장알림)
+		ws.close();		//웹소켓 강제 종료, 종료하지 않으면 채팅방을 닫아도 메시지를 수신함
 		//ws=null;
-		//console.log(ws);
+		console.log(ws);
 	});
 
 }//'채팅방 보기' 버튼
