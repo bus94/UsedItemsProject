@@ -1,0 +1,21 @@
+
+
+CREATE SEQUENCE TIMELINE_SEQ;
+CREATE TABLE TIMELINE (
+	event_index	    NUMBER		PRIMARY KEY,
+	event_party	NUMBER		REFERENCES ACCOUNT(acc_index) NOT NULL,
+    event_code		VARCHAR2(100)		NOT NULL	CHECK (event_code IN('acc', 'item', 'repl', 'chat', 'black')),
+    event_message   VARCHAR2(300)   NOT NULL,
+	event_time	DATE	DEFAULT SYSDATE	NOT NULL
+);
+
+
+-- event_code --
+-- 'acc' : 회원가입, 아이디찾기?, 비밀번호 찾기?, 회원정보 수정, 회월탈퇴 (to me)
+-- 'item' : 매물등록, 매물수정?, 매물상태 변경	(to me)
+-- 'repl' : 댓글등록, 댓글수정, 댓글삭제	(to me & seller)
+-- 'chat' : 채팅방생성, 채팅방삭제	(to host & guest)
+-- 'black' : 신고등록, 신고삭제		(to subject & object)
+
+-- 미포함 -- 
+-- 단순 조회, 찜목록 추가&삭제, 각각의 채팅글 등록
