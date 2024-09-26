@@ -19,5 +19,8 @@
 			
 		<typeAlias type="com.ss.useditems.dto.ChatDTO"
 			alias="ChatDTO" />		
+			
+		<typeAlias type="com.ss.useditems.dto.EventDTO"
+			alias="EventDTO" />		
 	</typeAliases>
 </configuration>

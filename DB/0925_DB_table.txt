@@ -1,4 +1,5 @@
-
+DROP TABLE TIMELINE;
+DROP SEQUENCE TIMELINE_SEQ;
 
 CREATE SEQUENCE TIMELINE_SEQ;
 CREATE TABLE TIMELINE (
@@ -11,8 +12,8 @@ CREATE TABLE TIMELINE (
 
 
 -- event_code --
--- 'acc' : 회원가입, 아이디찾기?, 비밀번호 찾기?, 회원정보 수정, 회월탈퇴 (to me)
--- 'item' : 매물등록, 매물수정?, 매물상태 변경	(to me)
+-- 'acc' : 회원가입, 아이디찾기?, 비밀번호 찾기?, 회원정보 수정, 회원탈퇴 (to me)
+-- 'item' : 물품등록, 물품수정?, 물품상태 변경	(to me)
 -- 'repl' : 댓글등록, 댓글수정, 댓글삭제	(to me & seller)
 -- 'chat' : 채팅방생성, 채팅방삭제	(to host & guest)
 -- 'black' : 신고등록, 신고삭제		(to subject & object)

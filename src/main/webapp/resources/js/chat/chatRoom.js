@@ -348,7 +348,7 @@ function signDeal(room_index, room_item) {		//'거래완료' 버튼 클릭
 	if (confirm("이 거래를 성사시키겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
 		
 		//console.log("삭제할 채팅방번호: " + room_index);
-		const querySignDeal = { room_index : room_index, room_item : room_item };
+		const querySignDeal = { room_index : room_index };
 		
 		$.ajax({	
 			type : "POST",

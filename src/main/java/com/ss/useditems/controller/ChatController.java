@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ss.useditems.dto.ChatDTO;
 import com.ss.useditems.dto.ChatRoomDTO;
+import com.ss.useditems.dto.EventDTO;
 import com.ss.useditems.service.ChatService;
 
 
@@ -153,16 +154,30 @@ public class ChatController {
 	//채팅방에서 '거래완료' 클릭 시 채팅방+채팅 삭제(item_status: ondeal -> donedeal)
 	@PostMapping("/signDeal.do")
 	@ResponseBody
-	public int signDeal(@RequestParam String room_index, @RequestParam String room_item) {
+	public int signDeal(@RequestParam String room_index) {
 		
 		int result = -1;
 		try {
-			result = chatService.signDeal(room_index, room_item);
+			result = chatService.signDeal(room_index);
 			//System.out.println("signDealResult: " + result);
 		} catch(Exception e) {
 			result = 0;
 		}
 		return result;
+	}
+	
+	
+	// (임시) timeline불러오기 -> 멤버컨트롤러로 이동 예정
+	@GetMapping("/timeline.do")
+	@ResponseBody
+	public List<EventDTO> timeline(@RequestParam String loginMember_accIndex) {
+		
+		
+		List<EventDTO> eventList = null;
+		try {
+			eventList = chatService.getTimeline(loginMember_accIndex);
+		} catch(Exception e) {}
+		return eventList;
 	}
 	
 }

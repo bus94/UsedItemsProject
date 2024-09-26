@@ -184,19 +184,27 @@
 		item_status='onsale' where item_index=#{room_item}
 	</update>
 
-	<update id="updateItemDonedeal" parameterType="int">
+	<update id="updateItemDonedeal" parameterType="String">
 		update ITEM set
 		item_status='donedeal',
+		item_offDate=SYSDATE,
 		item_buyer=#{item_buyer}
 		where item_index=#{item_index}
 	</update>
 	
-	<update id="updateAccountCount" parameterType="int">
+	<update id="updateAccountCount" parameterType="String">
 		update ACCOUNT set acc_count=(select acc_count from account where acc_index=#{acc_index})+1
 		where acc_index=#{acc_index}
 	</update>
+	
+	<insert id="insertTimeLine" parameterType="String">
+		INSERT INTO TIMELINE
+		VALUES (TIMELINE_SEQ.NEXTVAL, #{acc_index}, #{event_code}, #{event_message}, SYSDATE)
+	</insert>
 
 
-
+	<select id="selectAllEvent" parameterType="String" resultType="EventDTO">
+		select * from TIMELINE where event_party=#{acc_index} order by event_index desc
+	</select>
 
 </mapper>
