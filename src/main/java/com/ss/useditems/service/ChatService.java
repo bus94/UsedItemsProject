@@ -72,11 +72,11 @@ public class ChatService {
 								+ " 관련 채팅방과 채팅글이 모두 삭제되었습니다.";
 		
 		int result = 0;
-		result = chatMapper.updateItemDonedeal(item_index, item_buyer);
-		result += chatMapper.updateAccountCount(item_seller);
-		result += chatMapper.updateAccountCount(item_buyer);
-		result += chatMapper.insertTimeLine(item_seller, event_code, event_message);
-		result += chatMapper.insertTimeLine(item_buyer, event_code, event_message);
+		result = chatMapper.updateItemDonedeal(item_index, item_buyer);		//ITEM 테이블 수정('ondeal' -> 'donedeal', 구매자&날짜 확정) 
+		result += chatMapper.updateAccountCount(item_seller);	//거래횟수 +1(acc_count)
+		result += chatMapper.updateAccountCount(item_buyer);	//거래횟수 +1(acc_count)
+		result += chatMapper.insertTimeLine(item_seller, event_code, event_message);	//타임라인 등록
+		result += chatMapper.insertTimeLine(item_buyer, event_code, event_message);		//타임라인 등록
 		result += chatMapper.deleteChatRoom(room_index);
 		
 		return result;

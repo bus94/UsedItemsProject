@@ -151,7 +151,7 @@ public class ChatController {
 		return result;
 	}
 
-	//채팅방에서 '거래완료' 클릭 시 채팅방+채팅 삭제(item_status: ondeal -> donedeal)
+	//채팅방에서 '거래완료' 클릭 시 채팅방+채팅 삭제& ITEM 테이블 수정
 	@PostMapping("/signDeal.do")
 	@ResponseBody
 	public int signDeal(@RequestParam String room_index) {

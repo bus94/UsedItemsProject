@@ -108,21 +108,16 @@ function writingTimeline(eventList) {
 	console.log(eventList);
 	$(eventList).each(function (index, obj){	//forEach 반복문 jQuery 형식
 	
-	
-		//<div class="event_box event_acc">
-			//<p class="event_message">&middot; Safe Market 회원가입</p>
-			//<p class="event_time">24/09/20 08:47</p>
-		//</div>
-	
-		var event_code = '';
 		
-		//날짜 형식 변환
-		//var formattedDate = formattingDate(new Date(obj.event_time));
+		var event_code = 'event_' + obj.event_code;
+		
+		//날짜 형식 변환, 메서드 정의는 하단
+		var formattedDate = formattingDate(new Date(obj.event_time));
 	
 		var event_template = 
 		  `<div class="event_box ${event_code}">`
 		+ `<p class="event_message">&middot; ${obj.event_message}</p>`
-		+ `<p class="event_time">${obj.event_time}</p>`
+		+ `<p class="event_time">${formattedDate}</p>`
 		+ '</div>';
 	
 	
