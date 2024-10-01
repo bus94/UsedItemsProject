@@ -15,7 +15,7 @@ public class ChatRoomDTO {
 	
 	private int room_index;				// DB. 채팅방 일련번호
 	private int room_item;				// DB. 해당 채팅방 물품 일련번호
-	private int room_reply;				// DB. 채팅방 
+	private int room_reply;				// DB. 채팅방 댓글번호
 	private Date room_openDate;			// DB. 채팅방 생성 날짜 
 	
 	private String room_itemTitle;		// 물품 제목
