@@ -18,35 +18,39 @@
 			<button type="button" id="btn_close_timeline" class="btn-close" 
 				data-bs-dismiss="offcanvas"	aria-label="Close"></button>
 		</div>
-		<div class="offcanvas-body">
-			<p>Try scrolling the rest of the page to see this option in
-				action.</p>
-			<p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p><p>Try scrolling the rest of the page to see this option in
-				action.</p>
+		<div id="offcanvas_timeline_body" class="offcanvas-body">
+							
+			<div class="event_box event_acc">
+				<p class="event_message">&middot; Safe Market 회원가입</p>
+				<p class="event_time">24/09/20 08:47</p>
+			</div>
+				
+			<div class="event_box event_item">
+				<p class="event_message">&middot; 물품 등록</p>
+				<p class="event_time">24/09/22 08:47</p>
+			</div>
+				
+			<div class="event_box event_black">
+				<p class="event_message">&middot; 신고 등록</p>
+				<p class="event_time">24/09/23 08:47</p>
+			</div>
+			
+			<div class="event_box event_repl">
+				<p class="event_message">&middot; 댓글 등록</p>
+				<p class="event_time">24/09/24 08:47</p>
+			</div>
+			
+			<div class="event_box event_chat">
+				<p class="event_message">&middot; 채팅방 생성</p>
+				<p class="event_time">24/09/24 08:47</p>
+			</div>
+			
+			<div class="event_box event_item">
+				<p class="event_message">&middot; 판매 완료</p>
+				<p class="event_time">24/09/25 08:47</p>
+			</div>
+
+				
 		</div>
 	</div>
 

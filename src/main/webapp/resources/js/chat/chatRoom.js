@@ -290,6 +290,8 @@ function enterChatRoom(param) {
 	$('.unlink_chat').click(function(){
 		ws.onclose();	//작별인사(퇴장알림)
 		ws.close();		//웹소켓 강제 종료, 종료하지 않으면 채팅방을 닫아도 메시지를 수신함
+		//현재 웹소켓 closing 에러 남,, 강제 종료했는데 ws.onclose()를 실행하라고 해서,,,
+		
 		//ws=null;
 		console.log(ws);
 	});
@@ -346,7 +348,7 @@ function signDeal(room_index, room_item) {		//'거래완료' 버튼 클릭
 	if (confirm("이 거래를 성사시키겠습니까?\n이 채팅방과 대화 내용이 모두 삭제되며 복구할 수 없습니다.")) {
 		
 		//console.log("삭제할 채팅방번호: " + room_index);
-		const querySignDeal = { room_index : room_index, room_item : room_item };
+		const querySignDeal = { room_index : room_index };
 		
 		$.ajax({	
 			type : "POST",

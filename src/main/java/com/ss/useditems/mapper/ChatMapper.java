@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ss.useditems.dto.ChatDTO;
 import com.ss.useditems.dto.ChatRoomDTO;
+import com.ss.useditems.dto.EventDTO;
 
 @Mapper
 public interface ChatMapper {
@@ -28,8 +29,12 @@ public interface ChatMapper {
 	
 	int updateItemOnsale(String room_item);
 	
-	int updateItemDonedeal(int item_index, int item_buyer);
+	int updateItemDonedeal(String item_index, String item_buyer);
 	
-	int updateAccountCount(int acc_index);
+	int updateAccountCount(String acc_index);
+
+	int insertTimeLine(String acc_index, String event_code, String event_message);
+
+	ArrayList<EventDTO> selectAllEvent(String acc_index);
 
 }

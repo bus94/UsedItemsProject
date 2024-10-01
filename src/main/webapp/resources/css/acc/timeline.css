@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+/* toggleClass: at acc_info.js */
+.acc_info_page .acc_summary_withTimeline {
+	padding-left: 410px;
+	transition: all 0.3s ease;
+}
+
+.acc_info_page .carousel-wrapper_withTimeline {
+	padding-left: 400px;
+	transition: all 0.3s ease;
+}
+
 #timeline .offcanvas-start {
 	top: 75px;
 }
@@ -14,13 +25,45 @@
 }
 
 
-/* toggleClass: at acc_info.js */
-.acc_info_page .acc_summary_withTimeline {
-	padding-left: 410px;
-	transition: all 0.3s ease;
+#timeline .event_box {
+	border: 1px dotted #ddd;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;;
+	
+	padding: 8px;
+	margin-bottom: 8px;
 }
 
-.acc_info_page .carousel-wrapper_withTimeline {
-	padding-left: 400px;
-	transition: all 0.3s ease;
+#timeline .event_message {
+	margin-bottom: 0;
 }
+
+#timeline .event_time {	
+	align-self: flex-end;
+	margin: 0;
+	font-size: 12px;
+} 
+
+#timeline .event_acc {
+	/* border-color: black; */
+}
+
+#timeline .event_item {
+	border-color: blue;
+}
+
+#timeline .event_repl {
+	border-color: green;
+}
+
+#timeline .event_chat {
+	border-color: orange;
+}
+
+#timeline .event_black {
+	border-color: red;
+}
+
+
+
